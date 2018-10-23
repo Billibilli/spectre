@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Utilities/Tuple.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - Tuple.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines functions for manipulating tuples
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;tuple&gt;
+<span class="lineNum">      10 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : namespace tuple_impl_detail {
+<span class="lineNum">      13 </span>            : template &lt;bool ReverseIteration, typename... Elements, typename N_aryOp,
+<span class="lineNum">      14 </span>            :           typename... Args, size_t... Is&gt;
+<span class="lineNum">      15 </span>            : constexpr inline void tuple_fold_impl(
+<span class="lineNum">      16 </span>            :     const std::tuple&lt;Elements...&gt;&amp; tupull, N_aryOp&amp;&amp; op,
+<span class="lineNum">      17 </span>            :     std::index_sequence&lt;Is...&gt; /*meta*/,
+<span class="lineNum">      18 </span>            :     Args&amp;... args) noexcept(
+<span class="lineNum">      19 </span>            :         noexcept(static_cast&lt;void&gt;(std::initializer_list&lt;char&gt;{
+<span class="lineNum">      20 </span>            :     (static_cast&lt;void&gt;(
+<span class="lineNum">      21 </span>            :          op(std::get&lt;(ReverseIteration ? sizeof...(Elements) - 1 - Is : Is)&gt;(
+<span class="lineNum">      22 </span>            :                 tupull),
+<span class="lineNum">      23 </span>            :             args...)),
+<span class="lineNum">      24 </span>            :      '0')...}))) {
+<span class="lineNum">      25 </span>            :   constexpr size_t tuple_size = sizeof...(Elements);
+<span class="lineNum">      26 </span>            :   static_cast&lt;void&gt;(std::initializer_list&lt;char&gt;{
+<span class="lineNum">      27 </span>            :       (static_cast&lt;void&gt;(
+<span class="lineNum">      28 </span>            :            op(std::get&lt;(ReverseIteration ? tuple_size - 1 - Is : Is)&gt;(tupull),
+<span class="lineNum">      29 </span>            :               args...)),
+<span class="lineNum">      30 </span>            :        '0')...});
+<span class="lineNum">      31 </span>            : }
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : template &lt;bool ReverseIteration, typename... Elements, typename N_aryOp,
+<span class="lineNum">      34 </span>            :           typename... Args, size_t... Is&gt;
+<span class="lineNum">      35 </span>            : constexpr inline void tuple_counted_fold_impl(
+<span class="lineNum">      36 </span>            :     const std::tuple&lt;Elements...&gt;&amp; tupull, N_aryOp&amp;&amp; op,
+<span class="lineNum">      37 </span>            :     std::index_sequence&lt;Is...&gt; /*meta*/,
+<span class="lineNum">      38 </span>            :     Args&amp;... args) noexcept(
+<span class="lineNum">      39 </span>            :         noexcept(static_cast&lt;void&gt;(std::initializer_list&lt;char&gt;{
+<span class="lineNum">      40 </span>            :     (static_cast&lt;void&gt;(
+<span class="lineNum">      41 </span>            :          op(std::get&lt;(ReverseIteration ? sizeof...(Elements) - 1 - Is : Is)&gt;(
+<span class="lineNum">      42 </span>            :                 tupull),
+<span class="lineNum">      43 </span>            :             (ReverseIteration ? sizeof...(Elements) - 1 - Is : Is), args...)),
+<span class="lineNum">      44 </span>            :      '0')...}))) {
+<span class="lineNum">      45 </span>            :   constexpr size_t tuple_size = sizeof...(Elements);
+<span class="lineNum">      46 </span>            :   static_cast&lt;void&gt;(std::initializer_list&lt;char&gt;{
+<span class="lineNum">      47 </span>            :       (static_cast&lt;void&gt;(
+<span class="lineNum">      48 </span>            :            op(std::get&lt;(ReverseIteration ? tuple_size - 1 - Is : Is)&gt;(tupull),
+<span class="lineNum">      49 </span>            :               (ReverseIteration ? tuple_size - 1 - Is : Is), args...)),
+<span class="lineNum">      50 </span>            :        '0')...});
+<span class="lineNum">      51 </span>            : }
+<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      53 </span>            : template &lt;bool ReverseIteration, typename... Elements, typename N_aryOp,
+<span class="lineNum">      54 </span>            :           typename... Args, size_t... Is&gt;
+<span class="lineNum">      55 </span>            : constexpr inline void tuple_transform_impl(
+<span class="lineNum">      56 </span>            :     const std::tuple&lt;Elements...&gt;&amp; tupull, N_aryOp&amp;&amp; op,
+<span class="lineNum">      57 </span>            :     std::index_sequence&lt;Is...&gt; /*meta*/,
+<span class="lineNum">      58 </span>            :     Args&amp;... args) noexcept(
+<span class="lineNum">      59 </span>            :         noexcept(static_cast&lt;void&gt;(std::initializer_list&lt;char&gt;{
+<span class="lineNum">      60 </span>            :     (static_cast&lt;void&gt;(op(
+<span class="lineNum">      61 </span>            :          std::get&lt;(ReverseIteration ? sizeof...(Elements) - 1 - Is : Is)&gt;(
+<span class="lineNum">      62 </span>            :              tupull),
+<span class="lineNum">      63 </span>            :          std::integral_constant&lt;
+<span class="lineNum">      64 </span>            :              size_t, (ReverseIteration ? sizeof...(Elements) - 1 - Is : Is)&gt;{},
+<span class="lineNum">      65 </span>            :          args...)),
+<span class="lineNum">      66 </span>            :      '0')...}))) {
+<span class="lineNum">      67 </span>            :   constexpr size_t tuple_size = sizeof...(Elements);
+<span class="lineNum">      68 </span>            :   static_cast&lt;void&gt;(std::initializer_list&lt;char&gt;{(
+<span class="lineNum">      69 </span>            :       static_cast&lt;void&gt;(op(
+<span class="lineNum">      70 </span>            :           std::get&lt;(ReverseIteration ? tuple_size - 1 - Is : Is)&gt;(tupull),
+<span class="lineNum">      71 </span>            :           std::integral_constant&lt;size_t, (ReverseIteration ? tuple_size - 1 - Is
+<span class="lineNum">      72 </span>            :                                                            : Is)&gt;{},
+<span class="lineNum">      73 </span>            :           args...)),
+<span class="lineNum">      74 </span>            :       '0')...});
+<span class="lineNum">      75 </span>            : }
+<span class="lineNum">      76 </span>            : }  // namespace tuple_impl_detail
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            : // @{
+<span class="lineNum">      79 </span>            : /*!
+<span class="lineNum">      80 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">      81 </span>            :  * \brief Perform a fold over a std::tuple
+<span class="lineNum">      82 </span>            :  *
+<span class="lineNum">      83 </span>            :  * \details
+<span class="lineNum">      84 </span>            :  * Iterates over the elements in a std::tuple `tuple` from left to right
+<span class="lineNum">      85 </span>            :  * (left fold) calling `op(element, args...)` on each element in `tuple`. A
+<span class="lineNum">      86 </span>            :  * right fold can be done by explicitly setting the first template parameter
+<span class="lineNum">      87 </span>            :  * to true. Folds are easily implemented using `tuple_fold` by updating
+<span class="lineNum">      88 </span>            :  * one of the `args...` at each iteration. If you need the index of the current
+<span class="lineNum">      89 </span>            :  * element you can use the `tuple_counted_fold` variant. `tuple_counted_fold`
+<span class="lineNum">      90 </span>            :  * passes the current index as the second argument to the Callable `op`. That
+<span class="lineNum">      91 </span>            :  * is, `op(element, index, args...)`.
+<span class="lineNum">      92 </span>            :  *
+<span class="lineNum">      93 </span>            :  * \example
+<span class="lineNum">      94 </span>            :  * The sum of a std::tuple of Arithmetics can be computed in several ways.
+<span class="lineNum">      95 </span>            :  * First, you can use a lambda:
+<span class="lineNum">      96 </span>            :  * \snippet Utilities/Test_Tuple.cpp tuple_fold_lambda
+<span class="lineNum">      97 </span>            :  * You'll notice that `state` is taken by reference and mutated.
+<span class="lineNum">      98 </span>            :  *
+<span class="lineNum">      99 </span>            :  * You can do the same thing with a struct defined as
+<span class="lineNum">     100 </span>            :  * \snippet Utilities/Test_Tuple.cpp tuple_fold_struct_defn
+<span class="lineNum">     101 </span>            :  * and then using an instance of the struct
+<span class="lineNum">     102 </span>            :  * \snippet Utilities/Test_Tuple.cpp tuple_fold_struct
+<span class="lineNum">     103 </span>            :  *
+<span class="lineNum">     104 </span>            :  * \note You are not able to pass a function pointer to `tuple_fold` or
+<span class="lineNum">     105 </span>            :  * `tuple_counted_fold` because you cannot pass a pointer to a function
+<span class="lineNum">     106 </span>            :  * template, only a function.
+<span class="lineNum">     107 </span>            :  *
+<span class="lineNum">     108 </span>            :  * \see expand_pack tuple_transform tuple_fold tuple_counted_fold std::tuple
+<span class="lineNum">     109 </span>            :  */
+<span class="lineNum">     110 </span>            : template &lt;bool ReverseIteration = false, typename... Elements, typename N_aryOp,
+<span class="lineNum">     111 </span>            :           typename... Args&gt;
+<span class="lineNum">     112 </span><span class="lineCov">          2 : constexpr inline void tuple_fold(</span>
+<span class="lineNum">     113 </span>            :     const std::tuple&lt;Elements...&gt;&amp; tuple, N_aryOp&amp;&amp; op,
+<span class="lineNum">     114 </span>            :     Args&amp;&amp;... args) noexcept(noexcept(tuple_impl_detail::
+<span class="lineNum">     115 </span>            :                                           tuple_fold_impl&lt;ReverseIteration&gt;(
+<span class="lineNum">     116 </span>            :                                               tuple, std::forward&lt;N_aryOp&gt;(op),
+<span class="lineNum">     117 </span>            :                                               std::make_index_sequence&lt;
+<span class="lineNum">     118 </span>            :                                                   sizeof...(Elements)&gt;{},
+<span class="lineNum">     119 </span>            :                                               args...))) {
+<span class="lineNum">     120 </span>            :   tuple_impl_detail::tuple_fold_impl&lt;ReverseIteration&gt;(
+<span class="lineNum">     121 </span>            :       tuple, std::forward&lt;N_aryOp&gt;(op),
+<span class="lineNum">     122 </span>            :       std::make_index_sequence&lt;sizeof...(Elements)&gt;{}, args...);
+<span class="lineNum">     123 </span>            : }
+<span class="lineNum">     124 </span>            : 
+<span class="lineNum">     125 </span>            : template &lt;bool ReverseIteration = false, typename... Elements, typename N_aryOp,
+<span class="lineNum">     126 </span>            :           typename... Args&gt;
+<span class="lineNum">     127 </span><span class="lineCov">          2 : constexpr inline void tuple_counted_fold(</span>
+<span class="lineNum">     128 </span>            :     const std::tuple&lt;Elements...&gt;&amp; tuple, N_aryOp&amp;&amp; op,
+<span class="lineNum">     129 </span>            :     Args&amp;&amp;... args) noexcept(noexcept(tuple_impl_detail::
+<span class="lineNum">     130 </span>            :                                           tuple_counted_fold_impl&lt;
+<span class="lineNum">     131 </span>            :                                               ReverseIteration&gt;(
+<span class="lineNum">     132 </span>            :                                               tuple, std::forward&lt;N_aryOp&gt;(op),
+<span class="lineNum">     133 </span>            :                                               std::make_index_sequence&lt;
+<span class="lineNum">     134 </span>            :                                                   sizeof...(Elements)&gt;{},
+<span class="lineNum">     135 </span>            :                                               args...))) {
+<span class="lineNum">     136 </span>            :   tuple_impl_detail::tuple_counted_fold_impl&lt;ReverseIteration&gt;(
+<span class="lineNum">     137 </span>            :       tuple, std::forward&lt;N_aryOp&gt;(op),
+<span class="lineNum">     138 </span>            :       std::make_index_sequence&lt;sizeof...(Elements)&gt;{}, args...);
+<span class="lineNum">     139 </span>            : }
+<span class="lineNum">     140 </span>            : // @}
+<span class="lineNum">     141 </span>            : 
+<span class="lineNum">     142 </span>            : /*!
+<span class="lineNum">     143 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">     144 </span>            :  * \brief Perform a transform over a std::tuple
+<span class="lineNum">     145 </span>            :  *
+<span class="lineNum">     146 </span>            :  * \details
+<span class="lineNum">     147 </span>            :  * Iterates over the elements in a std::tuple `tuple` from left to right
+<span class="lineNum">     148 </span>            :  * calling `op.operator()(element, index, args...)` on each element
+<span class="lineNum">     149 </span>            :  * in `tuple`. A right-to-left transform can be done by explicitly setting
+<span class="lineNum">     150 </span>            :  * the first template parameter to true. The second argument of the invokable
+<span class="lineNum">     151 </span>            :  * will be a deduced `std::integral_constant&lt;size_t, value&gt;`, from which the
+<span class="lineNum">     152 </span>            :  * current index can be extracted by using `decltype(index)::%value`.
+<span class="lineNum">     153 </span>            :  * For a function object the `decltype(index)` can be replaced by the deduced
+<span class="lineNum">     154 </span>            :  * type of `index`. For example,
+<span class="lineNum">     155 </span>            :  * \snippet Utilities/Test_Tuple.cpp tuple_transform_negate
+<span class="lineNum">     156 </span>            :  *
+<span class="lineNum">     157 </span>            :  * Using `tuple_transform` with a generic lambda goes as follows,
+<span class="lineNum">     158 </span>            :  * \snippet Utilities/Test_Tuple.cpp tuple_transform
+<span class="lineNum">     159 </span>            :  *
+<span class="lineNum">     160 </span>            :  * \see expand_pack tuple_fold tuple_counted_fold std::tuple
+<span class="lineNum">     161 </span>            :  */
+<span class="lineNum">     162 </span>            : template &lt;bool ReverseIteration = false, typename... Elements, typename N_aryOp,
+<span class="lineNum">     163 </span>            :           typename... Args&gt;
+<span class="lineNum">     164 </span><span class="lineCov">          2 : constexpr inline void tuple_transform(</span>
+<span class="lineNum">     165 </span>            :     const std::tuple&lt;Elements...&gt;&amp; tuple, N_aryOp&amp;&amp; op,
+<span class="lineNum">     166 </span>            :     Args&amp;&amp;... args) noexcept(noexcept(tuple_impl_detail::
+<span class="lineNum">     167 </span>            :                                           tuple_transform_impl&lt;
+<span class="lineNum">     168 </span>            :                                               ReverseIteration&gt;(
+<span class="lineNum">     169 </span>            :                                               tuple, std::forward&lt;N_aryOp&gt;(op),
+<span class="lineNum">     170 </span>            :                                               std::make_index_sequence&lt;
+<span class="lineNum">     171 </span>            :                                                   sizeof...(Elements)&gt;{},
+<span class="lineNum">     172 </span>            :                                               args...))) {
+<span class="lineNum">     173 </span>            :   tuple_impl_detail::tuple_transform_impl&lt;ReverseIteration&gt;(
+<span class="lineNum">     174 </span>            :       tuple, std::forward&lt;N_aryOp&gt;(op),
+<span class="lineNum">     175 </span>            :       std::make_index_sequence&lt;sizeof...(Elements)&gt;{}, args...);
+<span class="lineNum">     176 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

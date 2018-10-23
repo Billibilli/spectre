@@ -1,0 +1,306 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: CoordinateMaps::Rotation&lt; 3 &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceCoordinateMaps.html">CoordinateMaps</a></li><li class="navelem"><a class="el" href="classCoordinateMaps_1_1Rotation_3_013_01_4.html">Rotation&lt; 3 &gt;</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classCoordinateMaps_1_1Rotation_3_013_01_4-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">CoordinateMaps::Rotation&lt; 3 &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__CoordinateMapsGroup.html">Coordinate Maps</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Spatial rotation in three dimensions using Euler angles.  
+ <a href="classCoordinateMaps_1_1Rotation_3_013_01_4.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Rotation_8hpp_source.html">Rotation.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a68e0c1f3513a926a8591beb004d84d2c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMaps_1_1Rotation_3_013_01_4.html#a68e0c1f3513a926a8591beb004d84d2c">Rotation</a> (double rotation_about_z, double rotation_about_rotated_y, double rotation_about_rotated_z)</td></tr>
+<tr class="memdesc:a68e0c1f3513a926a8591beb004d84d2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a68e0c1f3513a926a8591beb004d84d2c">More...</a><br /></td></tr>
+<tr class="separator:a68e0c1f3513a926a8591beb004d84d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f5d70218ce15b42c8216dd9c4beb63d"><td class="memItemLeft" align="right" valign="top"><a id="a5f5d70218ce15b42c8216dd9c4beb63d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Rotation</b> (const Rotation &amp;)=default</td></tr>
+<tr class="separator:a5f5d70218ce15b42c8216dd9c4beb63d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0b218ce03903c446f2adc6e2f8b9e1"><td class="memItemLeft" align="right" valign="top"><a id="a1e0b218ce03903c446f2adc6e2f8b9e1"></a>
+<a class="el" href="classCoordinateMaps_1_1Rotation_3_013_01_4.html#a68e0c1f3513a926a8591beb004d84d2c">Rotation</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classCoordinateMaps_1_1Rotation_3_013_01_4.html#a68e0c1f3513a926a8591beb004d84d2c">Rotation</a> &amp;)=default</td></tr>
+<tr class="separator:a1e0b218ce03903c446f2adc6e2f8b9e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77cc8a88f8a20b7bfc0b098979720254"><td class="memItemLeft" align="right" valign="top"><a id="a77cc8a88f8a20b7bfc0b098979720254"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Rotation</b> (Rotation &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a77cc8a88f8a20b7bfc0b098979720254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3df16890d83f7dd6a8134b0654d5b0e"><td class="memItemLeft" align="right" valign="top"><a id="aa3df16890d83f7dd6a8134b0654d5b0e"></a>
+<a class="el" href="classCoordinateMaps_1_1Rotation_3_013_01_4.html#a68e0c1f3513a926a8591beb004d84d2c">Rotation</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classCoordinateMaps_1_1Rotation_3_013_01_4.html#a68e0c1f3513a926a8591beb004d84d2c">Rotation</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:aa3df16890d83f7dd6a8134b0654d5b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf30e87783d1f77f056fb80fae61dd4d"><td class="memTemplParams" colspan="2"><a id="adf30e87783d1f77f056fb80fae61dd4d"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:adf30e87783d1f77f056fb80fae61dd4d"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 3 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 3 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:adf30e87783d1f77f056fb80fae61dd4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57b68b82a4a8c22fdc705e44631fa6c3"><td class="memItemLeft" align="right" valign="top"><a id="a57b68b82a4a8c22fdc705e44631fa6c3"></a>
+boost::optional&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>inverse</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 3 &gt; &amp;target_coords) const noexcept</td></tr>
+<tr class="separator:a57b68b82a4a8c22fdc705e44631fa6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0ac7ed8176269a18f38c5cc46e14689"><td class="memTemplParams" colspan="2"><a id="ad0ac7ed8176269a18f38c5cc46e14689"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad0ac7ed8176269a18f38c5cc46e14689"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Ij&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 3, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>jacobian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 3 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:ad0ac7ed8176269a18f38c5cc46e14689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c8ef5a63fa8f22336163f2ef0105506"><td class="memTemplParams" colspan="2"><a id="a1c8ef5a63fa8f22336163f2ef0105506"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a1c8ef5a63fa8f22336163f2ef0105506"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Ij&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 3, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>inv_jacobian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 3 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:a1c8ef5a63fa8f22336163f2ef0105506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74f25cc917c469d8f98b228a419be457"><td class="memItemLeft" align="right" valign="top"><a id="a74f25cc917c469d8f98b228a419be457"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;p)</td></tr>
+<tr class="separator:a74f25cc917c469d8f98b228a419be457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a181fd73b158a94481aeee7f394ba1da5"><td class="memItemLeft" align="right" valign="top"><a id="a181fd73b158a94481aeee7f394ba1da5"></a>
+static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>dim</b> = 3</td></tr>
+<tr class="separator:a181fd73b158a94481aeee7f394ba1da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ad3904965c32f737f266707cd0bc5a7a7"><td class="memItemLeft" align="right" valign="top"><a id="ad3904965c32f737f266707cd0bc5a7a7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classCoordinateMaps_1_1Rotation_3_013_01_4.html#a68e0c1f3513a926a8591beb004d84d2c">Rotation</a>&lt; 3 &gt; &amp;lhs, const <a class="el" href="classCoordinateMaps_1_1Rotation_3_013_01_4.html#a68e0c1f3513a926a8591beb004d84d2c">Rotation</a>&lt; 3 &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:ad3904965c32f737f266707cd0bc5a7a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;&gt;<br />
+class CoordinateMaps::Rotation&lt; 3 &gt;</h3>
+
+<p>Spatial rotation in three dimensions using Euler angles. </p>
+<p>Rotation angles should be specified in degrees. First rotation \(\alpha\) is about z axis. Second rotation \(\beta\) is about rotated y axis. Third rotation \(\gamma\) is about rotated z axis. These rotations are of the \((\xi,\eta,\zeta)\) coordinate system with respect to the grid coordinates \((x,y,z)\).</p>
+<p>The formula for the mapping is: </p><p class="formulaDsp">
+\begin{eqnarray*} x &amp;=&amp; \xi (\cos\gamma \cos\beta \cos\alpha - \sin\gamma \sin\alpha) + \eta (-\sin\gamma \cos\beta \cos\alpha - \cos\gamma \sin\alpha) + \zeta \sin\beta \cos\alpha \\ y &amp;=&amp; \xi (\cos\gamma \cos\beta \sin\alpha + \sin\gamma \cos\alpha) + \eta (-\sin\gamma \cos\beta \sin\alpha + \cos\gamma \cos\alpha) + \zeta \sin\beta \sin\alpha \\ z &amp;=&amp; -\xi \cos\gamma \sin\beta + \eta \sin\gamma \sin\beta + \zeta \cos\beta \end{eqnarray*}
+</p>
+ </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a68e0c1f3513a926a8591beb004d84d2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68e0c1f3513a926a8591beb004d84d2c">&#9670;&nbsp;</a></span>Rotation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CoordinateMaps::Rotation&lt; 3 &gt;::Rotation </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>rotation_about_z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>rotation_about_rotated_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>rotation_about_rotated_z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rotation_about_z</td><td>the angle \(\alpha\) (in radians). </td></tr>
+    <tr><td class="paramname">rotation_about_rotated_y</td><td>the angle \(\beta\) (in radians). </td></tr>
+    <tr><td class="paramname">rotation_about_rotated_z</td><td>the angle \(\gamma\) (in radians). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Domain/CoordinateMaps/<a class="el" href="Rotation_8hpp_source.html">Rotation.hpp</a></li>
+<li>src/Domain/CoordinateMaps/Rotation.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

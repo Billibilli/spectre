@@ -1,0 +1,244 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Domain Directory Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_7afaef6ae7a94ddf3cc0ef59b99b3f6c.html">Domain</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Domain Directory Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="subdirs"></a>
+Directories</h2></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:Block_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Block_8hpp.html">Block.hpp</a> <a href="Block_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Block_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class template <a class="el" href="classBlock.html" title="A Block&lt;VolumeDim&gt; is a region of a VolumeDim-dimensional computational domain that defines the root ...">Block</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:BlockNeighbor_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BlockNeighbor_8hpp.html">BlockNeighbor.hpp</a> <a href="BlockNeighbor_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:BlockNeighbor_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class template <a class="el" href="classBlockNeighbor.html" title="Information about the neighbor of a Block in a particular direction. ">BlockNeighbor</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Direction_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Direction_8hpp.html">Direction.hpp</a> <a href="Direction_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Direction_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class template <a class="el" href="classDirection.html" title="A particular Side along a particular coordinate Axis. ">Direction</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Domain_2Domain_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Domain_2Domain_8hpp.html">Domain.hpp</a> <a href="Domain_2Domain_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Domain_2Domain_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class template <a class="el" href="classDomain.html" title="A wrapper around a vector of Blocks that represent the computational domain. ">Domain</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:DomainHelpers_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DomainHelpers_8hpp.html">DomainHelpers.hpp</a> <a href="DomainHelpers_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:DomainHelpers_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines DomainHelper functions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Element_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Element_8hpp.html">Element.hpp</a> <a href="Element_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Element_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ElementId_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementId_8hpp.html">ElementId.hpp</a> <a href="ElementId_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:ElementId_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class <a class="el" href="classElementId.html" title="An ElementId uniquely labels an Element. It is constructed from the BlockId of the Block to which the...">ElementId</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ElementIndex_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementIndex_8hpp.html">ElementIndex.hpp</a> <a href="ElementIndex_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:ElementIndex_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class <a class="el" href="classElementIndex.html" title="A class for indexing a Charm array by Element. ">ElementIndex</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:FaceNormal_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FaceNormal_8hpp.html">FaceNormal.hpp</a> <a href="FaceNormal_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:FaceNormal_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares function unnormalized_face_normal. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:LogicalCoordinates_8cpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LogicalCoordinates_8cpp.html">LogicalCoordinates.cpp</a></td></tr>
+<tr class="memdesc:LogicalCoordinates_8cpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines functions logical_coordinates and interface_logical_coordinates. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:LogicalCoordinates_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LogicalCoordinates_8hpp.html">LogicalCoordinates.hpp</a> <a href="LogicalCoordinates_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:LogicalCoordinates_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines functions logical_coordinates and interface_logical_coordinates. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Mesh_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Mesh_8hpp.html">Mesh.hpp</a> <a href="Mesh_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Mesh_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the class template <a class="el" href="classMesh.html" title="Holds the number of grid points, basis, and quadrature in each direction of the computational grid...">Mesh</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Neighbors_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Neighbors_8hpp.html">Neighbors.hpp</a> <a href="Neighbors_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Neighbors_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class template <a class="el" href="classNeighbors.html" title="Information about the neighbors of an Element in a particular direction. ">Neighbors</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:SegmentId_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SegmentId_8hpp.html">SegmentId.hpp</a> <a href="SegmentId_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:SegmentId_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class <a class="el" href="classSegmentId.html" title="A SegmentId labels a segment of the interval [-1,1] and is used to identify the bounds of an Element ...">SegmentId</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Side_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Side_8hpp.html">Side.hpp</a> <a href="Side_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Side_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines enum class Side. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Domain_2Tags_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Domain_2Tags_8hpp.html">Tags.hpp</a> <a href="Domain_2Tags_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Domain_2Tags_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines tags related to domain quantities. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

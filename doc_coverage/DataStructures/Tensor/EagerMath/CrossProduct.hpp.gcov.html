@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - DataStructures/Tensor/EagerMath/CrossProduct.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">DataStructures/Tensor/EagerMath</a> - CrossProduct.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines functions `cross_product` for flat and curved-space cross products.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/LeviCivitaIterator.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/Tensor/IndexType.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/MakeWithValue.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : /*!
+<span class="lineNum">      17 </span>            :  * \ingroup TensorGroup
+<span class="lineNum">      18 </span>            :  * \brief Compute the Euclidean cross product of two vectors or one forms
+<span class="lineNum">      19 </span>            :  *
+<span class="lineNum">      20 </span>            :  * \details
+<span class="lineNum">      21 </span>            :  * Returns \f$A^j B^k \epsilon_{ljk} \delta^{il}\f$ for input vectors \f$A^j\f$
+<span class="lineNum">      22 </span>            :  * and \f$B^k\f$ or \f$A_j B_k \epsilon^{ljk} \delta_{il}\f$ for input one
+<span class="lineNum">      23 </span>            :  * forms \f$A_j\f$ and \f$B_k\f$.
+<span class="lineNum">      24 </span>            :  */
+<span class="lineNum">      25 </span>            : template &lt;typename DataType, typename Index&gt;
+<span class="lineNum">      26 </span><span class="lineCov">          2 : Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index&gt;&gt; cross_product(</span>
+<span class="lineNum">      27 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index&gt;&gt;&amp; vector_a,
+<span class="lineNum">      28 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index&gt;&gt;&amp; vector_b) noexcept {
+<span class="lineNum">      29 </span>            :   static_assert(Index::dim == 3, &quot;cross_product vectors must have dimension 3&quot;);
+<span class="lineNum">      30 </span>            :   static_assert(Index::index_type == IndexType::Spatial,
+<span class="lineNum">      31 </span>            :                 &quot;cross_product vectors must be spatial&quot;);
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            :   auto cross_product =
+<span class="lineNum">      34 </span>            :       make_with_value&lt;Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index&gt;&gt;&gt;(
+<span class="lineNum">      35 </span>            :           vector_a, 0.0);
+<span class="lineNum">      36 </span>            :   for (LeviCivitaIterator&lt;3&gt; it; it; ++it) {
+<span class="lineNum">      37 </span>            :     cross_product.get(it[0]) +=
+<span class="lineNum">      38 </span>            :         it.sign() * vector_a.get(it[1]) * vector_b.get(it[2]);
+<span class="lineNum">      39 </span>            :   }
+<span class="lineNum">      40 </span>            :   return cross_product;
+<span class="lineNum">      41 </span>            : }
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span>            : /*!
+<span class="lineNum">      44 </span>            :  * \ingroup TensorGroup
+<span class="lineNum">      45 </span>            :  * \brief Compute the Euclidean cross product of a vector and a one form
+<span class="lineNum">      46 </span>            :  *
+<span class="lineNum">      47 </span>            :  * \details
+<span class="lineNum">      48 </span>            :  * Returns \f$A^j B_l \delta^{lk} \epsilon_{ijk}\f$ for input vector \f$A^j\f$
+<span class="lineNum">      49 </span>            :  * and input one form \f$B_l\f$
+<span class="lineNum">      50 </span>            :  * or \f$A_j B^l \delta_{lk} \epsilon^{ijk}\f$ for input one form \f$A_j\f$ and
+<span class="lineNum">      51 </span>            :  * input vector \f$B^l\f$. Note that this function returns a vector if
+<span class="lineNum">      52 </span>            :  * `vector_b` is a vector and a one form if `vector_b` is a one form.
+<span class="lineNum">      53 </span>            :  */
+<span class="lineNum">      54 </span>            : template &lt;typename DataType, typename Index&gt;
+<span class="lineNum">      55 </span>            : Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;change_index_up_lo&lt;Index&gt;&gt;&gt;
+<span class="lineNum">      56 </span><span class="lineCov">          2 : cross_product(</span>
+<span class="lineNum">      57 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index&gt;&gt;&amp; vector_a,
+<span class="lineNum">      58 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;change_index_up_lo&lt;Index&gt;&gt;&gt;&amp;
+<span class="lineNum">      59 </span>            :         vector_b) noexcept {
+<span class="lineNum">      60 </span>            :   static_assert(Index::dim == 3, &quot;cross_product vectors must have dimension 3&quot;);
+<span class="lineNum">      61 </span>            :   static_assert(Index::index_type == IndexType::Spatial,
+<span class="lineNum">      62 </span>            :                 &quot;cross_product vectors must be spatial&quot;);
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            :   auto cross_product = make_with_value&lt;
+<span class="lineNum">      65 </span>            :       Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;change_index_up_lo&lt;Index&gt;&gt;&gt;&gt;(
+<span class="lineNum">      66 </span>            :       vector_b, 0.0);
+<span class="lineNum">      67 </span>            :   for (LeviCivitaIterator&lt;3&gt; it; it; ++it) {
+<span class="lineNum">      68 </span>            :     cross_product.get(it[0]) +=
+<span class="lineNum">      69 </span>            :         it.sign() * vector_a.get(it[1]) * vector_b.get(it[2]);
+<span class="lineNum">      70 </span>            :   }
+<span class="lineNum">      71 </span>            :   return cross_product;
+<span class="lineNum">      72 </span>            : }
+<span class="lineNum">      73 </span>            : 
+<span class="lineNum">      74 </span>            : /*!
+<span class="lineNum">      75 </span>            :  * \ingroup TensorGroup
+<span class="lineNum">      76 </span>            :  * \brief Compute the cross product of two vectors or one forms
+<span class="lineNum">      77 </span>            :  *
+<span class="lineNum">      78 </span>            :  * \details
+<span class="lineNum">      79 </span>            :  * Returns \f$\sqrt{g} g^{li} A^j B^k \epsilon_{ljk}\f$, where
+<span class="lineNum">      80 </span>            :  * \f$A^j\f$ and \f$B^k\f$ are vectors and \f$g^{li}\f$ and \f$g\f$
+<span class="lineNum">      81 </span>            :  * are the inverse and determinant, respectively, of
+<span class="lineNum">      82 </span>            :  * the spatial metric (computed via `determinant_and_inverse`). In this case,
+<span class="lineNum">      83 </span>            :  * the arguments `vector_a` and `vector_b` should be vectors,
+<span class="lineNum">      84 </span>            :  * the argument `metric_or_inverse_metric` should be the inverse spatial
+<span class="lineNum">      85 </span>            :  * metric  \f$g^{ij}\f$, and the argument `metric_determinant` should be the
+<span class="lineNum">      86 </span>            :  * determinant of the spatial metric \f$\det(g_{ij})\f$.
+<span class="lineNum">      87 </span>            :  * Or, returns \f$\sqrt{g}^{-1} g_{li} A_j B_k \epsilon^{ljk}\f$, where
+<span class="lineNum">      88 </span>            :  * \f$A_j\f$ and \f$B_k\f$ are one forms and \f$g_{li}\f$ and \f$g\f$
+<span class="lineNum">      89 </span>            :  * are the spatial metric and its determinant. In this case,
+<span class="lineNum">      90 </span>            :  * the arguments `vector_a` and `vector_b` should be one forms,
+<span class="lineNum">      91 </span>            :  * the argument `metric_or_inverse_metric` should be the spatial metric
+<span class="lineNum">      92 </span>            :  * \f$g_{ij}\f$, and the argument `metric_determinant` should be the
+<span class="lineNum">      93 </span>            :  * determinant of the spatial metric \f$\det(g_{ij})\f$.
+<span class="lineNum">      94 </span>            :  */
+<span class="lineNum">      95 </span>            : template &lt;typename DataType, typename Index&gt;
+<span class="lineNum">      96 </span><span class="lineCov">          2 : Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index&gt;&gt; cross_product(</span>
+<span class="lineNum">      97 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index&gt;&gt;&amp; vector_a,
+<span class="lineNum">      98 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index&gt;&gt;&amp; vector_b,
+<span class="lineNum">      99 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1, 1&gt;, index_list&lt;Index, Index&gt;&gt;&amp;
+<span class="lineNum">     100 </span>            :         metric_or_inverse_metric,
+<span class="lineNum">     101 </span>            :     const Scalar&lt;DataType&gt;&amp; metric_determinant) noexcept {
+<span class="lineNum">     102 </span>            :   static_assert(Index::dim == 3, &quot;cross_product vectors must have dimension 3&quot;);
+<span class="lineNum">     103 </span>            :   static_assert(Index::index_type == IndexType::Spatial,
+<span class="lineNum">     104 </span>            :                 &quot;cross_product vectors must be spatial&quot;);
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span>            :   auto cross_product =
+<span class="lineNum">     107 </span>            :       make_with_value&lt;Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index&gt;&gt;&gt;(
+<span class="lineNum">     108 </span>            :           vector_a, 0.);
+<span class="lineNum">     109 </span>            :   for (size_t i = 0; i &lt; Index::dim; ++i) {
+<span class="lineNum">     110 </span>            :     for (LeviCivitaIterator&lt;3&gt; it; it; ++it) {
+<span class="lineNum">     111 </span>            :       cross_product.get(i) += it.sign() * vector_a.get(it[1]) *
+<span class="lineNum">     112 </span>            :                               vector_b.get(it[2]) *
+<span class="lineNum">     113 </span>            :                               metric_or_inverse_metric.get(it[0], i);
+<span class="lineNum">     114 </span>            :     }
+<span class="lineNum">     115 </span>            :     if (Index::ul == UpLo::Up) {
+<span class="lineNum">     116 </span>            :       cross_product.get(i) *= sqrt(get(metric_determinant));
+<span class="lineNum">     117 </span>            :     } else {
+<span class="lineNum">     118 </span>            :       cross_product.get(i) /= sqrt(get(metric_determinant));
+<span class="lineNum">     119 </span>            :     }
+<span class="lineNum">     120 </span>            :   }
+<span class="lineNum">     121 </span>            :   return cross_product;
+<span class="lineNum">     122 </span>            : }
+<span class="lineNum">     123 </span>            : 
+<span class="lineNum">     124 </span>            : /*!
+<span class="lineNum">     125 </span>            :  * \ingroup TensorGroup
+<span class="lineNum">     126 </span>            :  * \brief Compute the cross product of a vector and a one form
+<span class="lineNum">     127 </span>            :  *
+<span class="lineNum">     128 </span>            :  * \details
+<span class="lineNum">     129 </span>            :  * Returns \f$\sqrt{g} A^j B_l g^{lk} \epsilon_{ijk}\f$ for input vector
+<span class="lineNum">     130 </span>            :  * \f$A^j\f$ and input one form \f$B_l\f$. In this case,
+<span class="lineNum">     131 </span>            :  * the argument `vector_a` should be a vector, `vector_b` should be a one form,
+<span class="lineNum">     132 </span>            :  * `metric_or_inverse_metric` should be the inverse spatial
+<span class="lineNum">     133 </span>            :  * metric  \f$g^{ij}\f$, and `metric_determinant` should be the
+<span class="lineNum">     134 </span>            :  * determinant of the spatial metric \f$\det(g_{ij})\f$.
+<span class="lineNum">     135 </span>            :  * Or, returns \f$\sqrt{g}^{-1} A_j B^l g_{lk}
+<span class="lineNum">     136 </span>            :  * \epsilon^{ijk}\f$ for input one form \f$A_j\f$ and input vector \f$B^l\f$.
+<span class="lineNum">     137 </span>            :  * In this case,
+<span class="lineNum">     138 </span>            :  * the argument `vector_a` should be a one form, `vector_b` should be a vector,
+<span class="lineNum">     139 </span>            :  * `metric_or_inverse_metric` should be the spatial metric
+<span class="lineNum">     140 </span>            :  * \f$g_{ij}\f$, and `metric_determinant` should be the
+<span class="lineNum">     141 </span>            :  * determinant of the spatial metric \f$\det(g_{ij})\f$.
+<span class="lineNum">     142 </span>            :  * Note that this function returns a vector if `vector_b` is a vector and a
+<span class="lineNum">     143 </span>            :  * one form if `vector_b` is a one form.
+<span class="lineNum">     144 </span>            :  */
+<span class="lineNum">     145 </span>            : template &lt;typename DataType, typename Index&gt;
+<span class="lineNum">     146 </span>            : Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;change_index_up_lo&lt;Index&gt;&gt;&gt;
+<span class="lineNum">     147 </span><span class="lineCov">          2 : cross_product(const Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index&gt;&gt;&amp; vector_a,</span>
+<span class="lineNum">     148 </span>            :               const Tensor&lt;DataType, Symmetry&lt;1&gt;,
+<span class="lineNum">     149 </span>            :                            index_list&lt;change_index_up_lo&lt;Index&gt;&gt;&gt;&amp; vector_b,
+<span class="lineNum">     150 </span>            :               const Tensor&lt;DataType, Symmetry&lt;1, 1&gt;, index_list&lt;Index, Index&gt;&gt;&amp;
+<span class="lineNum">     151 </span>            :                   metric_or_inverse_metric,
+<span class="lineNum">     152 </span>            :               const Scalar&lt;DataType&gt;&amp; metric_determinant) noexcept {
+<span class="lineNum">     153 </span>            :   static_assert(Index::dim == 3, &quot;cross_product vectors must have dimension 3&quot;);
+<span class="lineNum">     154 </span>            :   static_assert(Index::index_type == IndexType::Spatial,
+<span class="lineNum">     155 </span>            :                 &quot;cross_product vectors must be spatial&quot;);
+<span class="lineNum">     156 </span>            : 
+<span class="lineNum">     157 </span>            :   auto cross_product = make_with_value&lt;
+<span class="lineNum">     158 </span>            :       Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;change_index_up_lo&lt;Index&gt;&gt;&gt;&gt;(
+<span class="lineNum">     159 </span>            :       vector_b, 0.0);
+<span class="lineNum">     160 </span>            :   for (LeviCivitaIterator&lt;3&gt; it; it; ++it) {
+<span class="lineNum">     161 </span>            :     if (Index::ul == UpLo::Up) {
+<span class="lineNum">     162 </span>            :       for (size_t l = 0; l &lt; Index::dim; ++l) {
+<span class="lineNum">     163 </span>            :         cross_product.get(it[0]) += it.sign() * vector_a.get(it[1]) *
+<span class="lineNum">     164 </span>            :                                     vector_b.get(l) *
+<span class="lineNum">     165 </span>            :                                     metric_or_inverse_metric.get(it[2], l);
+<span class="lineNum">     166 </span>            :       }
+<span class="lineNum">     167 </span>            :     } else {
+<span class="lineNum">     168 </span>            :       for (size_t l = 0; l &lt; Index::dim; ++l) {
+<span class="lineNum">     169 </span>            :         cross_product.get(it[0]) += it.sign() * vector_a.get(l) *
+<span class="lineNum">     170 </span>            :                                     vector_b.get(it[2]) *
+<span class="lineNum">     171 </span>            :                                     metric_or_inverse_metric.get(it[1], l);
+<span class="lineNum">     172 </span>            :       }
+<span class="lineNum">     173 </span>            :     }
+<span class="lineNum">     174 </span>            :   }
+<span class="lineNum">     175 </span>            : 
+<span class="lineNum">     176 </span>            :   for (size_t i = 0; i &lt; Index::dim; ++i) {
+<span class="lineNum">     177 </span>            :     if (Index::ul == UpLo::Up) {
+<span class="lineNum">     178 </span>            :       cross_product.get(i) *= sqrt(get(metric_determinant));
+<span class="lineNum">     179 </span>            :     } else {
+<span class="lineNum">     180 </span>            :       cross_product.get(i) /= sqrt(get(metric_determinant));
+<span class="lineNum">     181 </span>            :     }
+<span class="lineNum">     182 </span>            :   }
+<span class="lineNum">     183 </span>            :   return cross_product;
+<span class="lineNum">     184 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

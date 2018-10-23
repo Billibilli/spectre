@@ -1,0 +1,532 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Data Structures</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Data Structures</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Various useful data structures used in SpECTRE.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceMakeWithValueImpls"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMakeWithValueImpls.html">MakeWithValueImpls</a></td></tr>
+<tr class="memdesc:namespaceMakeWithValueImpls"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementations of make_with_value. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html">DataVector</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores a collection of function values.  <a href="classDataVector.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDenseMatrix.html">DenseMatrix&lt; T, SO &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamically sized matrix of arbitrary type.  <a href="classDenseMatrix.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDenseVector.html">DenseVector&lt; T, TF &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamically sized vector of arbitrary type.  <a href="classDenseVector.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFixedHashMap.html">FixedHashMap&lt; MaxSize, Key, ValueType, Hash, KeyEqual &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A hash table with a compile-time specified maximum size and ability to efficiently handle perfect hashes.  <a href="classFixedHashMap.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIdPair.html">IdPair&lt; IdType, DataType &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A data structure that contains an ID and data associated with that ID.  <a href="structIdPair.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIndex.html">Index&lt; Dim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An integer multi-index.  <a href="classIndex.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIndexIterator.html">IndexIterator&lt; Dim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classIndexIterator.html" title="IndexIterator iterates over a unique set of Index. ">IndexIterator</a> iterates over a unique set of <a class="el" href="classIndex.html" title="An integer multi-index. ">Index</a>.  <a href="classIndexIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLeviCivitaIterator.html">LeviCivitaIterator&lt; Dim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate over all nonzero index permutations for a Levi-Civita symbol.  <a href="classLeviCivitaIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html">Matrix</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamically sized matrix of <code>double</code>s with column-major storage.  <a href="classMatrix.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSliceIterator.html">SliceIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate over a (dim-1)-dimensional slice.  <a href="classSliceIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStripeIterator.html">StripeIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over the 1-dimensional stripes with info on how to iterate over the current stripe.  <a href="classStripeIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTags_1_1Magnitude.html">Tags::Magnitude&lt; Tag &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The magnitude of a (co)vector.  <a href="structTags_1_1Magnitude.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTags_1_1EuclideanMagnitude.html">Tags::EuclideanMagnitude&lt; Tag &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Euclidean magnitude of a (co)vector.  <a href="structTags_1_1EuclideanMagnitude.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTags_1_1NonEuclideanMagnitude.html">Tags::NonEuclideanMagnitude&lt; Tag, MetricTag &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The magnitude of a (co)vector with respect to a specific metric.  <a href="structTags_1_1NonEuclideanMagnitude.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTags_1_1Normalized.html">Tags::Normalized&lt; Tag &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The normalized (co)vector represented by Tag.  <a href="structTags_1_1Normalized.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTensorComponent.html">TensorComponent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An untyped tensor component with a name for observation.  <a href="structTensorComponent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExtentsAndTensorVolumeData.html">ExtentsAndTensorVolumeData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the extents of the mesh and the tensor components on the mesh.  <a href="structExtentsAndTensorVolumeData.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html">Variables&lt; tmpl::list&lt; Tags... &gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Variables holds a contiguous memory block with Tensors pointing into it.  <a href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html">Mesh&lt; Dim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the number of grid points, basis, and quadrature in each direction of the computational grid.  <a href="classMesh.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gac2de486a64a176604f89cbbfbb8fffc9"><td class="memTemplParams" colspan="2"><a id="gac2de486a64a176604f89cbbfbb8fffc9"></a>
+template&lt;size_t N&gt; </td></tr>
+<tr class="memitem:gac2de486a64a176604f89cbbfbb8fffc9"><td class="memTemplItemLeft" align="right" valign="top">size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataStructuresGroup.html#gac2de486a64a176604f89cbbfbb8fffc9">collapsed_index</a> (const <a class="el" href="classIndex.html">Index</a>&lt; N &gt; &amp;index, const <a class="el" href="classIndex.html">Index</a>&lt; N &gt; &amp;extents) noexcept</td></tr>
+<tr class="memdesc:gac2de486a64a176604f89cbbfbb8fffc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the collapsed index into a 1D array of the data corresponding to this <a class="el" href="classIndex.html" title="An integer multi-index. ">Index</a>. Note that the first dimension of the <a class="el" href="classIndex.html" title="An integer multi-index. ">Index</a> varies fastest when computing the collapsed index. <br /></td></tr>
+<tr class="separator:gac2de486a64a176604f89cbbfbb8fffc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf5aa6d8efa0b2546f7e409a25b4f7dd"><td class="memTemplParams" colspan="2">template&lt;typename Tag , typename TagList &gt; </td></tr>
+<tr class="memitem:gabf5aa6d8efa0b2546f7e409a25b4f7dd"><td class="memTemplItemLeft" align="right" valign="top">constexpr Tag::type &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataStructuresGroup.html#gabf5aa6d8efa0b2546f7e409a25b4f7dd">get</a> (Variables&lt; TagList &gt; &amp;v) noexcept</td></tr>
+<tr class="memdesc:gabf5aa6d8efa0b2546f7e409a25b4f7dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return Tag::type pointing into the contiguous array.  <a href="#gabf5aa6d8efa0b2546f7e409a25b4f7dd">More...</a><br /></td></tr>
+<tr class="separator:gabf5aa6d8efa0b2546f7e409a25b4f7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga29bb8308f2d30745b013da80b0199c44"><td class="memTemplParams" colspan="2">template&lt;std::size_t VolumeDim, typename TagsList &gt; </td></tr>
+<tr class="memitem:ga29bb8308f2d30745b013da80b0199c44"><td class="memTemplItemLeft" align="right" valign="top">Variables&lt; TagsList &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataStructuresGroup.html#ga29bb8308f2d30745b013da80b0199c44">data_on_slice</a> (const Variables&lt; TagsList &gt; &amp;vars, const <a class="el" href="classIndex.html">Index</a>&lt; VolumeDim &gt; &amp;element_extents, const size_t sliced_dim, const size_t fixed_index) noexcept</td></tr>
+<tr class="memdesc:ga29bb8308f2d30745b013da80b0199c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slices the data within <code>vars</code> to a codimension 1 slice. The slice has a constant logical coordinate in direction <code>sliced_dim</code>, slicing the volume at <code>fixed_index</code> in that dimension. For example, to get the lower boundary of <code>sliced_dim</code>, pass <code>0</code> for <code>fixed_index</code>; to get the upper boundary, pass <code>extents[sliced_dim] - 1</code>.  <a href="#ga29bb8308f2d30745b013da80b0199c44">More...</a><br /></td></tr>
+<tr class="separator:ga29bb8308f2d30745b013da80b0199c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabfe29b420227efff9e2b14eea688f257"><td class="memTemplParams" colspan="2">template&lt;typename... TagsToSlice, size_t VolumeDim&gt; </td></tr>
+<tr class="memitem:gabfe29b420227efff9e2b14eea688f257"><td class="memTemplItemLeft" align="right" valign="top">Variables&lt; tmpl::list&lt; TagsToSlice... &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataStructuresGroup.html#gabfe29b420227efff9e2b14eea688f257">data_on_slice</a> (const <a class="el" href="classIndex.html">Index</a>&lt; VolumeDim &gt; &amp;element_extents, const size_t sliced_dim, const size_t fixed_index, const typename TagsToSlice::type &amp;... tensors) noexcept</td></tr>
+<tr class="memdesc:gabfe29b420227efff9e2b14eea688f257"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slices volume <code>Tensor</code>s into a <code>Variables</code>  <a href="#gabfe29b420227efff9e2b14eea688f257">More...</a><br /></td></tr>
+<tr class="separator:gabfe29b420227efff9e2b14eea688f257"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga718b78118df76bc7c6bf59267b35ff8b"><td class="memTemplParams" colspan="2">template&lt;std::size_t VolumeDim, typename TagsList &gt; </td></tr>
+<tr class="memitem:ga718b78118df76bc7c6bf59267b35ff8b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataStructuresGroup.html#ga718b78118df76bc7c6bf59267b35ff8b">add_slice_to_data</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; Variables&lt; TagsList &gt; *&gt; volume_vars, const Variables&lt; TagsList &gt; &amp;vars_on_slice, const <a class="el" href="classIndex.html">Index</a>&lt; VolumeDim &gt; &amp;extents, const size_t sliced_dim, const size_t fixed_index) noexcept</td></tr>
+<tr class="memdesc:ga718b78118df76bc7c6bf59267b35ff8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds data on a codimension 1 slice to a volume quantity. The slice has a constant logical coordinate in direction <code>sliced_dim</code>, slicing the volume at <code>fixed_index</code> in that dimension. For example, to add to the lower boundary of <code>sliced_dim</code>, pass <code>0</code> for <code>fixed_index</code>; to add to the upper boundary, pass <code>extents[sliced_dim] - 1</code>.  <a href="#ga718b78118df76bc7c6bf59267b35ff8b">More...</a><br /></td></tr>
+<tr class="separator:ga718b78118df76bc7c6bf59267b35ff8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1a76c153a789a2e992328e8662071515"><td class="memTemplParams" colspan="2"><a id="ga1a76c153a789a2e992328e8662071515"></a>
+template&lt;size_t VolumeDim, typename TagsList &gt; </td></tr>
+<tr class="memitem:ga1a76c153a789a2e992328e8662071515"><td class="memTemplItemLeft" align="right" valign="top">Variables&lt; TagsList &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataStructuresGroup.html#ga1a76c153a789a2e992328e8662071515">orient_variables_on_slice</a> (const Variables&lt; TagsList &gt; &amp;variables_on_slice, const <a class="el" href="classIndex.html">Index</a>&lt; VolumeDim - 1 &gt; &amp;slice_extents, const size_t sliced_dim, const OrientationMap&lt; VolumeDim &gt; &amp;orientation_of_neighbor) noexcept</td></tr>
+<tr class="memdesc:ga1a76c153a789a2e992328e8662071515"><td class="mdescLeft">&#160;</td><td class="mdescRight">Orients variables on a slice to the data-storage order of a neighbor with the given orientation. <br /></td></tr>
+<tr class="separator:ga1a76c153a789a2e992328e8662071515"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9c899694105f30f16d54b1fcd5d183fb"><td class="memTemplParams" colspan="2">template&lt;typename R , typename T &gt; </td></tr>
+<tr class="memitem:ga9c899694105f30f16d54b1fcd5d183fb"><td class="memTemplItemLeft" align="right" valign="top">R&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataStructuresGroup.html#ga9c899694105f30f16d54b1fcd5d183fb">make_with_value</a> (const T &amp;input, double value)</td></tr>
+<tr class="memdesc:ga9c899694105f30f16d54b1fcd5d183fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an object of type <code>T</code>, create an object of type <code>R</code> whose elements are initialized to <code>value</code>.  <a href="#ga9c899694105f30f16d54b1fcd5d183fb">More...</a><br /></td></tr>
+<tr class="separator:ga9c899694105f30f16d54b1fcd5d183fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Various useful data structures used in SpECTRE. </p>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga718b78118df76bc7c6bf59267b35ff8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga718b78118df76bc7c6bf59267b35ff8b">&#9670;&nbsp;</a></span>add_slice_to_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::size_t VolumeDim, typename TagsList &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void add_slice_to_data </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; Variables&lt; TagsList &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>volume_vars</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Variables&lt; TagsList &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vars_on_slice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIndex.html">Index</a>&lt; VolumeDim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>sliced_dim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>fixed_index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds data on a codimension 1 slice to a volume quantity. The slice has a constant logical coordinate in direction <code>sliced_dim</code>, slicing the volume at <code>fixed_index</code> in that dimension. For example, to add to the lower boundary of <code>sliced_dim</code>, pass <code>0</code> for <code>fixed_index</code>; to add to the upper boundary, pass <code>extents[sliced_dim] - 1</code>. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__DataStructuresGroup.html#ga29bb8308f2d30745b013da80b0199c44" title="Slices the data within vars to a codimension 1 slice. The slice has a constant logical coordinate in ...">data_on_slice</a> </dd></dl>
+
+</div>
+</div>
+<a id="ga29bb8308f2d30745b013da80b0199c44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga29bb8308f2d30745b013da80b0199c44">&#9670;&nbsp;</a></span>data_on_slice() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::size_t VolumeDim, typename TagsList &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Variables&lt;TagsList&gt; data_on_slice </td>
+          <td>(</td>
+          <td class="paramtype">const Variables&lt; TagsList &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vars</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIndex.html">Index</a>&lt; VolumeDim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>element_extents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>sliced_dim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>fixed_index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Slices the data within <code>vars</code> to a codimension 1 slice. The slice has a constant logical coordinate in direction <code>sliced_dim</code>, slicing the volume at <code>fixed_index</code> in that dimension. For example, to get the lower boundary of <code>sliced_dim</code>, pass <code>0</code> for <code>fixed_index</code>; to get the upper boundary, pass <code>extents[sliced_dim] - 1</code>. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__DataStructuresGroup.html#ga718b78118df76bc7c6bf59267b35ff8b" title="Adds data on a codimension 1 slice to a volume quantity. The slice has a constant logical coordinate ...">add_slice_to_data</a></dd></dl>
+<p><em>Returns:</em> Variables class sliced to a hypersurface. </p>
+
+</div>
+</div>
+<a id="gabfe29b420227efff9e2b14eea688f257"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabfe29b420227efff9e2b14eea688f257">&#9670;&nbsp;</a></span>data_on_slice() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... TagsToSlice, size_t VolumeDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Variables&lt;tmpl::list&lt;TagsToSlice...&gt; &gt; data_on_slice </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classIndex.html">Index</a>&lt; VolumeDim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>element_extents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>sliced_dim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>fixed_index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename TagsToSlice::type &amp;...&#160;</td>
+          <td class="paramname"><em>tensors</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Slices volume <code>Tensor</code>s into a <code>Variables</code> </p>
+<p>The slice has a constant logical coordinate in direction <code>sliced_dim</code>, slicing the volume at <code>fixed_index</code> in that dimension. For example, to get the lower boundary of <code>sliced_dim</code>, pass <code>0</code> for <code>fixed_index</code>; to get the upper boundary, pass <code>extents[sliced_dim] - 1</code>. </p>
+
+</div>
+</div>
+<a id="gabf5aa6d8efa0b2546f7e409a25b4f7dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabf5aa6d8efa0b2546f7e409a25b4f7dd">&#9670;&nbsp;</a></span>get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Tag , typename TagList &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr Tag::type&amp; get </td>
+          <td>(</td>
+          <td class="paramtype">Variables&lt; TagList &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return Tag::type pointing into the contiguous array. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Tag</td><td>the variable to return </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9c899694105f30f16d54b1fcd5d183fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9c899694105f30f16d54b1fcd5d183fb">&#9670;&nbsp;</a></span>make_with_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename R , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">R make_with_value </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Given an object of type <code>T</code>, create an object of type <code>R</code> whose elements are initialized to <code>value</code>. </p>
+<h3>Details</h3>
+<p>This function is useful in function templates in order to initialize the return type of a function template with <code>value</code> for functions that can be called either at a single grid-point or to fill a data structure at the same set of grid-points as the <code>input</code></p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceMakeWithValueImpls.html" title="Implementations of make_with_value. ">MakeWithValueImpls</a> </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

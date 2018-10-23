@@ -1,0 +1,200 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/NumericalAlgorithms/DiscontinuousGalerkin/SimpleBoundaryData.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_a7268f5afc6b190325b6ae3281812809.html">NumericalAlgorithms</a></li><li class="navelem"><a class="el" href="dir_312a89107c62b2cd0040177865d832ae.html">DiscontinuousGalerkin</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">SimpleBoundaryData.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;boost/none.hpp&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;boost/optional.hpp&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a>&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;pup.h&gt;</span>  <span class="comment">// IWYU pragma: keep</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a>&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Assert_8hpp.html">ErrorHandling/Assert.hpp</a>&quot;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BoostHelpers_8hpp.html">Utilities/BoostHelpers.hpp</a>&quot;</span>  <span class="comment">// IWYU pragma: keep</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedg.html">dg</a> {</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/// \ingroup DiscontinuousGalerkinGroup</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">/// \brief Storage of boundary data on two sides of a mortar</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">///</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">/// Typically, values are inserted into this container by the flux</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/// communication actions.</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> TemporalId, <span class="keyword">typename</span> LocalVars, <span class="keyword">typename</span> RemoteVars&gt;</div><div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classdg_1_1SimpleBoundaryData.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classdg_1_1SimpleBoundaryData.html">SimpleBoundaryData</a> {</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; <span class="keyword">public</span>:<span class="comment"></span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">  /// Add a value.  This function must be called once between calls to</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">  /// extract.</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"></span><span class="comment">  //@{</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"></span>  <span class="keywordtype">void</span> <a class="code" href="classdg_1_1SimpleBoundaryData.html#a7b72999a2d7eff74e66c3842894944f5">local_insert</a>(TemporalId temporal_id, LocalVars vars) noexcept;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classdg_1_1SimpleBoundaryData.html#a5476a64117defa43f90842fcd08c65c5">remote_insert</a>(TemporalId temporal_id, RemoteVars vars) noexcept;<span class="comment"></span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">  //@}</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"></span><span class="comment"></span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">  /// Return the inserted data and reset the state to empty.</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"></span>  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair&lt;LocalVars, RemoteVars&gt;</a> <a class="code" href="classdg_1_1SimpleBoundaryData.html#ae70108a43062364050e554e4a82a68b4">extract</a>() noexcept;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="comment">// clang-tidy: google-runtime-references</span></div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keywordtype">void</span> pup(PUP::er&amp; p) noexcept;  <span class="comment">// NOLINT</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; <span class="keyword">private</span>:</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  TemporalId temporal_id_{};</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  boost::optional&lt;LocalVars&gt; local_data_{};</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  boost::optional&lt;RemoteVars&gt; remote_data_{};</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> TemporalId, <span class="keyword">typename</span> LocalVars, <span class="keyword">typename</span> RemoteVars&gt;</div><div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classdg_1_1SimpleBoundaryData.html#a7b72999a2d7eff74e66c3842894944f5">   45</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classdg_1_1SimpleBoundaryData.html#a7b72999a2d7eff74e66c3842894944f5">SimpleBoundaryData&lt;TemporalId, LocalVars, RemoteVars&gt;::local_insert</a>(</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    TemporalId temporal_id, LocalVars vars) noexcept {</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <a class="code" href="group__ErrorHandlingGroup.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>(not local_data_, <span class="stringliteral">&quot;Already received local data.&quot;</span>);</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <a class="code" href="group__ErrorHandlingGroup.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>(not remote_data_ or temporal_id == temporal_id_,</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;         <span class="stringliteral">&quot;Received local data at &quot;</span> &lt;&lt; temporal_id</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;, but already have remote data at &quot;</span> &lt;&lt; temporal_id_);</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  temporal_id_ = std::move(temporal_id);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  local_data_ = std::move(vars);</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> TemporalId, <span class="keyword">typename</span> LocalVars, <span class="keyword">typename</span> RemoteVars&gt;</div><div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classdg_1_1SimpleBoundaryData.html#a5476a64117defa43f90842fcd08c65c5">   56</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classdg_1_1SimpleBoundaryData.html#a5476a64117defa43f90842fcd08c65c5">SimpleBoundaryData&lt;TemporalId, LocalVars, RemoteVars&gt;::remote_insert</a>(</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    TemporalId temporal_id, RemoteVars vars) noexcept {</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <a class="code" href="group__ErrorHandlingGroup.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>(not remote_data_, <span class="stringliteral">&quot;Already received remote data.&quot;</span>);</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <a class="code" href="group__ErrorHandlingGroup.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>(not local_data_ or temporal_id == temporal_id_,</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;         <span class="stringliteral">&quot;Received remote data at &quot;</span> &lt;&lt; temporal_id</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;, but already have local data at &quot;</span> &lt;&lt; temporal_id_);</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  temporal_id_ = std::move(temporal_id);</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  remote_data_ = std::move(vars);</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> TemporalId, <span class="keyword">typename</span> LocalVars, <span class="keyword">typename</span> RemoteVars&gt;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair&lt;LocalVars, RemoteVars&gt;</a></div><div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classdg_1_1SimpleBoundaryData.html#ae70108a43062364050e554e4a82a68b4">   68</a></span>&#160;<a class="code" href="classdg_1_1SimpleBoundaryData.html#ae70108a43062364050e554e4a82a68b4">SimpleBoundaryData&lt;TemporalId, LocalVars, RemoteVars&gt;::extract</a>() noexcept {</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <a class="code" href="group__ErrorHandlingGroup.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>(local_data_ and remote_data_,</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;         <span class="stringliteral">&quot;Tried to extract boundary data, but do not have &quot;</span></div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;         &lt;&lt; (local_data_ ? <span class="stringliteral">&quot;remote&quot;</span> : remote_data_ ? <span class="stringliteral">&quot;local&quot;</span> : <span class="stringliteral">&quot;any&quot;</span>)</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;         &lt;&lt; <span class="stringliteral">&quot; data.&quot;</span>);</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> result =</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      std::make_pair(std::move(*local_data_), std::move(*remote_data_));</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  local_data_ = boost::none;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  remote_data_ = boost::none;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keywordflow">return</span> result;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> TemporalId, <span class="keyword">typename</span> LocalVars, <span class="keyword">typename</span> RemoteVars&gt;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> <a class="code" href="classdg_1_1SimpleBoundaryData.html">SimpleBoundaryData&lt;TemporalId, LocalVars, RemoteVars&gt;::pup</a>(</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    PUP::er&amp; p) noexcept {</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  p | temporal_id_;</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  p | local_data_;</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  p | remote_data_;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}  <span class="comment">// namespace dg</span></div><div class="ttc" id="utility_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a></div></div>
+<div class="ttc" id="classdg_1_1SimpleBoundaryData_html"><div class="ttname"><a href="classdg_1_1SimpleBoundaryData.html">dg::SimpleBoundaryData</a></div><div class="ttdoc">Storage of boundary data on two sides of a mortar. </div><div class="ttdef"><b>Definition:</b> SimpleBoundaryData.hpp:23</div></div>
+<div class="ttc" id="classdg_1_1SimpleBoundaryData_html_ae70108a43062364050e554e4a82a68b4"><div class="ttname"><a href="classdg_1_1SimpleBoundaryData.html#ae70108a43062364050e554e4a82a68b4">dg::SimpleBoundaryData::extract</a></div><div class="ttdeci">std::pair&lt; LocalVars, RemoteVars &gt; extract() noexcept</div><div class="ttdoc">Return the inserted data and reset the state to empty. </div><div class="ttdef"><b>Definition:</b> SimpleBoundaryData.hpp:68</div></div>
+<div class="ttc" id="namespacedg_html"><div class="ttname"><a href="namespacedg.html">dg</a></div><div class="ttdef"><b>Definition:</b> InitializeElement.hpp:63</div></div>
+<div class="ttc" id="classdg_1_1SimpleBoundaryData_html_a7b72999a2d7eff74e66c3842894944f5"><div class="ttname"><a href="classdg_1_1SimpleBoundaryData.html#a7b72999a2d7eff74e66c3842894944f5">dg::SimpleBoundaryData::local_insert</a></div><div class="ttdeci">void local_insert(TemporalId temporal_id, LocalVars vars) noexcept</div><div class="ttdoc">Add a value. This function must be called once between calls to extract. </div><div class="ttdef"><b>Definition:</b> SimpleBoundaryData.hpp:45</div></div>
+<div class="ttc" id="group__ErrorHandlingGroup_html_gaf170f3984e3d0f809b2558dbd981ca35"><div class="ttname"><a href="group__ErrorHandlingGroup.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a></div><div class="ttdeci">#define ASSERT(a, m)</div><div class="ttdoc">Assert that an expression should be true. </div><div class="ttdef"><b>Definition:</b> Assert.hpp:49</div></div>
+<div class="ttc" id="ostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a></div></div>
+<div class="ttc" id="BoostHelpers_8hpp_html"><div class="ttname"><a href="BoostHelpers_8hpp.html">BoostHelpers.hpp</a></div><div class="ttdoc">Defines helper functions for working with boost. </div></div>
+<div class="ttc" id="pair_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a></div></div>
+<div class="ttc" id="Assert_8hpp_html"><div class="ttname"><a href="Assert_8hpp.html">Assert.hpp</a></div><div class="ttdoc">Defines macro ASSERT. </div></div>
+<div class="ttc" id="classdg_1_1SimpleBoundaryData_html_a5476a64117defa43f90842fcd08c65c5"><div class="ttname"><a href="classdg_1_1SimpleBoundaryData.html#a5476a64117defa43f90842fcd08c65c5">dg::SimpleBoundaryData::remote_insert</a></div><div class="ttdeci">void remote_insert(TemporalId temporal_id, RemoteVars vars) noexcept</div><div class="ttdoc">Add a value. This function must be called once between calls to extract. </div><div class="ttdef"><b>Definition:</b> SimpleBoundaryData.hpp:56</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

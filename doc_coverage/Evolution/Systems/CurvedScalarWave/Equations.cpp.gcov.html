@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/Systems/CurvedScalarWave/Equations.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">Evolution/Systems/CurvedScalarWave</a> - Equations.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;Evolution/Systems/CurvedScalarWave/Equations.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/Variables.hpp&quot;      // IWYU pragma: keep
+<span class="lineNum">      11 </span>            : #include &quot;Evolution/Systems/CurvedScalarWave/System.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/GenerateInstantiations.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/TMPL.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : template &lt;typename X, typename Symm, typename IndexList&gt;
+<span class="lineNum">      16 </span><span class="lineNoCov">          0 : class Tensor;</span>
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : namespace CurvedScalarWave {
+<span class="lineNum">      19 </span>            : /// \cond
+<span class="lineNum">      20 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      21 </span>            : void ComputeDuDt&lt;Dim&gt;::apply(
+<span class="lineNum">      22 </span>            :     const gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; dt_pi,
+<span class="lineNum">      23 </span>            :     const gsl::not_null&lt;tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;*&gt; dt_phi,
+<span class="lineNum">      24 </span>            :     const gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; dt_psi,
+<span class="lineNum">      25 </span>            :     const Scalar&lt;DataVector&gt;&amp; pi, const tnsr::i&lt;DataVector, Dim&gt;&amp; phi,
+<span class="lineNum">      26 </span>            :     const tnsr::i&lt;DataVector, Dim&gt;&amp; d_psi, const tnsr::i&lt;DataVector, Dim&gt;&amp; d_pi,
+<span class="lineNum">      27 </span>            :     const tnsr::ij&lt;DataVector, Dim&gt;&amp; d_phi, const Scalar&lt;DataVector&gt;&amp; lapse,
+<span class="lineNum">      28 </span>            :     const tnsr::I&lt;DataVector, Dim&gt;&amp; shift,
+<span class="lineNum">      29 </span>            :     const tnsr::i&lt;DataVector, Dim&gt;&amp; deriv_lapse,
+<span class="lineNum">      30 </span>            :     const tnsr::iJ&lt;DataVector, Dim&gt;&amp; deriv_shift,
+<span class="lineNum">      31 </span>            :     const tnsr::II&lt;DataVector, Dim&gt;&amp; upper_spatial_metric,
+<span class="lineNum">      32 </span>            :     const tnsr::I&lt;DataVector, Dim&gt;&amp; trace_spatial_christoffel,
+<span class="lineNum">      33 </span>            :     const Scalar&lt;DataVector&gt;&amp; trace_extrinsic_curvature,
+<span class="lineNum">      34 </span>            :     const Scalar&lt;DataVector&gt;&amp; gamma1,
+<span class="lineNum">      35 </span>            :     const Scalar&lt;DataVector&gt;&amp; gamma2) noexcept {
+<span class="lineNum">      36 </span>            :   dt_psi-&gt;get() = -lapse.get() * pi.get();
+<span class="lineNum">      37 </span>            :   for (size_t m = 0; m &lt; Dim; ++m) {
+<span class="lineNum">      38 </span>            :     dt_psi-&gt;get() +=
+<span class="lineNum">      39 </span>            :         shift.get(m) *
+<span class="lineNum">      40 </span>            :         (d_psi.get(m) + gamma1.get() * (d_psi.get(m) - phi.get(m)));
+<span class="lineNum">      41 </span>            :   }
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span>            :   dt_pi-&gt;get() = lapse.get() * pi.get() * trace_extrinsic_curvature.get();
+<span class="lineNum">      44 </span>            :   for (size_t m = 0; m &lt; Dim; ++m) {
+<span class="lineNum">      45 </span>            :     dt_pi-&gt;get() += shift.get(m) * d_pi.get(m);
+<span class="lineNum">      46 </span>            :     dt_pi-&gt;get() += lapse.get() * phi.get(m) * trace_spatial_christoffel.get(m);
+<span class="lineNum">      47 </span>            :     dt_pi-&gt;get() += gamma1.get() * gamma2.get() * shift.get(m) *
+<span class="lineNum">      48 </span>            :                     (d_psi.get(m) - phi.get(m));
+<span class="lineNum">      49 </span>            :   }
+<span class="lineNum">      50 </span>            :   for (size_t m = 0; m &lt; Dim; ++m) {
+<span class="lineNum">      51 </span>            :     for (size_t n = 0; n &lt; Dim; ++n) {
+<span class="lineNum">      52 </span>            :       dt_pi-&gt;get() -=
+<span class="lineNum">      53 </span>            :           lapse.get() * upper_spatial_metric.get(m, n) * d_phi.get(m, n);
+<span class="lineNum">      54 </span>            :       dt_pi-&gt;get() -=
+<span class="lineNum">      55 </span>            :           upper_spatial_metric.get(m, n) * deriv_lapse.get(m) * phi.get(n);
+<span class="lineNum">      56 </span>            :     }
+<span class="lineNum">      57 </span>            :   }
+<span class="lineNum">      58 </span>            :   for (size_t k = 0; k &lt; Dim; ++k) {
+<span class="lineNum">      59 </span>            :     dt_phi-&gt;get(k) =
+<span class="lineNum">      60 </span>            :         -lapse.get() *
+<span class="lineNum">      61 </span>            :             (d_pi.get(k) + gamma2.get() * (phi.get(k) - d_psi.get(k))) -
+<span class="lineNum">      62 </span>            :         pi.get() * deriv_lapse.get(k);
+<span class="lineNum">      63 </span>            :     for (size_t m = 0; m &lt; Dim; ++m) {
+<span class="lineNum">      64 </span>            :       dt_phi-&gt;get(k) +=
+<span class="lineNum">      65 </span>            :           shift.get(m) * d_phi.get(m, k) + phi.get(m) * deriv_shift.get(k, m);
+<span class="lineNum">      66 </span>            :     }
+<span class="lineNum">      67 </span>            :   }
+<span class="lineNum">      68 </span>            : }
+<span class="lineNum">      69 </span>            : /// \endcond
+<span class="lineNum">      70 </span>            : }  // namespace CurvedScalarWave
+<span class="lineNum">      71 </span>            : // Generate explicit instantiations of partial_derivatives function as well as
+<span class="lineNum">      72 </span>            : // all other functions in Equations.cpp
+<span class="lineNum">      73 </span>            : 
+<span class="lineNum">      74 </span>            : #include &quot;NumericalAlgorithms/LinearOperators/PartialDerivatives.tpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      75 </span>            : 
+<span class="lineNum">      76 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 : using derivative_tags = typename CurvedScalarWave::System&lt;Dim&gt;::gradients_tags;</span>
+<span class="lineNum">      78 </span>            : 
+<span class="lineNum">      79 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      80 </span><span class="lineNoCov">          0 : using variables_tags =</span>
+<span class="lineNum">      81 </span>            :     typename CurvedScalarWave::System&lt;Dim&gt;::variables_tag::tags_list;
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span><span class="lineNoCov">          0 : using derivative_frame = Frame::Inertial;</span>
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 : #define DIM(data) BOOST_PP_TUPLE_ELEM(0, data)</span>
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span><span class="lineNoCov">          0 : #define INSTANTIATION(_, data)                                               \</span>
+<span class="lineNum">      88 </span>            :   template class CurvedScalarWave::ComputeDuDt&lt;DIM(data)&gt;;                   \
+<span class="lineNum">      89 </span>            :   template Variables&lt;                                                        \
+<span class="lineNum">      90 </span>            :       db::wrap_tags_in&lt;Tags::deriv, derivative_tags&lt;DIM(data)&gt;,              \
+<span class="lineNum">      91 </span>            :                        tmpl::size_t&lt;DIM(data)&gt;, derivative_frame&gt;&gt;           \
+<span class="lineNum">      92 </span>            :   partial_derivatives&lt;derivative_tags&lt;DIM(data)&gt;, variables_tags&lt;DIM(data)&gt;, \
+<span class="lineNum">      93 </span>            :                       DIM(data), derivative_frame&gt;(                          \
+<span class="lineNum">      94 </span>            :       const Variables&lt;variables_tags&lt;DIM(data)&gt;&gt;&amp; u,                         \
+<span class="lineNum">      95 </span>            :       const Mesh&lt;DIM(data)&gt;&amp; mesh,                                           \
+<span class="lineNum">      96 </span>            :       const InverseJacobian&lt;DataVector, DIM(data), Frame::Logical,           \
+<span class="lineNum">      97 </span>            :                             derivative_frame&gt;&amp; inverse_jacobian) noexcept;
+<span class="lineNum">      98 </span>            : 
+<span class="lineNum">      99 </span>            : GENERATE_INSTANTIATIONS(INSTANTIATION, (1, 2, 3))
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            : #undef INSTANTIATION
+<span class="lineNum">     102 </span>            : #undef DIM
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

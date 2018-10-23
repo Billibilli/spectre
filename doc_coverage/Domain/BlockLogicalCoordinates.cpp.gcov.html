@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Domain/BlockLogicalCoordinates.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Domain</a> - BlockLogicalCoordinates.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;BlockLogicalCoordinates.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : #include &lt;vector&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/IdPair.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Domain/BlockId.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Domain/Domain.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      14 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/GenerateInstantiations.hpp&quot;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : namespace {
+<span class="lineNum">      18 </span>            : // Define this alias so we don't need to keep typing this monster.
+<span class="lineNum">      19 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      20 </span>            : using block_logical_coord_holder =
+<span class="lineNum">      21 </span>            :     IdPair&lt;domain::BlockId, tnsr::I&lt;double, Dim, typename ::Frame::Logical&gt;&gt;;
+<span class="lineNum">      22 </span>            : }  // namespace
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : template &lt;size_t Dim, typename Frame&gt;
+<span class="lineNum">      25 </span><span class="lineCov">          1 : std::vector&lt;block_logical_coord_holder&lt;Dim&gt;&gt; block_logical_coordinates(</span>
+<span class="lineNum">      26 </span>            :     const Domain&lt;Dim, Frame&gt;&amp; domain,
+<span class="lineNum">      27 </span>            :     const tnsr::I&lt;DataVector, Dim, Frame&gt;&amp; x) noexcept {
+<span class="lineNum">      28 </span>            :   const size_t num_pts = get&lt;0&gt;(x).size();
+<span class="lineNum">      29 </span>            :   std::vector&lt;block_logical_coord_holder&lt;Dim&gt;&gt; block_coord_holders(num_pts);
+<span class="lineNum">      30 </span>            :   std::vector&lt;tnsr::I&lt;double, Dim, Frame&gt;&gt; points_with_no_block;
+<span class="lineNum">      31 </span>            :   for (size_t s = 0; s &lt; num_pts; ++s) {
+<span class="lineNum">      32 </span>            :     tnsr::I&lt;double, Dim, Frame&gt; x_frame(0.0);
+<span class="lineNum">      33 </span>            :     for (size_t d = 0; d &lt; Dim; ++d) {
+<span class="lineNum">      34 </span>            :       x_frame.get(d) = x.get(d)[s];
+<span class="lineNum">      35 </span>            :     }
+<span class="lineNum">      36 </span>            :     auto&amp; x_logical = block_coord_holders[s].data;
+<span class="lineNum">      37 </span>            :     // Check which block this point is in. Each point will be in one
+<span class="lineNum">      38 </span>            :     // and only one block, unless it is on a shared boundary.  In that
+<span class="lineNum">      39 </span>            :     // case, choose the first matching block (and this block will have
+<span class="lineNum">      40 </span>            :     // the smallest block_id).
+<span class="lineNum">      41 </span>            :     bool found_block = false;
+<span class="lineNum">      42 </span>            :     for (const auto&amp; block : domain.blocks()) {
+<span class="lineNum">      43 </span>            :       const auto inv = block.coordinate_map().inverse(x_frame);
+<span class="lineNum">      44 </span>            :       if(inv) {
+<span class="lineNum">      45 </span>            :         x_logical = inv.get();
+<span class="lineNum">      46 </span>            :       } else {
+<span class="lineNum">      47 </span>            :         continue; // Not in this block
+<span class="lineNum">      48 </span>            :       }
+<span class="lineNum">      49 </span>            :       bool is_contained = true;
+<span class="lineNum">      50 </span>            :       for (size_t d = 0; d &lt; Dim; ++d) {
+<span class="lineNum">      51 </span>            :         // Assumes that logical coordinates go from -1 to +1 in each
+<span class="lineNum">      52 </span>            :         // dimension.
+<span class="lineNum">      53 </span>            :         is_contained = is_contained and x_logical.get(d) &gt;= -1.0 and
+<span class="lineNum">      54 </span>            :                        x_logical.get(d) &lt;= 1.0;
+<span class="lineNum">      55 </span>            :       }
+<span class="lineNum">      56 </span>            :       if (is_contained) {
+<span class="lineNum">      57 </span>            :         // Point is in this block.  Don't bother checking subsequent
+<span class="lineNum">      58 </span>            :         // blocks.
+<span class="lineNum">      59 </span>            :         block_coord_holders[s].id = domain::BlockId(block.id());
+<span class="lineNum">      60 </span>            :         found_block = true;
+<span class="lineNum">      61 </span>            :         break;
+<span class="lineNum">      62 </span>            :       }
+<span class="lineNum">      63 </span>            :     }
+<span class="lineNum">      64 </span>            :     if (not found_block) {
+<span class="lineNum">      65 </span>            :       points_with_no_block.emplace_back(std::move(x_frame));
+<span class="lineNum">      66 </span>            :     }
+<span class="lineNum">      67 </span>            :   }
+<span class="lineNum">      68 </span>            :   if (not points_with_no_block.empty()) {
+<span class="lineNum">      69 </span>            :     ERROR(&quot;Found points that are not in any block\n: x_frame = &quot;
+<span class="lineNum">      70 </span>            :           &lt;&lt; points_with_no_block);
+<span class="lineNum">      71 </span>            :   }
+<span class="lineNum">      72 </span>            :   return block_coord_holders;
+<span class="lineNum">      73 </span>            : }
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            : // Explicit instantiations
+<span class="lineNum">      76 </span>            : /// \cond
+<span class="lineNum">      77 </span>            : #define DIM(data) BOOST_PP_TUPLE_ELEM(0, data)
+<span class="lineNum">      78 </span>            : #define FRAME(data) BOOST_PP_TUPLE_ELEM(1, data)
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            : #define INSTANTIATE(_, data)                                  \
+<span class="lineNum">      81 </span>            :   template std::vector&lt;block_logical_coord_holder&lt;DIM(data)&gt;&gt; \
+<span class="lineNum">      82 </span>            :   block_logical_coordinates(                                  \
+<span class="lineNum">      83 </span>            :       const Domain&lt;DIM(data), FRAME(data)&gt;&amp; domain,           \
+<span class="lineNum">      84 </span>            :       const tnsr::I&lt;DataVector, DIM(data), FRAME(data)&gt;&amp; x) noexcept;
+<span class="lineNum">      85 </span>            : 
+<span class="lineNum">      86 </span>            : GENERATE_INSTANTIATIONS(INSTANTIATE, (1, 2, 3),
+<span class="lineNum">      87 </span>            :                         (Frame::Distorted, Frame::Grid, Frame::Inertial))
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span>            : #undef DIM
+<span class="lineNum">      90 </span>            : #undef FRAME
+<span class="lineNum">      91 </span>            : #undef INSTANTIATE
+<span class="lineNum">      92 </span>            : /// \endcond
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

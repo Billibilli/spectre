@@ -1,0 +1,220 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Evolution/Initialization/Domain.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_7d19b16c3461122ea63afe85d1697a3b.html">Evolution</a></li><li class="navelem"><a class="el" href="dir_6a83d93fcd70a81cd18ebf6b9127cccb.html">Initialization</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Domain.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/array.html">array</a>&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a>&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a>&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DataBox_8hpp.html">DataStructures/DataBox/DataBox.hpp</a>&quot;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DataBoxTag_8hpp.html">DataStructures/DataBox/DataBoxTag.hpp</a>&quot;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;Domain/CreateInitialElement.hpp&quot;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Domain_2Domain_8hpp.html">Domain/Domain.hpp</a>&quot;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Element_8hpp.html">Domain/Element.hpp</a>&quot;</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ElementId_8hpp.html">Domain/ElementId.hpp</a>&quot;</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;Domain/ElementMap.hpp&quot;</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LogicalCoordinates_8hpp.html">Domain/LogicalCoordinates.hpp</a>&quot;</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Mesh_8hpp.html">Domain/Mesh.hpp</a>&quot;</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;Domain/MinimumGridSpacing.hpp&quot;</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Domain_2Tags_8hpp.html">Domain/Tags.hpp</a>&quot;</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;Evolution/Initialization/Helpers.hpp&quot;</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">/// \cond</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> VolumeDim&gt;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">class </span><a class="code" href="classElementIndex.html">ElementIndex</a>;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceFrame.html">Frame</a> {</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">struct </span>Inertial;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}  <span class="comment">// namespace Frame</span><span class="comment"></span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/// \endcond</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceInitialization.html">Initialization</a> {</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">/// \brief Initialize items related to the basic structure of the Domain</span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">///</span></div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/// DataBox changes:</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">/// - Adds:</span></div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">///   * `Tags::Mesh&lt;Dim&gt;`</span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">///   * `Tags::Element&lt;Dim&gt;`</span></div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">///   * `Tags::ElementMap&lt;Dim&gt;`</span></div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">///   * `Tags::LogicalCoordinates&lt;Dim&gt;`</span></div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">///   * `Tags::MappedCoordinates`</span></div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">///   * `Tags::InverseJacobian`</span></div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">///   * `Tags::MinimumGridSpacing&lt;Dim, Frame::Inertial&gt;&gt;`</span></div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/// - Removes: nothing</span></div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/// - Modifies: nothing</span></div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> Dim&gt;</div><div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structInitialization_1_1Domain.html">   48</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structInitialization_1_1Domain.html">Domain</a> {</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">using</span> simple_tags = <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags&lt;Tags::Mesh&lt;Dim&gt;</a>, <a class="code" href="structTags_1_1Element.html">Tags::Element&lt;Dim&gt;</a>,</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                        <a class="code" href="structTags_1_1ElementMap.html">Tags::ElementMap&lt;Dim&gt;</a>&gt;;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keyword">using</span> compute_tags =</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      <a class="code" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags&lt;Tags::LogicalCoordinates&lt;Dim&gt;</a>,</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                         <a class="code" href="structTags_1_1MappedCoordinates.html">Tags::MappedCoordinates&lt;Tags::ElementMap&lt;Dim&gt;</a>,</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                                 <a class="code" href="structTags_1_1LogicalCoordinates.html">Tags::LogicalCoordinates&lt;Dim&gt;</a>&gt;,</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                         <a class="code" href="structTags_1_1InverseJacobian.html">Tags::InverseJacobian&lt;Tags::ElementMap&lt;Dim&gt;</a>,</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                                               Tags::LogicalCoordinates&lt;Dim&gt;&gt;,</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                         <a class="code" href="structTags_1_1MinimumGridSpacing.html">Tags::MinimumGridSpacing&lt;Dim, Frame::Inertial&gt;</a>&gt;;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> TagsList&gt;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keyword">static</span> <span class="keyword">auto</span> initialize(</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      db::DataBox&lt;TagsList&gt;&amp;&amp; box, <span class="keyword">const</span> <a class="code" href="classElementIndex.html">ElementIndex&lt;Dim&gt;</a>&amp; array_index,</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;size_t, Dim&gt;</a>&gt;&amp; initial_extents,</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      const ::Domain&lt;Dim, Frame::Inertial&gt;&amp; <a class="code" href="namespacedomain.html">domain</a>) noexcept {</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">const</span> <a class="code" href="classElementId.html">ElementId&lt;Dim&gt;</a> element_id{array_index};</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; my_block = domain.blocks()[element_id.block_id()];</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classMesh.html">Mesh&lt;Dim&gt;</a> mesh = <a class="code" href="namespaceInitialization.html#a1a02d56f37e50e3568e0c7327f1ac610">element_mesh</a>(initial_extents, element_id);</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classElement.html">Element&lt;Dim&gt;</a> element = <a class="code" href="group__ComputationalDomainGroup.html#ga1184e9f52cfd40ae865bf8bdd13d5e54">create_initial_element</a>(element_id, my_block);</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classElementMap.html">ElementMap&lt;Dim, Frame::Inertial&gt;</a> map{element_id,</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                         my_block.coordinate_map().get_clone()};</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">return</span> db::create_from&lt;db::RemoveTags&lt;&gt;, simple_tags, compute_tags&gt;(</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        std::move(box), std::move(mesh), std::move(element), std::move(map));</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  }</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}  <span class="comment">// namespace Initialization</span></div><div class="ttc" id="cstddef_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a></div></div>
+<div class="ttc" id="utility_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a></div></div>
+<div class="ttc" id="namespaceInitialization_html"><div class="ttname"><a href="namespaceInitialization.html">Initialization</a></div><div class="ttdoc">Items for initializing the DataBoxes of parallel components. </div><div class="ttdef"><b>Definition:</b> ConservativeSystem.hpp:21</div></div>
+<div class="ttc" id="structInitialization_1_1Domain_html"><div class="ttname"><a href="structInitialization_1_1Domain.html">Initialization::Domain</a></div><div class="ttdoc">Initialize items related to the basic structure of the Domain. </div><div class="ttdef"><b>Definition:</b> Domain.hpp:48</div></div>
+<div class="ttc" id="namespacedomain_html"><div class="ttname"><a href="namespacedomain.html">domain</a></div><div class="ttdef"><b>Definition:</b> BlockId.hpp:16</div></div>
+<div class="ttc" id="classElementId_html"><div class="ttname"><a href="classElementId.html">ElementId&lt; Dim &gt;</a></div></div>
+<div class="ttc" id="classMesh_html"><div class="ttname"><a href="classMesh.html">Mesh</a></div><div class="ttdoc">Holds the number of grid points, basis, and quadrature in each direction of the computational grid...</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:49</div></div>
+<div class="ttc" id="ElementId_8hpp_html"><div class="ttname"><a href="ElementId_8hpp.html">ElementId.hpp</a></div><div class="ttdoc">Defines class ElementId. </div></div>
+<div class="ttc" id="classElementMap_html"><div class="ttname"><a href="classElementMap.html">ElementMap</a></div><div class="ttdoc">The CoordinateMap for the Element from the Logical frame to the TargetFrame </div><div class="ttdef"><b>Definition:</b> ElementMap.hpp:36</div></div>
+<div class="ttc" id="namespaceInitialization_html_a1a02d56f37e50e3568e0c7327f1ac610"><div class="ttname"><a href="namespaceInitialization.html#a1a02d56f37e50e3568e0c7327f1ac610">Initialization::element_mesh</a></div><div class="ttdeci">Mesh&lt; Dim &gt; element_mesh(const std::vector&lt; std::array&lt; size_t, Dim &gt;&gt; &amp;initial_extents, const ElementId&lt; Dim &gt; &amp;element_id, const OrientationMap&lt; Dim &gt; &amp;orientation={}) noexcept</div><div class="ttdoc">Construct the initial Mesh of an Element. </div><div class="ttdef"><b>Definition:</b> Helpers.hpp:31</div></div>
+<div class="ttc" id="Domain_2Domain_8hpp_html"><div class="ttname"><a href="Domain_2Domain_8hpp.html">Domain.hpp</a></div><div class="ttdoc">Defines class template Domain. </div></div>
+<div class="ttc" id="LogicalCoordinates_8hpp_html"><div class="ttname"><a href="LogicalCoordinates_8hpp.html">LogicalCoordinates.hpp</a></div><div class="ttdoc">Defines functions logical_coordinates and interface_logical_coordinates. </div></div>
+<div class="ttc" id="structTags_1_1InverseJacobian_html"><div class="ttname"><a href="structTags_1_1InverseJacobian.html">Tags::InverseJacobian</a></div><div class="ttdoc">Computes the inverse Jacobian of the map held by MapTag at the coordinates held by SourceCoordsTag...</div><div class="ttdef"><b>Definition:</b> Tags.hpp:124</div></div>
+<div class="ttc" id="DataBox_8hpp_html"><div class="ttname"><a href="DataBox_8hpp.html">DataBox.hpp</a></div><div class="ttdoc">Defines classes and functions used for manipulating DataBox&amp;#39;s. </div></div>
+<div class="ttc" id="structTags_1_1MinimumGridSpacing_html"><div class="ttname"><a href="structTags_1_1MinimumGridSpacing.html">Tags::MinimumGridSpacing</a></div><div class="ttdoc">The minimum coordinate distance between grid points. </div><div class="ttdef"><b>Definition:</b> MinimumGridSpacing.hpp:34</div></div>
+<div class="ttc" id="group__DataBoxGroup_html_ga3dc674ba575ece4a8be1c23fa6c2cdcb"><div class="ttname"><a href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags</a></div><div class="ttdeci">tmpl::flatten&lt; tmpl::list&lt; Tags... &gt; &gt; AddSimpleTags</div><div class="ttdoc">List of Tags to add to the DataBox. </div><div class="ttdef"><b>Definition:</b> DataBox.hpp:1192</div></div>
+<div class="ttc" id="structTags_1_1LogicalCoordinates_html"><div class="ttname"><a href="structTags_1_1LogicalCoordinates.html">Tags::LogicalCoordinates</a></div><div class="ttdoc">The logical coordinates in the Element. </div><div class="ttdef"><b>Definition:</b> LogicalCoordinates.hpp:64</div></div>
+<div class="ttc" id="group__ComputationalDomainGroup_html_ga1184e9f52cfd40ae865bf8bdd13d5e54"><div class="ttname"><a href="group__ComputationalDomainGroup.html#ga1184e9f52cfd40ae865bf8bdd13d5e54">create_initial_element</a></div><div class="ttdeci">Element&lt; VolumeDim &gt; create_initial_element(const ElementId&lt; VolumeDim &gt; &amp;element_id, const Block&lt; VolumeDim, TargetFrame &gt; &amp;block) noexcept</div><div class="ttdoc">Creates an initial element of a Block. </div><div class="ttdef"><b>Definition:</b> CreateInitialElement.cpp:27</div></div>
+<div class="ttc" id="classElement_html"><div class="ttname"><a href="classElement.html">Element</a></div><div class="ttdoc">A spectral element with knowledge of its neighbors. </div><div class="ttdef"><b>Definition:</b> Element.hpp:29</div></div>
+<div class="ttc" id="namespaceFrame_html"><div class="ttname"><a href="namespaceFrame.html">Frame</a></div><div class="ttdoc">Indicates the Frame that a TensorIndexType is in. </div><div class="ttdef"><b>Definition:</b> IndexType.hpp:36</div></div>
+<div class="ttc" id="Mesh_8hpp_html"><div class="ttname"><a href="Mesh_8hpp.html">Mesh.hpp</a></div><div class="ttdoc">Defines the class template Mesh. </div></div>
+<div class="ttc" id="structTags_1_1Element_html"><div class="ttname"><a href="structTags_1_1Element.html">Tags::Element</a></div><div class="ttdoc">The Element associated with the DataBox. </div><div class="ttdef"><b>Definition:</b> Tags.hpp:63</div></div>
+<div class="ttc" id="vector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
+<div class="ttc" id="structTags_1_1MappedCoordinates_html"><div class="ttname"><a href="structTags_1_1MappedCoordinates.html">Tags::MappedCoordinates</a></div><div class="ttdoc">The coordinates in the target frame of MapTag. The SourceCoordsTag&amp;#39;s frame must be the source frame o...</div><div class="ttdef"><b>Definition:</b> Tags.hpp:106</div></div>
+<div class="ttc" id="array_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/array.html">array</a></div></div>
+<div class="ttc" id="Domain_2Tags_8hpp_html"><div class="ttname"><a href="Domain_2Tags_8hpp.html">Tags.hpp</a></div><div class="ttdoc">Defines tags related to domain quantities. </div></div>
+<div class="ttc" id="classElementIndex_html"><div class="ttname"><a href="classElementIndex.html">ElementIndex</a></div><div class="ttdoc">A class for indexing a Charm array by Element. </div><div class="ttdef"><b>Definition:</b> ElementIndex.hpp:53</div></div>
+<div class="ttc" id="DataBoxTag_8hpp_html"><div class="ttname"><a href="DataBoxTag_8hpp.html">DataBoxTag.hpp</a></div><div class="ttdoc">Defines classes SimpleTag, PrefixTag, ComputeTag and several functions for retrieving tag info...</div></div>
+<div class="ttc" id="structTags_1_1ElementMap_html"><div class="ttname"><a href="structTags_1_1ElementMap.html">Tags::ElementMap</a></div><div class="ttdoc">The coordinate map from logical to grid coordinate. </div><div class="ttdef"><b>Definition:</b> Tags.hpp:83</div></div>
+<div class="ttc" id="group__DataBoxGroup_html_ga64597eb7f5df0dc4d99698289265b1a7"><div class="ttname"><a href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags</a></div><div class="ttdeci">tmpl::flatten&lt; tmpl::list&lt; Tags... &gt; &gt; AddComputeTags</div><div class="ttdoc">List of Compute Item Tags to add to the DataBox. </div><div class="ttdef"><b>Definition:</b> DataBox.hpp:1199</div></div>
+<div class="ttc" id="Element_8hpp_html"><div class="ttname"><a href="Element_8hpp.html">Element.hpp</a></div><div class="ttdoc">Defines class Element. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

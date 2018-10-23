@@ -1,0 +1,211 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/NumericalAlgorithms/LinearSolver/ConjugateGradient/InitializeElement.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_a7268f5afc6b190325b6ae3281812809.html">NumericalAlgorithms</a></li><li class="navelem"><a class="el" href="dir_ec97b14b690672400142fe833dec002c.html">LinearSolver</a></li><li class="navelem"><a class="el" href="dir_9dcc590e198fbbfa50214851fb7842cc.html">ConjugateGradient</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">InitializeElement.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DataBox_8hpp.html">DataStructures/DataBox/DataBox.hpp</a>&quot;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Prefixes_8hpp.html">DataStructures/DataBox/Prefixes.hpp</a>&quot;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="IterationId_8hpp.html">NumericalAlgorithms/LinearSolver/IterationId.hpp</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="NumericalAlgorithms_2LinearSolver_2Tags_8hpp.html">NumericalAlgorithms/LinearSolver/Tags.hpp</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConstGlobalCache_8hpp.html">Parallel/ConstGlobalCache.hpp</a>&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Info_8hpp.html">Parallel/Info.hpp</a>&quot;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;Parallel/Invoke.hpp&quot;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;Parallel/Reduction.hpp&quot;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MakeWithValue_8hpp.html">Utilities/MakeWithValue.hpp</a>&quot;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/// \cond</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"></span><span class="keyword">namespace </span><a class="code" href="namespacetuples.html">tuples</a> {</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span>TaggedTuple;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}  <span class="comment">// namespace tuples</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceLinearSolver.html">LinearSolver</a> {</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span>cg_detail {</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">struct </span>ResidualMonitor;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">struct </span>InitializeResidual;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}  <span class="comment">// namespace cg_detail</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}  <span class="comment">// namespace LinearSolver</span><span class="comment"></span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/// \endcond</span></div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceLinearSolver.html">LinearSolver</a> {</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span>cg_detail {</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Metavariables&gt;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">struct </span>InitializeElement {</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; <span class="keyword">private</span>:</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keyword">using</span> fields_tag = <span class="keyword">typename</span> Metavariables::system::fields_tag;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keyword">using</span> operand_tag =</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;      <a class="code" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix&lt;LinearSolver::Tags::Operand, fields_tag&gt;</a>;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keyword">using</span> operator_tag =</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;      <a class="code" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix&lt;LinearSolver::Tags::OperatorAppliedTo, operand_tag&gt;</a>;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">using</span> residual_tag =</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;      <a class="code" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix&lt;LinearSolver::Tags::Residual, fields_tag&gt;</a>;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; <span class="keyword">public</span>:</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">using</span> simple_tags =</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags</a>&lt;<a class="code" href="structLinearSolver_1_1Tags_1_1IterationId.html">LinearSolver::Tags::IterationId</a>,</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                        <a class="code" href="structTags_1_1Next.html">::Tags::Next&lt;LinearSolver::Tags::IterationId&gt;</a>,</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                        operand_tag, operator_tag, residual_tag&gt;;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">using</span> compute_tags = <a class="code" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags&lt;&gt;</a>;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> TagsList, <span class="keyword">typename</span> ArrayIndex, <span class="keyword">typename</span> ParallelComponent&gt;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keyword">static</span> <span class="keyword">auto</span> initialize(</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      db::DataBox&lt;TagsList&gt;&amp;&amp; box,</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      <span class="keyword">const</span> <a class="code" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache&lt;Metavariables&gt;</a>&amp; cache,</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      <span class="keyword">const</span> ArrayIndex&amp; array_index, <span class="keyword">const</span> ParallelComponent* <span class="keyword">const</span> <span class="comment">/*meta*/</span>,</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      <span class="keyword">const</span> <a class="code" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type</a>&lt;<a class="code" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix&lt;::Tags::Source, fields_tag&gt;</a>&gt;&amp; b,</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      <span class="keyword">const</span> <a class="code" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type</a>&lt;<a class="code" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix</a>&lt;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;          <a class="code" href="structLinearSolver_1_1Tags_1_1OperatorAppliedTo.html">LinearSolver::Tags::OperatorAppliedTo</a>, fields_tag&gt;&gt;&amp; Ax) noexcept {</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="structLinearSolver_1_1IterationId.html">LinearSolver::IterationId</a> iteration_id{0};</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="structLinearSolver_1_1IterationId.html">LinearSolver::IterationId</a> next_iteration_id{1};</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type&lt;operand_tag&gt;</a> p = b - Ax;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">auto</span> r = <a class="code" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type&lt;residual_tag&gt;</a>(p);</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">auto</span> Ap = make_with_value&lt;db::item_type&lt;operator_tag&gt;&gt;(</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        b, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits/signaling_NaN.html">std::numeric_limits&lt;double&gt;::signaling_NaN</a>());</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// Perform global reduction to compute initial residual magnitude square for</span></div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// residual monitor</span></div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    Parallel::contribute_to_reduction&lt;cg_detail::InitializeResidual&gt;(</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        Parallel::ReductionData&lt;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <a class="code" href="structParallel_1_1ReductionDatum.html">Parallel::ReductionDatum&lt;double, funcl::Plus&lt;&gt;</a>&gt;&gt;{</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <a class="code" href="group__LinearSolverGroup.html#ga9f4f80fb21f848e2fac02bebe6c1d1e0">inner_product</a>(r, r)},</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        Parallel::get_parallel_component&lt;ParallelComponent&gt;(cache)[array_index],</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f">Parallel::get_parallel_component</a>&lt;ResidualMonitor&lt;Metavariables&gt;&gt;(</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            cache));</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">return</span> db::create_from&lt;db::RemoveTags&lt;&gt;, simple_tags, compute_tags&gt;(</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        std::move(box), iteration_id, next_iteration_id, std::move(p),</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        std::move(Ap), std::move(r));</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  }</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}  <span class="comment">// namespace cg_detail</span></div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}  <span class="comment">// namespace LinearSolver</span></div><div class="ttc" id="group__DataBoxTagsGroup_html_gab3e7a8857504fa5070c052bacba656cd"><div class="ttname"><a href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix</a></div><div class="ttdeci">Prefix&lt; DataBox_detail::dispatch_add_tag_prefix_impl&lt; Prefix, Tag, Args... &gt;, Args... &gt; add_tag_prefix</div><div class="ttdoc">Wrap Tag in Prefix&lt;_, Args...&gt;, also wrapping variables tags if Tag is a Tags::Variables. </div><div class="ttdef"><b>Definition:</b> DataBoxTag.hpp:533</div></div>
+<div class="ttc" id="Info_8hpp_html"><div class="ttname"><a href="Info_8hpp.html">Info.hpp</a></div><div class="ttdoc">Defines functions for interfacing with the parallelization framework. </div></div>
+<div class="ttc" id="NumericalAlgorithms_2LinearSolver_2Tags_8hpp_html"><div class="ttname"><a href="NumericalAlgorithms_2LinearSolver_2Tags_8hpp.html">Tags.hpp</a></div><div class="ttdoc">Defines DataBox tags for the linear solver. </div></div>
+<div class="ttc" id="namespaceLinearSolver_html"><div class="ttname"><a href="namespaceLinearSolver.html">LinearSolver</a></div><div class="ttdoc">Functionality for solving linear systems of equations. </div><div class="ttdef"><b>Definition:</b> ConjugateGradient.hpp:11</div></div>
+<div class="ttc" id="signaling_NaN_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/numeric_limits/signaling_NaN.html">std::numeric_limits::signaling_NaN</a></div><div class="ttdeci">T signaling_NaN(T... args)</div></div>
+<div class="ttc" id="namespacetuples_html"><div class="ttname"><a href="namespacetuples.html">tuples</a></div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:25</div></div>
+<div class="ttc" id="Prefixes_8hpp_html"><div class="ttname"><a href="Prefixes_8hpp.html">Prefixes.hpp</a></div><div class="ttdoc">Define prefixes for DataBox tags. </div></div>
+<div class="ttc" id="structLinearSolver_1_1Tags_1_1IterationId_html"><div class="ttname"><a href="structLinearSolver_1_1Tags_1_1IterationId.html">LinearSolver::Tags::IterationId</a></div><div class="ttdoc">Holds an IterationId that identifies a step in the linear solver algorithm. </div><div class="ttdef"><b>Definition:</b> Tags.hpp:30</div></div>
+<div class="ttc" id="DataBox_8hpp_html"><div class="ttname"><a href="DataBox_8hpp.html">DataBox.hpp</a></div><div class="ttdoc">Defines classes and functions used for manipulating DataBox&amp;#39;s. </div></div>
+<div class="ttc" id="group__DataBoxGroup_html_ga3dc674ba575ece4a8be1c23fa6c2cdcb"><div class="ttname"><a href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags</a></div><div class="ttdeci">tmpl::flatten&lt; tmpl::list&lt; Tags... &gt; &gt; AddSimpleTags</div><div class="ttdoc">List of Tags to add to the DataBox. </div><div class="ttdef"><b>Definition:</b> DataBox.hpp:1192</div></div>
+<div class="ttc" id="group__LinearSolverGroup_html_ga9f4f80fb21f848e2fac02bebe6c1d1e0"><div class="ttname"><a href="group__LinearSolverGroup.html#ga9f4f80fb21f848e2fac02bebe6c1d1e0">LinearSolver::inner_product</a></div><div class="ttdeci">double inner_product(const Lhs &amp;lhs, const Rhs &amp;rhs) noexcept</div><div class="ttdoc">The local part of the Euclidean inner product on the vector space w.r.t. which the addition and scala...</div><div class="ttdef"><b>Definition:</b> InnerProduct.hpp:71</div></div>
+<div class="ttc" id="classParallel_1_1ConstGlobalCache_html"><div class="ttname"><a href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache</a></div><div class="ttdoc">A Charm++ chare that caches constant data once per Charm++ node. </div><div class="ttdef"><b>Definition:</b> ConstGlobalCache.hpp:76</div></div>
+<div class="ttc" id="group__ParallelGroup_html_ga267c8d6d5f2313bd05ed69f91485776f"><div class="ttname"><a href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f">Parallel::get_parallel_component</a></div><div class="ttdeci">auto get_parallel_component(ConstGlobalCache&lt; Metavariables &gt; &amp;cache) noexcept -&gt; Parallel::proxy_from_parallel_component&lt; ConstGlobalCache_detail::get_component_if_mocked&lt; typename Metavariables::component_list, ParallelComponentTag &gt;&gt; &amp;</div><div class="ttdoc">Access the Charm++ proxy associated with a ParallelComponent. </div><div class="ttdef"><b>Definition:</b> ConstGlobalCache.hpp:163</div></div>
+<div class="ttc" id="structTags_1_1Next_html"><div class="ttname"><a href="structTags_1_1Next.html">Tags::Next</a></div><div class="ttdoc">Prefix indicating the value a quantity will take on the next iteration of the algorithm. </div><div class="ttdef"><b>Definition:</b> Prefixes.hpp:98</div></div>
+<div class="ttc" id="group__DataBoxGroup_html_ga6da12f8bf23ee87c99472b0f33b2b155"><div class="ttname"><a href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type</a></div><div class="ttdeci">typename DataBox_detail::item_type_impl&lt; TagList, Tag &gt;::type item_type</div><div class="ttdoc">Get the type that is returned by the Tag. If it is a base tag then a TagList must be passed as a seco...</div><div class="ttdef"><b>Definition:</b> DataBoxTag.hpp:410</div></div>
+<div class="ttc" id="structLinearSolver_1_1Tags_1_1OperatorAppliedTo_html"><div class="ttname"><a href="structLinearSolver_1_1Tags_1_1OperatorAppliedTo.html">LinearSolver::Tags::OperatorAppliedTo</a></div><div class="ttdoc">The linear operator  applied to the data in Tag </div><div class="ttdef"><b>Definition:</b> Tags.hpp:54</div></div>
+<div class="ttc" id="structLinearSolver_1_1IterationId_html"><div class="ttname"><a href="structLinearSolver_1_1IterationId.html">LinearSolver::IterationId</a></div><div class="ttdoc">Identifies a step in the linear solver algorithm. </div><div class="ttdef"><b>Definition:</b> IterationId.hpp:25</div></div>
+<div class="ttc" id="ConstGlobalCache_8hpp_html"><div class="ttname"><a href="ConstGlobalCache_8hpp.html">ConstGlobalCache.hpp</a></div><div class="ttdoc">Defines class template ConstGlobalCache. </div></div>
+<div class="ttc" id="structParallel_1_1ReductionDatum_html"><div class="ttname"><a href="structParallel_1_1ReductionDatum.html">Parallel::ReductionDatum</a></div><div class="ttdoc">The data to be reduced, and invokables to be called whenever two reduction messages are combined and ...</div><div class="ttdef"><b>Definition:</b> Reduction.hpp:64</div></div>
+<div class="ttc" id="MakeWithValue_8hpp_html"><div class="ttname"><a href="MakeWithValue_8hpp.html">MakeWithValue.hpp</a></div><div class="ttdoc">Defines make_with_value. </div></div>
+<div class="ttc" id="IterationId_8hpp_html"><div class="ttname"><a href="IterationId_8hpp.html">IterationId.hpp</a></div><div class="ttdoc">Defines class IterationId. </div></div>
+<div class="ttc" id="group__DataBoxGroup_html_ga64597eb7f5df0dc4d99698289265b1a7"><div class="ttname"><a href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags</a></div><div class="ttdeci">tmpl::flatten&lt; tmpl::list&lt; Tags... &gt; &gt; AddComputeTags</div><div class="ttdoc">List of Compute Item Tags to add to the DataBox. </div><div class="ttdef"><b>Definition:</b> DataBox.hpp:1199</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

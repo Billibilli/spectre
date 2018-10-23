@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - DataStructures/Tensor/Symmetry.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">DataStructures/Tensor</a> - Symmetry.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines metafunctions used to comute the Symmetry&lt;...&gt; for a Tensor
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;Utilities/Array.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : namespace detail {
+<span class="lineNum">      15 </span>            : template &lt;size_t Size&gt;
+<span class="lineNum">      16 </span>            : constexpr int find_reduced_index(
+<span class="lineNum">      17 </span>            :     const cpp17::array&lt;std::pair&lt;int, int&gt;, Size&gt;&amp; t,
+<span class="lineNum">      18 </span>            :     const int value) noexcept {
+<span class="lineNum">      19 </span>            :   for (size_t i = 0; i &lt; Size; ++i) {
+<span class="lineNum">      20 </span>            :     if (t[i].first == value) {
+<span class="lineNum">      21 </span>            :       return t[i].second;
+<span class="lineNum">      22 </span>            :     }
+<span class="lineNum">      23 </span>            :   }
+<span class="lineNum">      24 </span>            :   return 0;
+<span class="lineNum">      25 </span>            : }
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : template &lt;size_t Size&gt;
+<span class="lineNum">      28 </span>            : constexpr cpp17::array&lt;int, Size&gt; symmetry(
+<span class="lineNum">      29 </span>            :     const std::array&lt;int, Size&gt;&amp; input_symm) noexcept {
+<span class="lineNum">      30 </span>            :   cpp17::array&lt;int, Size&gt; output_symm{};
+<span class="lineNum">      31 </span>            :   int next_symm_entry = 1;
+<span class="lineNum">      32 </span>            :   cpp17::array&lt;std::pair&lt;int, int&gt;, Size&gt; input_to_output_map{};
+<span class="lineNum">      33 </span>            :   size_t input_to_output_map_size = 0;
+<span class="lineNum">      34 </span>            :   for (size_t i = Size - 1; i &lt; Size; --i) {
+<span class="lineNum">      35 </span>            :     // clang-tidy: use gsl::at
+<span class="lineNum">      36 </span>            :     int found_symm_entry =
+<span class="lineNum">      37 </span>            :         find_reduced_index(input_to_output_map, input_symm[i]);  // NOLINT
+<span class="lineNum">      38 </span>            :     if (found_symm_entry == 0) {
+<span class="lineNum">      39 </span>            :       output_symm[i] = next_symm_entry;  // NOLINT
+<span class="lineNum">      40 </span>            :       input_to_output_map[input_to_output_map_size].first =
+<span class="lineNum">      41 </span>            :           input_symm[i];  // NOLINT
+<span class="lineNum">      42 </span>            :       input_to_output_map[input_to_output_map_size].second = output_symm[i];
+<span class="lineNum">      43 </span>            :       input_to_output_map_size++;
+<span class="lineNum">      44 </span>            :       next_symm_entry++;
+<span class="lineNum">      45 </span>            :     } else {
+<span class="lineNum">      46 </span>            :       output_symm[i] = found_symm_entry;
+<span class="lineNum">      47 </span>            :     }
+<span class="lineNum">      48 </span>            :   }
+<span class="lineNum">      49 </span>            :   return output_symm;
+<span class="lineNum">      50 </span>            : }
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            : template &lt;typename IndexSequence, typename SymmetrySequence&gt;
+<span class="lineNum">      53 </span>            : struct SymmetryImpl;
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : template &lt;size_t... Is, std::int32_t... Ss&gt;
+<span class="lineNum">      56 </span>            : struct SymmetryImpl&lt;std::index_sequence&lt;Is...&gt;,
+<span class="lineNum">      57 </span>            :                     tmpl::integral_list&lt;std::int32_t, Ss...&gt;&gt; {
+<span class="lineNum">      58 </span>            :   static constexpr cpp17::array&lt;int, sizeof...(Is)&gt; t =
+<span class="lineNum">      59 </span>            :       symmetry(std::array&lt;int, sizeof...(Is)&gt;{{Ss...}});
+<span class="lineNum">      60 </span>            :   using type = tmpl::integral_list&lt;std::int32_t, t[Is]...&gt;;
+<span class="lineNum">      61 </span>            : };
+<span class="lineNum">      62 </span>            : }  // namespace detail
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            : /// \ingroup TensorGroup
+<span class="lineNum">      65 </span>            : /// \brief Computes the canonical symmetry from the integers `T`
+<span class="lineNum">      66 </span>            : ///
+<span class="lineNum">      67 </span>            : /// \details
+<span class="lineNum">      68 </span>            : /// Compute the canonical symmetry typelist given a set of integers, T. The
+<span class="lineNum">      69 </span>            : /// resulting typelist is in descending order of the absolute value of the
+<span class="lineNum">      70 </span>            : /// integers. For example, the result of `Symmetry&lt;1, 2, 3&gt;` is
+<span class="lineNum">      71 </span>            : /// `integral_list&lt;int32_t, 3, 2, 1&gt;`. Anti-symmetries can be denoted with a
+<span class="lineNum">      72 </span>            : /// minus sign on either _or_ both indices. That is, `Symmetry&lt;-1, 2, 1&gt;` is
+<span class="lineNum">      73 </span>            : /// anti-symmetric in the first and last index and is the same as `Symmetry&lt;-1,
+<span class="lineNum">      74 </span>            : /// 2, -1&gt;`. Note: two minus signs are still anti-symmetric because it
+<span class="lineNum">      75 </span>            : /// simplifies the algorithm used to compute the canonical form of the symmetry.
+<span class="lineNum">      76 </span>            : ///
+<span class="lineNum">      77 </span>            : /// \tparam T the integers denoting the symmetry of the Tensor
+<span class="lineNum">      78 </span>            : template &lt;std::int32_t... T&gt;
+<span class="lineNum">      79 </span><span class="lineCov">          2 : using Symmetry = typename detail::SymmetryImpl&lt;</span>
+<span class="lineNum">      80 </span>            :     std::make_index_sequence&lt;sizeof...(T)&gt;,
+<span class="lineNum">      81 </span>            :     tmpl::integral_list&lt;std::int32_t, T...&gt;&gt;::type;
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

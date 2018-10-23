@@ -1,0 +1,318 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/DataStructures/DataBox/DataBoxTag.hpp File Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_82345eea92ca6199b790b57d5dab4505.html">DataStructures</a></li><li class="navelem"><a class="el" href="dir_4a904446878d97f80ee5dac5f70ae094.html">DataBox</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">DataBoxTag.hpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Defines classes SimpleTag, PrefixTag, ComputeTag and several functions for retrieving tag info.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="Assert_8hpp_source.html">ErrorHandling/Assert.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ConstantExpressions_8hpp_source.html">Utilities/ConstantExpressions.hpp</a>&quot;</code><br />
+<code>#include &quot;Utilities/NoSuchType.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="PrettyType_8hpp_source.html">Utilities/PrettyType.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Requires_8hpp_source.html">Utilities/Requires.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="TMPL_8hpp_source.html">Utilities/TMPL.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Utilities_2TypeTraits_8hpp_source.html">Utilities/TypeTraits.hpp</a>&quot;</code><br />
+</div>
+<p><a href="DataBoxTag_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTags_1_1DataBox.html">Tags::DataBox</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag used to retrieve the <a class="el" href="structTags_1_1DataBox.html" title="Tag used to retrieve the DataBox from the db::get function. ">DataBox</a> from the <code><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a></code> function.  <a href="structTags_1_1DataBox.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1SimpleTag.html">db::SimpleTag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tags for the DataBox inherit from this type.  <a href="structdb_1_1SimpleTag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1BaseTag.html">db::BaseTag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tags that are base tags, i.e. a simple or compute tag must derive off them for them to be useful.  <a href="structdb_1_1BaseTag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1PrefixTag.html">db::PrefixTag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks an item as being a prefix to another tag.  <a href="structdb_1_1PrefixTag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1ComputeTag.html">db::ComputeTag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a DataBoxTag as being a compute item that executes a function.  <a href="structdb_1_1ComputeTag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1is__compute__item.html">db::is_compute_item&lt; Tag, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>Tag</code> derives off of <a class="el" href="structdb_1_1ComputeTag.html" title="Marks a DataBoxTag as being a compute item that executes a function. ">db::ComputeTag</a>.  <a href="structdb_1_1is__compute__item.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1is__non__base__tag.html">db::is_non_base_tag&lt; Tag, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>Tag</code> is a non-base DataBox tag. I.e. a <a class="el" href="structdb_1_1SimpleTag.html" title="Tags for the DataBox inherit from this type. ">SimpleTag</a> or a <a class="el" href="structdb_1_1ComputeTag.html" title="Marks a DataBoxTag as being a compute item that executes a function. ">ComputeTag</a>.  <a href="structdb_1_1is__non__base__tag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1is__tag.html">db::is_tag&lt; Tag, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>Tag</code> is a <a class="el" href="structdb_1_1BaseTag.html" title="Tags that are base tags, i.e. a simple or compute tag must derive off them for them to be useful...">BaseTag</a>, <a class="el" href="structdb_1_1SimpleTag.html" title="Tags for the DataBox inherit from this type. ">SimpleTag</a>, or <a class="el" href="structdb_1_1ComputeTag.html" title="Marks a DataBoxTag as being a compute item that executes a function. ">ComputeTag</a>.  <a href="structdb_1_1is__tag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1is__base__tag.html">db::is_base_tag&lt; Tag, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>Tag</code> is a base DataBox tag.  <a href="structdb_1_1is__base__tag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1Subitems.html">db::Subitems&lt; TagList, Tag, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct that can be specialized to allow DataBox items to have subitems. Specializations must define:  <a href="structdb_1_1Subitems.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacedb"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb.html">db</a></td></tr>
+<tr class="memdesc:namespacedb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace for DataBox related things. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga6da12f8bf23ee87c99472b0f33b2b155"><td class="memTemplParams" colspan="2">
+template&lt;typename Tag , typename TagList  = NoSuchType&gt; </td></tr>
+<tr class="memitem:ga6da12f8bf23ee87c99472b0f33b2b155"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type</a> = typename DataBox_detail::item_type_impl&lt; TagList, Tag &gt;::type</td></tr>
+<tr class="memdesc:ga6da12f8bf23ee87c99472b0f33b2b155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the type that is returned by the <code>Tag</code>. If it is a base tag then a <code>TagList</code> must be passed as a second argument. <br /></td></tr>
+<tr class="separator:ga6da12f8bf23ee87c99472b0f33b2b155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3dda5a16c7f6baccd115de2c8f12394e"><td class="memTemplParams" colspan="2">
+template&lt;template&lt; typename... &gt; class Wrapper, typename TagList , typename... Args&gt; </td></tr>
+<tr class="memitem:ga3dda5a16c7f6baccd115de2c8f12394e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxTagsGroup.html#ga3dda5a16c7f6baccd115de2c8f12394e">db::wrap_tags_in</a> = tmpl::transform&lt; TagList, tmpl::bind&lt; Wrapper, tmpl::_1, tmpl::pin&lt; Args &gt;... &gt; &gt;</td></tr>
+<tr class="memdesc:ga3dda5a16c7f6baccd115de2c8f12394e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new list of Tags by wrapping each tag in <code>TagList</code> using the <code>Wrapper</code>. <br /></td></tr>
+<tr class="separator:ga3dda5a16c7f6baccd115de2c8f12394e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3e7a8857504fa5070c052bacba656cd"><td class="memTemplParams" colspan="2">
+template&lt;template&lt; typename... &gt; class Prefix, typename Tag , typename... Args&gt; </td></tr>
+<tr class="memitem:gab3e7a8857504fa5070c052bacba656cd"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix</a> = Prefix&lt; DataBox_detail::dispatch_add_tag_prefix_impl&lt; Prefix, Tag, Args... &gt;, Args... &gt;</td></tr>
+<tr class="memdesc:gab3e7a8857504fa5070c052bacba656cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrap <code>Tag</code> in <code>Prefix&lt;_, Args...&gt;</code>, also wrapping variables tags if <code>Tag</code> is a <code><a class="el" href="structTags_1_1Variables.html">Tags::Variables</a></code>. <br /></td></tr>
+<tr class="separator:gab3e7a8857504fa5070c052bacba656cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2151fd77d407e76f4eb7efdaaaf3d5c"><td class="memTemplParams" colspan="2">
+template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:gae2151fd77d407e76f4eb7efdaaaf3d5c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxTagsGroup.html#gae2151fd77d407e76f4eb7efdaaaf3d5c">db::remove_tag_prefix</a> = typename DataBox_detail::remove_tag_prefix_impl&lt; Tag &gt;::type</td></tr>
+<tr class="memdesc:gae2151fd77d407e76f4eb7efdaaaf3d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a prefix from <code>Tag</code>, also removing it from the variables tags if the unwrapped tag is a <code><a class="el" href="structTags_1_1Variables.html">Tags::Variables</a></code>. <br /></td></tr>
+<tr class="separator:gae2151fd77d407e76f4eb7efdaaaf3d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8a90dc9c5e88f4012ea958ed55c4e61b"><td class="memTemplParams" colspan="2">
+template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:ga8a90dc9c5e88f4012ea958ed55c4e61b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga8a90dc9c5e88f4012ea958ed55c4e61b">db::remove_all_prefixes</a> = typename DataBox_detail::remove_all_prefixes_impl&lt; Tag, cpp17::is_base_of_v&lt; <a class="el" href="structdb_1_1PrefixTag.html">db::PrefixTag</a>, Tag &gt; &gt;::type</td></tr>
+<tr class="memdesc:ga8a90dc9c5e88f4012ea958ed55c4e61b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completely remove all prefix tags from a Tag. <br /></td></tr>
+<tr class="separator:ga8a90dc9c5e88f4012ea958ed55c4e61b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21b057acce1cfc78446228323300bb8e"><td class="memTemplParams" colspan="2">template&lt;typename Tag , typename NewTagsList &gt; </td></tr>
+<tr class="memitem:ga21b057acce1cfc78446228323300bb8e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga21b057acce1cfc78446228323300bb8e">db::variables_tag_with_tags_list</a> = typename DataBox_detail::variables_tag_with_tags_list_impl&lt; DataBox_detail::tag_type&lt; Tag &gt; &gt;::template f&lt; Tag, NewTagsList &gt;</td></tr>
+<tr class="memdesc:ga21b057acce1cfc78446228323300bb8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the tags contained in a possibly prefixed Variables tag.  <a href="group__DataBoxGroup.html#ga21b057acce1cfc78446228323300bb8e">More...</a><br /></td></tr>
+<tr class="separator:ga21b057acce1cfc78446228323300bb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga97296c560675e55606cd3ebd7dd95b39"><td class="memTemplParams" colspan="2">
+template&lt;typename Tag , typename TagList  = NoSuchType&gt; </td></tr>
+<tr class="memitem:ga97296c560675e55606cd3ebd7dd95b39"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga97296c560675e55606cd3ebd7dd95b39">db::split_tag</a> = tmpl::conditional_t&lt; tmpl::size&lt; typename Subitems&lt; TagList, Tag &gt;::type &gt;::value==0, tmpl::list&lt; Tag &gt;, typename Subitems&lt; TagList, Tag &gt;::type &gt;</td></tr>
+<tr class="memdesc:ga97296c560675e55606cd3ebd7dd95b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split a tag into its subitems. <code>Tag</code> cannot be a base tag. <br /></td></tr>
+<tr class="separator:ga97296c560675e55606cd3ebd7dd95b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga1c6873b102358c68b28e3d35486994fd"><td class="memTemplParams" colspan="2">template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:ga1c6873b102358c68b28e3d35486994fd"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga1c6873b102358c68b28e3d35486994fd">db::get_tag_name</a> ()</td></tr>
+<tr class="memdesc:ga1c6873b102358c68b28e3d35486994fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of a DataBoxTag, including prefixes.  <a href="group__DataBoxGroup.html#ga1c6873b102358c68b28e3d35486994fd">More...</a><br /></td></tr>
+<tr class="separator:ga1c6873b102358c68b28e3d35486994fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ab3b35754fdc5faa3ab18029eac90eb86"><td class="memTemplParams" colspan="2"><a id="ab3b35754fdc5faa3ab18029eac90eb86"></a>
+template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:ab3b35754fdc5faa3ab18029eac90eb86"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>db::is_compute_item_v</b> = is_compute_item&lt;Tag&gt;::value</td></tr>
+<tr class="separator:ab3b35754fdc5faa3ab18029eac90eb86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ae0a8de52ba18f30d29747e6090343e9d"><td class="memTemplParams" colspan="2"><a id="ae0a8de52ba18f30d29747e6090343e9d"></a>
+template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:ae0a8de52ba18f30d29747e6090343e9d"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>db::is_non_base_tag_v</b> = is_non_base_tag&lt;Tag&gt;::value</td></tr>
+<tr class="separator:ae0a8de52ba18f30d29747e6090343e9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a50bbbd9f851791413787e1725a2d4b4e"><td class="memTemplParams" colspan="2"><a id="a50bbbd9f851791413787e1725a2d4b4e"></a>
+template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:a50bbbd9f851791413787e1725a2d4b4e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>db::is_tag_v</b> = is_tag&lt;Tag&gt;::value</td></tr>
+<tr class="separator:a50bbbd9f851791413787e1725a2d4b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a7596f360400e87035ea297109f7ab645"><td class="memTemplParams" colspan="2"><a id="a7596f360400e87035ea297109f7ab645"></a>
+template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:a7596f360400e87035ea297109f7ab645"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>db::is_base_tag_v</b> = is_base_tag&lt;Tag&gt;::value</td></tr>
+<tr class="separator:a7596f360400e87035ea297109f7ab645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines classes SimpleTag, PrefixTag, ComputeTag and several functions for retrieving tag info. </p>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

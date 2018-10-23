@@ -1,0 +1,282 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: CoordinateMapBase&lt; SourceFrame, TargetFrame, Dim &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classCoordinateMapBase-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">CoordinateMapBase&lt; SourceFrame, TargetFrame, Dim &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__CoordinateMapsGroup.html">Coordinate Maps</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Abstract base class for <a class="el" href="classCoordinateMap.html" title="A coordinate map or composition of coordinate maps. ">CoordinateMap</a>.  
+ <a href="classCoordinateMapBase.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="CoordinateMap_8hpp_source.html">CoordinateMap.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a6dd751f4323ac91938a15618fe2f00c7"><td class="memItemLeft" align="right" valign="top"><a id="a6dd751f4323ac91938a15618fe2f00c7"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>source_frame</b> = SourceFrame</td></tr>
+<tr class="separator:a6dd751f4323ac91938a15618fe2f00c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af959856c1883974628edcc7a0d692f1a"><td class="memItemLeft" align="right" valign="top"><a id="af959856c1883974628edcc7a0d692f1a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>target_frame</b> = TargetFrame</td></tr>
+<tr class="separator:af959856c1883974628edcc7a0d692f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a30d37d71245f0d80bcce08b25c4c4029"><td class="memItemLeft" align="right" valign="top"><a id="a30d37d71245f0d80bcce08b25c4c4029"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>WRAPPED_PUPable_abstract</b> (<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>)</td></tr>
+<tr class="separator:a30d37d71245f0d80bcce08b25c4c4029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad51def9c18edb9c5b95f7819471efdc5"><td class="memItemLeft" align="right" valign="top"><a id="ad51def9c18edb9c5b95f7819471efdc5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CoordinateMapBase</b> (const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;)=default</td></tr>
+<tr class="separator:ad51def9c18edb9c5b95f7819471efdc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8e9ab5c056196a57bdadcb1a7c6ee8c"><td class="memItemLeft" align="right" valign="top"><a id="aa8e9ab5c056196a57bdadcb1a7c6ee8c"></a>
+<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;)=default</td></tr>
+<tr class="separator:aa8e9ab5c056196a57bdadcb1a7c6ee8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c7c014ce2225878e8a14f311e89693f"><td class="memItemLeft" align="right" valign="top"><a id="a3c7c014ce2225878e8a14f311e89693f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CoordinateMapBase</b> (<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a3c7c014ce2225878e8a14f311e89693f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ab87f831502526f20e52aae50963f7e"><td class="memItemLeft" align="right" valign="top"><a id="a8ab87f831502526f20e52aae50963f7e"></a>
+<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a8ab87f831502526f20e52aae50963f7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b386d25e173836ea6ec4e9daec1c38a"><td class="memItemLeft" align="right" valign="top"><a id="a8b386d25e173836ea6ec4e9daec1c38a"></a>
+virtual <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_clone</b> () const =0</td></tr>
+<tr class="separator:a8b386d25e173836ea6ec4e9daec1c38a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ad7a80a3a68a42a84efec9452f981e7bc"><td class="memItemLeft" align="right" valign="top"><a id="ad7a80a3a68a42a84efec9452f981e7bc"></a>
+virtual tnsr::I&lt; double, Dim, TargetFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#ad7a80a3a68a42a84efec9452f981e7bc">operator()</a> (tnsr::I&lt; double, Dim, SourceFrame &gt; source_point, double time=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN(), const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;f_of_t_list=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt;{}) const noexcept=0</td></tr>
+<tr class="memdesc:ad7a80a3a68a42a84efec9452f981e7bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the <code>Maps</code> to the point(s) <code>source_point</code> <br /></td></tr>
+<tr class="separator:ad7a80a3a68a42a84efec9452f981e7bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003e1fe5e35ecf49427f7936bd166892"><td class="memItemLeft" align="right" valign="top"><a id="a003e1fe5e35ecf49427f7936bd166892"></a>
+virtual tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, TargetFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a003e1fe5e35ecf49427f7936bd166892">operator()</a> (tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame &gt; source_point, double time=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN(), const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;f_of_t_list=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt;{}) const noexcept=0</td></tr>
+<tr class="memdesc:a003e1fe5e35ecf49427f7936bd166892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the <code>Maps</code> to the point(s) <code>source_point</code> <br /></td></tr>
+<tr class="separator:a003e1fe5e35ecf49427f7936bd166892"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:aba34a8c1202a190fd72d890f60a1b299"><td class="memItemLeft" align="right" valign="top"><a id="aba34a8c1202a190fd72d890f60a1b299"></a>
+virtual boost::optional&lt; tnsr::I&lt; double, Dim, SourceFrame &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#aba34a8c1202a190fd72d890f60a1b299">inverse</a> (tnsr::I&lt; double, Dim, TargetFrame &gt; target_point, double time=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN(), const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;f_of_t_list=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt;{}) const noexcept=0</td></tr>
+<tr class="memdesc:aba34a8c1202a190fd72d890f60a1b299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the inverse <code>Maps</code> to the point(s) <code>target_point</code>. The returned boost::optional is invalid if the map is not invertible at <code>target_point</code>, or if <code>target_point</code> can be easily determined to not make sense for the map. An example of the latter is passing a point with a negative value of z into a positive-z Wedge3D inverse map. <br /></td></tr>
+<tr class="separator:aba34a8c1202a190fd72d890f60a1b299"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a40a91f9034707b8dfc18cfb2f35a8a32"><td class="memItemLeft" align="right" valign="top"><a id="a40a91f9034707b8dfc18cfb2f35a8a32"></a>
+virtual InverseJacobian&lt; double, Dim, SourceFrame, TargetFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a40a91f9034707b8dfc18cfb2f35a8a32">inv_jacobian</a> (tnsr::I&lt; double, Dim, SourceFrame &gt; source_point, double time=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN(), const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;f_of_t_list=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt;{}) const noexcept=0</td></tr>
+<tr class="memdesc:a40a91f9034707b8dfc18cfb2f35a8a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the inverse Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code> <br /></td></tr>
+<tr class="separator:a40a91f9034707b8dfc18cfb2f35a8a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac677b71d4342ab4535f1134b112e1d2d"><td class="memItemLeft" align="right" valign="top"><a id="ac677b71d4342ab4535f1134b112e1d2d"></a>
+virtual InverseJacobian&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame, TargetFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#ac677b71d4342ab4535f1134b112e1d2d">inv_jacobian</a> (tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame &gt; source_point, double time=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN(), const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;f_of_t_list=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt;{}) const noexcept=0</td></tr>
+<tr class="memdesc:ac677b71d4342ab4535f1134b112e1d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the inverse Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code> <br /></td></tr>
+<tr class="separator:ac677b71d4342ab4535f1134b112e1d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a65a13f40e1f0ea88e10b8c54f550ad65"><td class="memItemLeft" align="right" valign="top"><a id="a65a13f40e1f0ea88e10b8c54f550ad65"></a>
+virtual Jacobian&lt; double, Dim, SourceFrame, TargetFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a65a13f40e1f0ea88e10b8c54f550ad65">jacobian</a> (tnsr::I&lt; double, Dim, SourceFrame &gt; source_point, double time=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN(), const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;f_of_t_list=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt;{}) const noexcept=0</td></tr>
+<tr class="memdesc:a65a13f40e1f0ea88e10b8c54f550ad65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code> <br /></td></tr>
+<tr class="separator:a65a13f40e1f0ea88e10b8c54f550ad65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0443a18b32afaad15fd291b52f7e5134"><td class="memItemLeft" align="right" valign="top"><a id="a0443a18b32afaad15fd291b52f7e5134"></a>
+virtual Jacobian&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame, TargetFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a0443a18b32afaad15fd291b52f7e5134">jacobian</a> (tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame &gt; source_point, double time=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN(), const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;f_of_t_list=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt;{}) const noexcept=0</td></tr>
+<tr class="memdesc:a0443a18b32afaad15fd291b52f7e5134"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code> <br /></td></tr>
+<tr class="separator:a0443a18b32afaad15fd291b52f7e5134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a7fb4980345c3f18fec07230db9c79492"><td class="memItemLeft" align="right" valign="top"><a id="a7fb4980345c3f18fec07230db9c79492"></a>
+static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>dim</b> = Dim</td></tr>
+<tr class="separator:a7fb4980345c3f18fec07230db9c79492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ac18c3ea1aee5547b96b359af1bcd94a5"><td class="memItemLeft" align="right" valign="top"><a id="ac18c3ea1aee5547b96b359af1bcd94a5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;lhs, const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;rhs) noexcept</td></tr>
+<tr class="separator:ac18c3ea1aee5547b96b359af1bcd94a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a135b535be6a5c111701c0a3d597f66fb"><td class="memItemLeft" align="right" valign="top"><a id="a135b535be6a5c111701c0a3d597f66fb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;lhs, const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;rhs) noexcept</td></tr>
+<tr class="separator:a135b535be6a5c111701c0a3d597f66fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt;<br />
+class CoordinateMapBase&lt; SourceFrame, TargetFrame, Dim &gt;</h3>
+
+<p>Abstract base class for <a class="el" href="classCoordinateMap.html" title="A coordinate map or composition of coordinate maps. ">CoordinateMap</a>. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/Domain/CoordinateMaps/<a class="el" href="CoordinateMap_8hpp_source.html">CoordinateMap.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

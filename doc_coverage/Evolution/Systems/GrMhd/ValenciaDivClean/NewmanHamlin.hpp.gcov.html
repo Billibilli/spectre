@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/Systems/GrMhd/ValenciaDivClean/NewmanHamlin.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">Evolution/Systems/GrMhd/ValenciaDivClean</a> - NewmanHamlin.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryLo">20.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;boost/optional.hpp&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : #include &lt;string&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;PointwiseFunctions/Hydro/EquationsOfState/EquationOfState.hpp&quot;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : // IWYU pragma: no_forward_declare EquationsOfState::EquationOfState
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : namespace grmhd {
+<span class="lineNum">      15 </span>            : namespace ValenciaDivClean {
+<span class="lineNum">      16 </span>            : namespace PrimitiveRecoverySchemes {
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : /// \cond
+<span class="lineNum">      19 </span>            : struct PrimitiveRecoveryData;
+<span class="lineNum">      20 </span>            : /// \endcond
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : /*!
+<span class="lineNum">      23 </span>            :  * \brief Compute the primitive variables from the conservative variables using
+<span class="lineNum">      24 </span>            :  * the scheme of [Newman and Hamlin, SIAM J. Sci. Comput., 36(4)
+<span class="lineNum">      25 </span>            :  * B661-B683 (2014)](https://epubs.siam.org/doi/10.1137/140956749).
+<span class="lineNum">      26 </span>            :  *
+<span class="lineNum">      27 </span>            :  * In the Newman and Hamlin paper, `total_energy_density` is \f$e\f$,
+<span class="lineNum">      28 </span>            :  * `momentum_density_squared` is\f${\cal M}^2\f$,
+<span class="lineNum">      29 </span>            :  * `momentum_density_dot_magnetic_field` is \f${\cal T}\f$,
+<span class="lineNum">      30 </span>            :  * `magnetic_field_squared` is \f${\cal B}^2\f$, and
+<span class="lineNum">      31 </span>            :  * `rest_mass_density_times_lorentz_factor` is \f${\tilde \rho}\f$.
+<span class="lineNum">      32 </span>            :  * Furthermore, the returned `PrimitiveRecoveryData.rho_h_w_squared` is \f${\cal
+<span class="lineNum">      33 </span>            :  * L}\f$.
+<span class="lineNum">      34 </span>            :  *
+<span class="lineNum">      35 </span>            :  * In terms of the conservative variables (in our notation):
+<span class="lineNum">      36 </span>            :  * \f{align}
+<span class="lineNum">      37 </span>            :  * e = &amp; \frac{{\tilde D} + {\tilde \tau}}{\sqrt{\gamma}} \\
+<span class="lineNum">      38 </span>            :  * {\cal M}^2 = &amp; \frac{\gamma^{mn} {\tilde S}_m {\tilde S}_n}{\gamma} \\
+<span class="lineNum">      39 </span>            :  * {\cal T} = &amp; \frac{{\tilde B}^m {\tilde S}_m}{\gamma} \\
+<span class="lineNum">      40 </span>            :  * {\cal B}^2 = &amp; \frac{\gamma_{mn} {\tilde B}^m {\tilde B}^n}{\gamma} \\
+<span class="lineNum">      41 </span>            :  * {\tilde \rho} = &amp; \frac{\tilde D}{\sqrt{\gamma}}
+<span class="lineNum">      42 </span>            :  * \f}
+<span class="lineNum">      43 </span>            :  *
+<span class="lineNum">      44 </span>            :  * where the conserved variables \f${\tilde D}\f$, \f${\tilde S}_i\f$,
+<span class="lineNum">      45 </span>            :  * \f${\tilde \tau}\f$, and \f${\tilde B}^i\f$ are a generalized mass-energy
+<span class="lineNum">      46 </span>            :  * density, momentum density, specific internal energy density, and magnetic
+<span class="lineNum">      47 </span>            :  * field, and \f$\gamma\f$ and \f$\gamma^{mn}\f$ are the determinant and inverse
+<span class="lineNum">      48 </span>            :  * of the spatial metric \f$\gamma_{mn}\f$.
+<span class="lineNum">      49 </span>            :  */
+<span class="lineNum">      50 </span><span class="lineCov">          1 : class NewmanHamlin {</span>
+<span class="lineNum">      51 </span>            :  public:
+<span class="lineNum">      52 </span>            :   template &lt;size_t ThermodynamicDim&gt;
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :   static boost::optional&lt;PrimitiveRecoveryData&gt; apply(</span>
+<span class="lineNum">      54 </span>            :       double total_energy_density, double momentum_density_squared,
+<span class="lineNum">      55 </span>            :       double momentum_density_dot_magnetic_field, double magnetic_field_squared,
+<span class="lineNum">      56 </span>            :       double rest_mass_density_times_lorentz_factor,
+<span class="lineNum">      57 </span>            :       const EquationsOfState::EquationOfState&lt;true, ThermodynamicDim&gt;&amp;
+<span class="lineNum">      58 </span>            :           equation_of_state) noexcept;
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :   static const std::string name() noexcept { return &quot;Newman Hamlin&quot;; }</span>
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span>            :  private:
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 :   static constexpr size_t max_iterations_ = 50;</span>
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :   static constexpr double relative_tolerance_ = 1.e-10;</span>
+<span class="lineNum">      65 </span>            : };
+<span class="lineNum">      66 </span>            : }  // namespace PrimitiveRecoverySchemes
+<span class="lineNum">      67 </span>            : }  // namespace ValenciaDivClean
+<span class="lineNum">      68 </span>            : }  // namespace grmhd
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

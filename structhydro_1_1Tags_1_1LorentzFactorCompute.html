@@ -1,0 +1,231 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: hydro::Tags::LorentzFactorCompute&lt; DataType, Dim, Fr &gt; Struct Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacehydro.html">hydro</a></li><li class="navelem"><a class="el" href="namespacehydro_1_1Tags.html">Tags</a></li><li class="navelem"><a class="el" href="structhydro_1_1Tags_1_1LorentzFactorCompute.html">LorentzFactorCompute</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="structhydro_1_1Tags_1_1LorentzFactorCompute-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">hydro::Tags::LorentzFactorCompute&lt; DataType, Dim, Fr &gt; Struct Template Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Compute item for Lorentz factor \(W\).  
+ <a href="structhydro_1_1Tags_1_1LorentzFactorCompute.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="LorentzFactor_8hpp_source.html">LorentzFactor.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aa9d999a00eaba58b2a2748c2a5cf0dd8"><td class="memItemLeft" align="right" valign="top"><a id="aa9d999a00eaba58b2a2748c2a5cf0dd8"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>argument_tags</b> = tmpl::list&lt; <a class="el" href="structhydro_1_1Tags_1_1SpatialVelocity.html">SpatialVelocity</a>&lt; DataType, Dim, Fr &gt;, <a class="el" href="structhydro_1_1Tags_1_1SpatialVelocityOneForm.html">SpatialVelocityOneForm</a>&lt; DataType, Dim, Fr &gt; &gt;</td></tr>
+<tr class="separator:aa9d999a00eaba58b2a2748c2a5cf0dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_structhydro_1_1Tags_1_1LorentzFactor"><td colspan="2" onclick="javascript:toggleInherit('pub_types_structhydro_1_1Tags_1_1LorentzFactor')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="structhydro_1_1Tags_1_1LorentzFactor.html">hydro::Tags::LorentzFactor&lt; DataType &gt;</a></td></tr>
+<tr class="memitem:a57c2acccac355a2949709423238a082e inherit pub_types_structhydro_1_1Tags_1_1LorentzFactor"><td class="memItemLeft" align="right" valign="top"><a id="a57c2acccac355a2949709423238a082e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> = <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt;</td></tr>
+<tr class="separator:a57c2acccac355a2949709423238a082e inherit pub_types_structhydro_1_1Tags_1_1LorentzFactor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a21264b42247a8b0e605cd8b61743b2aa"><td class="memItemLeft" align="right" valign="top"><a id="a21264b42247a8b0e605cd8b61743b2aa"></a>
+static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>function</b> = &amp;<a class="el" href="namespacehydro.html#aceba016305a50a9dd89321aa6e6bb963">lorentz_factor</a>&lt;DataType, Dim, Fr&gt;</td></tr>
+<tr class="separator:a21264b42247a8b0e605cd8b61743b2aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_methods_structhydro_1_1Tags_1_1LorentzFactor"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_structhydro_1_1Tags_1_1LorentzFactor')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="structhydro_1_1Tags_1_1LorentzFactor.html">hydro::Tags::LorentzFactor&lt; DataType &gt;</a></td></tr>
+<tr class="memitem:aa84d7423a2ab09f05fa1914b82045410 inherit pub_static_methods_structhydro_1_1Tags_1_1LorentzFactor"><td class="memItemLeft" align="right" valign="top"><a id="aa84d7423a2ab09f05fa1914b82045410"></a>
+static <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () noexcept</td></tr>
+<tr class="separator:aa84d7423a2ab09f05fa1914b82045410 inherit pub_static_methods_structhydro_1_1Tags_1_1LorentzFactor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename DataType, size_t Dim, typename Fr&gt;<br />
+struct hydro::Tags::LorentzFactorCompute&lt; DataType, Dim, Fr &gt;</h3>
+
+<p>Compute item for Lorentz factor \(W\). </p>
+<p>Can be retrieved using <code><a class="el" href="structhydro_1_1Tags_1_1LorentzFactor.html" title="The Lorentz factor . ">hydro::Tags::LorentzFactor</a></code> </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/PointwiseFunctions/Hydro/<a class="el" href="LorentzFactor_8hpp_source.html">LorentzFactor.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

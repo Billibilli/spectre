@@ -1,0 +1,253 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Utilities/Spherepack.hpp File Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_9aa73582304dae90a1100b0a33d608e3.html">Utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Spherepack.hpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Provides a C++ interface to the Fortran SPHEREPACK library.  
+<a href="#details">More...</a></p>
+
+<p><a href="Spherepack_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aa933145c1603e576daae48c5889090ed"><td class="memItemLeft" align="right" valign="top"><a id="aa933145c1603e576daae48c5889090ed"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>shagsi_</b> (const int &amp;, const int &amp;, double *, const int &amp;, double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:aa933145c1603e576daae48c5889090ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3730c27ddc12afba65738560a80205a"><td class="memItemLeft" align="right" valign="top"><a id="ac3730c27ddc12afba65738560a80205a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>shags_</b> (const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const double *, const int &amp;, const int &amp;, double *, double *, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:ac3730c27ddc12afba65738560a80205a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f94acc7518826b28493f929fc250ecc"><td class="memItemLeft" align="right" valign="top"><a id="a8f94acc7518826b28493f929fc250ecc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>shsgsi_</b> (const int &amp;, const int &amp;, double *, const int &amp;, double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:a8f94acc7518826b28493f929fc250ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f81a300c665499f3c9804d594634a80"><td class="memItemLeft" align="right" valign="top"><a id="a3f81a300c665499f3c9804d594634a80"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>shsgs_</b> (const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, double *, const int &amp;, const int &amp;, const double *, const double *, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:a3f81a300c665499f3c9804d594634a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56fb9f02f4eaea35897f80ef517fa23f"><td class="memItemLeft" align="right" valign="top"><a id="a56fb9f02f4eaea35897f80ef517fa23f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vhagsi_</b> (const int &amp;, const int &amp;, double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:a56fb9f02f4eaea35897f80ef517fa23f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ebd969750af462f8ca145b1cb2f62e0"><td class="memItemLeft" align="right" valign="top"><a id="a6ebd969750af462f8ca145b1cb2f62e0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vhags_</b> (const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const double *, const double *, const int &amp;, const int &amp;, double *, double *, double *, double *, const int &amp;, const int &amp;, const double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:a6ebd969750af462f8ca145b1cb2f62e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a285c2eee4b877591001b44d8d612b894"><td class="memItemLeft" align="right" valign="top"><a id="a285c2eee4b877591001b44d8d612b894"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vhsgsi_</b> (const int &amp;, const int &amp;, double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:a285c2eee4b877591001b44d8d612b894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8dda3e363d31ecd35b0fa0b495c56db"><td class="memItemLeft" align="right" valign="top"><a id="ac8dda3e363d31ecd35b0fa0b495c56db"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vhsgs_</b> (const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, double *, double *, const int &amp;, const int &amp;, const double *, const double *, const double *, const double *, const int &amp;, const int &amp;, const double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:ac8dda3e363d31ecd35b0fa0b495c56db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab37eb46a20f72de9057382665811e13f"><td class="memItemLeft" align="right" valign="top"><a id="ab37eb46a20f72de9057382665811e13f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>slapgs_</b> (const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, double *, const int &amp;, const int &amp;, const double *, const double *, const int &amp;, const int &amp;, const double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:ab37eb46a20f72de9057382665811e13f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd127c0746fa5ba6feb3c947097585d3"><td class="memItemLeft" align="right" valign="top"><a id="acd127c0746fa5ba6feb3c947097585d3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>gradgs_</b> (const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, double *, double *, const int &amp;, const int &amp;, const double *, const double *, const int &amp;, const int &amp;, const double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:acd127c0746fa5ba6feb3c947097585d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa953c0cc501c10d2831fde5a122de863"><td class="memItemLeft" align="right" valign="top"><a id="aa953c0cc501c10d2831fde5a122de863"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>divgs_</b> (const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, double *, const int &amp;, const int &amp;, const double *, const double *, const int &amp;, const int &amp;, const double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:aa953c0cc501c10d2831fde5a122de863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d135a36d1536e43940531b038740588"><td class="memItemLeft" align="right" valign="top"><a id="a1d135a36d1536e43940531b038740588"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vrtgs_</b> (const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, double *, const int &amp;, const int &amp;, const double *, const double *, const int &amp;, const int &amp;, const double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:a1d135a36d1536e43940531b038740588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1eda01457d01d4dbf8bfb29203b82ecc"><td class="memItemLeft" align="right" valign="top"><a id="a1eda01457d01d4dbf8bfb29203b82ecc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vtsgsi_</b> (const int &amp;, const int &amp;, double *, const int &amp;, double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:a1eda01457d01d4dbf8bfb29203b82ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cfa2097850746c4108599a7d7b42f90"><td class="memItemLeft" align="right" valign="top"><a id="a0cfa2097850746c4108599a7d7b42f90"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vtsgs_</b> (const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, const int &amp;, double *, double *, const int &amp;, const int &amp;, const double *, const double *, const double *, const double *, const int &amp;, const int &amp;, const double *, const int &amp;, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:a0cfa2097850746c4108599a7d7b42f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca8c908570ca735acd4e64f026c71759"><td class="memItemLeft" align="right" valign="top"><a id="aca8c908570ca735acd4e64f026c71759"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>alfk_</b> (const int &amp;, const int &amp;, double *)</td></tr>
+<tr class="separator:aca8c908570ca735acd4e64f026c71759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeddb473145c237cdbe0245e89defd4d"><td class="memItemLeft" align="right" valign="top"><a id="adeddb473145c237cdbe0245e89defd4d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>lfin_</b> (const int &amp;, const double *, const int &amp;, const int &amp;, const int &amp;, double *, const int &amp;, double *)</td></tr>
+<tr class="separator:adeddb473145c237cdbe0245e89defd4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89ac931bc40fd63c2274a329aab039da"><td class="memItemLeft" align="right" valign="top"><a id="a89ac931bc40fd63c2274a329aab039da"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>gaqd_</b> (const int &amp;, double *, double *, double *, const int &amp;, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;)</td></tr>
+<tr class="separator:a89ac931bc40fd63c2274a329aab039da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Provides a C++ interface to the Fortran SPHEREPACK library. </p>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

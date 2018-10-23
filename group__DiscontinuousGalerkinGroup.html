@@ -1,0 +1,404 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Discontinuous Galerkin</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Discontinuous Galerkin</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Functions and classes specific to the Discontinuous Galerkin algorithm.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1Actions_1_1InitializeElement.html">dg::Actions::InitializeElement&lt; Dim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a dG element with analytic initial data.  <a href="structdg_1_1Actions_1_1InitializeElement.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSlopeLimiters_1_1Tags_1_1LimiterCommunicationTag.html">SlopeLimiters::Tags::LimiterCommunicationTag&lt; Metavariables &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The inbox tag for limiter communication.  <a href="structSlopeLimiters_1_1Tags_1_1LimiterCommunicationTag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSlopeLimiters_1_1Actions_1_1Limit.html">SlopeLimiters::Actions::Limit&lt; Metavariables &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive limiter data from neighbors, then apply limiter.  <a href="structSlopeLimiters_1_1Actions_1_1Limit.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSlopeLimiters_1_1Actions_1_1SendData.html">SlopeLimiters::Actions::SendData&lt; Metavariables &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send local data needed for limiting.  <a href="structSlopeLimiters_1_1Actions_1_1SendData.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1Actions_1_1ApplyBoundaryFluxesGlobalTimeStepping.html">dg::Actions::ApplyBoundaryFluxesGlobalTimeStepping</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute boundary contribution to the time derivative for use in global time stepping.  <a href="structdg_1_1Actions_1_1ApplyBoundaryFluxesGlobalTimeStepping.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1Actions_1_1ApplyBoundaryFluxesLocalTimeStepping.html">dg::Actions::ApplyBoundaryFluxesLocalTimeStepping</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the boundary part of the update of the variables for local time stepping.  <a href="structdg_1_1Actions_1_1ApplyBoundaryFluxesLocalTimeStepping.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1Actions_1_1ComputeNonconservativeBoundaryFluxes.html">dg::Actions::ComputeNonconservativeBoundaryFluxes</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute \(\hat{n} \cdot F\) on the boundaries for a non-conservative system.  <a href="structdg_1_1Actions_1_1ComputeNonconservativeBoundaryFluxes.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1Actions_1_1ReceiveDataForFluxes.html">dg::Actions::ReceiveDataForFluxes&lt; Metavariables &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive boundary data needed for fluxes from neighbors.  <a href="structdg_1_1Actions_1_1ReceiveDataForFluxes.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1Actions_1_1SendDataForFluxes.html">dg::Actions::SendDataForFluxes&lt; Metavariables &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send local boundary data needed for fluxes to neighbors.  <a href="structdg_1_1Actions_1_1SendDataForFluxes.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1Actions_1_1ImposeDirichletBoundaryConditions.html">dg::Actions::ImposeDirichletBoundaryConditions&lt; Metavariables &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Packages data on external boundaries for calculating numerical flux. Computes contributions on the interior side from the volume, and imposes Dirichlet boundary conditions on the exterior side.  <a href="structdg_1_1Actions_1_1ImposeDirichletBoundaryConditions.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1FluxCommunicationTypes.html">dg::FluxCommunicationTypes&lt; Metavariables &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Types related to flux communication.  <a href="structdg_1_1FluxCommunicationTypes.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1NumericalFluxes_1_1Hll.html">dg::NumericalFluxes::Hll&lt; System &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the HLL numerical flux.  <a href="structdg_1_1NumericalFluxes_1_1Hll.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1NumericalFluxes_1_1LocalLaxFriedrichs.html">dg::NumericalFluxes::LocalLaxFriedrichs&lt; System &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the local Lax-Friedrichs numerical flux.  <a href="structdg_1_1NumericalFluxes_1_1LocalLaxFriedrichs.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdg_1_1SimpleBoundaryData.html">dg::SimpleBoundaryData&lt; TemporalId, LocalVars, RemoteVars &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Storage of boundary data on two sides of a mortar.  <a href="classdg_1_1SimpleBoundaryData.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTags_1_1SimpleBoundaryData.html">Tags::SimpleBoundaryData&lt; TemporalId, LocalData, RemoteData &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple boundary communication data.  <a href="structTags_1_1SimpleBoundaryData.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTags_1_1Mortars.html">Tags::Mortars&lt; Tag, VolumeDim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data on mortars, indexed by (<a class="el" href="structTags_1_1Direction.html" title="Direction to an interface ">Direction</a>, <a class="el" href="classElementId.html" title="An ElementId uniquely labels an Element. It is constructed from the BlockId of the Block to which the...">ElementId</a>) pairs.  <a href="structTags_1_1Mortars.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTags_1_1MortarSize.html">Tags::MortarSize&lt; Dim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of a mortar, relative to the element face. That is, the part of the face that it covers.  <a href="structTags_1_1MortarSize.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga04da649e76c3c3fed752bc19d5bb9d32"><td class="memTemplParams" colspan="2">template&lt;typename... FluxTags&gt; </td></tr>
+<tr class="memitem:ga04da649e76c3c3fed752bc19d5bb9d32"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DiscontinuousGalerkinGroup.html#ga04da649e76c3c3fed752bc19d5bb9d32">dg::lift_flux</a> (Variables&lt; tmpl::list&lt; FluxTags... &gt;&gt; flux, const size_t extent_perpendicular_to_boundary, <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; magnitude_of_face_normal) noexcept -&gt; Variables&lt; tmpl::list&lt; <a class="el" href="group__DataBoxTagsGroup.html#gae2151fd77d407e76f4eb7efdaaaf3d5c">db::remove_tag_prefix</a>&lt; FluxTags &gt;... &gt;&gt;</td></tr>
+<tr class="memdesc:ga04da649e76c3c3fed752bc19d5bb9d32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lifts the flux contribution from an interface to the volume.  <a href="group__DiscontinuousGalerkinGroup.html#ga04da649e76c3c3fed752bc19d5bb9d32">More...</a><br /></td></tr>
+<tr class="separator:ga04da649e76c3c3fed752bc19d5bb9d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga654b92e15f684699577e934f9e27cf53"><td class="memTemplParams" colspan="2"><a id="ga654b92e15f684699577e934f9e27cf53"></a>
+template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:ga654b92e15f684699577e934f9e27cf53"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DiscontinuousGalerkinGroup.html#ga654b92e15f684699577e934f9e27cf53">dg::mortar_mesh</a> (const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;face_mesh1, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;face_mesh2) noexcept</td></tr>
+<tr class="memdesc:ga654b92e15f684699577e934f9e27cf53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a mesh for a mortar capable of representing data from either of two faces. <br /></td></tr>
+<tr class="separator:ga654b92e15f684699577e934f9e27cf53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1db5dfb0a8289a067ef5941cdd9fbc70"><td class="memTemplParams" colspan="2"><a id="ga1db5dfb0a8289a067ef5941cdd9fbc70"></a>
+template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:ga1db5dfb0a8289a067ef5941cdd9fbc70"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="namespaceSpectral.html#a9c919afdb3d6d216e6b79edc29a018f7">Spectral::MortarSize</a>, Dim - 1 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DiscontinuousGalerkinGroup.html#ga1db5dfb0a8289a067ef5941cdd9fbc70">dg::mortar_size</a> (const <a class="el" href="classElementId.html">ElementId</a>&lt; Dim &gt; &amp;self, const <a class="el" href="classElementId.html">ElementId</a>&lt; Dim &gt; &amp;neighbor, size_t dimension, const OrientationMap&lt; Dim &gt; &amp;orientation) noexcept</td></tr>
+<tr class="memdesc:ga1db5dfb0a8289a067ef5941cdd9fbc70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine the size of the mortar (i.e., the part of the face it covers) for communicating with a neighbor. This is the size relative to the size of <code>self</code>, and will not generally agree with that determined by <code>neighbor</code>. <br /></td></tr>
+<tr class="separator:ga1db5dfb0a8289a067ef5941cdd9fbc70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga262403812c2a22a89ba68720e813624a"><td class="memTemplParams" colspan="2"><a id="ga262403812c2a22a89ba68720e813624a"></a>
+template&lt;typename Tags , size_t Dim&gt; </td></tr>
+<tr class="memitem:ga262403812c2a22a89ba68720e813624a"><td class="memTemplItemLeft" align="right" valign="top">Variables&lt; Tags &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DiscontinuousGalerkinGroup.html#ga262403812c2a22a89ba68720e813624a">dg::project_to_mortar</a> (const Variables&lt; Tags &gt; &amp;vars, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;face_mesh, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mortar_mesh, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="namespaceSpectral.html#a9c919afdb3d6d216e6b79edc29a018f7">Spectral::MortarSize</a>, Dim &gt; &amp;mortar_size) noexcept</td></tr>
+<tr class="memdesc:ga262403812c2a22a89ba68720e813624a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project variables from a face to a mortar. <br /></td></tr>
+<tr class="separator:ga262403812c2a22a89ba68720e813624a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3e64599f53071f1ca18c0474e1249bab"><td class="memTemplParams" colspan="2"><a id="ga3e64599f53071f1ca18c0474e1249bab"></a>
+template&lt;typename Tags , size_t Dim&gt; </td></tr>
+<tr class="memitem:ga3e64599f53071f1ca18c0474e1249bab"><td class="memTemplItemLeft" align="right" valign="top">Variables&lt; Tags &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DiscontinuousGalerkinGroup.html#ga3e64599f53071f1ca18c0474e1249bab">dg::project_from_mortar</a> (const Variables&lt; Tags &gt; &amp;vars, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;face_mesh, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mortar_mesh, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="namespaceSpectral.html#a9c919afdb3d6d216e6b79edc29a018f7">Spectral::MortarSize</a>, Dim &gt; &amp;mortar_size) noexcept</td></tr>
+<tr class="memdesc:ga3e64599f53071f1ca18c0474e1249bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project variables from a mortar to a face. <br /></td></tr>
+<tr class="separator:ga3e64599f53071f1ca18c0474e1249bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac96808afea44bdbcf4bac41cfdc14210"><td class="memTemplParams" colspan="2">template&lt;typename FluxCommTypes , typename NormalDotNumericalFluxComputer , size_t Dim, typename LocalData &gt; </td></tr>
+<tr class="memitem:gac96808afea44bdbcf4bac41cfdc14210"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DiscontinuousGalerkinGroup.html#gac96808afea44bdbcf4bac41cfdc14210">dg::compute_boundary_flux_contribution</a> (const NormalDotNumericalFluxComputer &amp;normal_dot_numerical_flux_computer, LocalData &amp;&amp;local_data, const typename FluxCommTypes::PackagedData &amp;remote_data, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;face_mesh, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mortar_mesh, const size_t extent_perpendicular_to_boundary, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="namespaceSpectral.html#a9c919afdb3d6d216e6b79edc29a018f7">Spectral::MortarSize</a>, Dim &gt; &amp;mortar_size) noexcept -&gt; <a class="el" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type</a>&lt; <a class="el" href="group__DataBoxTagsGroup.html#gae2151fd77d407e76f4eb7efdaaaf3d5c">db::remove_tag_prefix</a>&lt; typename FluxCommTypes::normal_dot_fluxes_tag &gt;&gt;</td></tr>
+<tr class="memdesc:gac96808afea44bdbcf4bac41cfdc14210"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the lifted data resulting from computing the numerical flux.  <a href="group__DiscontinuousGalerkinGroup.html#gac96808afea44bdbcf4bac41cfdc14210">More...</a><br /></td></tr>
+<tr class="separator:gac96808afea44bdbcf4bac41cfdc14210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Functions and classes specific to the Discontinuous Galerkin algorithm. </p>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gac96808afea44bdbcf4bac41cfdc14210"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac96808afea44bdbcf4bac41cfdc14210">&#9670;&nbsp;</a></span>compute_boundary_flux_contribution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FluxCommTypes , typename NormalDotNumericalFluxComputer , size_t Dim, typename LocalData &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto dg::compute_boundary_flux_contribution </td>
+          <td>(</td>
+          <td class="paramtype">const NormalDotNumericalFluxComputer &amp;&#160;</td>
+          <td class="paramname"><em>normal_dot_numerical_flux_computer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LocalData &amp;&amp;&#160;</td>
+          <td class="paramname"><em>local_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename FluxCommTypes::PackagedData &amp;&#160;</td>
+          <td class="paramname"><em>remote_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>face_mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mortar_mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>extent_perpendicular_to_boundary</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="namespaceSpectral.html#a9c919afdb3d6d216e6b79edc29a018f7">Spectral::MortarSize</a>, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mortar_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; <a class="el" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type</a>&lt;
+        <a class="el" href="group__DataBoxTagsGroup.html#gae2151fd77d407e76f4eb7efdaaaf3d5c">db::remove_tag_prefix</a>&lt;typename FluxCommTypes::normal_dot_fluxes_tag&gt;&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the lifted data resulting from computing the numerical flux. </p>
+<h3>Details</h3>
+<p>This applies the numerical flux, projects the result to the face mesh if necessary, and then lifts it to the volume (still presented only on the face mesh as all other points are zero).</p>
+<p>Projection must happen after the numerical flux calculation so that the elements on either side of the mortar calculate the same result. Projection must happen before flux lifting because we want the factor of the magnitude of the unit normal added during the lift to cancel the Jacobian factor in integrals to preserve conservation; this only happens if the two operations are done on the same grid. </p>
+
+</div>
+</div>
+<a id="ga04da649e76c3c3fed752bc19d5bb9d32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga04da649e76c3c3fed752bc19d5bb9d32">&#9670;&nbsp;</a></span>lift_flux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... FluxTags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto dg::lift_flux </td>
+          <td>(</td>
+          <td class="paramtype">Variables&lt; tmpl::list&lt; FluxTags... &gt;&gt;&#160;</td>
+          <td class="paramname"><em>flux</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>extent_perpendicular_to_boundary</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt;&#160;</td>
+          <td class="paramname"><em>magnitude_of_face_normal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; Variables&lt;tmpl::list&lt;<a class="el" href="group__DataBoxTagsGroup.html#gae2151fd77d407e76f4eb7efdaaaf3d5c">db::remove_tag_prefix</a>&lt;FluxTags&gt;...&gt;&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lifts the flux contribution from an interface to the volume. </p>
+<p>The lifting operation takes the (d-1)-dimensional flux term at the interface and computes the corresponding d-dimensional term in the volume. SpECTRE implements an efficient DG method in which each interface grid point contributes only to that same grid point of the volume.</p>
+<h3>Details</h3>
+<p>SpECTRE implements a DG method with a diagonalized mass matrix (also known as a mass-lumping scheme). This choice gives a large reduction in the computational cost of the lifting operation, however, the scheme is slightly less accurate, especially when the grid is deformed by non-trivial Jacobians. For more details on the diagonalization of the mass matrix and its implications, see Saul's DG formulation paper, especially Section 3: <a href="https://arxiv.org/abs/1510.01190">https://arxiv.org/abs/1510.01190</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>The result is still provided only on the boundary grid. The values away from the boundary are zero and are not stored. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

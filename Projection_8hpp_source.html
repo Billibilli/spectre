@@ -1,0 +1,198 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/NumericalAlgorithms/Spectral/Projection.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_a7268f5afc6b190325b6ae3281812809.html">NumericalAlgorithms</a></li><li class="navelem"><a class="el" href="dir_bd7df95e591a48bf0a7689117efbb5b5.html">Spectral</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Projection.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a>&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Matrix_8hpp.html">DataStructures/Matrix.hpp</a>&quot;</span>  <span class="comment">// IWYU pragma: keep</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/// \cond</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> Dim&gt;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="classMesh.html">Mesh</a>;<span class="comment"></span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/// \endcond</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceSpectral.html">Spectral</a> {</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/// The portion of an element covered by a mortar.</span></div><div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="namespaceSpectral.html#a9c919afdb3d6d216e6b79edc29a018f7">   18</a></span>&#160;<span class="comment"></span><span class="keyword">enum class</span> <a class="code" href="namespaceSpectral.html#a9c919afdb3d6d216e6b79edc29a018f7">MortarSize</a> { Full, UpperHalf, LowerHalf };</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">/*!</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * \brief The projection matrix from a 1D mortar to an element.</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> *</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> * \details</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> * The projection matrices returned by this function (and by</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> * projection_matrix_element_to_mortar()) define orthogonal projection</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> * operators between the spaces of functions on the boundary of the</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * element and the mortar.  These projections are usually the correct</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * way to transfer data onto and off of the mortars.</span></div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> *</span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"> * The half-interval projections are based on an equation derived by</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> * Saul.  This shows that the projection from the spectral basis for</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"> * the entire interval to the spectral basis for the upper half</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> * interval is</span></div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * \f{equation*}</span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * T_{jk} = \frac{2 j + 1}{2} 2^j \sum_{n=0}^{j-k} \binom{j}{k+n}</span></div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * \binom{(j + k + n - 1)/2}{j} \frac{(k + n)!^2}{(2 k + n + 1)! n!}</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * \f}</span></div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> */</span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; <a class="code" href="namespaceSpectral.html#ad4986eaac565b15d265556cbee1004be">projection_matrix_mortar_to_element</a>(</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="namespaceSpectral.html#a9c919afdb3d6d216e6b79edc29a018f7">MortarSize</a> size, <span class="keyword">const</span> <a class="code" href="classMesh.html">Mesh&lt;1&gt;</a>&amp; element_mesh,</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">const</span> <a class="code" href="classMesh.html">Mesh&lt;1&gt;</a>&amp; <a class="code" href="group__DiscontinuousGalerkinGroup.html#ga654b92e15f684699577e934f9e27cf53">mortar_mesh</a>) noexcept;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">/// The projection matrix from a 1D element to a mortar.  See</span></div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/// projection_matrix_mortar_to_element() for details.</span></div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"></span><span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; <a class="code" href="namespaceSpectral.html#a86e7ce003f77d16533c5008528d535f4">projection_matrix_element_to_mortar</a>(</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="namespaceSpectral.html#a9c919afdb3d6d216e6b79edc29a018f7">MortarSize</a> size, <span class="keyword">const</span> <a class="code" href="classMesh.html">Mesh&lt;1&gt;</a>&amp; mortar_mesh,</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">const</span> <a class="code" href="classMesh.html">Mesh&lt;1&gt;</a>&amp; element_mesh) noexcept;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}  <span class="comment">// namespace Spectral</span></div><div class="ttc" id="cstddef_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a></div></div>
+<div class="ttc" id="Matrix_8hpp_html"><div class="ttname"><a href="Matrix_8hpp.html">Matrix.hpp</a></div><div class="ttdoc">Defines class Matrix. </div></div>
+<div class="ttc" id="classMesh_html"><div class="ttname"><a href="classMesh.html">Mesh</a></div><div class="ttdoc">Holds the number of grid points, basis, and quadrature in each direction of the computational grid...</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:49</div></div>
+<div class="ttc" id="group__DiscontinuousGalerkinGroup_html_ga654b92e15f684699577e934f9e27cf53"><div class="ttname"><a href="group__DiscontinuousGalerkinGroup.html#ga654b92e15f684699577e934f9e27cf53">dg::mortar_mesh</a></div><div class="ttdeci">Mesh&lt; Dim &gt; mortar_mesh(const Mesh&lt; Dim &gt; &amp;face_mesh1, const Mesh&lt; Dim &gt; &amp;face_mesh2) noexcept</div><div class="ttdoc">Find a mesh for a mortar capable of representing data from either of two faces. </div><div class="ttdef"><b>Definition:</b> MortarHelpers.cpp:19</div></div>
+<div class="ttc" id="namespaceSpectral_html_a86e7ce003f77d16533c5008528d535f4"><div class="ttname"><a href="namespaceSpectral.html#a86e7ce003f77d16533c5008528d535f4">Spectral::projection_matrix_element_to_mortar</a></div><div class="ttdeci">const Matrix &amp; projection_matrix_element_to_mortar(const MortarSize size, const Mesh&lt; 1 &gt; &amp;mortar_mesh, const Mesh&lt; 1 &gt; &amp;element_mesh) noexcept</div><div class="ttdoc">The projection matrix from a 1D element to a mortar. See projection_matrix_mortar_to_element() for de...</div><div class="ttdef"><b>Definition:</b> Projection.cpp:234</div></div>
+<div class="ttc" id="namespaceSpectral_html_a9c919afdb3d6d216e6b79edc29a018f7"><div class="ttname"><a href="namespaceSpectral.html#a9c919afdb3d6d216e6b79edc29a018f7">Spectral::MortarSize</a></div><div class="ttdeci">MortarSize</div><div class="ttdoc">The portion of an element covered by a mortar. </div><div class="ttdef"><b>Definition:</b> Projection.hpp:18</div></div>
+<div class="ttc" id="namespaceSpectral_html_ad4986eaac565b15d265556cbee1004be"><div class="ttname"><a href="namespaceSpectral.html#ad4986eaac565b15d265556cbee1004be">Spectral::projection_matrix_mortar_to_element</a></div><div class="ttdeci">const Matrix &amp; projection_matrix_mortar_to_element(const MortarSize size, const Mesh&lt; 1 &gt; &amp;element_mesh, const Mesh&lt; 1 &gt; &amp;mortar_mesh) noexcept</div><div class="ttdoc">The projection matrix from a 1D mortar to an element. </div><div class="ttdef"><b>Definition:</b> Projection.cpp:43</div></div>
+<div class="ttc" id="classMatrix_html"><div class="ttname"><a href="classMatrix.html">Matrix</a></div><div class="ttdoc">A dynamically sized matrix of doubles with column-major storage. </div><div class="ttdef"><b>Definition:</b> Matrix.hpp:19</div></div>
+<div class="ttc" id="namespaceSpectral_html"><div class="ttname"><a href="namespaceSpectral.html">Spectral</a></div><div class="ttdoc">Functionality associated with a particular choice of basis functions and quadrature for spectral oper...</div><div class="ttdef"><b>Definition:</b> Chebyshev.cpp:15</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

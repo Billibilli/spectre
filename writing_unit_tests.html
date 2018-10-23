@@ -1,0 +1,213 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Writing Unit Tests</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Writing Unit Tests </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Unit tests are placed in the appropriate subdirectory of <code>tests/Unit</code>, which mirrors the directory hierarchy of <code>src</code>. The tests are all compiled into individual libraries to keep link time of testing executables low. Typically there should be one test library for each production code library. For example, we have a <code>DataStructures</code> library and a <code>Test_DataStructures</code> library. When adding a new test there are several scenarios that can occur, which are outlined below.</p>
+<ul>
+<li>You are adding a new source file to an existing test library:<br />
+ If you are adding a new source file in a directory that already has a <code>CMakeLists.txt</code> simply create the source file, which should be named <code>Test_ProductionCodeFileBeingTest.cpp</code> and add that to the <code>LIBRARY_SOURCES</code> in the <code>CMakeLists.txt</code> file in the same directory you are adding the <code>cpp</code> file.<br />
+ If you are adding a new source file to a library but want to place it in a subdirectory you must first create the subdirectory. To provide a concrete example, say you are adding the directory <code>TensorEagerMath</code> to <code>tests/Unit/DataStructures</code>. After creating the directory you must add a call to <code>add_subdirectory(TensorEagerMath)</code> to <code>tests/Unit/DataStructures/CMakeLists.txt</code> <em>before</em> the call to <code>add_test_library</code> and <em>after</em> the <code>LIBRARY_SOURCES</code> are set. Next add the file <code>tests/Unit/DataStructures/TensorEagerMath/CMakeLists.txt</code>, which should add the new source files by calling <code>set</code>, e.g. <div class="fragment"><div class="line">set(LIBRARY_SOURCES</div><div class="line">    ${LIBRARY_SOURCES}</div><div class="line">    Test_ProductionCodeFileBeingTest.cpp</div><div class="line">    PARENT_SCOPE)</div></div><!-- fragment --> The <code>PARENT_SCOPE</code> flag tells CMake to make the changes visible in the CMakeLists.txt file that called <code>add_subdirectory</code>. You can now add the <code>Test_ProductionCodeFileBeingTested.cpp</code> source file.</li>
+<li>You are adding a new directory:<br />
+ If the directory is a new lowest level directory you must add a <code>add_subdirectory</code> call to <code>tests/Unit/CMakeLists.txt</code>. If it is a new subdirectory you must add a <code>add_subdirectory</code> call to the <code>CMakeLists.txt</code> file in the directory where you are adding the subdirectory. Next you should read the part on adding a new test library.</li>
+<li>You are adding a new test library:<br />
+ After creating the subdirectory for the new test library you must add a <code>CMakeLists.txt</code> file. See <code>tests/Unit/DataStructures/CMakeLists.txt</code> for an example of one. The <code>LIBRARY</code> and <code>LIBRARY_SOURCES</code> variables set the name of the test library and the source files to be compiled into it. The library name should be of the format <code>Test_ProductionLibraryName</code>, for example <code>Test_DataStructures</code>. The library sources should be only the source files in the current directory. The <code>add_subdirectory</code> command can be used to add source files in subdirectories to the same library as is done in <code>tests/Unit/CMakeLists.txt</code>. The <code>CMakeLists.txt</code> in <code>tests/Unit/DataStructures/TensorEagerMath</code> is an example of how to add source files to a library from a subdirectory of the library. Note that the setting of <code>LIBRARY_SOURCES</code> here first includes the current <code>LIBRARY_SOURCES</code> and at the end specifies <code>PARENT_SCOPE</code>. The <code>PARENT_SCOPE</code> flag tells CMake to modify the variable in a scope that is visible to the parent directory, i.e. the <code>CMakeLists.txt</code> that called <code>add_subdirectory</code>.<br />
+ Finally, in the <code>CMakeLists.txt</code> of your new library you must call <code>add_test_library</code>. Again, see <code>tests/Unit/DataStructures/CMakeLists.txt</code> for an example. The <code>add_test_library</code> function adds a test library with the name of the first argument and the source files of the third argument. The second argument is the path of the library's directory relative to <code>tests/Unit</code>. For example, for <code>Test_DataStructures</code> it is simply <code>DataStructures</code>. The fourth and final argument to <code>add_test_library</code> are the libraries that must be linked. Typically this should only be the production library you're testing. For example, <code>Test_DataStructures</code> should specify only <code>DataStructures</code> as the library to link. If you are testing a header-only "library" then you do not link any libraries (they must be linked in by the libraries actually testing your dependencies). In this case the last argument should be <code>"" # Header-only, link dependencies included from testing lib</code></li>
+</ul>
+<p>All tests must start with </p><div class="fragment"><div class="line"><span class="comment">// Distributed under the MIT License.</span></div><div class="line"><span class="comment">// See LICENSE.txt for details.</span></div><div class="line"></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="TestingFramework_8hpp.html">tests/Unit/TestingFramework.hpp</a>&quot;</span></div></div><!-- fragment --><p> The file <code><a class="el" href="TestingFramework_8hpp.html" title="Code to wrap or improve the Catch testing framework used for unit tests. ">tests/Unit/TestingFramework.hpp</a></code> must always be the first include in the test file and must be separated from the STL includes by a blank line. All classes and free functions should be in an anonymous/unnamed namespace, e.g. </p><div class="fragment"><div class="line"><span class="keyword">namespace </span>{</div><div class="line"><span class="keyword">class </span>MyFreeClass {</div><div class="line">  <span class="comment">/* ... */</span></div><div class="line">};</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> my_free_function() noexcept {</div><div class="line">  <span class="comment">/* ... */</span></div><div class="line">}</div><div class="line">}  <span class="comment">// namespace</span></div></div><!-- fragment --><p> This is necessary to avoid symbol redefinition errors during linking.</p>
+<p>Test cases are added by using the <code>SPECTRE_TEST_CASE</code> macro. The first argument to the macro is the test name, e.g. <code>"Unit.DataStructures.Tensor"</code>, and the second argument is a list of tags. The tags list is a string where each element is in square brackets. For example, <code>"[Unit][DataStructures]"</code>. The tags should only be the type of test, in this case <code>Unit</code>, and the library being tested, in this case <code>DataStructures</code>. The <code>SPECTRE_TEST_CASE</code> macro should be treated as a function, which means that it should be followed by <code>{ /* test code */ }</code>. For example, </p><div class="fragment"><div class="line">SPECTRE_TEST_CASE(<span class="stringliteral">&quot;Unit.DataStructures.Tensor.Frames&quot;</span>,</div><div class="line">                  <span class="stringliteral">&quot;[Unit][DataStructures]&quot;</span>) {</div><div class="line">  CHECK(<span class="stringliteral">&quot;Logical&quot;</span> == <a class="code" href="group__UtilitiesGroup.html#gae1b1a8fbda55342653e23c0806e0ee7b">get_output</a>(<a class="code" href="structFrame_1_1Logical.html">Frame::Logical</a>{}));</div><div class="line">  CHECK(<span class="stringliteral">&quot;Grid&quot;</span> == <a class="code" href="group__UtilitiesGroup.html#gae1b1a8fbda55342653e23c0806e0ee7b">get_output</a>(<a class="code" href="structFrame_1_1Grid.html">Frame::Grid</a>{}));</div><div class="line">  CHECK(<span class="stringliteral">&quot;Inertial&quot;</span> == <a class="code" href="group__UtilitiesGroup.html#gae1b1a8fbda55342653e23c0806e0ee7b">get_output</a>(<a class="code" href="structFrame_1_1Inertial.html">Frame::Inertial</a>{}));</div><div class="line">  CHECK(<span class="stringliteral">&quot;Distorted&quot;</span> == <a class="code" href="group__UtilitiesGroup.html#gae1b1a8fbda55342653e23c0806e0ee7b">get_output</a>(<a class="code" href="structFrame_1_1Distorted.html">Frame::Distorted</a>{}));</div><div class="line">  CHECK(<span class="stringliteral">&quot;NoFrame&quot;</span> == <a class="code" href="group__UtilitiesGroup.html#gae1b1a8fbda55342653e23c0806e0ee7b">get_output</a>(<a class="code" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a>{}));</div><div class="line">}</div></div><!-- fragment --><p>From within a <code>SPECTRE_TEST_CASE</code> you are able to do all the things you would normally do in a C++ function, including calling other functions, setting variables, using lambdas, etc.</p>
+<p>The <code>CHECK</code> macro in the above example is provided by <a href="https://github.com/catchorg/Catch2">Catch2</a> and is used to check conditions. We also provide the <code>CHECK_ITERABLE_APPROX</code> macro which checks if two <code>double</code>s or two iterable containers of <code>double</code>s are approximately equal. <code>CHECK_ITERABLE_APPROX</code> is especially useful for comparing <code>Tensor</code>s, <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>s, and <code>Tensor&lt;<a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a>&gt;</code>s since it will iterate over nested containers as well.</p>
+<dl class="section warning"><dt>Warning</dt><dd>Catch's <code>CHECK</code> statement only prints numbers out to approximately 10 digits at most, so you should generally prefer <code>CHECK_ITERABLE_APPROX</code> for checking double precision numbers, unless you want to check that two numbers are bitwise identical.</dd></dl>
+<p>All unit tests must finish within a few seconds, the hard limit is 5, but having unit tests that long is strongly discouraged. They should typically complete in less than half a second. Tests that are longer are often no longer testing a small enough unit of code and should either be split into several unit tests or moved to an integration test.</p>
+<h4>Discovering New and Renamed Tests</h4>
+<p>When you add a new test to a source file or rename an existing test the change needs to be discovered by the testing infrastructure. This is done by building the target <code>rebuild_cache</code>, e.g. by running <code>make rebuild_cache</code>.</p>
+<h4>Testing Pointwise Functions</h4>
+<p>Pointwise functions should generally be tested in two different ways. The first is by taking input from an analytic solution and checking that the computed result is correct. The second is to use the random number generation comparison with python infrastructure. In this approach the C++ function being tested is re-implemented in python and the results are compared. If the function does sums over tensor indices then the einsum package should be used in python to provide an alternative implementation of the loop structure. The python implementations should be in a file name <code>TestFunctions.py</code> in the same directory as the <code>Test_*.cpp</code> source file and have the same name as the C++ function being tested. It is possible to test C++ functions that return by value and ones that return by <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code>. In the latter case, since it is possible to return multiple values, one python function taking all non-<code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> arguments must be supplied for each <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> argument to the C++. To perform the test the <code><a class="el" href="namespacepypp.html#aa9d3d256a4bf8f2e8abeece42d94e4af" title="Tests a C++ function returning by value by comparing the result to a python function. ">pypp::check_with_random_values()</a></code> function must be called. For example, the following checks various C++ functions by calling into <code>pypp</code>:</p>
+<div class="fragment"><div class="line">  pypp::check_with_random_values&lt;2&gt;(</div><div class="line">      &amp;check_double_not_null2_scalar&lt;Scalar&lt;DataVector&gt;&gt;, <span class="stringliteral">&quot;PyppPyTests&quot;</span>,</div><div class="line">      {<span class="stringliteral">&quot;check_double_not_null2_result0&quot;</span>, <span class="stringliteral">&quot;check_double_not_null2_result1&quot;</span>},</div><div class="line">      {{{0.0, 10.0}, {-10.0, 0.0}}}, scalar_dv);</div></div><!-- fragment --><p> The corresponding python functions are:</p>
+<div class="fragment"><div class="line">def check_double_not_null2_result0(t0, t1):</div><div class="line">    <span class="keywordflow">return</span> np.sqrt(t0) + 1.0 / np.sqrt(-t1)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">def </span>check_double_not_null2_result1(t0, t1):</div><div class="line">    <span class="keywordflow">return</span> 2.0 * t0 + t1</div></div><!-- fragment --> <h4>Testing Failure Cases</h4>
+<p>Adding the "attribute" <code>// [[OutputRegex, Regular expression to match]]</code> before the <code>SPECTRE_TEST_CASE</code> macro will force ctest to only pass the particular test if the regular expression is found. This can be used to test error handling. When testing <code>ASSERT</code>s you must mark the <code>SPECTRE_TEST_CASE</code> as <code>[[noreturn]]</code>, add the macro <code><a class="el" href="group__TestingFrameworkGroup.html#ga4439208ed8accb2887ff47388e91e58b" title="Mark a test to be checking an ASSERT. ">ASSERTION_TEST()</a>;</code> to the beginning of the test, and also have the test call <code>ERROR("Failed to trigger ASSERT in an assertion test");</code> at the end of the test body. For example,</p>
+<div class="fragment"><div class="line"><span class="comment">// [[OutputRegex, Must copy into same size]]</span></div><div class="line">[[noreturn]] SPECTRE_TEST_CASE(<span class="stringliteral">&quot;Unit.DataStructures.DataVector.ref_diff_size&quot;</span>,</div><div class="line">                               <span class="stringliteral">&quot;[DataStructures][Unit]&quot;</span>) {</div><div class="line">  <a class="code" href="group__TestingFrameworkGroup.html#ga4439208ed8accb2887ff47388e91e58b">ASSERTION_TEST</a>();</div><div class="line"><span class="preprocessor">#ifdef SPECTRE_DEBUG</span></div><div class="line">  <a class="code" href="classDataVector.html">DataVector</a> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>{1.43, 2.83, 3.94, 7.85};</div><div class="line">  <a class="code" href="classDataVector.html">DataVector</a> data_ref;</div><div class="line">  data_ref.<a class="code" href="classDataVector.html#ac7126fea0090afd83c97255b3f43b54a">set_data_ref</a>(data);</div><div class="line">  <a class="code" href="classDataVector.html">DataVector</a> data2{1.43, 2.83, 3.94};</div><div class="line">  data_ref = data2;</div><div class="line">  <a class="code" href="group__ErrorHandlingGroup.html#ga1d27028c1827976007fe9d29ad3a2f66">ERROR</a>(<span class="stringliteral">&quot;Failed to trigger ASSERT in an assertion test&quot;</span>);</div><div class="line"><span class="preprocessor">#endif</span></div><div class="line"><span class="preprocessor">}</span></div></div><!-- fragment --><p> If the <code>ifdef SPECTRE_DEBUG</code> is omitted then compilers will correctly flag the code as being unreachable which results in warnings.</p>
+<p>You can also test <code>ERROR</code>s inside your code. These tests need to have the <code>OutputRegex</code>, and also call <code><a class="el" href="group__TestingFrameworkGroup.html#gaf962c28abc1a1f014f2a6b32c6f01680" title="Mark a test as checking a call to ERROR. ">ERROR_TEST()</a>;</code> at the beginning. The do not need the <code>ifdef SPECTRE_DEBUG</code> block, they can just call have the code that triggers an <code>ERROR</code>. For example,</p>
+<div class="fragment"><div class="line"><span class="comment">// [[OutputRegex, &#39;a == b&#39; violated!]]</span></div><div class="line">[[noreturn]] SPECTRE_TEST_CASE(</div><div class="line">    <span class="stringliteral">&quot;Unit.ErrorHandling.AbortWithErrorMessage.Assert&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;[Unit][ErrorHandling]&quot;</span>) {</div><div class="line">  <a class="code" href="group__TestingFrameworkGroup.html#gaf962c28abc1a1f014f2a6b32c6f01680">ERROR_TEST</a>();</div><div class="line">  <a class="code" href="group__ErrorHandlingGroup.html#ga151b9fa962e87ed72da64306cbdc8ba7">abort_with_error_message</a>(<span class="stringliteral">&quot;a == b&quot;</span>, __FILE__, __LINE__,</div><div class="line">                           static_cast&lt;const char*&gt;(__PRETTY_FUNCTION__),</div><div class="line">                           <span class="stringliteral">&quot;Test Error&quot;</span>);</div><div class="line">}</div></div><!-- fragment --> <h3>Building and Running A Single Test File</h3>
+<p>In cases where low-level header files are frequently being altered and the changes need to be tested, building <code>RunTests</code> becomes extremely time consuming. The <code>RunSingleTest</code> executable in <code>tests/Unit/RunSingleTest</code> allows one to compile only a select few of the test source files and only link in the necessary libraries. To set which test file and libraries are linked into <code>RunSingleTest</code> edit the <code>tests/Unit/RunSingleTest/CMakeLists.txt</code> file. However, do not commit your changes to that file since it is meant to serve as an example. To compile <code>RunSingleTest</code> use <code>make RunSingleTest</code>, and to run it use <code>BUILD_DIR/bin/RunSingleTest Unit.Test.Name</code>.</p>
+<dl class="section warning"><dt>Warning</dt><dd><code><a class="el" href="group__ParallelGroup.html#gaccc68e564135958d18110d2847dcc1b3" title="Abort the program with an error message. ">Parallel::abort</a></code> does not work correctly in the <code>RunSingleTest</code> executable because a segfault occurs inside Charm++ code after the abort message is printed. </dd></dl>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

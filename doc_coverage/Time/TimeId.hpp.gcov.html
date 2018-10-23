@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Time/TimeId.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Time</a> - TimeId.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">25</td>
+            <td class="headerCovTableEntryLo">20.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class TimeId.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      10 </span>            : #include &lt;cstdint&gt;
+<span class="lineNum">      11 </span>            : #include &lt;functional&gt;
+<span class="lineNum">      12 </span>            : #include &lt;iosfwd&gt;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Time/Time.hpp&quot;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : namespace PUP {
+<span class="lineNum">      18 </span>            : class er;
+<span class="lineNum">      19 </span>            : }  // namespace PUP
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : /// \ingroup TimeGroup
+<span class="lineNum">      22 </span>            : ///
+<span class="lineNum">      23 </span>            : /// A unique identifier for the temporal state of an integrated
+<span class="lineNum">      24 </span>            : /// system.
+<span class="lineNum">      25 </span><span class="lineCov">          1 : class TimeId {</span>
+<span class="lineNum">      26 </span>            :  public:
+<span class="lineNum">      27 </span><span class="lineNoCov">          0 :   TimeId() = default;</span>
+<span class="lineNum">      28 </span>            :   /// Create a TimeId at the start of a step.  If that step is at the
+<span class="lineNum">      29 </span>            :   /// (evolution-defined) end of the slab the TimeId will be advanced
+<span class="lineNum">      30 </span>            :   /// to the next slab.
+<span class="lineNum">      31 </span><span class="lineCov">          1 :   TimeId(const bool time_runs_forward, const int64_t slab_number,</span>
+<span class="lineNum">      32 </span>            :          const Time&amp; time) noexcept
+<span class="lineNum">      33 </span>            :       : time_runs_forward_(time_runs_forward),
+<span class="lineNum">      34 </span>            :         slab_number_(slab_number),
+<span class="lineNum">      35 </span>            :         step_time_(time),
+<span class="lineNum">      36 </span>            :         substep_(0),
+<span class="lineNum">      37 </span>            :         time_(time) {
+<span class="lineNum">      38 </span>            :     canonicalize();
+<span class="lineNum">      39 </span>            :   }
+<span class="lineNum">      40 </span>            :   /// Create a TimeId at a substep at time `time` in a step starting
+<span class="lineNum">      41 </span>            :   /// at time `step_time`.
+<span class="lineNum">      42 </span><span class="lineCov">          1 :   TimeId(const bool time_runs_forward, const int64_t slab_number,</span>
+<span class="lineNum">      43 </span>            :          const Time&amp; step_time, const uint64_t substep,
+<span class="lineNum">      44 </span>            :          const Time&amp; time) noexcept
+<span class="lineNum">      45 </span>            :       : time_runs_forward_(time_runs_forward),
+<span class="lineNum">      46 </span>            :         slab_number_(slab_number),
+<span class="lineNum">      47 </span>            :         step_time_(step_time),
+<span class="lineNum">      48 </span>            :         substep_(substep),
+<span class="lineNum">      49 </span>            :         time_(time) {
+<span class="lineNum">      50 </span>            :     ASSERT(substep_ != 0 or step_time_ == time_,
+<span class="lineNum">      51 </span>            :            &quot;Initial substep must align with the step.&quot;);
+<span class="lineNum">      52 </span>            :     canonicalize();
+<span class="lineNum">      53 </span>            :   }
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :   bool time_runs_forward() const noexcept { return time_runs_forward_; }</span>
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 :   int64_t slab_number() const noexcept { return slab_number_; }</span>
+<span class="lineNum">      57 </span>            :   /// Time at the start of the current step
+<span class="lineNum">      58 </span><span class="lineCov">          1 :   const Time&amp; step_time() const noexcept { return step_time_; }</span>
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :   uint64_t substep() const noexcept { return substep_; }</span>
+<span class="lineNum">      60 </span>            :   /// Time of the current substep
+<span class="lineNum">      61 </span><span class="lineCov">          1 :   const Time&amp; time() const noexcept { return time_; }</span>
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 :   bool is_at_slab_boundary() const noexcept {</span>
+<span class="lineNum">      64 </span>            :     return substep_ == 0 and time_.is_at_slab_boundary();
+<span class="lineNum">      65 </span>            :   }
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            :   // clang-tidy: google-runtime-references
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            :  private:
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :   void canonicalize() noexcept;</span>
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 :   bool time_runs_forward_{false};</span>
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 :   int64_t slab_number_{0};</span>
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 :   Time step_time_{};</span>
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 :   uint64_t substep_{0};</span>
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 :   Time time_{};</span>
+<span class="lineNum">      78 </span>            : };
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span><span class="lineNoCov">          0 : bool operator==(const TimeId&amp; a, const TimeId&amp; b) noexcept;</span>
+<span class="lineNum">      81 </span><span class="lineNoCov">          0 : bool operator!=(const TimeId&amp; a, const TimeId&amp; b) noexcept;</span>
+<span class="lineNum">      82 </span><span class="lineNoCov">          0 : bool operator&lt;(const TimeId&amp; a, const TimeId&amp; b) noexcept;</span>
+<span class="lineNum">      83 </span><span class="lineNoCov">          0 : bool operator&lt;=(const TimeId&amp; a, const TimeId&amp; b) noexcept;</span>
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 : bool operator&gt;(const TimeId&amp; a, const TimeId&amp; b) noexcept;</span>
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 : bool operator&gt;=(const TimeId&amp; a, const TimeId&amp; b) noexcept;</span>
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span><span class="lineNoCov">          0 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; s, const TimeId&amp; id) noexcept;</span>
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 : size_t hash_value(const TimeId&amp; id) noexcept;</span>
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span>            : namespace std {
+<span class="lineNum">      92 </span>            : template &lt;&gt;
+<span class="lineNum">      93 </span>            : struct hash&lt;TimeId&gt; {
+<span class="lineNum">      94 </span>            :   size_t operator()(const TimeId&amp; id) const noexcept;
+<span class="lineNum">      95 </span>            : };
+<span class="lineNum">      96 </span>            : }  // namespace std
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

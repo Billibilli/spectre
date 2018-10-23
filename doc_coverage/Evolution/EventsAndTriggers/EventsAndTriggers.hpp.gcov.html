@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/EventsAndTriggers/EventsAndTriggers.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Evolution/EventsAndTriggers</a> - EventsAndTriggers.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntryLo">16.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;memory&gt;
+<span class="lineNum">       7 </span>            : #include &lt;pup.h&gt;
+<span class="lineNum">       8 </span>            : #include &lt;unordered_map&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/DataBox/DataBox.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Evolution/EventsAndTriggers/Event.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Evolution/EventsAndTriggers/Trigger.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Parallel/ConstGlobalCache.hpp&quot;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : /// \ingroup EventsAndTriggersGroup
+<span class="lineNum">      16 </span>            : /// Class that checks triggers and runs events
+<span class="lineNum">      17 </span>            : template &lt;typename KnownEvents, typename KnownTriggers&gt;
+<span class="lineNum">      18 </span><span class="lineCov">          1 : class EventsAndTriggers {</span>
+<span class="lineNum">      19 </span>            :  public:
+<span class="lineNum">      20 </span><span class="lineNoCov">          0 :   using Storage =</span>
+<span class="lineNum">      21 </span>            :       std::unordered_map&lt;std::unique_ptr&lt;Trigger&lt;KnownTriggers&gt;&gt;,
+<span class="lineNum">      22 </span>            :                          std::vector&lt;std::unique_ptr&lt;Event&lt;KnownEvents&gt;&gt;&gt;&gt;;
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span><span class="lineNoCov">          0 :   EventsAndTriggers() = default;</span>
+<span class="lineNum">      25 </span><span class="lineNoCov">          0 :   explicit EventsAndTriggers(Storage events_and_triggers) noexcept</span>
+<span class="lineNum">      26 </span>            :       : events_and_triggers_(std::move(events_and_triggers)) {}
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            :   template &lt;typename DbTags, typename Metavariables, typename ArrayIndex,
+<span class="lineNum">      29 </span>            :             typename Component&gt;
+<span class="lineNum">      30 </span><span class="lineNoCov">          0 :   void run_events(const db::DataBox&lt;DbTags&gt;&amp; box,</span>
+<span class="lineNum">      31 </span>            :                   Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; cache,
+<span class="lineNum">      32 </span>            :                   const ArrayIndex&amp; array_index,
+<span class="lineNum">      33 </span>            :                   const Component* component) const noexcept {
+<span class="lineNum">      34 </span>            :     for (const auto&amp; trigger_and_events : events_and_triggers_) {
+<span class="lineNum">      35 </span>            :       const auto&amp; trigger = trigger_and_events.first;
+<span class="lineNum">      36 </span>            :       const auto&amp; events = trigger_and_events.second;
+<span class="lineNum">      37 </span>            :       if (trigger-&gt;is_triggered(box)) {
+<span class="lineNum">      38 </span>            :         for (const auto&amp; event : events) {
+<span class="lineNum">      39 </span>            :           event-&gt;run(box, cache, array_index, component);
+<span class="lineNum">      40 </span>            :         }
+<span class="lineNum">      41 </span>            :       }
+<span class="lineNum">      42 </span>            :     }
+<span class="lineNum">      43 </span>            :   }
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            :   // clang-tidy: google-runtime-references
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p) noexcept {  // NOLINT</span>
+<span class="lineNum">      47 </span>            :     p | events_and_triggers_;
+<span class="lineNum">      48 </span>            :   }
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            :  private:
+<span class="lineNum">      51 </span>            :   // The unique pointer contents *must* be treated as const everywhere
+<span class="lineNum">      52 </span>            :   // in order to make the const global cache behave sanely.  They are
+<span class="lineNum">      53 </span>            :   // only non-const to make pup work.
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :   Storage events_and_triggers_;</span>
+<span class="lineNum">      55 </span>            : };
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            : template &lt;typename KnownEvents, typename KnownTriggers&gt;
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 : struct create_from_yaml&lt;EventsAndTriggers&lt;KnownEvents, KnownTriggers&gt;&gt; {</span>
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :   using type = EventsAndTriggers&lt;KnownEvents, KnownTriggers&gt;;</span>
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :   static type create(const Option&amp; options) {</span>
+<span class="lineNum">      61 </span>            :     return type(options.parse_as&lt;typename type::Storage&gt;());
+<span class="lineNum">      62 </span>            :   }
+<span class="lineNum">      63 </span>            : };
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            : namespace Tags {
+<span class="lineNum">      66 </span>            : /// \cond
+<span class="lineNum">      67 </span>            : struct EventsAndTriggersTagBase {};
+<span class="lineNum">      68 </span>            : /// \endcond
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            : /// \ingroup OptionTagsGroup
+<span class="lineNum">      71 </span>            : /// \ingroup EventsAndTriggersGroup
+<span class="lineNum">      72 </span>            : /// Contains the events and triggers
+<span class="lineNum">      73 </span>            : template &lt;typename KnownEvents, typename KnownTriggers&gt;
+<span class="lineNum">      74 </span><span class="lineCov">          1 : struct EventsAndTriggers : EventsAndTriggersTagBase {</span>
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 :   using type = ::EventsAndTriggers&lt;KnownEvents, KnownTriggers&gt;;</span>
+<span class="lineNum">      76 </span>            : };
+<span class="lineNum">      77 </span>            : }  // namespace Tags
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

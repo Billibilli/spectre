@@ -1,0 +1,376 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: grmhd::Solutions::AlfvenWave Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacegrmhd.html">grmhd</a></li><li class="navelem"><a class="el" href="namespacegrmhd_1_1Solutions.html">Solutions</a></li><li class="navelem"><a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html">AlfvenWave</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="classgrmhd_1_1Solutions_1_1AlfvenWave-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">grmhd::Solutions::AlfvenWave Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Circularly polarized Alfv&eacute;n wave solution in Minkowski spacetime travelling in the z-direction.  
+ <a href="classgrmhd_1_1Solutions_1_1AlfvenWave.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="AlfvenWave_8hpp_source.html">AlfvenWave.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1AdiabaticIndex.html">AdiabaticIndex</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The adiabatic index for the ideal fluid.  <a href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1AdiabaticIndex.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1BackgroundMagField.html">BackgroundMagField</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The strength of the background magnetic field.  <a href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1BackgroundMagField.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1PerturbationSize.html">PerturbationSize</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amplitude of the perturbation of the magnetic field.  <a href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1PerturbationSize.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1Pressure.html">Pressure</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constant pressure throughout the fluid.  <a href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1Pressure.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1RestMassDensity.html">RestMassDensity</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constant rest mass density throughout the fluid.  <a href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1RestMassDensity.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1WaveNumber.html">WaveNumber</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The wave number of the profile.  <a href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1WaveNumber.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a7d3cc73af929031cf6ca9f0ba437a152"><td class="memItemLeft" align="right" valign="top"><a id="a7d3cc73af929031cf6ca9f0ba437a152"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>equation_of_state_type</b> = <a class="el" href="classEquationsOfState_1_1IdealFluid.html">EquationsOfState::IdealFluid</a>&lt; true &gt;</td></tr>
+<tr class="separator:a7d3cc73af929031cf6ca9f0ba437a152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07d064257434900b03b93f4280457813"><td class="memItemLeft" align="right" valign="top"><a id="a07d064257434900b03b93f4280457813"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>background_spacetime_type</b> = <a class="el" href="classgr_1_1Solutions_1_1Minkowski.html">gr::Solutions::Minkowski</a>&lt; 3 &gt;</td></tr>
+<tr class="separator:a07d064257434900b03b93f4280457813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff13af3e71d700760a459c6d58315c31"><td class="memItemLeft" align="right" valign="top"><a id="aff13af3e71d700760a459c6d58315c31"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>options</b> = tmpl::list&lt; <a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1WaveNumber.html">WaveNumber</a>, <a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1Pressure.html">Pressure</a>, <a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1RestMassDensity.html">RestMassDensity</a>, <a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1AdiabaticIndex.html">AdiabaticIndex</a>, <a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1BackgroundMagField.html">BackgroundMagField</a>, <a class="el" href="structgrmhd_1_1Solutions_1_1AlfvenWave_1_1PerturbationSize.html">PerturbationSize</a> &gt;</td></tr>
+<tr class="separator:aff13af3e71d700760a459c6d58315c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a502afd0546ee4c19081ae358f4000fb5"><td class="memItemLeft" align="right" valign="top"><a id="a502afd0546ee4c19081ae358f4000fb5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>AlfvenWave</b> (const <a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html">AlfvenWave</a> &amp;)=delete</td></tr>
+<tr class="separator:a502afd0546ee4c19081ae358f4000fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1f35ea8d252b2aa61a05c757e93788a"><td class="memItemLeft" align="right" valign="top"><a id="ad1f35ea8d252b2aa61a05c757e93788a"></a>
+<a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html">AlfvenWave</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html">AlfvenWave</a> &amp;)=delete</td></tr>
+<tr class="separator:ad1f35ea8d252b2aa61a05c757e93788a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52c18acd999b19f23669ed6038a1bc1e"><td class="memItemLeft" align="right" valign="top"><a id="a52c18acd999b19f23669ed6038a1bc1e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>AlfvenWave</b> (<a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html">AlfvenWave</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a52c18acd999b19f23669ed6038a1bc1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a398a5042d6e82ebd2402c2bff5b1fc24"><td class="memItemLeft" align="right" valign="top"><a id="a398a5042d6e82ebd2402c2bff5b1fc24"></a>
+<a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html">AlfvenWave</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html">AlfvenWave</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a398a5042d6e82ebd2402c2bff5b1fc24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a814fe9cec807b0cbdfa82cbe1aba3fda"><td class="memItemLeft" align="right" valign="top"><a id="a814fe9cec807b0cbdfa82cbe1aba3fda"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>AlfvenWave</b> (WaveNumber::type wavenumber, Pressure::type pressure, RestMassDensity::type rest_mass_density, AdiabaticIndex::type adiabatic_index, BackgroundMagField::type background_mag_field, PerturbationSize::type perturbation_size) noexcept</td></tr>
+<tr class="separator:a814fe9cec807b0cbdfa82cbe1aba3fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abeead3851de488a739be806641013ee9"><td class="memTemplParams" colspan="2"><a id="abeead3851de488a739be806641013ee9"></a>
+template&lt;typename DataType , typename... Tags&gt; </td></tr>
+<tr class="memitem:abeead3851de488a739be806641013ee9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; Tags... &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html#abeead3851de488a739be806641013ee9">variables</a> (const tnsr::I&lt; DataType, 3 &gt; &amp;x, double t, tmpl::list&lt; Tags... &gt;) const noexcept</td></tr>
+<tr class="memdesc:abeead3851de488a739be806641013ee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a collection of hydro variables at <code>(x, t)</code> <br /></td></tr>
+<tr class="separator:abeead3851de488a739be806641013ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec7ba275c3b5534c3a8829f9eb122277"><td class="memItemLeft" align="right" valign="top"><a id="aec7ba275c3b5534c3a8829f9eb122277"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;) noexcept</td></tr>
+<tr class="separator:aec7ba275c3b5534c3a8829f9eb122277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade2a8c61695966491148befc7eaa3717"><td class="memItemLeft" align="right" valign="top"><a id="ade2a8c61695966491148befc7eaa3717"></a>
+WaveNumber::type&#160;</td><td class="memItemRight" valign="bottom"><b>wavenumber</b> () const noexcept</td></tr>
+<tr class="separator:ade2a8c61695966491148befc7eaa3717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3524735471a1e0d720084e316559ff3"><td class="memItemLeft" align="right" valign="top"><a id="af3524735471a1e0d720084e316559ff3"></a>
+Pressure::type&#160;</td><td class="memItemRight" valign="bottom"><b>pressure</b> () const noexcept</td></tr>
+<tr class="separator:af3524735471a1e0d720084e316559ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d1ce04b29a7884f3647be26b7a43d03"><td class="memItemLeft" align="right" valign="top"><a id="a5d1ce04b29a7884f3647be26b7a43d03"></a>
+RestMassDensity::type&#160;</td><td class="memItemRight" valign="bottom"><b>rest_mass_density</b> () const noexcept</td></tr>
+<tr class="separator:a5d1ce04b29a7884f3647be26b7a43d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea5138988bdde78ae12e415503ba87ff"><td class="memItemLeft" align="right" valign="top"><a id="aea5138988bdde78ae12e415503ba87ff"></a>
+AdiabaticIndex::type&#160;</td><td class="memItemRight" valign="bottom"><b>adiabatic_index</b> () const noexcept</td></tr>
+<tr class="separator:aea5138988bdde78ae12e415503ba87ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16b9c56c828df058be8b0578540c3bfe"><td class="memItemLeft" align="right" valign="top"><a id="a16b9c56c828df058be8b0578540c3bfe"></a>
+BackgroundMagField::type&#160;</td><td class="memItemRight" valign="bottom"><b>background_mag_field</b> () const noexcept</td></tr>
+<tr class="separator:a16b9c56c828df058be8b0578540c3bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b86760d4a6cd02fb70f728d743f77dc"><td class="memItemLeft" align="right" valign="top"><a id="a2b86760d4a6cd02fb70f728d743f77dc"></a>
+PerturbationSize::type&#160;</td><td class="memItemRight" valign="bottom"><b>perturbation_size</b> () const noexcept</td></tr>
+<tr class="separator:a2b86760d4a6cd02fb70f728d743f77dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba8aaa9d76b48c92e7582a8dbda8f874"><td class="memItemLeft" align="right" valign="top"><a id="aba8aaa9d76b48c92e7582a8dbda8f874"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>alfven_speed</b> () const noexcept</td></tr>
+<tr class="separator:aba8aaa9d76b48c92e7582a8dbda8f874"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae085db04d0b5380bd971f06fd7b9c743"><td class="memItemLeft" align="right" valign="top"><a id="ae085db04d0b5380bd971f06fd7b9c743"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>fluid_speed</b> () const noexcept</td></tr>
+<tr class="separator:ae085db04d0b5380bd971f06fd7b9c743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa1d07a2d150d1ef213d70b6d4c48b98"><td class="memItemLeft" align="right" valign="top"><a id="aaa1d07a2d150d1ef213d70b6d4c48b98"></a>
+const <a class="el" href="classEquationsOfState_1_1IdealFluid.html">EquationsOfState::IdealFluid</a>&lt; true &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>equation_of_state</b> () const noexcept</td></tr>
+<tr class="separator:aaa1d07a2d150d1ef213d70b6d4c48b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbaffaa4af17af0997e96320895c5aac"><td class="memItemLeft" align="right" valign="top"><a id="afbaffaa4af17af0997e96320895c5aac"></a>
+const <a class="el" href="classgr_1_1Solutions_1_1Minkowski.html">gr::Solutions::Minkowski</a>&lt; 3 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>background_spacetime</b> () const noexcept</td></tr>
+<tr class="separator:afbaffaa4af17af0997e96320895c5aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a23e08a37e0531a653fa2e529c4e7934f"><td class="memTemplParams" colspan="2"><a id="a23e08a37e0531a653fa2e529c4e7934f"></a>
+template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:a23e08a37e0531a653fa2e529c4e7934f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html#a23e08a37e0531a653fa2e529c4e7934f">variables</a> (const tnsr::I&lt; DataType, 3 &gt; &amp;x, double t, tmpl::list&lt; <a class="el" href="structhydro_1_1Tags_1_1RestMassDensity.html">hydro::Tags::RestMassDensity</a>&lt; DataType &gt;&gt;) const noexcept -&gt; <a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structhydro_1_1Tags_1_1RestMassDensity.html">hydro::Tags::RestMassDensity</a>&lt; DataType &gt;&gt;</td></tr>
+<tr class="memdesc:a23e08a37e0531a653fa2e529c4e7934f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve hydro variable at <code>(x, t)</code> <br /></td></tr>
+<tr class="separator:a23e08a37e0531a653fa2e529c4e7934f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09f2159cbab97d4a629dbf6948966a5d"><td class="memTemplParams" colspan="2"><a id="a09f2159cbab97d4a629dbf6948966a5d"></a>
+template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:a09f2159cbab97d4a629dbf6948966a5d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html#a09f2159cbab97d4a629dbf6948966a5d">variables</a> (const tnsr::I&lt; DataType, 3 &gt; &amp;x, double t, tmpl::list&lt; <a class="el" href="structhydro_1_1Tags_1_1SpecificInternalEnergy.html">hydro::Tags::SpecificInternalEnergy</a>&lt; DataType &gt;&gt;) const noexcept -&gt; <a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structhydro_1_1Tags_1_1SpecificInternalEnergy.html">hydro::Tags::SpecificInternalEnergy</a>&lt; DataType &gt;&gt;</td></tr>
+<tr class="memdesc:a09f2159cbab97d4a629dbf6948966a5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve hydro variable at <code>(x, t)</code> <br /></td></tr>
+<tr class="separator:a09f2159cbab97d4a629dbf6948966a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57efae461163086b319407c94cd2b1c1"><td class="memTemplParams" colspan="2"><a id="a57efae461163086b319407c94cd2b1c1"></a>
+template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:a57efae461163086b319407c94cd2b1c1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html#a57efae461163086b319407c94cd2b1c1">variables</a> (const tnsr::I&lt; DataType, 3 &gt; &amp;x, double, tmpl::list&lt; <a class="el" href="structhydro_1_1Tags_1_1Pressure.html">hydro::Tags::Pressure</a>&lt; DataType &gt;&gt;) const noexcept -&gt; <a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structhydro_1_1Tags_1_1Pressure.html">hydro::Tags::Pressure</a>&lt; DataType &gt;&gt;</td></tr>
+<tr class="memdesc:a57efae461163086b319407c94cd2b1c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve hydro variable at <code>(x, t)</code> <br /></td></tr>
+<tr class="separator:a57efae461163086b319407c94cd2b1c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad1f8459ab0471372f3218f646debb7d"><td class="memTemplParams" colspan="2"><a id="aad1f8459ab0471372f3218f646debb7d"></a>
+template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:aad1f8459ab0471372f3218f646debb7d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html#aad1f8459ab0471372f3218f646debb7d">variables</a> (const tnsr::I&lt; DataType, 3 &gt; &amp;x, double, tmpl::list&lt; <a class="el" href="structhydro_1_1Tags_1_1SpatialVelocity.html">hydro::Tags::SpatialVelocity</a>&lt; DataType, 3, <a class="el" href="structFrame_1_1Inertial.html">Frame::Inertial</a> &gt;&gt;) const noexcept -&gt; <a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structhydro_1_1Tags_1_1SpatialVelocity.html">hydro::Tags::SpatialVelocity</a>&lt; DataType, 3, <a class="el" href="structFrame_1_1Inertial.html">Frame::Inertial</a> &gt;&gt;</td></tr>
+<tr class="memdesc:aad1f8459ab0471372f3218f646debb7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve hydro variable at <code>(x, t)</code> <br /></td></tr>
+<tr class="separator:aad1f8459ab0471372f3218f646debb7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a791c4cfcef5a000792adfa8b942b79a6"><td class="memTemplParams" colspan="2"><a id="a791c4cfcef5a000792adfa8b942b79a6"></a>
+template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:a791c4cfcef5a000792adfa8b942b79a6"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html#a791c4cfcef5a000792adfa8b942b79a6">variables</a> (const tnsr::I&lt; DataType, 3 &gt; &amp;x, double, tmpl::list&lt; <a class="el" href="structhydro_1_1Tags_1_1MagneticField.html">hydro::Tags::MagneticField</a>&lt; DataType, 3, <a class="el" href="structFrame_1_1Inertial.html">Frame::Inertial</a> &gt;&gt;) const noexcept -&gt; <a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structhydro_1_1Tags_1_1MagneticField.html">hydro::Tags::MagneticField</a>&lt; DataType, 3, <a class="el" href="structFrame_1_1Inertial.html">Frame::Inertial</a> &gt;&gt;</td></tr>
+<tr class="memdesc:a791c4cfcef5a000792adfa8b942b79a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve hydro variable at <code>(x, t)</code> <br /></td></tr>
+<tr class="separator:a791c4cfcef5a000792adfa8b942b79a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a205791fb931376a2e495c57a871aa429"><td class="memTemplParams" colspan="2"><a id="a205791fb931376a2e495c57a871aa429"></a>
+template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:a205791fb931376a2e495c57a871aa429"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html#a205791fb931376a2e495c57a871aa429">variables</a> (const tnsr::I&lt; DataType, 3 &gt; &amp;x, double, tmpl::list&lt; <a class="el" href="structhydro_1_1Tags_1_1DivergenceCleaningField.html">hydro::Tags::DivergenceCleaningField</a>&lt; DataType &gt;&gt;) const noexcept -&gt; <a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structhydro_1_1Tags_1_1DivergenceCleaningField.html">hydro::Tags::DivergenceCleaningField</a>&lt; DataType &gt;&gt;</td></tr>
+<tr class="memdesc:a205791fb931376a2e495c57a871aa429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve hydro variable at <code>(x, t)</code> <br /></td></tr>
+<tr class="separator:a205791fb931376a2e495c57a871aa429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42198e4a4d483ff7396717defa54327d"><td class="memTemplParams" colspan="2"><a id="a42198e4a4d483ff7396717defa54327d"></a>
+template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:a42198e4a4d483ff7396717defa54327d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html#a42198e4a4d483ff7396717defa54327d">variables</a> (const tnsr::I&lt; DataType, 3 &gt; &amp;x, double, tmpl::list&lt; <a class="el" href="structhydro_1_1Tags_1_1LorentzFactor.html">hydro::Tags::LorentzFactor</a>&lt; DataType &gt;&gt;) const noexcept -&gt; <a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structhydro_1_1Tags_1_1LorentzFactor.html">hydro::Tags::LorentzFactor</a>&lt; DataType &gt;&gt;</td></tr>
+<tr class="memdesc:a42198e4a4d483ff7396717defa54327d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve hydro variable at <code>(x, t)</code> <br /></td></tr>
+<tr class="separator:a42198e4a4d483ff7396717defa54327d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0c01225001aacf3fba24b2e1f2e8d40"><td class="memTemplParams" colspan="2"><a id="aa0c01225001aacf3fba24b2e1f2e8d40"></a>
+template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:aa0c01225001aacf3fba24b2e1f2e8d40"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgrmhd_1_1Solutions_1_1AlfvenWave.html#aa0c01225001aacf3fba24b2e1f2e8d40">variables</a> (const tnsr::I&lt; DataType, 3 &gt; &amp;x, double t, tmpl::list&lt; <a class="el" href="structhydro_1_1Tags_1_1SpecificEnthalpy.html">hydro::Tags::SpecificEnthalpy</a>&lt; DataType &gt;&gt;) const noexcept -&gt; <a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structhydro_1_1Tags_1_1SpecificEnthalpy.html">hydro::Tags::SpecificEnthalpy</a>&lt; DataType &gt;&gt;</td></tr>
+<tr class="memdesc:aa0c01225001aacf3fba24b2e1f2e8d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve hydro variable at <code>(x, t)</code> <br /></td></tr>
+<tr class="separator:aa0c01225001aacf3fba24b2e1f2e8d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a6900d17a6536dd26d0741eb27d0835e5"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a>&#160;</td><td class="memItemRight" valign="bottom"><b>help</b></td></tr>
+<tr class="separator:a6900d17a6536dd26d0741eb27d0835e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Circularly polarized Alfv&eacute;n wave solution in Minkowski spacetime travelling in the z-direction. </p>
+<p>An analytic solution to the 3-D GrMhd system. The user specifies the wavenumber \(k_z\) of the Alfv&eacute;n wave, the constant pressure throughout the fluid \(P\), the constant rest mass density throughout the fluid \(\rho_0\), the adiabatic index for the ideal fluid equation of state \(\gamma\), the background magnetic field strength \(B_0\), and the strength of the perturbation of the magnetic field \(B_1\). The Alfv&eacute;n wave phase speed is then given by:</p>
+<p class="formulaDsp">
+\[v_A = \frac{B_0}{\sqrt{\rho_0 h + B_0^2}}\]
+</p>
+<p>The amplitude of the fluid velocity is given by:</p>
+<p class="formulaDsp">
+\[v_f = \frac{-B_1}{\sqrt{\rho_0 h + B_0^2}}\]
+</p>
+<p>In Cartesian coordinates \((x, y, z)\), and using dimensionless units, the primitive quantities at a given time \(t\) are then</p>
+<p class="formulaDsp">
+\begin{align*} \rho(\vec{x},t) &amp;= \rho_0 \\ v_x(\vec{x},t) &amp;= v_f \cos(k_z(z - v_A t))\\ v_y(\vec{x},t) &amp;= v_f \sin(k_z(z - v_A t))\\ v_z(\vec{x},t) &amp;= 0\\ P(\vec{x},t) &amp;= P, \\ \epsilon(\vec{x}, t) &amp;= \frac{P}{(\gamma - 1)\rho_0}\\ B_x(\vec{x},t) &amp;= B_1 \cos(k_z(z - v_A t))\\ B_y(\vec{x},t) &amp;= B_1 \sin(k_z(z - v_A t))\\ B_z(\vec{x},t) &amp;= B_0 \end{align*}
+</p>
+ </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a6900d17a6536dd26d0741eb27d0835e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6900d17a6536dd26d0741eb27d0835e5">&#9670;&nbsp;</a></span>help</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a> grmhd::Solutions::AlfvenWave::help</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">      <span class="stringliteral">&quot;Circularly polarized Alfven wave in Minkowski spacetime.&quot;</span>}</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/PointwiseFunctions/AnalyticSolutions/GrMhd/<a class="el" href="AlfvenWave_8hpp_source.html">AlfvenWave.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

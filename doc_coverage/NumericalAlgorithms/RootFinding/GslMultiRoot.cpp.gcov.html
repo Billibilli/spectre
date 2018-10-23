@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/RootFinding/GslMultiRoot.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/RootFinding</a> - GslMultiRoot.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;NumericalAlgorithms/RootFinding/GslMultiRoot.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : namespace RootFinder {
+<span class="lineNum">      11 </span><span class="lineNoCov">          0 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
+<span class="lineNum">      12 </span>            :                          const Verbosity&amp; verbosity) noexcept {
+<span class="lineNum">      13 </span>            :   switch (verbosity) {
+<span class="lineNum">      14 </span>            :     case Verbosity::Silent:
+<span class="lineNum">      15 </span>            :       return os &lt;&lt; &quot;Silent&quot;;
+<span class="lineNum">      16 </span>            :     case Verbosity::Quiet:
+<span class="lineNum">      17 </span>            :       return os &lt;&lt; &quot;Quiet&quot;;
+<span class="lineNum">      18 </span>            :     case Verbosity::Verbose:
+<span class="lineNum">      19 </span>            :       return os &lt;&lt; &quot;Verbose&quot;;
+<span class="lineNum">      20 </span>            :     case Verbosity::Debug:
+<span class="lineNum">      21 </span>            :       return os &lt;&lt; &quot;Debug&quot;;
+<span class="lineNum">      22 </span>            :     default:
+<span class="lineNum">      23 </span>            :       ERROR(&quot;Invalid verbosity value specified.&quot;);
+<span class="lineNum">      24 </span>            :   }
+<span class="lineNum">      25 </span>            :   return os;
+<span class="lineNum">      26 </span>            : }
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span><span class="lineNoCov">          0 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Method&amp; method) noexcept {</span>
+<span class="lineNum">      29 </span>            :   switch (method) {
+<span class="lineNum">      30 </span>            :     case Method::Hybrids:
+<span class="lineNum">      31 </span>            :       return os &lt;&lt; &quot;Hybrids&quot;;
+<span class="lineNum">      32 </span>            :     case Method::Hybrid:
+<span class="lineNum">      33 </span>            :       return os &lt;&lt; &quot;Hybrid&quot;;
+<span class="lineNum">      34 </span>            :     case Method::Newton:
+<span class="lineNum">      35 </span>            :       return os &lt;&lt; &quot;Newton&quot;;
+<span class="lineNum">      36 </span>            :     default:
+<span class="lineNum">      37 </span>            :       ERROR(&quot;Invalid method value specified.&quot;);
+<span class="lineNum">      38 </span>            :   }
+<span class="lineNum">      39 </span>            :   return os;
+<span class="lineNum">      40 </span>            : }
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
+<span class="lineNum">      43 </span>            :                          const StoppingCondition&amp; condition) noexcept {
+<span class="lineNum">      44 </span>            :   switch (condition) {
+<span class="lineNum">      45 </span>            :     case StoppingCondition::AbsoluteAndRelative:
+<span class="lineNum">      46 </span>            :       return os &lt;&lt; &quot;AbsoluteAndRelative&quot;;
+<span class="lineNum">      47 </span>            :     case StoppingCondition::Absolute:
+<span class="lineNum">      48 </span>            :       return os &lt;&lt; &quot;Absolute&quot;;
+<span class="lineNum">      49 </span>            :     default:
+<span class="lineNum">      50 </span>            :       ERROR(&quot;Invalid stopping condition specified.&quot;);
+<span class="lineNum">      51 </span>            :   }
+<span class="lineNum">      52 </span>            :   return os;
+<span class="lineNum">      53 </span>            : }
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : namespace gsl_multiroot_detail {
+<span class="lineNum">      56 </span>            : void print_rootfinding_parameters(const Method method,
+<span class="lineNum">      57 </span>            :                                   const double absolute_tolerance,
+<span class="lineNum">      58 </span>            :                                   const double relative_tolerance,
+<span class="lineNum">      59 </span>            :                                   const double maximum_absolute_tolerance,
+<span class="lineNum">      60 </span>            :                                   const StoppingCondition condition) noexcept {
+<span class="lineNum">      61 </span>            :   Parallel::printf(&quot;\nAttempting a root find.\n&quot;);
+<span class="lineNum">      62 </span>            :   if (method == Method::Newton) {
+<span class="lineNum">      63 </span>            :     Parallel::printf(
+<span class="lineNum">      64 </span>            :         &quot;Method: Newton. Modified to improve global convergence if analytic\n&quot;
+<span class="lineNum">      65 </span>            :         &quot;jacobian is provided.\n&quot;);
+<span class="lineNum">      66 </span>            :   } else if (method == Method::Hybrids) {
+<span class="lineNum">      67 </span>            :     Parallel::printf(&quot;Method: Scaled Hybrid.\n&quot;);
+<span class="lineNum">      68 </span>            :   } else if (method == Method::Hybrid) {
+<span class="lineNum">      69 </span>            :     Parallel::printf(&quot;Method: Unscaled Hybrid.\n&quot;);
+<span class="lineNum">      70 </span>            :   }
+<span class="lineNum">      71 </span>            :   if (condition == StoppingCondition::Absolute) {
+<span class="lineNum">      72 </span>            :     Parallel::printf(
+<span class="lineNum">      73 </span>            :         &quot;Stopping condition: Absolute. Convergence will be determined\n&quot;
+<span class="lineNum">      74 </span>            :         &quot;according to gsl_multiroot_test_residual.\n&quot;);
+<span class="lineNum">      75 </span>            :     Parallel::printf(&quot;Absolute tolerance: %.17g\n&quot;, absolute_tolerance);
+<span class="lineNum">      76 </span>            :   } else if (condition == StoppingCondition::AbsoluteAndRelative) {
+<span class="lineNum">      77 </span>            :     Parallel::printf(
+<span class="lineNum">      78 </span>            :         &quot;Stopping condition: AbsoluteAndRelative. Convergence will be\n&quot;
+<span class="lineNum">      79 </span>            :         &quot;determined according to gsl_multiroot_test_delta.\n&quot;);
+<span class="lineNum">      80 </span>            :     Parallel::printf(&quot;Absolute tolerance: %.17g\n&quot;, absolute_tolerance);
+<span class="lineNum">      81 </span>            :     Parallel::printf(&quot;Relative tolerance: %.17g\n&quot;, relative_tolerance);
+<span class="lineNum">      82 </span>            :     if (relative_tolerance &lt; 1.0e-13) {
+<span class="lineNum">      83 </span>            :       Parallel::printf(
+<span class="lineNum">      84 </span>            :           &quot;Warning: using a relative tolerance below 1.0e-13 can result\n&quot;
+<span class="lineNum">      85 </span>            :           &quot;in an FPE coming from within gsl itself. Be wary of this if the\n&quot;
+<span class="lineNum">      86 </span>            :           &quot;root find FPEs without reporting any other error messages.&quot;);
+<span class="lineNum">      87 </span>            :     }
+<span class="lineNum">      88 </span>            :   }
+<span class="lineNum">      89 </span>            :   Parallel::printf(
+<span class="lineNum">      90 </span>            :       &quot;A failed root find may still be \&quot;forgiven\&quot; (said to converge) if\n&quot;
+<span class="lineNum">      91 </span>            :       &quot;each component of f is below the maximum_absolute_tolerance provided.\n&quot;
+<span class="lineNum">      92 </span>            :       &quot;This value is zero by default, meaning that no failed root finds will\n&quot;
+<span class="lineNum">      93 </span>            :       &quot;be forgiven. Maximum absolute tolerance: %.17g\n&quot;,
+<span class="lineNum">      94 </span>            :       maximum_absolute_tolerance);
+<span class="lineNum">      95 </span>            : }
+<span class="lineNum">      96 </span>            : }  // namespace gsl_multiroot_detail
+<span class="lineNum">      97 </span>            : }  // namespace RootFinder
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

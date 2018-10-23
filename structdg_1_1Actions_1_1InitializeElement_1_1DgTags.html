@@ -1,0 +1,249 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: dg::Actions::InitializeElement&lt; Dim &gt;::DgTags&lt; Metavariables &gt; Struct Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>dg</b></li><li class="navelem"><b>Actions</b></li><li class="navelem"><a class="el" href="structdg_1_1Actions_1_1InitializeElement.html">InitializeElement</a></li><li class="navelem"><a class="el" href="structdg_1_1Actions_1_1InitializeElement_1_1DgTags.html">DgTags</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="structdg_1_1Actions_1_1InitializeElement_1_1DgTags-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">dg::Actions::InitializeElement&lt; Dim &gt;::DgTags&lt; Metavariables &gt; Struct Template Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1Actions_1_1InitializeElement_1_1DgTags_1_1Impl.html">Impl</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1Actions_1_1InitializeElement_1_1DgTags_1_1Impl_3_01LocalSystem_00_01true_01_4.html">Impl&lt; LocalSystem, true &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a6e762134fc8cbeb4b25e3e4ee286704d"><td class="memItemLeft" align="right" valign="top"><a id="a6e762134fc8cbeb4b25e3e4ee286704d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>temporal_id_tag</b> = typename Metavariables::temporal_id</td></tr>
+<tr class="separator:a6e762134fc8cbeb4b25e3e4ee286704d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada7c8d18f7c374ece5db8d342c2dc09f"><td class="memItemLeft" align="right" valign="top"><a id="ada7c8d18f7c374ece5db8d342c2dc09f"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>flux_comm_types</b> = <a class="el" href="structdg_1_1FluxCommunicationTypes.html">FluxCommunicationTypes</a>&lt; Metavariables &gt;</td></tr>
+<tr class="separator:ada7c8d18f7c374ece5db8d342c2dc09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66f549aa7f4e2bd3d1670fee4dbe87c7"><td class="memItemLeft" align="right" valign="top"><a id="a66f549aa7f4e2bd3d1670fee4dbe87c7"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>mortar_data_tag</b> = tmpl::conditional_t&lt; Metavariables::local_time_stepping, typename <a class="el" href="structdg_1_1FluxCommunicationTypes.html#a4c0a96256387160dc7324787031e7603">flux_comm_types::local_time_stepping_mortar_data_tag</a>, typename <a class="el" href="structdg_1_1FluxCommunicationTypes.html#aa1bb8e631164be166961986150e85e86">flux_comm_types::simple_mortar_data_tag</a> &gt;</td></tr>
+<tr class="separator:a66f549aa7f4e2bd3d1670fee4dbe87c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbfd089fb4ca9acac2d3d99d752a52f0"><td class="memTemplParams" colspan="2"><a id="acbfd089fb4ca9acac2d3d99d752a52f0"></a>
+template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:acbfd089fb4ca9acac2d3d99d752a52f0"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>interface_tag</b> = <a class="el" href="structTags_1_1Interface.html">Tags::Interface</a>&lt; <a class="el" href="structTags_1_1InternalDirections.html">Tags::InternalDirections</a>&lt; Dim &gt;, Tag &gt;</td></tr>
+<tr class="separator:acbfd089fb4ca9acac2d3d99d752a52f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45e942f22d006a64d2eb68b5b1f05c62"><td class="memTemplParams" colspan="2"><a id="a45e942f22d006a64d2eb68b5b1f05c62"></a>
+template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:a45e942f22d006a64d2eb68b5b1f05c62"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>interior_boundary_tag</b> = <a class="el" href="structTags_1_1Interface.html">Tags::Interface</a>&lt; <a class="el" href="structTags_1_1BoundaryDirectionsInterior.html">Tags::BoundaryDirectionsInterior</a>&lt; Dim &gt;, Tag &gt;</td></tr>
+<tr class="separator:a45e942f22d006a64d2eb68b5b1f05c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e4c5e74c59d464a829ea04aee45de0d"><td class="memTemplParams" colspan="2"><a id="a4e4c5e74c59d464a829ea04aee45de0d"></a>
+template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:a4e4c5e74c59d464a829ea04aee45de0d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>external_boundary_tag</b> = <a class="el" href="structTags_1_1Interface.html">Tags::Interface</a>&lt; <a class="el" href="structTags_1_1BoundaryDirectionsExterior.html">Tags::BoundaryDirectionsExterior</a>&lt; Dim &gt;, Tag &gt;</td></tr>
+<tr class="separator:a4e4c5e74c59d464a829ea04aee45de0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfd6c8739911cca5bedc24937c399ec0"><td class="memItemLeft" align="right" valign="top"><a id="acfd6c8739911cca5bedc24937c399ec0"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>impl</b> = <a class="el" href="structdg_1_1Actions_1_1InitializeElement_1_1DgTags_1_1Impl.html">Impl</a>&lt; typename Metavariables::system &gt;</td></tr>
+<tr class="separator:acfd6c8739911cca5bedc24937c399ec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab55e5909fbfd77a20863fd953b228ce1"><td class="memItemLeft" align="right" valign="top"><a id="ab55e5909fbfd77a20863fd953b228ce1"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>simple_tags</b> = typename impl::simple_tags</td></tr>
+<tr class="separator:ab55e5909fbfd77a20863fd953b228ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaba96da1bc1ddfa5430d5a7fbe01df44"><td class="memItemLeft" align="right" valign="top"><a id="aaba96da1bc1ddfa5430d5a7fbe01df44"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>compute_tags</b> = typename impl::compute_tags</td></tr>
+<tr class="separator:aaba96da1bc1ddfa5430d5a7fbe01df44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a3690e2f1cd993d1c1c9590474bcfad72"><td class="memTemplParams" colspan="2"><a id="a3690e2f1cd993d1c1c9590474bcfad72"></a>
+template&lt;typename TagsList &gt; </td></tr>
+<tr class="memitem:a3690e2f1cd993d1c1c9590474bcfad72"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_mortar_data</b> (db::DataBox&lt; TagsList &gt; &amp;&amp;box, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, Dim &gt;&gt; &amp;initial_extents) noexcept</td></tr>
+<tr class="separator:a3690e2f1cd993d1c1c9590474bcfad72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57f85e9521b862a40db415027cf9d1ed"><td class="memTemplParams" colspan="2"><a id="a57f85e9521b862a40db415027cf9d1ed"></a>
+template&lt;typename TagsList &gt; </td></tr>
+<tr class="memitem:a57f85e9521b862a40db415027cf9d1ed"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>initialize</b> (db::DataBox&lt; TagsList &gt; &amp;&amp;box, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, Dim &gt;&gt; &amp;initial_extents) noexcept</td></tr>
+<tr class="separator:a57f85e9521b862a40db415027cf9d1ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/Evolution/DiscontinuousGalerkin/<a class="el" href="Evolution_2DiscontinuousGalerkin_2InitializeElement_8hpp_source.html">InitializeElement.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,1772 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Numerical Algorithms</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Numerical Algorithms</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Generic numerical algorithms.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceintrp"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceintrp.html">intrp</a></td></tr>
+<tr class="memdesc:namespaceintrp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains classes and functions for interpolation. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintrp_1_1BarycentricRational.html">intrp::BarycentricRational</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A barycentric rational interpolation class.  <a href="classintrp_1_1BarycentricRational.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classintrp_1_1Irregular.html">intrp::Irregular&lt; Dim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolates a <code>Variables</code> onto an arbitrary set of points.  <a href="classintrp_1_1Irregular.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gaf4af7dc9f52c6b0bf4f25a17a872ac7b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#gaf4af7dc9f52c6b0bf4f25a17a872ac7b">RootFinder::Verbosity</a> { <a class="el" href="group__NumericalAlgorithmsGroup.html#ggaf4af7dc9f52c6b0bf4f25a17a872ac7ba1e3332b2cd20d2d3db407a20f6913d0d">RootFinder::Verbosity::Silent</a>, 
+<a class="el" href="group__NumericalAlgorithmsGroup.html#ggaf4af7dc9f52c6b0bf4f25a17a872ac7ba098753f8980036f4b936e3d4b6997111">RootFinder::Verbosity::Quiet</a>, 
+<a class="el" href="group__NumericalAlgorithmsGroup.html#ggaf4af7dc9f52c6b0bf4f25a17a872ac7bad4a9fa383ab700c5bdd6f31cf7df0faf">RootFinder::Verbosity::Verbose</a>, 
+<a class="el" href="group__NumericalAlgorithmsGroup.html#ggaf4af7dc9f52c6b0bf4f25a17a872ac7baa603905470e2a5b8c13e96b579ef0dba">RootFinder::Verbosity::Debug</a>
+ }<tr class="memdesc:gaf4af7dc9f52c6b0bf4f25a17a872ac7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The different options for the verbosity of gsl_multiroot.  <a href="group__NumericalAlgorithmsGroup.html#gaf4af7dc9f52c6b0bf4f25a17a872ac7b">More...</a><br /></td></tr>
+</td></tr>
+<tr class="separator:gaf4af7dc9f52c6b0bf4f25a17a872ac7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2bdd099599c989714bd6497401452624"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga2bdd099599c989714bd6497401452624">RootFinder::Method</a> { <a class="el" href="group__NumericalAlgorithmsGroup.html#gga2bdd099599c989714bd6497401452624aa3b07eb68ca39eb0b75ca59169f650d7">RootFinder::Method::Hybrids</a>, 
+<a class="el" href="group__NumericalAlgorithmsGroup.html#gga2bdd099599c989714bd6497401452624afb1b6e23a3767d2a31ef7899e6dd3f1e">RootFinder::Method::Hybrid</a>, 
+<a class="el" href="group__NumericalAlgorithmsGroup.html#gga2bdd099599c989714bd6497401452624a1c8b97c83b0726216cd5dbc88a64b0ed">RootFinder::Method::Newton</a>
+ }<tr class="memdesc:ga2bdd099599c989714bd6497401452624"><td class="mdescLeft">&#160;</td><td class="mdescRight">The different options for the rootfinding method of gsl_multiroot.  <a href="group__NumericalAlgorithmsGroup.html#ga2bdd099599c989714bd6497401452624">More...</a><br /></td></tr>
+</td></tr>
+<tr class="separator:ga2bdd099599c989714bd6497401452624"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga93e426910f54d934c33222d22799daa3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga93e426910f54d934c33222d22799daa3">RootFinder::StoppingCondition</a> { <a class="el" href="group__NumericalAlgorithmsGroup.html#gga93e426910f54d934c33222d22799daa3a08c34fc349289049842570c935cec0c1">RootFinder::StoppingCondition::AbsoluteAndRelative</a>, 
+<a class="el" href="group__NumericalAlgorithmsGroup.html#gga93e426910f54d934c33222d22799daa3ab51ca26c6c89cfc9bec338f7a0d3e0c8">RootFinder::StoppingCondition::Absolute</a>
+ }<tr class="memdesc:ga93e426910f54d934c33222d22799daa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The different options for the convergence criterion of gsl_multiroot.  <a href="group__NumericalAlgorithmsGroup.html#ga93e426910f54d934c33222d22799daa3">More...</a><br /></td></tr>
+</td></tr>
+<tr class="separator:ga93e426910f54d934c33222d22799daa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gadf4e8422d331ca95914ac4ddf74eb393"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#gadf4e8422d331ca95914ac4ddf74eb393">find_generalized_eigenvalues</a> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> *&gt; eigenvalues_real_part, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> *&gt; eigenvalues_imaginary_part, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> *&gt; eigenvectors, <a class="el" href="classMatrix.html">Matrix</a> matrix_a, <a class="el" href="classMatrix.html">Matrix</a> matrix_b) noexcept</td></tr>
+<tr class="memdesc:gadf4e8422d331ca95914ac4ddf74eb393"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the generalized eigenvalue problem for two matrices.  <a href="#gadf4e8422d331ca95914ac4ddf74eb393">More...</a><br /></td></tr>
+<tr class="separator:gadf4e8422d331ca95914ac4ddf74eb393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaff167eee8a80045d528dc0c747c44e69"><td class="memTemplParams" colspan="2">template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:gaff167eee8a80045d528dc0c747c44e69"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#gaff167eee8a80045d528dc0c747c44e69">definite_integral</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;integrand, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mesh) noexcept</td></tr>
+<tr class="memdesc:gaff167eee8a80045d528dc0c747c44e69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the definite integral of a grid-function over a manifold.  <a href="#gaff167eee8a80045d528dc0c747c44e69">More...</a><br /></td></tr>
+<tr class="separator:gaff167eee8a80045d528dc0c747c44e69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1fd07ec35ea9d33316b1c9a402766b55"><td class="memTemplParams" colspan="2"><a id="ga1fd07ec35ea9d33316b1c9a402766b55"></a>
+template&lt;typename FluxTags , size_t Dim, typename DerivativeFrame &gt; </td></tr>
+<tr class="memitem:ga1fd07ec35ea9d33316b1c9a402766b55"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga1fd07ec35ea9d33316b1c9a402766b55">divergence</a> (const Variables&lt; FluxTags &gt; &amp;F, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mesh, const InverseJacobian&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a>, DerivativeFrame &gt; &amp;inverse_jacobian) noexcept -&gt; Variables&lt; <a class="el" href="group__DataBoxTagsGroup.html#ga3dda5a16c7f6baccd115de2c8f12394e">db::wrap_tags_in</a>&lt; Tags::div, FluxTags &gt;&gt;</td></tr>
+<tr class="memdesc:ga1fd07ec35ea9d33316b1c9a402766b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the (Euclidean) divergence of fluxes. <br /></td></tr>
+<tr class="separator:ga1fd07ec35ea9d33316b1c9a402766b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21beb26abe3c25180788b2c8ce939b39"><td class="memTemplParams" colspan="2">template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:ga21beb26abe3c25180788b2c8ce939b39"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga21beb26abe3c25180788b2c8ce939b39">linearize</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;u, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mesh)</td></tr>
+<tr class="separator:ga21beb26abe3c25180788b2c8ce939b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4519e09fd8a878ff52edad38439b5f44"><td class="memTemplParams" colspan="2">template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:ga4519e09fd8a878ff52edad38439b5f44"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga4519e09fd8a878ff52edad38439b5f44">linearize</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;u, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mesh, size_t d)</td></tr>
+<tr class="separator:ga4519e09fd8a878ff52edad38439b5f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5c26f2543e383e45bd418d8f82917879"><td class="memTemplParams" colspan="2">template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:ga5c26f2543e383e45bd418d8f82917879"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga5c26f2543e383e45bd418d8f82917879">mean_value</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;f, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mesh)</td></tr>
+<tr class="memdesc:ga5c26f2543e383e45bd418d8f82917879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean value of a grid-function over a manifold. \(mean value = \int f dV / \int dV\).  <a href="#ga5c26f2543e383e45bd418d8f82917879">More...</a><br /></td></tr>
+<tr class="separator:ga5c26f2543e383e45bd418d8f82917879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6d6f1876cc09fac52091acb154f752a"><td class="memTemplParams" colspan="2">template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:gad6d6f1876cc09fac52091acb154f752a"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#gad6d6f1876cc09fac52091acb154f752a">mean_value_on_boundary</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;f, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mesh, size_t d, <a class="el" href="group__ComputationalDomainGroup.html#ga8c0137d7160ad71b6ed265c53c99ed00">Side</a> side)</td></tr>
+<tr class="separator:gad6d6f1876cc09fac52091acb154f752a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga41bbb3157e9785a6a0b580db4b511901"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga41bbb3157e9785a6a0b580db4b511901"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga41bbb3157e9785a6a0b580db4b511901">raw_transpose</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; T *&gt; result, const T *const data, const size_t chunk_size, const size_t number_of_chunks) noexcept</td></tr>
+<tr class="memdesc:ga41bbb3157e9785a6a0b580db4b511901"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute transposed data.  <a href="#ga41bbb3157e9785a6a0b580db4b511901">More...</a><br /></td></tr>
+<tr class="separator:ga41bbb3157e9785a6a0b580db4b511901"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae748b5dd2d06469f66d22d4a9e9a7e65"><td class="memTemplParams" colspan="2">template&lt;typename Function &gt; </td></tr>
+<tr class="memitem:gae748b5dd2d06469f66d22d4a9e9a7e65"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#gae748b5dd2d06469f66d22d4a9e9a7e65">RootFinder::newton_raphson</a> (const Function &amp;f, const double initial_guess, const double lower_bound, const double upper_bound, const size_t digits, const size_t max_iterations=50)</td></tr>
+<tr class="memdesc:gae748b5dd2d06469f66d22d4a9e9a7e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the root of the function <code>f</code> with the Newton-Raphson method.  <a href="group__NumericalAlgorithmsGroup.html#gae748b5dd2d06469f66d22d4a9e9a7e65">More...</a><br /></td></tr>
+<tr class="separator:gae748b5dd2d06469f66d22d4a9e9a7e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga50bf5dd7b791e73fc32563022486fc07"><td class="memTemplParams" colspan="2">template&lt;typename Function &gt; </td></tr>
+<tr class="memitem:ga50bf5dd7b791e73fc32563022486fc07"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga50bf5dd7b791e73fc32563022486fc07">RootFinder::newton_raphson</a> (const Function &amp;f, const <a class="el" href="classDataVector.html">DataVector</a> &amp;initial_guess, const <a class="el" href="classDataVector.html">DataVector</a> &amp;lower_bound, const <a class="el" href="classDataVector.html">DataVector</a> &amp;upper_bound, const size_t digits, const size_t max_iterations=50)</td></tr>
+<tr class="memdesc:ga50bf5dd7b791e73fc32563022486fc07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the root of the function <code>f</code> with the Newton-Raphson method on each element in a <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>.  <a href="group__NumericalAlgorithmsGroup.html#ga50bf5dd7b791e73fc32563022486fc07">More...</a><br /></td></tr>
+<tr class="separator:ga50bf5dd7b791e73fc32563022486fc07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga198dcd46579bcb2545eb2861c0b97ab0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga198dcd46579bcb2545eb2861c0b97ab0">positive_root</a> (double a, double b, double c)</td></tr>
+<tr class="memdesc:ga198dcd46579bcb2545eb2861c0b97ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the positive root of a quadratic equation ax^2 + bx + c = 0.  <a href="#ga198dcd46579bcb2545eb2861c0b97ab0">More...</a><br /></td></tr>
+<tr class="separator:ga198dcd46579bcb2545eb2861c0b97ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4859cadbfbdd355f3e1f890b0e7f0421"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga4859cadbfbdd355f3e1f890b0e7f0421">real_roots</a> (double a, double b, double c)</td></tr>
+<tr class="memdesc:ga4859cadbfbdd355f3e1f890b0e7f0421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the two real roots of a quadratic equation ax^2 + bx + c = 0.  <a href="#ga4859cadbfbdd355f3e1f890b0e7f0421">More...</a><br /></td></tr>
+<tr class="separator:ga4859cadbfbdd355f3e1f890b0e7f0421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf05de5dac1ec3c418a1aa0809a8c58a"><td class="memTemplParams" colspan="2">template&lt;typename Function &gt; </td></tr>
+<tr class="memitem:gabf05de5dac1ec3c418a1aa0809a8c58a"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#gabf05de5dac1ec3c418a1aa0809a8c58a">RootFinder::toms748</a> (const Function &amp;f, const double lower_bound, const double upper_bound, const double absolute_tolerance, const double relative_tolerance, const size_t max_iterations=100)</td></tr>
+<tr class="memdesc:gabf05de5dac1ec3c418a1aa0809a8c58a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the root of the function <code>f</code> with the TOMS_748 method.  <a href="group__NumericalAlgorithmsGroup.html#gabf05de5dac1ec3c418a1aa0809a8c58a">More...</a><br /></td></tr>
+<tr class="separator:gabf05de5dac1ec3c418a1aa0809a8c58a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e775caa5df400a744eb77c8c6e82a41"><td class="memTemplParams" colspan="2">template&lt;typename Function &gt; </td></tr>
+<tr class="memitem:ga0e775caa5df400a744eb77c8c6e82a41"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga0e775caa5df400a744eb77c8c6e82a41">RootFinder::toms748</a> (const Function &amp;f, const <a class="el" href="classDataVector.html">DataVector</a> &amp;lower_bound, const <a class="el" href="classDataVector.html">DataVector</a> &amp;upper_bound, const double absolute_tolerance, const double relative_tolerance, const size_t max_iterations=100)</td></tr>
+<tr class="memdesc:ga0e775caa5df400a744eb77c8c6e82a41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the root of the function <code>f</code> with the TOMS_748 method on each element in a <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>.  <a href="group__NumericalAlgorithmsGroup.html#ga0e775caa5df400a744eb77c8c6e82a41">More...</a><br /></td></tr>
+<tr class="separator:ga0e775caa5df400a744eb77c8c6e82a41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8cabc54b7c9f8e3c69a0b6f4523c837d"><td class="memTemplParams" colspan="2">template&lt;typename VariableTags , typename MatrixType , size_t Dim&gt; </td></tr>
+<tr class="memitem:ga8cabc54b7c9f8e3c69a0b6f4523c837d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga8cabc54b7c9f8e3c69a0b6f4523c837d">apply_matrices</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; Variables&lt; VariableTags &gt; *&gt; result, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; MatrixType, Dim &gt; &amp;matrices, const Variables&lt; VariableTags &gt; &amp;u, const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;extents) noexcept</td></tr>
+<tr class="memdesc:ga8cabc54b7c9f8e3c69a0b6f4523c837d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply by matrices in each dimension.  <a href="#ga8cabc54b7c9f8e3c69a0b6f4523c837d">More...</a><br /></td></tr>
+<tr class="separator:ga8cabc54b7c9f8e3c69a0b6f4523c837d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafe2d7a9d9279c6e4a2d3f49996e53dc2"><td class="memTemplParams" colspan="2">template&lt;typename VariableTags , typename MatrixType , size_t Dim&gt; </td></tr>
+<tr class="memitem:gafe2d7a9d9279c6e4a2d3f49996e53dc2"><td class="memTemplItemLeft" align="right" valign="top">Variables&lt; VariableTags &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#gafe2d7a9d9279c6e4a2d3f49996e53dc2">apply_matrices</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; MatrixType, Dim &gt; &amp;matrices, const Variables&lt; VariableTags &gt; &amp;u, const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;extents) noexcept</td></tr>
+<tr class="memdesc:gafe2d7a9d9279c6e4a2d3f49996e53dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply by matrices in each dimension.  <a href="#gafe2d7a9d9279c6e4a2d3f49996e53dc2">More...</a><br /></td></tr>
+<tr class="separator:gafe2d7a9d9279c6e4a2d3f49996e53dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga729fc7bc9a757ff43347d3f391f11555"><td class="memTemplParams" colspan="2">template&lt;typename MatrixType , size_t Dim&gt; </td></tr>
+<tr class="memitem:ga729fc7bc9a757ff43347d3f391f11555"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga729fc7bc9a757ff43347d3f391f11555">apply_matrices</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> *&gt; result, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; MatrixType, Dim &gt; &amp;matrices, const <a class="el" href="classDataVector.html">DataVector</a> &amp;u, const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;extents) noexcept</td></tr>
+<tr class="memdesc:ga729fc7bc9a757ff43347d3f391f11555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply by matrices in each dimension.  <a href="#ga729fc7bc9a757ff43347d3f391f11555">More...</a><br /></td></tr>
+<tr class="separator:ga729fc7bc9a757ff43347d3f391f11555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga42d855ef6fed5fc2cc4b0711445bc3bd"><td class="memTemplParams" colspan="2">template&lt;typename MatrixType , size_t Dim&gt; </td></tr>
+<tr class="memitem:ga42d855ef6fed5fc2cc4b0711445bc3bd"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga42d855ef6fed5fc2cc4b0711445bc3bd">apply_matrices</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; MatrixType, Dim &gt; &amp;matrices, const <a class="el" href="classDataVector.html">DataVector</a> &amp;u, const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;extents) noexcept</td></tr>
+<tr class="memdesc:ga42d855ef6fed5fc2cc4b0711445bc3bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply by matrices in each dimension.  <a href="#ga42d855ef6fed5fc2cc4b0711445bc3bd">More...</a><br /></td></tr>
+<tr class="separator:ga42d855ef6fed5fc2cc4b0711445bc3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga94bdfb83e587caae2e8084cd5713b3b8"><td class="memTemplParams" colspan="2">template&lt;typename DerivativeTags , typename VariableTags , size_t Dim&gt; </td></tr>
+<tr class="memitem:ga94bdfb83e587caae2e8084cd5713b3b8"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga94bdfb83e587caae2e8084cd5713b3b8">logical_partial_derivatives</a> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; Variables&lt; DerivativeTags &gt;, Dim &gt; *&gt; logical_partial_derivatives_of_u, const Variables&lt; VariableTags &gt; &amp;u, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mesh) noexcept</td></tr>
+<tr class="memdesc:ga94bdfb83e587caae2e8084cd5713b3b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the partial derivatives of each variable with respect to the logical coordinate.  <a href="#ga94bdfb83e587caae2e8084cd5713b3b8">More...</a><br /></td></tr>
+<tr class="separator:ga94bdfb83e587caae2e8084cd5713b3b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78fd6b37069b21c0ac640467a98e0abe"><td class="memTemplParams" colspan="2">template&lt;typename DerivativeTags , typename VariableTags , size_t Dim&gt; </td></tr>
+<tr class="memitem:ga78fd6b37069b21c0ac640467a98e0abe"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga78fd6b37069b21c0ac640467a98e0abe">logical_partial_derivatives</a> (const Variables&lt; VariableTags &gt; &amp;u, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mesh) noexcept -&gt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; Variables&lt; DerivativeTags &gt;, Dim &gt;</td></tr>
+<tr class="memdesc:ga78fd6b37069b21c0ac640467a98e0abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the partial derivatives of each variable with respect to the logical coordinate.  <a href="#ga78fd6b37069b21c0ac640467a98e0abe">More...</a><br /></td></tr>
+<tr class="separator:ga78fd6b37069b21c0ac640467a98e0abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0541b93f207564ad32e49a1ede7a2ee2"><td class="memTemplParams" colspan="2">template&lt;typename DerivativeTags , size_t Dim, typename DerivativeFrame &gt; </td></tr>
+<tr class="memitem:ga0541b93f207564ad32e49a1ede7a2ee2"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga0541b93f207564ad32e49a1ede7a2ee2">partial_derivatives</a> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; Variables&lt; <a class="el" href="group__DataBoxTagsGroup.html#ga3dda5a16c7f6baccd115de2c8f12394e">db::wrap_tags_in</a>&lt; Tags::deriv, DerivativeTags, tmpl::size_t&lt; Dim &gt;, DerivativeFrame &gt;&gt; *&gt; du, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; Variables&lt; DerivativeTags &gt;, Dim &gt; &amp;logical_partial_derivatives_of_u, const InverseJacobian&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a>, DerivativeFrame &gt; &amp;inverse_jacobian) noexcept</td></tr>
+<tr class="memdesc:ga0541b93f207564ad32e49a1ede7a2ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the partial derivatives of each variable with respect to the coordinates of <code>DerivativeFrame</code>.  <a href="#ga0541b93f207564ad32e49a1ede7a2ee2">More...</a><br /></td></tr>
+<tr class="separator:ga0541b93f207564ad32e49a1ede7a2ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f303a78826d7c7f6d9fe8af5baa74d0"><td class="memTemplParams" colspan="2">template&lt;typename DerivativeTags , typename VariableTags , size_t Dim, typename DerivativeFrame &gt; </td></tr>
+<tr class="memitem:ga9f303a78826d7c7f6d9fe8af5baa74d0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga9f303a78826d7c7f6d9fe8af5baa74d0">partial_derivatives</a> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; Variables&lt; <a class="el" href="group__DataBoxTagsGroup.html#ga3dda5a16c7f6baccd115de2c8f12394e">db::wrap_tags_in</a>&lt; Tags::deriv, DerivativeTags, tmpl::size_t&lt; Dim &gt;, DerivativeFrame &gt;&gt; *&gt; du, const Variables&lt; VariableTags &gt; &amp;u, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mesh, const InverseJacobian&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a>, DerivativeFrame &gt; &amp;inverse_jacobian) noexcept</td></tr>
+<tr class="memdesc:ga9f303a78826d7c7f6d9fe8af5baa74d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the partial derivatives of each variable with respect to the coordinates of <code>DerivativeFrame</code>.  <a href="#ga9f303a78826d7c7f6d9fe8af5baa74d0">More...</a><br /></td></tr>
+<tr class="separator:ga9f303a78826d7c7f6d9fe8af5baa74d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga17909413f3502347c5adfe37637bb3c4"><td class="memTemplParams" colspan="2">template&lt;typename DerivativeTags , typename VariableTags , size_t Dim, typename DerivativeFrame &gt; </td></tr>
+<tr class="memitem:ga17909413f3502347c5adfe37637bb3c4"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga17909413f3502347c5adfe37637bb3c4">partial_derivatives</a> (const Variables&lt; VariableTags &gt; &amp;u, const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;mesh, const InverseJacobian&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a>, DerivativeFrame &gt; &amp;inverse_jacobian) noexcept -&gt; Variables&lt; <a class="el" href="group__DataBoxTagsGroup.html#ga3dda5a16c7f6baccd115de2c8f12394e">db::wrap_tags_in</a>&lt; Tags::deriv, DerivativeTags, tmpl::size_t&lt; Dim &gt;, DerivativeFrame &gt;&gt;</td></tr>
+<tr class="memdesc:ga17909413f3502347c5adfe37637bb3c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the partial derivatives of each variable with respect to the coordinates of <code>DerivativeFrame</code>.  <a href="#ga17909413f3502347c5adfe37637bb3c4">More...</a><br /></td></tr>
+<tr class="separator:ga17909413f3502347c5adfe37637bb3c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga20bff587707539c392d7821e83e7e7d1"><td class="memTemplParams" colspan="2">template&lt;typename U , typename T &gt; </td></tr>
+<tr class="memitem:ga20bff587707539c392d7821e83e7e7d1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga20bff587707539c392d7821e83e7e7d1">transpose</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; T *&gt; result, const U &amp;u, const size_t chunk_size, const size_t number_of_chunks) noexcept</td></tr>
+<tr class="memdesc:ga20bff587707539c392d7821e83e7e7d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute transposed data.  <a href="#ga20bff587707539c392d7821e83e7e7d1">More...</a><br /></td></tr>
+<tr class="separator:ga20bff587707539c392d7821e83e7e7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga26e189745124ad8589b745ca6077bff5"><td class="memTemplParams" colspan="2">template&lt;typename U , typename T  = U&gt; </td></tr>
+<tr class="memitem:ga26e189745124ad8589b745ca6077bff5"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga26e189745124ad8589b745ca6077bff5">transpose</a> (const U &amp;u, const size_t chunk_size, const size_t number_of_chunks) noexcept</td></tr>
+<tr class="memdesc:ga26e189745124ad8589b745ca6077bff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute transposed data.  <a href="#ga26e189745124ad8589b745ca6077bff5">More...</a><br /></td></tr>
+<tr class="separator:ga26e189745124ad8589b745ca6077bff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18c21ac112bbb2dd4f41cc66f777dc70"><td class="memTemplParams" colspan="2">template&lt;size_t Dim, typename Function , Requires&lt; gsl_multiroot_detail::is_jacobian_callable_v&lt; Function, std::array&lt; double, Dim &gt;&gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga18c21ac112bbb2dd4f41cc66f777dc70"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithmsGroup.html#ga18c21ac112bbb2dd4f41cc66f777dc70">RootFinder::gsl_multiroot</a> (const Function &amp;func, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Dim &gt; &amp;initial_guess, const double absolute_tolerance, const size_t maximum_iterations, const double relative_tolerance=0.0, const <a class="el" href="group__NumericalAlgorithmsGroup.html#gaf4af7dc9f52c6b0bf4f25a17a872ac7b">Verbosity</a> verbosity=<a class="el" href="group__NumericalAlgorithmsGroup.html#ggaf4af7dc9f52c6b0bf4f25a17a872ac7ba1e3332b2cd20d2d3db407a20f6913d0d">Verbosity::Silent</a>, const double maximum_absolute_tolerance=0.0, const <a class="el" href="group__NumericalAlgorithmsGroup.html#ga2bdd099599c989714bd6497401452624">Method</a> method=<a class="el" href="group__NumericalAlgorithmsGroup.html#gga2bdd099599c989714bd6497401452624a1c8b97c83b0726216cd5dbc88a64b0ed">Method::Newton</a>, const <a class="el" href="group__NumericalAlgorithmsGroup.html#ga93e426910f54d934c33222d22799daa3">StoppingCondition</a> condition=<a class="el" href="group__NumericalAlgorithmsGroup.html#gga93e426910f54d934c33222d22799daa3ab51ca26c6c89cfc9bec338f7a0d3e0c8">StoppingCondition::Absolute</a>)</td></tr>
+<tr class="memdesc:ga18c21ac112bbb2dd4f41cc66f777dc70"><td class="mdescLeft">&#160;</td><td class="mdescRight">A multidimensional root finder supporting Newton and Hybrid methods, as well as modified methods based on these.  <a href="group__NumericalAlgorithmsGroup.html#ga18c21ac112bbb2dd4f41cc66f777dc70">More...</a><br /></td></tr>
+<tr class="separator:ga18c21ac112bbb2dd4f41cc66f777dc70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Generic numerical algorithms. </p>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga2bdd099599c989714bd6497401452624"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2bdd099599c989714bd6497401452624">&#9670;&nbsp;</a></span>Method</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__NumericalAlgorithmsGroup.html#ga2bdd099599c989714bd6497401452624">RootFinder::Method</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The different options for the rootfinding method of gsl_multiroot. </p>
+<p>This enum is for setting the method used the rootfinder. The precise method used by the gsl rootfinder depends on whether or not the function passed to it has a callable <code>jacobian</code> member function. In the case where it doesn't, the jacobian is approximated with a finite difference. For example, if the Method specified is Hybrid, gsl will use the gsl_multiroot_fdfsolver_hybridj method in the case where a <code>jacobian</code> is provided, and gsl_multiroot_fsolver_hybrid in the case where one isn't. See <a href="https://www.gnu.org/software/gsl/manual/html_node/Multidimensional-Root_002dFinding.html">GSL's documentation for multidimensional rootfinding</a> for information on the different methods. </p><dl class="section note"><dt>Note</dt><dd>gsl does not provide a finite difference version for the modified Newton method (gsl_multiroot_fdfsolver_gnewton). In the case where a jacobian is not provided the method used will be a non-modified Newton method. </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga2bdd099599c989714bd6497401452624aa3b07eb68ca39eb0b75ca59169f650d7"></a>Hybrids&#160;</td><td class="fielddoc"><p>Hybrid of Newton's method along with following the gradient direction. </p>
+<dl class="section note"><dt>Note</dt><dd>Sometimes Hybrids works only with the Absolute stopping condition. </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2bdd099599c989714bd6497401452624afb1b6e23a3767d2a31ef7899e6dd3f1e"></a>Hybrid&#160;</td><td class="fielddoc"><p>"Unscaled version of Hybrids that uses a spherical trust region," see GSL documentation for more details. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2bdd099599c989714bd6497401452624a1c8b97c83b0726216cd5dbc88a64b0ed"></a>Newton&#160;</td><td class="fielddoc"><p>If an analytic jacobian is provided, gsl uses a modification of Newton's method to improve global convergence. Uses vanilla Newton's method if no jacobian is provided. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga93e426910f54d934c33222d22799daa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga93e426910f54d934c33222d22799daa3">&#9670;&nbsp;</a></span>StoppingCondition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__NumericalAlgorithmsGroup.html#ga93e426910f54d934c33222d22799daa3">RootFinder::StoppingCondition</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The different options for the convergence criterion of gsl_multiroot. </p>
+<p>See <a href="https://www.gnu.org/software/gsl/manual/html_node/Multidimensional-Root_002dFinding.html">GSL's documentation for multidimensional rootfinding</a> for information on the different stopping conditions. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga93e426910f54d934c33222d22799daa3a08c34fc349289049842570c935cec0c1"></a>AbsoluteAndRelative&#160;</td><td class="fielddoc"><p>See GSL documentation for gsl_multiroot_test_delta. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga93e426910f54d934c33222d22799daa3ab51ca26c6c89cfc9bec338f7a0d3e0c8"></a>Absolute&#160;</td><td class="fielddoc"><p>See GSL documentation for gsl_multiroot_test_residual. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gaf4af7dc9f52c6b0bf4f25a17a872ac7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf4af7dc9f52c6b0bf4f25a17a872ac7b">&#9670;&nbsp;</a></span>Verbosity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__NumericalAlgorithmsGroup.html#gaf4af7dc9f52c6b0bf4f25a17a872ac7b">RootFinder::Verbosity</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The different options for the verbosity of gsl_multiroot. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaf4af7dc9f52c6b0bf4f25a17a872ac7ba1e3332b2cd20d2d3db407a20f6913d0d"></a>Silent&#160;</td><td class="fielddoc"><p>Do not print anything. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf4af7dc9f52c6b0bf4f25a17a872ac7ba098753f8980036f4b936e3d4b6997111"></a>Quiet&#160;</td><td class="fielddoc"><p>Print only "success" or "failed" on termination. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf4af7dc9f52c6b0bf4f25a17a872ac7bad4a9fa383ab700c5bdd6f31cf7df0faf"></a>Verbose&#160;</td><td class="fielddoc"><p>Print final functions values on termination. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf4af7dc9f52c6b0bf4f25a17a872ac7baa603905470e2a5b8c13e96b579ef0dba"></a>Debug&#160;</td><td class="fielddoc"><p>Print function values on every iteration. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga8cabc54b7c9f8e3c69a0b6f4523c837d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8cabc54b7c9f8e3c69a0b6f4523c837d">&#9670;&nbsp;</a></span>apply_matrices() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VariableTags , typename MatrixType , size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void apply_matrices </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; Variables&lt; VariableTags &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; MatrixType, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Variables&lt; VariableTags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extents</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Multiply by matrices in each dimension. </p>
+<p>Multiplies each stripe in the first dimension of <code>u</code> by <code>matrices[0]</code>, each stripe in the second dimension of <code>u</code> by <code>matrices[1]</code>, and so on. If any of the matrices are empty they will be treated as the identity, but the matrix multiplications will be skipped for increased efficiency. </p>
+
+</div>
+</div>
+<a id="gafe2d7a9d9279c6e4a2d3f49996e53dc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafe2d7a9d9279c6e4a2d3f49996e53dc2">&#9670;&nbsp;</a></span>apply_matrices() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VariableTags , typename MatrixType , size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Variables&lt;VariableTags&gt; apply_matrices </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; MatrixType, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Variables&lt; VariableTags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extents</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Multiply by matrices in each dimension. </p>
+<p>Multiplies each stripe in the first dimension of <code>u</code> by <code>matrices[0]</code>, each stripe in the second dimension of <code>u</code> by <code>matrices[1]</code>, and so on. If any of the matrices are empty they will be treated as the identity, but the matrix multiplications will be skipped for increased efficiency. </p>
+
+</div>
+</div>
+<a id="ga729fc7bc9a757ff43347d3f391f11555"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga729fc7bc9a757ff43347d3f391f11555">&#9670;&nbsp;</a></span>apply_matrices() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MatrixType , size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void apply_matrices </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> *&gt;&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; MatrixType, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extents</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Multiply by matrices in each dimension. </p>
+<p>Multiplies each stripe in the first dimension of <code>u</code> by <code>matrices[0]</code>, each stripe in the second dimension of <code>u</code> by <code>matrices[1]</code>, and so on. If any of the matrices are empty they will be treated as the identity, but the matrix multiplications will be skipped for increased efficiency. </p>
+
+</div>
+</div>
+<a id="ga42d855ef6fed5fc2cc4b0711445bc3bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga42d855ef6fed5fc2cc4b0711445bc3bd">&#9670;&nbsp;</a></span>apply_matrices() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MatrixType , size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a> apply_matrices </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; MatrixType, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extents</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Multiply by matrices in each dimension. </p>
+<p>Multiplies each stripe in the first dimension of <code>u</code> by <code>matrices[0]</code>, each stripe in the second dimension of <code>u</code> by <code>matrices[1]</code>, and so on. If any of the matrices are empty they will be treated as the identity, but the matrix multiplications will be skipped for increased efficiency. </p>
+
+</div>
+</div>
+<a id="gaff167eee8a80045d528dc0c747c44e69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff167eee8a80045d528dc0c747c44e69">&#9670;&nbsp;</a></span>definite_integral()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double definite_integral </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>integrand</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the definite integral of a grid-function over a manifold. </p>
+<p>The integral is computed on the reference element by multiplying the <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a> with the <a class="el" href="namespaceSpectral.html#aba36dd4c314b038129311dcb2c644daf" title="Weights to compute definite integrals. ">Spectral::quadrature_weights()</a> in that dimension. </p>
+<p><em>Requires:</em> number of points in <code>integrand</code> and <code>mesh</code> are equal. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">integrand</td><td>the grid function to integrate. </td></tr>
+    <tr><td class="paramname">mesh</td><td>the <a class="el" href="classMesh.html" title="Holds the number of grid points, basis, and quadrature in each direction of the computational grid...">Mesh</a> of the manifold on which <code>integrand</code> is located. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> the definite integral of <code>integrand</code> on the manifold. </p>
+
+</div>
+</div>
+<a id="gadf4e8422d331ca95914ac4ddf74eb393"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadf4e8422d331ca95914ac4ddf74eb393">&#9670;&nbsp;</a></span>find_generalized_eigenvalues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void find_generalized_eigenvalues </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> *&gt;&#160;</td>
+          <td class="paramname"><em>eigenvalues_real_part</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> *&gt;&#160;</td>
+          <td class="paramname"><em>eigenvalues_imaginary_part</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classMatrix.html">Matrix</a> *&gt;&#160;</td>
+          <td class="paramname"><em>eigenvectors</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMatrix.html">Matrix</a>&#160;</td>
+          <td class="paramname"><em>matrix_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMatrix.html">Matrix</a>&#160;</td>
+          <td class="paramname"><em>matrix_b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Solve the generalized eigenvalue problem for two matrices. </p>
+<p>This function uses the lapack routine dggev (<a href="http://www.netlib.org/lapack/explore-3.1.1-html/dggev.f.html">http://www.netlib.org/lapack/explore-3.1.1-html/dggev.f.html</a>) to solve the generalized eigenvalue problem \(A v_a =\lambda_a B v_a \) for the generalized eigenvalues \(\lambda_a\) and corresponding eigenvectors \(v_a\). <code>matrix_a</code> and <code>matrix_b</code> are each a <code><a class="el" href="classMatrix.html" title="A dynamically sized matrix of doubles with column-major storage. ">Matrix</a></code>; they correspond to square matrices \(A\) and \(B\) that are the same dimension \(N\). <code>eigenvalues_real_part</code> is a <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code> of size \(N\) that will store the real parts of the eigenvalues, <code>eigenvalues_imaginary_part</code> is a <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code> of size \(N\) that will store the imaginary parts of the eigenvalues. Complex eigenvalues always form complex conjugate pairs, and the \(j\) and \(j+1\) eigenvalues will have the forms \(a+ib\) and \(a-ib\), respectively. The eigenvectors are returned as the columns of a square <code><a class="el" href="classMatrix.html" title="A dynamically sized matrix of doubles with column-major storage. ">Matrix</a></code> of dimension \(N\) called <code>eigenvectors</code>. If eigenvalue \(j\) is real, then column \(j\) of <code>eigenvectors</code> is the corresponding eigenvector. If eigenvalue \(j\) and \(j+1\) are complex-conjugate pairs, then the eigenvector for eigenvalue \(j\) is (column j) + \(i\) (column j+1), and the eigenvector for eigenvalue \(j+1\) is (column j) - \(i\) (column j+1). </p>
+
+</div>
+</div>
+<a id="ga18c21ac112bbb2dd4f41cc66f777dc70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga18c21ac112bbb2dd4f41cc66f777dc70">&#9670;&nbsp;</a></span>gsl_multiroot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim, typename Function , Requires&lt; gsl_multiroot_detail::is_jacobian_callable_v&lt; Function, std::array&lt; double, Dim &gt;&gt;&gt;  = nullptr&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Dim &gt; RootFinder::gsl_multiroot </td>
+          <td>(</td>
+          <td class="paramtype">const Function &amp;&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>initial_guess</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>absolute_tolerance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>maximum_iterations</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>relative_tolerance</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__NumericalAlgorithmsGroup.html#gaf4af7dc9f52c6b0bf4f25a17a872ac7b">Verbosity</a>&#160;</td>
+          <td class="paramname"><em>verbosity</em> = <code><a class="el" href="group__NumericalAlgorithmsGroup.html#ggaf4af7dc9f52c6b0bf4f25a17a872ac7ba1e3332b2cd20d2d3db407a20f6913d0d">Verbosity::Silent</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>maximum_absolute_tolerance</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__NumericalAlgorithmsGroup.html#ga2bdd099599c989714bd6497401452624">Method</a>&#160;</td>
+          <td class="paramname"><em>method</em> = <code><a class="el" href="group__NumericalAlgorithmsGroup.html#gga2bdd099599c989714bd6497401452624a1c8b97c83b0726216cd5dbc88a64b0ed">Method::Newton</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__NumericalAlgorithmsGroup.html#ga93e426910f54d934c33222d22799daa3">StoppingCondition</a>&#160;</td>
+          <td class="paramname"><em>condition</em> = <code><a class="el" href="group__NumericalAlgorithmsGroup.html#gga93e426910f54d934c33222d22799daa3ab51ca26c6c89cfc9bec338f7a0d3e0c8">StoppingCondition::Absolute</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A multidimensional root finder supporting Newton and Hybrid methods, as well as modified methods based on these. </p>
+<p>This root finder accepts function objects with and without a callable <code>jacobian</code> member function. This member function both accepts and returns a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;double, Dim&gt;</code>, the dimension of the domain and range of the function the root find is being performed on. Whether the jacobian is provided determines the details of the implementation of the root-finding method that is selected by the user using the Method enum. That is, whether the jacobian is computed analytically via the <code>jacobian</code> member function, or whether the jacobian is computed numerically via a finite difference approximation. </p><dl class="section note"><dt>Note</dt><dd>GSL does not provide a finite difference version of its modified Newton method, so the unmodified one is used instead when the user uses the <a class="el" href="group__NumericalAlgorithmsGroup.html#gga2bdd099599c989714bd6497401452624a1c8b97c83b0726216cd5dbc88a64b0ed" title="If an analytic jacobian is provided, gsl uses a modification of Newton&#39;s method to improve global con...">Method::Newton</a> method.</dd></dl>
+<p>The user can select one of two possible criteria for convergence, <a class="el" href="group__NumericalAlgorithmsGroup.html#gga93e426910f54d934c33222d22799daa3ab51ca26c6c89cfc9bec338f7a0d3e0c8" title="See GSL documentation for gsl_multiroot_test_residual. ">StoppingCondition::Absolute</a>, where the sum of the absolute values of the components of the residual vector f are compared against the value provided to <code>absolute_tolerance</code>, and <a class="el" href="group__NumericalAlgorithmsGroup.html#gga93e426910f54d934c33222d22799daa3a08c34fc349289049842570c935cec0c1" title="See GSL documentation for gsl_multiroot_test_delta. ">StoppingCondition::AbsoluteAndRelative</a>, where the size of the most recent step taken in the root-finding iteration is compared against <code>absolute_tolerance</code> + <code>relative_tolerance</code> * |x_i|, for each component. In either case, a <code>maximum_absolute_tolerance</code> may be specified if the user anticipates that the convergence criterion specified with StoppingCondition will be too strict for a few points out of a population of points found with a sequence of root finds.</p>
+<p>See <a href="https://www.gnu.org/software/gsl/manual/html_node/Multidimensional-Root_002dFinding.html">GSL's documentation for multidimensional rootfinding</a> for reference.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>Function whose root is to be found. </td></tr>
+    <tr><td class="paramname">initial_guess</td><td>Contains initial guess. </td></tr>
+    <tr><td class="paramname">absolute_tolerance</td><td>The absolute tolerance. </td></tr>
+    <tr><td class="paramname">maximum_iterations</td><td>The maximum number of iterations. </td></tr>
+    <tr><td class="paramname">relative_tolerance</td><td>The relative tolerance. </td></tr>
+    <tr><td class="paramname">verbosity</td><td>Whether to print diagnostic messages. </td></tr>
+    <tr><td class="paramname">maximum_absolute_tolerance</td><td>Acceptable absolute tolerance when root finder doesn't converge. You may wish to use this if there are only a few "problematic" points where it is difficult to do a precise root find. </td></tr>
+    <tr><td class="paramname">method</td><td>The method to use. See the documentation for the Method enum. </td></tr>
+    <tr><td class="paramname">condition</td><td>The convergence condition to use. See the documentation for the StoppingCondition enum. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga21beb26abe3c25180788b2c8ce939b39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga21beb26abe3c25180788b2c8ce939b39">&#9670;&nbsp;</a></span>linearize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a> linearize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Truncate u to a linear function in each dimension. Ex in 2D: \(u^{Lin} = U_0 + U_x x + U_y y + U_{xy} xy\)</p>
+<p><em>Returns:</em> the linearization of <code>u</code> </p>
+
+</div>
+</div>
+<a id="ga4519e09fd8a878ff52edad38439b5f44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4519e09fd8a878ff52edad38439b5f44">&#9670;&nbsp;</a></span>linearize() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a> linearize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Truncate u to a linear function in the given dimension.</p>
+<p><em>Returns:</em> the linearization of <code>u</code> </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>the function to linearize. </td></tr>
+    <tr><td class="paramname">mesh</td><td>the <a class="el" href="classMesh.html" title="Holds the number of grid points, basis, and quadrature in each direction of the computational grid...">Mesh</a> of the grid on the manifold on which <code>u</code> is located. </td></tr>
+    <tr><td class="paramname">d</td><td>the dimension that is to be linearized. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga94bdfb83e587caae2e8084cd5713b3b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga94bdfb83e587caae2e8084cd5713b3b8">&#9670;&nbsp;</a></span>logical_partial_derivatives() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DerivativeTags , typename VariableTags , size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logical_partial_derivatives </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; Variables&lt; DerivativeTags &gt;, Dim &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>logical_partial_derivatives_of_u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Variables&lt; VariableTags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the partial derivatives of each variable with respect to the logical coordinate. </p>
+<p><em>Requires:</em> <code>DerivativeTags</code> to be the head of <code>VariableTags</code></p>
+<p>Returns a <code>Variables</code> with a spatial tensor index appended to the front of each tensor within <code>u</code> and each <code>Tag</code> wrapped with a <code>Tags::deriv</code>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">DerivativeTags</td><td>the subset of <code>VariableTags</code> for which derivatives are computed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga78fd6b37069b21c0ac640467a98e0abe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga78fd6b37069b21c0ac640467a98e0abe">&#9670;&nbsp;</a></span>logical_partial_derivatives() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DerivativeTags , typename VariableTags , size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto logical_partial_derivatives </td>
+          <td>(</td>
+          <td class="paramtype">const Variables&lt; VariableTags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt;  <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; Variables&lt; DerivativeTags &gt;, Dim &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the partial derivatives of each variable with respect to the logical coordinate. </p>
+<p><em>Requires:</em> <code>DerivativeTags</code> to be the head of <code>VariableTags</code></p>
+<p>Returns a <code>Variables</code> with a spatial tensor index appended to the front of each tensor within <code>u</code> and each <code>Tag</code> wrapped with a <code>Tags::deriv</code>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">DerivativeTags</td><td>the subset of <code>VariableTags</code> for which derivatives are computed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5c26f2543e383e45bd418d8f82917879"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5c26f2543e383e45bd418d8f82917879">&#9670;&nbsp;</a></span>mean_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">double mean_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the mean value of a grid-function over a manifold. \(mean value = \int f dV / \int dV\). </p>
+<p><em>Remarks:</em> The mean value is computed on the reference element(s). </p><dl class="section note"><dt>Note</dt><dd>The mean w.r.t. a different set of coordinates x can be computed by pre-multiplying the argument f by the Jacobian J = dx/dxi of the mapping from the reference coordinates xi to the coordinates x.</dd></dl>
+<p><em>Returns:</em> the mean value of <code>f</code> on the manifold </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>the grid function of which to find the mean. </td></tr>
+    <tr><td class="paramname">mesh</td><td>the <a class="el" href="classMesh.html" title="Holds the number of grid points, basis, and quadrature in each direction of the computational grid...">Mesh</a> of the manifold on which f is located. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gad6d6f1876cc09fac52091acb154f752a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad6d6f1876cc09fac52091acb154f752a">&#9670;&nbsp;</a></span>mean_value_on_boundary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">double mean_value_on_boundary </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__ComputationalDomainGroup.html#ga8c0137d7160ad71b6ed265c53c99ed00">Side</a>&#160;</td>
+          <td class="paramname"><em>side</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the mean value of a grid-function on a boundary of a manifold. \(mean value = \int f dV / \int dV\)</p>
+<p><em>Remarks:</em> The mean value is computed on the reference element(s).</p>
+<p><em>Returns:</em> the mean value of <code>f</code> on the boundary of the manifold</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>the grid function of which to find the mean. </td></tr>
+    <tr><td class="paramname">mesh</td><td>the <a class="el" href="classMesh.html" title="Holds the number of grid points, basis, and quadrature in each direction of the computational grid...">Mesh</a> of the manifold on which f is located. </td></tr>
+    <tr><td class="paramname">d</td><td>the dimension which is sliced away to get the boundary. </td></tr>
+    <tr><td class="paramname">side</td><td>whether it is the lower or upper boundary in the d-th dimension. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae748b5dd2d06469f66d22d4a9e9a7e65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae748b5dd2d06469f66d22d4a9e9a7e65">&#9670;&nbsp;</a></span>newton_raphson() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Function &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">double RootFinder::newton_raphson </td>
+          <td>(</td>
+          <td class="paramtype">const Function &amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>initial_guess</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>lower_bound</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>upper_bound</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>digits</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>max_iterations</em> = <code>50</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the root of the function <code>f</code> with the Newton-Raphson method. </p>
+<p><code>f</code> is a unary invokable that takes a <code>double</code> which is the current value at which to evaluate <code>f</code>. An example is below.</p>
+<div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> digits = 8;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">double</span> correct = <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">sqrt</a>(2.);</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">double</span> guess = 1.5;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">double</span> lower = 1.;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">double</span> upper = 2.;</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> func_and_deriv_lambda = [](<span class="keywordtype">double</span> x) noexcept {</div><div class="line">    <span class="keywordflow">return</span> std::make_pair(2. - <a class="code" href="group__ConstantExpressionsGroup.html#ga877f4f7c296ef66e0ae6560353b3570c">square</a>(x), -2. * x);</div><div class="line">  };</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> root_from_lambda = <a class="code" href="group__NumericalAlgorithmsGroup.html#gae748b5dd2d06469f66d22d4a9e9a7e65">RootFinder::newton_raphson</a>(</div><div class="line">      func_and_deriv_lambda, guess, lower, upper, digits);</div></div><!-- fragment --><p> See the <a href="http://www.boost.org/">Boost</a> documentation for more details.</p>
+<p><em>Requires:</em> Function <code>f</code> is invokable with a <code>double</code> </p><dl class="section note"><dt>Note</dt><dd>The parameter <code>digits</code> specifies the precision of the result in its desired number of base-10 digits.</dd></dl>
+<p><em>Throws:</em> <code><a class="el" href="classconvergence__error.html" title="Exception indicating convergence failure. ">convergence_error</a></code> if the requested precision is not met after <code>max_iterations</code> iterations. </p>
+
+</div>
+</div>
+<a id="ga50bf5dd7b791e73fc32563022486fc07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga50bf5dd7b791e73fc32563022486fc07">&#9670;&nbsp;</a></span>newton_raphson() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Function &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a> RootFinder::newton_raphson </td>
+          <td>(</td>
+          <td class="paramtype">const Function &amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>initial_guess</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lower_bound</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>upper_bound</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>digits</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>max_iterations</em> = <code>50</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the root of the function <code>f</code> with the Newton-Raphson method on each element in a <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>. </p>
+<p><code>f</code> is a binary invokable that takes a <code>double</code> as its first argument and a <code>size_t</code> as its second. The <code>double</code> is the current value at which to evaluate <code>f</code>, and the <code>size_t</code> is the current index into the <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>s. Below is an example of how to root find different functions by indexing into a lambda-captured <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code> using the <code>size_t</code> passed to <code>f</code>.</p>
+<div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> digits = 8;</div><div class="line">  <span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> guess{1.6, 1.9, -1.6, -1.9};</div><div class="line">  <span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> lower{<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">sqrt</a>(2.), <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">sqrt</a>(2.), -2., -3.};</div><div class="line">  <span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> upper{2., 3., -<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">sqrt</a>(2.), -<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">sqrt</a>(2.)};</div><div class="line">  <span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> constant{2., 4., 2., 4.};</div><div class="line"></div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> func_and_deriv_lambda = [&amp;constant](<span class="keyword">const</span> <span class="keywordtype">double</span> x,</div><div class="line">                                                 <span class="keyword">const</span> <span class="keywordtype">size_t</span> i) noexcept {</div><div class="line">    <span class="keywordflow">return</span> std::make_pair(constant[i] - <a class="code" href="group__ConstantExpressionsGroup.html#ga877f4f7c296ef66e0ae6560353b3570c">square</a>(x), -2. * x);</div><div class="line">  };</div><div class="line"></div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> root = <a class="code" href="group__NumericalAlgorithmsGroup.html#gae748b5dd2d06469f66d22d4a9e9a7e65">RootFinder::newton_raphson</a>(func_and_deriv_lambda, guess,</div><div class="line">                                               lower, upper, digits);</div></div><!-- fragment --><p> See the <a href="http://www.boost.org/">Boost</a> documentation for more details.</p>
+<p><em>Requires:</em> Function <code>f</code> be callable with a <code>double</code> and a <code>size_t</code> </p><dl class="section note"><dt>Note</dt><dd>The parameter <code>digits</code> specifies the precision of the result in its desired number of base-10 digits.</dd></dl>
+<p><em>Throws:</em> <code><a class="el" href="classconvergence__error.html" title="Exception indicating convergence failure. ">convergence_error</a></code> if, for any index, the requested precision is not met after <code>max_iterations</code> iterations. </p>
+
+</div>
+</div>
+<a id="ga0541b93f207564ad32e49a1ede7a2ee2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0541b93f207564ad32e49a1ede7a2ee2">&#9670;&nbsp;</a></span>partial_derivatives() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DerivativeTags , size_t Dim, typename DerivativeFrame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void partial_derivatives </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; Variables&lt; <a class="el" href="group__DataBoxTagsGroup.html#ga3dda5a16c7f6baccd115de2c8f12394e">db::wrap_tags_in</a>&lt; Tags::deriv, DerivativeTags, tmpl::size_t&lt; Dim &gt;, DerivativeFrame &gt;&gt; *&gt;&#160;</td>
+          <td class="paramname"><em>du</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; Variables&lt; DerivativeTags &gt;, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>logical_partial_derivatives_of_u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const InverseJacobian&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a>, DerivativeFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>inverse_jacobian</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the partial derivatives of each variable with respect to the coordinates of <code>DerivativeFrame</code>. </p>
+<p><em>Requires:</em> <code>DerivativeTags</code> to be the head of <code>VariableTags</code></p>
+<p>Returns a <code>Variables</code> with a spatial tensor index appended to the front of each tensor within <code>u</code> and each <code>Tag</code> wrapped with a <code>Tags::deriv</code>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">DerivativeTags</td><td>the subset of <code>VariableTags</code> for which derivatives are computed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9f303a78826d7c7f6d9fe8af5baa74d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9f303a78826d7c7f6d9fe8af5baa74d0">&#9670;&nbsp;</a></span>partial_derivatives() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DerivativeTags , typename VariableTags , size_t Dim, typename DerivativeFrame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void partial_derivatives </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; Variables&lt; <a class="el" href="group__DataBoxTagsGroup.html#ga3dda5a16c7f6baccd115de2c8f12394e">db::wrap_tags_in</a>&lt; Tags::deriv, DerivativeTags, tmpl::size_t&lt; Dim &gt;, DerivativeFrame &gt;&gt; *&gt;&#160;</td>
+          <td class="paramname"><em>du</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Variables&lt; VariableTags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const InverseJacobian&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a>, DerivativeFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>inverse_jacobian</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the partial derivatives of each variable with respect to the coordinates of <code>DerivativeFrame</code>. </p>
+<p><em>Requires:</em> <code>DerivativeTags</code> to be the head of <code>VariableTags</code></p>
+<p>Returns a <code>Variables</code> with a spatial tensor index appended to the front of each tensor within <code>u</code> and each <code>Tag</code> wrapped with a <code>Tags::deriv</code>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">DerivativeTags</td><td>the subset of <code>VariableTags</code> for which derivatives are computed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga17909413f3502347c5adfe37637bb3c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga17909413f3502347c5adfe37637bb3c4">&#9670;&nbsp;</a></span>partial_derivatives() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DerivativeTags , typename VariableTags , size_t Dim, typename DerivativeFrame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto partial_derivatives </td>
+          <td>(</td>
+          <td class="paramtype">const Variables&lt; VariableTags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMesh.html">Mesh</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const InverseJacobian&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a>, DerivativeFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>inverse_jacobian</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt;  Variables&lt; <a class="el" href="group__DataBoxTagsGroup.html#ga3dda5a16c7f6baccd115de2c8f12394e">db::wrap_tags_in</a>&lt; Tags::deriv, DerivativeTags, tmpl::size_t&lt; Dim &gt;, DerivativeFrame &gt;&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the partial derivatives of each variable with respect to the coordinates of <code>DerivativeFrame</code>. </p>
+<p><em>Requires:</em> <code>DerivativeTags</code> to be the head of <code>VariableTags</code></p>
+<p>Returns a <code>Variables</code> with a spatial tensor index appended to the front of each tensor within <code>u</code> and each <code>Tag</code> wrapped with a <code>Tags::deriv</code>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">DerivativeTags</td><td>the subset of <code>VariableTags</code> for which derivatives are computed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga198dcd46579bcb2545eb2861c0b97ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga198dcd46579bcb2545eb2861c0b97ab0">&#9670;&nbsp;</a></span>positive_root()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double positive_root </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the positive root of a quadratic equation ax^2 + bx + c = 0. </p>
+<p><em>Returns:</em> The positive root of a quadratic equation. </p>
+<p><em>Requires:</em> That there are two real roots, of which only one is positive. </p>
+
+</div>
+</div>
+<a id="ga41bbb3157e9785a6a0b580db4b511901"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga41bbb3157e9785a6a0b580db4b511901">&#9670;&nbsp;</a></span>raw_transpose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void raw_transpose </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; T *&gt;&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T *const&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>chunk_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>number_of_chunks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function to compute transposed data. </p>
+<p>Transpose the data pointed to by <code>data</code>, writing the result to the location pointed to by <code>result</code>. See the <a class="el" href="group__NumericalAlgorithmsGroup.html#ga20bff587707539c392d7821e83e7e7d1" title="Function to compute transposed data. ">transpose</a> function for a safer interface and for the meaning of the other arguments. </p>
+
+</div>
+</div>
+<a id="ga4859cadbfbdd355f3e1f890b0e7f0421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4859cadbfbdd355f3e1f890b0e7f0421">&#9670;&nbsp;</a></span>real_roots()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;double, 2&gt; real_roots </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the two real roots of a quadratic equation ax^2 + bx + c = 0. </p>
+<p><em>Returns:</em> An array of the roots of a quadratic equation </p>
+<p><em>Requires:</em> That there are two real roots. </p>
+
+</div>
+</div>
+<a id="gabf05de5dac1ec3c418a1aa0809a8c58a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabf05de5dac1ec3c418a1aa0809a8c58a">&#9670;&nbsp;</a></span>toms748() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Function &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">double RootFinder::toms748 </td>
+          <td>(</td>
+          <td class="paramtype">const Function &amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>lower_bound</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>upper_bound</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>absolute_tolerance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>relative_tolerance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>max_iterations</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the root of the function <code>f</code> with the TOMS_748 method. </p>
+<p><code>f</code> is a unary invokable that takes a <code>double</code> which is the current value at which to evaluate <code>f</code>. An example is below.</p>
+<div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keywordtype">double</span> abs_tol = 1e-15;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">double</span> rel_tol = 1e-15;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">double</span> upper = 2.0;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">double</span> lower = <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">sqrt</a>(2.0) - abs_tol;  <span class="comment">// bracket surrounds root</span></div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> f_lambda = [](<span class="keywordtype">double</span> x) { <span class="keywordflow">return</span> 2.0 - <a class="code" href="group__ConstantExpressionsGroup.html#ga877f4f7c296ef66e0ae6560353b3570c">square</a>(x); };</div><div class="line"></div><div class="line">  <span class="keyword">auto</span> root = <a class="code" href="group__NumericalAlgorithmsGroup.html#gabf05de5dac1ec3c418a1aa0809a8c58a">RootFinder::toms748</a>(f_lambda, lower, upper, abs_tol, rel_tol);</div></div><!-- fragment --><p> The TOMS_748 algorithm searches for a root in the interval [<code>lower_bound</code>, <code>upper_bound</code>], and will throw if this interval does not bracket a root, i.e. if <code>f(lower_bound) * f(upper_bound) &gt; 0</code>.</p>
+<p>See the <a href="http://www.boost.org/">Boost</a> documentation for more details.</p>
+<p><em>Requires:</em> Function <code>f</code> is invokable with a <code>double</code></p>
+<p><em>Throws:</em> <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/error/domain_error.html">std::domain_error</a></code> if the bounds do not bracket a root. </p>
+<p><em>Throws:</em> <code><a class="el" href="classconvergence__error.html" title="Exception indicating convergence failure. ">convergence_error</a></code> if the requested tolerance is not met after <code>max_iterations</code> iterations. </p>
+
+</div>
+</div>
+<a id="ga0e775caa5df400a744eb77c8c6e82a41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0e775caa5df400a744eb77c8c6e82a41">&#9670;&nbsp;</a></span>toms748() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Function &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a> RootFinder::toms748 </td>
+          <td>(</td>
+          <td class="paramtype">const Function &amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lower_bound</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>upper_bound</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>absolute_tolerance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>relative_tolerance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>max_iterations</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the root of the function <code>f</code> with the TOMS_748 method on each element in a <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>. </p>
+<p><code>f</code> is a binary invokable that takes a <code>double</code> as its first argument and a <code>size_t</code> as its second. The <code>double</code> is the current value at which to evaluate <code>f</code>, and the <code>size_t</code> is the current index into the <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>s. Below is an example of how to root find different functions by indexing into a lambda-captured <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code> using the <code>size_t</code> passed to <code>f</code>.</p>
+<div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keywordtype">double</span> abs_tol = 1e-15;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">double</span> rel_tol = 1e-15;</div><div class="line">  <span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> upper{2.0, 3.0, -<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">sqrt</a>(2.0) + abs_tol, -<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">sqrt</a>(2.0)};</div><div class="line">  <span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> lower{<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">sqrt</a>(2.0) - abs_tol, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sqrt.html">sqrt</a>(2.0), -2.0, -3.0};</div><div class="line"></div><div class="line">  <span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> constant{2.0, 4.0, 2.0, 4.0};</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> f_lambda = [&amp;constant](<span class="keyword">const</span> <span class="keywordtype">double</span> x, <span class="keyword">const</span> <span class="keywordtype">size_t</span> i) noexcept {</div><div class="line">    <span class="keywordflow">return</span> constant[i] - <a class="code" href="group__ConstantExpressionsGroup.html#ga877f4f7c296ef66e0ae6560353b3570c">square</a>(x);</div><div class="line">  };</div><div class="line"></div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> root =</div><div class="line">      <a class="code" href="group__NumericalAlgorithmsGroup.html#gabf05de5dac1ec3c418a1aa0809a8c58a">RootFinder::toms748</a>(f_lambda, lower, upper, abs_tol, rel_tol);</div></div><!-- fragment --><p> For each index <code>i</code> into the <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a>, the TOMS_748 algorithm searches for a root in the interval [<code>lower_bound[i]</code>, <code>upper_bound[i]</code>], and will throw if this interval does not bracket a root, i.e. if <code>f(lower_bound[i], i) * f(upper_bound[i], i) &gt; 0</code>.</p>
+<p>See the <a href="http://www.boost.org/">Boost</a> documentation for more details.</p>
+<p><em>Requires:</em> Function <code>f</code> be callable with a <code>double</code> and a <code>size_t</code></p>
+<p><em>Throws:</em> <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/error/domain_error.html">std::domain_error</a></code> if, for any index, the bounds do not bracket a root. </p>
+<p><em>Throws:</em> <code><a class="el" href="classconvergence__error.html" title="Exception indicating convergence failure. ">convergence_error</a></code> if, for any index, the requested tolerance is not met after <code>max_iterations</code> iterations. </p>
+
+</div>
+</div>
+<a id="ga20bff587707539c392d7821e83e7e7d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga20bff587707539c392d7821e83e7e7d1">&#9670;&nbsp;</a></span>transpose() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename U , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void transpose </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; T *&gt;&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const U &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>chunk_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>number_of_chunks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function to compute transposed data. </p>
+<p>The primary use of this function is to rearrange the memory layout so that another function can operate on contiguous chunks of memory.</p>
+<p><em>Requires:</em> <code>result.size()</code> to be the product of <code>number_of_chunks</code> and <code>chunk_size</code>, <code>u.size()</code> to be equal or greater than <code>result.size()</code>, and that both <code>result</code> and <code>u</code> have a <code>data()</code> member function.</p>
+<h3>Details</h3>
+<p>The container <code>u</code> holds a contiguous array of data, treated as a sequence of <code>number_of_chunks</code> contiguous sets of entries of size <code>chunk_size</code>. The output <code>result</code> has its data arranged such that the first <code>number_of_chunks</code> elements in <code>result</code> will be the first element of each chunk of <code>u</code>. The last <code>number_of_chunks</code> elements in <code>result</code> will be the last (i.e. <code>chunk_size</code>-th) element of each chunk of <code>u</code>. If <code>u.size()</code> is greater than <code>result.size()</code> the extra elements of <code>u</code> are ignored.</p>
+<dl class="section note"><dt>Note</dt><dd>This is equivalent to treating the first part of <code>u</code> as a matrix and filling <code>result</code> (or the returned object) with the transpose of that matrix.</dd></dl>
+<p>If <code>u</code> represents a block of data indexed by \((x, y, z, \ldots)\) with the first index varying fastest, transpose serves to rotate the indices. If the extents are \((X, Y, Z, \ldots)\), with product \(N\), <code>transpose(u, X, N/X)</code> reorders the data to be indexed \((y, z, \ldots, x)\), <code>transpose(u, X*Y, N/X/Y)</code> reorders the data to be indexed \((z, \ldots, x, y)\), etc.</p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  <span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> matrix{ 1.,  2.,  3.,</div><div class="line">                           4.,  5.,  6.,</div><div class="line">                           7.,  8.,  9.,</div><div class="line">                          10., 11., 12.};</div><div class="line">  CHECK(<a class="code" href="group__NumericalAlgorithmsGroup.html#ga20bff587707539c392d7821e83e7e7d1">transpose</a>(matrix, 3, 4) == <a class="code" href="classDataVector.html">DataVector</a>{1.,  4.,  7., 10.,</div><div class="line">                                              2.,  5.,  8., 11.,</div><div class="line">                                              3.,  6.,  9., 12.});</div></div><!-- fragment --><div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> chunk_size_vars = 8;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> n_grid_pts = 2 * chunk_size_vars;</div><div class="line">  Variables&lt;two_vars&lt;2&gt;&gt; variables(n_grid_pts, 0.);</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; variables.size(); ++i) {</div><div class="line">    <span class="comment">// clang-tidy: pointer arithmetic</span></div><div class="line">    variables.data()[i] = i * i;  <span class="comment">// NOLINT</span></div><div class="line">  }</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> number_of_chunks_vars = variables.size() / chunk_size_vars;</div><div class="line">  <span class="keyword">auto</span> transposed_vars = variables;</div><div class="line">  <a class="code" href="group__NumericalAlgorithmsGroup.html#ga20bff587707539c392d7821e83e7e7d1">transpose</a>(<a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;transposed_vars), variables, chunk_size_vars,</div><div class="line">            number_of_chunks_vars);</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; chunk_size_vars; ++i) {</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; number_of_chunks_vars; ++j) {</div><div class="line">      <span class="comment">// clang-tidy: pointer arithmetic</span></div><div class="line">      CHECK(variables.data()[i + chunk_size_vars * j] ==             <span class="comment">// NOLINT</span></div><div class="line">            transposed_vars.data()[j + number_of_chunks_vars * i]);  <span class="comment">// NOLINT</span></div><div class="line">    }</div><div class="line">  }</div></div><!-- fragment --><div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> chunk_size = 8;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> number_of_chunks = 2;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> n_pts = chunk_size * number_of_chunks;</div><div class="line">  <a class="code" href="classDataVector.html">DataVector</a> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>(n_pts);</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>.size(); ++i) {</div><div class="line">    <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>[i] = i * i;</div><div class="line">  }</div><div class="line">  <a class="code" href="classDataVector.html">DataVector</a> transposed_data(n_pts, 0.);</div><div class="line">  transposed_data = <a class="code" href="group__NumericalAlgorithmsGroup.html#ga20bff587707539c392d7821e83e7e7d1">transpose</a>(data, chunk_size, number_of_chunks);</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; chunk_size; ++i) {</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; number_of_chunks; ++j) {</div><div class="line">      CHECK(data[i + chunk_size * j] ==</div><div class="line">            transposed_data[j + number_of_chunks * i]);</div><div class="line">    }</div><div class="line">  }</div></div><!-- fragment --><div class="fragment"><div class="line">  Variables&lt;one_var&lt;2&gt;&gt; partial_vars(n_grid_pts, 0.);</div><div class="line">  get&lt;Var1&lt;2&gt;&gt;(partial_vars) = <span class="keyword">get</span>&lt;Var1&lt;2&gt;&gt;(variables);</div><div class="line">  Variables&lt;one_var&lt;2&gt;&gt; partial_transpose(n_grid_pts, 0.);</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> partial_number_of_chunks = 2*number_of_chunks_vars / 3;</div><div class="line">  <a class="code" href="group__NumericalAlgorithmsGroup.html#ga20bff587707539c392d7821e83e7e7d1">transpose</a>(<a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;partial_transpose), variables, chunk_size_vars,</div><div class="line">            partial_number_of_chunks);</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; chunk_size_vars; ++i) {</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; partial_number_of_chunks; ++j) {</div><div class="line">      <span class="comment">// clang-tidy: pointer arithmetic</span></div><div class="line">      CHECK(partial_transpose</div><div class="line">                .<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>()[j + partial_number_of_chunks * i] ==  <span class="comment">// NOLINT</span></div><div class="line">            variables.data()[i + chunk_size_vars * j]);       <span class="comment">// NOLINT</span></div><div class="line">      CHECK(partial_transpose</div><div class="line">                .<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>()[j + partial_number_of_chunks * i] ==  <span class="comment">// NOLINT</span></div><div class="line">            partial_vars.data()[i + chunk_size_vars * j]);    <span class="comment">// NOLINT</span></div><div class="line">    }</div><div class="line">  }</div></div><!-- fragment --> <dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">U</td><td>the type of data to be transposed </td></tr>
+    <tr><td class="paramname">T</td><td>the type of the transposed data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga26e189745124ad8589b745ca6077bff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga26e189745124ad8589b745ca6077bff5">&#9670;&nbsp;</a></span>transpose() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename U , typename T  = U&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T transpose </td>
+          <td>(</td>
+          <td class="paramtype">const U &amp;&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>chunk_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>number_of_chunks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function to compute transposed data. </p>
+<p>The primary use of this function is to rearrange the memory layout so that another function can operate on contiguous chunks of memory.</p>
+<p><em>Requires:</em> <code>result.size()</code> to be the product of <code>number_of_chunks</code> and <code>chunk_size</code>, <code>u.size()</code> to be equal or greater than <code>result.size()</code>, and that both <code>result</code> and <code>u</code> have a <code>data()</code> member function.</p>
+<h3>Details</h3>
+<p>The container <code>u</code> holds a contiguous array of data, treated as a sequence of <code>number_of_chunks</code> contiguous sets of entries of size <code>chunk_size</code>. The output <code>result</code> has its data arranged such that the first <code>number_of_chunks</code> elements in <code>result</code> will be the first element of each chunk of <code>u</code>. The last <code>number_of_chunks</code> elements in <code>result</code> will be the last (i.e. <code>chunk_size</code>-th) element of each chunk of <code>u</code>. If <code>u.size()</code> is greater than <code>result.size()</code> the extra elements of <code>u</code> are ignored.</p>
+<dl class="section note"><dt>Note</dt><dd>This is equivalent to treating the first part of <code>u</code> as a matrix and filling <code>result</code> (or the returned object) with the transpose of that matrix.</dd></dl>
+<p>If <code>u</code> represents a block of data indexed by \((x, y, z, \ldots)\) with the first index varying fastest, transpose serves to rotate the indices. If the extents are \((X, Y, Z, \ldots)\), with product \(N\), <code>transpose(u, X, N/X)</code> reorders the data to be indexed \((y, z, \ldots, x)\), <code>transpose(u, X*Y, N/X/Y)</code> reorders the data to be indexed \((z, \ldots, x, y)\), etc.</p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  <span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> matrix{ 1.,  2.,  3.,</div><div class="line">                           4.,  5.,  6.,</div><div class="line">                           7.,  8.,  9.,</div><div class="line">                          10., 11., 12.};</div><div class="line">  CHECK(<a class="code" href="group__NumericalAlgorithmsGroup.html#ga20bff587707539c392d7821e83e7e7d1">transpose</a>(matrix, 3, 4) == <a class="code" href="classDataVector.html">DataVector</a>{1.,  4.,  7., 10.,</div><div class="line">                                              2.,  5.,  8., 11.,</div><div class="line">                                              3.,  6.,  9., 12.});</div></div><!-- fragment --><div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> chunk_size_vars = 8;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> n_grid_pts = 2 * chunk_size_vars;</div><div class="line">  Variables&lt;two_vars&lt;2&gt;&gt; variables(n_grid_pts, 0.);</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; variables.size(); ++i) {</div><div class="line">    <span class="comment">// clang-tidy: pointer arithmetic</span></div><div class="line">    variables.data()[i] = i * i;  <span class="comment">// NOLINT</span></div><div class="line">  }</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> number_of_chunks_vars = variables.size() / chunk_size_vars;</div><div class="line">  <span class="keyword">auto</span> transposed_vars = variables;</div><div class="line">  <a class="code" href="group__NumericalAlgorithmsGroup.html#ga20bff587707539c392d7821e83e7e7d1">transpose</a>(<a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;transposed_vars), variables, chunk_size_vars,</div><div class="line">            number_of_chunks_vars);</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; chunk_size_vars; ++i) {</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; number_of_chunks_vars; ++j) {</div><div class="line">      <span class="comment">// clang-tidy: pointer arithmetic</span></div><div class="line">      CHECK(variables.data()[i + chunk_size_vars * j] ==             <span class="comment">// NOLINT</span></div><div class="line">            transposed_vars.data()[j + number_of_chunks_vars * i]);  <span class="comment">// NOLINT</span></div><div class="line">    }</div><div class="line">  }</div></div><!-- fragment --><div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> chunk_size = 8;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> number_of_chunks = 2;</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> n_pts = chunk_size * number_of_chunks;</div><div class="line">  <a class="code" href="classDataVector.html">DataVector</a> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>(n_pts);</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>.size(); ++i) {</div><div class="line">    <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>[i] = i * i;</div><div class="line">  }</div><div class="line">  <a class="code" href="classDataVector.html">DataVector</a> transposed_data(n_pts, 0.);</div><div class="line">  transposed_data = <a class="code" href="group__NumericalAlgorithmsGroup.html#ga20bff587707539c392d7821e83e7e7d1">transpose</a>(data, chunk_size, number_of_chunks);</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; chunk_size; ++i) {</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; number_of_chunks; ++j) {</div><div class="line">      CHECK(data[i + chunk_size * j] ==</div><div class="line">            transposed_data[j + number_of_chunks * i]);</div><div class="line">    }</div><div class="line">  }</div></div><!-- fragment --><div class="fragment"><div class="line">  Variables&lt;one_var&lt;2&gt;&gt; partial_vars(n_grid_pts, 0.);</div><div class="line">  get&lt;Var1&lt;2&gt;&gt;(partial_vars) = <span class="keyword">get</span>&lt;Var1&lt;2&gt;&gt;(variables);</div><div class="line">  Variables&lt;one_var&lt;2&gt;&gt; partial_transpose(n_grid_pts, 0.);</div><div class="line">  <span class="keyword">const</span> <span class="keywordtype">size_t</span> partial_number_of_chunks = 2*number_of_chunks_vars / 3;</div><div class="line">  <a class="code" href="group__NumericalAlgorithmsGroup.html#ga20bff587707539c392d7821e83e7e7d1">transpose</a>(<a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;partial_transpose), variables, chunk_size_vars,</div><div class="line">            partial_number_of_chunks);</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; chunk_size_vars; ++i) {</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; partial_number_of_chunks; ++j) {</div><div class="line">      <span class="comment">// clang-tidy: pointer arithmetic</span></div><div class="line">      CHECK(partial_transpose</div><div class="line">                .<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>()[j + partial_number_of_chunks * i] ==  <span class="comment">// NOLINT</span></div><div class="line">            variables.data()[i + chunk_size_vars * j]);       <span class="comment">// NOLINT</span></div><div class="line">      CHECK(partial_transpose</div><div class="line">                .<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/iterator/data.html">data</a>()[j + partial_number_of_chunks * i] ==  <span class="comment">// NOLINT</span></div><div class="line">            partial_vars.data()[i + chunk_size_vars * j]);    <span class="comment">// NOLINT</span></div><div class="line">    }</div><div class="line">  }</div></div><!-- fragment --> <dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">U</td><td>the type of data to be transposed </td></tr>
+    <tr><td class="paramname">T</td><td>the type of the transposed data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

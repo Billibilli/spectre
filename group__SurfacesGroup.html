@@ -1,0 +1,815 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Surfaces</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Surfaces</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceStrahlkorperGr"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceStrahlkorperGr.html">StrahlkorperGr</a></td></tr>
+<tr class="memdesc:namespaceStrahlkorperGr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains functions that depend both on a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a> and a metric. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceStrahlkorperTags"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceStrahlkorperTags.html">StrahlkorperTags</a></td></tr>
+<tr class="memdesc:namespaceStrahlkorperTags"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds tags and ComputeItems associated with a <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFastFlow.html">FastFlow</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast flow method for finding apparent horizons.  <a href="classFastFlow.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStrahlkorper.html">Strahlkorper&lt; Frame &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A star-shaped surface expanded in spherical harmonics.  <a href="classStrahlkorper.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOptionTags_1_1Strahlkorper.html">OptionTags::Strahlkorper&lt; Frame &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The input file tag for a <a class="el" href="structOptionTags_1_1Strahlkorper.html" title="The input file tag for a Strahlkorper. ">Strahlkorper</a>.  <a href="structOptionTags_1_1Strahlkorper.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gae260f19ff186a906174f9523707e398f"><td class="memTemplParams" colspan="2">template&lt;typename Frame &gt; </td></tr>
+<tr class="memitem:gae260f19ff186a906174f9523707e398f"><td class="memTemplItemLeft" align="right" valign="top">tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__SurfacesGroup.html#gae260f19ff186a906174f9523707e398f">StrahlkorperGr::unit_normal_one_form</a> (const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;normal_one_form, const <a class="el" href="classDataVector.html">DataVector</a> &amp;one_over_one_form_magnitude) noexcept</td></tr>
+<tr class="memdesc:gae260f19ff186a906174f9523707e398f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes normalized unit normal one-form to a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>.  <a href="group__SurfacesGroup.html#gae260f19ff186a906174f9523707e398f">More...</a><br /></td></tr>
+<tr class="separator:gae260f19ff186a906174f9523707e398f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c5b51d919c0fdfc95948ef0d927caf9"><td class="memTemplParams" colspan="2">template&lt;typename Frame &gt; </td></tr>
+<tr class="memitem:ga0c5b51d919c0fdfc95948ef0d927caf9"><td class="memTemplItemLeft" align="right" valign="top">tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__SurfacesGroup.html#ga0c5b51d919c0fdfc95948ef0d927caf9">StrahlkorperGr::grad_unit_normal_one_form</a> (const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;r_hat, const <a class="el" href="classDataVector.html">DataVector</a> &amp;radius, const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;<a class="el" href="group__SurfacesGroup.html#gae260f19ff186a906174f9523707e398f">unit_normal_one_form</a>, const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;d2x_radius, const <a class="el" href="classDataVector.html">DataVector</a> &amp;one_over_one_form_magnitude, const tnsr::Ijj&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;christoffel_2nd_kind) noexcept</td></tr>
+<tr class="memdesc:ga0c5b51d919c0fdfc95948ef0d927caf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes 3-covariant gradient \(D_i S_j\) of a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>'s normal.  <a href="group__SurfacesGroup.html#ga0c5b51d919c0fdfc95948ef0d927caf9">More...</a><br /></td></tr>
+<tr class="separator:ga0c5b51d919c0fdfc95948ef0d927caf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaab4718f3fb57b0e3c5a7ba871d44aad2"><td class="memTemplParams" colspan="2">template&lt;typename Frame &gt; </td></tr>
+<tr class="memitem:gaab4718f3fb57b0e3c5a7ba871d44aad2"><td class="memTemplItemLeft" align="right" valign="top">tnsr::II&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__SurfacesGroup.html#gaab4718f3fb57b0e3c5a7ba871d44aad2">StrahlkorperGr::inverse_surface_metric</a> (const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;unit_normal_vector, const tnsr::II&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;upper_spatial_metric) noexcept</td></tr>
+<tr class="memdesc:gaab4718f3fb57b0e3c5a7ba871d44aad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes inverse 2-metric \(g^{ij}-S^i S^j\) of a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>.  <a href="group__SurfacesGroup.html#gaab4718f3fb57b0e3c5a7ba871d44aad2">More...</a><br /></td></tr>
+<tr class="separator:gaab4718f3fb57b0e3c5a7ba871d44aad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga722d79ae526b8c5910cd5525e77e771a"><td class="memTemplParams" colspan="2">template&lt;typename Frame &gt; </td></tr>
+<tr class="memitem:ga722d79ae526b8c5910cd5525e77e771a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__SurfacesGroup.html#ga722d79ae526b8c5910cd5525e77e771a">StrahlkorperGr::expansion</a> (const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;grad_normal, const tnsr::II&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;<a class="el" href="group__SurfacesGroup.html#gaab4718f3fb57b0e3c5a7ba871d44aad2">inverse_surface_metric</a>, const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;<a class="el" href="group__SurfacesGroup.html#ga69729bcebd0d528cb6214ac22bccc1c3">extrinsic_curvature</a>) noexcept</td></tr>
+<tr class="memdesc:ga722d79ae526b8c5910cd5525e77e771a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expansion of a <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>. Should be zero on apparent horizons.  <a href="group__SurfacesGroup.html#ga722d79ae526b8c5910cd5525e77e771a">More...</a><br /></td></tr>
+<tr class="separator:ga722d79ae526b8c5910cd5525e77e771a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga69729bcebd0d528cb6214ac22bccc1c3"><td class="memTemplParams" colspan="2">template&lt;typename Frame &gt; </td></tr>
+<tr class="memitem:ga69729bcebd0d528cb6214ac22bccc1c3"><td class="memTemplItemLeft" align="right" valign="top">tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__SurfacesGroup.html#ga69729bcebd0d528cb6214ac22bccc1c3">StrahlkorperGr::extrinsic_curvature</a> (const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;grad_normal, const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;<a class="el" href="group__SurfacesGroup.html#gae260f19ff186a906174f9523707e398f">unit_normal_one_form</a>, const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;unit_normal_vector) noexcept</td></tr>
+<tr class="memdesc:ga69729bcebd0d528cb6214ac22bccc1c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extrinsic curvature of a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code> embedded in a 3D space.  <a href="group__SurfacesGroup.html#ga69729bcebd0d528cb6214ac22bccc1c3">More...</a><br /></td></tr>
+<tr class="separator:ga69729bcebd0d528cb6214ac22bccc1c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae0a872a8300343e48820e2576e426d0e"><td class="memTemplParams" colspan="2">template&lt;typename Frame &gt; </td></tr>
+<tr class="memitem:gae0a872a8300343e48820e2576e426d0e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__SurfacesGroup.html#gae0a872a8300343e48820e2576e426d0e">StrahlkorperGr::ricci_scalar</a> (const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;spatial_ricci_tensor, const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;unit_normal_vector, const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;<a class="el" href="group__SurfacesGroup.html#ga69729bcebd0d528cb6214ac22bccc1c3">extrinsic_curvature</a>, const tnsr::II&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;upper_spatial_metric) noexcept</td></tr>
+<tr class="memdesc:gae0a872a8300343e48820e2576e426d0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intrinsic Ricci scalar of a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>.  <a href="group__SurfacesGroup.html#gae0a872a8300343e48820e2576e426d0e">More...</a><br /></td></tr>
+<tr class="separator:gae0a872a8300343e48820e2576e426d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac2502f17cfbca07b182c85964af54fe4"><td class="memTemplParams" colspan="2">template&lt;typename Frame &gt; </td></tr>
+<tr class="memitem:gac2502f17cfbca07b182c85964af54fe4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__SurfacesGroup.html#gac2502f17cfbca07b182c85964af54fe4">StrahlkorperGr::area_element</a> (const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;spatial_metric, const StrahlkorperTags::StrahlkorperTags_detail::Jacobian&lt; Frame &gt; &amp;jacobian, const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;normal_one_form, const <a class="el" href="classDataVector.html">DataVector</a> &amp;radius, const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;r_hat) noexcept</td></tr>
+<tr class="memdesc:gac2502f17cfbca07b182c85964af54fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Area element of a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>.  <a href="group__SurfacesGroup.html#gac2502f17cfbca07b182c85964af54fe4">More...</a><br /></td></tr>
+<tr class="separator:gac2502f17cfbca07b182c85964af54fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac4f45665647a9c10e0a5e45af21b196a"><td class="memTemplParams" colspan="2">template&lt;typename Frame &gt; </td></tr>
+<tr class="memitem:gac4f45665647a9c10e0a5e45af21b196a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__SurfacesGroup.html#gac4f45665647a9c10e0a5e45af21b196a">StrahlkorperGr::spin_function</a> (const StrahlkorperTags::StrahlkorperTags_detail::Jacobian&lt; Frame &gt; &amp;tangents, const <a class="el" href="classYlmSpherepack.html">YlmSpherepack</a> &amp;ylm, const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;unit_normal_vector, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;<a class="el" href="group__SurfacesGroup.html#gac2502f17cfbca07b182c85964af54fe4">area_element</a>, const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;<a class="el" href="group__SurfacesGroup.html#ga69729bcebd0d528cb6214ac22bccc1c3">extrinsic_curvature</a>) noexcept</td></tr>
+<tr class="memdesc:gac4f45665647a9c10e0a5e45af21b196a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spin function of a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>.  <a href="group__SurfacesGroup.html#gac4f45665647a9c10e0a5e45af21b196a">More...</a><br /></td></tr>
+<tr class="separator:gac4f45665647a9c10e0a5e45af21b196a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae9ed2e40aadae32abeb5d5e713aea45f"><td class="memTemplParams" colspan="2">template&lt;typename Frame &gt; </td></tr>
+<tr class="memitem:gae9ed2e40aadae32abeb5d5e713aea45f"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__SurfacesGroup.html#gae9ed2e40aadae32abeb5d5e713aea45f">StrahlkorperGr::dimensionful_spin_magnitude</a> (const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;<a class="el" href="group__SurfacesGroup.html#gae0a872a8300343e48820e2576e426d0e">ricci_scalar</a>, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;<a class="el" href="group__SurfacesGroup.html#gac4f45665647a9c10e0a5e45af21b196a">spin_function</a>, const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;spatial_metric, const StrahlkorperTags::StrahlkorperTags_detail::Jacobian&lt; Frame &gt; &amp;tangents, const <a class="el" href="classYlmSpherepack.html">YlmSpherepack</a> &amp;ylm, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;<a class="el" href="group__SurfacesGroup.html#gac2502f17cfbca07b182c85964af54fe4">area_element</a>) noexcept</td></tr>
+<tr class="memdesc:gae9ed2e40aadae32abeb5d5e713aea45f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spin magnitude measured on a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>.  <a href="group__SurfacesGroup.html#gae9ed2e40aadae32abeb5d5e713aea45f">More...</a><br /></td></tr>
+<tr class="separator:gae9ed2e40aadae32abeb5d5e713aea45f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6cf02be759c587adc4e06896ff4f0649"><td class="memTemplParams" colspan="2">template&lt;typename Frame &gt; </td></tr>
+<tr class="memitem:ga6cf02be759c587adc4e06896ff4f0649"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 3 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__SurfacesGroup.html#ga6cf02be759c587adc4e06896ff4f0649">StrahlkorperGr::spin_vector</a> (double spin_magnitude, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;<a class="el" href="group__SurfacesGroup.html#gac2502f17cfbca07b182c85964af54fe4">area_element</a>, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;radius, const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;r_hat, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;<a class="el" href="group__SurfacesGroup.html#gae0a872a8300343e48820e2576e426d0e">ricci_scalar</a>, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;<a class="el" href="group__SurfacesGroup.html#gac4f45665647a9c10e0a5e45af21b196a">spin_function</a>, const <a class="el" href="classYlmSpherepack.html">YlmSpherepack</a> &amp;ylm) noexcept</td></tr>
+<tr class="memdesc:ga6cf02be759c587adc4e06896ff4f0649"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spin vector of a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>.  <a href="group__SurfacesGroup.html#ga6cf02be759c587adc4e06896ff4f0649">More...</a><br /></td></tr>
+<tr class="separator:ga6cf02be759c587adc4e06896ff4f0649"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Things related to surfaces. </p>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gac2502f17cfbca07b182c85964af54fe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac2502f17cfbca07b182c85964af54fe4">&#9670;&nbsp;</a></span>area_element()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Frame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; StrahlkorperGr::area_element </td>
+          <td>(</td>
+          <td class="paramtype">const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>spatial_metric</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const StrahlkorperTags::StrahlkorperTags_detail::Jacobian&lt; Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>jacobian</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal_one_form</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>r_hat</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Area element of a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>. </p>
+<h3>Details</h3>
+<p>Implements Eq. (D.13), using Eqs. (D.4) and (D.5), of <a href="https://arxiv.org/abs/gr-qc/9606010">https://arxiv.org/abs/gr-qc/9606010</a>. Specifically, computes \(\sqrt{(\Theta^i\Theta_i)(\Phi^j\Phi_j)-(\Theta^i\Phi_i)^2}\), \(\Theta^i=\left(n^i(n_j-s_j) r J^j_\theta + r J^i_\theta\right)\), \(\Phi^i=\left(n^i(n_j-s_j)r J^j_\phi + r J^i_\phi\right)\), and \(\Theta^i\) and \(\Phi^i\) are lowered by the 3D spatial metric \(g_{ij}\). Here \(J^i_\alpha\), \(s_j\), \(r\), and \(n^i=n_i\) correspond to the input arguments <code>jacobian</code>, <code>normal_one_form</code>, <code>radius</code>, and <code>r_hat</code>, respectively; these input arguments depend only on the <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>, not on the metric, and can be computed from a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a> using ComputeItems in <code><a class="el" href="namespaceStrahlkorperTags.html" title="Holds tags and ComputeItems associated with a Strahlkorper. ">StrahlkorperTags</a></code>. Note that this does not include the factor of \(\sin\theta\), i.e., this returns \(r^2\) for flat space. This choice makes the area element returned here compatible with <code>definite_integral</code> defined in <code>YlmSpherePack.hpp</code>. </p>
+
+</div>
+</div>
+<a id="gae9ed2e40aadae32abeb5d5e713aea45f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae9ed2e40aadae32abeb5d5e713aea45f">&#9670;&nbsp;</a></span>dimensionful_spin_magnitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Frame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double StrahlkorperGr::dimensionful_spin_magnitude </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ricci_scalar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>spin_function</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>spatial_metric</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const StrahlkorperTags::StrahlkorperTags_detail::Jacobian&lt; Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tangents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classYlmSpherepack.html">YlmSpherepack</a> &amp;&#160;</td>
+          <td class="paramname"><em>ylm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>area_element</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Spin magnitude measured on a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>. </p>
+<h3>Details</h3>
+<p>Measures the quasilocal spin magnitude of a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>, by inserting \(\alpha=1\) into Eq. (10) of <a href="https://arxiv.org/abs/0907.0280">https://arxiv.org/abs/0907.0280</a> and dividing by \(8\pi\) to yield the spin magnitude. The spin magnitude is a Euclidean norm of surface integrals over the horizon \(S = \frac{1}{8\pi}\oint z \Omega dA\), where \(\Omega\) is obtained via <code><a class="el" href="group__SurfacesGroup.html#gac4f45665647a9c10e0a5e45af21b196a" title="Spin function of a 2D Strahlkorper. ">StrahlkorperGr::spin_function()</a></code>, \(dA\) is the area element, and \(z\) (the "spin potential") is a solution of a generalized eigenproblem given by Eq. (9) of <a href="https://arxiv.org/abs/0907.0280">https://arxiv.org/abs/0907.0280</a>. Specifically, \(\nabla^4 z + \nabla \cdot (R\nabla z) = \lambda \nabla^2 z\), where \(R\) is obtained via <code><a class="el" href="group__SurfacesGroup.html#gae0a872a8300343e48820e2576e426d0e" title="Intrinsic Ricci scalar of a 2D Strahlkorper. ">StrahlkorperGr::ricci_scalar()</a></code>. The spin magnitude is the Euclidean norm of the three values of \(S\) obtained from the eigenvectors \(z\) with the 3 smallest-magnitude eigenvalues \(\lambda\). Note that this formulation of the eigenproblem uses the "Owen" normalization, Eq. (A9) and surrounding discussion in <a href="https://arxiv.org/abs/0805.4192">https://arxiv.org/abs/0805.4192</a>. The eigenvectors are normalized with the "Kerr normalization", Eq. (A22) of <a href="https://arxiv.org/abs/0805.4192">https://arxiv.org/abs/0805.4192</a>. The argument <code>spatial_metric</code> is the metric of the 3D spatial slice evaluated on the <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>. The argument <code>tangents</code> can be obtained from the StrahlkorperDataBox using the <code><a class="el" href="structStrahlkorperTags_1_1Tangents.html" title="Tangents(i,j) is , where  are the Cartesian coordinates of the surface (i.e. CartesianCoords) and are...">StrahlkorperTags::Tangents</a></code> tag, and the argument <code>unit_normal_vector</code> can be found by raising the index of the one-form returned by <code><a class="el" href="group__SurfacesGroup.html#gae260f19ff186a906174f9523707e398f" title="Computes normalized unit normal one-form to a Strahlkorper. ">StrahlkorperGr::unit_normal_one_form</a></code>. The argument <code>ylm</code> is the <code><a class="el" href="classYlmSpherepack.html" title="C++ interface to SPHEREPACK. ">YlmSpherepack</a></code> of the <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>. The argument <code>area_element</code> can be computed via <code><a class="el" href="group__SurfacesGroup.html#gac2502f17cfbca07b182c85964af54fe4" title="Area element of a 2D Strahlkorper. ">StrahlkorperGr::area_element</a></code>. </p>
+
+</div>
+</div>
+<a id="ga722d79ae526b8c5910cd5525e77e771a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga722d79ae526b8c5910cd5525e77e771a">&#9670;&nbsp;</a></span>expansion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Frame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; StrahlkorperGr::expansion </td>
+          <td>(</td>
+          <td class="paramtype">const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>grad_normal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::II&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>inverse_surface_metric</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extrinsic_curvature</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Expansion of a <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>. Should be zero on apparent horizons. </p>
+<h3>Details</h3>
+<p>Implements Eq. (5) in <a href="https://arxiv.org/abs/gr-qc/9606010">https://arxiv.org/abs/gr-qc/9606010</a>. The input argument <code>grad_normal</code> is the quantity returned by <code><a class="el" href="group__SurfacesGroup.html#ga0c5b51d919c0fdfc95948ef0d927caf9" title="Computes 3-covariant gradient  of a Strahlkorper&#39;s normal. ">StrahlkorperGr::grad_unit_normal_one_form</a></code>, and <code>inverse_surface_metric</code> is the quantity returned by <code><a class="el" href="group__SurfacesGroup.html#gaab4718f3fb57b0e3c5a7ba871d44aad2" title="Computes inverse 2-metric  of a Strahlkorper. ">StrahlkorperGr::inverse_surface_metric</a></code>. </p>
+
+</div>
+</div>
+<a id="ga69729bcebd0d528cb6214ac22bccc1c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga69729bcebd0d528cb6214ac22bccc1c3">&#9670;&nbsp;</a></span>extrinsic_curvature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Frame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; StrahlkorperGr::extrinsic_curvature </td>
+          <td>(</td>
+          <td class="paramtype">const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>grad_normal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>unit_normal_one_form</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>unit_normal_vector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Extrinsic curvature of a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code> embedded in a 3D space. </p>
+<h3>Details</h3>
+<p>Implements Eq. (D.43) of Carroll's Spacetime and Geometry text. Specifically, \( K_{ij} = P^k_i P^l_j \nabla_{(k} S_{l)} \), where \( P^k_i = \delta^k_i - S^k S_i \), <code>grad_normal</code> is the quantity \( \nabla_k S_l \) returned by <code><a class="el" href="group__SurfacesGroup.html#ga0c5b51d919c0fdfc95948ef0d927caf9" title="Computes 3-covariant gradient  of a Strahlkorper&#39;s normal. ">StrahlkorperGr::grad_unit_normal_one_form</a></code>, and <code>unit_normal_vector</code> is \(S^i = g^{ij} S_j\) where \(S_j\) is the unit normal one form. Not to be confused with the extrinsic curvature of a 3D spatial slice embedded in 3+1 spacetime. Because <a class="el" href="group__SurfacesGroup.html#ga0c5b51d919c0fdfc95948ef0d927caf9" title="Computes 3-covariant gradient  of a Strahlkorper&#39;s normal. ">StrahlkorperGr::grad_unit_normal_one_form</a> is symmetric, this can be expanded into \( K_{ij} = \nabla_{i}S_{j} - 2 S^k S_{(i}\nabla_{j)}S_k + S_i S_j S^k S^l \nabla_{k} n_{l}\). </p>
+
+</div>
+</div>
+<a id="ga0c5b51d919c0fdfc95948ef0d927caf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0c5b51d919c0fdfc95948ef0d927caf9">&#9670;&nbsp;</a></span>grad_unit_normal_one_form()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Frame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; StrahlkorperGr::grad_unit_normal_one_form </td>
+          <td>(</td>
+          <td class="paramtype">const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>r_hat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>unit_normal_one_form</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>d2x_radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>one_over_one_form_magnitude</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::Ijj&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>christoffel_2nd_kind</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes 3-covariant gradient \(D_i S_j\) of a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>'s normal. </p>
+<h3>Details</h3>
+<p>See Eqs. (1&ndash;9) of <a href="https://arxiv.org/abs/gr-qc/9606010">https://arxiv.org/abs/gr-qc/9606010</a>. Here \(S_j\) is the (normalized) unit one-form to the surface, and \(D_i\) is the spatial covariant derivative. Note that this object is symmetric, even though this is not obvious from the definition. The input arguments <code>r_hat</code>, <code>radius</code>, and <code>d2x_radius</code> depend on the <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a> but not on the metric, and can be computed from a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a> using ComputeItems in <code><a class="el" href="namespaceStrahlkorperTags.html" title="Holds tags and ComputeItems associated with a Strahlkorper. ">StrahlkorperTags</a></code>. The input argument <code>one_over_one_form_magnitude</code> is \(1/\sqrt{g^{ij}n_i n_j}\), where \(n_i\) is <code><a class="el" href="structStrahlkorperTags_1_1NormalOneForm.html" title="NormalOneForm(i) is , the (unnormalized) normal one-form to the surface, expressed in Cartesian compo...">StrahlkorperTags::NormalOneForm</a></code> (i.e. the unnormalized one-form to the <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>); it can be computed using (one over) the <code>magnitude</code> function. The input argument <code>unit_normal_one_form</code> is \(S_j\),the normalized one-form. </p>
+
+</div>
+</div>
+<a id="gaab4718f3fb57b0e3c5a7ba871d44aad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaab4718f3fb57b0e3c5a7ba871d44aad2">&#9670;&nbsp;</a></span>inverse_surface_metric()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Frame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tnsr::II&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; StrahlkorperGr::inverse_surface_metric </td>
+          <td>(</td>
+          <td class="paramtype">const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>unit_normal_vector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::II&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>upper_spatial_metric</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes inverse 2-metric \(g^{ij}-S^i S^j\) of a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>. </p>
+<h3>Details</h3>
+<p>See Eqs. (1&ndash;9) of <a href="https://arxiv.org/abs/gr-qc/9606010">https://arxiv.org/abs/gr-qc/9606010</a>. Here \(S^i\) is the (normalized) unit vector to the surface, and \(g^{ij}\) is the 3-metric. This object is expressed in the usual 3-d Cartesian basis, so it is written as a 3-dimensional tensor. But because it is orthogonal to \(S_i\), it has only 3 independent degrees of freedom, and could be expressed as a 2-d tensor with an appropriate choice of basis. The input argument <code>unit_normal_vector</code> is \(S^i = g^{ij} S_j\), where \(S_j\) is the unit normal one form. </p>
+
+</div>
+</div>
+<a id="gae0a872a8300343e48820e2576e426d0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae0a872a8300343e48820e2576e426d0e">&#9670;&nbsp;</a></span>ricci_scalar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Frame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; StrahlkorperGr::ricci_scalar </td>
+          <td>(</td>
+          <td class="paramtype">const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>spatial_ricci_tensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>unit_normal_vector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extrinsic_curvature</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::II&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>upper_spatial_metric</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Intrinsic Ricci scalar of a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>. </p>
+<h3>Details</h3>
+<p>Implements Eq. (D.51) of Sean Carroll's Spacetime and Geometry textbook (except correcting sign errors: both extrinsic curvature terms are off by a minus sign in Carroll's text but correct in Carroll's errata). \( \hat{R}=R - 2 R_{ij} S^i S^j + K^2-K^{ij}K_{ij}.\) Here \(\hat{R}\) is the intrinsic Ricci scalar curvature of the <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>, \(R\) and \(R_{ij}\) are the Ricci scalar and Ricci tensor of the 3D space that contains the <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>, \( K_{ij} \) the output of <a class="el" href="group__SurfacesGroup.html#ga69729bcebd0d528cb6214ac22bccc1c3" title="Extrinsic curvature of a 2D Strahlkorper embedded in a 3D space. ">StrahlkorperGr::extrinsic_curvature</a>, \( K \) is the trace of \(K_{ij}\), and <code>unit_normal_vector</code> is \(S^i = g^{ij} S_j\) where \(S_j\) is the unit normal one form. </p>
+
+</div>
+</div>
+<a id="gac4f45665647a9c10e0a5e45af21b196a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac4f45665647a9c10e0a5e45af21b196a">&#9670;&nbsp;</a></span>spin_function()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Frame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; StrahlkorperGr::spin_function </td>
+          <td>(</td>
+          <td class="paramtype">const StrahlkorperTags::StrahlkorperTags_detail::Jacobian&lt; Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tangents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classYlmSpherepack.html">YlmSpherepack</a> &amp;&#160;</td>
+          <td class="paramname"><em>ylm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>unit_normal_vector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>area_element</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::ii&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extrinsic_curvature</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Spin function of a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>. </p>
+<h3>Details</h3>
+<p>See Eqs. (2) and (10) of <a href="https://arxiv.org/abs/1708.07325">https://arxiv.org/abs/1708.07325</a>. This function computes the "spin function," which is an ingredient for horizon surface integrals that measure quasilocal spin. This function is proportional to the imaginary part of the horizon's complex scalar curvature. For Kerr black holes, the spin function is proportional to the horizon vorticity. It is also useful for visualizing the direction of a black hole's spin. Specifically, this function computes \(\Omega = \epsilon^{AB}\nabla_A\omega_B\), where capital indices index the tangent bundle of the surface and where \(\omega_\mu=(K_{\rho\nu}-K g_{\rho\nu})h_\mu^\rho s^\nu\) is the curl of the angular momentum density of the surface, \(h^\rho_\mu = \delta_\mu^\rho + u_\mu u^\rho - s_\mu s^\rho\) is the projector tangent to the 2-surface, \(g_{\rho\nu} = \psi_{\rho\nu} + u_\rho u_\nu\) is the spatial metric of the spatial slice, \(u^\rho\) is the unit normal to the spatial slice, and \(s^\nu\) is the unit normal vector to the surface. Because the tangent basis vectors \(e_A^\mu\) are orthogonal to both \(u^\mu\) and \(s^\mu\), it is straightforward to show that \(\Omega = \epsilon^{AB} \nabla_A K_{B\mu}s^\mu\). This function uses the tangent vectors of the <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code> to compute \(K_{B\mu}s^\mu\) and then numerically computes the components of its gradient. The argument <code>area_element</code> can be computed via <code><a class="el" href="group__SurfacesGroup.html#gac2502f17cfbca07b182c85964af54fe4" title="Area element of a 2D Strahlkorper. ">StrahlkorperGr::area_element</a></code>. The argument <code>unit_normal_vector</code> can be found by raising the index of the one-form returned by <code>StrahlkorperGr::unit_normal_oneform</code>. The argument <code>tangents</code> is a Tangents that can be obtained from the StrahlkorperDataBox using the <code><a class="el" href="structStrahlkorperTags_1_1Tangents.html" title="Tangents(i,j) is , where  are the Cartesian coordinates of the surface (i.e. CartesianCoords) and are...">StrahlkorperTags::Tangents</a></code> tag. </p>
+
+</div>
+</div>
+<a id="ga6cf02be759c587adc4e06896ff4f0649"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6cf02be759c587adc4e06896ff4f0649">&#9670;&nbsp;</a></span>spin_vector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Frame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 3 &gt; StrahlkorperGr::spin_vector </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>spin_magnitude</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>area_element</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>r_hat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ricci_scalar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>spin_function</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classYlmSpherepack.html">YlmSpherepack</a> &amp;&#160;</td>
+          <td class="paramname"><em>ylm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Spin vector of a 2D <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>. </p>
+<h3>Details</h3>
+<p>Computes the spin vector of a <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code> in a <code><a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a></code>, such as <code><a class="el" href="structFrame_1_1Inertial.html">Frame::Inertial</a></code>. The result is a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;double, 3&gt;</code> containing the Cartesian components of the spin vector, whose magnitude is <code>spin_magnitude</code>. This function will return the dimensionless spin components if <code>spin_magnitude</code> is the dimensionless spin magnitude, and it will return the dimensionful spin components if <code>spin_magnitude</code> is the dimensionful spin magnitude. The spin vector is given by a surface integral over the horizon \(\mathcal{H}\) [Eq. (25) of <a href="https://arxiv.org/abs/1708.07325">https://arxiv.org/abs/1708.07325</a>]: \(S^i = \frac{S}{N} \oint_\mathcal{H} dA \Omega (x^i - x^i_0 - x^i_R) \), where \(S\) is the spin magnitude, \(N\) is a normalization factor enforcing \(\delta_{ij}S^iS^j = S\), \(dA\) is the area element (via <code><a class="el" href="group__SurfacesGroup.html#gac2502f17cfbca07b182c85964af54fe4" title="Area element of a 2D Strahlkorper. ">StrahlkorperGr::area_element</a></code>), \(\Omega\) is the "spin function" (via <code><a class="el" href="group__SurfacesGroup.html#gac4f45665647a9c10e0a5e45af21b196a" title="Spin function of a 2D Strahlkorper. ">StrahlkorperGr::spin_function</a></code>), \(x^i\) are the <code><a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a></code> coordinates of points on the <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code>, \(x^i_0\) are the <code><a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a></code> coordinates of the center of the <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>, \(x^i_R = \frac{1}{8\pi}\oint_\mathcal{H} dA (x^i - x^i_0) R \), and \(R\) is the intrinsic Ricci scalar of the <code><a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a></code> (via <code><a class="el" href="group__SurfacesGroup.html#gae0a872a8300343e48820e2576e426d0e" title="Intrinsic Ricci scalar of a 2D Strahlkorper. ">StrahlkorperGr::ricci_scalar</a></code>). Note that measuring positions on the horizon relative to \(x^i_0 + x^i_R\) instead of \(x^i_0\) ensures that the mass dipole moment vanishes. Also note that \(x^i - x^i_0\) is is the product of <code><a class="el" href="structStrahlkorperTags_1_1Rhat.html" title="Rhat(i) is  on the grid. Doesn&#39;t depend on the shape of the surface. ">StrahlkorperTags::Rhat</a></code> and <code><a class="el" href="structStrahlkorperTags_1_1Radius.html" title="(Euclidean) distance  from the center to each point of the surface. ">StrahlkorperTags::Radius</a></code>. </p>
+
+</div>
+</div>
+<a id="gae260f19ff186a906174f9523707e398f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae260f19ff186a906174f9523707e398f">&#9670;&nbsp;</a></span>unit_normal_one_form()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Frame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; StrahlkorperGr::unit_normal_one_form </td>
+          <td>(</td>
+          <td class="paramtype">const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal_one_form</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>one_over_one_form_magnitude</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes normalized unit normal one-form to a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a>. </p>
+<h3>Details</h3>
+<p>The input argument <code>normal_one_form</code> \(n_i\) is the unnormalized surface one-form; it depends on a <a class="el" href="classStrahlkorper.html" title="A star-shaped surface expanded in spherical harmonics. ">Strahlkorper</a> but not on a metric. The input argument <code>one_over_one_form_magnitude</code> is \(1/\sqrt{g^{ij}n_i n_j}\), which can be computed using (one over) the <code>magnitude</code> function. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

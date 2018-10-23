@@ -1,0 +1,387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Domain/CoordinateMaps/Wedge3D.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Domain/CoordinateMaps</a> - Wedge3D.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">28</td>
+            <td class="headerCovTableEntryLo">10.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;boost/optional.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       9 </span>            : #include &lt;limits&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Domain/OrientationMap.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : namespace PUP {
+<span class="lineNum">      16 </span>            : class er;
+<span class="lineNum">      17 </span>            : }  // namespace PUP
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : namespace CoordinateMaps {
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : /*!
+<span class="lineNum">      22 </span>            :  * \ingroup CoordinateMapsGroup
+<span class="lineNum">      23 </span>            :  *
+<span class="lineNum">      24 </span>            :  * \brief Three dimensional map from the cube to a wedge.
+<span class="lineNum">      25 </span>            :  * \image html Shell.png &quot;A shell can be constructed out of six wedges.&quot;
+<span class="lineNum">      26 </span>            :  *
+<span class="lineNum">      27 </span>            :  * \details The mapping that goes from a reference cube to a three-dimensional
+<span class="lineNum">      28 </span>            :  *  wedge centered on a coordinate axis covering a volume between an inner
+<span class="lineNum">      29 </span>            :  *  surface and outer surface. Each surface can be given a curvature
+<span class="lineNum">      30 </span>            :  *  between flat (a sphericity of 0) or spherical (a sphericity of 1).
+<span class="lineNum">      31 </span>            :  *
+<span class="lineNum">      32 </span>            :  *  The first two logical coordinates correspond to the two angular coordinates,
+<span class="lineNum">      33 </span>            :  *  and the third to the radial coordinate.
+<span class="lineNum">      34 </span>            :  *
+<span class="lineNum">      35 </span>            :  *  The Wedge3D map is constructed by linearly interpolating between a bulged
+<span class="lineNum">      36 </span>            :  *  face of radius `radius_of_inner_surface` to a bulged face of
+<span class="lineNum">      37 </span>            :  *  radius `radius_of_outer_surface`, where the radius of each bulged face
+<span class="lineNum">      38 </span>            :  *  is defined to be the radius of the sphere circumscribing the bulge.
+<span class="lineNum">      39 </span>            :  *
+<span class="lineNum">      40 </span>            :  *  We make a choice here as to whether we wish to use the logical coordinates
+<span class="lineNum">      41 </span>            :  *  parameterizing these surface as they are, in which case we have the
+<span class="lineNum">      42 </span>            :  *  equidistant choice of coordinates, or whether to apply a tangent map to them
+<span class="lineNum">      43 </span>            :  *  which leads us to the equiangular choice of coordinates. In terms of the
+<span class="lineNum">      44 </span>            :  *  logical coordinates, the equiangular coordinates are:
+<span class="lineNum">      45 </span>            :  *
+<span class="lineNum">      46 </span>            :  *  \f[\textrm{equiangular xi} : \Xi(\xi) = \textrm{tan}(\xi\pi/4)\f]
+<span class="lineNum">      47 </span>            :  *
+<span class="lineNum">      48 </span>            :  *  \f[\textrm{equiangular eta}  : \mathrm{H}(\eta) = \textrm{tan}(\eta\pi/4)\f]
+<span class="lineNum">      49 </span>            :  *
+<span class="lineNum">      50 </span>            :  *  With derivatives:
+<span class="lineNum">      51 </span>            :  *
+<span class="lineNum">      52 </span>            :  *  \f[\Xi'(\xi) = \frac{\pi}{4}(1+\Xi^2)\f]
+<span class="lineNum">      53 </span>            :  *
+<span class="lineNum">      54 </span>            :  *  \f[\mathrm{H}'(\eta) = \frac{\pi}{4}(1+\mathrm{H}^2)\f]
+<span class="lineNum">      55 </span>            :  *
+<span class="lineNum">      56 </span>            :  *  The equidistant coordinates are:
+<span class="lineNum">      57 </span>            :  *
+<span class="lineNum">      58 </span>            :  *  \f[ \textrm{equidistant xi}  : \Xi = \xi\f]
+<span class="lineNum">      59 </span>            :  *
+<span class="lineNum">      60 </span>            :  *  \f[ \textrm{equidistant eta}  : \mathrm{H} = \eta\f]
+<span class="lineNum">      61 </span>            :  *
+<span class="lineNum">      62 </span>            :  *  with derivatives:
+<span class="lineNum">      63 </span>            :  *
+<span class="lineNum">      64 </span>            :  *  &lt;center&gt;\f$\Xi'(\xi) = 1\f$, and \f$\mathrm{H}'(\eta) = 1\f$&lt;/center&gt;
+<span class="lineNum">      65 </span>            :  *
+<span class="lineNum">      66 </span>            :  *  We also define the variable \f$\rho\f$, given by:
+<span class="lineNum">      67 </span>            :  *
+<span class="lineNum">      68 </span>            :  *  \f[\textrm{rho} : \rho = \sqrt{1+\Xi^2+\mathrm{H}^2}\f]
+<span class="lineNum">      69 </span>            :  *
+<span class="lineNum">      70 </span>            :  *  ### The Spherical Face Map
+<span class="lineNum">      71 </span>            :  *  The surface map for the spherical face of radius \f$R\f$ lying in the
+<span class="lineNum">      72 </span>            :  * \f$+z\f$
+<span class="lineNum">      73 </span>            :  *  direction in either choice of coordinates is then given by:
+<span class="lineNum">      74 </span>            :  *
+<span class="lineNum">      75 </span>            :  *  \f[\vec{\sigma}_{spherical}: \vec{\xi} \rightarrow \vec{x}(\vec{\xi})\f]
+<span class="lineNum">      76 </span>            :  *  Where
+<span class="lineNum">      77 </span>            :  *  \f[
+<span class="lineNum">      78 </span>            :  *  \vec{x}(\xi,\eta) =
+<span class="lineNum">      79 </span>            :  *  \begin{bmatrix}
+<span class="lineNum">      80 </span>            :  *  x(\xi,\eta)\\
+<span class="lineNum">      81 </span>            :  *  y(\xi,\eta)\\
+<span class="lineNum">      82 </span>            :  *  z(\xi,\eta)\\
+<span class="lineNum">      83 </span>            :  *  \end{bmatrix}  = \frac{R}{\rho}
+<span class="lineNum">      84 </span>            :  *  \begin{bmatrix}
+<span class="lineNum">      85 </span>            :  *  \Xi\\
+<span class="lineNum">      86 </span>            :  *  \mathrm{H}\\
+<span class="lineNum">      87 </span>            :  *  1\\
+<span class="lineNum">      88 </span>            :  *  \end{bmatrix}\f]
+<span class="lineNum">      89 </span>            :  *
+<span class="lineNum">      90 </span>            :  *  ### The Bulged Face Map
+<span class="lineNum">      91 </span>            :  *  The bulged surface is itself constructed by linearly interpolating between
+<span class="lineNum">      92 </span>            :  *  a cubical face and a spherical face. The surface map for the cubical face
+<span class="lineNum">      93 </span>            :  *  of side length \f$2L\f$ lying in the \f$+z\f$ direction is given by:
+<span class="lineNum">      94 </span>            :  *
+<span class="lineNum">      95 </span>            :  *  \f[\vec{\sigma}_{cubical}: \vec{\xi} \rightarrow \vec{x}(\vec{\xi})\f]
+<span class="lineNum">      96 </span>            :  *  Where
+<span class="lineNum">      97 </span>            :  *  \f[
+<span class="lineNum">      98 </span>            :  *  \vec{x}(\xi,\eta) =
+<span class="lineNum">      99 </span>            :  *  \begin{bmatrix}
+<span class="lineNum">     100 </span>            :  *  x(\xi,\eta)\\
+<span class="lineNum">     101 </span>            :  *  y(\xi,\eta)\\
+<span class="lineNum">     102 </span>            :  *  L\\
+<span class="lineNum">     103 </span>            :  *  \end{bmatrix}  = L
+<span class="lineNum">     104 </span>            :  *  \begin{bmatrix}
+<span class="lineNum">     105 </span>            :  *  \Xi\\
+<span class="lineNum">     106 </span>            :  *  \mathrm{H}\\
+<span class="lineNum">     107 </span>            :  *  1\\
+<span class="lineNum">     108 </span>            :  *  \end{bmatrix}\f]
+<span class="lineNum">     109 </span>            :  *
+<span class="lineNum">     110 </span>            :  *  To construct the bulged map we interpolate between this cubical face map
+<span class="lineNum">     111 </span>            :  *  and a spherical face map of radius \f$R\f$, with the
+<span class="lineNum">     112 </span>            :  *  interpolation parameter being \f$s\f$. The surface map for the bulged face
+<span class="lineNum">     113 </span>            :  *  lying in the \f$+z\f$ direction is then given by:
+<span class="lineNum">     114 </span>            :  *
+<span class="lineNum">     115 </span>            :  *  \f[\vec{\sigma}_{bulged}(\xi,\eta) = {(1-s)L + \frac{sR}{\rho}}
+<span class="lineNum">     116 </span>            :  *  \begin{bmatrix}
+<span class="lineNum">     117 </span>            :  *  \Xi\\
+<span class="lineNum">     118 </span>            :  *  \mathrm{H}\\
+<span class="lineNum">     119 </span>            :  *  1\\
+<span class="lineNum">     120 </span>            :  *  \end{bmatrix}\f]
+<span class="lineNum">     121 </span>            :  *
+<span class="lineNum">     122 </span>            :  *  We constrain L by demanding that the spherical face circumscribe the cube.
+<span class="lineNum">     123 </span>            :  *  With this condition, we have \f$L = R/\sqrt3\f$.
+<span class="lineNum">     124 </span>            :  *  \note This differs from the choice in SpEC where it is demanded that the
+<span class="lineNum">     125 </span>            :  *  surfaces touch at the center, which leads to \f$L = R\f$.
+<span class="lineNum">     126 </span>            :  *
+<span class="lineNum">     127 </span>            :  *  ### The Full Volume Map
+<span class="lineNum">     128 </span>            :  *  The final map for the wedge which lies along the \f$+z\f$ is obtained by
+<span class="lineNum">     129 </span>            :  *  interpolating between the two surfaces with the
+<span class="lineNum">     130 </span>            :  *  interpolation parameter being the logical coordinate \f$\zeta\f$. This
+<span class="lineNum">     131 </span>            :  *  results in:
+<span class="lineNum">     132 </span>            :  *
+<span class="lineNum">     133 </span>            :  *  \f[\vec{x}(\xi,\eta,\zeta) =
+<span class="lineNum">     134 </span>            :  *  \frac{1}{2}\left\{(1-\zeta)\Big[(1-s_{inner})\frac{R_{inner}}{\sqrt 3}
+<span class="lineNum">     135 </span>            :  *   + s_{inner}\frac{R_{inner}}{\rho}\Big] +
+<span class="lineNum">     136 </span>            :  *  (1+\zeta)\Big[(1-s_{outer})\frac{R_{outer}}{\sqrt 3} +s_{outer}
+<span class="lineNum">     137 </span>            :  *  \frac{R_{outer}}{\rho}\Big] \right\}\begin{bmatrix}
+<span class="lineNum">     138 </span>            :  *  \Xi\\
+<span class="lineNum">     139 </span>            :  *  \mathrm{H}\\
+<span class="lineNum">     140 </span>            :  *  1\\
+<span class="lineNum">     141 </span>            :  *  \end{bmatrix}\f]
+<span class="lineNum">     142 </span>            :  *
+<span class="lineNum">     143 </span>            :  *  We will define the variables \f$F(\zeta)\f$ and \f$S(\zeta)\f$, the frustum
+<span class="lineNum">     144 </span>            :  * and sphere factors: \f[F(\zeta) = F_0 + F_1\zeta\f] \f[S(\zeta) = S_0 +
+<span class="lineNum">     145 </span>            :  * S_1\zeta\f]
+<span class="lineNum">     146 </span>            :  *  Where \f{align*}F_0 &amp;= \frac{1}{2} \big\{ (1-s_{outer})R_{outer} +
+<span class="lineNum">     147 </span>            :  * (1-s_{inner})R_{inner}\big\}\\
+<span class="lineNum">     148 </span>            :  *  F_1 &amp;= \partial_{\zeta} F = \frac{1}{2} \big\{ (1-s_{outer})R_{outer} -
+<span class="lineNum">     149 </span>            :  * (1-s_{inner})R_{inner}\big\}\\
+<span class="lineNum">     150 </span>            :  *  S_0 &amp;= \frac{1}{2} \big\{ s_{outer}R_{outer} + s_{inner}R_{inner}\big\}\\
+<span class="lineNum">     151 </span>            :  *  S_1 &amp;= \partial_{\zeta} F = \frac{1}{2} \big\{ s_{outer}R_{outer} -
+<span class="lineNum">     152 </span>            :  * s_{inner}R_{inner}\big\}\f}
+<span class="lineNum">     153 </span>            :  *
+<span class="lineNum">     154 </span>            :  *  The map can then be rewritten as:
+<span class="lineNum">     155 </span>            :  * \f[\vec{x}(\xi,\eta,\zeta) = \left\{\frac{F(\zeta)}{\sqrt 3} +
+<span class="lineNum">     156 </span>            :  * \frac{S(\zeta)}{\rho}\right\}\begin{bmatrix}
+<span class="lineNum">     157 </span>            :  *  \Xi\\
+<span class="lineNum">     158 </span>            :  *  \mathrm{H}\\
+<span class="lineNum">     159 </span>            :  *  1\\
+<span class="lineNum">     160 </span>            :  *  \end{bmatrix}\f]
+<span class="lineNum">     161 </span>            :  *
+<span class="lineNum">     162 </span>            :  *  We provide some common derivatives:
+<span class="lineNum">     163 </span>            :  *  \f[\partial_{\xi}z = \frac{-S(\zeta)\Xi\Xi'}{\rho^3}\f]
+<span class="lineNum">     164 </span>            :  *  \f[\partial_{\eta}z = \frac{-S(\zeta)\mathrm{H}\mathrm{H}'}{\rho^3}\f]
+<span class="lineNum">     165 </span>            :  * \f[\partial_{\zeta}z = \frac{F'}{\sqrt 3} + \frac{S'}{\rho}\f]
+<span class="lineNum">     166 </span>            :  *  The Jacobian then is: \f[J =
+<span class="lineNum">     167 </span>            :  *  \begin{bmatrix}
+<span class="lineNum">     168 </span>            :  *  \Xi'z + \Xi\partial_{\xi}z &amp; \Xi\partial_{\eta}z &amp; \Xi\partial_{\zeta}z \\
+<span class="lineNum">     169 </span>            :  *  \mathrm{H}\partial_{\xi}z &amp; \mathrm{H}'z +
+<span class="lineNum">     170 </span>            :  *  \mathrm{H}\partial_{\eta}z &amp; \mathrm{H}\partial_{\zeta}z\\
+<span class="lineNum">     171 </span>            :  *   \partial_{\xi}z&amp;\partial_{\eta}z &amp;\partial_{\zeta}z \\
+<span class="lineNum">     172 </span>            :  *  \end{bmatrix}
+<span class="lineNum">     173 </span>            :  *  \f]
+<span class="lineNum">     174 </span>            :  *
+<span class="lineNum">     175 </span>            :  *  A common factor that shows up in the inverse jacobian is:
+<span class="lineNum">     176 </span>            :  *  \f[ T:= \frac{S(\zeta)}{(\partial_{\zeta}z)\rho^3}\f]
+<span class="lineNum">     177 </span>            :  *
+<span class="lineNum">     178 </span>            :  *  The inverse Jacobian then is: \f[J^{-1} =
+<span class="lineNum">     179 </span>            :  *  \frac{1}{z}\begin{bmatrix}
+<span class="lineNum">     180 </span>            :  *  \Xi'^{-1} &amp; 0 &amp; -\Xi\Xi'^{-1}\\
+<span class="lineNum">     181 </span>            :  *  0 &amp; \mathrm{H}'^{-1} &amp; -\mathrm{H}\mathrm{H}'^{-1}\\
+<span class="lineNum">     182 </span>            :  *  T\Xi &amp;
+<span class="lineNum">     183 </span>            :  *  T\mathrm{H} &amp;
+<span class="lineNum">     184 </span>            :  *  T + F(\partial_{\zeta}z)^{-1}/\sqrt 3\\
+<span class="lineNum">     185 </span>            :  *  \end{bmatrix}
+<span class="lineNum">     186 </span>            :  *  \f]
+<span class="lineNum">     187 </span>            :  *
+<span class="lineNum">     188 </span>            :  *  ### Changing the radial distribution of the gridpoints
+<span class="lineNum">     189 </span>            :  *  By default, Wedge3D linearly distributes its gridpoints in the radial
+<span class="lineNum">     190 </span>            :  *  direction. An exponential map can be applied to the sphere factor
+<span class="lineNum">     191 </span>            :  *  \f$S(\zeta)\f$ in order to obtain a relatively higher resolution at smaller
+<span class="lineNum">     192 </span>            :  *  radii. Since this is a radial rescaling of Wedge3D, this option is only
+<span class="lineNum">     193 </span>            :  *  supported for fully spherical wedges with
+<span class="lineNum">     194 </span>            :  *  `sphericity_inner` = `sphericity_outer` = 1.
+<span class="lineNum">     195 </span>            :  *
+<span class="lineNum">     196 </span>            :  *  The map then is:
+<span class="lineNum">     197 </span>            :  *  \f[\vec{x}(\xi,\eta,\zeta) =
+<span class="lineNum">     198 </span>            :  *  \frac{e^{S(\zeta)}}{\rho}\begin{bmatrix}
+<span class="lineNum">     199 </span>            :  *  \Xi\\
+<span class="lineNum">     200 </span>            :  *  \mathrm{H}\\
+<span class="lineNum">     201 </span>            :  *  1\\
+<span class="lineNum">     202 </span>            :  *  \end{bmatrix}\f]
+<span class="lineNum">     203 </span>            :  *
+<span class="lineNum">     204 </span>            :  *  The jacobian simplifies similarly.
+<span class="lineNum">     205 </span>            :  *
+<span class="lineNum">     206 </span>            :  */
+<span class="lineNum">     207 </span><span class="lineCov">          1 : class Wedge3D {</span>
+<span class="lineNum">     208 </span>            :  public:
+<span class="lineNum">     209 </span><span class="lineNoCov">          0 :   static constexpr size_t dim = 3;</span>
+<span class="lineNum">     210 </span><span class="lineNoCov">          0 :   enum class WedgeHalves {</span>
+<span class="lineNum">     211 </span>            :     /// Use the entire wedge
+<span class="lineNum">     212 </span>            :     Both,
+<span class="lineNum">     213 </span>            :     /// Use only the upper logical half
+<span class="lineNum">     214 </span>            :     UpperOnly,
+<span class="lineNum">     215 </span>            :     /// Use only the lower logical half
+<span class="lineNum">     216 </span>            :     LowerOnly
+<span class="lineNum">     217 </span>            :   };
+<span class="lineNum">     218 </span>            : 
+<span class="lineNum">     219 </span>            :   /*!
+<span class="lineNum">     220 </span>            :    * Constructs a 3D wedge.
+<span class="lineNum">     221 </span>            :    * \param radius_inner Distance from the origin to one of the
+<span class="lineNum">     222 </span>            :    * corners which lie on the inner surface.
+<span class="lineNum">     223 </span>            :    * \param radius_outer Distance from the origin to one of the
+<span class="lineNum">     224 </span>            :    * corners which lie on the outer surface.
+<span class="lineNum">     225 </span>            :    * \param orientation_of_wedge The orientation of the desired wedge relative
+<span class="lineNum">     226 </span>            :    * to the orientation of the default wedge which is a wedge that has its
+<span class="lineNum">     227 </span>            :    * curved surfaces pierced by the upper-z axis. The logical xi and eta
+<span class="lineNum">     228 </span>            :    * coordinates point in the cartesian x and y directions, respectively.
+<span class="lineNum">     229 </span>            :    * \param sphericity_inner Value between 0 and 1 which determines
+<span class="lineNum">     230 </span>            :    * whether the inner surface is flat (value of 0), spherical (value of 1) or
+<span class="lineNum">     231 </span>            :    * somewhere in between
+<span class="lineNum">     232 </span>            :    * \param sphericity_outer Value between 0 and 1 which determines
+<span class="lineNum">     233 </span>            :    * whether the outer surface is flat (value of 0), spherical (value of 1) or
+<span class="lineNum">     234 </span>            :    * somewhere in between
+<span class="lineNum">     235 </span>            :    * \param with_equiangular_map Determines whether to apply a tangent function
+<span class="lineNum">     236 </span>            :    * mapping to the logical coordinates (for `true`) or not (for `false`).
+<span class="lineNum">     237 </span>            :    * \param halves_to_use Determines whether to use the logical xi
+<span class="lineNum">     238 </span>            :    * coordinates in the [0,1] interval (value of `UpperOnly`) of the full wedge,
+<span class="lineNum">     239 </span>            :    * the coordinates in the [-1,0] interval (value of `LowerOnly`) of the
+<span class="lineNum">     240 </span>            :    * full wedge, or the full wedge entirely (value of `Both`). Half wedges are
+<span class="lineNum">     241 </span>            :    * currently only useful in constructing domains for binary systems.
+<span class="lineNum">     242 </span>            :    * \param with_logarithmic_map Determines whether to apply an exponential
+<span class="lineNum">     243 </span>            :    * function mapping to the &quot;sphere factor&quot;, the effect of which is to
+<span class="lineNum">     244 </span>            :    * distribute the radial gridpoints logarithmically in physical space.
+<span class="lineNum">     245 </span>            :    */
+<span class="lineNum">     246 </span><span class="lineCov">          1 :   Wedge3D(double radius_inner, double radius_outer,</span>
+<span class="lineNum">     247 </span>            :           OrientationMap&lt;3&gt; orientation_of_wedge, double sphericity_inner,
+<span class="lineNum">     248 </span>            :           double sphericity_outer, bool with_equiangular_map,
+<span class="lineNum">     249 </span>            :           WedgeHalves halves_to_use = WedgeHalves::Both,
+<span class="lineNum">     250 </span>            :           bool with_logarithmic_map = false) noexcept;
+<span class="lineNum">     251 </span>            : 
+<span class="lineNum">     252 </span><span class="lineNoCov">          0 :   Wedge3D() = default;</span>
+<span class="lineNum">     253 </span><span class="lineNoCov">          0 :   ~Wedge3D() = default;</span>
+<span class="lineNum">     254 </span><span class="lineNoCov">          0 :   Wedge3D(Wedge3D&amp;&amp;) = default;</span>
+<span class="lineNum">     255 </span><span class="lineNoCov">          0 :   Wedge3D(const Wedge3D&amp;) = default;</span>
+<span class="lineNum">     256 </span><span class="lineNoCov">          0 :   Wedge3D&amp; operator=(const Wedge3D&amp;) = default;</span>
+<span class="lineNum">     257 </span><span class="lineNoCov">          0 :   Wedge3D&amp; operator=(Wedge3D&amp;&amp;) = default;</span>
+<span class="lineNum">     258 </span>            : 
+<span class="lineNum">     259 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     260 </span><span class="lineNoCov">          0 :   std::array&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3&gt; operator()(</span>
+<span class="lineNum">     261 </span>            :       const std::array&lt;T, 3&gt;&amp; source_coords) const noexcept;
+<span class="lineNum">     262 </span>            : 
+<span class="lineNum">     263 </span>            :   /// For a \f$+z\f$-oriented `Wedge3D`, returns invalid if \f$z&lt;=0\f$
+<span class="lineNum">     264 </span>            :   /// or if \f$(x,y,z)\f$ is on or outside the cone defined
+<span class="lineNum">     265 </span>            :   /// by \f$(x^2/z^2 + y^2/z^2+1)^{1/2} = -S/F\f$, where
+<span class="lineNum">     266 </span>            :   /// \f$S = \frac{1}{2}(s_1 r_1 - s_0 r_0)\f$ and
+<span class="lineNum">     267 </span>            :   /// \f$F = \frac{1}{2\sqrt{3}}((1-s_1) r_1 - (1-s_0) r_0)\f$.
+<span class="lineNum">     268 </span>            :   /// Here \f$s_0,s_1\f$ and \f$r_0,r_1\f$ are the specified sphericities
+<span class="lineNum">     269 </span>            :   /// and radii of the inner and outer \f$z\f$ surfaces.  The map is singular on
+<span class="lineNum">     270 </span>            :   /// the cone and on the xy plane.
+<span class="lineNum">     271 </span><span class="lineCov">          1 :   boost::optional&lt;std::array&lt;double, 3&gt;&gt; inverse(</span>
+<span class="lineNum">     272 </span>            :       const std::array&lt;double, 3&gt;&amp; target_coords) const noexcept;
+<span class="lineNum">     273 </span>            : 
+<span class="lineNum">     274 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     275 </span><span class="lineNoCov">          0 :   tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3, Frame::NoFrame&gt; jacobian(</span>
+<span class="lineNum">     276 </span>            :       const std::array&lt;T, 3&gt;&amp; source_coords) const noexcept;
+<span class="lineNum">     277 </span>            : 
+<span class="lineNum">     278 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     279 </span><span class="lineNoCov">          0 :   tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3, Frame::NoFrame&gt; inv_jacobian(</span>
+<span class="lineNum">     280 </span>            :       const std::array&lt;T, 3&gt;&amp; source_coords) const noexcept;
+<span class="lineNum">     281 </span>            : 
+<span class="lineNum">     282 </span>            :   // clang-tidy: google runtime references
+<span class="lineNum">     283 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">     284 </span>            : 
+<span class="lineNum">     285 </span>            :  private:
+<span class="lineNum">     286 </span>            :   // factors out calculation of z needed for mapping and jacobian
+<span class="lineNum">     287 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     288 </span><span class="lineNoCov">          0 :   tt::remove_cvref_wrap_t&lt;T&gt; default_physical_z(const T&amp; zeta,</span>
+<span class="lineNum">     289 </span>            :                                                 const T&amp; one_over_rho) const
+<span class="lineNum">     290 </span>            :       noexcept;
+<span class="lineNum">     291 </span>            :   friend bool operator==(const Wedge3D&amp; lhs, const Wedge3D&amp; rhs) noexcept;
+<span class="lineNum">     292 </span>            : 
+<span class="lineNum">     293 </span><span class="lineNoCov">          0 :   double radius_inner_{std::numeric_limits&lt;double&gt;::signaling_NaN()};</span>
+<span class="lineNum">     294 </span><span class="lineNoCov">          0 :   double radius_outer_{std::numeric_limits&lt;double&gt;::signaling_NaN()};</span>
+<span class="lineNum">     295 </span><span class="lineNoCov">          0 :   OrientationMap&lt;3&gt; orientation_of_wedge_{};</span>
+<span class="lineNum">     296 </span><span class="lineNoCov">          0 :   double sphericity_inner_{std::numeric_limits&lt;double&gt;::signaling_NaN()};</span>
+<span class="lineNum">     297 </span><span class="lineNoCov">          0 :   double sphericity_outer_{std::numeric_limits&lt;double&gt;::signaling_NaN()};</span>
+<span class="lineNum">     298 </span><span class="lineNoCov">          0 :   bool with_equiangular_map_ = false;</span>
+<span class="lineNum">     299 </span><span class="lineNoCov">          0 :   WedgeHalves halves_to_use_ = WedgeHalves::Both;</span>
+<span class="lineNum">     300 </span><span class="lineNoCov">          0 :   bool with_logarithmic_map_ = false;</span>
+<span class="lineNum">     301 </span><span class="lineNoCov">          0 :   double scaled_frustum_zero_{std::numeric_limits&lt;double&gt;::signaling_NaN()};</span>
+<span class="lineNum">     302 </span><span class="lineNoCov">          0 :   double sphere_zero_{std::numeric_limits&lt;double&gt;::signaling_NaN()};</span>
+<span class="lineNum">     303 </span><span class="lineNoCov">          0 :   double scaled_frustum_rate_{std::numeric_limits&lt;double&gt;::signaling_NaN()};</span>
+<span class="lineNum">     304 </span><span class="lineNoCov">          0 :   double sphere_rate_{std::numeric_limits&lt;double&gt;::signaling_NaN()};</span>
+<span class="lineNum">     305 </span>            : };
+<span class="lineNum">     306 </span>            : bool operator!=(const Wedge3D&amp; lhs, const Wedge3D&amp; rhs) noexcept;
+<span class="lineNum">     307 </span>            : }  // namespace CoordinateMaps
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Variables&lt; tmpl::list&lt; Tags... &gt; &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">Variables&lt; tmpl::list&lt; Tags... &gt; &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__DataStructuresGroup.html">Data Structures</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>A Variables holds a contiguous memory block with Tensors pointing into it.  
+ <a href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Variables_8hpp_source.html">Variables.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a3dbe0504f9554916b81c2e8014b05607"><td class="memItemLeft" align="right" valign="top"><a id="a3dbe0504f9554916b81c2e8014b05607"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = double</td></tr>
+<tr class="separator:a3dbe0504f9554916b81c2e8014b05607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1deadfb48a4962a4019816efa0baaa3"><td class="memItemLeft" align="right" valign="top"><a id="aa1deadfb48a4962a4019816efa0baaa3"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>allocator_type</b> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/allocator.html">std::allocator</a>&lt; value_type &gt;</td></tr>
+<tr class="separator:aa1deadfb48a4962a4019816efa0baaa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8f25e89f076a46eb0cc88a3f4fa19b9"><td class="memItemLeft" align="right" valign="top"><a id="ab8f25e89f076a46eb0cc88a3f4fa19b9"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>size_type</b> = size_t</td></tr>
+<tr class="separator:ab8f25e89f076a46eb0cc88a3f4fa19b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a558f1ac85ff8c26ea5ecde9d8466c048"><td class="memItemLeft" align="right" valign="top"><a id="a558f1ac85ff8c26ea5ecde9d8466c048"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/ptrdiff_t.html">std::ptrdiff_t</a></td></tr>
+<tr class="separator:a558f1ac85ff8c26ea5ecde9d8466c048"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa44230dcf0b163848a93a51cd82b8223"><td class="memItemLeft" align="right" valign="top"><a id="aa44230dcf0b163848a93a51cd82b8223"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>pointer_type</b> = <a class="el" href="structPointerVector.html">PointerVector</a>&lt; double, blaze::unaligned, blaze::unpadded, transpose_flag, blaze::DynamicVector&lt; double, transpose_flag &gt; &gt;</td></tr>
+<tr class="separator:aa44230dcf0b163848a93a51cd82b8223"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab990b77f0448c268cd5c18395e1edfbf"><td class="memItemLeft" align="right" valign="top"><a id="ab990b77f0448c268cd5c18395e1edfbf"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#ab990b77f0448c268cd5c18395e1edfbf">tags_list</a> = tmpl::list&lt; Tags... &gt;</td></tr>
+<tr class="memdesc:ab990b77f0448c268cd5c18395e1edfbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A typelist of the Tags whose variables are held. <br /></td></tr>
+<tr class="separator:ab990b77f0448c268cd5c18395e1edfbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a173ab7c95a5c3f506e1f41aaef5d9f9d"><td class="memItemLeft" align="right" valign="top"><a id="a173ab7c95a5c3f506e1f41aaef5d9f9d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a173ab7c95a5c3f506e1f41aaef5d9f9d">Variables</a> () noexcept</td></tr>
+<tr class="memdesc:a173ab7c95a5c3f506e1f41aaef5d9f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default construct an empty Variables class, Charm++ needs this. <br /></td></tr>
+<tr class="separator:a173ab7c95a5c3f506e1f41aaef5d9f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abeb38defc4706b572dbab32cf73cbac5"><td class="memItemLeft" align="right" valign="top"><a id="abeb38defc4706b572dbab32cf73cbac5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Variables</b> (size_t number_of_grid_points) noexcept</td></tr>
+<tr class="separator:abeb38defc4706b572dbab32cf73cbac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9269fe916e931b353d8c8e73df1e4c9"><td class="memItemLeft" align="right" valign="top"><a id="ac9269fe916e931b353d8c8e73df1e4c9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Variables</b> (size_t number_of_grid_points, double value) noexcept</td></tr>
+<tr class="separator:ac9269fe916e931b353d8c8e73df1e4c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc2cdd45ca2c59f1f981a8bab7e224f8"><td class="memItemLeft" align="right" valign="top"><a id="adc2cdd45ca2c59f1f981a8bab7e224f8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Variables</b> (Variables &amp;&amp;rhs) noexcept=default</td></tr>
+<tr class="separator:adc2cdd45ca2c59f1f981a8bab7e224f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c98f0d85e4cdd19a1d2dd705d6ddec"><td class="memItemLeft" align="right" valign="top"><a id="ae4c98f0d85e4cdd19a1d2dd705d6ddec"></a>
+Variables &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (Variables &amp;&amp;rhs) noexcept</td></tr>
+<tr class="separator:ae4c98f0d85e4cdd19a1d2dd705d6ddec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4819caccae227c49e7f83b3dfae245fb"><td class="memItemLeft" align="right" valign="top"><a id="a4819caccae227c49e7f83b3dfae245fb"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Variables</b> (const Variables &amp;rhs) noexcept</td></tr>
+<tr class="separator:a4819caccae227c49e7f83b3dfae245fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1520f46698042e046c8676ba87ddf7f4"><td class="memItemLeft" align="right" valign="top"><a id="a1520f46698042e046c8676ba87ddf7f4"></a>
+Variables &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const Variables &amp;rhs) noexcept</td></tr>
+<tr class="separator:a1520f46698042e046c8676ba87ddf7f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7a324dba42b8df39e11c9ad3b258967"><td class="memItemLeft" align="right" valign="top"><a id="aa7a324dba42b8df39e11c9ad3b258967"></a>
+constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>number_of_grid_points</b> () const noexcept</td></tr>
+<tr class="separator:aa7a324dba42b8df39e11c9ad3b258967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d9cc65d06c7696c197ecebba3f3cbd6"><td class="memItemLeft" align="right" valign="top"><a id="a5d9cc65d06c7696c197ecebba3f3cbd6"></a>
+constexpr size_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a5d9cc65d06c7696c197ecebba3f3cbd6">size</a> () const noexcept</td></tr>
+<tr class="memdesc:a5d9cc65d06c7696c197ecebba3f3cbd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of grid points * number of independent components. <br /></td></tr>
+<tr class="separator:a5d9cc65d06c7696c197ecebba3f3cbd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad377e0f12bd7254f813ee1ef3468e3ef"><td class="memItemLeft" align="right" valign="top"><a id="ad377e0f12bd7254f813ee1ef3468e3ef"></a>
+double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#ad377e0f12bd7254f813ee1ef3468e3ef">data</a> () noexcept</td></tr>
+<tr class="memdesc:ad377e0f12bd7254f813ee1ef3468e3ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access pointer to underlying data. <br /></td></tr>
+<tr class="separator:ad377e0f12bd7254f813ee1ef3468e3ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaad1e08f2206dbd8242515e6354e7a91"><td class="memItemLeft" align="right" valign="top"><a id="aaad1e08f2206dbd8242515e6354e7a91"></a>
+const double *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> () const noexcept</td></tr>
+<tr class="separator:aaad1e08f2206dbd8242515e6354e7a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a009225c274666df41c7b282826f1eafe"><td class="memItemLeft" align="right" valign="top"><a id="a009225c274666df41c7b282826f1eafe"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a009225c274666df41c7b282826f1eafe">pup</a> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="memdesc:a009225c274666df41c7b282826f1eafe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialization for Charm++. <br /></td></tr>
+<tr class="separator:a009225c274666df41c7b282826f1eafe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac3891701120b1bc44af116264a1ad9e"><td class="memTemplParams" colspan="2"><a id="aac3891701120b1bc44af116264a1ad9e"></a>
+template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:aac3891701120b1bc44af116264a1ad9e"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#aac3891701120b1bc44af116264a1ad9e">Variables</a> (const blaze::Vector&lt; VT, VF &gt; &amp;expression) noexcept</td></tr>
+<tr class="memdesc:aac3891701120b1bc44af116264a1ad9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting constructor for an expression to a Variables class. <br /></td></tr>
+<tr class="separator:aac3891701120b1bc44af116264a1ad9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3412e0cbb6c75a2849b5cdc8ec6cfa79"><td class="memTemplParams" colspan="2"><a id="a3412e0cbb6c75a2849b5cdc8ec6cfa79"></a>
+template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a3412e0cbb6c75a2849b5cdc8ec6cfa79"><td class="memTemplItemLeft" align="right" valign="top">Variables &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (const blaze::Vector&lt; VT, VF &gt; &amp;expression) noexcept</td></tr>
+<tr class="separator:a3412e0cbb6c75a2849b5cdc8ec6cfa79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab42be41383b3968c48ebcd32511b2fec"><td class="memTemplParams" colspan="2"><a id="ab42be41383b3968c48ebcd32511b2fec"></a>
+template&lt;typename... WrappedTags, Requires&lt; tmpl2::flat_all_v&lt; cpp17::is_same_v&lt; db::remove_all_prefixes&lt; WrappedTags &gt;, db::remove_all_prefixes&lt; Tags &gt;&gt;... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ab42be41383b3968c48ebcd32511b2fec"><td class="memTemplItemLeft" align="right" valign="top">Variables &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+=</b> (const Variables&lt; tmpl::list&lt; WrappedTags... &gt;&gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:ab42be41383b3968c48ebcd32511b2fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adadb9a04fd8ec5bfca165d4185112785"><td class="memTemplParams" colspan="2"><a id="adadb9a04fd8ec5bfca165d4185112785"></a>
+template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:adadb9a04fd8ec5bfca165d4185112785"><td class="memTemplItemLeft" align="right" valign="top">Variables &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+=</b> (const blaze::Vector&lt; VT, VF &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:adadb9a04fd8ec5bfca165d4185112785"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52610d4ecbb2254ca803aac60c322281"><td class="memTemplParams" colspan="2"><a id="a52610d4ecbb2254ca803aac60c322281"></a>
+template&lt;typename... WrappedTags, Requires&lt; tmpl2::flat_all_v&lt; cpp17::is_same_v&lt; db::remove_all_prefixes&lt; WrappedTags &gt;, db::remove_all_prefixes&lt; Tags &gt;&gt;... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a52610d4ecbb2254ca803aac60c322281"><td class="memTemplItemLeft" align="right" valign="top">Variables &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-=</b> (const Variables&lt; tmpl::list&lt; WrappedTags... &gt;&gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:a52610d4ecbb2254ca803aac60c322281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9784c30a3172e60e29c781c895ddd2d"><td class="memTemplParams" colspan="2"><a id="ae9784c30a3172e60e29c781c895ddd2d"></a>
+template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:ae9784c30a3172e60e29c781c895ddd2d"><td class="memTemplItemLeft" align="right" valign="top">Variables &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-=</b> (const blaze::Vector&lt; VT, VF &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:ae9784c30a3172e60e29c781c895ddd2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94daa3ab3ef8d8523d3cb953e21c2ce4"><td class="memItemLeft" align="right" valign="top"><a id="a94daa3ab3ef8d8523d3cb953e21c2ce4"></a>
+Variables &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const double &amp;rhs) noexcept</td></tr>
+<tr class="separator:a94daa3ab3ef8d8523d3cb953e21c2ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2d5a4cea1e7f4f8287a4f53d81477ae"><td class="memItemLeft" align="right" valign="top"><a id="ae2d5a4cea1e7f4f8287a4f53d81477ae"></a>
+Variables &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (const double &amp;rhs) noexcept</td></tr>
+<tr class="separator:ae2d5a4cea1e7f4f8287a4f53d81477ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86435a01f4db904c101cb3fe075f0527"><td class="memTemplParams" colspan="2"><a id="a86435a01f4db904c101cb3fe075f0527"></a>
+template&lt;typename... WrappedTags, Requires&lt; tmpl2::flat_all_v&lt; cpp17::is_same_v&lt; db::remove_all_prefixes&lt; WrappedTags &gt;, db::remove_all_prefixes&lt; Tags &gt;&gt;... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a86435a01f4db904c101cb3fe075f0527"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const Variables&lt; tmpl::list&lt; WrappedTags... &gt;&gt; &amp;lhs, const Variables &amp;rhs) noexcept</td></tr>
+<tr class="separator:a86435a01f4db904c101cb3fe075f0527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a198df5a7a0912b8037cbd260558d7a88"><td class="memTemplParams" colspan="2"><a id="a198df5a7a0912b8037cbd260558d7a88"></a>
+template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a198df5a7a0912b8037cbd260558d7a88"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const blaze::Vector&lt; VT, VF &gt; &amp;lhs, const Variables &amp;rhs) noexcept</td></tr>
+<tr class="separator:a198df5a7a0912b8037cbd260558d7a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1093c901b497ff61ccab700c5a1735ec"><td class="memTemplParams" colspan="2"><a id="a1093c901b497ff61ccab700c5a1735ec"></a>
+template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a1093c901b497ff61ccab700c5a1735ec"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const Variables &amp;lhs, const blaze::Vector&lt; VT, VF &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:a1093c901b497ff61ccab700c5a1735ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4bd9c8b2aab0768ac4a89ef0c35168b"><td class="memTemplParams" colspan="2"><a id="aa4bd9c8b2aab0768ac4a89ef0c35168b"></a>
+template&lt;typename... WrappedTags, Requires&lt; tmpl2::flat_all_v&lt; cpp17::is_same_v&lt; db::remove_all_prefixes&lt; WrappedTags &gt;, db::remove_all_prefixes&lt; Tags &gt;&gt;... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:aa4bd9c8b2aab0768ac4a89ef0c35168b"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const Variables&lt; tmpl::list&lt; WrappedTags... &gt;&gt; &amp;lhs, const Variables &amp;rhs) noexcept</td></tr>
+<tr class="separator:aa4bd9c8b2aab0768ac4a89ef0c35168b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e2fcc0bb2ae895e988fe84366fd6209"><td class="memTemplParams" colspan="2"><a id="a0e2fcc0bb2ae895e988fe84366fd6209"></a>
+template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a0e2fcc0bb2ae895e988fe84366fd6209"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const blaze::Vector&lt; VT, VF &gt; &amp;lhs, const Variables &amp;rhs) noexcept</td></tr>
+<tr class="separator:a0e2fcc0bb2ae895e988fe84366fd6209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a235512abf8ef0af95e030ccaba15d17a"><td class="memTemplParams" colspan="2"><a id="a235512abf8ef0af95e030ccaba15d17a"></a>
+template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a235512abf8ef0af95e030ccaba15d17a"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const Variables &amp;lhs, const blaze::Vector&lt; VT, VF &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:a235512abf8ef0af95e030ccaba15d17a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb1212c77b755922e985aa9b090a91fe"><td class="memItemLeft" align="right" valign="top"><a id="abb1212c77b755922e985aa9b090a91fe"></a>
+decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const Variables &amp;lhs, const double &amp;rhs) noexcept</td></tr>
+<tr class="separator:abb1212c77b755922e985aa9b090a91fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a219fa9892e404e1345f146efa3dceff0"><td class="memItemLeft" align="right" valign="top"><a id="a219fa9892e404e1345f146efa3dceff0"></a>
+decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const double &amp;lhs, const Variables &amp;rhs) noexcept</td></tr>
+<tr class="separator:a219fa9892e404e1345f146efa3dceff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae857e7c6e09569cf9bbb5f72d5f6e8a4"><td class="memItemLeft" align="right" valign="top"><a id="ae857e7c6e09569cf9bbb5f72d5f6e8a4"></a>
+decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (const Variables &amp;lhs, const double &amp;rhs) noexcept</td></tr>
+<tr class="separator:ae857e7c6e09569cf9bbb5f72d5f6e8a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a58e329bdac22e4201855ef599245780e"><td class="memTemplParams" colspan="2"><a id="a58e329bdac22e4201855ef599245780e"></a>
+template&lt;typename... WrappedTags, Requires&lt; tmpl2::flat_all_v&lt; std::is_same&lt; db::remove_all_prefixes&lt; WrappedTags &gt;, db::remove_all_prefixes&lt; Tags &gt;&gt;::value... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a58e329bdac22e4201855ef599245780e"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a58e329bdac22e4201855ef599245780e">Variables</a> (Variables&lt; tmpl::list&lt; WrappedTags... &gt;&gt; &amp;&amp;rhs) noexcept</td></tr>
+<tr class="memdesc:a58e329bdac22e4201855ef599245780e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy and move semantics for wrapped variables. <br /></td></tr>
+<tr class="separator:a58e329bdac22e4201855ef599245780e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa02f9424c414a001b9757e8facde86cc"><td class="memTemplParams" colspan="2"><a id="aa02f9424c414a001b9757e8facde86cc"></a>
+template&lt;typename... WrappedTags, Requires&lt; tmpl2::flat_all_v&lt; cpp17::is_same_v&lt; db::remove_all_prefixes&lt; WrappedTags &gt;, db::remove_all_prefixes&lt; Tags &gt;&gt;... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:aa02f9424c414a001b9757e8facde86cc"><td class="memTemplItemLeft" align="right" valign="top">Variables &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#aa02f9424c414a001b9757e8facde86cc">operator=</a> (Variables&lt; tmpl::list&lt; WrappedTags... &gt;&gt; &amp;&amp;rhs) noexcept</td></tr>
+<tr class="memdesc:aa02f9424c414a001b9757e8facde86cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy and move semantics for wrapped variables. <br /></td></tr>
+<tr class="separator:aa02f9424c414a001b9757e8facde86cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa218e9064f387aa34bd75621ec772f8d"><td class="memTemplParams" colspan="2"><a id="aa218e9064f387aa34bd75621ec772f8d"></a>
+template&lt;typename... WrappedTags, Requires&lt; tmpl2::flat_all_v&lt; cpp17::is_same_v&lt; db::remove_all_prefixes&lt; WrappedTags &gt;, db::remove_all_prefixes&lt; Tags &gt;&gt;... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:aa218e9064f387aa34bd75621ec772f8d"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#aa218e9064f387aa34bd75621ec772f8d">Variables</a> (const Variables&lt; tmpl::list&lt; WrappedTags... &gt;&gt; &amp;rhs) noexcept</td></tr>
+<tr class="memdesc:aa218e9064f387aa34bd75621ec772f8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy and move semantics for wrapped variables. <br /></td></tr>
+<tr class="separator:aa218e9064f387aa34bd75621ec772f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58e7f67bb0c403c221bcd74929aff0c5"><td class="memTemplParams" colspan="2"><a id="a58e7f67bb0c403c221bcd74929aff0c5"></a>
+template&lt;typename... WrappedTags, Requires&lt; tmpl2::flat_all_v&lt; cpp17::is_same_v&lt; db::remove_all_prefixes&lt; WrappedTags &gt;, db::remove_all_prefixes&lt; Tags &gt;&gt;... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a58e7f67bb0c403c221bcd74929aff0c5"><td class="memTemplItemLeft" align="right" valign="top">Variables &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a58e7f67bb0c403c221bcd74929aff0c5">operator=</a> (const Variables&lt; tmpl::list&lt; WrappedTags... &gt;&gt; &amp;rhs) noexcept</td></tr>
+<tr class="memdesc:a58e7f67bb0c403c221bcd74929aff0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy and move semantics for wrapped variables. <br /></td></tr>
+<tr class="separator:a58e7f67bb0c403c221bcd74929aff0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a0dcc4b83c10edb9b1fd1835df7049bb0"><td class="memItemLeft" align="right" valign="top"><a id="a0dcc4b83c10edb9b1fd1835df7049bb0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a0dcc4b83c10edb9b1fd1835df7049bb0">initialize</a> (size_t number_of_grid_points) noexcept</td></tr>
+<tr class="memdesc:a0dcc4b83c10edb9b1fd1835df7049bb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a Variables to the state it would have after calling the constructor with the same arguments. <br /></td></tr>
+<tr class="separator:a0dcc4b83c10edb9b1fd1835df7049bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae18d1e94ed38199e735eb1d12fa82562"><td class="memItemLeft" align="right" valign="top"><a id="ae18d1e94ed38199e735eb1d12fa82562"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#ae18d1e94ed38199e735eb1d12fa82562">initialize</a> (size_t number_of_grid_points, double value) noexcept</td></tr>
+<tr class="memdesc:ae18d1e94ed38199e735eb1d12fa82562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a Variables to the state it would have after calling the constructor with the same arguments. <br /></td></tr>
+<tr class="separator:ae18d1e94ed38199e735eb1d12fa82562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:af538c6caee0d7c00531b25db14e2cfe8"><td class="memTemplParams" colspan="2">template&lt;typename... SubsetOfTags, Requires&lt; tmpl2::flat_all_v&lt; tmpl::list_contains_v&lt; tmpl::list&lt; Tags... &gt;, SubsetOfTags &gt;... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:af538c6caee0d7c00531b25db14e2cfe8"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#af538c6caee0d7c00531b25db14e2cfe8">assign_subset</a> (const Variables&lt; tmpl::list&lt; SubsetOfTags... &gt;&gt; &amp;vars) noexcept</td></tr>
+<tr class="memdesc:af538c6caee0d7c00531b25db14e2cfe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign a subset of the <code>Tensor</code>s from another Variables or a <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">tuples::TaggedTuple</a>.  <a href="#af538c6caee0d7c00531b25db14e2cfe8">More...</a><br /></td></tr>
+<tr class="separator:af538c6caee0d7c00531b25db14e2cfe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18160349ba00c099d8c21d2c869056f0"><td class="memTemplParams" colspan="2">template&lt;typename... SubsetOfTags, Requires&lt; tmpl2::flat_all_v&lt; tmpl::list_contains_v&lt; tmpl::list&lt; Tags... &gt;, SubsetOfTags &gt;... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a18160349ba00c099d8c21d2c869056f0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a18160349ba00c099d8c21d2c869056f0">assign_subset</a> (const <a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; SubsetOfTags... &gt; &amp;vars) noexcept</td></tr>
+<tr class="memdesc:a18160349ba00c099d8c21d2c869056f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign a subset of the <code>Tensor</code>s from another Variables or a <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">tuples::TaggedTuple</a>.  <a href="#a18160349ba00c099d8c21d2c869056f0">More...</a><br /></td></tr>
+<tr class="separator:a18160349ba00c099d8c21d2c869056f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:af341eadf1206341bbfde6e6103a98f85"><td class="memItemLeft" align="right" valign="top"><a id="af341eadf1206341bbfde6e6103a98f85"></a>
+static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>transpose_flag</b> = blaze::defaultTransposeFlag</td></tr>
+<tr class="separator:af341eadf1206341bbfde6e6103a98f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cc39f99e13b73077743ccf71e298ca3"><td class="memItemLeft" align="right" valign="top"><a id="a3cc39f99e13b73077743ccf71e298ca3"></a>
+static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a3cc39f99e13b73077743ccf71e298ca3">number_of_variables</a> = sizeof...(Tags)</td></tr>
+<tr class="memdesc:a3cc39f99e13b73077743ccf71e298ca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of variables of the Variables object is holding. E.g. \(\psi_{ab}\) would be counted as one variable. <br /></td></tr>
+<tr class="separator:a3cc39f99e13b73077743ccf71e298ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae78f50ae7e3e91c83a9cd5454bc36c81"><td class="memItemLeft" align="right" valign="top">static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#ae78f50ae7e3e91c83a9cd5454bc36c81">number_of_independent_components</a></td></tr>
+<tr class="memdesc:ae78f50ae7e3e91c83a9cd5454bc36c81"><td class="mdescLeft">&#160;</td><td class="mdescRight">The total number of independent components of all the variables. E.g. a rank-2 symmetric spacetime Tensor \(\psi_{ab}\) in 3 spatial dimensions would have 10 independent components.  <a href="#ae78f50ae7e3e91c83a9cd5454bc36c81">More...</a><br /></td></tr>
+<tr class="separator:ae78f50ae7e3e91c83a9cd5454bc36c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:af172433547ff96f2851d495e9ba130ee"><td class="memTemplParams" colspan="2"><a id="af172433547ff96f2851d495e9ba130ee"></a>
+template&lt;class FriendTags &gt; </td></tr>
+<tr class="memitem:af172433547ff96f2851d495e9ba130ee"><td class="memTemplItemLeft" align="right" valign="top">class&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Variables</b></td></tr>
+<tr class="separator:af172433547ff96f2851d495e9ba130ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf5aa6d8efa0b2546f7e409a25b4f7dd"><td class="memTemplParams" colspan="2">template&lt;typename Tag , typename TagList &gt; </td></tr>
+<tr class="memitem:abf5aa6d8efa0b2546f7e409a25b4f7dd"><td class="memTemplItemLeft" align="right" valign="top">constexpr Tag::type &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#abf5aa6d8efa0b2546f7e409a25b4f7dd">get</a> (Variables&lt; TagList &gt; &amp;v) noexcept</td></tr>
+<tr class="memdesc:abf5aa6d8efa0b2546f7e409a25b4f7dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return Tag::type pointing into the contiguous array.  <a href="#abf5aa6d8efa0b2546f7e409a25b4f7dd">More...</a><br /></td></tr>
+<tr class="separator:abf5aa6d8efa0b2546f7e409a25b4f7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15f646be5767f7105455b04aa4c00b1b"><td class="memTemplParams" colspan="2"><a id="a15f646be5767f7105455b04aa4c00b1b"></a>
+template&lt;typename Tag , typename TagList &gt; </td></tr>
+<tr class="memitem:a15f646be5767f7105455b04aa4c00b1b"><td class="memTemplItemLeft" align="right" valign="top">constexpr const Tag::type &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get</b> (const Variables&lt; TagList &gt; &amp;v) noexcept</td></tr>
+<tr class="separator:a15f646be5767f7105455b04aa4c00b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeed81a06365bcebc28d948c0c2d1da03"><td class="memItemLeft" align="right" valign="top"><a id="aeed81a06365bcebc28d948c0c2d1da03"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const Variables &amp;lhs, const Variables &amp;rhs) noexcept</td></tr>
+<tr class="separator:aeed81a06365bcebc28d948c0c2d1da03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename... Tags&gt;<br />
+class Variables&lt; tmpl::list&lt; Tags... &gt; &gt;</h3>
+
+<p>A Variables holds a contiguous memory block with Tensors pointing into it. </p>
+<p>The <code>Tags</code> are <code>struct</code>s that must have a public type alias <code>type</code> whose value must be a <code>Tensor&lt;<a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a>, ...&gt;</code>, a `static' method <code>name()</code> that returns a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></code> of the tag name, and must derive off of <code><a class="el" href="structdb_1_1SimpleTag.html" title="Tags for the DataBox inherit from this type. ">db::SimpleTag</a></code>. In general, they should be DataBoxTags that are not compute items. For example,</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>vector : <a class="code" href="structdb_1_1SimpleTag.html">db::SimpleTag</a> {</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;vector&quot;</span>; }</div><div class="line">  <span class="keyword">using</span> type = tnsr::I&lt;DataVector, 3, Frame::Grid&gt;;</div><div class="line">};</div></div><!-- fragment --><p> Prefix tags can also be stored and their format is:</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> Tag&gt;</div><div class="line"><span class="keyword">struct </span>PrefixTag0 : <a class="code" href="structdb_1_1PrefixTag.html">db::PrefixTag</a>, <a class="code" href="structdb_1_1SimpleTag.html">db::SimpleTag</a> {</div><div class="line">  <span class="keyword">using</span> type = <a class="code" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type&lt;Tag&gt;</a>;</div><div class="line">  <span class="keyword">using</span> tag = Tag;</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;PrefixTag0&quot;</span>; }</div><div class="line">};</div></div><!-- fragment --> <h4>Design Decisions</h4>
+<p>The <code>Variables</code> class is designed to hold several different <code>Tensor</code>s performing one memory allocation for all the <code>Tensor</code>s. The advantage is that memory allocations are quite expensive, especially in a parallel environment.</p>
+<p><code>Variables</code> stores the data it owns in a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt;double[], decltype(&amp;free)&gt;</code> instead of a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a></code> because allocating the <code>unique_ptr</code> with <code>malloc</code> allows us to avoid initializing the memory completely in release mode when no value is passed to the constructor. Additionally, if the macro <code>SPECTRE_NAN_INIT</code> is defined, initialization with <code>NaN</code>s is done even in release mode. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af538c6caee0d7c00531b25db14e2cfe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af538c6caee0d7c00531b25db14e2cfe8">&#9670;&nbsp;</a></span>assign_subset() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<div class="memtemplate">
+template&lt;typename... SubsetOfTags, Requires&lt; tmpl2::flat_all_v&lt; tmpl::list_contains_v&lt; tmpl::list&lt; Tags... &gt;, SubsetOfTags &gt;... &gt;&gt;  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Variables&lt; tmpl::list&lt; Tags... &gt; &gt;::assign_subset </td>
+          <td>(</td>
+          <td class="paramtype">const Variables&lt; tmpl::list&lt; SubsetOfTags... &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>vars</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Assign a subset of the <code>Tensor</code>s from another Variables or a <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">tuples::TaggedTuple</a>. </p>
+<dl class="section note"><dt>Note</dt><dd>There is no need for an rvalue overload because we need to copy into the contiguous array anyway </dd></dl>
+
+</div>
+</div>
+<a id="a18160349ba00c099d8c21d2c869056f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18160349ba00c099d8c21d2c869056f0">&#9670;&nbsp;</a></span>assign_subset() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<div class="memtemplate">
+template&lt;typename... SubsetOfTags, Requires&lt; tmpl2::flat_all_v&lt; tmpl::list_contains_v&lt; tmpl::list&lt; Tags... &gt;, SubsetOfTags &gt;... &gt;&gt;  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Variables&lt; tmpl::list&lt; Tags... &gt; &gt;::assign_subset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; SubsetOfTags... &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vars</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Assign a subset of the <code>Tensor</code>s from another Variables or a <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">tuples::TaggedTuple</a>. </p>
+<dl class="section note"><dt>Note</dt><dd>There is no need for an rvalue overload because we need to copy into the contiguous array anyway </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="abf5aa6d8efa0b2546f7e409a25b4f7dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf5aa6d8efa0b2546f7e409a25b4f7dd">&#9670;&nbsp;</a></span>get</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<div class="memtemplate">
+template&lt;typename Tag , typename TagList &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr Tag::type&amp; get </td>
+          <td>(</td>
+          <td class="paramtype">Variables&lt; TagList &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return Tag::type pointing into the contiguous array. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Tag</td><td>the variable to return </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae78f50ae7e3e91c83a9cd5454bc36c81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae78f50ae7e3e91c83a9cd5454bc36c81">&#9670;&nbsp;</a></span>number_of_independent_components</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr size_t Variables&lt; tmpl::list&lt; Tags... &gt; &gt;::number_of_independent_components</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">      tmpl::fold&lt;tmpl::list&lt;<a class="code" href="namespaceTags.html">Tags</a>...&gt;, tmpl::int32_t&lt;0&gt;,</div><div class="line">                 number_of_independent_components_helper&lt;</div><div class="line">                     tmpl::_state, tmpl::_element&gt;&gt;::value</div></div><!-- fragment -->
+<p>The total number of independent components of all the variables. E.g. a rank-2 symmetric spacetime Tensor \(\psi_{ab}\) in 3 spatial dimensions would have 10 independent components. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/DataStructures/<a class="el" href="Variables_8hpp_source.html">Variables.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

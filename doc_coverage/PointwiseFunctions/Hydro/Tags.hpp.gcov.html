@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - PointwiseFunctions/Hydro/Tags.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">PointwiseFunctions/Hydro</a> - Tags.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntry">46</td>
+            <td class="headerCovTableEntryLo">34.8 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : #include &lt;string&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/DataBox/DataBoxTag.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;PointwiseFunctions/Hydro/EquationsOfState/EquationOfState.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;PointwiseFunctions/Hydro/TagsDeclarations.hpp&quot;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : /// \ingroup EvolutionSystemsGroup
+<span class="lineNum">      15 </span>            : /// \brief Items related to hydrodynamic systems.
+<span class="lineNum">      16 </span>            : namespace hydro {
+<span class="lineNum">      17 </span>            : /// %Tags for hydrodynamic systems.
+<span class="lineNum">      18 </span>            : namespace Tags {
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : /// The Alfvén speed squared \f$v_A^2\f$.
+<span class="lineNum">      21 </span>            : template &lt;typename DataType&gt;
+<span class="lineNum">      22 </span><span class="lineCov">          1 : struct AlfvenSpeedSquared : db::SimpleTag {</span>
+<span class="lineNum">      23 </span><span class="lineNoCov">          0 :   using type = Scalar&lt;DataType&gt;;</span>
+<span class="lineNum">      24 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;AlfvenSpeedSquared&quot;; }</span>
+<span class="lineNum">      25 </span>            : };
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : /// The magnetic field \f$b^\mu = u_\nu F^{\mu \nu}\f$ measured by an observer
+<span class="lineNum">      28 </span>            : /// comoving with the fluid with 4-velocity \f$u_\nu\f$ where \f$F^{\mu \nu}\f$
+<span class="lineNum">      29 </span>            : /// is the Faraday tensor.
+<span class="lineNum">      30 </span>            : template &lt;typename DataType, size_t Dim, typename Fr&gt;
+<span class="lineNum">      31 </span><span class="lineCov">          1 : struct ComovingMagneticField : db::SimpleTag {</span>
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 :   using type = tnsr::A&lt;DataType, Dim, Fr&gt;;</span>
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 :   static std::string name() noexcept {</span>
+<span class="lineNum">      34 </span>            :     return Frame::prefix&lt;Fr&gt;() + &quot;ComovingMagneticField&quot;;
+<span class="lineNum">      35 </span>            :   }
+<span class="lineNum">      36 </span>            : };
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            : /// The divergence-cleaning field \f$\Phi\f$.
+<span class="lineNum">      39 </span>            : template &lt;typename DataType&gt;
+<span class="lineNum">      40 </span><span class="lineCov">          1 : struct DivergenceCleaningField : db::SimpleTag {</span>
+<span class="lineNum">      41 </span><span class="lineNoCov">          0 :   using type = Scalar&lt;DataType&gt;;</span>
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;DivergenceCleaningField&quot;; }</span>
+<span class="lineNum">      43 </span>            : };
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            : /// Base tag for the equation of state
+<span class="lineNum">      46 </span><span class="lineCov">          1 : struct EquationOfStateBase : db::BaseTag {};</span>
+<span class="lineNum">      47 </span>            : 
+<span class="lineNum">      48 </span>            : /// The equation of state
+<span class="lineNum">      49 </span>            : template &lt;typename EquationOfStateType&gt;
+<span class="lineNum">      50 </span><span class="lineCov">          1 : struct EquationOfState : EquationOfStateBase, db::SimpleTag {</span>
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 :   using type = EquationOfStateType;</span>
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;EquationOfState&quot;; }</span>
+<span class="lineNum">      53 </span>            : };
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : /// The Lorentz factor \f$W\f$.
+<span class="lineNum">      56 </span>            : template &lt;typename DataType&gt;
+<span class="lineNum">      57 </span><span class="lineCov">          1 : struct LorentzFactor : db::SimpleTag {</span>
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 :   using type = Scalar&lt;DataType&gt;;</span>
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;LorentzFactor&quot;; }</span>
+<span class="lineNum">      60 </span>            : };
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span>            : /// The magnetic field \f$B^i = n_\mu F^{i \mu}\f$ measured by an Eulerian
+<span class="lineNum">      63 </span>            : /// observer, where \f$n_\mu\f$ is the normal to the spatial hypersurface and
+<span class="lineNum">      64 </span>            : /// \f$F^{\mu \nu}\f$ is the Faraday tensor.
+<span class="lineNum">      65 </span>            : template &lt;typename DataType, size_t Dim, typename Fr&gt;
+<span class="lineNum">      66 </span><span class="lineCov">          1 : struct MagneticField : db::SimpleTag {</span>
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :   using type = tnsr::I&lt;DataType, Dim, Fr&gt;;</span>
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :   static std::string name() noexcept {</span>
+<span class="lineNum">      69 </span>            :     return Frame::prefix&lt;Fr&gt;() + &quot;MagneticField&quot;;
+<span class="lineNum">      70 </span>            :   }
+<span class="lineNum">      71 </span>            : };
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span>            : /// The magnetic pressure \f$p_m\f$.
+<span class="lineNum">      74 </span>            : template &lt;typename DataType&gt;
+<span class="lineNum">      75 </span><span class="lineCov">          1 : struct MagneticPressure : db::SimpleTag {</span>
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 :   using type = Scalar&lt;DataType&gt;;</span>
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;MagneticPressure&quot;; }</span>
+<span class="lineNum">      78 </span>            : };
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            : /// The fluid pressure \f$p\f$.
+<span class="lineNum">      81 </span>            : template &lt;typename DataType&gt;
+<span class="lineNum">      82 </span><span class="lineCov">          1 : struct Pressure : db::SimpleTag {</span>
+<span class="lineNum">      83 </span><span class="lineNoCov">          0 :   using type = Scalar&lt;DataType&gt;;</span>
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;Pressure&quot;; }</span>
+<span class="lineNum">      85 </span>            : };
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span>            : /// The rest-mass density \f$\rho\f$.
+<span class="lineNum">      88 </span>            : template &lt;typename DataType&gt;
+<span class="lineNum">      89 </span><span class="lineCov">          1 : struct RestMassDensity : db::SimpleTag {</span>
+<span class="lineNum">      90 </span><span class="lineNoCov">          0 :   using type = Scalar&lt;DataType&gt;;</span>
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;RestMassDensity&quot;; }</span>
+<span class="lineNum">      92 </span>            : };
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span>            : /// The sound speed squared \f$c_s^2\f$.
+<span class="lineNum">      95 </span>            : template &lt;typename DataType&gt;
+<span class="lineNum">      96 </span><span class="lineCov">          1 : struct SoundSpeedSquared : db::SimpleTag {</span>
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 :   using type = Scalar&lt;DataType&gt;;</span>
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;SoundSpeedSquared&quot;; }</span>
+<span class="lineNum">      99 </span>            : };
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            : /// The spatial velocity \f$v^i\f$.
+<span class="lineNum">     102 </span>            : template &lt;typename DataType, size_t Dim, typename Fr&gt;
+<span class="lineNum">     103 </span><span class="lineCov">          1 : struct SpatialVelocity : db::SimpleTag {</span>
+<span class="lineNum">     104 </span><span class="lineNoCov">          0 :   using type = tnsr::I&lt;DataType, Dim, Fr&gt;;</span>
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 :   static std::string name() noexcept {</span>
+<span class="lineNum">     106 </span>            :     return Frame::prefix&lt;Fr&gt;() + &quot;SpatialVelocity&quot;;
+<span class="lineNum">     107 </span>            :   }
+<span class="lineNum">     108 </span>            : };
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            : /// The spatial velocity one-form \f$v_i\f$.
+<span class="lineNum">     111 </span>            : template &lt;typename DataType, size_t Dim, typename Fr&gt;
+<span class="lineNum">     112 </span><span class="lineCov">          1 : struct SpatialVelocityOneForm : db::SimpleTag {</span>
+<span class="lineNum">     113 </span><span class="lineNoCov">          0 :   using type = tnsr::i&lt;DataType, Dim, Fr&gt;;</span>
+<span class="lineNum">     114 </span><span class="lineNoCov">          0 :   static std::string name() noexcept {</span>
+<span class="lineNum">     115 </span>            :     return Frame::prefix&lt;Fr&gt;() + &quot;SpatialVelocityOneForm&quot;;
+<span class="lineNum">     116 </span>            :   }
+<span class="lineNum">     117 </span>            : };
+<span class="lineNum">     118 </span>            : 
+<span class="lineNum">     119 </span>            : /// The spatial velocity squared \f$v^2 = v_i v^i\f$.
+<span class="lineNum">     120 </span>            : template &lt;typename DataType&gt;
+<span class="lineNum">     121 </span><span class="lineCov">          1 : struct SpatialVelocitySquared : db::SimpleTag {</span>
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :   using type = Scalar&lt;DataType&gt;;</span>
+<span class="lineNum">     123 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;SpatialVelocitySquared&quot;; }</span>
+<span class="lineNum">     124 </span>            : };
+<span class="lineNum">     125 </span>            : 
+<span class="lineNum">     126 </span>            : /// The specific enthalpy \f$h\f$.
+<span class="lineNum">     127 </span>            : template &lt;typename DataType&gt;
+<span class="lineNum">     128 </span><span class="lineCov">          1 : struct SpecificEnthalpy : db::SimpleTag {</span>
+<span class="lineNum">     129 </span><span class="lineNoCov">          0 :   using type = Scalar&lt;DataType&gt;;</span>
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;SpecificEnthalpy&quot;; }</span>
+<span class="lineNum">     131 </span>            : };
+<span class="lineNum">     132 </span>            : 
+<span class="lineNum">     133 </span>            : /// The specific internal energy \f$\epsilon\f$.
+<span class="lineNum">     134 </span>            : template &lt;typename DataType&gt;
+<span class="lineNum">     135 </span><span class="lineCov">          1 : struct SpecificInternalEnergy : db::SimpleTag {</span>
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :   using type = Scalar&lt;DataType&gt;;</span>
+<span class="lineNum">     137 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;SpecificInternalEnergy&quot;; }</span>
+<span class="lineNum">     138 </span>            : };
+<span class="lineNum">     139 </span>            : 
+<span class="lineNum">     140 </span>            : }  // namespace Tags
+<span class="lineNum">     141 </span>            : }  // namespace hydro
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

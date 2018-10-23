@@ -1,0 +1,208 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/NumericalAlgorithms/Interpolation/InterpolatedVars.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_a7268f5afc6b190325b6ae3281812809.html">NumericalAlgorithms</a></li><li class="navelem"><a class="el" href="dir_b5be3fef78335bf3b7869cd601bebc3c.html">Interpolation</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">InterpolatedVars.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/unordered_map.html">unordered_map</a>&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/unordered_set.html">unordered_set</a>&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;DataStructures/IdPair.hpp&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TypeAliases_8hpp.html">DataStructures/Tensor/TypeAliases.hpp</a>&quot;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Variables_8hpp.html">DataStructures/Variables.hpp</a>&quot;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;Domain/BlockId.hpp&quot;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ElementId_8hpp.html">Domain/ElementId.hpp</a>&quot;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Mesh_8hpp.html">Domain/Mesh.hpp</a>&quot;</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TMPL_8hpp.html">Utilities/TMPL.hpp</a>&quot;</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TaggedTuple_8hpp.html">Utilities/TaggedTuple.hpp</a>&quot;</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceintrp.html">intrp</a> {</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/// Data structures holding quantities that are interpolated by</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/// `Interpolator` for use by `InterpolationTarget`s</span></div><div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespaceintrp_1_1Vars.html">   23</a></span>&#160;<span class="comment"></span><span class="keyword">namespace </span>Vars {<span class="comment"></span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">/// \brief Holds a `Variables` interpolated onto a list of points, and</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">/// information about those points, for a local `Interpolator`.</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">///</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/// `TagList` is a `tmpl::list` of tags that go into the `Variables`.</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> VolumeDim, <span class="keyword">typename</span> TagList&gt;</div><div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="structintrp_1_1Vars_1_1Info.html">   29</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structintrp_1_1Vars_1_1Info.html">Info</a> {<span class="comment"></span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">  /// `block_coord_holders` holds the list of all points (in block</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">  /// logical coordinates) that need to be interpolated onto for a</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">  /// given `InterpolationTarget`.</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">  ///</span></div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">  /// The number of interpolated points for which results are stored</span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">  /// in this `Info` (in `vars` and `global_offsets` below)</span></div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">  /// corresponds to only the subset of the points in</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">  /// `block_coord_holders` that are contained in local `Element`s.</span></div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">  /// Moreover, the number of interpolated points stored in this</span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">  /// `Info` will change as more `Elements` send data to this</span></div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">  /// `Interpolator`, and will be less than or equal to the size of</span></div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">  /// `block_coord_holders` even after all `Element`s have sent their</span></div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">  /// data (this is because this `Info` lives only on a single core,</span></div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">  /// and this core will have access only to the local `Element`s).</span></div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"></span>  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;<a class="code" href="structIdPair.html">IdPair</a>&lt;<a class="code" href="classdomain_1_1BlockId.html">domain::BlockId</a>,</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                     tnsr::I&lt;double, VolumeDim, typename ::Frame::Logical&gt;&gt;&gt;</div><div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structintrp_1_1Vars_1_1Info.html#a581b6c7fa8416130ff91414382997cb7">   46</a></span>&#160;      <a class="code" href="structintrp_1_1Vars_1_1Info.html#a581b6c7fa8416130ff91414382997cb7">block_coord_holders</a>;<span class="comment"></span></div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">  /// `vars` holds the interpolated `Variables` on some subset of the</span></div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">  /// points in `block_coord_holders`.  The grid points inside vars</span></div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">  /// are indexed according to `global_offsets` below.  The size of</span></div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">  /// `vars` changes as more `Element`s send data to this `Interpolator`.</span></div><div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structintrp_1_1Vars_1_1Info.html#ac71f233c1f00056ac6df0dcac783fb6a">   51</a></span>&#160;<span class="comment"></span>  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;Variables&lt;TagList&gt;</a>&gt; <a class="code" href="structintrp_1_1Vars_1_1Info.html#ac71f233c1f00056ac6df0dcac783fb6a">vars</a>{};<span class="comment"></span></div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">  /// `global_offsets[j][i]` is the index into `block_coord_holders` that</span></div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">  /// corresponds to the index `i` of the `DataVector` held in `vars[j]`.</span></div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">  /// The size of `global_offsets` changes as more `Element`s</span></div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">  /// send data to this `Interpolator`.</span></div><div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="structintrp_1_1Vars_1_1Info.html#aac3f98f2cf71b24b8f7536a62434b0de">   56</a></span>&#160;<span class="comment"></span>  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;std::vector&lt;size_t&gt;</a>&gt; <a class="code" href="structintrp_1_1Vars_1_1Info.html#aac3f98f2cf71b24b8f7536a62434b0de">global_offsets</a>{};<span class="comment"></span></div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">  /// Holds the `ElementId`s of `Element`s that have already sent their data</span></div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">  /// to this `Interpolator`.</span></div><div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structintrp_1_1Vars_1_1Info.html#a33513527ba962bee1b1609999597a201">   59</a></span>&#160;<span class="comment"></span>  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_set.html">std::unordered_set&lt;ElementId&lt;VolumeDim&gt;</a>&gt; <a class="code" href="structintrp_1_1Vars_1_1Info.html#a33513527ba962bee1b1609999597a201">element_has_communicated</a>{};</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">/// Holds `Info`s at all `temporal_id`s for a given</span></div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">/// `InterpolationTargetTag`.  Also holds `temporal_id`s when data has</span></div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">/// been interpolated; this is used for cleanup purposes.  All</span></div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">/// `Holder`s for all `InterpolationTargetTags` are held in a single</span></div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">/// `TaggedTuple` that is in the `Interpolator`&#39;s `DataBox` with the</span></div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">/// tag `Tags::InterpolatedVarsHolders`.</span></div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Metavariables, <span class="keywordtype">size_t</span> VolumeDim,</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;          <span class="keyword">typename</span> InterpolationTargetTag, <span class="keyword">typename</span> TagList&gt;</div><div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="structintrp_1_1Vars_1_1Holder.html">   70</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structintrp_1_1Vars_1_1Holder.html">Holder</a> {</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt;<span class="keyword">typename</span> Metavariables::temporal_id,</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                     <a class="code" href="structintrp_1_1Vars_1_1Info.html">Info&lt;VolumeDim, TagList&gt;</a>&gt;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      infos;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_set.html">std::unordered_set&lt;typename Metavariables::temporal_id&gt;</a></div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;      temporal_ids_when_data_has_been_interpolated;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">/// Indexes a particular `Holder` in the `TaggedTuple` that is</span></div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">/// accessed from the `Interpolator`&#39;s `DataBox` with tag</span></div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">/// `Tags::InterpolatedVarsHolders`.</span></div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> InterpolationTargetTag, <span class="keyword">typename</span> Metavariables,</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;          <span class="keywordtype">size_t</span> VolumeDim&gt;</div><div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="structintrp_1_1Vars_1_1HolderTag.html">   83</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structintrp_1_1Vars_1_1HolderTag.html">HolderTag</a> {</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <span class="keyword">using</span> <a class="code" href="structintrp_1_1Vars_1_1Holder.html">type</a> =</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      <a class="code" href="structintrp_1_1Vars_1_1Holder.html">Holder</a>&lt;Metavariables, VolumeDim, InterpolationTargetTag,</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;             <span class="keyword">typename</span> InterpolationTargetTag::vars_to_interpolate_to_target&gt;;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;};</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}  <span class="comment">// namespace Vars</span></div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}  <span class="comment">// namespace intrp</span></div><div class="ttc" id="structIdPair_html"><div class="ttname"><a href="structIdPair.html">IdPair</a></div><div class="ttdoc">A data structure that contains an ID and data associated with that ID. </div><div class="ttdef"><b>Definition:</b> IdPair.hpp:16</div></div>
+<div class="ttc" id="TaggedTuple_8hpp_html"><div class="ttname"><a href="TaggedTuple_8hpp.html">TaggedTuple.hpp</a></div><div class="ttdoc">Defines class tuples::TaggedTuple. </div></div>
+<div class="ttc" id="classdomain_1_1BlockId_html"><div class="ttname"><a href="classdomain_1_1BlockId.html">domain::BlockId</a></div><div class="ttdoc">Index a block of the computational domain. </div><div class="ttdef"><b>Definition:</b> BlockId.hpp:21</div></div>
+<div class="ttc" id="structintrp_1_1Vars_1_1Info_html"><div class="ttname"><a href="structintrp_1_1Vars_1_1Info.html">intrp::Vars::Info</a></div><div class="ttdoc">Holds a Variables interpolated onto a list of points, and information about those points...</div><div class="ttdef"><b>Definition:</b> InterpolatedVars.hpp:29</div></div>
+<div class="ttc" id="namespaceintrp_html"><div class="ttname"><a href="namespaceintrp.html">intrp</a></div><div class="ttdoc">Contains classes and functions for interpolation. </div><div class="ttdef"><b>Definition:</b> AddTemporalIdsToInterpolationTarget.hpp:17</div></div>
+<div class="ttc" id="structintrp_1_1Vars_1_1Info_html_a33513527ba962bee1b1609999597a201"><div class="ttname"><a href="structintrp_1_1Vars_1_1Info.html#a33513527ba962bee1b1609999597a201">intrp::Vars::Info::element_has_communicated</a></div><div class="ttdeci">std::unordered_set&lt; ElementId&lt; VolumeDim &gt; &gt; element_has_communicated</div><div class="ttdoc">Holds the ElementIds of Elements that have already sent their data to this Interpolator. </div><div class="ttdef"><b>Definition:</b> InterpolatedVars.hpp:59</div></div>
+<div class="ttc" id="structintrp_1_1Vars_1_1Info_html_ac71f233c1f00056ac6df0dcac783fb6a"><div class="ttname"><a href="structintrp_1_1Vars_1_1Info.html#ac71f233c1f00056ac6df0dcac783fb6a">intrp::Vars::Info::vars</a></div><div class="ttdeci">std::vector&lt; Variables&lt; TagList &gt; &gt; vars</div><div class="ttdoc">vars holds the interpolated Variables on some subset of the points in block_coord_holders. The grid points inside vars are indexed according to global_offsets below. The size of vars changes as more Elements send data to this Interpolator. </div><div class="ttdef"><b>Definition:</b> InterpolatedVars.hpp:51</div></div>
+<div class="ttc" id="ElementId_8hpp_html"><div class="ttname"><a href="ElementId_8hpp.html">ElementId.hpp</a></div><div class="ttdoc">Defines class ElementId. </div></div>
+<div class="ttc" id="structintrp_1_1Vars_1_1Info_html_a581b6c7fa8416130ff91414382997cb7"><div class="ttname"><a href="structintrp_1_1Vars_1_1Info.html#a581b6c7fa8416130ff91414382997cb7">intrp::Vars::Info::block_coord_holders</a></div><div class="ttdeci">std::vector&lt; IdPair&lt; domain::BlockId, tnsr::I&lt; double, VolumeDim, typename ::Frame::Logical &gt; &gt; &gt; block_coord_holders</div><div class="ttdoc">block_coord_holders holds the list of all points (in block logical coordinates) that need to be inter...</div><div class="ttdef"><b>Definition:</b> InterpolatedVars.hpp:46</div></div>
+<div class="ttc" id="structintrp_1_1Vars_1_1Info_html_aac3f98f2cf71b24b8f7536a62434b0de"><div class="ttname"><a href="structintrp_1_1Vars_1_1Info.html#aac3f98f2cf71b24b8f7536a62434b0de">intrp::Vars::Info::global_offsets</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; size_t &gt; &gt; global_offsets</div><div class="ttdoc">global_offsets[j][i] is the index into block_coord_holders that corresponds to the index i of the Dat...</div><div class="ttdef"><b>Definition:</b> InterpolatedVars.hpp:56</div></div>
+<div class="ttc" id="unordered_set_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/unordered_set.html">unordered_set</a></div></div>
+<div class="ttc" id="Variables_8hpp_html"><div class="ttname"><a href="Variables_8hpp.html">Variables.hpp</a></div><div class="ttdoc">Defines class Variables. </div></div>
+<div class="ttc" id="Mesh_8hpp_html"><div class="ttname"><a href="Mesh_8hpp.html">Mesh.hpp</a></div><div class="ttdoc">Defines the class template Mesh. </div></div>
+<div class="ttc" id="TypeAliases_8hpp_html"><div class="ttname"><a href="TypeAliases_8hpp.html">TypeAliases.hpp</a></div><div class="ttdoc">Defines a list of useful type aliases for tensors. </div></div>
+<div class="ttc" id="vector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
+<div class="ttc" id="structintrp_1_1Vars_1_1Holder_html"><div class="ttname"><a href="structintrp_1_1Vars_1_1Holder.html">intrp::Vars::Holder</a></div><div class="ttdoc">Holds Infos at all temporal_ids for a given InterpolationTargetTag. Also holds temporal_ids when data...</div><div class="ttdef"><b>Definition:</b> InterpolatedVars.hpp:70</div></div>
+<div class="ttc" id="TMPL_8hpp_html"><div class="ttname"><a href="TMPL_8hpp.html">TMPL.hpp</a></div><div class="ttdoc">Wraps the template metaprogramming library used (brigand) </div></div>
+<div class="ttc" id="structintrp_1_1Vars_1_1HolderTag_html"><div class="ttname"><a href="structintrp_1_1Vars_1_1HolderTag.html">intrp::Vars::HolderTag</a></div><div class="ttdoc">Indexes a particular Holder in the TaggedTuple that is accessed from the Interpolator&amp;#39;s DataBox with ...</div><div class="ttdef"><b>Definition:</b> InterpolatedVars.hpp:83</div></div>
+<div class="ttc" id="unordered_map_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/unordered_map.html">unordered_map</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

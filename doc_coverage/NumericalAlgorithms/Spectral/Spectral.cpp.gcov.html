@@ -1,0 +1,511 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/Spectral/Spectral.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/Spectral</a> - Spectral.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntryLo">66.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;NumericalAlgorithms/Spectral/Spectral.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">       7 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">       8 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">       9 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/Matrix.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Domain/Mesh.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/Blas.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/ContainerHelpers.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/EqualWithinRoundoff.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Utilities/GenerateInstantiations.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Utilities/StaticCache.hpp&quot;
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : namespace Spectral {
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span><span class="lineNoCov">          0 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
+<span class="lineNum">      26 </span>            :                          const Basis&amp; basis) noexcept {
+<span class="lineNum">      27 </span>            :   switch (basis) {
+<span class="lineNum">      28 </span>            :     case Basis::Legendre: return os &lt;&lt; &quot;Legendre&quot;;
+<span class="lineNum">      29 </span>            :     default: ERROR(&quot;Invalid basis&quot;);
+<span class="lineNum">      30 </span>            :   }
+<span class="lineNum">      31 </span>            : }
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
+<span class="lineNum">      34 </span>            :                          const Quadrature&amp; quadrature) noexcept {
+<span class="lineNum">      35 </span>            :   switch (quadrature) {
+<span class="lineNum">      36 </span>            :     case Quadrature::Gauss: return os &lt;&lt; &quot;Gauss&quot;;
+<span class="lineNum">      37 </span>            :     case Quadrature::GaussLobatto: return os &lt;&lt; &quot;GaussLobatto&quot;;
+<span class="lineNum">      38 </span>            :     default: ERROR(&quot;Invalid quadrature&quot;);
+<span class="lineNum">      39 </span>            :   }
+<span class="lineNum">      40 </span>            : }
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            : namespace {
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            : // Caching mechanism
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType,
+<span class="lineNum">      47 </span>            :           typename SpectralQuantityGenerator&gt;
+<span class="lineNum">      48 </span>            : const auto&amp; precomputed_spectral_quantity(const size_t num_points) noexcept {
+<span class="lineNum">      49 </span>            :   constexpr size_t max_num_points =
+<span class="lineNum">      50 </span>            :       Spectral::maximum_number_of_points&lt;BasisType&gt;;
+<span class="lineNum">      51 </span>            :   constexpr size_t min_num_points =
+<span class="lineNum">      52 </span>            :       Spectral::minimum_number_of_points&lt;BasisType, QuadratureType&gt;;
+<span class="lineNum">      53 </span>            :   ASSERT(num_points &gt;= min_num_points,
+<span class="lineNum">      54 </span>            :          &quot;Tried to work with less than the minimum number of collocation &quot;
+<span class="lineNum">      55 </span>            :          &quot;points for this quadrature.&quot;);
+<span class="lineNum">      56 </span>            :   ASSERT(num_points &lt;= max_num_points,
+<span class="lineNum">      57 </span>            :          &quot;Exceeded maximum number of collocation points.&quot;);
+<span class="lineNum">      58 </span>            :   // We compute the quantity for all possible `num_point`s the first time this
+<span class="lineNum">      59 </span>            :   // function is called and keep the data around for the lifetime of the
+<span class="lineNum">      60 </span>            :   // program. The computation is handled by the call operator of the
+<span class="lineNum">      61 </span>            :   // `SpectralQuantityType` instance.
+<span class="lineNum">      62 </span>            :   static const auto precomputed_data =
+<span class="lineNum">      63 </span>            :       make_static_cache&lt;CacheRange&lt;min_num_points, max_num_points + 1&gt;&gt;(
+<span class="lineNum">      64 </span>            :           SpectralQuantityGenerator{});
+<span class="lineNum">      65 </span>            :   return precomputed_data(num_points);
+<span class="lineNum">      66 </span>            : }
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType&gt;
+<span class="lineNum">      69 </span>            : struct CollocationPointsAndWeightsGenerator {
+<span class="lineNum">      70 </span>            :   std::pair&lt;DataVector, DataVector&gt; operator()(const size_t num_points) const
+<span class="lineNum">      71 </span>            :       noexcept {
+<span class="lineNum">      72 </span>            :     return compute_collocation_points_and_weights&lt;BasisType, QuadratureType&gt;(
+<span class="lineNum">      73 </span>            :         num_points);
+<span class="lineNum">      74 </span>            :   }
+<span class="lineNum">      75 </span>            : };
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span>            : // Computation of basis-agnostic quantities
+<span class="lineNum">      78 </span>            : 
+<span class="lineNum">      79 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType&gt;
+<span class="lineNum">      80 </span>            : struct QuadratureWeightsGenerator {
+<span class="lineNum">      81 </span>            :   DataVector operator()(const size_t num_points) const noexcept {
+<span class="lineNum">      82 </span>            :     const auto&amp; pts_and_weights = precomputed_spectral_quantity&lt;
+<span class="lineNum">      83 </span>            :         BasisType, QuadratureType,
+<span class="lineNum">      84 </span>            :         CollocationPointsAndWeightsGenerator&lt;BasisType, QuadratureType&gt;&gt;(
+<span class="lineNum">      85 </span>            :         num_points);
+<span class="lineNum">      86 </span>            :     return pts_and_weights.second *
+<span class="lineNum">      87 </span>            :            compute_inverse_weight_function_values&lt;BasisType&gt;(
+<span class="lineNum">      88 </span>            :                pts_and_weights.first);
+<span class="lineNum">      89 </span>            :   }
+<span class="lineNum">      90 </span>            : };
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType&gt;
+<span class="lineNum">      93 </span>            : struct BarycentricWeightsGenerator {
+<span class="lineNum">      94 </span>            :   DataVector operator()(const size_t num_points) const noexcept {
+<span class="lineNum">      95 </span>            :     // Algorithm 30 in Kopriva, p. 75
+<span class="lineNum">      96 </span>            :     // This is valid for any collocation points.
+<span class="lineNum">      97 </span>            :     const DataVector&amp; x =
+<span class="lineNum">      98 </span>            :         collocation_points&lt;BasisType, QuadratureType&gt;(num_points);
+<span class="lineNum">      99 </span>            :     DataVector bary_weights(num_points, 1.);
+<span class="lineNum">     100 </span>            :     for (size_t j = 1; j &lt; num_points; j++) {
+<span class="lineNum">     101 </span>            :       for (size_t k = 0; k &lt; j; k++) {
+<span class="lineNum">     102 </span>            :         bary_weights[k] *= x[k] - x[j];
+<span class="lineNum">     103 </span>            :         bary_weights[j] *= x[j] - x[k];
+<span class="lineNum">     104 </span>            :       }
+<span class="lineNum">     105 </span>            :     }
+<span class="lineNum">     106 </span>            :     for (size_t j = 0; j &lt; num_points; j++) {
+<span class="lineNum">     107 </span>            :       bary_weights[j] = 1. / bary_weights[j];
+<span class="lineNum">     108 </span>            :     }
+<span class="lineNum">     109 </span>            :     return bary_weights;
+<span class="lineNum">     110 </span>            :   }
+<span class="lineNum">     111 </span>            : };
+<span class="lineNum">     112 </span>            : 
+<span class="lineNum">     113 </span>            : // We don't need this as part of the public interface, but precompute it since
+<span class="lineNum">     114 </span>            : // `interpolation_matrix` needs it at runtime.
+<span class="lineNum">     115 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType&gt;
+<span class="lineNum">     116 </span>            : const DataVector&amp; barycentric_weights(const size_t num_points) noexcept {
+<span class="lineNum">     117 </span>            :   return precomputed_spectral_quantity&lt;
+<span class="lineNum">     118 </span>            :       BasisType, QuadratureType,
+<span class="lineNum">     119 </span>            :       BarycentricWeightsGenerator&lt;BasisType, QuadratureType&gt;&gt;(num_points);
+<span class="lineNum">     120 </span>            : }
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType&gt;
+<span class="lineNum">     123 </span>            : struct DifferentiationMatrixGenerator {
+<span class="lineNum">     124 </span>            :   Matrix operator()(const size_t num_points) const noexcept {
+<span class="lineNum">     125 </span>            :     // Algorithm 37 in Kopriva, p. 82
+<span class="lineNum">     126 </span>            :     // It is valid for any collocation points and barycentric weights.
+<span class="lineNum">     127 </span>            :     const DataVector&amp; collocation_pts =
+<span class="lineNum">     128 </span>            :         collocation_points&lt;BasisType, QuadratureType&gt;(num_points);
+<span class="lineNum">     129 </span>            :     const DataVector&amp; bary_weights =
+<span class="lineNum">     130 </span>            :         barycentric_weights&lt;BasisType, QuadratureType&gt;(num_points);
+<span class="lineNum">     131 </span>            :     Matrix diff_matrix(num_points, num_points);
+<span class="lineNum">     132 </span>            :     for (size_t i = 0; i &lt; num_points; ++i) {
+<span class="lineNum">     133 </span>            :       double&amp; diagonal = diff_matrix(i, i) = 0.0;
+<span class="lineNum">     134 </span>            :       for (size_t j = 0; j &lt; num_points; ++j) {
+<span class="lineNum">     135 </span>            :         if (LIKELY(i != j)) {
+<span class="lineNum">     136 </span>            :           diff_matrix(i, j) =
+<span class="lineNum">     137 </span>            :               bary_weights[j] /
+<span class="lineNum">     138 </span>            :               (bary_weights[i] * (collocation_pts[i] - collocation_pts[j]));
+<span class="lineNum">     139 </span>            :           diagonal -= diff_matrix(i, j);
+<span class="lineNum">     140 </span>            :         }
+<span class="lineNum">     141 </span>            :       }
+<span class="lineNum">     142 </span>            :     }
+<span class="lineNum">     143 </span>            :     return diff_matrix;
+<span class="lineNum">     144 </span>            :   }
+<span class="lineNum">     145 </span>            : };
+<span class="lineNum">     146 </span>            : 
+<span class="lineNum">     147 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType&gt;
+<span class="lineNum">     148 </span>            : struct SpectralToGridPointsMatrixGenerator {
+<span class="lineNum">     149 </span>            :   Matrix operator()(const size_t num_points) const noexcept {
+<span class="lineNum">     150 </span>            :     // To obtain the Vandermonde matrix we need to compute the basis function
+<span class="lineNum">     151 </span>            :     // values at the collocation points. Constructing the matrix proceeds
+<span class="lineNum">     152 </span>            :     // the same for any basis.
+<span class="lineNum">     153 </span>            :     const DataVector&amp; collocation_pts =
+<span class="lineNum">     154 </span>            :         collocation_points&lt;BasisType, QuadratureType&gt;(num_points);
+<span class="lineNum">     155 </span>            :     Matrix vandermonde_matrix(num_points, num_points);
+<span class="lineNum">     156 </span>            :     for (size_t j = 0; j &lt; num_points; j++) {
+<span class="lineNum">     157 </span>            :       const auto&amp; basis_function_values =
+<span class="lineNum">     158 </span>            :           compute_basis_function_values&lt;BasisType&gt;(j, collocation_pts);
+<span class="lineNum">     159 </span>            :       for (size_t i = 0; i &lt; num_points; i++) {
+<span class="lineNum">     160 </span>            :         vandermonde_matrix(i, j) = basis_function_values[i];
+<span class="lineNum">     161 </span>            :       }
+<span class="lineNum">     162 </span>            :     }
+<span class="lineNum">     163 </span>            :     return vandermonde_matrix;
+<span class="lineNum">     164 </span>            :   }
+<span class="lineNum">     165 </span>            : };
+<span class="lineNum">     166 </span>            : 
+<span class="lineNum">     167 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType&gt;
+<span class="lineNum">     168 </span>            : struct GridPointsToSpectralMatrixGenerator {
+<span class="lineNum">     169 </span>            :   Matrix operator()(const size_t num_points) const noexcept {
+<span class="lineNum">     170 </span>            :     // Numerically invert the matrix for this generic case
+<span class="lineNum">     171 </span>            :     return inv(
+<span class="lineNum">     172 </span>            :         spectral_to_grid_points_matrix&lt;BasisType, QuadratureType&gt;(num_points));
+<span class="lineNum">     173 </span>            :   }
+<span class="lineNum">     174 </span>            : };
+<span class="lineNum">     175 </span>            : 
+<span class="lineNum">     176 </span>            : template &lt;Basis BasisType&gt;
+<span class="lineNum">     177 </span>            : struct GridPointsToSpectralMatrixGenerator&lt;BasisType, Quadrature::Gauss&gt; {
+<span class="lineNum">     178 </span>            :   using data_type = Matrix;
+<span class="lineNum">     179 </span>            :   Matrix operator()(const size_t num_points) const noexcept {
+<span class="lineNum">     180 </span>            :     // For Gauss quadrature we implement the analytic expression
+<span class="lineNum">     181 </span>            :     // \f$\mathcal{V}^{-1}_{ij}=\mathcal{V}_{ji}\frac{w_j}{\gamma_i}\f$
+<span class="lineNum">     182 </span>            :     // (see description of `grid_points_to_spectral_matrix`).
+<span class="lineNum">     183 </span>            :     const DataVector&amp; weights =
+<span class="lineNum">     184 </span>            :         precomputed_spectral_quantity&lt;
+<span class="lineNum">     185 </span>            :             BasisType, Quadrature::Gauss,
+<span class="lineNum">     186 </span>            :             CollocationPointsAndWeightsGenerator&lt;BasisType, Quadrature::Gauss&gt;&gt;(
+<span class="lineNum">     187 </span>            :             num_points)
+<span class="lineNum">     188 </span>            :             .second;
+<span class="lineNum">     189 </span>            :     const Matrix&amp; vandermonde_matrix =
+<span class="lineNum">     190 </span>            :         spectral_to_grid_points_matrix&lt;BasisType, Quadrature::Gauss&gt;(
+<span class="lineNum">     191 </span>            :             num_points);
+<span class="lineNum">     192 </span>            :     Matrix vandermonde_inverse(num_points, num_points);
+<span class="lineNum">     193 </span>            :     // This should be vectorized when the functionality is implemented.
+<span class="lineNum">     194 </span>            :     for (size_t i = 0; i &lt; num_points; i++) {
+<span class="lineNum">     195 </span>            :       for (size_t j = 0; j &lt; num_points; j++) {
+<span class="lineNum">     196 </span>            :         vandermonde_inverse(i, j) =
+<span class="lineNum">     197 </span>            :             vandermonde_matrix(j, i) * weights[j] /
+<span class="lineNum">     198 </span>            :             compute_basis_function_normalization_square&lt;BasisType&gt;(i);
+<span class="lineNum">     199 </span>            :       }
+<span class="lineNum">     200 </span>            :     }
+<span class="lineNum">     201 </span>            :     return vandermonde_inverse;
+<span class="lineNum">     202 </span>            :   }
+<span class="lineNum">     203 </span>            : };
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType&gt;
+<span class="lineNum">     206 </span>            : struct LinearFilterMatrixGenerator {
+<span class="lineNum">     207 </span>            :   Matrix operator()(const size_t num_points) const noexcept {
+<span class="lineNum">     208 </span>            :     // We implement the expression
+<span class="lineNum">     209 </span>            :     // \f$\mathcal{V}^{-1}\cdot\mathrm{diag}(1,1,0,0,...)\cdot\mathcal{V}\f$
+<span class="lineNum">     210 </span>            :     // (see description of `linear_filter_matrix`)
+<span class="lineNum">     211 </span>            :     // which multiplies the first two columns of
+<span class="lineNum">     212 </span>            :     // `grid_points_to_spectral_matrix` with the first two rows of
+<span class="lineNum">     213 </span>            :     // `spectral_to_grid_points_matrix`.
+<span class="lineNum">     214 </span>            :     Matrix lin_filter(num_points, num_points);
+<span class="lineNum">     215 </span>            :     dgemm_('N', 'N', num_points, num_points, std::min(size_t{2}, num_points),
+<span class="lineNum">     216 </span>            :            1.0,
+<span class="lineNum">     217 </span>            :            spectral_to_grid_points_matrix&lt;BasisType, QuadratureType&gt;(num_points)
+<span class="lineNum">     218 </span>            :                .data(),
+<span class="lineNum">     219 </span>            :            num_points,
+<span class="lineNum">     220 </span>            :            grid_points_to_spectral_matrix&lt;BasisType, QuadratureType&gt;(num_points)
+<span class="lineNum">     221 </span>            :                .data(),
+<span class="lineNum">     222 </span>            :            num_points, 0.0, lin_filter.data(), num_points);
+<span class="lineNum">     223 </span>            :     return lin_filter;
+<span class="lineNum">     224 </span>            :   }
+<span class="lineNum">     225 </span>            : };
+<span class="lineNum">     226 </span>            : 
+<span class="lineNum">     227 </span>            : }  // namespace
+<span class="lineNum">     228 </span>            : 
+<span class="lineNum">     229 </span>            : // Public interface
+<span class="lineNum">     230 </span>            : 
+<span class="lineNum">     231 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType&gt;
+<span class="lineNum">     232 </span><span class="lineCov">          1 : const DataVector&amp; collocation_points(const size_t num_points) noexcept {</span>
+<span class="lineNum">     233 </span>            :   return precomputed_spectral_quantity&lt;
+<span class="lineNum">     234 </span>            :              BasisType, QuadratureType,
+<span class="lineNum">     235 </span>            :              CollocationPointsAndWeightsGenerator&lt;BasisType, QuadratureType&gt;&gt;(
+<span class="lineNum">     236 </span>            :              num_points)
+<span class="lineNum">     237 </span>            :       .first;
+<span class="lineNum">     238 </span>            : }
+<span class="lineNum">     239 </span>            : 
+<span class="lineNum">     240 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType&gt;
+<span class="lineNum">     241 </span><span class="lineCov">          1 : const DataVector&amp; quadrature_weights(const size_t num_points) noexcept {</span>
+<span class="lineNum">     242 </span>            :   return precomputed_spectral_quantity&lt;
+<span class="lineNum">     243 </span>            :       BasisType, QuadratureType,
+<span class="lineNum">     244 </span>            :       QuadratureWeightsGenerator&lt;BasisType, QuadratureType&gt;&gt;(num_points);
+<span class="lineNum">     245 </span>            : }
+<span class="lineNum">     246 </span>            : 
+<span class="lineNum">     247 </span>            : /// \cond
+<span class="lineNum">     248 </span>            : // clang-tidy: Macro arguments should be in parentheses, but we want to append
+<span class="lineNum">     249 </span>            : // template parameters here.
+<span class="lineNum">     250 </span>            : #define PRECOMPUTED_SPECTRAL_QUANTITY(function_name, return_type,      \
+<span class="lineNum">     251 </span>            :                                       generator_name)                  \
+<span class="lineNum">     252 </span>            :   template &lt;Basis BasisType, Quadrature QuadratureType&gt;                \
+<span class="lineNum">     253 </span>            :   const return_type&amp; function_name(const size_t num_points) noexcept { \
+<span class="lineNum">     254 </span>            :     return precomputed_spectral_quantity&lt;                              \
+<span class="lineNum">     255 </span>            :         BasisType, QuadratureType,                                     \
+<span class="lineNum">     256 </span>            :         generator_name&lt;BasisType, QuadratureType&gt;&gt;(/* NOLINT */        \
+<span class="lineNum">     257 </span>            :                                                    num_points);        \
+<span class="lineNum">     258 </span>            :   }
+<span class="lineNum">     259 </span>            : 
+<span class="lineNum">     260 </span>            : PRECOMPUTED_SPECTRAL_QUANTITY(differentiation_matrix, Matrix,
+<span class="lineNum">     261 </span>            :                               DifferentiationMatrixGenerator)
+<span class="lineNum">     262 </span>            : PRECOMPUTED_SPECTRAL_QUANTITY(spectral_to_grid_points_matrix, Matrix,
+<span class="lineNum">     263 </span>            :                               SpectralToGridPointsMatrixGenerator)
+<span class="lineNum">     264 </span>            : PRECOMPUTED_SPECTRAL_QUANTITY(grid_points_to_spectral_matrix, Matrix,
+<span class="lineNum">     265 </span>            :                               GridPointsToSpectralMatrixGenerator)
+<span class="lineNum">     266 </span>            : PRECOMPUTED_SPECTRAL_QUANTITY(linear_filter_matrix, Matrix,
+<span class="lineNum">     267 </span>            :                               LinearFilterMatrixGenerator)
+<span class="lineNum">     268 </span>            : 
+<span class="lineNum">     269 </span>            : #undef PRECOMPUTED_SPECTRAL_QUANTITY
+<span class="lineNum">     270 </span>            : /// \endcond
+<span class="lineNum">     271 </span>            : 
+<span class="lineNum">     272 </span>            : template &lt;Basis BasisType, Quadrature QuadratureType, typename T&gt;
+<span class="lineNum">     273 </span><span class="lineCov">          1 : Matrix interpolation_matrix(const size_t num_points,</span>
+<span class="lineNum">     274 </span>            :                             const T&amp; target_points) noexcept {
+<span class="lineNum">     275 </span>            :   constexpr size_t max_num_points =
+<span class="lineNum">     276 </span>            :       Spectral::maximum_number_of_points&lt;BasisType&gt;;
+<span class="lineNum">     277 </span>            :   constexpr size_t min_num_points =
+<span class="lineNum">     278 </span>            :       Spectral::minimum_number_of_points&lt;BasisType, QuadratureType&gt;;
+<span class="lineNum">     279 </span>            :   ASSERT(num_points &gt;= min_num_points,
+<span class="lineNum">     280 </span>            :          &quot;Tried to work with less than the minimum number of collocation &quot;
+<span class="lineNum">     281 </span>            :          &quot;points for this quadrature.&quot;);
+<span class="lineNum">     282 </span>            :   ASSERT(num_points &lt;= max_num_points,
+<span class="lineNum">     283 </span>            :          &quot;Exceeded maximum number of collocation points.&quot;);
+<span class="lineNum">     284 </span>            :   const DataVector&amp; collocation_pts =
+<span class="lineNum">     285 </span>            :       collocation_points&lt;BasisType, QuadratureType&gt;(num_points);
+<span class="lineNum">     286 </span>            :   const DataVector&amp; bary_weights =
+<span class="lineNum">     287 </span>            :       barycentric_weights&lt;BasisType, QuadratureType&gt;(num_points);
+<span class="lineNum">     288 </span>            :   const size_t num_target_points = get_size(target_points);
+<span class="lineNum">     289 </span>            :   Matrix interp_matrix(num_target_points, num_points);
+<span class="lineNum">     290 </span>            :   // Algorithm 32 in Kopriva, p. 76
+<span class="lineNum">     291 </span>            :   // This is valid for any collocation points.
+<span class="lineNum">     292 </span>            :   for (size_t k = 0; k &lt; num_target_points; k++) {
+<span class="lineNum">     293 </span>            :     // Check where no interpolation is necessary since a target point
+<span class="lineNum">     294 </span>            :     // matches the original collocation points
+<span class="lineNum">     295 </span>            :     bool row_has_match = false;
+<span class="lineNum">     296 </span>            :     for (size_t j = 0; j &lt; num_points; j++) {
+<span class="lineNum">     297 </span>            :       interp_matrix(k, j) = 0.0;
+<span class="lineNum">     298 </span>            :       if (equal_within_roundoff(get_element(target_points, k),
+<span class="lineNum">     299 </span>            :                                 collocation_pts[j])) {
+<span class="lineNum">     300 </span>            :         interp_matrix(k, j) = 1.0;
+<span class="lineNum">     301 </span>            :         row_has_match = true;
+<span class="lineNum">     302 </span>            :       }
+<span class="lineNum">     303 </span>            :     }
+<span class="lineNum">     304 </span>            :     // Perform interpolation for non-matching points
+<span class="lineNum">     305 </span>            :     if (not row_has_match) {
+<span class="lineNum">     306 </span>            :       double sum = 0.0;
+<span class="lineNum">     307 </span>            :       for (size_t j = 0; j &lt; num_points; j++) {
+<span class="lineNum">     308 </span>            :         interp_matrix(k, j) = bary_weights[j] / (get_element(target_points, k) -
+<span class="lineNum">     309 </span>            :                                                  collocation_pts[j]);
+<span class="lineNum">     310 </span>            :         sum += interp_matrix(k, j);
+<span class="lineNum">     311 </span>            :       }
+<span class="lineNum">     312 </span>            :       for (size_t j = 0; j &lt; num_points; j++) {
+<span class="lineNum">     313 </span>            :         interp_matrix(k, j) /= sum;
+<span class="lineNum">     314 </span>            :       }
+<span class="lineNum">     315 </span>            :     }
+<span class="lineNum">     316 </span>            :   }
+<span class="lineNum">     317 </span>            :   return interp_matrix;
+<span class="lineNum">     318 </span>            : }
+<span class="lineNum">     319 </span>            : 
+<span class="lineNum">     320 </span>            : namespace {
+<span class="lineNum">     321 </span>            : 
+<span class="lineNum">     322 </span>            : template &lt;typename F&gt;
+<span class="lineNum">     323 </span>            : decltype(auto) get_spectral_quantity_for_mesh(F&amp;&amp; f,
+<span class="lineNum">     324 </span>            :                                               const Mesh&lt;1&gt;&amp; mesh) noexcept {
+<span class="lineNum">     325 </span>            :   const auto num_points = mesh.extents(0);
+<span class="lineNum">     326 </span>            :   // Switch on runtime values of basis and quadrature to select
+<span class="lineNum">     327 </span>            :   // corresponding template specialization. For basis functions spanning
+<span class="lineNum">     328 </span>            :   // multiple dimensions we can generalize this function to take a
+<span class="lineNum">     329 </span>            :   // higher-dimensional Mesh.
+<span class="lineNum">     330 </span>            :   switch (mesh.basis(0)) {
+<span class="lineNum">     331 </span>            :     case Basis::Legendre:
+<span class="lineNum">     332 </span>            :       switch (mesh.quadrature(0)) {
+<span class="lineNum">     333 </span>            :         case Quadrature::Gauss:
+<span class="lineNum">     334 </span>            :           return f(std::integral_constant&lt;Basis, Basis::Legendre&gt;{},
+<span class="lineNum">     335 </span>            :                    std::integral_constant&lt;Quadrature, Quadrature::Gauss&gt;{},
+<span class="lineNum">     336 </span>            :                    num_points);
+<span class="lineNum">     337 </span>            :           break;
+<span class="lineNum">     338 </span>            :         case Quadrature::GaussLobatto:
+<span class="lineNum">     339 </span>            :           return f(
+<span class="lineNum">     340 </span>            :               std::integral_constant&lt;Basis, Basis::Legendre&gt;{},
+<span class="lineNum">     341 </span>            :               std::integral_constant&lt;Quadrature, Quadrature::GaussLobatto&gt;{},
+<span class="lineNum">     342 </span>            :               num_points);
+<span class="lineNum">     343 </span>            :           break;
+<span class="lineNum">     344 </span>            :         default:
+<span class="lineNum">     345 </span>            :           ERROR(&quot;Missing quadrature case for spectral quantity&quot;);
+<span class="lineNum">     346 </span>            :       }
+<span class="lineNum">     347 </span>            :       break;
+<span class="lineNum">     348 </span>            :     default:
+<span class="lineNum">     349 </span>            :       ERROR(&quot;Missing basis case for spectral quantity&quot;);
+<span class="lineNum">     350 </span>            :   }
+<span class="lineNum">     351 </span>            : }
+<span class="lineNum">     352 </span>            : 
+<span class="lineNum">     353 </span>            : }  // namespace
+<span class="lineNum">     354 </span>            : 
+<span class="lineNum">     355 </span>            : /// \cond
+<span class="lineNum">     356 </span>            : // clang-tidy: Macro arguments should be in parentheses, but we want to append
+<span class="lineNum">     357 </span>            : // template parameters here.
+<span class="lineNum">     358 </span>            : #define SPECTRAL_QUANTITY_FOR_MESH(function_name, return_type)           \
+<span class="lineNum">     359 </span>            :   const return_type&amp; function_name(const Mesh&lt;1&gt;&amp; mesh) noexcept {       \
+<span class="lineNum">     360 </span>            :     return get_spectral_quantity_for_mesh(                               \
+<span class="lineNum">     361 </span>            :         [](const auto basis, const auto quadrature,                      \
+<span class="lineNum">     362 </span>            :            const size_t num_points) noexcept-&gt;const return_type&amp; {       \
+<span class="lineNum">     363 </span>            :           return function_name&lt;/* NOLINT */ decltype(basis)::value,      \
+<span class="lineNum">     364 </span>            :                                decltype(quadrature)::value&gt;(num_points); \
+<span class="lineNum">     365 </span>            :         },                                                               \
+<span class="lineNum">     366 </span>            :         mesh);                                                           \
+<span class="lineNum">     367 </span>            :   }
+<span class="lineNum">     368 </span>            : 
+<span class="lineNum">     369 </span>            : SPECTRAL_QUANTITY_FOR_MESH(collocation_points, DataVector)
+<span class="lineNum">     370 </span>            : SPECTRAL_QUANTITY_FOR_MESH(quadrature_weights, DataVector)
+<span class="lineNum">     371 </span>            : SPECTRAL_QUANTITY_FOR_MESH(differentiation_matrix, Matrix)
+<span class="lineNum">     372 </span>            : SPECTRAL_QUANTITY_FOR_MESH(spectral_to_grid_points_matrix, Matrix)
+<span class="lineNum">     373 </span>            : SPECTRAL_QUANTITY_FOR_MESH(grid_points_to_spectral_matrix, Matrix)
+<span class="lineNum">     374 </span>            : SPECTRAL_QUANTITY_FOR_MESH(linear_filter_matrix, Matrix)
+<span class="lineNum">     375 </span>            : 
+<span class="lineNum">     376 </span>            : #undef SPECTRAL_QUANTITY_FOR_MESH
+<span class="lineNum">     377 </span>            : /// \endcond
+<span class="lineNum">     378 </span>            : 
+<span class="lineNum">     379 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     380 </span><span class="lineCov">          1 : Matrix interpolation_matrix(const Mesh&lt;1&gt;&amp; mesh,</span>
+<span class="lineNum">     381 </span>            :                             const T&amp; target_points) noexcept {
+<span class="lineNum">     382 </span>            :   return get_spectral_quantity_for_mesh(
+<span class="lineNum">     383 </span>            :       [target_points](const auto basis, const auto quadrature,
+<span class="lineNum">     384 </span>            :                       const size_t num_points) noexcept-&gt;Matrix {
+<span class="lineNum">     385 </span>            :         return interpolation_matrix&lt;decltype(basis)::value,
+<span class="lineNum">     386 </span>            :                                     decltype(quadrature)::value&gt;(num_points,
+<span class="lineNum">     387 </span>            :                                                                  target_points);
+<span class="lineNum">     388 </span>            :       },
+<span class="lineNum">     389 </span>            :       mesh);
+<span class="lineNum">     390 </span>            : }
+<span class="lineNum">     391 </span>            : 
+<span class="lineNum">     392 </span>            : }  // namespace Spectral
+<span class="lineNum">     393 </span>            : 
+<span class="lineNum">     394 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     395 </span>            : #define BASIS(data) BOOST_PP_TUPLE_ELEM(0, data)
+<span class="lineNum">     396 </span>            : #define QUAD(data) BOOST_PP_TUPLE_ELEM(1, data)
+<span class="lineNum">     397 </span>            : #define INSTANTIATE(_, data)                                                  \
+<span class="lineNum">     398 </span>            :   template const DataVector&amp;                                                  \
+<span class="lineNum">     399 </span>            :       Spectral::collocation_points&lt;BASIS(data), QUAD(data)&gt;(size_t) noexcept; \
+<span class="lineNum">     400 </span>            :   template const DataVector&amp;                                                  \
+<span class="lineNum">     401 </span>            :       Spectral::quadrature_weights&lt;BASIS(data), QUAD(data)&gt;(size_t) noexcept; \
+<span class="lineNum">     402 </span>            :   template const Matrix&amp;                                                      \
+<span class="lineNum">     403 </span>            :       Spectral::differentiation_matrix&lt;BASIS(data), QUAD(data)&gt;(              \
+<span class="lineNum">     404 </span>            :           size_t) noexcept;                                                   \
+<span class="lineNum">     405 </span>            :   template const Matrix&amp;                                                      \
+<span class="lineNum">     406 </span>            :       Spectral::grid_points_to_spectral_matrix&lt;BASIS(data), QUAD(data)&gt;(      \
+<span class="lineNum">     407 </span>            :           size_t) noexcept;                                                   \
+<span class="lineNum">     408 </span>            :   template const Matrix&amp;                                                      \
+<span class="lineNum">     409 </span>            :       Spectral::spectral_to_grid_points_matrix&lt;BASIS(data), QUAD(data)&gt;(      \
+<span class="lineNum">     410 </span>            :           size_t) noexcept;                                                   \
+<span class="lineNum">     411 </span>            :   template const Matrix&amp;                                                      \
+<span class="lineNum">     412 </span>            :       Spectral::linear_filter_matrix&lt;BASIS(data), QUAD(data)&gt;(                \
+<span class="lineNum">     413 </span>            :           size_t) noexcept;                                                   \
+<span class="lineNum">     414 </span>            :   template Matrix Spectral::interpolation_matrix&lt;BASIS(data), QUAD(data)&gt;(    \
+<span class="lineNum">     415 </span>            :       size_t, const DataVector&amp;) noexcept;                                    \
+<span class="lineNum">     416 </span>            :   template Matrix Spectral::interpolation_matrix&lt;BASIS(data), QUAD(data)&gt;(    \
+<span class="lineNum">     417 </span>            :       size_t, const std::vector&lt;double&gt;&amp;) noexcept;
+<span class="lineNum">     418 </span>            : template Matrix Spectral::interpolation_matrix(const Mesh&lt;1&gt;&amp;,
+<span class="lineNum">     419 </span>            :                                                const DataVector&amp;) noexcept;
+<span class="lineNum">     420 </span>            : template Matrix Spectral::interpolation_matrix(
+<span class="lineNum">     421 </span>            :     const Mesh&lt;1&gt;&amp;, const std::vector&lt;double&gt;&amp;) noexcept;
+<span class="lineNum">     422 </span>            : 
+<span class="lineNum">     423 </span>            : GENERATE_INSTANTIATIONS(INSTANTIATE,
+<span class="lineNum">     424 </span>            :                         (Spectral::Basis::Chebyshev, Spectral::Basis::Legendre),
+<span class="lineNum">     425 </span>            :                         (Spectral::Quadrature::Gauss,
+<span class="lineNum">     426 </span>            :                          Spectral::Quadrature::GaussLobatto))
+<span class="lineNum">     427 </span>            : 
+<span class="lineNum">     428 </span>            : #undef BASIS
+<span class="lineNum">     429 </span>            : #undef QUAD
+<span class="lineNum">     430 </span>            : #undef INSTANTIATE
+<span class="lineNum">     431 </span>            : /// \endcond
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

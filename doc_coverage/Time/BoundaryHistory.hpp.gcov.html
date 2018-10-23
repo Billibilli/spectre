@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Time/BoundaryHistory.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Time</a> - BoundaryHistory.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntry">28</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">       7 </span>            : #include &lt;boost/iterator/transform_iterator.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       9 </span>            : #include &lt;deque&gt;
+<span class="lineNum">      10 </span>            : #include &lt;map&gt;
+<span class="lineNum">      11 </span>            : #include &lt;pup.h&gt;
+<span class="lineNum">      12 </span>            : #include &lt;pup_stl.h&gt;  // IWYU pragma: keep
+<span class="lineNum">      13 </span>            : #include &lt;tuple&gt;
+<span class="lineNum">      14 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Parallel/PupStlCpp11.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      18 </span>            : #include &quot;Time/Time.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      19 </span>            : #include &quot;Time/TimeId.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : namespace TimeSteppers {
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : /// \ingroup TimeSteppersGroup
+<span class="lineNum">      26 </span>            : /// History data used by a TimeStepper for boundary integration.
+<span class="lineNum">      27 </span>            : /// \tparam LocalVars local variables passed to the boundary coupling
+<span class="lineNum">      28 </span>            : /// \tparam RemoteVars remote variables passed to the boundary coupling
+<span class="lineNum">      29 </span>            : /// \tparam CouplingResult result of the coupling function
+<span class="lineNum">      30 </span>            : template &lt;typename LocalVars, typename RemoteVars, typename CouplingResult&gt;
+<span class="lineNum">      31 </span><span class="lineCov">          1 : class BoundaryHistory {</span>
+<span class="lineNum">      32 </span>            :   template &lt;typename Vars&gt;
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 :   using IteratorType = boost::transform_iterator&lt;</span>
+<span class="lineNum">      34 </span>            :     const Time&amp; (*)(const std::tuple&lt;Time, Vars&gt;&amp;),
+<span class="lineNum">      35 </span>            :     typename std::deque&lt;std::tuple&lt;Time, Vars&gt;&gt;::const_iterator&gt;;
+<span class="lineNum">      36 </span>            :  public:
+<span class="lineNum">      37 </span><span class="lineNoCov">          0 :   using local_iterator = IteratorType&lt;LocalVars&gt;;</span>
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :   using remote_iterator = IteratorType&lt;RemoteVars&gt;;</span>
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            :   // No copying because of the pointers in the cache.  Moving is fine
+<span class="lineNum">      41 </span>            :   // because we also move the container being pointed into and maps
+<span class="lineNum">      42 </span>            :   // guarantee that this doesn't invalidate pointers.
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :   BoundaryHistory() = default;</span>
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :   BoundaryHistory(const BoundaryHistory&amp;) = delete;</span>
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :   BoundaryHistory(BoundaryHistory&amp;&amp;) = default;</span>
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :   BoundaryHistory&amp; operator=(const BoundaryHistory&amp;) = delete;</span>
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :   BoundaryHistory&amp; operator=(BoundaryHistory&amp;&amp;) = default;</span>
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 :   ~BoundaryHistory() = default;</span>
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            :   /// Add a new value to the end of the history of the indicated side.
+<span class="lineNum">      51 </span>            :   //@{
+<span class="lineNum">      52 </span><span class="lineCov">          1 :   void local_insert(const TimeId&amp; time_id, LocalVars vars) noexcept {</span>
+<span class="lineNum">      53 </span>            :     local_data_.emplace_back(time_id.time(), std::move(vars));
+<span class="lineNum">      54 </span>            :   }
+<span class="lineNum">      55 </span><span class="lineCov">          1 :   void remote_insert(const TimeId&amp; time_id, RemoteVars vars) noexcept {</span>
+<span class="lineNum">      56 </span>            :     remote_data_.emplace_back(time_id.time(), std::move(vars));
+<span class="lineNum">      57 </span>            :   }
+<span class="lineNum">      58 </span>            :   //@}
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            :   /// Add a new value to the front of the history of the indicated
+<span class="lineNum">      61 </span>            :   /// side.  This is often convenient for setting initial data.
+<span class="lineNum">      62 </span>            :   //@{
+<span class="lineNum">      63 </span><span class="lineCov">          1 :   void local_insert_initial(const TimeId&amp; time_id, LocalVars vars) noexcept {</span>
+<span class="lineNum">      64 </span>            :     local_data_.emplace_front(time_id.time(), std::move(vars));
+<span class="lineNum">      65 </span>            :   }
+<span class="lineNum">      66 </span><span class="lineCov">          1 :   void remote_insert_initial(const TimeId&amp; time_id, RemoteVars vars) noexcept {</span>
+<span class="lineNum">      67 </span>            :     remote_data_.emplace_front(time_id.time(), std::move(vars));
+<span class="lineNum">      68 </span>            :   }
+<span class="lineNum">      69 </span>            :   //@}
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            :   /// Mark all data before the passed point in history on the
+<span class="lineNum">      72 </span>            :   /// indicated side as unneeded so it can be removed.  Calling this
+<span class="lineNum">      73 </span>            :   /// directly should not often be necessary, as it is handled
+<span class="lineNum">      74 </span>            :   /// internally by the time steppers.
+<span class="lineNum">      75 </span>            :   //@{
+<span class="lineNum">      76 </span><span class="lineCov">          1 :   void local_mark_unneeded(const local_iterator&amp; first_needed) noexcept {</span>
+<span class="lineNum">      77 </span>            :     mark_unneeded&lt;0&gt;(make_not_null(&amp;local_data_), first_needed);
+<span class="lineNum">      78 </span>            :   }
+<span class="lineNum">      79 </span><span class="lineCov">          1 :   void remote_mark_unneeded(const remote_iterator&amp; first_needed) noexcept {</span>
+<span class="lineNum">      80 </span>            :     mark_unneeded&lt;1&gt;(make_not_null(&amp;remote_data_), first_needed);
+<span class="lineNum">      81 </span>            :   }
+<span class="lineNum">      82 </span>            :   //@}
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            :   /// Access to the sequence of times on the indicated side.
+<span class="lineNum">      85 </span>            :   //@{
+<span class="lineNum">      86 </span><span class="lineCov">          1 :   local_iterator local_begin() const noexcept {</span>
+<span class="lineNum">      87 </span>            :     return local_iterator(local_data_.begin(), std::get&lt;0&gt;);
+<span class="lineNum">      88 </span>            :   }
+<span class="lineNum">      89 </span><span class="lineCov">          1 :   local_iterator local_end() const noexcept {</span>
+<span class="lineNum">      90 </span>            :     return local_iterator(local_data_.end(), std::get&lt;0&gt;);
+<span class="lineNum">      91 </span>            :   }
+<span class="lineNum">      92 </span>            : 
+<span class="lineNum">      93 </span><span class="lineCov">          1 :   remote_iterator remote_begin() const noexcept {</span>
+<span class="lineNum">      94 </span>            :     return remote_iterator(remote_data_.begin(), std::get&lt;0&gt;);
+<span class="lineNum">      95 </span>            :   }
+<span class="lineNum">      96 </span><span class="lineCov">          1 :   remote_iterator remote_end() const noexcept {</span>
+<span class="lineNum">      97 </span>            :     return remote_iterator(remote_data_.end(), std::get&lt;0&gt;);
+<span class="lineNum">      98 </span>            :   }
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span><span class="lineCov">          1 :   size_t local_size() const noexcept { return local_data_.size(); }</span>
+<span class="lineNum">     101 </span><span class="lineCov">          1 :   size_t remote_size() const noexcept { return remote_data_.size(); }</span>
+<span class="lineNum">     102 </span>            :   //@}
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span>            :   /// Evaluate the coupling function at the given local and remote
+<span class="lineNum">     105 </span>            :   /// history entries.  The coupling function will be passed the local
+<span class="lineNum">     106 </span>            :   /// and remote FluxVars and should return a CouplingResult.  Values are
+<span class="lineNum">     107 </span>            :   /// cached internally, so callers should ensure that the coupling
+<span class="lineNum">     108 </span>            :   /// functions provided on separate calls produce the same result.
+<span class="lineNum">     109 </span>            :   template &lt;typename Coupling&gt;
+<span class="lineNum">     110 </span><span class="lineCov">          1 :   const CouplingResult&amp; coupling(Coupling&amp;&amp; c, const local_iterator&amp; local,</span>
+<span class="lineNum">     111 </span>            :                                  const remote_iterator&amp; remote) noexcept;
+<span class="lineNum">     112 </span>            : 
+<span class="lineNum">     113 </span>            :   // clang-tidy: google-runtime-references
+<span class="lineNum">     114 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            :  private:
+<span class="lineNum">     117 </span>            :   template &lt;size_t Side, typename DataType, typename Iterator&gt;
+<span class="lineNum">     118 </span><span class="lineNoCov">          0 :   void mark_unneeded(gsl::not_null&lt;DataType*&gt; data,</span>
+<span class="lineNum">     119 </span>            :                      const Iterator&amp; first_needed) noexcept;
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span><span class="lineNoCov">          0 :   std::deque&lt;std::tuple&lt;Time, LocalVars&gt;&gt; local_data_;</span>
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :   std::deque&lt;std::tuple&lt;Time, RemoteVars&gt;&gt; remote_data_;</span>
+<span class="lineNum">     123 </span>            :   // We use pointers instead of iterators because deque invalidates
+<span class="lineNum">     124 </span>            :   // iterators when elements are inserted or removed at the ends, but
+<span class="lineNum">     125 </span>            :   // not pointers.
+<span class="lineNum">     126 </span><span class="lineNoCov">          0 :   std::map&lt;std::pair&lt;const Time*, const Time*&gt;, CouplingResult&gt; coupling_cache_;</span>
+<span class="lineNum">     127 </span>            : };
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span>            : template &lt;typename LocalVars, typename RemoteVars, typename CouplingResult&gt;
+<span class="lineNum">     130 </span>            : template &lt;size_t Side, typename DataType, typename Iterator&gt;
+<span class="lineNum">     131 </span>            : void BoundaryHistory&lt;LocalVars, RemoteVars, CouplingResult&gt;::mark_unneeded(
+<span class="lineNum">     132 </span>            :     gsl::not_null&lt;DataType*&gt; data, const Iterator&amp; first_needed) noexcept {
+<span class="lineNum">     133 </span>            :   for (auto it = data-&gt;begin(); it != first_needed.base(); ++it) {
+<span class="lineNum">     134 </span>            :     // Clean out cache entries referring to the entry we are removing.
+<span class="lineNum">     135 </span>            :     for (auto cache_entry = coupling_cache_.begin();
+<span class="lineNum">     136 </span>            :          cache_entry != coupling_cache_.end();) {
+<span class="lineNum">     137 </span>            :       if (std::get&lt;Side&gt;(cache_entry-&gt;first) == &amp;std::get&lt;0&gt;(*it)) {
+<span class="lineNum">     138 </span>            :         cache_entry = coupling_cache_.erase(cache_entry);
+<span class="lineNum">     139 </span>            :       } else {
+<span class="lineNum">     140 </span>            :         ++cache_entry;
+<span class="lineNum">     141 </span>            :       }
+<span class="lineNum">     142 </span>            :     }
+<span class="lineNum">     143 </span>            :   }
+<span class="lineNum">     144 </span>            :   data-&gt;erase(data-&gt;begin(), first_needed.base());
+<span class="lineNum">     145 </span>            : }
+<span class="lineNum">     146 </span>            : 
+<span class="lineNum">     147 </span>            : template &lt;typename LocalVars, typename RemoteVars, typename CouplingResult&gt;
+<span class="lineNum">     148 </span>            : template &lt;typename Coupling&gt;
+<span class="lineNum">     149 </span>            : const CouplingResult&amp;
+<span class="lineNum">     150 </span>            : BoundaryHistory&lt;LocalVars, RemoteVars, CouplingResult&gt;::coupling(
+<span class="lineNum">     151 </span>            :     Coupling&amp;&amp; c, const local_iterator&amp; local,
+<span class="lineNum">     152 </span>            :     const remote_iterator&amp; remote) noexcept {
+<span class="lineNum">     153 </span>            :   const auto insert_result = coupling_cache_.insert(
+<span class="lineNum">     154 </span>            :       std::make_pair(std::make_pair(&amp;*local, &amp;*remote), CouplingResult{}));
+<span class="lineNum">     155 </span>            :   CouplingResult&amp; inserted_value = insert_result.first-&gt;second;
+<span class="lineNum">     156 </span>            :   const bool is_new_value = insert_result.second;
+<span class="lineNum">     157 </span>            :   if (is_new_value) {
+<span class="lineNum">     158 </span>            :     inserted_value =
+<span class="lineNum">     159 </span>            :         std::forward&lt;Coupling&gt;(c)(cpp17::as_const(std::get&lt;1&gt;(*local.base())),
+<span class="lineNum">     160 </span>            :                                   cpp17::as_const(std::get&lt;1&gt;(*remote.base())));
+<span class="lineNum">     161 </span>            :   }
+<span class="lineNum">     162 </span>            :   return inserted_value;
+<span class="lineNum">     163 </span>            : }
+<span class="lineNum">     164 </span>            : 
+<span class="lineNum">     165 </span>            : template &lt;typename LocalVars, typename RemoteVars, typename CouplingResult&gt;
+<span class="lineNum">     166 </span>            : void BoundaryHistory&lt;LocalVars, RemoteVars, CouplingResult&gt;::pup(
+<span class="lineNum">     167 </span>            :     PUP::er&amp; p) noexcept {
+<span class="lineNum">     168 </span>            :   p | local_data_;
+<span class="lineNum">     169 </span>            :   p | remote_data_;
+<span class="lineNum">     170 </span>            : 
+<span class="lineNum">     171 </span>            :   const size_t cache_size = PUP_stl_container_size(p, coupling_cache_);
+<span class="lineNum">     172 </span>            :   if (p.isUnpacking()) {
+<span class="lineNum">     173 </span>            :     for (size_t entry_num = 0; entry_num &lt; cache_size; ++entry_num) {
+<span class="lineNum">     174 </span>            :       size_t local_index, remote_index;
+<span class="lineNum">     175 </span>            :       CouplingResult cache_value;
+<span class="lineNum">     176 </span>            :       p | local_index;
+<span class="lineNum">     177 </span>            :       p | remote_index;
+<span class="lineNum">     178 </span>            :       p | cache_value;
+<span class="lineNum">     179 </span>            :       const auto cache_key =
+<span class="lineNum">     180 </span>            :           std::make_pair(&amp;std::get&lt;0&gt;(local_data_[local_index]),
+<span class="lineNum">     181 </span>            :                          &amp;std::get&lt;0&gt;(remote_data_[remote_index]));
+<span class="lineNum">     182 </span>            :       coupling_cache_.insert(std::make_pair(cache_key, cache_value));
+<span class="lineNum">     183 </span>            :     }
+<span class="lineNum">     184 </span>            :   } else {
+<span class="lineNum">     185 </span>            :     for (auto&amp; cache_entry : coupling_cache_) {
+<span class="lineNum">     186 </span>            :       // clang-tidy: modernize-use-auto - Ensuring the correct type is
+<span class="lineNum">     187 </span>            :       // important here to prevent undefined behavior in charm.  I
+<span class="lineNum">     188 </span>            :       // want to be explicit.
+<span class="lineNum">     189 </span>            :       size_t local_index = static_cast&lt;size_t&gt;(  // NOLINT
+<span class="lineNum">     190 </span>            :           std::find_if(
+<span class="lineNum">     191 </span>            :               local_data_.begin(), local_data_.end(),
+<span class="lineNum">     192 </span>            :               [goal = cache_entry.first.first](const auto&amp; entry) noexcept {
+<span class="lineNum">     193 </span>            :                 return &amp;std::get&lt;0&gt;(entry) == goal;
+<span class="lineNum">     194 </span>            :               }) -
+<span class="lineNum">     195 </span>            :           local_data_.begin());
+<span class="lineNum">     196 </span>            :       ASSERT(local_index &lt; local_data_.size(),
+<span class="lineNum">     197 </span>            :              &quot;Failed to find local history entry for cache entry&quot;);
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            :       // clang-tidy: modernize-use-auto - Ensuring the correct type is
+<span class="lineNum">     200 </span>            :       // important here to prevent undefined behavior in charm.  I
+<span class="lineNum">     201 </span>            :       // want to be explicit.
+<span class="lineNum">     202 </span>            :       size_t remote_index = static_cast&lt;size_t&gt;(  // NOLINT
+<span class="lineNum">     203 </span>            :           std::find_if(
+<span class="lineNum">     204 </span>            :               remote_data_.begin(), remote_data_.end(),
+<span class="lineNum">     205 </span>            :               [goal = cache_entry.first.second](const auto&amp; entry) noexcept {
+<span class="lineNum">     206 </span>            :                 return &amp;std::get&lt;0&gt;(entry) == goal;
+<span class="lineNum">     207 </span>            :               }) -
+<span class="lineNum">     208 </span>            :           remote_data_.begin());
+<span class="lineNum">     209 </span>            :       ASSERT(remote_index &lt; remote_data_.size(),
+<span class="lineNum">     210 </span>            :              &quot;Failed to find remote history entry for cache entry&quot;);
+<span class="lineNum">     211 </span>            : 
+<span class="lineNum">     212 </span>            :       p | local_index;
+<span class="lineNum">     213 </span>            :       p | remote_index;
+<span class="lineNum">     214 </span>            :       p | cache_entry.second;
+<span class="lineNum">     215 </span>            :     }
+<span class="lineNum">     216 </span>            :   }
+<span class="lineNum">     217 </span>            : }
+<span class="lineNum">     218 </span>            : }  // namespace TimeSteppers
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

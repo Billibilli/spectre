@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Parallel/CharmMain.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Parallel</a> - CharmMain.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines functions used by Charm++ to register classes/chares and entry
+<span class="lineNum">       6 </span>            : /// methods
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">       9 </span>            : #include &lt;string&gt;
+<span class="lineNum">      10 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">      11 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : #include &quot;Parallel/CharmRegistration.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Parallel/ConstGlobalCache.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Parallel/Main.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/NoSuchType.hpp&quot;
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : namespace Parallel {
+<span class="lineNum">      19 </span>            : namespace charmxx {
+<span class="lineNum">      20 </span>            : /// \cond
+<span class="lineNum">      21 </span>            : std::unique_ptr&lt;RegistrationHelper&gt;* charm_register_list = nullptr;
+<span class="lineNum">      22 </span>            : size_t charm_register_list_capacity = 0;
+<span class="lineNum">      23 </span>            : size_t charm_register_list_size = 0;
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : ReducerFunctions* charm_reducer_functions_list = nullptr;
+<span class="lineNum">      26 </span>            : size_t charm_reducer_functions_capacity = 0;
+<span class="lineNum">      27 </span>            : size_t charm_reducer_functions_size = 0;
+<span class="lineNum">      28 </span>            : std::unordered_map&lt;size_t, CkReduction::reducerType&gt; charm_reducer_functions{};
+<span class="lineNum">      29 </span>            : /// \endcond
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : /*!
+<span class="lineNum">      32 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">      33 </span>            :  * \brief Registers parallel components and their entry methods with Charm++
+<span class="lineNum">      34 </span>            :  */
+<span class="lineNum">      35 </span><span class="lineCov">          2 : void register_parallel_components() noexcept {</span>
+<span class="lineNum">      36 </span>            :   static bool done_registration{false};
+<span class="lineNum">      37 </span>            :   if (done_registration) {
+<span class="lineNum">      38 </span>            :     return;  // LCOV_EXCL_LINE
+<span class="lineNum">      39 </span>            :   }
+<span class="lineNum">      40 </span>            :   done_registration = true;
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            :   // Charm++ requires the order of registration to be the same across all
+<span class="lineNum">      43 </span>            :   // processors. To make sure this is satisfied regardless of any possible weird
+<span class="lineNum">      44 </span>            :   // behavior with static variable initialization we sort the list before
+<span class="lineNum">      45 </span>            :   // registering anything.
+<span class="lineNum">      46 </span>            :   // clang-tidy: do not user pointer arithmetic
+<span class="lineNum">      47 </span>            :   std::sort(charm_register_list,
+<span class="lineNum">      48 </span>            :             charm_register_list + charm_register_list_size,  // NOLINT
+<span class="lineNum">      49 </span>            :             [](const std::unique_ptr&lt;RegistrationHelper&gt;&amp; a,
+<span class="lineNum">      50 </span>            :                const std::unique_ptr&lt;RegistrationHelper&gt;&amp; b) {
+<span class="lineNum">      51 </span>            :               return a-&gt;name() &lt; b-&gt;name();
+<span class="lineNum">      52 </span>            :             });
+<span class="lineNum">      53 </span>            : 
+<span class="lineNum">      54 </span>            :   // register chares and parallel components
+<span class="lineNum">      55 </span>            :   for (size_t i = 0;
+<span class="lineNum">      56 </span>            :        i &lt; charm_register_list_size and i &lt; charm_register_list_capacity; ++i) {
+<span class="lineNum">      57 </span>            :     // clang-tidy: do not use pointer arithmetic
+<span class="lineNum">      58 </span>            :     if (charm_register_list[i]-&gt;is_registering_chare()) {  // NOLINT
+<span class="lineNum">      59 </span>            :       charm_register_list[i]-&gt;register_with_charm();       // NOLINT
+<span class="lineNum">      60 </span>            :     }
+<span class="lineNum">      61 </span>            :   }
+<span class="lineNum">      62 </span>            :   // register reduction and simple actions, as well as receive_data
+<span class="lineNum">      63 </span>            :   for (size_t i = 0;
+<span class="lineNum">      64 </span>            :        i &lt; charm_register_list_size and i &lt; charm_register_list_capacity; ++i) {
+<span class="lineNum">      65 </span>            :     // clang-tidy: do not use pointer arithmetic
+<span class="lineNum">      66 </span>            :     if (not charm_register_list[i]-&gt;is_registering_chare()) {  // NOLINT
+<span class="lineNum">      67 </span>            :       charm_register_list[i]-&gt;register_with_charm();           // NOLINT
+<span class="lineNum">      68 </span>            :     }
+<span class="lineNum">      69 </span>            :   }
+<span class="lineNum">      70 </span>            :   // clang-tidy: use gsl::owner (we don't use raw owning pointers unless
+<span class="lineNum">      71 </span>            :   // necessary)
+<span class="lineNum">      72 </span>            :   delete[] charm_register_list;  // NOLINT
+<span class="lineNum">      73 </span>            : }
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            : /*!
+<span class="lineNum">      76 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">      77 </span>            :  * \brief Takes `charm_reducer_functions_list` and creates an unordered_map from
+<span class="lineNum">      78 </span>            :  * hashes of the functions to `CkReduction::reducerType`, which is used when
+<span class="lineNum">      79 </span>            :  * calling custom reductions.
+<span class="lineNum">      80 </span>            :  *
+<span class="lineNum">      81 </span>            :  * \note The reason `delete[]` isn't call here (or at all on
+<span class="lineNum">      82 </span>            :  * `charm_reducer_functions_list`) is because it has not been tested whether
+<span class="lineNum">      83 </span>            :  * that is safe to do in non-SMP builds.
+<span class="lineNum">      84 </span>            :  *
+<span class="lineNum">      85 </span>            :  * \see Parallel::contribute_to_reduction()
+<span class="lineNum">      86 </span>            :  */
+<span class="lineNum">      87 </span><span class="lineCov">          2 : void register_custom_reducer_functions() noexcept {</span>
+<span class="lineNum">      88 </span>            :   for (size_t i = 0; i &lt; charm_reducer_functions_size; ++i) {
+<span class="lineNum">      89 </span>            :     // clang-tidy: do not use pointer arithmetic
+<span class="lineNum">      90 </span>            :     charm_reducer_functions.emplace(
+<span class="lineNum">      91 </span>            :         std::hash&lt;Parallel::charmxx::ReducerFunctions&gt;{}(
+<span class="lineNum">      92 </span>            :             charm_reducer_functions_list[i]),                        // NOLINT
+<span class="lineNum">      93 </span>            :         CkReduction::addReducer(*charm_reducer_functions_list[i]));  // NOLINT
+<span class="lineNum">      94 </span>            :   }
+<span class="lineNum">      95 </span>            : }
+<span class="lineNum">      96 </span>            : 
+<span class="lineNum">      97 </span>            : /*!
+<span class="lineNum">      98 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">      99 </span>            :  * \brief Register all init_node and init_proc functions with Charm++
+<span class="lineNum">     100 </span>            :  *
+<span class="lineNum">     101 </span>            :  * \note The function that registers the custom reducers is the first init_node
+<span class="lineNum">     102 </span>            :  * function registered.
+<span class="lineNum">     103 </span>            :  */
+<span class="lineNum">     104 </span><span class="lineCov">          2 : void register_init_node_and_proc() noexcept {</span>
+<span class="lineNum">     105 </span>            :   static bool done_registration{false};
+<span class="lineNum">     106 </span>            :   if (done_registration) {
+<span class="lineNum">     107 </span>            :     return;  // LCOV_EXCL_LINE
+<span class="lineNum">     108 </span>            :   }
+<span class="lineNum">     109 </span>            :   done_registration = true;
+<span class="lineNum">     110 </span>            :   // We explicitly register custom reducer functions first.
+<span class="lineNum">     111 </span>            :   _registerInitCall(register_custom_reducer_functions, 1);
+<span class="lineNum">     112 </span>            :   for (auto&amp; init_node_func : charm_init_node_funcs) {
+<span class="lineNum">     113 </span>            :     _registerInitCall(*init_node_func, 1);
+<span class="lineNum">     114 </span>            :   }
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            :   for (auto&amp; init_proc_func : charm_init_proc_funcs) {
+<span class="lineNum">     117 </span>            :     _registerInitCall(*init_proc_func, 0);
+<span class="lineNum">     118 </span>            :   }
+<span class="lineNum">     119 </span>            : }
+<span class="lineNum">     120 </span>            : }  // namespace charmxx
+<span class="lineNum">     121 </span>            : }  // namespace Parallel
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            : /*!
+<span class="lineNum">     124 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     125 </span>            :  * \brief The function Charm++ calls to register reducers, chares, and entry
+<span class="lineNum">     126 </span>            :  * methods.
+<span class="lineNum">     127 </span>            :  *
+<span class="lineNum">     128 </span>            :  * The name of this function is crucial since it is called by Charm++ code.
+<span class="lineNum">     129 </span>            :  * Normally this function is generated by the `charmc` parser while generating
+<span class="lineNum">     130 </span>            :  * header files from interface files. The layer we built on Charm++ does not use
+<span class="lineNum">     131 </span>            :  * interface files directly and so we need to supply our `CkRegisterMainModule`
+<span class="lineNum">     132 </span>            :  * function. This function is also responsible for registering all parallel
+<span class="lineNum">     133 </span>            :  * components, all entry methods, and all custom reduction functions.
+<span class="lineNum">     134 </span>            :  */
+<span class="lineNum">     135 </span><span class="lineCov">          2 : extern &quot;C&quot; void CkRegisterMainModule() {</span>
+<span class="lineNum">     136 </span>            :   (void)charmxx_main_component{
+<span class="lineNum">     137 </span>            :       Parallel::charmxx::MainChareRegistrationConstructor{}};
+<span class="lineNum">     138 </span>            :   Parallel::charmxx::register_init_node_and_proc();
+<span class="lineNum">     139 </span>            :   Parallel::charmxx::register_parallel_components();
+<span class="lineNum">     140 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

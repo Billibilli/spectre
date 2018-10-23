@@ -1,0 +1,283 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Poisson::Solutions::ProductOfSinusoids&lt; Dim &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacePoisson.html">Poisson</a></li><li class="navelem"><a class="el" href="namespacePoisson_1_1Solutions.html">Solutions</a></li><li class="navelem"><a class="el" href="classPoisson_1_1Solutions_1_1ProductOfSinusoids.html">ProductOfSinusoids</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="classPoisson_1_1Solutions_1_1ProductOfSinusoids-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">Poisson::Solutions::ProductOfSinusoids&lt; Dim &gt; Class Template Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>A product of sinusoids \(u(\boldsymbol{x}) = \prod_i \sin(k_i x_i)\).  
+ <a href="classPoisson_1_1Solutions_1_1ProductOfSinusoids.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ProductOfSinusoids_8hpp_source.html">ProductOfSinusoids.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPoisson_1_1Solutions_1_1ProductOfSinusoids_1_1WaveNumbers.html">WaveNumbers</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ada042dfa7cad1f947a8a0f5a1c2df9e4"><td class="memItemLeft" align="right" valign="top"><a id="ada042dfa7cad1f947a8a0f5a1c2df9e4"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>options</b> = tmpl::list&lt; <a class="el" href="structPoisson_1_1Solutions_1_1ProductOfSinusoids_1_1WaveNumbers.html">WaveNumbers</a> &gt;</td></tr>
+<tr class="separator:ada042dfa7cad1f947a8a0f5a1c2df9e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:af68a2f02da16402858b948314577d894"><td class="memItemLeft" align="right" valign="top"><a id="af68a2f02da16402858b948314577d894"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProductOfSinusoids</b> (const <a class="el" href="classPoisson_1_1Solutions_1_1ProductOfSinusoids.html">ProductOfSinusoids</a> &amp;) noexcept=delete</td></tr>
+<tr class="separator:af68a2f02da16402858b948314577d894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82c8a5f97c5d246ad18ed1c5ea7ffa67"><td class="memItemLeft" align="right" valign="top"><a id="a82c8a5f97c5d246ad18ed1c5ea7ffa67"></a>
+<a class="el" href="classPoisson_1_1Solutions_1_1ProductOfSinusoids.html">ProductOfSinusoids</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classPoisson_1_1Solutions_1_1ProductOfSinusoids.html">ProductOfSinusoids</a> &amp;) noexcept=delete</td></tr>
+<tr class="separator:a82c8a5f97c5d246ad18ed1c5ea7ffa67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40cf785d522be7d721e8fbd1a1500c41"><td class="memItemLeft" align="right" valign="top"><a id="a40cf785d522be7d721e8fbd1a1500c41"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProductOfSinusoids</b> (<a class="el" href="classPoisson_1_1Solutions_1_1ProductOfSinusoids.html">ProductOfSinusoids</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a40cf785d522be7d721e8fbd1a1500c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e761b6fc7d3bb8347eb14377415769c"><td class="memItemLeft" align="right" valign="top"><a id="a2e761b6fc7d3bb8347eb14377415769c"></a>
+<a class="el" href="classPoisson_1_1Solutions_1_1ProductOfSinusoids.html">ProductOfSinusoids</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classPoisson_1_1Solutions_1_1ProductOfSinusoids.html">ProductOfSinusoids</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a2e761b6fc7d3bb8347eb14377415769c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72db99eacedabf8d49d33c3105b1f6e9"><td class="memItemLeft" align="right" valign="top"><a id="a72db99eacedabf8d49d33c3105b1f6e9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProductOfSinusoids</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Dim &gt; &amp;wave_numbers) noexcept</td></tr>
+<tr class="separator:a72db99eacedabf8d49d33c3105b1f6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9588ea2fa5e7afcbd4d30f94b5becfe1"><td class="memItemLeft" align="right" valign="top"><a id="a9588ea2fa5e7afcbd4d30f94b5becfe1"></a>
+<a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structPoisson_1_1Field.html">Field</a>, <a class="el" href="structPoisson_1_1AuxiliaryField.html">AuxiliaryField</a>&lt; Dim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>field_variables</b> (const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;x) const noexcept</td></tr>
+<tr class="separator:a9588ea2fa5e7afcbd4d30f94b5becfe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7038c522b8776e418ab828a68633d271"><td class="memItemLeft" align="right" valign="top"><a id="a7038c522b8776e418ab828a68633d271"></a>
+<a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt;::<a class="el" href="structTags_1_1Source.html">Tags::Source</a>&lt; <a class="el" href="structPoisson_1_1Field.html">Field</a> &gt;, ::<a class="el" href="structTags_1_1Source.html">Tags::Source</a>&lt; <a class="el" href="structPoisson_1_1AuxiliaryField.html">AuxiliaryField</a>&lt; Dim &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>source_variables</b> (const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;x) const noexcept</td></tr>
+<tr class="separator:a7038c522b8776e418ab828a68633d271"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d781abe8734fc8974e32689afa31d58"><td class="memItemLeft" align="right" valign="top"><a id="a8d781abe8734fc8974e32689afa31d58"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="separator:a8d781abe8734fc8974e32689afa31d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7af87c62e849bde9f1e0f8c29cbc650"><td class="memItemLeft" align="right" valign="top"><a id="ae7af87c62e849bde9f1e0f8c29cbc650"></a>
+const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Dim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>wave_numbers</b> () const noexcept</td></tr>
+<tr class="separator:ae7af87c62e849bde9f1e0f8c29cbc650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:acc4466756a79f1c86f29b3b81fffb8f6"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a>&#160;</td><td class="memItemRight" valign="bottom"><b>help</b></td></tr>
+<tr class="separator:acc4466756a79f1c86f29b3b81fffb8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;size_t Dim&gt;<br />
+class Poisson::Solutions::ProductOfSinusoids&lt; Dim &gt;</h3>
+
+<p>A product of sinusoids \(u(\boldsymbol{x}) = \prod_i \sin(k_i x_i)\). </p>
+<h3>Details</h3>
+<p>Solves the <a class="el" href="namespacePoisson.html" title="Items related to solving a Poisson equation . ">Poisson</a> equation \(-\Delta u(x)=f(x)\) for a source \(f(x)=\boldsymbol{k}^2\prod_i \sin(k_i x_i)\). </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="acc4466756a79f1c86f29b3b81fffb8f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc4466756a79f1c86f29b3b81fffb8f6">&#9670;&nbsp;</a></span>help</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a> <a class="el" href="classPoisson_1_1Solutions_1_1ProductOfSinusoids.html">Poisson::Solutions::ProductOfSinusoids</a>&lt; Dim &gt;::help</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div><div class="line">      <span class="stringliteral">&quot;A product of sinusoids that are taken of a wave number times the &quot;</span></div><div class="line">      <span class="stringliteral">&quot;coordinate in each dimension.&quot;</span>}</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/PointwiseFunctions/AnalyticSolutions/Poisson/<a class="el" href="ProductOfSinusoids_8hpp_source.html">ProductOfSinusoids.hpp</a></li>
+<li>src/PointwiseFunctions/AnalyticSolutions/Poisson/ProductOfSinusoids.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Domain/CoordinateMaps/Wedge3D.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Domain/CoordinateMaps</a> - Wedge3D.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;Domain/CoordinateMaps/Wedge3D.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;boost/none.hpp&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">       8 </span>            : #include &lt;pup.h&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Domain/OrientationMap.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Domain/SegmentId.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      13 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Parallel/PupStlCpp11.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/DereferenceWrapper.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/EqualWithinRoundoff.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/GenerateInstantiations.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Utilities/MakeWithValue.hpp&quot;
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : namespace CoordinateMaps {
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : Wedge3D::Wedge3D(const double radius_inner, const double radius_outer,
+<span class="lineNum">      24 </span>            :                  const OrientationMap&lt;3&gt; orientation_of_wedge,
+<span class="lineNum">      25 </span>            :                  const double sphericity_inner, const double sphericity_outer,
+<span class="lineNum">      26 </span>            :                  const bool with_equiangular_map,
+<span class="lineNum">      27 </span>            :                  const WedgeHalves halves_to_use,
+<span class="lineNum">      28 </span>            :                  const bool with_logarithmic_map) noexcept
+<span class="lineNum">      29 </span>            :     : radius_inner_(radius_inner),
+<span class="lineNum">      30 </span>            :       radius_outer_(radius_outer),
+<span class="lineNum">      31 </span>            :       orientation_of_wedge_(orientation_of_wedge),
+<span class="lineNum">      32 </span>            :       sphericity_inner_(sphericity_inner),
+<span class="lineNum">      33 </span>            :       sphericity_outer_(sphericity_outer),
+<span class="lineNum">      34 </span>            :       with_equiangular_map_(with_equiangular_map),
+<span class="lineNum">      35 </span>            :       halves_to_use_(halves_to_use),
+<span class="lineNum">      36 </span>            :       with_logarithmic_map_(with_logarithmic_map) {
+<span class="lineNum">      37 </span>            :   ASSERT(radius_inner &gt; 0.0,
+<span class="lineNum">      38 </span>            :          &quot;The radius of the inner surface must be greater than zero.&quot;);
+<span class="lineNum">      39 </span>            :   ASSERT(sphericity_inner &gt;= 0.0 and sphericity_inner &lt;= 1.0,
+<span class="lineNum">      40 </span>            :          &quot;Sphericity of the inner surface must be between 0 and 1&quot;);
+<span class="lineNum">      41 </span>            :   ASSERT(sphericity_outer &gt;= 0.0 and sphericity_outer &lt;= 1.0,
+<span class="lineNum">      42 </span>            :          &quot;Sphericity of the outer surface must be between 0 and 1&quot;);
+<span class="lineNum">      43 </span>            :   ASSERT(radius_outer &gt; radius_inner,
+<span class="lineNum">      44 </span>            :          &quot;The radius of the outer surface must be greater than the radius of &quot;
+<span class="lineNum">      45 </span>            :          &quot;the inner surface.&quot;);
+<span class="lineNum">      46 </span>            :   ASSERT(radius_outer *
+<span class="lineNum">      47 </span>            :                  ((1.0 - sphericity_outer_) / sqrt(3.0) + sphericity_outer_) &gt;
+<span class="lineNum">      48 </span>            :              radius_inner *
+<span class="lineNum">      49 </span>            :                  ((1.0 - sphericity_inner) / sqrt(3.0) + sphericity_inner),
+<span class="lineNum">      50 </span>            :          &quot;The arguments passed into the constructor for Wedge3D result in an &quot;
+<span class="lineNum">      51 </span>            :          &quot;object where the &quot;
+<span class="lineNum">      52 </span>            :          &quot;outer surface is pierced by the inner surface.&quot;);
+<span class="lineNum">      53 </span>            :   ASSERT(not with_logarithmic_map_ or
+<span class="lineNum">      54 </span>            :              (with_logarithmic_map_ and sphericity_inner_ == 1.0 and
+<span class="lineNum">      55 </span>            :               sphericity_outer_ == 1.0),
+<span class="lineNum">      56 </span>            :          &quot;The logarithmic map is only supported for spherical wedges.&quot;);
+<span class="lineNum">      57 </span>            :   if (with_logarithmic_map_) {
+<span class="lineNum">      58 </span>            :     scaled_frustum_zero_ = 0.0;
+<span class="lineNum">      59 </span>            :     sphere_zero_ = 0.5 * (log(radius_outer * radius_inner));
+<span class="lineNum">      60 </span>            :     scaled_frustum_rate_ = 0.0;
+<span class="lineNum">      61 </span>            :     sphere_rate_ = 0.5 * (log(radius_outer / radius_inner));
+<span class="lineNum">      62 </span>            :   } else {
+<span class="lineNum">      63 </span>            :     scaled_frustum_zero_ = 0.5 / sqrt(3.0) *
+<span class="lineNum">      64 </span>            :                            ((1.0 - sphericity_outer_) * radius_outer +
+<span class="lineNum">      65 </span>            :                             (1.0 - sphericity_inner) * radius_inner);
+<span class="lineNum">      66 </span>            :     sphere_zero_ = 0.5 * (sphericity_outer_ * radius_outer +
+<span class="lineNum">      67 </span>            :                           sphericity_inner * radius_inner);
+<span class="lineNum">      68 </span>            :     scaled_frustum_rate_ = 0.5 / sqrt(3.0) *
+<span class="lineNum">      69 </span>            :                            ((1.0 - sphericity_outer_) * radius_outer -
+<span class="lineNum">      70 </span>            :                             (1.0 - sphericity_inner) * radius_inner);
+<span class="lineNum">      71 </span>            :     sphere_rate_ = 0.5 * (sphericity_outer_ * radius_outer -
+<span class="lineNum">      72 </span>            :                           sphericity_inner * radius_inner);
+<span class="lineNum">      73 </span>            :   }
+<span class="lineNum">      74 </span>            : }
+<span class="lineNum">      75 </span>            : 
+<span class="lineNum">      76 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      77 </span>            : tt::remove_cvref_wrap_t&lt;T&gt; Wedge3D::default_physical_z(
+<span class="lineNum">      78 </span>            :     const T&amp; zeta, const T&amp; one_over_rho) const noexcept {
+<span class="lineNum">      79 </span>            :   if (with_logarithmic_map_) {
+<span class="lineNum">      80 </span>            :     return exp(sphere_zero_ + sphere_rate_ * zeta) * one_over_rho;
+<span class="lineNum">      81 </span>            :   }
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span>            :   // Using auto keeps this as a blaze expression.
+<span class="lineNum">      84 </span>            :   const auto zeta_coefficient =
+<span class="lineNum">      85 </span>            :       (scaled_frustum_rate_ + sphere_rate_ * one_over_rho);
+<span class="lineNum">      86 </span>            :   const auto z_zero = (scaled_frustum_zero_ + sphere_zero_ * one_over_rho);
+<span class="lineNum">      87 </span>            :   return z_zero + zeta_coefficient * zeta;
+<span class="lineNum">      88 </span>            : }
+<span class="lineNum">      89 </span>            : 
+<span class="lineNum">      90 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      91 </span>            : std::array&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3&gt; Wedge3D::operator()(
+<span class="lineNum">      92 </span>            :     const std::array&lt;T, 3&gt;&amp; source_coords) const noexcept {
+<span class="lineNum">      93 </span>            :   using ReturnType = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span>            :   ReturnType xi = source_coords[0];
+<span class="lineNum">      96 </span>            :   if (halves_to_use_ == WedgeHalves::UpperOnly) {
+<span class="lineNum">      97 </span>            :     xi += 1.0;
+<span class="lineNum">      98 </span>            :     xi *= 0.5;
+<span class="lineNum">      99 </span>            :   } else if (halves_to_use_ == WedgeHalves::LowerOnly) {
+<span class="lineNum">     100 </span>            :     xi -= 1.0;
+<span class="lineNum">     101 </span>            :     xi *= 0.5;
+<span class="lineNum">     102 </span>            :   }
+<span class="lineNum">     103 </span>            :   const ReturnType&amp; eta = source_coords[1];
+<span class="lineNum">     104 </span>            : 
+<span class="lineNum">     105 </span>            :   const ReturnType cap_xi = with_equiangular_map_ ? tan(M_PI_4 * xi) : xi;
+<span class="lineNum">     106 </span>            :   const ReturnType cap_eta = with_equiangular_map_ ? tan(M_PI_4 * eta) : eta;
+<span class="lineNum">     107 </span>            :   const ReturnType&amp; zeta = source_coords[2];
+<span class="lineNum">     108 </span>            :   const ReturnType one_over_rho =
+<span class="lineNum">     109 </span>            :       1.0 / sqrt(1.0 + square(cap_xi) + square(cap_eta));
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            :   ReturnType physical_z = default_physical_z(zeta, one_over_rho);
+<span class="lineNum">     112 </span>            :   ReturnType physical_x = physical_z * cap_xi;
+<span class="lineNum">     113 </span>            :   ReturnType physical_y = physical_z * cap_eta;
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span>            :   std::array&lt;ReturnType, 3&gt; physical_coords{
+<span class="lineNum">     116 </span>            :       {std::move(physical_x), std::move(physical_y), std::move(physical_z)}};
+<span class="lineNum">     117 </span>            :   return discrete_rotation(orientation_of_wedge_, std::move(physical_coords));
+<span class="lineNum">     118 </span>            : }
+<span class="lineNum">     119 </span>            : 
+<span class="lineNum">     120 </span>            : boost::optional&lt;std::array&lt;double, 3&gt;&gt; Wedge3D::inverse(
+<span class="lineNum">     121 </span>            :     const std::array&lt;double, 3&gt;&amp; target_coords) const noexcept {
+<span class="lineNum">     122 </span>            :   const std::array&lt;double, 3&gt; physical_coords =
+<span class="lineNum">     123 </span>            :       discrete_rotation(orientation_of_wedge_.inverse_map(), target_coords);
+<span class="lineNum">     124 </span>            :   const double&amp; physical_x = physical_coords[0];
+<span class="lineNum">     125 </span>            :   const double&amp; physical_y = physical_coords[1];
+<span class="lineNum">     126 </span>            :   const double&amp; physical_z = physical_coords[2];
+<span class="lineNum">     127 </span>            : 
+<span class="lineNum">     128 </span>            :   if (physical_z &lt; 0.0 or equal_within_roundoff(physical_z, 0.0)) {
+<span class="lineNum">     129 </span>            :     return boost::none;
+<span class="lineNum">     130 </span>            :   }
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span>            :   const double cap_xi = physical_x / physical_z;
+<span class="lineNum">     133 </span>            :   const double cap_eta = physical_y / physical_z;
+<span class="lineNum">     134 </span>            :   const double one_over_rho =
+<span class="lineNum">     135 </span>            :       1.0 / sqrt(1.0 + square(cap_xi) + square(cap_eta));
+<span class="lineNum">     136 </span>            :   const double zeta_coefficient =
+<span class="lineNum">     137 </span>            :       (scaled_frustum_rate_ + sphere_rate_ * one_over_rho);
+<span class="lineNum">     138 </span>            :   // If -sphere_rate_/scaled_frustum_rate_ &gt; 1, then
+<span class="lineNum">     139 </span>            :   // there exists a cone in x,y,z space given by the surface
+<span class="lineNum">     140 </span>            :   // zeta_coefficient=0; the map is singular on this surface.
+<span class="lineNum">     141 </span>            :   // We return boost::none if we are on or outside this cone.
+<span class="lineNum">     142 </span>            :   // If scaled_frustum_rate_ &gt; 0, then outside the cone
+<span class="lineNum">     143 </span>            :   // corresponds to zeta_coefficient &gt; 0, and if scaled_frustum_rate_
+<span class="lineNum">     144 </span>            :   // &lt; 0, then outside the cone corresponds to zeta_coefficient &lt; 0.
+<span class="lineNum">     145 </span>            :   // We test in two cases, and avoid division.
+<span class="lineNum">     146 </span>            :   if ((scaled_frustum_rate_ &gt; 0.0 and scaled_frustum_rate_ &lt; -sphere_rate_ and
+<span class="lineNum">     147 </span>            :        zeta_coefficient &gt; 0.0) or
+<span class="lineNum">     148 </span>            :       (scaled_frustum_rate_ &lt; 0.0 and scaled_frustum_rate_ &gt; -sphere_rate_ and
+<span class="lineNum">     149 </span>            :        zeta_coefficient &lt; 0.0) or
+<span class="lineNum">     150 </span>            :       equal_within_roundoff(zeta_coefficient, 0.0)) {
+<span class="lineNum">     151 </span>            :     return boost::none;
+<span class="lineNum">     152 </span>            :   }
+<span class="lineNum">     153 </span>            :   const auto z_zero = (scaled_frustum_zero_ + sphere_zero_ * one_over_rho);
+<span class="lineNum">     154 </span>            :   double zeta;
+<span class="lineNum">     155 </span>            :   if (with_logarithmic_map_) {
+<span class="lineNum">     156 </span>            :     zeta = (log(physical_z * sqrt(1.0 + square(cap_xi) + square(cap_eta))) -
+<span class="lineNum">     157 </span>            :             sphere_zero_) /
+<span class="lineNum">     158 </span>            :            sphere_rate_;
+<span class="lineNum">     159 </span>            :   } else {
+<span class="lineNum">     160 </span>            :     zeta = (physical_z - z_zero) / zeta_coefficient;
+<span class="lineNum">     161 </span>            :   }
+<span class="lineNum">     162 </span>            :   double xi = with_equiangular_map_ ? atan(cap_xi) / M_PI_4 : cap_xi;
+<span class="lineNum">     163 </span>            :   double eta =
+<span class="lineNum">     164 </span>            :       with_equiangular_map_ ? atan(cap_eta) / M_PI_4 : cap_eta;
+<span class="lineNum">     165 </span>            :   if (halves_to_use_ == WedgeHalves::UpperOnly) {
+<span class="lineNum">     166 </span>            :     xi *= 2.0;
+<span class="lineNum">     167 </span>            :     xi -= 1.0;
+<span class="lineNum">     168 </span>            :   } else if (halves_to_use_ == WedgeHalves::LowerOnly) {
+<span class="lineNum">     169 </span>            :     xi *= 2.0;
+<span class="lineNum">     170 </span>            :     xi += 1.0;
+<span class="lineNum">     171 </span>            :   }
+<span class="lineNum">     172 </span>            :   return std::array&lt;double, 3&gt;{
+<span class="lineNum">     173 </span>            :       {xi, eta, zeta}};
+<span class="lineNum">     174 </span>            : }
+<span class="lineNum">     175 </span>            : 
+<span class="lineNum">     176 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     177 </span>            : tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3, Frame::NoFrame&gt; Wedge3D::jacobian(
+<span class="lineNum">     178 </span>            :     const std::array&lt;T, 3&gt;&amp; source_coords) const noexcept {
+<span class="lineNum">     179 </span>            :   using ReturnType = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">     180 </span>            :   ReturnType xi = source_coords[0];
+<span class="lineNum">     181 </span>            :   if (halves_to_use_ == WedgeHalves::UpperOnly) {
+<span class="lineNum">     182 </span>            :     xi += 1.0;
+<span class="lineNum">     183 </span>            :     xi *= 0.5;
+<span class="lineNum">     184 </span>            :   } else if (halves_to_use_ == WedgeHalves::LowerOnly) {
+<span class="lineNum">     185 </span>            :     xi -= 1.0;
+<span class="lineNum">     186 </span>            :     xi *= 0.5;
+<span class="lineNum">     187 </span>            :   }
+<span class="lineNum">     188 </span>            :   const ReturnType&amp; eta = source_coords[1];
+<span class="lineNum">     189 </span>            :   const ReturnType&amp; zeta = source_coords[2];
+<span class="lineNum">     190 </span>            :   const ReturnType&amp; cap_xi = with_equiangular_map_ ? tan(M_PI_4 * xi) : xi;
+<span class="lineNum">     191 </span>            :   const ReturnType&amp; cap_eta = with_equiangular_map_ ? tan(M_PI_4 * eta) : eta;
+<span class="lineNum">     192 </span>            :   const ReturnType cap_xi_deriv = with_equiangular_map_
+<span class="lineNum">     193 </span>            :                                       ? M_PI_4 * (1.0 + square(cap_xi))
+<span class="lineNum">     194 </span>            :                                       : make_with_value&lt;ReturnType&gt;(xi, 1.0);
+<span class="lineNum">     195 </span>            :   const ReturnType cap_eta_deriv = with_equiangular_map_
+<span class="lineNum">     196 </span>            :                                        ? M_PI_4 * (1.0 + square(cap_eta))
+<span class="lineNum">     197 </span>            :                                        : make_with_value&lt;ReturnType&gt;(eta, 1.0);
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            :   const ReturnType one_over_rho =
+<span class="lineNum">     200 </span>            :       1.0 / sqrt(1.0 + square(cap_xi) + square(cap_eta));
+<span class="lineNum">     201 </span>            :   const ReturnType one_over_rho_cubed = pow&lt;3&gt;(one_over_rho);
+<span class="lineNum">     202 </span>            :   const ReturnType physical_z = default_physical_z(zeta, one_over_rho);
+<span class="lineNum">     203 </span>            :   const ReturnType s_factor =
+<span class="lineNum">     204 </span>            :       with_logarithmic_map_
+<span class="lineNum">     205 </span>            :           ? ReturnType{exp(sphere_zero_ + sphere_rate_ * zeta)}
+<span class="lineNum">     206 </span>            :           : ReturnType{sphere_zero_ + sphere_rate_ * zeta};
+<span class="lineNum">     207 </span>            : 
+<span class="lineNum">     208 </span>            :   auto jacobian_matrix =
+<span class="lineNum">     209 </span>            :       make_with_value&lt;tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3, Frame::NoFrame&gt;&gt;(
+<span class="lineNum">     210 </span>            :           dereference_wrapper(source_coords[0]), 0.0);
+<span class="lineNum">     211 </span>            : 
+<span class="lineNum">     212 </span>            :   ReturnType dz_dxi = -s_factor * cap_xi * cap_xi_deriv * one_over_rho_cubed;
+<span class="lineNum">     213 </span>            :   ReturnType dx_dxi = cap_xi * dz_dxi + cap_xi_deriv * physical_z;
+<span class="lineNum">     214 </span>            :   ReturnType dy_dxi = cap_eta * dz_dxi;
+<span class="lineNum">     215 </span>            :   // Implement Scalings:
+<span class="lineNum">     216 </span>            :   if (halves_to_use_ != WedgeHalves::Both) {
+<span class="lineNum">     217 </span>            :     dz_dxi *= 0.5;
+<span class="lineNum">     218 </span>            :     dy_dxi *= 0.5;
+<span class="lineNum">     219 </span>            :     dx_dxi *= 0.5;
+<span class="lineNum">     220 </span>            :   }
+<span class="lineNum">     221 </span>            :   std::array&lt;ReturnType, 3&gt; dX_dlogical = discrete_rotation(
+<span class="lineNum">     222 </span>            :       orientation_of_wedge_,
+<span class="lineNum">     223 </span>            :       std::array&lt;ReturnType, 3&gt;{
+<span class="lineNum">     224 </span>            :           {std::move(dx_dxi), std::move(dy_dxi), std::move(dz_dxi)}});
+<span class="lineNum">     225 </span>            :   get&lt;0, 0&gt;(jacobian_matrix) = dX_dlogical[0];
+<span class="lineNum">     226 </span>            :   get&lt;1, 0&gt;(jacobian_matrix) = dX_dlogical[1];
+<span class="lineNum">     227 </span>            :   get&lt;2, 0&gt;(jacobian_matrix) = dX_dlogical[2];
+<span class="lineNum">     228 </span>            : 
+<span class="lineNum">     229 </span>            :   // dz_deta
+<span class="lineNum">     230 </span>            :   dX_dlogical[2] = -s_factor * cap_eta * cap_eta_deriv * one_over_rho_cubed;
+<span class="lineNum">     231 </span>            :   // dy_deta
+<span class="lineNum">     232 </span>            :   dX_dlogical[1] = cap_eta * dX_dlogical[2] + cap_eta_deriv * physical_z;
+<span class="lineNum">     233 </span>            :   // dx_deta
+<span class="lineNum">     234 </span>            :   dX_dlogical[0] = cap_xi * dX_dlogical[2];
+<span class="lineNum">     235 </span>            :   dX_dlogical =
+<span class="lineNum">     236 </span>            :       discrete_rotation(orientation_of_wedge_, std::move(dX_dlogical));
+<span class="lineNum">     237 </span>            :   get&lt;0, 1&gt;(jacobian_matrix) = dX_dlogical[0];
+<span class="lineNum">     238 </span>            :   get&lt;1, 1&gt;(jacobian_matrix) = dX_dlogical[1];
+<span class="lineNum">     239 </span>            :   get&lt;2, 1&gt;(jacobian_matrix) = dX_dlogical[2];
+<span class="lineNum">     240 </span>            : 
+<span class="lineNum">     241 </span>            :   // dz_dzeta
+<span class="lineNum">     242 </span>            :   if (with_logarithmic_map_) {
+<span class="lineNum">     243 </span>            :     dX_dlogical[2] = s_factor * sphere_rate_ * one_over_rho;
+<span class="lineNum">     244 </span>            :   } else {
+<span class="lineNum">     245 </span>            :     dX_dlogical[2] = scaled_frustum_rate_ + sphere_rate_ * one_over_rho;
+<span class="lineNum">     246 </span>            :   }
+<span class="lineNum">     247 </span>            :   // dx_dzeta
+<span class="lineNum">     248 </span>            :   dX_dlogical[0] = cap_xi * dX_dlogical[2];
+<span class="lineNum">     249 </span>            :   // dy_dzeta
+<span class="lineNum">     250 </span>            :   dX_dlogical[1] = cap_eta * dX_dlogical[2];
+<span class="lineNum">     251 </span>            :   dX_dlogical =
+<span class="lineNum">     252 </span>            :       discrete_rotation(orientation_of_wedge_, std::move(dX_dlogical));
+<span class="lineNum">     253 </span>            :   get&lt;0, 2&gt;(jacobian_matrix) = dX_dlogical[0];
+<span class="lineNum">     254 </span>            :   get&lt;1, 2&gt;(jacobian_matrix) = dX_dlogical[1];
+<span class="lineNum">     255 </span>            :   get&lt;2, 2&gt;(jacobian_matrix) = dX_dlogical[2];
+<span class="lineNum">     256 </span>            :   return jacobian_matrix;
+<span class="lineNum">     257 </span>            : }
+<span class="lineNum">     258 </span>            : 
+<span class="lineNum">     259 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     260 </span>            : tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3, Frame::NoFrame&gt; Wedge3D::inv_jacobian(
+<span class="lineNum">     261 </span>            :     const std::array&lt;T, 3&gt;&amp; source_coords) const noexcept {
+<span class="lineNum">     262 </span>            :   using ReturnType = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">     263 </span>            : 
+<span class="lineNum">     264 </span>            :   ReturnType xi = source_coords[0];
+<span class="lineNum">     265 </span>            :   if (halves_to_use_ == WedgeHalves::UpperOnly) {
+<span class="lineNum">     266 </span>            :     xi += make_with_value&lt;ReturnType&gt;(xi, 1.0);
+<span class="lineNum">     267 </span>            :     xi *= 0.5;
+<span class="lineNum">     268 </span>            :   } else if (halves_to_use_ == WedgeHalves::LowerOnly) {
+<span class="lineNum">     269 </span>            :     xi += make_with_value&lt;ReturnType&gt;(xi, -1.0);
+<span class="lineNum">     270 </span>            :     xi *= 0.5;
+<span class="lineNum">     271 </span>            :   }
+<span class="lineNum">     272 </span>            : 
+<span class="lineNum">     273 </span>            :   const ReturnType&amp; eta = source_coords[1];
+<span class="lineNum">     274 </span>            :   const ReturnType&amp; zeta = source_coords[2];
+<span class="lineNum">     275 </span>            :   const ReturnType cap_xi = with_equiangular_map_ ? tan(M_PI_4 * xi) : xi;
+<span class="lineNum">     276 </span>            :   const ReturnType cap_eta = with_equiangular_map_ ? tan(M_PI_4 * eta) : eta;
+<span class="lineNum">     277 </span>            :   const ReturnType cap_xi_deriv = with_equiangular_map_
+<span class="lineNum">     278 </span>            :                                       ? M_PI_4 * (1.0 + square(cap_xi))
+<span class="lineNum">     279 </span>            :                                       : make_with_value&lt;ReturnType&gt;(xi, 1.0);
+<span class="lineNum">     280 </span>            :   const ReturnType cap_eta_deriv = with_equiangular_map_
+<span class="lineNum">     281 </span>            :                                        ? M_PI_4 * (1.0 + square(cap_eta))
+<span class="lineNum">     282 </span>            :                                        : make_with_value&lt;ReturnType&gt;(eta, 1.0);
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span>            :   const ReturnType one_over_rho =
+<span class="lineNum">     285 </span>            :       1.0 / sqrt(1.0 + square(cap_xi) + square(cap_eta));
+<span class="lineNum">     286 </span>            :   const ReturnType one_over_rho_cubed = pow&lt;3&gt;(one_over_rho);
+<span class="lineNum">     287 </span>            :   const ReturnType one_over_physical_z =
+<span class="lineNum">     288 </span>            :       1.0 / default_physical_z(zeta, one_over_rho);
+<span class="lineNum">     289 </span>            :   const ReturnType scaled_z_frustum =
+<span class="lineNum">     290 </span>            :       scaled_frustum_zero_ + scaled_frustum_rate_ * zeta;
+<span class="lineNum">     291 </span>            :   const ReturnType s_factor_over_rho_cubed =
+<span class="lineNum">     292 </span>            :       with_logarithmic_map_
+<span class="lineNum">     293 </span>            :           ? ReturnType{exp(sphere_zero_ + sphere_rate_ * zeta) *
+<span class="lineNum">     294 </span>            :                        one_over_rho_cubed}
+<span class="lineNum">     295 </span>            :           : ReturnType{(sphere_zero_ + sphere_rate_ * zeta) *
+<span class="lineNum">     296 </span>            :                        one_over_rho_cubed};
+<span class="lineNum">     297 </span>            :   const ReturnType one_over_dz_dzeta =
+<span class="lineNum">     298 </span>            :       with_logarithmic_map_
+<span class="lineNum">     299 </span>            :           ? ReturnType{1.0 / (exp(sphere_zero_ + sphere_rate_ * zeta) *
+<span class="lineNum">     300 </span>            :                               sphere_rate_ * one_over_rho)}
+<span class="lineNum">     301 </span>            :           : ReturnType{1.0 /
+<span class="lineNum">     302 </span>            :                        (scaled_frustum_rate_ + sphere_rate_ * one_over_rho)};
+<span class="lineNum">     303 </span>            :   const ReturnType dzeta_factor = one_over_physical_z * one_over_dz_dzeta;
+<span class="lineNum">     304 </span>            : 
+<span class="lineNum">     305 </span>            :   auto inv_jacobian_matrix =
+<span class="lineNum">     306 </span>            :       make_with_value&lt;tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3, Frame::NoFrame&gt;&gt;(
+<span class="lineNum">     307 </span>            :           dereference_wrapper(source_coords[0]), 0.0);
+<span class="lineNum">     308 </span>            : 
+<span class="lineNum">     309 </span>            :   ReturnType dxi_dx = one_over_physical_z / cap_xi_deriv;
+<span class="lineNum">     310 </span>            :   // Implement Scalings:
+<span class="lineNum">     311 </span>            :   if (halves_to_use_ != WedgeHalves::Both) {
+<span class="lineNum">     312 </span>            :     dxi_dx *= 2.0;
+<span class="lineNum">     313 </span>            :   }
+<span class="lineNum">     314 </span>            :   auto dxi_dy = make_with_value&lt;ReturnType&gt;(xi, 0.0);
+<span class="lineNum">     315 </span>            :   ReturnType dxi_dz = -cap_xi * dxi_dx;
+<span class="lineNum">     316 </span>            : 
+<span class="lineNum">     317 </span>            :   std::array&lt;ReturnType, 3&gt; dlogical_dX = discrete_rotation(
+<span class="lineNum">     318 </span>            :       orientation_of_wedge_,
+<span class="lineNum">     319 </span>            :       std::array&lt;ReturnType, 3&gt;{
+<span class="lineNum">     320 </span>            :           {std::move(dxi_dx), std::move(dxi_dy), std::move(dxi_dz)}});
+<span class="lineNum">     321 </span>            :   get&lt;0, 0&gt;(inv_jacobian_matrix) = dlogical_dX[0];
+<span class="lineNum">     322 </span>            :   get&lt;0, 1&gt;(inv_jacobian_matrix) = dlogical_dX[1];
+<span class="lineNum">     323 </span>            :   get&lt;0, 2&gt;(inv_jacobian_matrix) = dlogical_dX[2];
+<span class="lineNum">     324 </span>            : 
+<span class="lineNum">     325 </span>            :   // deta_dx
+<span class="lineNum">     326 </span>            :   dlogical_dX[0] = 0.0;
+<span class="lineNum">     327 </span>            :   // deta_dy
+<span class="lineNum">     328 </span>            :   dlogical_dX[1] = one_over_physical_z / cap_eta_deriv;
+<span class="lineNum">     329 </span>            :   // deta_dz
+<span class="lineNum">     330 </span>            :   dlogical_dX[2] = -cap_eta * dlogical_dX[1];
+<span class="lineNum">     331 </span>            :   dlogical_dX =
+<span class="lineNum">     332 </span>            :       discrete_rotation(orientation_of_wedge_, std::move(dlogical_dX));
+<span class="lineNum">     333 </span>            :   get&lt;1, 0&gt;(inv_jacobian_matrix) = dlogical_dX[0];
+<span class="lineNum">     334 </span>            :   get&lt;1, 1&gt;(inv_jacobian_matrix) = dlogical_dX[1];
+<span class="lineNum">     335 </span>            :   get&lt;1, 2&gt;(inv_jacobian_matrix) = dlogical_dX[2];
+<span class="lineNum">     336 </span>            : 
+<span class="lineNum">     337 </span>            :   // dzeta_dx
+<span class="lineNum">     338 </span>            :   dlogical_dX[0] = dzeta_factor * cap_xi * s_factor_over_rho_cubed;
+<span class="lineNum">     339 </span>            :   // dzeta_dy
+<span class="lineNum">     340 </span>            :   dlogical_dX[1] = dzeta_factor * cap_eta * s_factor_over_rho_cubed;
+<span class="lineNum">     341 </span>            :   // dzeta_dz
+<span class="lineNum">     342 </span>            :   dlogical_dX[2] = dzeta_factor * (scaled_z_frustum + s_factor_over_rho_cubed);
+<span class="lineNum">     343 </span>            :   dlogical_dX =
+<span class="lineNum">     344 </span>            :       discrete_rotation(orientation_of_wedge_, std::move(dlogical_dX));
+<span class="lineNum">     345 </span>            :   get&lt;2, 0&gt;(inv_jacobian_matrix) = dlogical_dX[0];
+<span class="lineNum">     346 </span>            :   get&lt;2, 1&gt;(inv_jacobian_matrix) = dlogical_dX[1];
+<span class="lineNum">     347 </span>            :   get&lt;2, 2&gt;(inv_jacobian_matrix) = dlogical_dX[2];
+<span class="lineNum">     348 </span>            :   return inv_jacobian_matrix;
+<span class="lineNum">     349 </span>            : }
+<span class="lineNum">     350 </span>            : 
+<span class="lineNum">     351 </span>            : void Wedge3D::pup(PUP::er&amp; p) noexcept {
+<span class="lineNum">     352 </span>            :   p | radius_inner_;
+<span class="lineNum">     353 </span>            :   p | radius_outer_;
+<span class="lineNum">     354 </span>            :   p | orientation_of_wedge_;
+<span class="lineNum">     355 </span>            :   p | sphericity_inner_;
+<span class="lineNum">     356 </span>            :   p | sphericity_outer_;
+<span class="lineNum">     357 </span>            :   p | with_equiangular_map_;
+<span class="lineNum">     358 </span>            :   p | halves_to_use_;
+<span class="lineNum">     359 </span>            :   p | with_logarithmic_map_;
+<span class="lineNum">     360 </span>            :   p | scaled_frustum_zero_;
+<span class="lineNum">     361 </span>            :   p | sphere_zero_;
+<span class="lineNum">     362 </span>            :   p | scaled_frustum_rate_;
+<span class="lineNum">     363 </span>            :   p | sphere_rate_;
+<span class="lineNum">     364 </span>            : }
+<span class="lineNum">     365 </span>            : 
+<span class="lineNum">     366 </span><span class="lineNoCov">          0 : bool operator==(const Wedge3D&amp; lhs, const Wedge3D&amp; rhs) noexcept {</span>
+<span class="lineNum">     367 </span>            :   return lhs.radius_inner_ == rhs.radius_inner_ and
+<span class="lineNum">     368 </span>            :          lhs.radius_outer_ == rhs.radius_outer_ and
+<span class="lineNum">     369 </span>            :          lhs.orientation_of_wedge_ == rhs.orientation_of_wedge_ and
+<span class="lineNum">     370 </span>            :          lhs.with_equiangular_map_ == rhs.with_equiangular_map_ and
+<span class="lineNum">     371 </span>            :          lhs.halves_to_use_ == rhs.halves_to_use_ and
+<span class="lineNum">     372 </span>            :          lhs.with_logarithmic_map_ == rhs.with_logarithmic_map_ and
+<span class="lineNum">     373 </span>            :          lhs.sphericity_inner_ == rhs.sphericity_inner_ and
+<span class="lineNum">     374 </span>            :          lhs.sphericity_outer_ == rhs.sphericity_outer_ and
+<span class="lineNum">     375 </span>            :          lhs.scaled_frustum_zero_ == rhs.scaled_frustum_zero_ and
+<span class="lineNum">     376 </span>            :          lhs.sphere_zero_ == rhs.sphere_zero_ and
+<span class="lineNum">     377 </span>            :          lhs.scaled_frustum_rate_ == rhs.scaled_frustum_rate_ and
+<span class="lineNum">     378 </span>            :          lhs.sphere_rate_ == rhs.sphere_rate_;
+<span class="lineNum">     379 </span>            : }
+<span class="lineNum">     380 </span>            : 
+<span class="lineNum">     381 </span><span class="lineNoCov">          0 : bool operator!=(const Wedge3D&amp; lhs, const Wedge3D&amp; rhs) noexcept {</span>
+<span class="lineNum">     382 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     383 </span>            : }
+<span class="lineNum">     384 </span>            : 
+<span class="lineNum">     385 </span>            : // Explicit instantiations
+<span class="lineNum">     386 </span>            : /// \cond
+<span class="lineNum">     387 </span>            : #define DTYPE(data) BOOST_PP_TUPLE_ELEM(0, data)
+<span class="lineNum">     388 </span>            : 
+<span class="lineNum">     389 </span>            : #define INSTANTIATE(_, data)                                                  \
+<span class="lineNum">     390 </span>            :   template std::array&lt;tt::remove_cvref_wrap_t&lt;DTYPE(data)&gt;, 3&gt; Wedge3D::      \
+<span class="lineNum">     391 </span>            :   operator()(const std::array&lt;DTYPE(data), 3&gt;&amp; source_coords) const noexcept; \
+<span class="lineNum">     392 </span>            :   template tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;DTYPE(data)&gt;, 3, Frame::NoFrame&gt;  \
+<span class="lineNum">     393 </span>            :   Wedge3D::jacobian(const std::array&lt;DTYPE(data), 3&gt;&amp; source_coords)          \
+<span class="lineNum">     394 </span>            :       const noexcept;                                                         \
+<span class="lineNum">     395 </span>            :   template tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;DTYPE(data)&gt;, 3, Frame::NoFrame&gt;  \
+<span class="lineNum">     396 </span>            :   Wedge3D::inv_jacobian(const std::array&lt;DTYPE(data), 3&gt;&amp; source_coords)      \
+<span class="lineNum">     397 </span>            :       const noexcept;
+<span class="lineNum">     398 </span>            : 
+<span class="lineNum">     399 </span>            : GENERATE_INSTANTIATIONS(INSTANTIATE, (double, DataVector,
+<span class="lineNum">     400 </span>            :                                       std::reference_wrapper&lt;const double&gt;,
+<span class="lineNum">     401 </span>            :                                       std::reference_wrapper&lt;const DataVector&gt;))
+<span class="lineNum">     402 </span>            : 
+<span class="lineNum">     403 </span>            : #undef DTYPE
+<span class="lineNum">     404 </span>            : #undef INSTANTIATE
+<span class="lineNum">     405 </span>            : /// \endcond
+<span class="lineNum">     406 </span>            : }  // namespace CoordinateMaps
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

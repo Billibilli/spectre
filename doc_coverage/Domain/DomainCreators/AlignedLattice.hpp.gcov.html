@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Domain/DomainCreators/AlignedLattice.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Domain/DomainCreators</a> - AlignedLattice.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">31</td>
+            <td class="headerCovTableEntryLo">9.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : #include &lt;limits&gt;
+<span class="lineNum">       9 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/Index.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Domain/Domain.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Domain/DomainCreators/DomainCreator.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      14 </span>            : #include &quot;Options/Options.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/MakeArray.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : namespace DomainCreators {
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : /// \ingroup DomainCreatorsGroup
+<span class="lineNum">      21 </span>            : /// \brief Create a Domain consisting of multiple aligned Blocks arrayed in a
+<span class="lineNum">      22 </span>            : /// lattice.
+<span class="lineNum">      23 </span>            : ///
+<span class="lineNum">      24 </span>            : /// This is useful for setting up problems with piecewise smooth initial data,
+<span class="lineNum">      25 </span>            : /// problems that specify different boundary conditions on distinct parts of
+<span class="lineNum">      26 </span>            : /// the boundary, or problems that need different length scales initially.
+<span class="lineNum">      27 </span>            : ///
+<span class="lineNum">      28 </span>            : /// \note Adaptive mesh refinement can never join Block%s, so use the fewest
+<span class="lineNum">      29 </span>            : /// number of Block%s that your problem needs.  More initial Element%s can be
+<span class="lineNum">      30 </span>            : /// created by specifying a larger `InitialRefinement`.
+<span class="lineNum">      31 </span>            : template &lt;size_t VolumeDim, typename TargetFrame&gt;
+<span class="lineNum">      32 </span><span class="lineCov">          1 : class AlignedLattice : public DomainCreator&lt;VolumeDim, TargetFrame&gt; {</span>
+<span class="lineNum">      33 </span>            :  public:
+<span class="lineNum">      34 </span><span class="lineNoCov">          0 :   struct BlockBounds {</span>
+<span class="lineNum">      35 </span><span class="lineNoCov">          0 :     using type = std::array&lt;std::vector&lt;double&gt;, VolumeDim&gt;;</span>
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">      37 </span>            :         &quot;Coordinates of block boundaries in each dimension.&quot;};
+<span class="lineNum">      38 </span>            :   };
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 :   struct IsPeriodicIn {</span>
+<span class="lineNum">      41 </span><span class="lineNoCov">          0 :     using type = std::array&lt;bool, VolumeDim&gt;;</span>
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">      43 </span>            :         &quot;Whether the domain is periodic in each dimension.&quot;};
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :     static type default_value() { return make_array&lt;VolumeDim&gt;(false); }</span>
+<span class="lineNum">      45 </span>            :   };
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :   struct InitialRefinement {</span>
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 :     using type = std::array&lt;size_t, VolumeDim&gt;;</span>
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">      50 </span>            :         &quot;Initial refinement level in each dimension.&quot;};
+<span class="lineNum">      51 </span>            :   };
+<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :   struct InitialGridPoints {</span>
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :     using type = std::array&lt;size_t, VolumeDim&gt;;</span>
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">      56 </span>            :         &quot;Initial number of grid points in each dimension.&quot;};
+<span class="lineNum">      57 </span>            :   };
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :   using options = tmpl::list&lt;BlockBounds, IsPeriodicIn, InitialRefinement,</span>
+<span class="lineNum">      60 </span>            :                              InitialGridPoints&gt;;
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :   static constexpr OptionString help = {</span>
+<span class="lineNum">      63 </span>            :       &quot;AlignedLattice creates a regular lattice of blocks whose corners are\n&quot;
+<span class="lineNum">      64 </span>            :       &quot;given by tensor products of the specified BlockBounds.&quot;};
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :   AlignedLattice(</span>
+<span class="lineNum">      67 </span>            :       typename BlockBounds::type block_bounds,
+<span class="lineNum">      68 </span>            :       typename IsPeriodicIn::type is_periodic_in,
+<span class="lineNum">      69 </span>            :       typename InitialRefinement::type initial_refinement_levels,
+<span class="lineNum">      70 </span>            :       typename InitialGridPoints::type initial_number_of_grid_points) noexcept;
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span><span class="lineNoCov">          0 :   AlignedLattice() = default;</span>
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 :   AlignedLattice(const AlignedLattice&amp;) = delete;</span>
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 :   AlignedLattice(AlignedLattice&amp;&amp;) noexcept = default;</span>
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 :   AlignedLattice&amp; operator=(const AlignedLattice&amp;) = delete;</span>
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 :   AlignedLattice&amp; operator=(AlignedLattice&amp;&amp;) noexcept = default;</span>
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 :   ~AlignedLattice() override = default;</span>
+<span class="lineNum">      78 </span>            : 
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 :   Domain&lt;VolumeDim, TargetFrame&gt; create_domain() const noexcept override;</span>
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span><span class="lineCov">          1 :   std::vector&lt;std::array&lt;size_t, VolumeDim&gt;&gt; initial_extents() const</span>
+<span class="lineNum">      82 </span>            :       noexcept override;
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span><span class="lineCov">          1 :   std::vector&lt;std::array&lt;size_t, VolumeDim&gt;&gt; initial_refinement_levels() const</span>
+<span class="lineNum">      85 </span>            :       noexcept override;
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span>            :  private:
+<span class="lineNum">      88 </span><span class="lineNoCov">          0 :   typename BlockBounds::type block_bounds_{</span>
+<span class="lineNum">      89 </span>            :       make_array&lt;VolumeDim, std::vector&lt;double&gt;&gt;({})};
+<span class="lineNum">      90 </span><span class="lineNoCov">          0 :   typename IsPeriodicIn::type is_periodic_in_{make_array&lt;VolumeDim&gt;(false)};</span>
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   typename InitialRefinement::type initial_refinement_levels_{</span>
+<span class="lineNum">      92 </span>            :       make_array&lt;VolumeDim&gt;(std::numeric_limits&lt;size_t&gt;::max())};
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :   typename InitialGridPoints::type initial_number_of_grid_points_{</span>
+<span class="lineNum">      94 </span>            :       make_array&lt;VolumeDim&gt;(std::numeric_limits&lt;size_t&gt;::max())};
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :   Index&lt;VolumeDim&gt; number_of_blocks_by_dim_{};</span>
+<span class="lineNum">      96 </span>            : };
+<span class="lineNum">      97 </span>            : }  // namespace DomainCreators
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

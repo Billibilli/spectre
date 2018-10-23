@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Utilities/FractionUtilities.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - FractionUtilities.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">24</td>
+            <td class="headerCovTableEntryLo">41.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstdint&gt;
+<span class="lineNum">       8 </span>            : #include &lt;limits&gt;
+<span class="lineNum">       9 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">      10 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : /// Type trait to check if a type looks like a fraction (specifically,
+<span class="lineNum">      18 </span>            : /// if it has numerator and denominator methods)
+<span class="lineNum">      19 </span>            : //@{
+<span class="lineNum">      20 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
+<span class="lineNum">      21 </span><span class="lineCov">          1 : struct is_fraction : std::false_type {};</span>
+<span class="lineNum">      22 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      23 </span>            : struct is_fraction&lt;T, cpp17::void_t&lt;decltype(std::declval&lt;T&gt;().numerator()),
+<span class="lineNum">      24 </span>            :                                     decltype(std::declval&lt;T&gt;().denominator())&gt;&gt;
+<span class="lineNum">      25 </span>            :     : std::true_type {};
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      28 </span><span class="lineNoCov">          0 : constexpr bool is_fraction_v = is_fraction&lt;T&gt;::value;</span>
+<span class="lineNum">      29 </span>            : //@}
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : /// \ingroup UtilitiesGroup
+<span class="lineNum">      32 </span>            : /// \brief Compute the continued fraction representation of a number
+<span class="lineNum">      33 </span>            : ///
+<span class="lineNum">      34 </span>            : /// The template argument may be a fraction type or a floating point
+<span class="lineNum">      35 </span>            : /// type.  If the expansion is computed exactly then it will be the
+<span class="lineNum">      36 </span>            : /// shorter of the expansions for the given value.
+<span class="lineNum">      37 </span>            : template &lt;class T&gt;
+<span class="lineNum">      38 </span><span class="lineCov">          1 : class ContinuedFraction {</span>
+<span class="lineNum">      39 </span>            :   template &lt;typename U, typename = typename is_fraction&lt;U&gt;::type&gt;
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 :   struct value_type_helper;</span>
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            :   template &lt;typename U&gt;
+<span class="lineNum">      43 </span>            :   struct value_type_helper&lt;U, std::false_type&gt; {
+<span class="lineNum">      44 </span>            :     using type = int64_t;
+<span class="lineNum">      45 </span>            :   };
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            :   template &lt;typename U&gt;
+<span class="lineNum">      48 </span>            :   struct value_type_helper&lt;U, std::true_type&gt; {
+<span class="lineNum">      49 </span>            :     using type = std::decay_t&lt;decltype(std::declval&lt;U&gt;().numerator())&gt;;
+<span class="lineNum">      50 </span>            :   };
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            :  public:
+<span class="lineNum">      53 </span>            :   /// The decayed return type of T::numerator() for a fraction,
+<span class="lineNum">      54 </span>            :   /// int64_t for other types.
+<span class="lineNum">      55 </span><span class="lineCov">          1 :   using value_type = typename value_type_helper&lt;T&gt;::type;</span>
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :   explicit ContinuedFraction(const T&amp; value) noexcept</span>
+<span class="lineNum">      58 </span>            :       : term_(ifloor(value)), remainder_(value - term_) {}
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            :   /// Obtain the current element in the expansion
+<span class="lineNum">      61 </span><span class="lineCov">          1 :   value_type operator*() const noexcept { return term_; }</span>
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span>            :   /// Check if the expansion is incomplete.  If T is a fraction type
+<span class="lineNum">      64 </span>            :   /// this will be true until the full exact representation of the
+<span class="lineNum">      65 </span>            :   /// fraction is produced.  If T is a floating point type this will
+<span class="lineNum">      66 </span>            :   /// be true until the estimated numerical error is larger than the
+<span class="lineNum">      67 </span>            :   /// remaining error in the representation.
+<span class="lineNum">      68 </span><span class="lineCov">          1 :   explicit operator bool() const noexcept { return not done_; }</span>
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            :   /// Advance to the next element in the expansion
+<span class="lineNum">      71 </span><span class="lineCov">          1 :   ContinuedFraction&amp; operator++() noexcept {</span>
+<span class="lineNum">      72 </span>            :     if (remainder_ == 0 or (error_ /= square(remainder_)) &gt; 1) {
+<span class="lineNum">      73 </span>            :       done_ = true;
+<span class="lineNum">      74 </span>            :       return *this;
+<span class="lineNum">      75 </span>            :     }
+<span class="lineNum">      76 </span>            :     remainder_ = 1 / remainder_;
+<span class="lineNum">      77 </span>            :     term_ = ifloor(remainder_);
+<span class="lineNum">      78 </span>            :     remainder_ -= term_;
+<span class="lineNum">      79 </span>            :     return *this;
+<span class="lineNum">      80 </span>            :   }
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span>            :  private:
+<span class="lineNum">      83 </span>            :   template &lt;typename U, Requires&lt;is_fraction_v&lt;U&gt;&gt; = nullptr&gt;
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :   static value_type ifloor(const U&amp; x) noexcept {</span>
+<span class="lineNum">      85 </span>            :     return static_cast&lt;value_type&gt;(x.numerator() / x.denominator());
+<span class="lineNum">      86 </span>            :   }
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span>            :   template &lt;typename U, Requires&lt;not is_fraction_v&lt;U&gt;&gt; = nullptr&gt;
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 :   static value_type ifloor(const U&amp; x) noexcept {</span>
+<span class="lineNum">      90 </span>            :     return static_cast&lt;value_type&gt;(std::floor(x));
+<span class="lineNum">      91 </span>            :   }
+<span class="lineNum">      92 </span>            : 
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :   value_type term_;</span>
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :   T remainder_;</span>
+<span class="lineNum">      95 </span>            :   // Estimate of error in the term.  For any non-fundamental type
+<span class="lineNum">      96 </span>            :   // epsilon() returns a default-constructed value, which should be
+<span class="lineNum">      97 </span>            :   // zero for fractions.
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :   T error_{std::numeric_limits&lt;T&gt;::epsilon()};</span>
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 :   bool done_{false};</span>
+<span class="lineNum">     100 </span>            : };
+<span class="lineNum">     101 </span>            : 
+<span class="lineNum">     102 </span>            : /// \ingroup UtilitiesGroup
+<span class="lineNum">     103 </span>            : /// \brief Sum a continued fraction
+<span class="lineNum">     104 </span>            : ///
+<span class="lineNum">     105 </span>            : /// \tparam Fraction the result type, which must be a fraction type
+<span class="lineNum">     106 </span>            : template &lt;class Fraction&gt;
+<span class="lineNum">     107 </span><span class="lineCov">          1 : class ContinuedFractionSummer {</span>
+<span class="lineNum">     108 </span>            :  public:
+<span class="lineNum">     109 </span><span class="lineNoCov">          0 :   using Term_t = std::decay_t&lt;decltype(std::declval&lt;Fraction&gt;().numerator())&gt;;</span>
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            :   /// Sum of the supplied continued fraction terms
+<span class="lineNum">     112 </span><span class="lineCov">          1 :   Fraction value() const noexcept { return Fraction(numerator_, denominator_); }</span>
+<span class="lineNum">     113 </span>            : 
+<span class="lineNum">     114 </span>            :   /// Insert a new term.  Terms should be supplied from most to least
+<span class="lineNum">     115 </span>            :   /// significant.
+<span class="lineNum">     116 </span><span class="lineCov">          1 :   void insert(Term_t term) noexcept {</span>
+<span class="lineNum">     117 </span>            :     const auto new_numerator = term * numerator_ + prev_numerator_;
+<span class="lineNum">     118 </span>            :     prev_numerator_ = numerator_;
+<span class="lineNum">     119 </span>            :     numerator_ = new_numerator;
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            :     const auto new_denominator = term * denominator_ + prev_denominator_;
+<span class="lineNum">     122 </span>            :     prev_denominator_ = denominator_;
+<span class="lineNum">     123 </span>            :     denominator_ = new_denominator;
+<span class="lineNum">     124 </span>            :   }
+<span class="lineNum">     125 </span>            : 
+<span class="lineNum">     126 </span>            :  private:
+<span class="lineNum">     127 </span><span class="lineNoCov">          0 :   Term_t numerator_{1};</span>
+<span class="lineNum">     128 </span><span class="lineNoCov">          0 :   Term_t denominator_{0};</span>
+<span class="lineNum">     129 </span><span class="lineNoCov">          0 :   Term_t prev_numerator_{0};</span>
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 :   Term_t prev_denominator_{1};</span>
+<span class="lineNum">     131 </span>            : };
+<span class="lineNum">     132 </span>            : 
+<span class="lineNum">     133 </span>            : /// \ingroup UtilitiesGroup
+<span class="lineNum">     134 </span>            : /// \brief Find the fraction in the supplied interval with the
+<span class="lineNum">     135 </span>            : /// smallest denominator
+<span class="lineNum">     136 </span>            : ///
+<span class="lineNum">     137 </span>            : /// The endpoints are considered to be in the interval.  The order of
+<span class="lineNum">     138 </span>            : /// the arguments is not significant.  The answer is unique as long as
+<span class="lineNum">     139 </span>            : /// the interval has length less than 1; for longer intervals, an
+<span class="lineNum">     140 </span>            : /// integer in the range will be returned.
+<span class="lineNum">     141 </span>            : template &lt;typename Fraction, typename T1, typename T2&gt;
+<span class="lineNum">     142 </span><span class="lineCov">          2 : Fraction simplest_fraction_in_interval(const T1&amp; end1,</span>
+<span class="lineNum">     143 </span>            :                                        const T2&amp; end2) noexcept {
+<span class="lineNum">     144 </span>            :   ContinuedFractionSummer&lt;Fraction&gt; result;
+<span class="lineNum">     145 </span>            :   using Term_t = typename decltype(result)::Term_t;
+<span class="lineNum">     146 </span>            :   ContinuedFraction&lt;T1&gt; cf1(end1);
+<span class="lineNum">     147 </span>            :   ContinuedFraction&lt;T2&gt; cf2(end2);
+<span class="lineNum">     148 </span>            :   using InputTerm_t = std::common_type_t&lt;typename decltype(cf1)::value_type,
+<span class="lineNum">     149 </span>            :                                          typename decltype(cf2)::value_type&gt;;
+<span class="lineNum">     150 </span>            :   InputTerm_t term1 = *cf1;
+<span class="lineNum">     151 </span>            :   InputTerm_t term2 = *cf2;
+<span class="lineNum">     152 </span>            :   for (; cf1 and cf2; term1 = *++cf1, term2 = *++cf2) {
+<span class="lineNum">     153 </span>            :     if (term1 != term2) {
+<span class="lineNum">     154 </span>            :       if (++cf1) {
+<span class="lineNum">     155 </span>            :         ++term1;
+<span class="lineNum">     156 </span>            :       }
+<span class="lineNum">     157 </span>            :       if (++cf2) {
+<span class="lineNum">     158 </span>            :         ++term2;
+<span class="lineNum">     159 </span>            :       }
+<span class="lineNum">     160 </span>            :       result.insert(gsl::narrow&lt;Term_t&gt;(std::min(term1, term2)));
+<span class="lineNum">     161 </span>            :       return result.value();
+<span class="lineNum">     162 </span>            :     }
+<span class="lineNum">     163 </span>            :     result.insert(gsl::narrow&lt;Term_t&gt;(term1));
+<span class="lineNum">     164 </span>            :   }
+<span class="lineNum">     165 </span>            :   return result.value();
+<span class="lineNum">     166 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

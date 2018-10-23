@@ -1,0 +1,268 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Initialization::Evolution&lt; System &gt; Struct Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceInitialization.html">Initialization</a></li><li class="navelem"><a class="el" href="structInitialization_1_1Evolution.html">Evolution</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="structInitialization_1_1Evolution-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">Initialization::Evolution&lt; System &gt; Struct Template Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Initialize items related to time-evolution of the system.  
+ <a href="structInitialization_1_1Evolution.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Evolution_8hpp_source.html">Evolution.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structInitialization_1_1Evolution_1_1ComputeTags.html">ComputeTags</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structInitialization_1_1Evolution_1_1ComputeTags_3_01LocalSystem_00_01true_01_4.html">ComputeTags&lt; LocalSystem, true &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a03a16d5f5ac5db457fd498e707ac18e0"><td class="memItemLeft" align="right" valign="top"><a id="a03a16d5f5ac5db457fd498e707ac18e0"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>variables_tag</b> = typename System::variables_tag</td></tr>
+<tr class="separator:a03a16d5f5ac5db457fd498e707ac18e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab380ee357f6467781ed4ff2dd7893de8"><td class="memItemLeft" align="right" valign="top"><a id="ab380ee357f6467781ed4ff2dd7893de8"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>dt_variables_tag</b> = <a class="el" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix</a>&lt; <a class="el" href="structTags_1_1dt.html">Tags::dt</a>, variables_tag &gt;</td></tr>
+<tr class="separator:ab380ee357f6467781ed4ff2dd7893de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ab74af53127544f0f38526a5160900b"><td class="memItemLeft" align="right" valign="top"><a id="a9ab74af53127544f0f38526a5160900b"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>simple_tags</b> = <a class="el" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags</a>&lt; <a class="el" href="structTags_1_1TimeId.html">Tags::TimeId</a>, <a class="el" href="structTags_1_1Next.html">Tags::Next</a>&lt; <a class="el" href="structTags_1_1TimeId.html">Tags::TimeId</a> &gt;, <a class="el" href="structTags_1_1TimeStep.html">Tags::TimeStep</a>, dt_variables_tag, <a class="el" href="structTags_1_1HistoryEvolvedVariables.html">Tags::HistoryEvolvedVariables</a>&lt; variables_tag, dt_variables_tag &gt; &gt;</td></tr>
+<tr class="separator:a9ab74af53127544f0f38526a5160900b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb879b228554c61ff0da9fbc45663256"><td class="memItemLeft" align="right" valign="top"><a id="acb879b228554c61ff0da9fbc45663256"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>compute_tags</b> = typename <a class="el" href="structInitialization_1_1Evolution_1_1ComputeTags.html">ComputeTags</a>&lt; System &gt;::type</td></tr>
+<tr class="separator:acb879b228554c61ff0da9fbc45663256"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a844ffc962fdc39f1cff17e339294cf36"><td class="memTemplParams" colspan="2"><a id="a844ffc962fdc39f1cff17e339294cf36"></a>
+template&lt;typename Metavariables , Requires&lt; not Metavariables::local_time_stepping &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a844ffc962fdc39f1cff17e339294cf36"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="classTimeDelta.html">TimeDelta</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get_initial_time_step</b> (const <a class="el" href="classTime.html">Time</a> &amp;initial_time, const double initial_dt_value, const <a class="el" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache</a>&lt; Metavariables &gt; &amp;) noexcept</td></tr>
+<tr class="separator:a844ffc962fdc39f1cff17e339294cf36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3af1296e6aa582ae77ac196efca01c3"><td class="memTemplParams" colspan="2"><a id="ae3af1296e6aa582ae77ac196efca01c3"></a>
+template&lt;typename Metavariables , Requires&lt; Metavariables::local_time_stepping &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ae3af1296e6aa582ae77ac196efca01c3"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="classTimeDelta.html">TimeDelta</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get_initial_time_step</b> (const <a class="el" href="classTime.html">Time</a> &amp;initial_time, const double initial_dt_value, const <a class="el" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache</a>&lt; Metavariables &gt; &amp;cache) noexcept</td></tr>
+<tr class="separator:ae3af1296e6aa582ae77ac196efca01c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58451ece757212636ff1b8cffa7c49fb"><td class="memTemplParams" colspan="2"><a id="a58451ece757212636ff1b8cffa7c49fb"></a>
+template&lt;typename TagsList , typename Metavariables &gt; </td></tr>
+<tr class="memitem:a58451ece757212636ff1b8cffa7c49fb"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>initialize</b> (db::DataBox&lt; TagsList &gt; &amp;&amp;box, const <a class="el" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache</a>&lt; Metavariables &gt; &amp;cache, const double initial_time_value, const double initial_dt_value, const double initial_slab_size) noexcept</td></tr>
+<tr class="separator:a58451ece757212636ff1b8cffa7c49fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ad6da88823c8aedc412a15553898f6c30"><td class="memItemLeft" align="right" valign="top"><a id="ad6da88823c8aedc412a15553898f6c30"></a>
+static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>dim</b> = System::volume_dim</td></tr>
+<tr class="separator:ad6da88823c8aedc412a15553898f6c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename System&gt;<br />
+struct Initialization::Evolution&lt; System &gt;</h3>
+
+<p>Initialize items related to time-evolution of the system. </p>
+<p>DataBox changes:</p><ul>
+<li>Adds:<ul>
+<li><a class="el" href="structTags_1_1TimeId.html" title="Tag for TimeId for the algorithm state. ">Tags::TimeId</a></li>
+<li><code><a class="el" href="structTags_1_1Next.html" title="Prefix indicating the value a quantity will take on the next iteration of the algorithm. ">Tags::Next</a>&lt;<a class="el" href="structTags_1_1TimeId.html" title="Tag for TimeId for the algorithm state. ">Tags::TimeId</a>&gt;</code></li>
+<li><a class="el" href="structTags_1_1TimeStep.html" title="Tag for step size. ">Tags::TimeStep</a></li>
+<li><code><a class="el" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd" title="Wrap Tag in Prefix&lt;_, Args...&gt;, also wrapping variables tags if Tag is a Tags::Variables. ">db::add_tag_prefix</a>&lt;<a class="el" href="structTags_1_1dt.html" title="Prefix indicating a time derivative. ">Tags::dt</a>, variables_tag&gt;</code></li>
+<li><code><a class="el" href="structTags_1_1HistoryEvolvedVariables.html" title="Prefix for TimeStepper history. ">Tags::HistoryEvolvedVariables</a>&lt;variables_tag, dt_variables_tag&gt;</code></li>
+<li><a class="el" href="structTags_1_1Time.html" title="Tag for compute item for current Time (from TimeId) ">Tags::Time</a></li>
+<li>Tags::ComputeDeriv (for non-conservative systems)</li>
+<li>Tags::ComputeDiv (for conservative systems)</li>
+</ul>
+</li>
+<li>Removes: nothing</li>
+<li>Modifies: nothing</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>HistoryEvolvedVariables is allocated, but needs to be initialized </dd></dl>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/Evolution/Initialization/<a class="el" href="Evolution_8hpp_source.html">Evolution.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

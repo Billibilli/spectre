@@ -1,0 +1,1138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Domain/DomainHelpers.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Domain</a> - DomainHelpers.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">26</td>
+            <td class="headerCovTableEntryLo">38.5 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;Domain/DomainHelpers.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">       8 </span>            : #include &lt;limits&gt;
+<span class="lineNum">       9 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/IndexIterator.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Domain/Block.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      14 </span>            : #include &quot;Domain/BlockNeighbor.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Domain/CoordinateMaps/Affine.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Domain/CoordinateMaps/CoordinateMap.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Domain/CoordinateMaps/DiscreteRotation.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Domain/CoordinateMaps/EquatorialCompression.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Domain/CoordinateMaps/Equiangular.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Domain/CoordinateMaps/Frustum.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Domain/CoordinateMaps/Identity.hpp&quot;
+<span class="lineNum">      22 </span>            : #include &quot;Domain/CoordinateMaps/ProductMaps.hpp&quot;
+<span class="lineNum">      23 </span>            : #include &quot;Domain/CoordinateMaps/Wedge3D.hpp&quot;
+<span class="lineNum">      24 </span>            : #include &quot;Domain/Direction.hpp&quot;
+<span class="lineNum">      25 </span>            : #include &quot;Domain/Domain.hpp&quot;
+<span class="lineNum">      26 </span>            : #include &quot;Domain/OrientationMap.hpp&quot;
+<span class="lineNum">      27 </span>            : #include &quot;Domain/Side.hpp&quot;
+<span class="lineNum">      28 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      29 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">      30 </span>            : #include &quot;Utilities/Algorithm.hpp&quot;
+<span class="lineNum">      31 </span>            : #include &quot;Utilities/GenerateInstantiations.hpp&quot;
+<span class="lineNum">      32 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      33 </span>            : #include &quot;Utilities/Numeric.hpp&quot;
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span>            : namespace {
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span>            : // returns the common corners in the global corner numbering scheme.
+<span class="lineNum">      38 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      39 </span>            : std::vector&lt;size_t&gt; get_common_global_corners(
+<span class="lineNum">      40 </span>            :     const std::array&lt;size_t, two_to_the(VolumeDim)&gt;&amp; block_1_global_corners,
+<span class="lineNum">      41 </span>            :     const std::array&lt;size_t, two_to_the(VolumeDim)&gt;&amp;
+<span class="lineNum">      42 </span>            :         block_2_global_corners) noexcept {
+<span class="lineNum">      43 </span>            :   std::vector&lt;size_t&gt; result;
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            :   for (size_t id_i : block_1_global_corners) {
+<span class="lineNum">      46 </span>            :     if (alg::find(block_2_global_corners, id_i) !=
+<span class="lineNum">      47 </span>            :         block_2_global_corners.end()) {
+<span class="lineNum">      48 </span>            :       result.push_back(id_i);
+<span class="lineNum">      49 </span>            :     }
+<span class="lineNum">      50 </span>            :   }
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            :   return result;
+<span class="lineNum">      53 </span>            : }
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : // Given Directions in block1 and their corresponding Directions
+<span class="lineNum">      56 </span>            : // in block2, this function first repackages them into arrays and
+<span class="lineNum">      57 </span>            : // then makes a std::pair of the arrays.
+<span class="lineNum">      58 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      59 </span>            : std::pair&lt;std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt;,
+<span class="lineNum">      60 </span>            :           std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt;&gt;
+<span class="lineNum">      61 </span>            : create_correspondence_between_blocks(
+<span class="lineNum">      62 </span>            :     const Direction&lt;VolumeDim&gt;&amp; direction_to_neighbor_in_self_frame,
+<span class="lineNum">      63 </span>            :     const Direction&lt;VolumeDim&gt;&amp; direction_to_self_in_neighbor_frame,
+<span class="lineNum">      64 </span>            :     const std::vector&lt;Direction&lt;VolumeDim&gt;&gt;&amp;
+<span class="lineNum">      65 </span>            :         alignment_of_shared_face_in_self_frame,
+<span class="lineNum">      66 </span>            :     const std::vector&lt;Direction&lt;VolumeDim&gt;&gt;&amp;
+<span class="lineNum">      67 </span>            :         alignment_of_shared_face_in_neighbor_frame) noexcept {
+<span class="lineNum">      68 </span>            :   std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt; result1;
+<span class="lineNum">      69 </span>            :   result1[0] = direction_to_neighbor_in_self_frame;
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            :   for (size_t i = 1; i &lt; VolumeDim; i++) {
+<span class="lineNum">      72 </span>            :     gsl::at(result1, i) = alignment_of_shared_face_in_self_frame[i - 1];
+<span class="lineNum">      73 </span>            :   }
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            :   std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt; result2;
+<span class="lineNum">      76 </span>            :   result2[0] = direction_to_self_in_neighbor_frame.opposite();
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            :   for (size_t i = 1; i &lt; VolumeDim; i++) {
+<span class="lineNum">      79 </span>            :     gsl::at(result2, i) = alignment_of_shared_face_in_neighbor_frame[i - 1];
+<span class="lineNum">      80 </span>            :   }
+<span class="lineNum">      81 </span>            :   return std::make_pair(result1, result2);
+<span class="lineNum">      82 </span>            : }
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            : // requires that the face is an external boundary of the domain.
+<span class="lineNum">      85 </span>            : // returns the id of the block with that face.
+<span class="lineNum">      86 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      87 </span>            : size_t find_block_id_of_external_face(
+<span class="lineNum">      88 </span>            :     const std::vector&lt;size_t&gt;&amp; global_corners_external_face,
+<span class="lineNum">      89 </span>            :     const std::vector&lt;std::array&lt;size_t, two_to_the(VolumeDim)&gt;&gt;&amp;
+<span class="lineNum">      90 </span>            :         corners_of_all_blocks) noexcept {
+<span class="lineNum">      91 </span>            :   size_t number_of_blocks_found = 0;
+<span class="lineNum">      92 </span>            :   size_t id_of_found_block = std::numeric_limits&lt;size_t&gt;::max();
+<span class="lineNum">      93 </span>            :   for (size_t j = 0; j &lt; corners_of_all_blocks.size(); j++) {
+<span class="lineNum">      94 </span>            :     const auto&amp; corners_set = corners_of_all_blocks[j];
+<span class="lineNum">      95 </span>            :     auto is_in_corners_set = [&amp;corners_set](const auto element) noexcept {
+<span class="lineNum">      96 </span>            :       return alg::find(corners_set, element) != corners_set.end();
+<span class="lineNum">      97 </span>            :     };
+<span class="lineNum">      98 </span>            :     if (alg::all_of(global_corners_external_face, is_in_corners_set)) {
+<span class="lineNum">      99 </span>            :       number_of_blocks_found++;
+<span class="lineNum">     100 </span>            :       id_of_found_block = j;
+<span class="lineNum">     101 </span>            :     }
+<span class="lineNum">     102 </span>            :   }
+<span class="lineNum">     103 </span>            :   ASSERT(number_of_blocks_found &gt; 0, &quot;This face does not belong to a block.&quot;);
+<span class="lineNum">     104 </span>            :   ASSERT(number_of_blocks_found == 1, &quot;This face is not an external boundary.&quot;);
+<span class="lineNum">     105 </span>            :   return id_of_found_block;
+<span class="lineNum">     106 </span>            : }
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     109 </span>            : std::array&lt;size_t, two_to_the(VolumeDim - 1)&gt; get_common_local_corners(
+<span class="lineNum">     110 </span>            :     const std::array&lt;size_t, two_to_the(VolumeDim)&gt;&amp; block_global_corners,
+<span class="lineNum">     111 </span>            :     const std::vector&lt;size_t&gt; block_global_common_corners) noexcept {
+<span class="lineNum">     112 </span>            :   std::array&lt;size_t, two_to_the(VolumeDim - 1)&gt; result{{0}};
+<span class="lineNum">     113 </span>            :   size_t i = 0;
+<span class="lineNum">     114 </span>            :   for (const auto global_id : block_global_common_corners) {
+<span class="lineNum">     115 </span>            :     ASSERT(alg::find(block_global_corners, global_id) !=
+<span class="lineNum">     116 </span>            :                block_global_corners.end(),
+<span class="lineNum">     117 </span>            :            &quot;Elements of block_global_common_corners must be in &quot;
+<span class="lineNum">     118 </span>            :            &quot;block_global_corners.&quot;);
+<span class="lineNum">     119 </span>            :     gsl::at(result, i) =
+<span class="lineNum">     120 </span>            :         static_cast&lt;size_t&gt;(alg::find(block_global_corners, global_id) -
+<span class="lineNum">     121 </span>            :                             block_global_corners.begin());
+<span class="lineNum">     122 </span>            :     i++;
+<span class="lineNum">     123 </span>            :   }
+<span class="lineNum">     124 </span>            :   return result;
+<span class="lineNum">     125 </span>            : }
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     128 </span>            : std::array&lt;tnsr::I&lt;double, VolumeDim, Frame::Logical&gt;,
+<span class="lineNum">     129 </span>            :            two_to_the(VolumeDim - 1)&gt;
+<span class="lineNum">     130 </span>            : logical_coords_of_corners(
+<span class="lineNum">     131 </span>            :     const std::array&lt;size_t, two_to_the(VolumeDim - 1)&gt;&amp; local_ids) noexcept {
+<span class="lineNum">     132 </span>            :   std::array&lt;tnsr::I&lt;double, VolumeDim, Frame::Logical&gt;,
+<span class="lineNum">     133 </span>            :              two_to_the(VolumeDim - 1)&gt;
+<span class="lineNum">     134 </span>            :       result{};
+<span class="lineNum">     135 </span>            :   std::transform(local_ids.begin(), local_ids.end(), result.begin(),
+<span class="lineNum">     136 </span>            :                  [](const size_t id) noexcept {
+<span class="lineNum">     137 </span>            :                    tnsr::I&lt;double, VolumeDim, Frame::Logical&gt; point{};
+<span class="lineNum">     138 </span>            :                    for (size_t i = 0; i &lt; VolumeDim; i++) {
+<span class="lineNum">     139 </span>            :                      point[i] = 2.0 * get_nth_bit(id, i) - 1.0;
+<span class="lineNum">     140 </span>            :                    };
+<span class="lineNum">     141 </span>            :                    return point;
+<span class="lineNum">     142 </span>            :                  });
+<span class="lineNum">     143 </span>            :   return result;
+<span class="lineNum">     144 </span>            : }
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     147 </span>            : Direction&lt;VolumeDim&gt; get_direction_normal_to_face(
+<span class="lineNum">     148 </span>            :     const std::array&lt;tnsr::I&lt;double, VolumeDim, Frame::Logical&gt;,
+<span class="lineNum">     149 </span>            :                      two_to_the(VolumeDim - 1)&gt;&amp; face_pts) noexcept {
+<span class="lineNum">     150 </span>            :   const auto summed_point = alg::accumulate(
+<span class="lineNum">     151 </span>            :       face_pts, tnsr::I&lt;double, VolumeDim, Frame::Logical&gt;(0.0),
+<span class="lineNum">     152 </span>            :       [](tnsr::I&lt;double, VolumeDim, Frame::Logical&gt; &amp; prior,
+<span class="lineNum">     153 </span>            :          const tnsr::I&lt;double, VolumeDim, Frame::Logical&gt;&amp; point) noexcept {
+<span class="lineNum">     154 </span>            :         for (size_t i = 0; i &lt; prior.size(); i++) {
+<span class="lineNum">     155 </span>            :           prior[i] += point[i];
+<span class="lineNum">     156 </span>            :         }
+<span class="lineNum">     157 </span>            :         return prior;
+<span class="lineNum">     158 </span>            :       });
+<span class="lineNum">     159 </span>            :   ASSERT(VolumeDim - 1 == static_cast&lt;size_t&gt;(std::count(
+<span class="lineNum">     160 </span>            :                               summed_point.begin(), summed_point.end(), 0.0)),
+<span class="lineNum">     161 </span>            :          &quot;The face_pts passed in do not correspond to a face.&quot;);
+<span class="lineNum">     162 </span>            :   const auto index = static_cast&lt;size_t&gt;(
+<span class="lineNum">     163 </span>            :       alg::find_if(summed_point,
+<span class="lineNum">     164 </span>            :                    [](const double x) noexcept { return x != 0; }) -
+<span class="lineNum">     165 </span>            :       summed_point.begin());
+<span class="lineNum">     166 </span>            :   return Direction&lt;VolumeDim&gt;(
+<span class="lineNum">     167 </span>            :       index, summed_point[index] &gt; 0 ? Side::Upper : Side::Lower);
+<span class="lineNum">     168 </span>            : }
+<span class="lineNum">     169 </span>            : 
+<span class="lineNum">     170 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     171 </span>            : std::vector&lt;Direction&lt;VolumeDim&gt;&gt; get_directions_along_face(
+<span class="lineNum">     172 </span>            :     const std::array&lt;size_t, two_to_the(VolumeDim - 1)&gt;&amp;
+<span class="lineNum">     173 </span>            :         face_local_corners) noexcept {
+<span class="lineNum">     174 </span>            :   std::vector&lt;Direction&lt;VolumeDim&gt;&gt; result;
+<span class="lineNum">     175 </span>            : 
+<span class="lineNum">     176 </span>            :   // Directions encoded as powers of 2. (xi:1, eta:2, zeta:4)
+<span class="lineNum">     177 </span>            :   std::vector&lt;int&gt; dir_pow2;
+<span class="lineNum">     178 </span>            :   for (size_t i = 0; i &lt; VolumeDim - 1; i++) {
+<span class="lineNum">     179 </span>            :     int direction_pow2 =
+<span class="lineNum">     180 </span>            :         static_cast&lt;int&gt;(gsl::at(face_local_corners, two_to_the(i))) -
+<span class="lineNum">     181 </span>            :         static_cast&lt;int&gt;(gsl::at(face_local_corners, 0));
+<span class="lineNum">     182 </span>            :     ASSERT(
+<span class="lineNum">     183 </span>            :         direction_pow2 ==
+<span class="lineNum">     184 </span>            :             static_cast&lt;int&gt;(
+<span class="lineNum">     185 </span>            :                 gsl::at(face_local_corners, face_local_corners.size() - 1)) -
+<span class="lineNum">     186 </span>            :                 static_cast&lt;int&gt;(
+<span class="lineNum">     187 </span>            :                     gsl::at(face_local_corners,
+<span class="lineNum">     188 </span>            :                             face_local_corners.size() - 1 - two_to_the(i))),
+<span class="lineNum">     189 </span>            :         &quot;The corners provided do not correspond to a possible face.&quot;
+<span class="lineNum">     190 </span>            :         &quot;Help: As the direction of a face can be determined from any pair of &quot;
+<span class="lineNum">     191 </span>            :         &quot;edges, all pairs of edges must agree on their directionality. &quot;
+<span class="lineNum">     192 </span>            :         &quot;Providing '0,1,3,2' as a pair of edges (in the canonical corner &quot;
+<span class="lineNum">     193 </span>            :         &quot;numbering scheme) will trigger this ASSERT as 1-0 != 2-3; they &quot;
+<span class="lineNum">     194 </span>            :         &quot;point in opposite directions. Additionally, 3-0 != 2-1. The proper &quot;
+<span class="lineNum">     195 </span>            :         &quot;numbering for this face is '0,1,2,3', or any other numbering that &quot;
+<span class="lineNum">     196 </span>            :         &quot;results from a rigid manipulation of this face, for example &quot;
+<span class="lineNum">     197 </span>            :         &quot;'1,3,0,2'.&quot;);
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            :     ASSERT(abs(direction_pow2) == 1 or abs(direction_pow2) == 2 or
+<span class="lineNum">     200 </span>            :                abs(direction_pow2) == 4,
+<span class="lineNum">     201 </span>            :            &quot;The corners making up an edge always have a difference of either &quot;
+<span class="lineNum">     202 </span>            :            &quot;1, 2, or 4, under the local numbering scheme, depending on whether &quot;
+<span class="lineNum">     203 </span>            :            &quot;the edge is parallel to the xi, eta, or zeta axis, respectively. &quot;
+<span class="lineNum">     204 </span>            :            &quot;This ASSERT is triggered when the two corners passed do not make &quot;
+<span class="lineNum">     205 </span>            :            &quot;up an edge of the n-cube.&quot;);
+<span class="lineNum">     206 </span>            :     const size_t dimension = std::round(log2(abs(direction_pow2)));
+<span class="lineNum">     207 </span>            :     const Side side = direction_pow2 &gt; 0 ? Side::Upper : Side::Lower;
+<span class="lineNum">     208 </span>            :     result.push_back(Direction&lt;VolumeDim&gt;(dimension, side));
+<span class="lineNum">     209 </span>            :   }
+<span class="lineNum">     210 </span>            :   return result;
+<span class="lineNum">     211 </span>            : }
+<span class="lineNum">     212 </span>            : 
+<span class="lineNum">     213 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     214 </span>            : Direction&lt;VolumeDim&gt; mapped(
+<span class="lineNum">     215 </span>            :     size_t block_id1, size_t block_id2,
+<span class="lineNum">     216 </span>            :     const Direction&lt;VolumeDim&gt;&amp; dir_in_block1,
+<span class="lineNum">     217 </span>            :     const std::vector&lt;std::array&lt;size_t, two_to_the(VolumeDim)&gt;&gt;&amp;
+<span class="lineNum">     218 </span>            :         corners_of_all_blocks) noexcept {
+<span class="lineNum">     219 </span>            :   const auto correspondence = obtain_correspondence_between_blocks(
+<span class="lineNum">     220 </span>            :       block_id1, block_id2, corners_of_all_blocks);
+<span class="lineNum">     221 </span>            :   for (size_t i = 0; i &lt; VolumeDim; i++) {
+<span class="lineNum">     222 </span>            :     if (dir_in_block1.dimension() == (correspondence.first)[i].dimension()) {
+<span class="lineNum">     223 </span>            :       return dir_in_block1.side() == (correspondence.first)[i].side()
+<span class="lineNum">     224 </span>            :                  ? (correspondence.second)[i]
+<span class="lineNum">     225 </span>            :                  : (correspondence.second)[i].opposite();
+<span class="lineNum">     226 </span>            :     }
+<span class="lineNum">     227 </span>            :   }
+<span class="lineNum">     228 </span>            :   ERROR(&quot;Improper Direction was passed to function.&quot;);
+<span class="lineNum">     229 </span>            : }
+<span class="lineNum">     230 </span>            : 
+<span class="lineNum">     231 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     232 </span>            : std::pair&lt;std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt;,
+<span class="lineNum">     233 </span>            :           std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt;&gt;
+<span class="lineNum">     234 </span>            : obtain_correspondence_between_blocks(
+<span class="lineNum">     235 </span>            :     size_t block_id1, size_t block_id2,
+<span class="lineNum">     236 </span>            :     const std::vector&lt;std::array&lt;size_t, two_to_the(VolumeDim)&gt;&gt;&amp;
+<span class="lineNum">     237 </span>            :         corners_of_all_blocks) noexcept {
+<span class="lineNum">     238 </span>            :   const auto&amp; self = corners_of_all_blocks[block_id1];
+<span class="lineNum">     239 </span>            :   const auto&amp; nhbr = corners_of_all_blocks[block_id2];
+<span class="lineNum">     240 </span>            :   const auto common = get_common_global_corners&lt;VolumeDim&gt;(self, nhbr);
+<span class="lineNum">     241 </span>            :   const auto self_common = get_common_local_corners&lt;VolumeDim&gt;(self, common);
+<span class="lineNum">     242 </span>            :   const auto nhbr_common = get_common_local_corners&lt;VolumeDim&gt;(nhbr, common);
+<span class="lineNum">     243 </span>            :   const auto self_dir = get_direction_normal_to_face&lt;VolumeDim&gt;(
+<span class="lineNum">     244 </span>            :       logical_coords_of_corners&lt;VolumeDim&gt;(self_common));
+<span class="lineNum">     245 </span>            :   const auto nhbr_dir = get_direction_normal_to_face&lt;VolumeDim&gt;(
+<span class="lineNum">     246 </span>            :       logical_coords_of_corners&lt;VolumeDim&gt;(nhbr_common));
+<span class="lineNum">     247 </span>            :   const auto self_align = get_directions_along_face&lt;VolumeDim&gt;(self_common);
+<span class="lineNum">     248 </span>            :   const auto nhbr_align = get_directions_along_face&lt;VolumeDim&gt;(nhbr_common);
+<span class="lineNum">     249 </span>            : 
+<span class="lineNum">     250 </span>            :   return create_correspondence_between_blocks(self_dir, nhbr_dir, self_align,
+<span class="lineNum">     251 </span>            :                                               nhbr_align);
+<span class="lineNum">     252 </span>            : }
+<span class="lineNum">     253 </span>            : 
+<span class="lineNum">     254 </span>            : // Sets periodic boundary conditions for rectilinear multi-cube domains.
+<span class="lineNum">     255 </span>            : //
+<span class="lineNum">     256 </span>            : // For each block with an external boundary in the +i^th direction, traverses
+<span class="lineNum">     257 </span>            : // the block neighbors in the -i^th direction until finding a neighbor block
+<span class="lineNum">     258 </span>            : // with an external boundary in the -i^th direction, and identifies these two
+<span class="lineNum">     259 </span>            : // external boundaries with each other, if `dimension_is_periodic[i]` is
+<span class="lineNum">     260 </span>            : // `true`. This is useful when setting the boundaries of a rectilinear domain.
+<span class="lineNum">     261 </span>            : //
+<span class="lineNum">     262 </span>            : // The argument passed to `orientations_of_all_blocks` is the relative
+<span class="lineNum">     263 </span>            : // orientation of the edifice relative to each block. This is used when
+<span class="lineNum">     264 </span>            : // constructing non-trivial domains for testing such as RotatedBricks.
+<span class="lineNum">     265 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     266 </span>            : void set_cartesian_periodic_boundaries(
+<span class="lineNum">     267 </span>            :     const std::array&lt;bool, VolumeDim&gt;&amp; dimension_is_periodic,
+<span class="lineNum">     268 </span>            :     const std::vector&lt;std::array&lt;size_t, two_to_the(VolumeDim)&gt;&gt;&amp;
+<span class="lineNum">     269 </span>            :         corners_of_all_blocks,
+<span class="lineNum">     270 </span>            :     const std::vector&lt;OrientationMap&lt;VolumeDim&gt;&gt;&amp; orientations_of_all_blocks,
+<span class="lineNum">     271 </span>            :     gsl::not_null&lt;std::vector&lt;
+<span class="lineNum">     272 </span>            :         std::unordered_map&lt;Direction&lt;VolumeDim&gt;, BlockNeighbor&lt;VolumeDim&gt;&gt;&gt;*&gt;
+<span class="lineNum">     273 </span>            :         neighbors_of_all_blocks) noexcept {
+<span class="lineNum">     274 </span>            :   ASSERT(orientations_of_all_blocks.size() == corners_of_all_blocks.size(),
+<span class="lineNum">     275 </span>            :          &quot;Each block must have an OrientationMap relative to an edifice.&quot;);
+<span class="lineNum">     276 </span>            :   size_t block_id = 0;
+<span class="lineNum">     277 </span>            :   for (auto&amp; block : *neighbors_of_all_blocks) {
+<span class="lineNum">     278 </span>            :     const auto&amp; corners_of_block = corners_of_all_blocks[block_id];
+<span class="lineNum">     279 </span>            :     const auto&amp; orientation_of_block = orientations_of_all_blocks[block_id];
+<span class="lineNum">     280 </span>            :     for (const auto&amp; direction : Direction&lt;VolumeDim&gt;::all_directions()) {
+<span class="lineNum">     281 </span>            :       // Loop over Directions to search which Directions were not set to
+<span class="lineNum">     282 </span>            :       // neighbors, these Directions are external_boundaries, so we proceed
+<span class="lineNum">     283 </span>            :       // in the opposite direction to find the block we wish to identify
+<span class="lineNum">     284 </span>            :       // boundaries with.
+<span class="lineNum">     285 </span>            :       if (not gsl::at(dimension_is_periodic, direction.dimension())) {
+<span class="lineNum">     286 </span>            :         continue;  // Don't identify neighbors in dimensions not specified as
+<span class="lineNum">     287 </span>            :                    // periodic.
+<span class="lineNum">     288 </span>            :       }
+<span class="lineNum">     289 </span>            :       if (block.find(orientation_of_block(direction)) == block.end()) {
+<span class="lineNum">     290 </span>            :         // follow to neighbor in the opposite direction:
+<span class="lineNum">     291 </span>            :         const auto local_direction_in_block = orientation_of_block(direction);
+<span class="lineNum">     292 </span>            :         auto opposite_block_id = block_id;
+<span class="lineNum">     293 </span>            :         auto opposite_block = block;
+<span class="lineNum">     294 </span>            :         auto corners_of_opposite_block = corners_of_block;
+<span class="lineNum">     295 </span>            :         // The local direction that points to the opposite block:
+<span class="lineNum">     296 </span>            :         auto opposite_block_direction = local_direction_in_block.opposite();
+<span class="lineNum">     297 </span>            :         for (size_t neighbor_counter = 0;
+<span class="lineNum">     298 </span>            :              neighbor_counter &lt; corners_of_all_blocks.size();
+<span class="lineNum">     299 </span>            :              neighbor_counter++) {
+<span class="lineNum">     300 </span>            :           if (opposite_block.find(opposite_block_direction) ==
+<span class="lineNum">     301 </span>            :               opposite_block.end()) {
+<span class="lineNum">     302 </span>            :             continue;
+<span class="lineNum">     303 </span>            :           } else {
+<span class="lineNum">     304 </span>            :             opposite_block_id = opposite_block[opposite_block_direction].id();
+<span class="lineNum">     305 </span>            :             opposite_block = (*neighbors_of_all_blocks)[opposite_block_id];
+<span class="lineNum">     306 </span>            :             opposite_block_direction =
+<span class="lineNum">     307 </span>            :                 orientations_of_all_blocks[opposite_block_id](direction)
+<span class="lineNum">     308 </span>            :                     .opposite();
+<span class="lineNum">     309 </span>            :             corners_of_opposite_block =
+<span class="lineNum">     310 </span>            :                 corners_of_all_blocks[opposite_block_id];
+<span class="lineNum">     311 </span>            :           }
+<span class="lineNum">     312 </span>            :           if (neighbor_counter == corners_of_all_blocks.size() - 1) {
+<span class="lineNum">     313 </span>            :             // There is no domain that can be constructed using
+<span class="lineNum">     314 </span>            :             // `rectilinear_domain`, that triggers this ERROR, so the ERROR is
+<span class="lineNum">     315 </span>            :             // expected to be unreachable. We keep this check in the case that
+<span class="lineNum">     316 </span>            :             // this assumption is wrong.
+<span class="lineNum">     317 </span>            :             // LCOV_EXCL_START
+<span class="lineNum">     318 </span>            :             ERROR(
+<span class="lineNum">     319 </span>            :                 &quot;A closed cycle of neighbors exists in this domain. Has &quot;
+<span class="lineNum">     320 </span>            :                 &quot;`orientations_of_all_blocks` been set correctly?&quot;);
+<span class="lineNum">     321 </span>            :             // LCOV_EXCL_STOP
+<span class="lineNum">     322 </span>            :           }
+<span class="lineNum">     323 </span>            :         }
+<span class="lineNum">     324 </span>            :         //`opposite_block` is now the block on the opposite cartesian side
+<span class="lineNum">     325 </span>            :         // of `block`, so we identify the faces of those blocks that were
+<span class="lineNum">     326 </span>            :         // external boundaries as now being periodic. Note that `opposite_block`
+<span class="lineNum">     327 </span>            :         // and `block`  may be the same block, if the domain only has an extent
+<span class="lineNum">     328 </span>            :         // of one in that dimension.
+<span class="lineNum">     329 </span>            :         std::vector&lt;size_t&gt; face_corners_of_block{};
+<span class="lineNum">     330 </span>            :         std::vector&lt;size_t&gt; face_corners_of_opposite_block{};
+<span class="lineNum">     331 </span>            :         for (FaceCornerIterator&lt;VolumeDim&gt; fci(local_direction_in_block); fci;
+<span class="lineNum">     332 </span>            :              ++fci) {
+<span class="lineNum">     333 </span>            :           face_corners_of_block.push_back(
+<span class="lineNum">     334 </span>            :               gsl::at(corners_of_block, fci.volume_index()));
+<span class="lineNum">     335 </span>            :         }
+<span class="lineNum">     336 </span>            :         for (FaceCornerIterator&lt;VolumeDim&gt; fci(
+<span class="lineNum">     337 </span>            :                  orientations_of_all_blocks[opposite_block_id](direction)
+<span class="lineNum">     338 </span>            :                      .opposite());
+<span class="lineNum">     339 </span>            :              fci; ++fci) {
+<span class="lineNum">     340 </span>            :           face_corners_of_opposite_block.push_back(
+<span class="lineNum">     341 </span>            :               gsl::at(corners_of_opposite_block, fci.volume_index()));
+<span class="lineNum">     342 </span>            :         }
+<span class="lineNum">     343 </span>            :         // The face corners in both blocks should be in ascending order
+<span class="lineNum">     344 </span>            :         // for periodic boundary conditions. Note that this shortcut only
+<span class="lineNum">     345 </span>            :         // works in the special case where the global corners are
+<span class="lineNum">     346 </span>            :         // increasing in each cartesian direction of the domain.
+<span class="lineNum">     347 </span>            :         std::sort(face_corners_of_block.begin(), face_corners_of_block.end());
+<span class="lineNum">     348 </span>            :         std::sort(face_corners_of_opposite_block.begin(),
+<span class="lineNum">     349 </span>            :                   face_corners_of_opposite_block.end());
+<span class="lineNum">     350 </span>            :         // This modifies the BlockNeighbors of both the current block
+<span class="lineNum">     351 </span>            :         // and the block it found to be its neighbor.
+<span class="lineNum">     352 </span>            :         set_identified_boundaries(
+<span class="lineNum">     353 </span>            :             std::vector&lt;PairOfFaces&gt;{PairOfFaces{
+<span class="lineNum">     354 </span>            :                 face_corners_of_block, face_corners_of_opposite_block}},
+<span class="lineNum">     355 </span>            :             corners_of_all_blocks, neighbors_of_all_blocks);
+<span class="lineNum">     356 </span>            :       }
+<span class="lineNum">     357 </span>            :     }
+<span class="lineNum">     358 </span>            :     block_id++;
+<span class="lineNum">     359 </span>            :   }
+<span class="lineNum">     360 </span>            : }
+<span class="lineNum">     361 </span>            : }  // namespace
+<span class="lineNum">     362 </span>            : 
+<span class="lineNum">     363 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     364 </span><span class="lineCov">          1 : void set_internal_boundaries(</span>
+<span class="lineNum">     365 </span>            :     const std::vector&lt;std::array&lt;size_t, two_to_the(VolumeDim)&gt;&gt;&amp;
+<span class="lineNum">     366 </span>            :         corners_of_all_blocks,
+<span class="lineNum">     367 </span>            :     gsl::not_null&lt;std::vector&lt;
+<span class="lineNum">     368 </span>            :         std::unordered_map&lt;Direction&lt;VolumeDim&gt;, BlockNeighbor&lt;VolumeDim&gt;&gt;&gt;*&gt;
+<span class="lineNum">     369 </span>            :         neighbors_of_all_blocks) noexcept {
+<span class="lineNum">     370 </span>            :   for (size_t block1_index = 0; block1_index &lt; corners_of_all_blocks.size();
+<span class="lineNum">     371 </span>            :        block1_index++) {
+<span class="lineNum">     372 </span>            :     std::unordered_map&lt;Direction&lt;VolumeDim&gt;, BlockNeighbor&lt;VolumeDim&gt;&gt; neighbor;
+<span class="lineNum">     373 </span>            :     for (size_t block2_index = 0; block2_index &lt; corners_of_all_blocks.size();
+<span class="lineNum">     374 </span>            :          block2_index++) {
+<span class="lineNum">     375 </span>            :       if (block1_index != block2_index and
+<span class="lineNum">     376 </span>            :           get_common_global_corners&lt;VolumeDim&gt;(
+<span class="lineNum">     377 </span>            :               corners_of_all_blocks[block1_index],
+<span class="lineNum">     378 </span>            :               corners_of_all_blocks[block2_index])
+<span class="lineNum">     379 </span>            :                   .size() == two_to_the(VolumeDim - 1)) {
+<span class="lineNum">     380 </span>            :         const auto orientation_helper =
+<span class="lineNum">     381 </span>            :             obtain_correspondence_between_blocks&lt;VolumeDim&gt;(
+<span class="lineNum">     382 </span>            :                 block1_index, block2_index, corners_of_all_blocks);
+<span class="lineNum">     383 </span>            :         neighbor.emplace(std::move((orientation_helper.first)[0]),
+<span class="lineNum">     384 </span>            :                          BlockNeighbor&lt;VolumeDim&gt;(
+<span class="lineNum">     385 </span>            :                              block2_index, OrientationMap&lt;VolumeDim&gt;(
+<span class="lineNum">     386 </span>            :                                                orientation_helper.first,
+<span class="lineNum">     387 </span>            :                                                orientation_helper.second)));
+<span class="lineNum">     388 </span>            :       }
+<span class="lineNum">     389 </span>            :     }
+<span class="lineNum">     390 </span>            :     neighbors_of_all_blocks-&gt;push_back(neighbor);
+<span class="lineNum">     391 </span>            :   }
+<span class="lineNum">     392 </span>            : }
+<span class="lineNum">     393 </span>            : 
+<span class="lineNum">     394 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     395 </span><span class="lineCov">          1 : void set_identified_boundaries(</span>
+<span class="lineNum">     396 </span>            :     const std::vector&lt;PairOfFaces&gt;&amp; identifications,
+<span class="lineNum">     397 </span>            :     const std::vector&lt;std::array&lt;size_t, two_to_the(VolumeDim)&gt;&gt;&amp;
+<span class="lineNum">     398 </span>            :         corners_of_all_blocks,
+<span class="lineNum">     399 </span>            :     gsl::not_null&lt;std::vector&lt;
+<span class="lineNum">     400 </span>            :         std::unordered_map&lt;Direction&lt;VolumeDim&gt;, BlockNeighbor&lt;VolumeDim&gt;&gt;&gt;*&gt;
+<span class="lineNum">     401 </span>            :         neighbors_of_all_blocks) noexcept {
+<span class="lineNum">     402 </span>            :   for (const auto&amp; pair : identifications) {
+<span class="lineNum">     403 </span>            :     const auto&amp; face1 = pair.first;
+<span class="lineNum">     404 </span>            :     const auto&amp; face2 = pair.second;
+<span class="lineNum">     405 </span>            :     ASSERT(face1.size() == face2.size(),
+<span class="lineNum">     406 </span>            :            &quot;Each set must have the same number of corners.&quot;);
+<span class="lineNum">     407 </span>            :     size_t id1 = ::find_block_id_of_external_face&lt;VolumeDim&gt;(
+<span class="lineNum">     408 </span>            :         face1, corners_of_all_blocks);
+<span class="lineNum">     409 </span>            :     size_t id2 = ::find_block_id_of_external_face&lt;VolumeDim&gt;(
+<span class="lineNum">     410 </span>            :         face2, corners_of_all_blocks);
+<span class="lineNum">     411 </span>            :     const auto face1_canon =
+<span class="lineNum">     412 </span>            :         get_common_local_corners&lt;VolumeDim&gt;(corners_of_all_blocks[id1], face1);
+<span class="lineNum">     413 </span>            :     const auto face2_canon =
+<span class="lineNum">     414 </span>            :         get_common_local_corners&lt;VolumeDim&gt;(corners_of_all_blocks[id2], face2);
+<span class="lineNum">     415 </span>            :     const auto face1_normal_dir = get_direction_normal_to_face(
+<span class="lineNum">     416 </span>            :         logical_coords_of_corners&lt;VolumeDim&gt;(face1_canon));
+<span class="lineNum">     417 </span>            :     const auto face2_normal_dir = get_direction_normal_to_face(
+<span class="lineNum">     418 </span>            :         logical_coords_of_corners&lt;VolumeDim&gt;(face2_canon));
+<span class="lineNum">     419 </span>            :     const auto face1_align_dirs =
+<span class="lineNum">     420 </span>            :         get_directions_along_face&lt;VolumeDim&gt;(face1_canon);
+<span class="lineNum">     421 </span>            :     const auto face2_align_dirs =
+<span class="lineNum">     422 </span>            :         get_directions_along_face&lt;VolumeDim&gt;(face2_canon);
+<span class="lineNum">     423 </span>            :     const auto obtain_correspondence_between_blocks1 =
+<span class="lineNum">     424 </span>            :         create_correspondence_between_blocks&lt;VolumeDim&gt;(
+<span class="lineNum">     425 </span>            :             face1_normal_dir, face2_normal_dir, face1_align_dirs,
+<span class="lineNum">     426 </span>            :             face2_align_dirs);
+<span class="lineNum">     427 </span>            :     const auto obtain_correspondence_between_blocks2 =
+<span class="lineNum">     428 </span>            :         create_correspondence_between_blocks&lt;VolumeDim&gt;(
+<span class="lineNum">     429 </span>            :             face2_normal_dir, face1_normal_dir, face2_align_dirs,
+<span class="lineNum">     430 </span>            :             face1_align_dirs);
+<span class="lineNum">     431 </span>            :     const OrientationMap&lt;VolumeDim&gt; connect1(
+<span class="lineNum">     432 </span>            :         obtain_correspondence_between_blocks1.first,
+<span class="lineNum">     433 </span>            :         obtain_correspondence_between_blocks1.second);
+<span class="lineNum">     434 </span>            :     const OrientationMap&lt;VolumeDim&gt; connect2(
+<span class="lineNum">     435 </span>            :         obtain_correspondence_between_blocks2.first,
+<span class="lineNum">     436 </span>            :         obtain_correspondence_between_blocks2.second);
+<span class="lineNum">     437 </span>            :     (*neighbors_of_all_blocks)[id1].emplace(
+<span class="lineNum">     438 </span>            :         face1_normal_dir, BlockNeighbor&lt;VolumeDim&gt;(id2, connect1));
+<span class="lineNum">     439 </span>            :     (*neighbors_of_all_blocks)[id2].emplace(
+<span class="lineNum">     440 </span>            :         face2_normal_dir, BlockNeighbor&lt;VolumeDim&gt;(id1, connect2));
+<span class="lineNum">     441 </span>            :   }
+<span class="lineNum">     442 </span>            : }
+<span class="lineNum">     443 </span>            : 
+<span class="lineNum">     444 </span>            : // A Block or Blocks can be wrapped in an outer layer of Blocks surrounding
+<span class="lineNum">     445 </span>            : // the original Block(s). In the BBH Domain, this occurs several times, using
+<span class="lineNum">     446 </span>            : // both Wedges and Frustums. The simplest example in which wrapping is used is
+<span class="lineNum">     447 </span>            : // Sphere, where the central Block is wrapped with six Wedge3Ds.
+<span class="lineNum">     448 </span><span class="lineNoCov">          0 : std::array&lt;OrientationMap&lt;3&gt;, 6&gt; orientations_for_wrappings() noexcept {</span>
+<span class="lineNum">     449 </span>            :   return {{
+<span class="lineNum">     450 </span>            :       // Upper Z
+<span class="lineNum">     451 </span>            :       OrientationMap&lt;3&gt;{},
+<span class="lineNum">     452 </span>            :       // Lower Z
+<span class="lineNum">     453 </span>            :       OrientationMap&lt;3&gt;{std::array&lt;Direction&lt;3&gt;, 3&gt;{
+<span class="lineNum">     454 </span>            :           {Direction&lt;3&gt;::upper_xi(), Direction&lt;3&gt;::lower_eta(),
+<span class="lineNum">     455 </span>            :            Direction&lt;3&gt;::lower_zeta()}}},
+<span class="lineNum">     456 </span>            :       // Upper Y
+<span class="lineNum">     457 </span>            :       OrientationMap&lt;3&gt;(std::array&lt;Direction&lt;3&gt;, 3&gt;{
+<span class="lineNum">     458 </span>            :           {Direction&lt;3&gt;::upper_xi(), Direction&lt;3&gt;::upper_zeta(),
+<span class="lineNum">     459 </span>            :            Direction&lt;3&gt;::lower_eta()}}),
+<span class="lineNum">     460 </span>            :       // Lower Y
+<span class="lineNum">     461 </span>            :       OrientationMap&lt;3&gt;(std::array&lt;Direction&lt;3&gt;, 3&gt;{
+<span class="lineNum">     462 </span>            :           {Direction&lt;3&gt;::upper_xi(), Direction&lt;3&gt;::lower_zeta(),
+<span class="lineNum">     463 </span>            :            Direction&lt;3&gt;::upper_eta()}}),
+<span class="lineNum">     464 </span>            :       // Upper X
+<span class="lineNum">     465 </span>            :       OrientationMap&lt;3&gt;(std::array&lt;Direction&lt;3&gt;, 3&gt;{
+<span class="lineNum">     466 </span>            :           {Direction&lt;3&gt;::upper_zeta(), Direction&lt;3&gt;::upper_xi(),
+<span class="lineNum">     467 </span>            :            Direction&lt;3&gt;::upper_eta()}}),
+<span class="lineNum">     468 </span>            :       // Lower X
+<span class="lineNum">     469 </span>            :       OrientationMap&lt;3&gt;(std::array&lt;Direction&lt;3&gt;, 3&gt;{
+<span class="lineNum">     470 </span>            :           {Direction&lt;3&gt;::lower_zeta(), Direction&lt;3&gt;::lower_xi(),
+<span class="lineNum">     471 </span>            :            Direction&lt;3&gt;::upper_eta()}}),
+<span class="lineNum">     472 </span>            :   }};
+<span class="lineNum">     473 </span>            : }
+<span class="lineNum">     474 </span>            : 
+<span class="lineNum">     475 </span>            : template &lt;typename TargetFrame&gt;
+<span class="lineNum">     476 </span>            : std::vector&lt;std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, TargetFrame, 3&gt;&gt;&gt;
+<span class="lineNum">     477 </span><span class="lineCov">          1 : wedge_coordinate_maps(const double inner_radius, const double outer_radius,</span>
+<span class="lineNum">     478 </span>            :                       const double inner_sphericity,
+<span class="lineNum">     479 </span>            :                       const double outer_sphericity,
+<span class="lineNum">     480 </span>            :                       const bool use_equiangular_map,
+<span class="lineNum">     481 </span>            :                       const double x_coord_of_shell_center,
+<span class="lineNum">     482 </span>            :                       const bool use_half_wedges, const double aspect_ratio,
+<span class="lineNum">     483 </span>            :                       const bool use_logarithmic_map) noexcept {
+<span class="lineNum">     484 </span>            :   const auto wedge_orientations = orientations_for_wrappings();
+<span class="lineNum">     485 </span>            : 
+<span class="lineNum">     486 </span>            :   using Wedge3DMap = CoordinateMaps::Wedge3D;
+<span class="lineNum">     487 </span>            :   using Halves = Wedge3DMap::WedgeHalves;
+<span class="lineNum">     488 </span>            :   std::vector&lt;Wedge3DMap&gt; wedges{};
+<span class="lineNum">     489 </span>            :   for (size_t i = 0; i &lt; 6; i++) {
+<span class="lineNum">     490 </span>            :     wedges.emplace_back(inner_radius, outer_radius,
+<span class="lineNum">     491 </span>            :                         gsl::at(wedge_orientations, i), inner_sphericity,
+<span class="lineNum">     492 </span>            :                         outer_sphericity, use_equiangular_map, Halves::Both,
+<span class="lineNum">     493 </span>            :                         use_logarithmic_map);
+<span class="lineNum">     494 </span>            :   }
+<span class="lineNum">     495 </span>            : 
+<span class="lineNum">     496 </span>            :   if (use_half_wedges) {
+<span class="lineNum">     497 </span>            :     std::vector&lt;Wedge3DMap&gt; wedges_and_half_wedges{};
+<span class="lineNum">     498 </span>            :     for (size_t i = 0; i &lt; 4; i++) {
+<span class="lineNum">     499 </span>            :       wedges_and_half_wedges.emplace_back(
+<span class="lineNum">     500 </span>            :           inner_radius, outer_radius, gsl::at(wedge_orientations, i),
+<span class="lineNum">     501 </span>            :           inner_sphericity, outer_sphericity, use_equiangular_map,
+<span class="lineNum">     502 </span>            :           Halves::LowerOnly, use_logarithmic_map);
+<span class="lineNum">     503 </span>            :       wedges_and_half_wedges.emplace_back(
+<span class="lineNum">     504 </span>            :           inner_radius, outer_radius, gsl::at(wedge_orientations, i),
+<span class="lineNum">     505 </span>            :           inner_sphericity, outer_sphericity, use_equiangular_map,
+<span class="lineNum">     506 </span>            :           Halves::UpperOnly, use_logarithmic_map);
+<span class="lineNum">     507 </span>            :     }
+<span class="lineNum">     508 </span>            :     wedges_and_half_wedges.push_back(wedges[4]);
+<span class="lineNum">     509 </span>            :     wedges_and_half_wedges.push_back(wedges[5]);
+<span class="lineNum">     510 </span>            : 
+<span class="lineNum">     511 </span>            :     // clang-tidy: trivially copyable
+<span class="lineNum">     512 </span>            :     return make_vector_coordinate_map_base&lt;Frame::Logical, TargetFrame, 3&gt;(
+<span class="lineNum">     513 </span>            :         std::move(wedges_and_half_wedges));  // NOLINT
+<span class="lineNum">     514 </span>            :   }
+<span class="lineNum">     515 </span>            : 
+<span class="lineNum">     516 </span>            :   if (x_coord_of_shell_center != 0.0) {
+<span class="lineNum">     517 </span>            :     using Identity2D = CoordinateMaps::Identity&lt;2&gt;;
+<span class="lineNum">     518 </span>            :     using Affine = CoordinateMaps::Affine;
+<span class="lineNum">     519 </span>            :     auto shift_1d = Affine{-1.0, 1.0, -1.0 + x_coord_of_shell_center,
+<span class="lineNum">     520 </span>            :                            1.0 + x_coord_of_shell_center};
+<span class="lineNum">     521 </span>            :     // clang-tidy: trivially copyable
+<span class="lineNum">     522 </span>            :     const auto translation = CoordinateMaps::ProductOf2Maps&lt;Affine, Identity2D&gt;(
+<span class="lineNum">     523 </span>            :         std::move(shift_1d), Identity2D{});  // NOLINT
+<span class="lineNum">     524 </span>            :     return make_vector_coordinate_map_base&lt;Frame::Logical, TargetFrame, 3&gt;(
+<span class="lineNum">     525 </span>            :         std::move(wedges), std::move(translation));  // NOLINT
+<span class="lineNum">     526 </span>            :   }
+<span class="lineNum">     527 </span>            : 
+<span class="lineNum">     528 </span>            :   if (aspect_ratio != 1.0) {
+<span class="lineNum">     529 </span>            :     const auto compression =
+<span class="lineNum">     530 </span>            :         CoordinateMaps::EquatorialCompression{aspect_ratio};
+<span class="lineNum">     531 </span>            :     // clang-tidy: trivially copyable
+<span class="lineNum">     532 </span>            :     return make_vector_coordinate_map_base&lt;Frame::Logical, TargetFrame, 3&gt;(
+<span class="lineNum">     533 </span>            :         std::move(wedges), std::move(compression));  // NOLINT
+<span class="lineNum">     534 </span>            :   }
+<span class="lineNum">     535 </span>            : 
+<span class="lineNum">     536 </span>            :   // clang-tidy: trivially copyable
+<span class="lineNum">     537 </span>            :   return make_vector_coordinate_map_base&lt;Frame::Logical, TargetFrame, 3&gt;(
+<span class="lineNum">     538 </span>            :       std::move(wedges));  // NOLINT
+<span class="lineNum">     539 </span>            : }
+<span class="lineNum">     540 </span>            : 
+<span class="lineNum">     541 </span>            : template &lt;typename TargetFrame&gt;
+<span class="lineNum">     542 </span>            : std::vector&lt;std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, TargetFrame, 3&gt;&gt;&gt;
+<span class="lineNum">     543 </span><span class="lineCov">          1 : frustum_coordinate_maps(const double length_inner_cube,</span>
+<span class="lineNum">     544 </span>            :                         const double length_outer_cube,
+<span class="lineNum">     545 </span>            :                         const bool use_equiangular_map) noexcept {
+<span class="lineNum">     546 </span>            :   const auto frustum_orientations = orientations_for_wrappings();
+<span class="lineNum">     547 </span>            :   const double lower = 0.5 * length_inner_cube;
+<span class="lineNum">     548 </span>            :   const double top = 0.5 * length_outer_cube;
+<span class="lineNum">     549 </span>            : 
+<span class="lineNum">     550 </span>            :   using FrustumMap = CoordinateMaps::Frustum;
+<span class="lineNum">     551 </span>            :   // Binary compact object Domains use 10 Frustums, 4 around each Shell in the
+<span class="lineNum">     552 </span>            :   //+z,-z,+y,-y directions, and 1 Frustum capping each end in +x, -x.
+<span class="lineNum">     553 </span>            :   std::vector&lt;FrustumMap&gt; frustums{};
+<span class="lineNum">     554 </span>            :   for (size_t i = 0; i &lt; 4; i++) {
+<span class="lineNum">     555 </span>            :     // frustums on the left
+<span class="lineNum">     556 </span>            :     frustums.push_back(FrustumMap{{{{{-2.0 * lower, -lower}},
+<span class="lineNum">     557 </span>            :                                     {{0.0, lower}},
+<span class="lineNum">     558 </span>            :                                     {{-top, -top}},
+<span class="lineNum">     559 </span>            :                                     {{0.0, top}}}},
+<span class="lineNum">     560 </span>            :                                   lower,
+<span class="lineNum">     561 </span>            :                                   top,
+<span class="lineNum">     562 </span>            :                                   gsl::at(frustum_orientations, i),
+<span class="lineNum">     563 </span>            :                                   use_equiangular_map});
+<span class="lineNum">     564 </span>            :     // frustums on the right
+<span class="lineNum">     565 </span>            :     frustums.push_back(FrustumMap{{{{{0.0, -lower}},
+<span class="lineNum">     566 </span>            :                                     {{2.0 * lower, lower}},
+<span class="lineNum">     567 </span>            :                                     {{0.0, -top}},
+<span class="lineNum">     568 </span>            :                                     {{top, top}}}},
+<span class="lineNum">     569 </span>            :                                   lower,
+<span class="lineNum">     570 </span>            :                                   top,
+<span class="lineNum">     571 </span>            :                                   gsl::at(frustum_orientations, i),
+<span class="lineNum">     572 </span>            :                                   use_equiangular_map});
+<span class="lineNum">     573 </span>            :   }
+<span class="lineNum">     574 </span>            :   // frustum on the right
+<span class="lineNum">     575 </span>            :   frustums.push_back(FrustumMap{
+<span class="lineNum">     576 </span>            :       {{{{-lower, -lower}}, {{lower, lower}}, {{-top, -top}}, {{top, top}}}},
+<span class="lineNum">     577 </span>            :       2.0 * lower,
+<span class="lineNum">     578 </span>            :       top,
+<span class="lineNum">     579 </span>            :       frustum_orientations[4],
+<span class="lineNum">     580 </span>            :       use_equiangular_map});
+<span class="lineNum">     581 </span>            :   // frustum on the left
+<span class="lineNum">     582 </span>            :   frustums.push_back(FrustumMap{
+<span class="lineNum">     583 </span>            :       {{{{-lower, -lower}}, {{lower, lower}}, {{-top, -top}}, {{top, top}}}},
+<span class="lineNum">     584 </span>            :       2.0 * lower,
+<span class="lineNum">     585 </span>            :       top,
+<span class="lineNum">     586 </span>            :       frustum_orientations[5],
+<span class="lineNum">     587 </span>            :       use_equiangular_map});
+<span class="lineNum">     588 </span>            : 
+<span class="lineNum">     589 </span>            :   // clang-tidy: trivially copyable
+<span class="lineNum">     590 </span>            :   return make_vector_coordinate_map_base&lt;Frame::Logical, TargetFrame, 3&gt;(
+<span class="lineNum">     591 </span>            :       std::move(frustums));  // NOLINT
+<span class="lineNum">     592 </span>            : }
+<span class="lineNum">     593 </span>            : 
+<span class="lineNum">     594 </span>            : namespace {
+<span class="lineNum">     595 </span>            : std::array&lt;size_t, 8&gt; concatenate_faces(
+<span class="lineNum">     596 </span>            :     const std::array&lt;size_t, 4&gt;&amp; face1,
+<span class="lineNum">     597 </span>            :     const std::array&lt;size_t, 4&gt;&amp; face2) noexcept {
+<span class="lineNum">     598 </span>            :   return {{face1[0], face1[1], face1[2], face1[3], face2[0], face2[1], face2[2],
+<span class="lineNum">     599 </span>            :            face2[3]}};
+<span class="lineNum">     600 </span>            : }
+<span class="lineNum">     601 </span>            : 
+<span class="lineNum">     602 </span>            : std::array&lt;size_t, 4&gt; next_face_in_radial_direction(
+<span class="lineNum">     603 </span>            :     const std::array&lt;size_t, 4&gt;&amp; face) noexcept {
+<span class="lineNum">     604 </span>            :   return {{face[0] + 8, face[1] + 8, face[2] + 8, face[3] + 8}};
+<span class="lineNum">     605 </span>            : }
+<span class="lineNum">     606 </span>            : 
+<span class="lineNum">     607 </span>            : std::array&lt;std::array&lt;size_t, 4&gt;, 6&gt; next_layer_in_radial_direction(
+<span class="lineNum">     608 </span>            :     const std::array&lt;std::array&lt;size_t, 4&gt;, 6&gt;&amp; layer) noexcept {
+<span class="lineNum">     609 </span>            :   return {{next_face_in_radial_direction(layer[0]),
+<span class="lineNum">     610 </span>            :            next_face_in_radial_direction(layer[1]),
+<span class="lineNum">     611 </span>            :            next_face_in_radial_direction(layer[2]),
+<span class="lineNum">     612 </span>            :            next_face_in_radial_direction(layer[3]),
+<span class="lineNum">     613 </span>            :            next_face_in_radial_direction(layer[4]),
+<span class="lineNum">     614 </span>            :            next_face_in_radial_direction(layer[5])}};
+<span class="lineNum">     615 </span>            : }
+<span class="lineNum">     616 </span>            : 
+<span class="lineNum">     617 </span>            : void identify_corners_with_each_other(
+<span class="lineNum">     618 </span>            :     const gsl::not_null&lt;std::vector&lt;std::array&lt;size_t, 8&gt;&gt;*&gt; corners,
+<span class="lineNum">     619 </span>            :     const size_t corner_1, const size_t corner_2) noexcept {
+<span class="lineNum">     620 </span>            :   for (auto&amp; block_corners : *corners) {
+<span class="lineNum">     621 </span>            :     for (auto&amp; corner : block_corners) {
+<span class="lineNum">     622 </span>            :       if (corner == corner_2) {
+<span class="lineNum">     623 </span>            :         corner = corner_1;
+<span class="lineNum">     624 </span>            :       }
+<span class="lineNum">     625 </span>            :     }
+<span class="lineNum">     626 </span>            :   }
+<span class="lineNum">     627 </span>            : }
+<span class="lineNum">     628 </span>            : }  // namespace
+<span class="lineNum">     629 </span>            : 
+<span class="lineNum">     630 </span><span class="lineCov">          1 : std::vector&lt;std::array&lt;size_t, 8&gt;&gt; corners_for_radially_layered_domains(</span>
+<span class="lineNum">     631 </span>            :     const size_t number_of_layers, const bool include_central_block,
+<span class="lineNum">     632 </span>            :     const std::array&lt;size_t, 8&gt;&amp; central_block_corners) noexcept {
+<span class="lineNum">     633 </span>            :   const std::array&lt;size_t, 8&gt;&amp; c = central_block_corners;
+<span class="lineNum">     634 </span>            :   std::array&lt;std::array&lt;size_t, 4&gt;, 6&gt; faces_layer_zero{
+<span class="lineNum">     635 </span>            :       {{{c[4], c[5], c[6], c[7]}},    // Upper z
+<span class="lineNum">     636 </span>            :        {{c[2], c[3], c[0], c[1]}},    // Lower z
+<span class="lineNum">     637 </span>            :        {{c[6], c[7], c[2], c[3]}},    // Upper y
+<span class="lineNum">     638 </span>            :        {{c[0], c[1], c[4], c[5]}},    // Lower y
+<span class="lineNum">     639 </span>            :        {{c[1], c[3], c[5], c[7]}},    // Upper x
+<span class="lineNum">     640 </span>            :        {{c[2], c[0], c[6], c[4]}}}};  // Lower x
+<span class="lineNum">     641 </span>            :   std::vector&lt;std::array&lt;std::array&lt;size_t, 4&gt;, 6&gt;&gt; faces_in_each_layer{
+<span class="lineNum">     642 </span>            :       faces_layer_zero};
+<span class="lineNum">     643 </span>            :   for (size_t layer_j = 0; layer_j &lt; number_of_layers; layer_j++) {
+<span class="lineNum">     644 </span>            :     faces_in_each_layer.push_back(
+<span class="lineNum">     645 </span>            :         next_layer_in_radial_direction(faces_in_each_layer[layer_j]));
+<span class="lineNum">     646 </span>            :   }
+<span class="lineNum">     647 </span>            :   std::vector&lt;std::array&lt;size_t, 8&gt;&gt; corners{};
+<span class="lineNum">     648 </span>            :   for (size_t layer_i = 0; layer_i &lt; number_of_layers; layer_i++) {
+<span class="lineNum">     649 </span>            :     for (size_t face_j = 0; face_j &lt; 6; face_j++) {
+<span class="lineNum">     650 </span>            :       corners.push_back(concatenate_faces(
+<span class="lineNum">     651 </span>            :           gsl::at(gsl::at(faces_in_each_layer, layer_i), face_j),
+<span class="lineNum">     652 </span>            :           gsl::at(gsl::at(faces_in_each_layer, layer_i + 1), face_j)));
+<span class="lineNum">     653 </span>            :     }
+<span class="lineNum">     654 </span>            :   }
+<span class="lineNum">     655 </span>            :   if (include_central_block) {
+<span class="lineNum">     656 </span>            :     corners.push_back(central_block_corners);
+<span class="lineNum">     657 </span>            :   }
+<span class="lineNum">     658 </span>            :   return corners;
+<span class="lineNum">     659 </span>            : }
+<span class="lineNum">     660 </span>            : 
+<span class="lineNum">     661 </span><span class="lineCov">          1 : std::vector&lt;std::array&lt;size_t, 8&gt;&gt; corners_for_biradially_layered_domains(</span>
+<span class="lineNum">     662 </span>            :     const size_t number_of_radial_layers,
+<span class="lineNum">     663 </span>            :     const size_t number_of_biradial_layers,
+<span class="lineNum">     664 </span>            :     const bool include_central_block_lhs, const bool include_central_block_rhs,
+<span class="lineNum">     665 </span>            :     const std::array&lt;size_t, 8&gt;&amp; central_block_corners_lhs) noexcept {
+<span class="lineNum">     666 </span>            :   const size_t total_number_of_layers =
+<span class="lineNum">     667 </span>            :       number_of_radial_layers + number_of_biradial_layers;
+<span class="lineNum">     668 </span>            :   const std::array&lt;size_t, 8&gt; central_block_corners_rhs = [&amp;]() {
+<span class="lineNum">     669 </span>            :     std::array&lt;size_t, 8&gt; local_central_block_corners_rhs{};
+<span class="lineNum">     670 </span>            :     std::transform(
+<span class="lineNum">     671 </span>            :         central_block_corners_lhs.begin(), central_block_corners_lhs.end(),
+<span class="lineNum">     672 </span>            :         local_central_block_corners_rhs.begin(), [&amp;](const size_t corner) {
+<span class="lineNum">     673 </span>            :           return corner + 8 * (total_number_of_layers + 1);
+<span class="lineNum">     674 </span>            :         });
+<span class="lineNum">     675 </span>            :     return local_central_block_corners_rhs;
+<span class="lineNum">     676 </span>            :   }();
+<span class="lineNum">     677 </span>            : 
+<span class="lineNum">     678 </span>            :   const auto layers_lhs = corners_for_radially_layered_domains(
+<span class="lineNum">     679 </span>            :       total_number_of_layers, include_central_block_lhs,
+<span class="lineNum">     680 </span>            :       central_block_corners_lhs);
+<span class="lineNum">     681 </span>            :   const auto layers_rhs = corners_for_radially_layered_domains(
+<span class="lineNum">     682 </span>            :       total_number_of_layers, include_central_block_rhs,
+<span class="lineNum">     683 </span>            :       central_block_corners_rhs);
+<span class="lineNum">     684 </span>            :   std::vector&lt;std::array&lt;size_t, 8&gt;&gt; corners{};
+<span class="lineNum">     685 </span>            :   // Fill six-block layers on the left-hand side first,
+<span class="lineNum">     686 </span>            :   // then fill six-block layers on the right-hand side.
+<span class="lineNum">     687 </span>            :   for (size_t layer_i = 0; layer_i &lt; number_of_radial_layers; layer_i++) {
+<span class="lineNum">     688 </span>            :     for (size_t face_j = 0; face_j &lt; 6; face_j++) {
+<span class="lineNum">     689 </span>            :       corners.push_back(layers_lhs[face_j + 6 * layer_i]);
+<span class="lineNum">     690 </span>            :     }
+<span class="lineNum">     691 </span>            :   }
+<span class="lineNum">     692 </span>            :   for (size_t layer_i = 0; layer_i &lt; number_of_radial_layers; layer_i++) {
+<span class="lineNum">     693 </span>            :     for (size_t face_j = 0; face_j &lt; 6; face_j++) {
+<span class="lineNum">     694 </span>            :       corners.push_back(layers_rhs[face_j + 6 * layer_i]);
+<span class="lineNum">     695 </span>            :     }
+<span class="lineNum">     696 </span>            :   }
+<span class="lineNum">     697 </span>            :   // Then fill ten-block layers which wrap both sides.
+<span class="lineNum">     698 </span>            :   for (size_t layer_i = number_of_radial_layers;
+<span class="lineNum">     699 </span>            :        layer_i &lt; total_number_of_layers; layer_i++) {
+<span class="lineNum">     700 </span>            :     for (size_t face_j = 0; face_j &lt; 6; face_j++) {
+<span class="lineNum">     701 </span>            :       // Face number 4 is the face in the +x direction,
+<span class="lineNum">     702 </span>            :       // which is the block to be skipped on the left-hand side.
+<span class="lineNum">     703 </span>            :       if (face_j != 4) {
+<span class="lineNum">     704 </span>            :         corners.push_back(layers_lhs[face_j + 6 * layer_i]);
+<span class="lineNum">     705 </span>            :       }
+<span class="lineNum">     706 </span>            :       // Face number 5 is the face in the -x direction,
+<span class="lineNum">     707 </span>            :       // which is the block to be skipped on the right-hand side.
+<span class="lineNum">     708 </span>            :       if (face_j != 5) {
+<span class="lineNum">     709 </span>            :         corners.push_back(layers_rhs[face_j + 6 * layer_i]);
+<span class="lineNum">     710 </span>            :       }
+<span class="lineNum">     711 </span>            :     }
+<span class="lineNum">     712 </span>            :   }
+<span class="lineNum">     713 </span>            :   if (include_central_block_lhs) {
+<span class="lineNum">     714 </span>            :     corners.push_back(central_block_corners_lhs);
+<span class="lineNum">     715 </span>            :   }
+<span class="lineNum">     716 </span>            :   if (include_central_block_rhs) {
+<span class="lineNum">     717 </span>            :     corners.push_back(central_block_corners_rhs);
+<span class="lineNum">     718 </span>            :   }
+<span class="lineNum">     719 </span>            :   // The first corner to identify is on the last full layer.
+<span class="lineNum">     720 </span>            :   const size_t first_corner_to_identify = 2 + number_of_radial_layers * 8;
+<span class="lineNum">     721 </span>            :   const size_t corner_to_identify_with =
+<span class="lineNum">     722 </span>            :       first_corner_to_identify - 1 + (8 * (total_number_of_layers + 1));
+<span class="lineNum">     723 </span>            :   for (size_t j = 0; j &lt; number_of_biradial_layers + 1; j++) {
+<span class="lineNum">     724 </span>            :     for (size_t i = 0; i &lt; 4; i++) {
+<span class="lineNum">     725 </span>            :       const size_t offset = 2 * i + 8 * j;
+<span class="lineNum">     726 </span>            :       identify_corners_with_each_other(&amp;corners,
+<span class="lineNum">     727 </span>            :                                        first_corner_to_identify + offset,
+<span class="lineNum">     728 </span>            :                                        corner_to_identify_with + offset);
+<span class="lineNum">     729 </span>            :     }
+<span class="lineNum">     730 </span>            :   }
+<span class="lineNum">     731 </span>            :   return corners;
+<span class="lineNum">     732 </span>            : }
+<span class="lineNum">     733 </span>            : 
+<span class="lineNum">     734 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     735 </span>            : std::vector&lt;std::array&lt;size_t, two_to_the(VolumeDim)&gt;&gt;
+<span class="lineNum">     736 </span><span class="lineCov">          1 : corners_for_rectilinear_domains(</span>
+<span class="lineNum">     737 </span>            :     const Index&lt;VolumeDim&gt;&amp; domain_extents,
+<span class="lineNum">     738 </span>            :     const std::vector&lt;Index&lt;VolumeDim&gt;&gt;&amp; block_indices_to_exclude) noexcept {
+<span class="lineNum">     739 </span>            :   std::vector&lt;std::array&lt;size_t, two_to_the(VolumeDim)&gt;&gt; corners{};
+<span class="lineNum">     740 </span>            : 
+<span class="lineNum">     741 </span>            :   // The number of blocks is one less than
+<span class="lineNum">     742 </span>            :   // the number of corners in each dimension:
+<span class="lineNum">     743 </span>            :   std::array&lt;size_t, VolumeDim&gt; number_of_corners{};
+<span class="lineNum">     744 </span>            :   for (size_t d = 0; d &lt; VolumeDim; d++) {
+<span class="lineNum">     745 </span>            :     gsl::at(number_of_corners, d) = domain_extents[d] + 1;
+<span class="lineNum">     746 </span>            :   }
+<span class="lineNum">     747 </span>            : 
+<span class="lineNum">     748 </span>            :   Index&lt;VolumeDim&gt; global_corner_extents{number_of_corners};
+<span class="lineNum">     749 </span>            :   for (IndexIterator&lt;VolumeDim&gt; ii(domain_extents); ii; ++ii) {
+<span class="lineNum">     750 </span>            :     std::array&lt;size_t, two_to_the(VolumeDim)&gt; corners_for_single_block{};
+<span class="lineNum">     751 </span>            :     for (VolumeCornerIterator&lt;VolumeDim&gt; vci(*ii, global_corner_extents); vci;
+<span class="lineNum">     752 </span>            :          ++vci) {
+<span class="lineNum">     753 </span>            :       gsl::at(corners_for_single_block, vci.local_corner_number()) =
+<span class="lineNum">     754 </span>            :           vci.global_corner_number();
+<span class="lineNum">     755 </span>            :     }
+<span class="lineNum">     756 </span>            :     if (std::find(block_indices_to_exclude.begin(),
+<span class="lineNum">     757 </span>            :                   block_indices_to_exclude.end(),
+<span class="lineNum">     758 </span>            :                   *ii) == block_indices_to_exclude.end()) {
+<span class="lineNum">     759 </span>            :       corners.push_back(corners_for_single_block);
+<span class="lineNum">     760 </span>            :     }
+<span class="lineNum">     761 </span>            :   }
+<span class="lineNum">     762 </span>            :   return corners;
+<span class="lineNum">     763 </span>            : }
+<span class="lineNum">     764 </span>            : 
+<span class="lineNum">     765 </span>            : template &lt;typename TargetFrame, typename Map&gt;
+<span class="lineNum">     766 </span>            : std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, TargetFrame, 1&gt;&gt;
+<span class="lineNum">     767 </span><span class="lineNoCov">          0 : product_of_1d_maps(std::array&lt;Map, 1&gt;&amp; maps,</span>
+<span class="lineNum">     768 </span>            :                    const OrientationMap&lt;1&gt;&amp; rotation = {}) noexcept {
+<span class="lineNum">     769 </span>            :   if (rotation == OrientationMap&lt;1&gt;{}) {
+<span class="lineNum">     770 </span>            :     return make_coordinate_map_base&lt;Frame::Logical, TargetFrame&gt;(maps[0]);
+<span class="lineNum">     771 </span>            :   }
+<span class="lineNum">     772 </span>            :   return make_coordinate_map_base&lt;Frame::Logical, TargetFrame&gt;(
+<span class="lineNum">     773 </span>            :       CoordinateMaps::DiscreteRotation&lt;1&gt;{rotation}, maps[0]);
+<span class="lineNum">     774 </span>            : }
+<span class="lineNum">     775 </span>            : 
+<span class="lineNum">     776 </span>            : template &lt;typename TargetFrame, typename Map&gt;
+<span class="lineNum">     777 </span>            : std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, TargetFrame, 2&gt;&gt;
+<span class="lineNum">     778 </span><span class="lineNoCov">          0 : product_of_1d_maps(std::array&lt;Map, 2&gt;&amp; maps,</span>
+<span class="lineNum">     779 </span>            :                    const OrientationMap&lt;2&gt;&amp; rotation = {}) noexcept {
+<span class="lineNum">     780 </span>            :   if (rotation == OrientationMap&lt;2&gt;{}) {
+<span class="lineNum">     781 </span>            :     return make_coordinate_map_base&lt;Frame::Logical, TargetFrame&gt;(
+<span class="lineNum">     782 </span>            :         CoordinateMaps::ProductOf2Maps&lt;Map, Map&gt;(maps[0], maps[1]));
+<span class="lineNum">     783 </span>            :   }
+<span class="lineNum">     784 </span>            :   return make_coordinate_map_base&lt;Frame::Logical, TargetFrame&gt;(
+<span class="lineNum">     785 </span>            :       CoordinateMaps::DiscreteRotation&lt;2&gt;{rotation},
+<span class="lineNum">     786 </span>            :       CoordinateMaps::ProductOf2Maps&lt;Map, Map&gt;(maps[0], maps[1]));
+<span class="lineNum">     787 </span>            : }
+<span class="lineNum">     788 </span>            : 
+<span class="lineNum">     789 </span>            : template &lt;typename TargetFrame, typename Map&gt;
+<span class="lineNum">     790 </span>            : std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, TargetFrame, 3&gt;&gt;
+<span class="lineNum">     791 </span><span class="lineNoCov">          0 : product_of_1d_maps(std::array&lt;Map, 3&gt;&amp; maps,</span>
+<span class="lineNum">     792 </span>            :                    const OrientationMap&lt;3&gt;&amp; rotation = {}) noexcept {
+<span class="lineNum">     793 </span>            :   if (rotation == OrientationMap&lt;3&gt;{}) {
+<span class="lineNum">     794 </span>            :     return make_coordinate_map_base&lt;Frame::Logical, TargetFrame&gt;(
+<span class="lineNum">     795 </span>            :         CoordinateMaps::ProductOf3Maps&lt;Map, Map, Map&gt;(maps[0], maps[1],
+<span class="lineNum">     796 </span>            :                                                       maps[2]));
+<span class="lineNum">     797 </span>            :   }
+<span class="lineNum">     798 </span>            :   return make_coordinate_map_base&lt;Frame::Logical, TargetFrame&gt;(
+<span class="lineNum">     799 </span>            :       CoordinateMaps::DiscreteRotation&lt;3&gt;{rotation},
+<span class="lineNum">     800 </span>            :       CoordinateMaps::ProductOf3Maps&lt;Map, Map, Map&gt;(maps[0], maps[1], maps[2]));
+<span class="lineNum">     801 </span>            : }
+<span class="lineNum">     802 </span>            : 
+<span class="lineNum">     803 </span>            : template &lt;typename TargetFrame, size_t VolumeDim&gt;
+<span class="lineNum">     804 </span>            : std::vector&lt;
+<span class="lineNum">     805 </span>            :     std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, TargetFrame, VolumeDim&gt;&gt;&gt;
+<span class="lineNum">     806 </span><span class="lineCov">          1 : maps_for_rectilinear_domains(</span>
+<span class="lineNum">     807 </span>            :     const Index&lt;VolumeDim&gt;&amp; domain_extents,
+<span class="lineNum">     808 </span>            :     const std::array&lt;std::vector&lt;double&gt;, VolumeDim&gt;&amp; block_demarcations,
+<span class="lineNum">     809 </span>            :     const std::vector&lt;Index&lt;VolumeDim&gt;&gt;&amp; block_indices_to_exclude,
+<span class="lineNum">     810 </span>            :     const std::vector&lt;OrientationMap&lt;VolumeDim&gt;&gt;&amp; orientations_of_all_blocks,
+<span class="lineNum">     811 </span>            :     const bool use_equiangular_map) noexcept {
+<span class="lineNum">     812 </span>            :   for (size_t d = 0; d &lt; VolumeDim; d++) {
+<span class="lineNum">     813 </span>            :     ASSERT(gsl::at(block_demarcations, d).size() == domain_extents[d] + 1,
+<span class="lineNum">     814 </span>            :            &quot;If there are N blocks, there must be N+1 demarcations.&quot;);
+<span class="lineNum">     815 </span>            :   }
+<span class="lineNum">     816 </span>            :   std::vector&lt;std::unique_ptr&lt;
+<span class="lineNum">     817 </span>            :       CoordinateMapBase&lt;Frame::Logical, TargetFrame, VolumeDim&gt;&gt;&gt;
+<span class="lineNum">     818 </span>            :       maps{};
+<span class="lineNum">     819 </span>            :   for (IndexIterator&lt;VolumeDim&gt; ii(domain_extents); ii; ++ii) {
+<span class="lineNum">     820 </span>            :     if (std::find(block_indices_to_exclude.begin(),
+<span class="lineNum">     821 </span>            :                   block_indices_to_exclude.end(),
+<span class="lineNum">     822 </span>            :                   *ii) == block_indices_to_exclude.end()) {
+<span class="lineNum">     823 </span>            :       std::array&lt;double, VolumeDim&gt; lower_bounds{};
+<span class="lineNum">     824 </span>            :       std::array&lt;double, VolumeDim&gt; upper_bounds{};
+<span class="lineNum">     825 </span>            :       for (size_t d = 0; d &lt; VolumeDim; d++) {
+<span class="lineNum">     826 </span>            :         gsl::at(lower_bounds, d) =
+<span class="lineNum">     827 </span>            :             gsl::at(gsl::at(block_demarcations, d), (*ii)[d]);
+<span class="lineNum">     828 </span>            :         gsl::at(upper_bounds, d) =
+<span class="lineNum">     829 </span>            :             gsl::at(gsl::at(block_demarcations, d), (*ii)[d] + 1);
+<span class="lineNum">     830 </span>            :         ASSERT(gsl::at(upper_bounds, d) &gt; gsl::at(lower_bounds, d),
+<span class="lineNum">     831 </span>            :                &quot;The block demarcations must be strictly increasing.&quot;);
+<span class="lineNum">     832 </span>            :       }
+<span class="lineNum">     833 </span>            :       if (not use_equiangular_map) {
+<span class="lineNum">     834 </span>            :         using Affine = CoordinateMaps::Affine;
+<span class="lineNum">     835 </span>            :         std::array&lt;Affine, VolumeDim&gt; affine_maps{};
+<span class="lineNum">     836 </span>            :         for (size_t d = 0; d &lt; VolumeDim; d++) {
+<span class="lineNum">     837 </span>            :           gsl::at(affine_maps, d) = Affine{-1.0, 1.0, gsl::at(lower_bounds, d),
+<span class="lineNum">     838 </span>            :                                            gsl::at(upper_bounds, d)};
+<span class="lineNum">     839 </span>            :         }
+<span class="lineNum">     840 </span>            :         if (not orientations_of_all_blocks.empty()) {
+<span class="lineNum">     841 </span>            :           maps.push_back(product_of_1d_maps&lt;TargetFrame&gt;(
+<span class="lineNum">     842 </span>            :               affine_maps, orientations_of_all_blocks[ii.collapsed_index()]));
+<span class="lineNum">     843 </span>            :         } else {
+<span class="lineNum">     844 </span>            :           maps.push_back(product_of_1d_maps&lt;TargetFrame&gt;(affine_maps));
+<span class="lineNum">     845 </span>            :         }
+<span class="lineNum">     846 </span>            :       } else {
+<span class="lineNum">     847 </span>            :         using Equiangular = CoordinateMaps::Equiangular;
+<span class="lineNum">     848 </span>            :         std::array&lt;Equiangular, VolumeDim&gt; equiangular_maps{};
+<span class="lineNum">     849 </span>            :         for (size_t d = 0; d &lt; VolumeDim; d++) {
+<span class="lineNum">     850 </span>            :           gsl::at(equiangular_maps, d) = Equiangular{
+<span class="lineNum">     851 </span>            :               -1.0, 1.0, gsl::at(lower_bounds, d), gsl::at(upper_bounds, d)};
+<span class="lineNum">     852 </span>            :         }
+<span class="lineNum">     853 </span>            :         if (not orientations_of_all_blocks.empty()) {
+<span class="lineNum">     854 </span>            :           maps.push_back(product_of_1d_maps&lt;TargetFrame&gt;(
+<span class="lineNum">     855 </span>            :               equiangular_maps,
+<span class="lineNum">     856 </span>            :               orientations_of_all_blocks[ii.collapsed_index()]));
+<span class="lineNum">     857 </span>            :         } else {
+<span class="lineNum">     858 </span>            :           maps.push_back(product_of_1d_maps&lt;TargetFrame&gt;(equiangular_maps));
+<span class="lineNum">     859 </span>            :         }
+<span class="lineNum">     860 </span>            :       }
+<span class="lineNum">     861 </span>            :     }
+<span class="lineNum">     862 </span>            :   }
+<span class="lineNum">     863 </span>            :   return maps;
+<span class="lineNum">     864 </span>            : }
+<span class="lineNum">     865 </span>            : 
+<span class="lineNum">     866 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     867 </span><span class="lineCov">          1 : std::array&lt;size_t, two_to_the(VolumeDim)&gt; discrete_rotation(</span>
+<span class="lineNum">     868 </span>            :     const OrientationMap&lt;VolumeDim&gt;&amp; orientation,
+<span class="lineNum">     869 </span>            :     const std::array&lt;size_t, two_to_the(VolumeDim)&gt;&amp;
+<span class="lineNum">     870 </span>            :         corners_of_aligned) noexcept {
+<span class="lineNum">     871 </span>            :   // compute the mapped logical corners, as
+<span class="lineNum">     872 </span>            :   // they are the indices into the global corners.
+<span class="lineNum">     873 </span>            :   const std::array&lt;size_t, two_to_the(VolumeDim)&gt;
+<span class="lineNum">     874 </span>            :       mapped_logical_corners = [&amp;orientation]() noexcept {
+<span class="lineNum">     875 </span>            :     std::array&lt;size_t, two_to_the(VolumeDim)&gt; result{};
+<span class="lineNum">     876 </span>            :     for (VolumeCornerIterator&lt;VolumeDim&gt; vci{}; vci; ++vci) {
+<span class="lineNum">     877 </span>            :       const std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt;
+<span class="lineNum">     878 </span>            :           directions_of_logical_corner = vci.directions_of_corner();
+<span class="lineNum">     879 </span>            :       std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt; directions_of_mapped_corner{};
+<span class="lineNum">     880 </span>            :       for (size_t i = 0; i &lt; VolumeDim; i++) {
+<span class="lineNum">     881 </span>            :         gsl::at(directions_of_mapped_corner, i) =
+<span class="lineNum">     882 </span>            :             // The inverse_map is used here to match the sense of rotation
+<span class="lineNum">     883 </span>            :             // used in OrientationMap's discrete_rotation.
+<span class="lineNum">     884 </span>            :             orientation.inverse_map()(gsl::at(directions_of_logical_corner, i));
+<span class="lineNum">     885 </span>            :       }
+<span class="lineNum">     886 </span>            :       size_t mapped_corner = 0;
+<span class="lineNum">     887 </span>            :       for (size_t i = 0; i &lt; VolumeDim; i++) {
+<span class="lineNum">     888 </span>            :         const auto&amp; direction = gsl::at(directions_of_mapped_corner, i);
+<span class="lineNum">     889 </span>            :         if (direction.side() == Side::Upper) {
+<span class="lineNum">     890 </span>            :           mapped_corner += two_to_the(direction.dimension());
+<span class="lineNum">     891 </span>            :         }
+<span class="lineNum">     892 </span>            :       }
+<span class="lineNum">     893 </span>            :       gsl::at(result, vci.local_corner_number()) = mapped_corner;
+<span class="lineNum">     894 </span>            :     }
+<span class="lineNum">     895 </span>            :     return result;
+<span class="lineNum">     896 </span>            :       }();
+<span class="lineNum">     897 </span>            : 
+<span class="lineNum">     898 </span>            :   std::array&lt;size_t, two_to_the(VolumeDim)&gt; result{};
+<span class="lineNum">     899 </span>            :   for (size_t i = 0; i &lt; two_to_the(VolumeDim); i++) {
+<span class="lineNum">     900 </span>            :     gsl::at(result, i) =
+<span class="lineNum">     901 </span>            :         gsl::at(corners_of_aligned, gsl::at(mapped_logical_corners, i));
+<span class="lineNum">     902 </span>            :   }
+<span class="lineNum">     903 </span>            :   return result;
+<span class="lineNum">     904 </span>            : }
+<span class="lineNum">     905 </span>            : 
+<span class="lineNum">     906 </span>            : template &lt;size_t VolumeDim, typename TargetFrame&gt;
+<span class="lineNum">     907 </span><span class="lineCov">          1 : Domain&lt;VolumeDim, TargetFrame&gt; rectilinear_domain(</span>
+<span class="lineNum">     908 </span>            :     const Index&lt;VolumeDim&gt;&amp; domain_extents,
+<span class="lineNum">     909 </span>            :     const std::array&lt;std::vector&lt;double&gt;, VolumeDim&gt;&amp; block_demarcations,
+<span class="lineNum">     910 </span>            :     const std::vector&lt;Index&lt;VolumeDim&gt;&gt;&amp; block_indices_to_exclude,
+<span class="lineNum">     911 </span>            :     const std::vector&lt;OrientationMap&lt;VolumeDim&gt;&gt;&amp; orientations_of_all_blocks,
+<span class="lineNum">     912 </span>            :     const std::array&lt;bool, VolumeDim&gt;&amp; dimension_is_periodic,
+<span class="lineNum">     913 </span>            :     const std::vector&lt;PairOfFaces&gt;&amp; identifications,
+<span class="lineNum">     914 </span>            :     bool use_equiangular_map) noexcept {
+<span class="lineNum">     915 </span>            :   std::vector&lt;Block&lt;VolumeDim, TargetFrame&gt;&gt; blocks{};
+<span class="lineNum">     916 </span>            :   auto corners_of_all_blocks =
+<span class="lineNum">     917 </span>            :       corners_for_rectilinear_domains(domain_extents, block_indices_to_exclude);
+<span class="lineNum">     918 </span>            :   auto rotations_of_all_blocks = orientations_of_all_blocks;
+<span class="lineNum">     919 </span>            :   // If no OrientationMaps are provided - default to all aligned:
+<span class="lineNum">     920 </span>            :   if (orientations_of_all_blocks.empty()) {
+<span class="lineNum">     921 </span>            :     rotations_of_all_blocks = std::vector&lt;OrientationMap&lt;VolumeDim&gt;&gt;{
+<span class="lineNum">     922 </span>            :         corners_of_all_blocks.size(), OrientationMap&lt;VolumeDim&gt;{}};
+<span class="lineNum">     923 </span>            :   }
+<span class="lineNum">     924 </span>            :   auto maps = maps_for_rectilinear_domains&lt;TargetFrame&gt;(
+<span class="lineNum">     925 </span>            :       domain_extents, block_demarcations, block_indices_to_exclude,
+<span class="lineNum">     926 </span>            :       rotations_of_all_blocks, use_equiangular_map);
+<span class="lineNum">     927 </span>            :   for (size_t i = 0; i &lt; corners_of_all_blocks.size(); i++) {
+<span class="lineNum">     928 </span>            :     corners_of_all_blocks[i] =
+<span class="lineNum">     929 </span>            :         discrete_rotation(rotations_of_all_blocks[i], corners_of_all_blocks[i]);
+<span class="lineNum">     930 </span>            :   }
+<span class="lineNum">     931 </span>            :   std::vector&lt;
+<span class="lineNum">     932 </span>            :       std::unordered_map&lt;Direction&lt;VolumeDim&gt;, BlockNeighbor&lt;VolumeDim&gt;&gt;&gt;
+<span class="lineNum">     933 </span>            :       neighbors_of_all_blocks;
+<span class="lineNum">     934 </span>            :   set_internal_boundaries&lt;VolumeDim&gt;(corners_of_all_blocks,
+<span class="lineNum">     935 </span>            :                                      &amp;neighbors_of_all_blocks);
+<span class="lineNum">     936 </span>            :   set_identified_boundaries&lt;VolumeDim&gt;(identifications, corners_of_all_blocks,
+<span class="lineNum">     937 </span>            :                                        &amp;neighbors_of_all_blocks);
+<span class="lineNum">     938 </span>            :   set_cartesian_periodic_boundaries&lt;VolumeDim&gt;(
+<span class="lineNum">     939 </span>            :       dimension_is_periodic, corners_of_all_blocks, rotations_of_all_blocks,
+<span class="lineNum">     940 </span>            :       &amp;neighbors_of_all_blocks);
+<span class="lineNum">     941 </span>            :   for (size_t i = 0; i &lt; corners_of_all_blocks.size(); i++) {
+<span class="lineNum">     942 </span>            :     blocks.emplace_back(std::move(maps[i]), i,
+<span class="lineNum">     943 </span>            :                         std::move(neighbors_of_all_blocks[i]));
+<span class="lineNum">     944 </span>            :   }
+<span class="lineNum">     945 </span>            :   return Domain&lt;VolumeDim, TargetFrame&gt;(std::move(blocks));
+<span class="lineNum">     946 </span>            : }
+<span class="lineNum">     947 </span>            : 
+<span class="lineNum">     948 </span><span class="lineNoCov">          0 : template void set_internal_boundaries(</span>
+<span class="lineNum">     949 </span>            :     const std::vector&lt;std::array&lt;size_t, 2&gt;&gt;&amp; corners_of_all_blocks,
+<span class="lineNum">     950 </span>            :     gsl::not_null&lt;
+<span class="lineNum">     951 </span>            :         std::vector&lt;std::unordered_map&lt;Direction&lt;1&gt;, BlockNeighbor&lt;1&gt;&gt;&gt;*&gt;
+<span class="lineNum">     952 </span>            :         neighbors_of_all_blocks) noexcept;
+<span class="lineNum">     953 </span><span class="lineNoCov">          0 : template void set_internal_boundaries(</span>
+<span class="lineNum">     954 </span>            :     const std::vector&lt;std::array&lt;size_t, 4&gt;&gt;&amp; corners_of_all_blocks,
+<span class="lineNum">     955 </span>            :     gsl::not_null&lt;
+<span class="lineNum">     956 </span>            :         std::vector&lt;std::unordered_map&lt;Direction&lt;2&gt;, BlockNeighbor&lt;2&gt;&gt;&gt;*&gt;
+<span class="lineNum">     957 </span>            :         neighbors_of_all_blocks) noexcept;
+<span class="lineNum">     958 </span><span class="lineNoCov">          0 : template void set_internal_boundaries(</span>
+<span class="lineNum">     959 </span>            :     const std::vector&lt;std::array&lt;size_t, 8&gt;&gt;&amp; corners_of_all_blocks,
+<span class="lineNum">     960 </span>            :     gsl::not_null&lt;
+<span class="lineNum">     961 </span>            :         std::vector&lt;std::unordered_map&lt;Direction&lt;3&gt;, BlockNeighbor&lt;3&gt;&gt;&gt;*&gt;
+<span class="lineNum">     962 </span>            :         neighbors_of_all_blocks) noexcept;
+<span class="lineNum">     963 </span>            : 
+<span class="lineNum">     964 </span><span class="lineNoCov">          0 : template void set_identified_boundaries(</span>
+<span class="lineNum">     965 </span>            :     const std::vector&lt;PairOfFaces&gt;&amp; identifications,
+<span class="lineNum">     966 </span>            :     const std::vector&lt;std::array&lt;size_t, 2&gt;&gt;&amp; corners_of_all_blocks,
+<span class="lineNum">     967 </span>            :     gsl::not_null&lt;
+<span class="lineNum">     968 </span>            :         std::vector&lt;std::unordered_map&lt;Direction&lt;1&gt;, BlockNeighbor&lt;1&gt;&gt;&gt;*&gt;
+<span class="lineNum">     969 </span>            :         neighbors_of_all_blocks) noexcept;
+<span class="lineNum">     970 </span><span class="lineNoCov">          0 : template void set_identified_boundaries(</span>
+<span class="lineNum">     971 </span>            :     const std::vector&lt;PairOfFaces&gt;&amp; identifications,
+<span class="lineNum">     972 </span>            :     const std::vector&lt;std::array&lt;size_t, 4&gt;&gt;&amp; corners_of_all_blocks,
+<span class="lineNum">     973 </span>            :     gsl::not_null&lt;
+<span class="lineNum">     974 </span>            :         std::vector&lt;std::unordered_map&lt;Direction&lt;2&gt;, BlockNeighbor&lt;2&gt;&gt;&gt;*&gt;
+<span class="lineNum">     975 </span>            :         neighbors_of_all_blocks) noexcept;
+<span class="lineNum">     976 </span><span class="lineNoCov">          0 : template void set_identified_boundaries(</span>
+<span class="lineNum">     977 </span>            :     const std::vector&lt;PairOfFaces&gt;&amp; identifications,
+<span class="lineNum">     978 </span>            :     const std::vector&lt;std::array&lt;size_t, 8&gt;&gt;&amp; corners_of_all_blocks,
+<span class="lineNum">     979 </span>            :     gsl::not_null&lt;
+<span class="lineNum">     980 </span>            :         std::vector&lt;std::unordered_map&lt;Direction&lt;3&gt;, BlockNeighbor&lt;3&gt;&gt;&gt;*&gt;
+<span class="lineNum">     981 </span>            :         neighbors_of_all_blocks) noexcept;
+<span class="lineNum">     982 </span><span class="lineNoCov">          0 : template std::vector&lt;std::array&lt;size_t, 2&gt;&gt; corners_for_rectilinear_domains(</span>
+<span class="lineNum">     983 </span>            :     const Index&lt;1&gt;&amp; domain_extents,
+<span class="lineNum">     984 </span>            :     const std::vector&lt;Index&lt;1&gt;&gt;&amp; block_indices_to_exclude) noexcept;
+<span class="lineNum">     985 </span><span class="lineNoCov">          0 : template std::vector&lt;std::array&lt;size_t, 4&gt;&gt; corners_for_rectilinear_domains(</span>
+<span class="lineNum">     986 </span>            :     const Index&lt;2&gt;&amp; domain_extents,
+<span class="lineNum">     987 </span>            :     const std::vector&lt;Index&lt;2&gt;&gt;&amp; block_indices_to_exclude) noexcept;
+<span class="lineNum">     988 </span><span class="lineNoCov">          0 : template std::vector&lt;std::array&lt;size_t, 8&gt;&gt; corners_for_rectilinear_domains(</span>
+<span class="lineNum">     989 </span>            :     const Index&lt;3&gt;&amp; domain_extents,
+<span class="lineNum">     990 </span>            :     const std::vector&lt;Index&lt;3&gt;&gt;&amp; block_indices_to_exclude) noexcept;
+<span class="lineNum">     991 </span><span class="lineNoCov">          0 : template std::array&lt;size_t, 2&gt; discrete_rotation(</span>
+<span class="lineNum">     992 </span>            :     const OrientationMap&lt;1&gt;&amp; orientation,
+<span class="lineNum">     993 </span>            :     const std::array&lt;size_t, 2&gt;&amp; corners_of_aligned) noexcept;
+<span class="lineNum">     994 </span><span class="lineNoCov">          0 : template std::array&lt;size_t, 4&gt; discrete_rotation(</span>
+<span class="lineNum">     995 </span>            :     const OrientationMap&lt;2&gt;&amp; orientation,
+<span class="lineNum">     996 </span>            :     const std::array&lt;size_t, 4&gt;&amp; corners_of_aligned) noexcept;
+<span class="lineNum">     997 </span><span class="lineNoCov">          0 : template std::array&lt;size_t, 8&gt; discrete_rotation(</span>
+<span class="lineNum">     998 </span>            :     const OrientationMap&lt;3&gt;&amp; orientation,
+<span class="lineNum">     999 </span>            :     const std::array&lt;size_t, 8&gt;&amp; corners_of_aligned) noexcept;
+<span class="lineNum">    1000 </span>            : template std::vector&lt;
+<span class="lineNum">    1001 </span>            :     std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, Frame::Inertial, 3&gt;&gt;&gt;
+<span class="lineNum">    1002 </span>            : wedge_coordinate_maps(const double inner_radius, const double outer_radius,
+<span class="lineNum">    1003 </span>            :                       const double inner_sphericity,
+<span class="lineNum">    1004 </span>            :                       const double outer_sphericity,
+<span class="lineNum">    1005 </span>            :                       const bool use_equiangular_map,
+<span class="lineNum">    1006 </span>            :                       const double x_coord_of_shell_center,
+<span class="lineNum">    1007 </span>            :                       const bool use_wedge_halves, const double aspect_ratio,
+<span class="lineNum">    1008 </span>            :                       const bool use_logarithmic_map) noexcept;
+<span class="lineNum">    1009 </span>            : template std::vector&lt;
+<span class="lineNum">    1010 </span>            :     std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, Frame::Grid, 3&gt;&gt;&gt;
+<span class="lineNum">    1011 </span>            : wedge_coordinate_maps(const double inner_radius, const double outer_radius,
+<span class="lineNum">    1012 </span>            :                       const double inner_sphericity,
+<span class="lineNum">    1013 </span>            :                       const double outer_sphericity,
+<span class="lineNum">    1014 </span>            :                       const bool use_equiangular_map,
+<span class="lineNum">    1015 </span>            :                       const double x_coord_of_shell_center,
+<span class="lineNum">    1016 </span>            :                       const bool use_wedge_halves, const double aspect_ratio,
+<span class="lineNum">    1017 </span>            :                       const bool use_logarithmic_map) noexcept;
+<span class="lineNum">    1018 </span>            : template std::vector&lt;
+<span class="lineNum">    1019 </span>            :     std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, Frame::Inertial, 3&gt;&gt;&gt;
+<span class="lineNum">    1020 </span>            : frustum_coordinate_maps(const double length_inner_cube,
+<span class="lineNum">    1021 </span>            :                         const double length_outer_cube,
+<span class="lineNum">    1022 </span>            :                         const bool use_equiangular_map) noexcept;
+<span class="lineNum">    1023 </span>            : template std::vector&lt;
+<span class="lineNum">    1024 </span>            :     std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, Frame::Grid, 3&gt;&gt;&gt;
+<span class="lineNum">    1025 </span>            : frustum_coordinate_maps(const double length_inner_cube,
+<span class="lineNum">    1026 </span>            :                         const double length_outer_cube,
+<span class="lineNum">    1027 </span>            :                         const bool use_equiangular_map) noexcept;
+<span class="lineNum">    1028 </span>            : // Explicit instantiations
+<span class="lineNum">    1029 </span>            : /// \cond
+<span class="lineNum">    1030 </span>            : #define DIM(data) BOOST_PP_TUPLE_ELEM(0, data)
+<span class="lineNum">    1031 </span>            : #define FRAME(data) BOOST_PP_TUPLE_ELEM(1, data)
+<span class="lineNum">    1032 </span>            : 
+<span class="lineNum">    1033 </span>            : #define INSTANTIATE(_, data)                                                \
+<span class="lineNum">    1034 </span>            :   template std::vector&lt;std::unique_ptr&lt;                                     \
+<span class="lineNum">    1035 </span>            :       CoordinateMapBase&lt;Frame::Logical, FRAME(data), DIM(data)&gt;&gt;&gt;           \
+<span class="lineNum">    1036 </span>            :   maps_for_rectilinear_domains(                                             \
+<span class="lineNum">    1037 </span>            :       const Index&lt;DIM(data)&gt;&amp; domain_extents,                               \
+<span class="lineNum">    1038 </span>            :       const std::array&lt;std::vector&lt;double&gt;, DIM(data)&gt;&amp; block_demarcations, \
+<span class="lineNum">    1039 </span>            :       const std::vector&lt;Index&lt;DIM(data)&gt;&gt;&amp; block_indices_to_exclude,        \
+<span class="lineNum">    1040 </span>            :       const std::vector&lt;OrientationMap&lt;DIM(data)&gt;&gt;&amp;                         \
+<span class="lineNum">    1041 </span>            :           orientations_of_all_blocks,                                       \
+<span class="lineNum">    1042 </span>            :       const bool use_equiangular_map) noexcept;                             \
+<span class="lineNum">    1043 </span>            :   template Domain&lt;DIM(data), FRAME(data)&gt; rectilinear_domain(               \
+<span class="lineNum">    1044 </span>            :       const Index&lt;DIM(data)&gt;&amp; domain_extents,                               \
+<span class="lineNum">    1045 </span>            :       const std::array&lt;std::vector&lt;double&gt;, DIM(data)&gt;&amp; block_demarcations, \
+<span class="lineNum">    1046 </span>            :       const std::vector&lt;Index&lt;DIM(data)&gt;&gt;&amp; block_indices_to_exclude,        \
+<span class="lineNum">    1047 </span>            :       const std::vector&lt;OrientationMap&lt;DIM(data)&gt;&gt;&amp;                         \
+<span class="lineNum">    1048 </span>            :           orientations_of_all_blocks,                                       \
+<span class="lineNum">    1049 </span>            :       const std::array&lt;bool, DIM(data)&gt;&amp; dimension_is_periodic,             \
+<span class="lineNum">    1050 </span>            :       const std::vector&lt;PairOfFaces&gt;&amp; identifications,                      \
+<span class="lineNum">    1051 </span>            :       bool use_equiangular_map) noexcept;
+<span class="lineNum">    1052 </span>            : 
+<span class="lineNum">    1053 </span>            : GENERATE_INSTANTIATIONS(INSTANTIATE, (1, 2, 3), (Frame::Grid, Frame::Inertial))
+<span class="lineNum">    1054 </span>            : 
+<span class="lineNum">    1055 </span>            : #undef DIM
+<span class="lineNum">    1056 </span>            : #undef DTYPE
+<span class="lineNum">    1057 </span>            : #undef INSTANTIATE
+<span class="lineNum">    1058 </span>            : /// \endcond
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

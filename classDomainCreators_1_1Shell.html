@@ -1,0 +1,313 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: DomainCreators::Shell&lt; TargetFrame &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceDomainCreators.html">DomainCreators</a></li><li class="navelem"><a class="el" href="classDomainCreators_1_1Shell.html">Shell</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="classDomainCreators_1_1Shell-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">DomainCreators::Shell&lt; TargetFrame &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__DomainCreatorsGroup.html">Domain Creators</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Creates a 3D <a class="el" href="classDomain.html" title="A wrapper around a vector of Blocks that represent the computational domain. ">Domain</a> in the shape of a hollow spherical shell consisting of six wedges.  
+ <a href="classDomainCreators_1_1Shell.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Shell_8hpp_source.html">Shell.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1Shell_1_1AspectRatio.html">AspectRatio</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1Shell_1_1InitialGridPoints.html">InitialGridPoints</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1Shell_1_1InitialRefinement.html">InitialRefinement</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1Shell_1_1InnerRadius.html">InnerRadius</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1Shell_1_1OuterRadius.html">OuterRadius</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1Shell_1_1UseEquiangularMap.html">UseEquiangularMap</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1Shell_1_1UseLogarithmicMap.html">UseLogarithmicMap</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a5af5eb3cf644da666fc0a16c2bb3400e"><td class="memItemLeft" align="right" valign="top"><a id="a5af5eb3cf644da666fc0a16c2bb3400e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>options</b> = tmpl::list&lt; <a class="el" href="structDomainCreators_1_1Shell_1_1InnerRadius.html">InnerRadius</a>, <a class="el" href="structDomainCreators_1_1Shell_1_1OuterRadius.html">OuterRadius</a>, <a class="el" href="structDomainCreators_1_1Shell_1_1InitialRefinement.html">InitialRefinement</a>, <a class="el" href="structDomainCreators_1_1Shell_1_1InitialGridPoints.html">InitialGridPoints</a>, <a class="el" href="structDomainCreators_1_1Shell_1_1UseEquiangularMap.html">UseEquiangularMap</a>, <a class="el" href="structDomainCreators_1_1Shell_1_1AspectRatio.html">AspectRatio</a>, <a class="el" href="structDomainCreators_1_1Shell_1_1UseLogarithmicMap.html">UseLogarithmicMap</a> &gt;</td></tr>
+<tr class="separator:a5af5eb3cf644da666fc0a16c2bb3400e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_classDomainCreator"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classDomainCreator')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classDomainCreator.html">DomainCreator&lt; 3, TargetFrame &gt;</a></td></tr>
+<tr class="memitem:aac3a408794551d46c352ed3cff84f48d inherit pub_types_classDomainCreator"><td class="memItemLeft" align="right" valign="top"><a id="aac3a408794551d46c352ed3cff84f48d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>creatable_classes</b> = typename DomainCreators_detail::domain_creators&lt; VolumeDim &gt;::template creators&lt; TargetFrame &gt;</td></tr>
+<tr class="separator:aac3a408794551d46c352ed3cff84f48d inherit pub_types_classDomainCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a75970c9d88cee250e8b2f17680aee0a2"><td class="memItemLeft" align="right" valign="top"><a id="a75970c9d88cee250e8b2f17680aee0a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Shell</b> (typename InnerRadius::type inner_radius, typename OuterRadius::type outer_radius, typename InitialRefinement::type initial_refinement, typename <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">InitialGridPoints::type</a> initial_number_of_grid_points, typename UseEquiangularMap::type use_equiangular_map, typename AspectRatio::type aspect_ratio=1.0, typename UseLogarithmicMap::type use_logarithmic_map=false) noexcept</td></tr>
+<tr class="separator:a75970c9d88cee250e8b2f17680aee0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e0fcde6c761c1768f4c2a66b724a5f"><td class="memItemLeft" align="right" valign="top"><a id="a87e0fcde6c761c1768f4c2a66b724a5f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Shell</b> (const <a class="el" href="classDomainCreators_1_1Shell.html">Shell</a> &amp;)=delete</td></tr>
+<tr class="separator:a87e0fcde6c761c1768f4c2a66b724a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab75f6adfb46b80c42968a726bcd9dba6"><td class="memItemLeft" align="right" valign="top"><a id="ab75f6adfb46b80c42968a726bcd9dba6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Shell</b> (<a class="el" href="classDomainCreators_1_1Shell.html">Shell</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:ab75f6adfb46b80c42968a726bcd9dba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af13311b783bdbe4304228deaa974f70d"><td class="memItemLeft" align="right" valign="top"><a id="af13311b783bdbe4304228deaa974f70d"></a>
+<a class="el" href="classDomainCreators_1_1Shell.html">Shell</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classDomainCreators_1_1Shell.html">Shell</a> &amp;)=delete</td></tr>
+<tr class="separator:af13311b783bdbe4304228deaa974f70d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7f29bac039d17faa202a5481696fa70"><td class="memItemLeft" align="right" valign="top"><a id="aa7f29bac039d17faa202a5481696fa70"></a>
+<a class="el" href="classDomainCreators_1_1Shell.html">Shell</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classDomainCreators_1_1Shell.html">Shell</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:aa7f29bac039d17faa202a5481696fa70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a643569a1f3417d2169672b1b76f915e1"><td class="memItemLeft" align="right" valign="top"><a id="a643569a1f3417d2169672b1b76f915e1"></a>
+<a class="el" href="classDomain.html">Domain</a>&lt; 3, TargetFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>create_domain</b> () const noexcept override</td></tr>
+<tr class="separator:a643569a1f3417d2169672b1b76f915e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ce83ca8a51fd8c8b5191866de7ae440"><td class="memItemLeft" align="right" valign="top"><a id="a2ce83ca8a51fd8c8b5191866de7ae440"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDomainCreators_1_1Shell.html#a2ce83ca8a51fd8c8b5191866de7ae440">initial_extents</a> () const noexcept override</td></tr>
+<tr class="memdesc:a2ce83ca8a51fd8c8b5191866de7ae440"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain the initial grid extents of the block with the given index. <br /></td></tr>
+<tr class="separator:a2ce83ca8a51fd8c8b5191866de7ae440"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ccf593bb4e3e680900bde1cc8454a1"><td class="memItemLeft" align="right" valign="top"><a id="ae6ccf593bb4e3e680900bde1cc8454a1"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDomainCreators_1_1Shell.html#ae6ccf593bb4e3e680900bde1cc8454a1">initial_refinement_levels</a> () const noexcept override</td></tr>
+<tr class="memdesc:ae6ccf593bb4e3e680900bde1cc8454a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain the initial refinement levels of the blocks. <br /></td></tr>
+<tr class="separator:ae6ccf593bb4e3e680900bde1cc8454a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classDomainCreator"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classDomainCreator')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classDomainCreator.html">DomainCreator&lt; 3, TargetFrame &gt;</a></td></tr>
+<tr class="memitem:ae7a33f8d9db7354336014c17c9003270 inherit pub_methods_classDomainCreator"><td class="memItemLeft" align="right" valign="top"><a id="ae7a33f8d9db7354336014c17c9003270"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>DomainCreator</b> (const <a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;)=delete</td></tr>
+<tr class="separator:ae7a33f8d9db7354336014c17c9003270 inherit pub_methods_classDomainCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76a810e17327119f20e9ead4d1555bf4 inherit pub_methods_classDomainCreator"><td class="memItemLeft" align="right" valign="top"><a id="a76a810e17327119f20e9ead4d1555bf4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>DomainCreator</b> (<a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a76a810e17327119f20e9ead4d1555bf4 inherit pub_methods_classDomainCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c810803f65f3af363ec21ac11bd9afd inherit pub_methods_classDomainCreator"><td class="memItemLeft" align="right" valign="top"><a id="a2c810803f65f3af363ec21ac11bd9afd"></a>
+<a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;)=delete</td></tr>
+<tr class="separator:a2c810803f65f3af363ec21ac11bd9afd inherit pub_methods_classDomainCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bd4d9eb3172c78d49ccdb46fa703f58 inherit pub_methods_classDomainCreator"><td class="memItemLeft" align="right" valign="top"><a id="a5bd4d9eb3172c78d49ccdb46fa703f58"></a>
+<a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a5bd4d9eb3172c78d49ccdb46fa703f58 inherit pub_methods_classDomainCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a96366d017a4354a4f5d7744a0a5656db"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a>&#160;</td><td class="memItemRight" valign="bottom"><b>help</b></td></tr>
+<tr class="separator:a96366d017a4354a4f5d7744a0a5656db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename TargetFrame&gt;<br />
+class DomainCreators::Shell&lt; TargetFrame &gt;</h3>
+
+<p>Creates a 3D <a class="el" href="classDomain.html" title="A wrapper around a vector of Blocks that represent the computational domain. ">Domain</a> in the shape of a hollow spherical shell consisting of six wedges. </p>
+<div class="image">
+<img src="WedgeOrientations.png" alt="WedgeOrientations.png"/>
+<div class="caption">
+The orientation of each wedge in Shell.</div></div>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a96366d017a4354a4f5d7744a0a5656db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96366d017a4354a4f5d7744a0a5656db">&#9670;&nbsp;</a></span>help</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TargetFrame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a> <a class="el" href="classDomainCreators_1_1Shell.html">DomainCreators::Shell</a>&lt; TargetFrame &gt;::help</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div><div class="line">      <span class="stringliteral">&quot;Creates a 3D spherical shell with 6 Blocks. `UseEquiangularMap` has\n&quot;</span></div><div class="line">      <span class="stringliteral">&quot;a default value of `true` because there is no central Block in this\n&quot;</span></div><div class="line">      <span class="stringliteral">&quot;domain. Equidistant coordinates are best suited to Blocks with\n&quot;</span></div><div class="line">      <span class="stringliteral">&quot;Cartesian grids. However, the option is allowed for testing &quot;</span></div><div class="line">      <span class="stringliteral">&quot;purposes. The `aspect_ratio` moves grid points on the shell towards\n&quot;</span></div><div class="line">      <span class="stringliteral">&quot;the equator for values greater than 1.0, and towards the poles for\n&quot;</span></div><div class="line">      <span class="stringliteral">&quot;positive values less than 1.0.&quot;</span>}</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Domain/DomainCreators/<a class="el" href="Shell_8hpp_source.html">Shell.hpp</a></li>
+<li>src/Domain/DomainCreators/Shell.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

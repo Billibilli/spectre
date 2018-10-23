@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/Systems/GrMhd/ValenciaDivClean/Characteristics.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">Evolution/Systems/GrMhd/ValenciaDivClean</a> - Characteristics.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntryLo">25.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/DataBox/DataBoxTag.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Domain/FaceNormal.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Evolution/Systems/GrMhd/ValenciaDivClean/Tags.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;PointwiseFunctions/GeneralRelativity/TagsDeclarations.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      14 </span>            : #include &quot;PointwiseFunctions/Hydro/EquationsOfState/EquationOfState.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      15 </span>            : #include &quot;PointwiseFunctions/Hydro/TagsDeclarations.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : // IWYU pragma: no_include &quot;PointwiseFunctions/GeneralRelativity/Tags.hpp&quot;
+<span class="lineNum">      19 </span>            : // IWYU pragma: no_include &quot;PointwiseFunctions/Hydro/Tags.hpp&quot;
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : /// \cond
+<span class="lineNum">      22 </span>            : class DataVector;
+<span class="lineNum">      23 </span>            : namespace Tags {
+<span class="lineNum">      24 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">      25 </span>            : struct Normalized;
+<span class="lineNum">      26 </span>            : }  // namespace Tags
+<span class="lineNum">      27 </span>            : /// \endcond
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : // IWYU pragma:  no_forward_declare EquationsOfState::EquationOfState
+<span class="lineNum">      30 </span>            : // IWYU pragma:  no_forward_declare EquationsOfSTate::IdealFluid
+<span class="lineNum">      31 </span>            : // IWYU pragma: no_forward_declare Tensor
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : namespace grmhd {
+<span class="lineNum">      34 </span>            : namespace ValenciaDivClean {
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : /*!
+<span class="lineNum">      37 </span>            :  * \brief Compute the characteristic speeds for the Valencia formulation of
+<span class="lineNum">      38 </span>            :  * GRMHD with divergence cleaning.
+<span class="lineNum">      39 </span>            :  *
+<span class="lineNum">      40 </span>            :  * Obtaining the exact form of the characteristic speeds involves the solution
+<span class="lineNum">      41 </span>            :  * of a nontrivial quartic equation for the fast and slow modes. Here we make
+<span class="lineNum">      42 </span>            :  * use of a common approximation in the literature (e.g. \ref char_ref &quot;[1]&quot;)
+<span class="lineNum">      43 </span>            :  * where the resulting characteristic speeds are analogous to those of the
+<span class="lineNum">      44 </span>            :  * Valencia formulation of the 3-D relativistic Euler system
+<span class="lineNum">      45 </span>            :  * (see RelativisticEuler::Valencia::characteristic_speeds),
+<span class="lineNum">      46 </span>            :  *
+<span class="lineNum">      47 </span>            :  * \f{align*}
+<span class="lineNum">      48 </span>            :  * \lambda_2 &amp;= \alpha \Lambda^- - \beta_n,\\
+<span class="lineNum">      49 </span>            :  * \lambda_{3, 4, 5, 6, 7} &amp;= \alpha v_n - \beta_n,\\
+<span class="lineNum">      50 </span>            :  * \lambda_{8} &amp;= \alpha \Lambda^+ - \beta_n,
+<span class="lineNum">      51 </span>            :  * \f}
+<span class="lineNum">      52 </span>            :  *
+<span class="lineNum">      53 </span>            :  * with the substitution
+<span class="lineNum">      54 </span>            :  *
+<span class="lineNum">      55 </span>            :  * \f{align*}
+<span class="lineNum">      56 </span>            :  * c_s^2 \longrightarrow c_s^2 + v_A^2(1 - c_s^2)
+<span class="lineNum">      57 </span>            :  * \f}
+<span class="lineNum">      58 </span>            :  *
+<span class="lineNum">      59 </span>            :  * in the definition of \f$\Lambda^\pm\f$. Here \f$v_A\f$ is the Alfvén
+<span class="lineNum">      60 </span>            :  * speed. In addition, two more speeds corresponding to the divergence cleaning
+<span class="lineNum">      61 </span>            :  * mode and the longitudinal magnetic field are added,
+<span class="lineNum">      62 </span>            :  *
+<span class="lineNum">      63 </span>            :  * \f{align*}
+<span class="lineNum">      64 </span>            :  * \lambda_1 = -\alpha - \beta_n,\\
+<span class="lineNum">      65 </span>            :  * \lambda_9 = \alpha - \beta_n.
+<span class="lineNum">      66 </span>            :  * \f}
+<span class="lineNum">      67 </span>            :  *
+<span class="lineNum">      68 </span>            :  * \note The ordering assumed here is such that, in the Newtonian limit,
+<span class="lineNum">      69 </span>            :  * the exact expressions for \f$\lambda_{2, 8}\f$, \f$\lambda_{3, 7}\f$,
+<span class="lineNum">      70 </span>            :  * and \f$\lambda_{4, 6}\f$ should reduce to the
+<span class="lineNum">      71 </span>            :  * corresponding fast modes, Alfvén modes, and slow modes, respectively.
+<span class="lineNum">      72 </span>            :  * See \ref mhd_ref &quot;[2]&quot; for a detailed description of the hyperbolic
+<span class="lineNum">      73 </span>            :  * characterization of Newtonian MHD.  In terms of the primitive variables:
+<span class="lineNum">      74 </span>            :  *
+<span class="lineNum">      75 </span>            :  * \f{align*}
+<span class="lineNum">      76 </span>            :  * v^2 &amp;= \gamma_{mn} v^m v^n \\
+<span class="lineNum">      77 </span>            :  * c_s^2 &amp;= \frac{1}{h} \left[ \left( \frac{\partial p}{\partial \rho}
+<span class="lineNum">      78 </span>            :  * \right)_\epsilon +
+<span class="lineNum">      79 </span>            :  * \frac{p}{\rho^2} \left(\frac{\partial p}{\partial \epsilon}
+<span class="lineNum">      80 </span>            :  * \right)_\rho \right] \\
+<span class="lineNum">      81 </span>            :  * v_A^2 &amp;= \frac{b^2}{b^2 + \rho h} \\
+<span class="lineNum">      82 </span>            :  * b^2 &amp;= \frac{1}{W^2} \gamma_{mn} B^m B^n + \left( \gamma_{mn} B^m v^n
+<span class="lineNum">      83 </span>            :  * \right)^2
+<span class="lineNum">      84 </span>            :  * \f}
+<span class="lineNum">      85 </span>            :  *
+<span class="lineNum">      86 </span>            :  * where \f$\gamma_{mn}\f$ is the spatial metric, \f$\rho\f$ is the rest
+<span class="lineNum">      87 </span>            :  * mass density, \f$W = 1/\sqrt{1-v_i v^i}\f$ is the Lorentz factor, \f$h = 1 +
+<span class="lineNum">      88 </span>            :  * \epsilon + \frac{p}{\rho}\f$ is the specific enthalpy, \f$v^i\f$ is the
+<span class="lineNum">      89 </span>            :  * spatial velocity, \f$\epsilon\f$ is the specific internal energy, \f$p\f$ is
+<span class="lineNum">      90 </span>            :  * the pressure, and \f$B^i\f$ is the spatial magnetic field measured by an
+<span class="lineNum">      91 </span>            :  * Eulerian observer.
+<span class="lineNum">      92 </span>            : 
+<span class="lineNum">      93 </span>            :  * \anchor char_ref [1] C.F Gammie, J.C McKinney, G. Tóth, HARM: A Numerical
+<span class="lineNum">      94 </span>            :  * Scheme for General Relativistic Magnetohydrodynamics, ApJ.
+<span class="lineNum">      95 </span>            :  * [589 (2003) 444](http://iopscience.iop.org/article/10.1086/374594/meta)
+<span class="lineNum">      96 </span>            :  *
+<span class="lineNum">      97 </span>            :  * \anchor mhd_ref [2] A. Dedner et al., Hyperbolic Divergence Cleaning for the
+<span class="lineNum">      98 </span>            :  * MHD Equations, J. Comput. Phys.
+<span class="lineNum">      99 </span>            :  * [175 (2002) 645](https://doi.org/10.1006/jcph.2001.6961)
+<span class="lineNum">     100 </span>            :  */
+<span class="lineNum">     101 </span>            : template &lt;size_t ThermodynamicDim&gt;
+<span class="lineNum">     102 </span><span class="lineCov">          1 : std::array&lt;DataVector, 9&gt; characteristic_speeds(</span>
+<span class="lineNum">     103 </span>            :     const Scalar&lt;DataVector&gt;&amp; rest_mass_density,
+<span class="lineNum">     104 </span>            :     const Scalar&lt;DataVector&gt;&amp; specific_internal_energy,
+<span class="lineNum">     105 </span>            :     const Scalar&lt;DataVector&gt;&amp; specific_enthalpy,
+<span class="lineNum">     106 </span>            :     const tnsr::I&lt;DataVector, 3, Frame::Inertial&gt;&amp; spatial_velocity,
+<span class="lineNum">     107 </span>            :     const Scalar&lt;DataVector&gt;&amp; lorentz_factor,
+<span class="lineNum">     108 </span>            :     const tnsr::I&lt;DataVector, 3, Frame::Inertial&gt;&amp; magnetic_field,
+<span class="lineNum">     109 </span>            :     const Scalar&lt;DataVector&gt;&amp; lapse, const tnsr::I&lt;DataVector, 3&gt;&amp; shift,
+<span class="lineNum">     110 </span>            :     const tnsr::ii&lt;DataVector, 3, Frame::Inertial&gt;&amp; spatial_metric,
+<span class="lineNum">     111 </span>            :     const tnsr::i&lt;DataVector, 3&gt;&amp; unit_normal,
+<span class="lineNum">     112 </span>            :     const EquationsOfState::EquationOfState&lt;true, ThermodynamicDim&gt;&amp;
+<span class="lineNum">     113 </span>            :         equation_of_state) noexcept;
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span>            : /// \brief Compute the characteristic speeds for the Valencia formulation of
+<span class="lineNum">     116 </span>            : /// GRMHD with divergence cleaning.
+<span class="lineNum">     117 </span>            : ///
+<span class="lineNum">     118 </span>            : /// \details see grmhd::ValenciaDivClean::characteristic_speeds
+<span class="lineNum">     119 </span>            : template &lt;size_t ThermodynamicDim&gt;
+<span class="lineNum">     120 </span>            : struct ComputeCharacteristicSpeeds : Tags::CharacteristicSpeeds,
+<span class="lineNum">     121 </span><span class="lineCov">          1 :                                      db::ComputeTag {</span>
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :   using argument_tags = tmpl::list&lt;</span>
+<span class="lineNum">     123 </span>            :       hydro::Tags::RestMassDensity&lt;DataVector&gt;,
+<span class="lineNum">     124 </span>            :       hydro::Tags::SpecificInternalEnergy&lt;DataVector&gt;,
+<span class="lineNum">     125 </span>            :       hydro::Tags::SpecificEnthalpy&lt;DataVector&gt;,
+<span class="lineNum">     126 </span>            :       hydro::Tags::SpatialVelocity&lt;DataVector, 3&gt;,
+<span class="lineNum">     127 </span>            :       hydro::Tags::LorentzFactor&lt;DataVector&gt;,
+<span class="lineNum">     128 </span>            :       hydro::Tags::MagneticField&lt;DataVector, 3&gt;, gr::Tags::Lapse&lt;&gt;,
+<span class="lineNum">     129 </span>            :       gr::Tags::Shift&lt;3&gt;, gr::Tags::SpatialMetric&lt;3&gt;,
+<span class="lineNum">     130 </span>            :       ::Tags::Normalized&lt;::Tags::UnnormalizedFaceNormal&lt;3&gt;&gt;,
+<span class="lineNum">     131 </span>            :       hydro::Tags::EquationOfState&lt;EquationsOfState::IdealFluid&lt;true&gt;&gt;&gt;;
+<span class="lineNum">     132 </span>            : 
+<span class="lineNum">     133 </span><span class="lineNoCov">          0 :   using volume_tags = tmpl::list&lt;</span>
+<span class="lineNum">     134 </span>            :       hydro::Tags::EquationOfState&lt;EquationsOfState::IdealFluid&lt;true&gt;&gt;&gt;;
+<span class="lineNum">     135 </span>            : 
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :   static constexpr auto function(</span>
+<span class="lineNum">     137 </span>            :       const Scalar&lt;DataVector&gt;&amp; rest_mass_density,
+<span class="lineNum">     138 </span>            :       const Scalar&lt;DataVector&gt;&amp; specific_internal_energy,
+<span class="lineNum">     139 </span>            :       const Scalar&lt;DataVector&gt;&amp; specific_enthalpy,
+<span class="lineNum">     140 </span>            :       const tnsr::I&lt;DataVector, 3, Frame::Inertial&gt;&amp; spatial_velocity,
+<span class="lineNum">     141 </span>            :       const Scalar&lt;DataVector&gt;&amp; lorentz_factor,
+<span class="lineNum">     142 </span>            :       const tnsr::I&lt;DataVector, 3, Frame::Inertial&gt;&amp; magnetic_field,
+<span class="lineNum">     143 </span>            :       const Scalar&lt;DataVector&gt;&amp; lapse, const tnsr::I&lt;DataVector, 3&gt;&amp; shift,
+<span class="lineNum">     144 </span>            :       const tnsr::ii&lt;DataVector, 3, Frame::Inertial&gt;&amp; spatial_metric,
+<span class="lineNum">     145 </span>            :       const tnsr::i&lt;DataVector, 3&gt;&amp; unit_normal,
+<span class="lineNum">     146 </span>            :       const EquationsOfState::EquationOfState&lt;true, ThermodynamicDim&gt;&amp;
+<span class="lineNum">     147 </span>            :           equation_of_state) noexcept {
+<span class="lineNum">     148 </span>            :     return characteristic_speeds&lt;ThermodynamicDim&gt;(
+<span class="lineNum">     149 </span>            :         rest_mass_density, specific_internal_energy, specific_enthalpy,
+<span class="lineNum">     150 </span>            :         spatial_velocity, lorentz_factor, magnetic_field, lapse, shift,
+<span class="lineNum">     151 </span>            :         spatial_metric, unit_normal, equation_of_state);
+<span class="lineNum">     152 </span>            :   }
+<span class="lineNum">     153 </span>            : };
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span><span class="lineNoCov">          0 : struct ComputeLargestCharacteristicSpeed {</span>
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :   using argument_tags = tmpl::list&lt;&gt;;</span>
+<span class="lineNum">     157 </span><span class="lineNoCov">          0 :   static double apply() noexcept { return 1.0; }</span>
+<span class="lineNum">     158 </span>            : };
+<span class="lineNum">     159 </span>            : 
+<span class="lineNum">     160 </span>            : }  // namespace ValenciaDivClean
+<span class="lineNum">     161 </span>            : }  // namespace grmhd
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

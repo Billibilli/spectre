@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - PointwiseFunctions/AnalyticSolutions/NewtonianEuler/IsentropicVortex.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">PointwiseFunctions/AnalyticSolutions/NewtonianEuler</a> - IsentropicVortex.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntry">48</td>
+            <td class="headerCovTableEntryLo">12.5 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;limits&gt;
+<span class="lineNum">       8 </span>            : #include &lt;pup.h&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Evolution/Systems/NewtonianEuler/Tags.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      12 </span>            : #include &quot;Options/Options.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/MakeArray.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/TaggedTuple.hpp&quot;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : namespace NewtonianEuler {
+<span class="lineNum">      18 </span>            : namespace Solutions {
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : /*!
+<span class="lineNum">      21 </span>            :  * \brief Newtonian isentropic vortex in Cartesian coordinates
+<span class="lineNum">      22 </span>            :  *
+<span class="lineNum">      23 </span>            :  * The analytic solution to the 2-D Newtonian Euler system
+<span class="lineNum">      24 </span>            :  * representing the slow advection of an incompressible, isentropic
+<span class="lineNum">      25 </span>            :  * vortex \ref vortex_ref &quot;[1]&quot;. The initial condition is the superposition of a
+<span class="lineNum">      26 </span>            :  * mean uniform flow with a gaussian-profile vortex. When embedded in
+<span class="lineNum">      27 </span>            :  * 3-D space, the isentropic vortex is still a solution to the corresponding 3-D
+<span class="lineNum">      28 </span>            :  * system if the velocity along the third axis is a constant. In Cartesian
+<span class="lineNum">      29 </span>            :  * coordinates \f$(x, y, z)\f$, and using dimensionless units, the primitive
+<span class="lineNum">      30 </span>            :  * quantities at a given time \f$t\f$ are then
+<span class="lineNum">      31 </span>            :  *
+<span class="lineNum">      32 </span>            :  * \f{align*}
+<span class="lineNum">      33 </span>            :  * \rho &amp;= \left[1 - \dfrac{(\gamma - 1)\beta^2}{8\gamma\pi^2}\exp\left(
+<span class="lineNum">      34 </span>            :  * 1 - r^2\right)\right]^{1/(\gamma - 1)}, \\
+<span class="lineNum">      35 </span>            :  * v_x &amp;= U - \dfrac{\beta\tilde y}{2\pi}\exp\left(\dfrac{1 - r^2}{2}\right),\\
+<span class="lineNum">      36 </span>            :  * v_y &amp;= V + \dfrac{\beta\tilde x}{2\pi}\exp\left(\dfrac{1 - r^2}{2}\right),\\
+<span class="lineNum">      37 </span>            :  * v_z &amp;= W,\\
+<span class="lineNum">      38 </span>            :  * \epsilon &amp;= \frac{\rho^{\gamma - 1}}{\gamma - 1},
+<span class="lineNum">      39 </span>            :  * \f}
+<span class="lineNum">      40 </span>            :  *
+<span class="lineNum">      41 </span>            :  * with
+<span class="lineNum">      42 </span>            :  *
+<span class="lineNum">      43 </span>            :  * \f{align*}
+<span class="lineNum">      44 </span>            :  * r^2 &amp;= {\tilde x}^2 + {\tilde y}^2,\\
+<span class="lineNum">      45 </span>            :  * \tilde x &amp;= x - X_0 - U t,\\
+<span class="lineNum">      46 </span>            :  * \tilde y &amp;= y - Y_0 - V t,
+<span class="lineNum">      47 </span>            :  * \f}
+<span class="lineNum">      48 </span>            :  *
+<span class="lineNum">      49 </span>            :  * where \f$(X_0, Y_0)\f$ is the position of the vortex on the \f$(x, y)\f$
+<span class="lineNum">      50 </span>            :  * plane at \f$t = 0\f$, \f$(U, V, W)\f$ are the components of the mean flow
+<span class="lineNum">      51 </span>            :  * velocity, \f$\beta\f$ is the vortex strength, and \f$\gamma\f$ is the
+<span class="lineNum">      52 </span>            :  * adiabatic index. The pressure \f$p\f$ is then obtained from the dimensionless
+<span class="lineNum">      53 </span>            :  * polytropic relation
+<span class="lineNum">      54 </span>            :  *
+<span class="lineNum">      55 </span>            :  * \f{align*}
+<span class="lineNum">      56 </span>            :  * p = \rho^\gamma.
+<span class="lineNum">      57 </span>            :  * \f}
+<span class="lineNum">      58 </span>            :  *
+<span class="lineNum">      59 </span>            :  * On the other hand, if the velocity along the \f$z-\f$axis is not a constant
+<span class="lineNum">      60 </span>            :  * but a function of the \f$z\f$ coordinate, the resulting modified isentropic
+<span class="lineNum">      61 </span>            :  * vortex is still a solution to the Newtonian Euler system, but with source
+<span class="lineNum">      62 </span>            :  * terms that are proportional to \f$dv_z/dz\f$. (See
+<span class="lineNum">      63 </span>            :  * NewtonianEuler::Sources::IsentropicVortexSource.) For testing purposes,
+<span class="lineNum">      64 </span>            :  * we choose to write the velocity as a uniform field plus a periodic
+<span class="lineNum">      65 </span>            :  * perturbation,
+<span class="lineNum">      66 </span>            :  *
+<span class="lineNum">      67 </span>            :  * \f{align*}
+<span class="lineNum">      68 </span>            :  * v_z(z) = W + \epsilon \sin{z},
+<span class="lineNum">      69 </span>            :  * \f}
+<span class="lineNum">      70 </span>            :  *
+<span class="lineNum">      71 </span>            :  * where \f$\epsilon\f$ is the amplitude of the perturbation. The resulting
+<span class="lineNum">      72 </span>            :  * source for the Newtonian Euler system will then be proportional to
+<span class="lineNum">      73 </span>            :  * \f$\epsilon \cos{z}\f$.
+<span class="lineNum">      74 </span>            :  *
+<span class="lineNum">      75 </span>            :  * \anchor vortex_ref [1] H.C Yee, N.D Sandham, M.J Djomehri, Low-dissipative
+<span class="lineNum">      76 </span>            :  * high-order shock-capturing methods using characteristic-based filters, J.
+<span class="lineNum">      77 </span>            :  * Comput. Phys. [150 (1999) 199](http://dx.doi.org/10.1006/jcph.1998.6177)
+<span class="lineNum">      78 </span>            :  */
+<span class="lineNum">      79 </span><span class="lineCov">          1 : class IsentropicVortex {</span>
+<span class="lineNum">      80 </span>            :  public:
+<span class="lineNum">      81 </span>            :   /// The adiabatic index of the fluid.
+<span class="lineNum">      82 </span><span class="lineCov">          1 :   struct AdiabaticIndex {</span>
+<span class="lineNum">      83 </span><span class="lineNoCov">          0 :     using type = double;</span>
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {&quot;The adiabatic index of the fluid.&quot;};</span>
+<span class="lineNum">      85 </span>            :     // Note: bounds only valid for an ideal gas.
+<span class="lineNum">      86 </span><span class="lineNoCov">          0 :     static type lower_bound() { return 1.0; }</span>
+<span class="lineNum">      87 </span><span class="lineNoCov">          0 :     static type upper_bound() { return 2.0; }</span>
+<span class="lineNum">      88 </span>            :   };
+<span class="lineNum">      89 </span>            : 
+<span class="lineNum">      90 </span>            :   /// The position of the center of the vortex at \f$t = 0\f$
+<span class="lineNum">      91 </span><span class="lineCov">          1 :   struct Center {</span>
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 :     using type = std::array&lt;double, 3&gt;;</span>
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">      94 </span>            :         &quot;The coordinates of the center of the vortex at t = 0.&quot;};
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :     static type default_value() { return {{0.0, 0.0, 0.0}}; }</span>
+<span class="lineNum">      96 </span>            :   };
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span>            :   /// The mean flow velocity.
+<span class="lineNum">      99 </span><span class="lineCov">          1 :   struct MeanVelocity {</span>
+<span class="lineNum">     100 </span><span class="lineNoCov">          0 :     using type = std::array&lt;double, 3&gt;;</span>
+<span class="lineNum">     101 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {&quot;The mean flow velocity.&quot;};</span>
+<span class="lineNum">     102 </span>            :   };
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span>            :   /// The amplitude of the perturbation generating a source term.
+<span class="lineNum">     105 </span><span class="lineCov">          1 :   struct PerturbAmplitude {</span>
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 :     using type = double;</span>
+<span class="lineNum">     107 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">     108 </span>            :         &quot;The amplitude of the perturbation producing sources.&quot;};
+<span class="lineNum">     109 </span>            :   };
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            :   /// The strength of the vortex.
+<span class="lineNum">     112 </span><span class="lineCov">          1 :   struct Strength {</span>
+<span class="lineNum">     113 </span><span class="lineNoCov">          0 :     using type = double;</span>
+<span class="lineNum">     114 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {&quot;The strength of the vortex.&quot;};</span>
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 :     static type lower_bound() { return 0.0; }</span>
+<span class="lineNum">     116 </span>            :   };
+<span class="lineNum">     117 </span>            : 
+<span class="lineNum">     118 </span><span class="lineNoCov">          0 :   using options = tmpl::list&lt;AdiabaticIndex, Center, MeanVelocity,</span>
+<span class="lineNum">     119 </span>            :                              PerturbAmplitude, Strength&gt;;
+<span class="lineNum">     120 </span><span class="lineNoCov">          0 :   static constexpr OptionString help = {&quot;Newtonian Isentropic Vortex.&quot;};</span>
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :   IsentropicVortex() = default;</span>
+<span class="lineNum">     123 </span><span class="lineNoCov">          0 :   IsentropicVortex(const IsentropicVortex&amp; /*rhs*/) = delete;</span>
+<span class="lineNum">     124 </span><span class="lineNoCov">          0 :   IsentropicVortex&amp; operator=(const IsentropicVortex&amp; /*rhs*/) = delete;</span>
+<span class="lineNum">     125 </span><span class="lineNoCov">          0 :   IsentropicVortex(IsentropicVortex&amp;&amp; /*rhs*/) noexcept = default;</span>
+<span class="lineNum">     126 </span><span class="lineNoCov">          0 :   IsentropicVortex&amp; operator=(IsentropicVortex&amp;&amp; /*rhs*/) noexcept = default;</span>
+<span class="lineNum">     127 </span><span class="lineNoCov">          0 :   ~IsentropicVortex() = default;</span>
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span><span class="lineNoCov">          0 :   IsentropicVortex(double adiabatic_index, Center::type center,</span>
+<span class="lineNum">     130 </span>            :                    MeanVelocity::type mean_velocity,
+<span class="lineNum">     131 </span>            :                    double perturbation_amplitude, double strength);
+<span class="lineNum">     132 </span>            : 
+<span class="lineNum">     133 </span><span class="lineNoCov">          0 :   explicit IsentropicVortex(CkMigrateMessage* /*unused*/) noexcept {}</span>
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :   using primitive_t =</span>
+<span class="lineNum">     137 </span>            :       tmpl::list&lt;Tags::MassDensity&lt;DataType&gt;, Tags::Velocity&lt;DataType, 3&gt;,
+<span class="lineNum">     138 </span>            :                  Tags::SpecificInternalEnergy&lt;DataType&gt;&gt;;
+<span class="lineNum">     139 </span>            : 
+<span class="lineNum">     140 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     141 </span><span class="lineNoCov">          0 :   using conservative_t = tmpl::list&lt;Tags::MassDensity&lt;DataType&gt;,</span>
+<span class="lineNum">     142 </span>            :                                     Tags::MomentumDensity&lt;DataType, 3&gt;,
+<span class="lineNum">     143 </span>            :                                     Tags::EnergyDensity&lt;DataType&gt;&gt;;
+<span class="lineNum">     144 </span>            : 
+<span class="lineNum">     145 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     146 </span><span class="lineNoCov">          0 :   Scalar&lt;DataType&gt; perturbation(const DataType&amp; coord_z) const noexcept;</span>
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :   tuples::tagged_tuple_from_typelist&lt;primitive_t&lt;DataType&gt;&gt; primitive_variables(</span>
+<span class="lineNum">     150 </span>            :       const tnsr::I&lt;DataType, 3&gt;&amp; x, double t) const noexcept;
+<span class="lineNum">     151 </span>            : 
+<span class="lineNum">     152 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     153 </span>            :   tuples::tagged_tuple_from_typelist&lt;conservative_t&lt;DataType&gt;&gt;
+<span class="lineNum">     154 </span><span class="lineNoCov">          0 :   conservative_variables(const tnsr::I&lt;DataType, 3&gt;&amp; x, double t) const</span>
+<span class="lineNum">     155 </span>            :       noexcept;
+<span class="lineNum">     156 </span>            : 
+<span class="lineNum">     157 </span>            :   // clang-tidy: no runtime references
+<span class="lineNum">     158 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; /*p*/) noexcept;  //  NOLINT</span>
+<span class="lineNum">     159 </span>            : 
+<span class="lineNum">     160 </span><span class="lineNoCov">          0 :   constexpr double adiabatic_index() const noexcept { return adiabatic_index_; }</span>
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :   constexpr const Center::type&amp; center() const noexcept { return center_; }</span>
+<span class="lineNum">     162 </span><span class="lineNoCov">          0 :   constexpr const MeanVelocity::type&amp; mean_velocity() const noexcept {</span>
+<span class="lineNum">     163 </span>            :     return mean_velocity_;
+<span class="lineNum">     164 </span>            :   }
+<span class="lineNum">     165 </span><span class="lineNoCov">          0 :   constexpr double perturbation_amplitude() const noexcept {</span>
+<span class="lineNum">     166 </span>            :     return perturbation_amplitude_;
+<span class="lineNum">     167 </span>            :   }
+<span class="lineNum">     168 </span><span class="lineNoCov">          0 :   constexpr double strength() const noexcept { return strength_; }</span>
+<span class="lineNum">     169 </span>            : 
+<span class="lineNum">     170 </span>            :  private:
+<span class="lineNum">     171 </span><span class="lineNoCov">          0 :   double adiabatic_index_ = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
+<span class="lineNum">     172 </span><span class="lineNoCov">          0 :   Center::type center_ = {{0.0, 0.0, 0.0}};</span>
+<span class="lineNum">     173 </span><span class="lineNoCov">          0 :   MeanVelocity::type mean_velocity_ =</span>
+<span class="lineNum">     174 </span>            :       make_array&lt;3&gt;(std::numeric_limits&lt;double&gt;::signaling_NaN());
+<span class="lineNum">     175 </span><span class="lineNoCov">          0 :   double perturbation_amplitude_ = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
+<span class="lineNum">     176 </span><span class="lineNoCov">          0 :   double strength_ = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
+<span class="lineNum">     177 </span>            : };
+<span class="lineNum">     178 </span>            : 
+<span class="lineNum">     179 </span><span class="lineNoCov">          0 : inline constexpr bool operator==(const IsentropicVortex&amp; lhs,</span>
+<span class="lineNum">     180 </span>            :                                  const IsentropicVortex&amp; rhs) noexcept {
+<span class="lineNum">     181 </span>            :   return lhs.adiabatic_index() == rhs.adiabatic_index() and
+<span class="lineNum">     182 </span>            :          lhs.center() == rhs.center() and
+<span class="lineNum">     183 </span>            :          lhs.mean_velocity() == rhs.mean_velocity() and
+<span class="lineNum">     184 </span>            :          lhs.perturbation_amplitude() == rhs.perturbation_amplitude() and
+<span class="lineNum">     185 </span>            :          lhs.strength() == rhs.strength();
+<span class="lineNum">     186 </span>            : }
+<span class="lineNum">     187 </span>            : 
+<span class="lineNum">     188 </span><span class="lineNoCov">          0 : inline constexpr bool operator!=(const IsentropicVortex&amp; lhs,</span>
+<span class="lineNum">     189 </span>            :                                  const IsentropicVortex&amp; rhs) noexcept {
+<span class="lineNum">     190 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     191 </span>            : }
+<span class="lineNum">     192 </span>            : 
+<span class="lineNum">     193 </span>            : }  // namespace Solutions
+<span class="lineNum">     194 </span>            : }  // namespace NewtonianEuler
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

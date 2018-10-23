@@ -1,0 +1,344 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - IO/Observer/ReductionActions.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">IO/Observer</a> - ReductionActions.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryLo">40.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : #include &lt;string&gt;
+<span class="lineNum">       8 </span>            : #include &lt;tuple&gt;
+<span class="lineNum">       9 </span>            : #include &lt;unordered_map&gt;
+<span class="lineNum">      10 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      11 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : #include &quot;DataStructures/DataBox/DataBox.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;IO/H5/AccessType.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;IO/H5/Dat.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;IO/H5/File.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;IO/Observer/ArrayComponentId.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;IO/Observer/ObservationId.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;IO/Observer/Tags.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Parallel/ConstGlobalCache.hpp&quot;
+<span class="lineNum">      22 </span>            : #include &quot;Parallel/Info.hpp&quot;
+<span class="lineNum">      23 </span>            : #include &quot;Parallel/NodeLock.hpp&quot;
+<span class="lineNum">      24 </span>            : #include &quot;Parallel/Printf.hpp&quot;
+<span class="lineNum">      25 </span>            : #include &quot;Parallel/Reduction.hpp&quot;
+<span class="lineNum">      26 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      27 </span>            : #include &quot;Utilities/MakeString.hpp&quot;
+<span class="lineNum">      28 </span>            : #include &quot;Utilities/Requires.hpp&quot;
+<span class="lineNum">      29 </span>            : #include &quot;Utilities/StdHelpers.hpp&quot;
+<span class="lineNum">      30 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      31 </span>            : #include &quot;Utilities/TaggedTuple.hpp&quot;
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : namespace observers {
+<span class="lineNum">      34 </span>            : namespace ThreadedActions {
+<span class="lineNum">      35 </span>            : /// \cond
+<span class="lineNum">      36 </span>            : struct WriteReductionData;
+<span class="lineNum">      37 </span>            : /// \endcond
+<span class="lineNum">      38 </span>            : }  // namespace ThreadedActions
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            : namespace Actions {
+<span class="lineNum">      41 </span>            : /// \cond
+<span class="lineNum">      42 </span>            : struct ContributeReductionDataToWriter;
+<span class="lineNum">      43 </span>            : /// \endcond
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            : /*!
+<span class="lineNum">      46 </span>            :  * \ingroup ObserverGroup
+<span class="lineNum">      47 </span>            :  * \brief Send reduction data to the observer group.
+<span class="lineNum">      48 </span>            :  *
+<span class="lineNum">      49 </span>            :  * Once everything at a specific `ObservationId` has been contributed to the
+<span class="lineNum">      50 </span>            :  * reduction, the groups reduce to their local nodegroup.
+<span class="lineNum">      51 </span>            :  */
+<span class="lineNum">      52 </span><span class="lineCov">          1 : struct ContributeReductionData {</span>
+<span class="lineNum">      53 </span>            :   template &lt;typename... DbTags, typename... InboxTags, typename Metavariables,
+<span class="lineNum">      54 </span>            :             typename ArrayIndex, typename ActionList,
+<span class="lineNum">      55 </span>            :             typename ParallelComponent, typename... Ts,
+<span class="lineNum">      56 </span>            :             Requires&lt;sizeof...(DbTags) != 0&gt; = nullptr&gt;
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :   static auto apply(db::DataBox&lt;tmpl::list&lt;DbTags...&gt;&gt;&amp; box,</span>
+<span class="lineNum">      58 </span>            :                     const tuples::TaggedTuple&lt;InboxTags...&gt;&amp; /*inboxes*/,
+<span class="lineNum">      59 </span>            :                     Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; cache,
+<span class="lineNum">      60 </span>            :                     const ArrayIndex&amp; /*array_index*/,
+<span class="lineNum">      61 </span>            :                     const ActionList /*meta*/,
+<span class="lineNum">      62 </span>            :                     const ParallelComponent* const /*meta*/,
+<span class="lineNum">      63 </span>            :                     const observers::ObservationId&amp; observation_id,
+<span class="lineNum">      64 </span>            :                     const std::vector&lt;std::string&gt;&amp; reduction_names,
+<span class="lineNum">      65 </span>            :                     Parallel::ReductionData&lt;Ts...&gt;&amp;&amp; reduction_data) noexcept {
+<span class="lineNum">      66 </span>            :     db::mutate&lt;Tags::ReductionData&lt;Ts...&gt;, Tags::ReductionDataNames&lt;Ts...&gt;,
+<span class="lineNum">      67 </span>            :                Tags::ReductionObserversContributed&gt;(
+<span class="lineNum">      68 </span>            :         make_not_null(&amp;box),
+<span class="lineNum">      69 </span>            :         [
+<span class="lineNum">      70 </span>            :           &amp;observation_id, reduction_data = std::move(reduction_data),
+<span class="lineNum">      71 </span>            :           &amp;reduction_names, &amp;cache
+<span class="lineNum">      72 </span>            :         ](const gsl::not_null&lt;std::unordered_map&lt;
+<span class="lineNum">      73 </span>            :               ObservationId, Parallel::ReductionData&lt;Ts...&gt;&gt;*&gt;
+<span class="lineNum">      74 </span>            :               reduction_data_map,
+<span class="lineNum">      75 </span>            :           const gsl::not_null&lt;
+<span class="lineNum">      76 </span>            :               std::unordered_map&lt;ObservationId, std::vector&lt;std::string&gt;&gt;*&gt;
+<span class="lineNum">      77 </span>            :               reduction_names_map,
+<span class="lineNum">      78 </span>            :           const gsl::not_null&lt;
+<span class="lineNum">      79 </span>            :               std::unordered_map&lt;observers::ObservationId, size_t&gt;*&gt;
+<span class="lineNum">      80 </span>            :               reduction_observers_contributed,
+<span class="lineNum">      81 </span>            :           const std::unordered_set&lt;ArrayComponentId&gt;&amp;
+<span class="lineNum">      82 </span>            :               reduction_component_ids) mutable noexcept {
+<span class="lineNum">      83 </span>            :           auto&amp; contribute_count =
+<span class="lineNum">      84 </span>            :               (*reduction_observers_contributed)[observation_id];
+<span class="lineNum">      85 </span>            :           if (reduction_data_map-&gt;count(observation_id) == 0) {
+<span class="lineNum">      86 </span>            :             reduction_data_map-&gt;emplace(observation_id,
+<span class="lineNum">      87 </span>            :                                         std::move(reduction_data));
+<span class="lineNum">      88 </span>            :             reduction_names_map-&gt;emplace(observation_id, reduction_names);
+<span class="lineNum">      89 </span>            :             contribute_count = 1;
+<span class="lineNum">      90 </span>            :           } else {
+<span class="lineNum">      91 </span>            :             ASSERT(
+<span class="lineNum">      92 </span>            :                 reduction_names_map-&gt;at(observation_id) == reduction_names,
+<span class="lineNum">      93 </span>            :                 &quot;Reduction names differ at ObservationId &quot;
+<span class="lineNum">      94 </span>            :                     &lt;&lt; observation_id
+<span class="lineNum">      95 </span>            :                     &lt;&lt; &quot; with the expected names being &quot;
+<span class="lineNum">      96 </span>            :                     // Use MakeString to get around ADL for STL stream operators
+<span class="lineNum">      97 </span>            :                     // (MakeString is in global namespace).
+<span class="lineNum">      98 </span>            :                     &lt;&lt; (MakeString{} &lt;&lt; reduction_names_map-&gt;at(observation_id)
+<span class="lineNum">      99 </span>            :                                      &lt;&lt; &quot; and the received names being &quot;
+<span class="lineNum">     100 </span>            :                                      &lt;&lt; reduction_names));
+<span class="lineNum">     101 </span>            :             reduction_data_map-&gt;operator[](observation_id)
+<span class="lineNum">     102 </span>            :                 .combine(std::move(reduction_data));
+<span class="lineNum">     103 </span>            :             contribute_count++;
+<span class="lineNum">     104 </span>            :           }
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span>            :           // Check if we have received all reduction data from the registered
+<span class="lineNum">     107 </span>            :           // elements. If so, we reduce to the local ObserverWriter nodegroup.
+<span class="lineNum">     108 </span>            :           if (contribute_count == reduction_component_ids.size()) {
+<span class="lineNum">     109 </span>            :             const auto node_id = Parallel::my_node();
+<span class="lineNum">     110 </span>            :             auto&amp; local_writer = *Parallel::get_parallel_component&lt;
+<span class="lineNum">     111 </span>            :                                       ObserverWriter&lt;Metavariables&gt;&gt;(cache)
+<span class="lineNum">     112 </span>            :                                       .ckLocalBranch();
+<span class="lineNum">     113 </span>            :             Parallel::threaded_action&lt;ThreadedActions::WriteReductionData&gt;(
+<span class="lineNum">     114 </span>            :                 local_writer, observation_id,
+<span class="lineNum">     115 </span>            :                 node_id == 0 ? std::move((*reduction_names_map)[observation_id])
+<span class="lineNum">     116 </span>            :                              : std::vector&lt;std::string&gt;{},
+<span class="lineNum">     117 </span>            :                 std::move((*reduction_data_map)[observation_id]));
+<span class="lineNum">     118 </span>            :             reduction_data_map-&gt;erase(observation_id);
+<span class="lineNum">     119 </span>            :             reduction_names_map-&gt;erase(observation_id);
+<span class="lineNum">     120 </span>            :             reduction_observers_contributed-&gt;erase(observation_id);
+<span class="lineNum">     121 </span>            :           }
+<span class="lineNum">     122 </span>            :         },
+<span class="lineNum">     123 </span>            :         db::get&lt;Tags::ReductionArrayComponentIds&gt;(box));
+<span class="lineNum">     124 </span>            :   }
+<span class="lineNum">     125 </span>            : };
+<span class="lineNum">     126 </span>            : }  // namespace Actions
+<span class="lineNum">     127 </span>            : 
+<span class="lineNum">     128 </span>            : namespace ThreadedActions {
+<span class="lineNum">     129 </span>            : /*!
+<span class="lineNum">     130 </span>            :  * \ingroup ObserverGroup
+<span class="lineNum">     131 </span>            :  * \brief Collect the reduction data from the Observer group on the
+<span class="lineNum">     132 </span>            :  * ObserverWriter nodegroup before sending to node 0 for writing to disk.
+<span class="lineNum">     133 </span>            :  *
+<span class="lineNum">     134 </span>            :  * \note This action is also used for writing on node 0.
+<span class="lineNum">     135 </span>            :  */
+<span class="lineNum">     136 </span><span class="lineCov">          1 : struct WriteReductionData {</span>
+<span class="lineNum">     137 </span>            :  private:
+<span class="lineNum">     138 </span>            :   template &lt;typename... Ts, size_t... Is&gt;
+<span class="lineNum">     139 </span><span class="lineNoCov">          0 :   static void write_data(std::vector&lt;std::string&gt;&amp;&amp; legend,</span>
+<span class="lineNum">     140 </span>            :                          std::tuple&lt;Ts...&gt;&amp;&amp; data,
+<span class="lineNum">     141 </span>            :                          const std::string&amp; file_prefix,
+<span class="lineNum">     142 </span>            :                          std::index_sequence&lt;Is...&gt; /*meta*/) noexcept {
+<span class="lineNum">     143 </span>            :     static_assert(sizeof...(Ts) &gt; 0,
+<span class="lineNum">     144 </span>            :                   &quot;Must be reducing at least one piece of data&quot;);
+<span class="lineNum">     145 </span>            :     std::vector&lt;double&gt; data_to_append{
+<span class="lineNum">     146 </span>            :         static_cast&lt;double&gt;(std::get&lt;Is&gt;(data))...};
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            :     h5::H5File&lt;h5::AccessType::ReadWrite&gt; h5file(file_prefix + &quot;.h5&quot;, true);
+<span class="lineNum">     149 </span>            :     constexpr size_t version_number = 0;
+<span class="lineNum">     150 </span>            :     auto&amp; time_series_file = h5file.try_insert&lt;h5::Dat&gt;(
+<span class="lineNum">     151 </span>            :         &quot;/element_data&quot;, std::move(legend), version_number);
+<span class="lineNum">     152 </span>            :     time_series_file.append(data_to_append);
+<span class="lineNum">     153 </span>            :   }
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span>            :  public:
+<span class="lineNum">     156 </span>            :   template &lt;typename... DbTags, typename... InboxTags, typename Metavariables,
+<span class="lineNum">     157 </span>            :             typename ArrayIndex, typename ActionList,
+<span class="lineNum">     158 </span>            :             typename ParallelComponent, typename... ReductionDatums,
+<span class="lineNum">     159 </span>            :             Requires&lt;sizeof...(DbTags) != 0&gt; = nullptr&gt;
+<span class="lineNum">     160 </span><span class="lineNoCov">          0 :   static void apply(db::DataBox&lt;tmpl::list&lt;DbTags...&gt;&gt;&amp; box,</span>
+<span class="lineNum">     161 </span>            :                     tuples::TaggedTuple&lt;InboxTags...&gt;&amp; /*inboxes*/,
+<span class="lineNum">     162 </span>            :                     Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; cache,
+<span class="lineNum">     163 </span>            :                     const ArrayIndex&amp; /*array_index*/,
+<span class="lineNum">     164 </span>            :                     const ActionList /*meta*/,
+<span class="lineNum">     165 </span>            :                     const ParallelComponent* const /*meta*/,
+<span class="lineNum">     166 </span>            :                     const gsl::not_null&lt;CmiNodeLock*&gt; node_lock,
+<span class="lineNum">     167 </span>            :                     const observers::ObservationId&amp; observation_id,
+<span class="lineNum">     168 </span>            :                     std::vector&lt;std::string&gt;&amp;&amp; reduction_names,
+<span class="lineNum">     169 </span>            :                     Parallel::ReductionData&lt;ReductionDatums...&gt;&amp;&amp;
+<span class="lineNum">     170 </span>            :                         in_reduction_data) noexcept {
+<span class="lineNum">     171 </span>            :     CmiNodeLock file_lock;
+<span class="lineNum">     172 </span>            :     bool write_to_disk = false;
+<span class="lineNum">     173 </span>            :     std::vector&lt;std::string&gt; legend{};
+<span class="lineNum">     174 </span>            :     Parallel::lock(node_lock);
+<span class="lineNum">     175 </span>            :     db::mutate&lt;Tags::ReductionData&lt;ReductionDatums...&gt;,
+<span class="lineNum">     176 </span>            :                Tags::ReductionDataNames&lt;ReductionDatums...&gt;,
+<span class="lineNum">     177 </span>            :                Tags::ReductionObserversContributed, Tags::H5FileLock&gt;(
+<span class="lineNum">     178 </span>            :         make_not_null(&amp;box),
+<span class="lineNum">     179 </span>            :         [
+<span class="lineNum">     180 </span>            :           &amp;cache, &amp;file_lock, &amp;in_reduction_data, &amp;legend, &amp;observation_id,
+<span class="lineNum">     181 </span>            :           &amp;reduction_names, &amp;write_to_disk
+<span class="lineNum">     182 </span>            :         ](const gsl::not_null&lt;
+<span class="lineNum">     183 </span>            :               db::item_type&lt;Tags::ReductionData&lt;ReductionDatums...&gt;&gt;*&gt;
+<span class="lineNum">     184 </span>            :               reduction_data,
+<span class="lineNum">     185 </span>            :           const gsl::not_null&lt;
+<span class="lineNum">     186 </span>            :               std::unordered_map&lt;ObservationId, std::vector&lt;std::string&gt;&gt;*&gt;
+<span class="lineNum">     187 </span>            :               reduction_names_map,
+<span class="lineNum">     188 </span>            :           const gsl::not_null&lt;
+<span class="lineNum">     189 </span>            :               std::unordered_map&lt;observers::ObservationId, size_t&gt;*&gt;
+<span class="lineNum">     190 </span>            :               reduction_observers_contributed,
+<span class="lineNum">     191 </span>            :           const gsl::not_null&lt;CmiNodeLock*&gt; reduction_file_lock) noexcept {
+<span class="lineNum">     192 </span>            :           auto&amp; contribute_count =
+<span class="lineNum">     193 </span>            :               (*reduction_observers_contributed)[observation_id];
+<span class="lineNum">     194 </span>            :           const auto node_id = Parallel::my_node();
+<span class="lineNum">     195 </span>            :           const auto number_of_nodes =
+<span class="lineNum">     196 </span>            :               static_cast&lt;size_t&gt;(Parallel::number_of_nodes());
+<span class="lineNum">     197 </span>            :           const auto procs_on_node =
+<span class="lineNum">     198 </span>            :               static_cast&lt;size_t&gt;(Parallel::procs_on_node(node_id));
+<span class="lineNum">     199 </span>            : 
+<span class="lineNum">     200 </span>            :           if (node_id == 0 and not reduction_names.empty()) {
+<span class="lineNum">     201 </span>            :             reduction_names_map-&gt;emplace(observation_id,
+<span class="lineNum">     202 </span>            :                                          std::move(reduction_names));
+<span class="lineNum">     203 </span>            :           }
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span>            :           if (UNLIKELY(procs_on_node == 1 and number_of_nodes == 1)) {
+<span class="lineNum">     206 </span>            :             write_to_disk = true;
+<span class="lineNum">     207 </span>            :             file_lock = *reduction_file_lock;
+<span class="lineNum">     208 </span>            :             legend = std::move(reduction_names_map-&gt;operator[](observation_id));
+<span class="lineNum">     209 </span>            :             reduction_names_map-&gt;erase(observation_id);
+<span class="lineNum">     210 </span>            :           } else if (reduction_data-&gt;count(observation_id) == 0) {
+<span class="lineNum">     211 </span>            :             reduction_data-&gt;operator[](observation_id) =
+<span class="lineNum">     212 </span>            :                 std::move(in_reduction_data);
+<span class="lineNum">     213 </span>            :             contribute_count = 1;
+<span class="lineNum">     214 </span>            :           } else if (contribute_count ==
+<span class="lineNum">     215 </span>            :                      (procs_on_node - 1) + (number_of_nodes - 1)) {
+<span class="lineNum">     216 </span>            :             ASSERT(node_id == 0,
+<span class="lineNum">     217 </span>            :                    &quot;Should only receive additional reduction data on node 0 &quot;
+<span class="lineNum">     218 </span>            :                    &quot;but received it on node &quot;
+<span class="lineNum">     219 </span>            :                        &lt;&lt; node_id);
+<span class="lineNum">     220 </span>            :             // On node 0 we are collecting data from all other nodes so we
+<span class="lineNum">     221 </span>            :             // should get procs_on_node data from the group on our node plus
+<span class="lineNum">     222 </span>            :             // (number_of_nodes - 1) contributions from other nodes.
+<span class="lineNum">     223 </span>            :             in_reduction_data.combine(
+<span class="lineNum">     224 </span>            :                 std::move(reduction_data-&gt;operator[](observation_id)));
+<span class="lineNum">     225 </span>            :             reduction_data-&gt;erase(observation_id);
+<span class="lineNum">     226 </span>            :             reduction_observers_contributed-&gt;erase(observation_id);
+<span class="lineNum">     227 </span>            :             write_to_disk = true;
+<span class="lineNum">     228 </span>            :             file_lock = *reduction_file_lock;
+<span class="lineNum">     229 </span>            :             legend = std::move(reduction_names_map-&gt;operator[](observation_id));
+<span class="lineNum">     230 </span>            :             reduction_names_map-&gt;erase(observation_id);
+<span class="lineNum">     231 </span>            :           } else {
+<span class="lineNum">     232 </span>            :             reduction_data-&gt;at(observation_id)
+<span class="lineNum">     233 </span>            :                 .combine(std::move(in_reduction_data));
+<span class="lineNum">     234 </span>            :             contribute_count++;
+<span class="lineNum">     235 </span>            :           }
+<span class="lineNum">     236 </span>            : 
+<span class="lineNum">     237 </span>            :           // Check if we have received all reduction data from the Observer
+<span class="lineNum">     238 </span>            :           // group. If so we reduce to node 0 for writing to disk.
+<span class="lineNum">     239 </span>            :           if (node_id != 0 and reduction_observers_contributed-&gt;at(
+<span class="lineNum">     240 </span>            :                                    observation_id) == procs_on_node) {
+<span class="lineNum">     241 </span>            :             Parallel::threaded_action&lt;WriteReductionData&gt;(
+<span class="lineNum">     242 </span>            :                 Parallel::get_parallel_component&lt;ObserverWriter&lt;Metavariables&gt;&gt;(
+<span class="lineNum">     243 </span>            :                     cache)[0],
+<span class="lineNum">     244 </span>            :                 observation_id, std::vector&lt;std::string&gt;{},
+<span class="lineNum">     245 </span>            :                 std::move(reduction_data-&gt;operator[](observation_id)));
+<span class="lineNum">     246 </span>            :             reduction_observers_contributed-&gt;erase(observation_id);
+<span class="lineNum">     247 </span>            :             reduction_data-&gt;erase(observation_id);
+<span class="lineNum">     248 </span>            :           }
+<span class="lineNum">     249 </span>            :         });
+<span class="lineNum">     250 </span>            :     Parallel::unlock(node_lock);
+<span class="lineNum">     251 </span>            : 
+<span class="lineNum">     252 </span>            :     if (write_to_disk) {
+<span class="lineNum">     253 </span>            :       Parallel::lock(&amp;file_lock);
+<span class="lineNum">     254 </span>            :       in_reduction_data.finalize();
+<span class="lineNum">     255 </span>            :       WriteReductionData::write_data(
+<span class="lineNum">     256 </span>            :           std::move(legend), std::move(in_reduction_data.data()),
+<span class="lineNum">     257 </span>            :           Parallel::get&lt;OptionTags::ReductionFileName&gt;(cache),
+<span class="lineNum">     258 </span>            :           std::make_index_sequence&lt;sizeof...(ReductionDatums)&gt;{});
+<span class="lineNum">     259 </span>            :       Parallel::unlock(&amp;file_lock);
+<span class="lineNum">     260 </span>            :     }
+<span class="lineNum">     261 </span>            :   }
+<span class="lineNum">     262 </span>            : };
+<span class="lineNum">     263 </span>            : }  // namespace ThreadedActions
+<span class="lineNum">     264 </span>            : }  // namespace observers
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Utilities Directory Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_9aa73582304dae90a1100b0a33d608e3.html">Utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Utilities Directory Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:Blas_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Blas_8hpp.html">Blas.hpp</a> <a href="Blas_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Blas_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares the interfaces for the BLAS used. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Blaze_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Blaze_8hpp.html">Blaze.hpp</a> <a href="Blaze_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Blaze_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Includes Blaze library with specific configs. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:BoostHelpers_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BoostHelpers_8hpp.html">BoostHelpers.hpp</a> <a href="BoostHelpers_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:BoostHelpers_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines helper functions for working with boost. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:CachedFunction_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CachedFunction_8hpp.html">CachedFunction.hpp</a> <a href="CachedFunction_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:CachedFunction_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class <a class="el" href="classCachedFunction.html" title="A function wrapper that caches function values. ">CachedFunction</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ConstantExpressions_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ConstantExpressions_8hpp.html">ConstantExpressions.hpp</a> <a href="ConstantExpressions_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:ConstantExpressions_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define simple functions for constant expressions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:DereferenceWrapper_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DereferenceWrapper_8hpp.html">DereferenceWrapper.hpp</a> <a href="DereferenceWrapper_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:DereferenceWrapper_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines function dereference_wrapper. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:FileSystem_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileSystem_8hpp.html">FileSystem.hpp</a> <a href="FileSystem_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:FileSystem_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares functions to do file system manipulations. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ForceInline_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ForceInline_8hpp.html">ForceInline.hpp</a> <a href="ForceInline_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:ForceInline_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines macro to always inline a function. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Gsl_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Gsl_8hpp.html">Gsl.hpp</a> <a href="Gsl_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Gsl_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines functions and classes from the GSL. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Literals_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Literals_8hpp.html">Literals.hpp</a> <a href="Literals_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Literals_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines useful literals. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:MakeArray_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MakeArray_8hpp.html">MakeArray.hpp</a> <a href="MakeArray_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:MakeArray_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines function make_array. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:MakeWithValue_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MakeWithValue_8hpp.html">MakeWithValue.hpp</a> <a href="MakeWithValue_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:MakeWithValue_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines make_with_value. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:PointerVector_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PointerVector_8hpp.html">PointerVector.hpp</a> <a href="PointerVector_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:PointerVector_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class <a class="el" href="structPointerVector.html" title="A raw pointer endowed with expression template support via the Blaze library. ">PointerVector</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:PrettyType_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrettyType_8hpp.html">PrettyType.hpp</a> <a href="PrettyType_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:PrettyType_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains a <a class="el" href="namespacepretty__type.html" title="Contains all functions that are part of PrettyType, used for printing types in a pretty manner...">pretty_type</a> library to write types in a "pretty" format. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Requires_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Requires_8hpp.html">Requires.hpp</a> <a href="Requires_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Requires_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the type alias Requires. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Spherepack_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Spherepack_8hpp.html">Spherepack.hpp</a> <a href="Spherepack_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Spherepack_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a C++ interface to the Fortran SPHEREPACK library. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:StdArrayHelpers_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="StdArrayHelpers_8hpp.html">StdArrayHelpers.hpp</a> <a href="StdArrayHelpers_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:StdArrayHelpers_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines arithmetic operators for <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a> and other helpful functions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:StdHelpers_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="StdHelpers_8hpp.html">StdHelpers.hpp</a> <a href="StdHelpers_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:StdHelpers_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines helper functions for the standard library. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:StlStreamDeclarations_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="StlStreamDeclarations_8hpp.html">StlStreamDeclarations.hpp</a> <a href="StlStreamDeclarations_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:StlStreamDeclarations_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares stream operators for STL containers. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:TaggedTuple_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TaggedTuple_8hpp.html">TaggedTuple.hpp</a> <a href="TaggedTuple_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:TaggedTuple_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">tuples::TaggedTuple</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:TMPL_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TMPL_8hpp.html">TMPL.hpp</a> <a href="TMPL_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:TMPL_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps the template metaprogramming library used (brigand) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:TmplDebugging_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TmplDebugging_8hpp.html">TmplDebugging.hpp</a> <a href="TmplDebugging_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:TmplDebugging_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines class <a class="el" href="structTypeDisplayer.html" title="Get compiler error with type of template parameter. ">TypeDisplayer</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Tuple_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tuple_8hpp.html">Tuple.hpp</a> <a href="Tuple_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Tuple_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines functions for manipulating tuples. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:Utilities_2TypeTraits_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utilities_2TypeTraits_8hpp.html">TypeTraits.hpp</a> <a href="Utilities_2TypeTraits_8hpp_source.html">[code]</a></td></tr>
+<tr class="memdesc:Utilities_2TypeTraits_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines type traits, some of which are future STL type_traits header. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

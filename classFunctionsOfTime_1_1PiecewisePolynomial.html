@@ -1,0 +1,259 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: FunctionsOfTime::PiecewisePolynomial&lt; MaxDeriv &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceFunctionsOfTime.html">FunctionsOfTime</a></li><li class="navelem"><a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classFunctionsOfTime_1_1PiecewisePolynomial-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">FunctionsOfTime::PiecewisePolynomial&lt; MaxDeriv &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__ControlSystemGroup.html">Control System</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>A function that has a piecewise-constant <code>MaxDeriv</code>th derivative.  
+ <a href="classFunctionsOfTime_1_1PiecewisePolynomial.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="PiecewisePolynomial_8hpp_source.html">PiecewisePolynomial.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a61c6b289ff5d34ac730e682df0039796"><td class="memItemLeft" align="right" valign="top"><a id="a61c6b289ff5d34ac730e682df0039796"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PiecewisePolynomial</b> (double t, <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, MaxDeriv+1 &gt; initial_func_and_derivs) noexcept</td></tr>
+<tr class="separator:a61c6b289ff5d34ac730e682df0039796"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b9c504a806e0569c07b2e2937446ccf"><td class="memItemLeft" align="right" valign="top"><a id="a7b9c504a806e0569c07b2e2937446ccf"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PiecewisePolynomial</b> (<a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a7b9c504a806e0569c07b2e2937446ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35e79f6e8f4ffb1f7b08a3e3d9e725be"><td class="memItemLeft" align="right" valign="top"><a id="a35e79f6e8f4ffb1f7b08a3e3d9e725be"></a>
+<a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a35e79f6e8f4ffb1f7b08a3e3d9e725be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60021ef0fdc5487d13477c373f8a8373"><td class="memItemLeft" align="right" valign="top"><a id="a60021ef0fdc5487d13477c373f8a8373"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PiecewisePolynomial</b> (const <a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a> &amp;)=delete</td></tr>
+<tr class="separator:a60021ef0fdc5487d13477c373f8a8373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37eac714845e46f529904b4cd2bdf945"><td class="memItemLeft" align="right" valign="top"><a id="a37eac714845e46f529904b4cd2bdf945"></a>
+<a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a> &amp;)=delete</td></tr>
+<tr class="separator:a37eac714845e46f529904b4cd2bdf945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15a7f2453f31f621c4b95e600029346f"><td class="memItemLeft" align="right" valign="top"><a id="a15a7f2453f31f621c4b95e600029346f"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a15a7f2453f31f621c4b95e600029346f">func</a> (double t) const noexcept override</td></tr>
+<tr class="memdesc:a15a7f2453f31f621c4b95e600029346f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the function at an arbitrary time <code>t</code>. <br /></td></tr>
+<tr class="separator:a15a7f2453f31f621c4b95e600029346f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba4f49a2fa1ac22a4203e069993ac04"><td class="memItemLeft" align="right" valign="top"><a id="acba4f49a2fa1ac22a4203e069993ac04"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, 2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#acba4f49a2fa1ac22a4203e069993ac04">func_and_deriv</a> (double t) const noexcept override</td></tr>
+<tr class="memdesc:acba4f49a2fa1ac22a4203e069993ac04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the function and its first derivative at an arbitrary time <code>t</code>. <br /></td></tr>
+<tr class="separator:acba4f49a2fa1ac22a4203e069993ac04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7513bf7ca0e84d657b1182e5766ed4de"><td class="memItemLeft" align="right" valign="top"><a id="a7513bf7ca0e84d657b1182e5766ed4de"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a7513bf7ca0e84d657b1182e5766ed4de">func_and_2_derivs</a> (double t) const noexcept override</td></tr>
+<tr class="memdesc:a7513bf7ca0e84d657b1182e5766ed4de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the function and the first two derivatives at an arbitrary time <code>t</code>. <br /></td></tr>
+<tr class="separator:a7513bf7ca0e84d657b1182e5766ed4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a040f059f4cc59a458a225d0108147150"><td class="memItemLeft" align="right" valign="top"><a id="a040f059f4cc59a458a225d0108147150"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a040f059f4cc59a458a225d0108147150">update</a> (double time_of_update, <a class="el" href="classDataVector.html">DataVector</a> updated_max_deriv) noexcept</td></tr>
+<tr class="memdesc:a040f059f4cc59a458a225d0108147150"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the <code>MaxDeriv</code>th derivative of the function at the given time. <code>updated_max_deriv</code> is a vector of the <code>MaxDeriv</code>ths for each component. <br /></td></tr>
+<tr class="separator:a040f059f4cc59a458a225d0108147150"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fd4b8e2e7fca83b863fb4d1ed385f27"><td class="memItemLeft" align="right" valign="top"><a id="a7fd4b8e2e7fca83b863fb4d1ed385f27"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a7fd4b8e2e7fca83b863fb4d1ed385f27">time_bounds</a> () const noexcept override</td></tr>
+<tr class="memdesc:a7fd4b8e2e7fca83b863fb4d1ed385f27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the domain of validity of the function. <br /></td></tr>
+<tr class="separator:a7fd4b8e2e7fca83b863fb4d1ed385f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classFunctionOfTime"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classFunctionOfTime')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a></td></tr>
+<tr class="memitem:aa2b5f008d40bae1be8a5f6fa6c8a4cfe inherit pub_methods_classFunctionOfTime"><td class="memItemLeft" align="right" valign="top"><a id="aa2b5f008d40bae1be8a5f6fa6c8a4cfe"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>FunctionOfTime</b> (<a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:aa2b5f008d40bae1be8a5f6fa6c8a4cfe inherit pub_methods_classFunctionOfTime"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a0ba63e190549e231c202abc6223d9e inherit pub_methods_classFunctionOfTime"><td class="memItemLeft" align="right" valign="top"><a id="a7a0ba63e190549e231c202abc6223d9e"></a>
+<a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a7a0ba63e190549e231c202abc6223d9e inherit pub_methods_classFunctionOfTime"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa71f74d9054b5eea6118616214a17724 inherit pub_methods_classFunctionOfTime"><td class="memItemLeft" align="right" valign="top"><a id="aa71f74d9054b5eea6118616214a17724"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>FunctionOfTime</b> (const <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;)=delete</td></tr>
+<tr class="separator:aa71f74d9054b5eea6118616214a17724 inherit pub_methods_classFunctionOfTime"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad213e1a315359ffbf4cea66bab6372ee inherit pub_methods_classFunctionOfTime"><td class="memItemLeft" align="right" valign="top"><a id="ad213e1a315359ffbf4cea66bab6372ee"></a>
+<a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;)=delete</td></tr>
+<tr class="separator:ad213e1a315359ffbf4cea66bab6372ee inherit pub_methods_classFunctionOfTime"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;size_t MaxDeriv&gt;<br />
+class FunctionsOfTime::PiecewisePolynomial&lt; MaxDeriv &gt;</h3>
+
+<p>A function that has a piecewise-constant <code>MaxDeriv</code>th derivative. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/ControlSystem/<a class="el" href="PiecewisePolynomial_8hpp_source.html">PiecewisePolynomial.hpp</a></li>
+<li>src/ControlSystem/PiecewisePolynomial.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

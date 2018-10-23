@@ -1,0 +1,363 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: DataVector Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="classDataVector-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">DataVector Class Reference<div class="ingroups"><a class="el" href="group__DataStructuresGroup.html">Data Structures</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Stores a collection of function values.  
+ <a href="classDataVector.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="DataVector_8hpp_source.html">DataVector.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ada881576977081726bc50c50b8789c6e"><td class="memItemLeft" align="right" valign="top"><a id="ada881576977081726bc50c50b8789c6e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = double</td></tr>
+<tr class="separator:ada881576977081726bc50c50b8789c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94d1dac73eb40e7daabcf74de7c7ed66"><td class="memItemLeft" align="right" valign="top"><a id="a94d1dac73eb40e7daabcf74de7c7ed66"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>allocator_type</b> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/allocator.html">std::allocator</a>&lt; value_type &gt;</td></tr>
+<tr class="separator:a94d1dac73eb40e7daabcf74de7c7ed66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b9ef4e180eb681043ad15f667e95da7"><td class="memItemLeft" align="right" valign="top"><a id="a5b9ef4e180eb681043ad15f667e95da7"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>size_type</b> = size_t</td></tr>
+<tr class="separator:a5b9ef4e180eb681043ad15f667e95da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad716aab5c674ed5733937407bd2f20"><td class="memItemLeft" align="right" valign="top"><a id="acad716aab5c674ed5733937407bd2f20"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/ptrdiff_t.html">std::ptrdiff_t</a></td></tr>
+<tr class="separator:acad716aab5c674ed5733937407bd2f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb775b28ef7d4fb73fadea071d8978af"><td class="memItemLeft" align="right" valign="top"><a id="afb775b28ef7d4fb73fadea071d8978af"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>BaseType</b> = <a class="el" href="structPointerVector.html">PointerVector</a>&lt; double, blaze::unaligned, blaze::unpadded, blaze::defaultTransposeFlag, <a class="el" href="classDataVector.html">DataVector</a> &gt;</td></tr>
+<tr class="separator:afb775b28ef7d4fb73fadea071d8978af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4c777040d83e3c190f8819256d20f34"><td class="memItemLeft" align="right" valign="top"><a id="aa4c777040d83e3c190f8819256d20f34"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>TransposeType</b> = <a class="el" href="classDataVector.html">DataVector</a></td></tr>
+<tr class="separator:aa4c777040d83e3c190f8819256d20f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada411181457369e4ccbc64304a5a8a10"><td class="memItemLeft" align="right" valign="top"><a id="ada411181457369e4ccbc64304a5a8a10"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>CompositeType</b> = const <a class="el" href="classDataVector.html">DataVector</a> &amp;</td></tr>
+<tr class="separator:ada411181457369e4ccbc64304a5a8a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a24bfb330935c18802dc1ad02e6f24644"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a24bfb330935c18802dc1ad02e6f24644">DataVector</a> (size_t size, double value=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN()) noexcept</td></tr>
+<tr class="memdesc:a24bfb330935c18802dc1ad02e6f24644"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create with the given size and value.  <a href="#a24bfb330935c18802dc1ad02e6f24644">More...</a><br /></td></tr>
+<tr class="separator:a24bfb330935c18802dc1ad02e6f24644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79ad9851c38f2819f0bc5feff8b282f1"><td class="memItemLeft" align="right" valign="top"><a id="a79ad9851c38f2819f0bc5feff8b282f1"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a79ad9851c38f2819f0bc5feff8b282f1">DataVector</a> (double *start, size_t size) noexcept</td></tr>
+<tr class="memdesc:a79ad9851c38f2819f0bc5feff8b282f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a non-owning <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a> that points to <code>start</code> <br /></td></tr>
+<tr class="separator:a79ad9851c38f2819f0bc5feff8b282f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeab151d3c69405830dbc24e7d8497c16"><td class="memTemplParams" colspan="2"><a id="aeab151d3c69405830dbc24e7d8497c16"></a>
+template&lt;class T , Requires&lt; cpp17::is_same_v&lt; T, double &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:aeab151d3c69405830dbc24e7d8497c16"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#aeab151d3c69405830dbc24e7d8497c16">DataVector</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/initializer_list.html">std::initializer_list</a>&lt; T &gt; list) noexcept</td></tr>
+<tr class="memdesc:aeab151d3c69405830dbc24e7d8497c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create from an initializer list of doubles. All elements in the <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/initializer_list.html">std::initializer_list</a></code> must have decimal points. <br /></td></tr>
+<tr class="separator:aeab151d3c69405830dbc24e7d8497c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0ab61527977ce1e22269b5909f95927"><td class="memItemLeft" align="right" valign="top"><a id="af0ab61527977ce1e22269b5909f95927"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#af0ab61527977ce1e22269b5909f95927">DataVector</a> () noexcept=default</td></tr>
+<tr class="memdesc:af0ab61527977ce1e22269b5909f95927"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a>. <br /></td></tr>
+<tr class="separator:af0ab61527977ce1e22269b5909f95927"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aabbba51681e3350d8d493241da3300"><td class="memItemLeft" align="right" valign="top"><a id="a7aabbba51681e3350d8d493241da3300"></a>
+<a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const double &amp;rhs) noexcept</td></tr>
+<tr class="separator:a7aabbba51681e3350d8d493241da3300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac83afb12c2cd2095283952de81f09f98"><td class="memItemLeft" align="right" valign="top"><a id="ac83afb12c2cd2095283952de81f09f98"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ac83afb12c2cd2095283952de81f09f98">is_owning</a> () const noexcept</td></tr>
+<tr class="memdesc:ac83afb12c2cd2095283952de81f09f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the class owns the data. <br /></td></tr>
+<tr class="separator:ac83afb12c2cd2095283952de81f09f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a293c67395dfbb02b6a319c622be54b10"><td class="memItemLeft" align="right" valign="top"><a id="a293c67395dfbb02b6a319c622be54b10"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a293c67395dfbb02b6a319c622be54b10">pup</a> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="memdesc:a293c67395dfbb02b6a319c622be54b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialization for Charm++. <br /></td></tr>
+<tr class="separator:a293c67395dfbb02b6a319c622be54b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a54c2d3c95d094181cce5c0ee9b134797"><td class="memItemLeft" align="right" valign="top"><a id="a54c2d3c95d094181cce5c0ee9b134797"></a>
+const <a class="el" href="structPointerVector.html">BaseType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator~</b> () const noexcept</td></tr>
+<tr class="separator:a54c2d3c95d094181cce5c0ee9b134797"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2279c950b0d7c7269f845cf5ea646fa3"><td class="memItemLeft" align="right" valign="top"><a id="a2279c950b0d7c7269f845cf5ea646fa3"></a>
+<a class="el" href="structPointerVector.html">BaseType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator~</b> () noexcept</td></tr>
+<tr class="separator:a2279c950b0d7c7269f845cf5ea646fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ac7126fea0090afd83c97255b3f43b54a"><td class="memItemLeft" align="right" valign="top"><a id="ac7126fea0090afd83c97255b3f43b54a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ac7126fea0090afd83c97255b3f43b54a">set_data_ref</a> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> *&gt; rhs) noexcept</td></tr>
+<tr class="memdesc:ac7126fea0090afd83c97255b3f43b54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a> to be a reference to another <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a> object. <br /></td></tr>
+<tr class="separator:ac7126fea0090afd83c97255b3f43b54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaef081deecf77b212dc4410b81b3447"><td class="memItemLeft" align="right" valign="top"><a id="aaaef081deecf77b212dc4410b81b3447"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#aaaef081deecf77b212dc4410b81b3447">set_data_ref</a> (double *start, size_t size) noexcept</td></tr>
+<tr class="memdesc:aaaef081deecf77b212dc4410b81b3447"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a> to be a reference to another <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a> object. <br /></td></tr>
+<tr class="separator:aaaef081deecf77b212dc4410b81b3447"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a556dbea3e50be3eebbb252906312670e"><td class="memItemLeft" align="right" valign="top"><a id="a556dbea3e50be3eebbb252906312670e"></a>
+static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>transpose_flag</b> = blaze::defaultTransposeFlag</td></tr>
+<tr class="separator:a556dbea3e50be3eebbb252906312670e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Stores a collection of function values. </p>
+<h3>Details</h3>
+<p>Use <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a> to represent function values on the computational domain. Note that interpreting the data also requires knowledge of the points that these function values correspond to.</p>
+<p>A <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a> holds an array of contiguous data. The <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a> can be owning, meaning the array is deleted when the <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a> goes out of scope, or non-owning, meaning it just has a pointer to an array.</p>
+<p>Refer to the <a class="el" href="group__DataStructuresGroup.html">Data Structures</a> documentation for a list of other available types. In particular, to represent a generic vector that supports common vector and matrix operations and whose meaning may not be of function values at points, use <a class="el" href="classDenseVector.html" title="A dynamically sized vector of arbitrary type. ">DenseVector</a> instead.</p>
+<p>DataVectors support a variety of mathematical operations that are applicable to nodal coefficients. In addition to common arithmetic operations such as elementwise addition, subtraction, multiplication and division the following elementwise operations are implemented:</p>
+<ul>
+<li>abs</li>
+<li>acos</li>
+<li>acosh</li>
+<li>asin</li>
+<li>asinh</li>
+<li>atan</li>
+<li>atan2</li>
+<li>atanh</li>
+<li>cbrt</li>
+<li>cos</li>
+<li>cosh</li>
+<li>erf</li>
+<li>erfc</li>
+<li>exp</li>
+<li>exp2</li>
+<li>exp10</li>
+<li>fabs</li>
+<li>hypot</li>
+<li>invcbrt</li>
+<li>invsqrt</li>
+<li>log</li>
+<li>log2</li>
+<li>log10</li>
+<li>max</li>
+<li>min</li>
+<li>pow</li>
+<li>sin</li>
+<li>sinh</li>
+<li>sqrt</li>
+<li>step_function: if less than zero returns zero, otherwise returns one</li>
+<li>tan</li>
+<li>tanh </li>
+</ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a24bfb330935c18802dc1ad02e6f24644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24bfb330935c18802dc1ad02e6f24644">&#9670;&nbsp;</a></span>DataVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataVector::DataVector </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em> = <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt;double&gt;::signaling_NaN()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create with the given size and value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>number of values </td></tr>
+    <tr><td class="paramname">value</td><td>the value to initialize each element. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/DataStructures/<a class="el" href="DataVector_8hpp_source.html">DataVector.hpp</a></li>
+<li>src/DataStructures/DataVector.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

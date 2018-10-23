@@ -1,0 +1,631 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: pypp Namespace Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">pypp Namespace Reference<div class="ingroups"><a class="el" href="group__TestingFrameworkGroup.html">Testing Framework</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Contains all functions for calling python from C++.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpypp_1_1SetupLocalPythonEnvironment.html">SetupLocalPythonEnvironment</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable calling of python in the local scope, and add directory(ies) to the front of the search path for modules. The directory which is appended to the path is relative to the <code>tests/Unit</code> directory.  <a href="structpypp_1_1SetupLocalPythonEnvironment.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aa9d3d256a4bf8f2e8abeece42d94e4af"><td class="memTemplParams" colspan="2">template&lt;size_t NumberOfBounds, class F , class T , Requires&lt; not cpp17::is_same_v&lt; typename tt::function_info&lt; cpp20::remove_cvref_t&lt; F &gt;&gt;::return_type, void &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:aa9d3d256a4bf8f2e8abeece42d94e4af"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepypp.html#aa9d3d256a4bf8f2e8abeece42d94e4af">check_with_random_values</a> (F &amp;&amp;f, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;module_name, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;function_name, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; double, double &gt;, NumberOfBounds &gt; &amp;lower_and_upper_bounds, const T &amp;used_for_size, const typename std::random_device::result_type seed=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/random_device.html">std::random_device</a>{}())</td></tr>
+<tr class="memdesc:aa9d3d256a4bf8f2e8abeece42d94e4af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests a C++ function returning by value by comparing the result to a python function.  <a href="#aa9d3d256a4bf8f2e8abeece42d94e4af">More...</a><br /></td></tr>
+<tr class="separator:aa9d3d256a4bf8f2e8abeece42d94e4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e74dbbece8aa564ede3f13b0b5e6929"><td class="memTemplParams" colspan="2">template&lt;size_t NumberOfBounds, class F , class T &gt; </td></tr>
+<tr class="memitem:a6e74dbbece8aa564ede3f13b0b5e6929"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepypp.html#a6e74dbbece8aa564ede3f13b0b5e6929">check_with_random_values</a> (F &amp;&amp;f, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;module_name, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &gt; &amp;function_names, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; double, double &gt;, NumberOfBounds &gt; &amp;lower_and_upper_bounds, const T &amp;used_for_size, const typename std::random_device::result_type seed=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/random_device.html">std::random_device</a>{}())</td></tr>
+<tr class="memdesc:a6e74dbbece8aa564ede3f13b0b5e6929"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests a C++ function returning by <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> by comparing the result to a python function.  <a href="#a6e74dbbece8aa564ede3f13b0b5e6929">More...</a><br /></td></tr>
+<tr class="separator:a6e74dbbece8aa564ede3f13b0b5e6929"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76def4484468e98f31cf29437e2e4920"><td class="memTemplParams" colspan="2">template&lt;size_t NumberOfBounds, class F , class T , class... MemberArgs, Requires&lt; not cpp17::is_same_v&lt; typename tt::function_info&lt; cpp20::remove_cvref_t&lt; F &gt;&gt;::return_type, void &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a76def4484468e98f31cf29437e2e4920"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepypp.html#a76def4484468e98f31cf29437e2e4920">check_with_random_values</a> (F &amp;&amp;f, const typename <a class="el" href="group__TypeTraitsGroup.html#ga8661ba12c00913d2b002d0c47497b94e">tt::function_info</a>&lt; cpp20::remove_cvref_t&lt; F &gt;&gt;::class_type &amp;klass, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;module_name, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;function_name, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; double, double &gt;, NumberOfBounds &gt; &amp;lower_and_upper_bounds, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; MemberArgs... &gt; &amp;member_args, const T &amp;used_for_size, const typename std::random_device::result_type seed=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/random_device.html">std::random_device</a>{}())</td></tr>
+<tr class="memdesc:a76def4484468e98f31cf29437e2e4920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests a member function of a class returning by value by comparing the result to a python function.  <a href="#a76def4484468e98f31cf29437e2e4920">More...</a><br /></td></tr>
+<tr class="separator:a76def4484468e98f31cf29437e2e4920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58704ca0c9078895cea89f2b605851ab"><td class="memTemplParams" colspan="2">template&lt;size_t NumberOfBounds, typename TagsList  = NoSuchType, class F , class T , class... MemberArgs&gt; </td></tr>
+<tr class="memitem:a58704ca0c9078895cea89f2b605851ab"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepypp.html#a58704ca0c9078895cea89f2b605851ab">check_with_random_values</a> (F &amp;&amp;f, const typename <a class="el" href="group__TypeTraitsGroup.html#ga8661ba12c00913d2b002d0c47497b94e">tt::function_info</a>&lt; cpp20::remove_cvref_t&lt; F &gt;&gt;::class_type &amp;klass, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;module_name, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &gt; &amp;function_names, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; double, double &gt;, NumberOfBounds &gt; &amp;lower_and_upper_bounds, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; MemberArgs... &gt; &amp;member_args, const T &amp;used_for_size, const typename std::random_device::result_type seed=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/random_device.html">std::random_device</a>{}())</td></tr>
+<tr class="memdesc:a58704ca0c9078895cea89f2b605851ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests a member function of a class returning by either <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> or <code>TaggedTuple</code> by comparing the result to a python function.  <a href="#a58704ca0c9078895cea89f2b605851ab">More...</a><br /></td></tr>
+<tr class="separator:a58704ca0c9078895cea89f2b605851ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecc213d312cdaa74c7d2e63a55a960df"><td class="memTemplParams" colspan="2">template&lt;typename R , typename... Args&gt; </td></tr>
+<tr class="memitem:aecc213d312cdaa74c7d2e63a55a960df"><td class="memTemplItemLeft" align="right" valign="top">R&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepypp.html#aecc213d312cdaa74c7d2e63a55a960df">call</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;module_name, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;function_name, const Args &amp;... t)</td></tr>
+<tr class="memdesc:aecc213d312cdaa74c7d2e63a55a960df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls a Python function from a module/file with given parameters.  <a href="#aecc213d312cdaa74c7d2e63a55a960df">More...</a><br /></td></tr>
+<tr class="separator:aecc213d312cdaa74c7d2e63a55a960df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff33dcd9b46966498ce918dfde0b4a86"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:aff33dcd9b46966498ce918dfde0b4a86"><td class="memTemplItemLeft" align="right" valign="top">PyObject *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepypp.html#aff33dcd9b46966498ce918dfde0b4a86">make_py_tuple</a> (const Args &amp;... t)</td></tr>
+<tr class="memdesc:aff33dcd9b46966498ce918dfde0b4a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a python tuple from Args.  <a href="#aff33dcd9b46966498ce918dfde0b4a86">More...</a><br /></td></tr>
+<tr class="separator:aff33dcd9b46966498ce918dfde0b4a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Contains all functions for calling python from C++. </p>
+<p>Contains all functions for pypp. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="aecc213d312cdaa74c7d2e63a55a960df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecc213d312cdaa74c7d2e63a55a960df">&#9670;&nbsp;</a></span>call()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename R , typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">R pypp::call </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>module_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>function_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Args &amp;...&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calls a Python function from a module/file with given parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">module_name</td><td>name of module the function is in </td></tr>
+    <tr><td class="paramname">function_name</td><td>name of Python function in module </td></tr>
+    <tr><td class="paramname">t</td><td>the arguments to be passed to the Python function </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> the object returned by the Python function converted to a C++ type</p>
+<p>Custom classes can be converted between Python and C++ by overloading the <code>pypp::ToPythonObject&lt;T&gt;</code> and <code>pypp::FromPythonObject&lt;T&gt;</code> structs for your own types. This tells C++ how to deconstruct the Python object into fundamental types and reconstruct the C++ object and vice-versa.</p>
+<dl class="section note"><dt>Note</dt><dd>In order to setup the python interpreter and add the local directories to the path, a <a class="el" href="structpypp_1_1SetupLocalPythonEnvironment.html" title="Enable calling of python in the local scope, and add directory(ies) to the front of the search path f...">SetupLocalPythonEnvironment</a> object needs to be constructed in the local scope.</dd></dl>
+<h3>Example</h3>
+<p>The following example calls the function <code>test_numeric</code> from the module <code>pypp_py_tests</code> which multiplies two integers. </p><div class="fragment"><div class="line">  <a class="code" href="structpypp_1_1SetupLocalPythonEnvironment.html">pypp::SetupLocalPythonEnvironment</a> local_python_env{<span class="stringliteral">&quot;Pypp/&quot;</span>};</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> ret = pypp::call&lt;long&gt;(<span class="stringliteral">&quot;PyppPyTests&quot;</span>, <span class="stringliteral">&quot;test_numeric&quot;</span>, 3, 4);</div><div class="line">  CHECK(ret == 3 * 4);</div></div><!-- fragment --><p>Alternatively, this examples calls <code>test_vector</code> from <code>pypp_py_tests</code> which converts two vectors to python lists and multiplies them pointwise. </p><div class="fragment"><div class="line">  <a class="code" href="structpypp_1_1SetupLocalPythonEnvironment.html">pypp::SetupLocalPythonEnvironment</a> local_python_env{<span class="stringliteral">&quot;Pypp/&quot;</span>};</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> ret = pypp::call&lt;std::vector&lt;double&gt;&gt;(</div><div class="line">      <span class="stringliteral">&quot;PyppPyTests&quot;</span>, <span class="stringliteral">&quot;test_vector&quot;</span>, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{1.3, 4.9},</div><div class="line">      <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{4.2, 6.8});</div><div class="line">  CHECK(approx(ret[0]) == 1.3 * 4.2);</div><div class="line">  CHECK(approx(ret[1]) == 4.9 * 6.8);</div></div><!-- fragment --><p> Pypp can also be used to take a function that performs manipulations of NumPy arrays and apply it to either a Tensor of doubles or a Tensor of DataVectors. This is useful for testing functions which act on Tensors pointwise. For example, let's say we wanted to call the NumPy function which performs \( v_i = A B^a C_{ia} + D^{ab} E_{iab} \), which is implemented in python as</p>
+<div class="fragment"><div class="line"><span class="keyword">def </span>test_einsum(scalar, t_A, t_ia, t_AA, t_iaa):</div><div class="line">  <span class="keywordflow">return</span> scalar * np.einsum(<span class="stringliteral">&quot;a,ia-&gt;i&quot;</span>, t_A, t_ia) +</div><div class="line">         np.einsum(<span class="stringliteral">&quot;ab, iab-&gt;i&quot;</span>, t_AA, t_iaa)</div></div><!-- fragment --><p>where \( v_i \) is the return tensor and \( A, B^a, C_{ia},D^{ab}, E_{iab} \) are the input tensors respectively. We call this function through C++ as: </p><div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> tensor_from_python = pypp::call&lt;tnsr::i&lt;T, 3&gt;&gt;(</div><div class="line">      <span class="stringliteral">&quot;PyppPyTests&quot;</span>, <span class="stringliteral">&quot;test_einsum&quot;</span>, scalar, vector, tnsr_ia, tnsr_AA, tnsr_iaa);</div></div><!-- fragment --><p>for type <code>T</code> either a <code>double</code> or <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>.</p>
+<p>Pypp will also support testing of functions which return and operate on <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a></code>s of <code>DataVectors</code>s. To return a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a></code> of DataVectors, the python function should return a python list of doubles.</p>
+<dl class="section note"><dt>Note</dt><dd>In order to return a <code>Tensor&lt;<a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a>...&gt;</code> from <code><a class="el" href="namespacepypp.html#aecc213d312cdaa74c7d2e63a55a960df" title="Calls a Python function from a module/file with given parameters. ">pypp::call</a></code>, at least one <code>Tensor&lt;<a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a>...&gt;</code> must be taken as an argument, as the size of the returned tensor needs to be deduced. </dd></dl>
+
+</div>
+</div>
+<a id="aa9d3d256a4bf8f2e8abeece42d94e4af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9d3d256a4bf8f2e8abeece42d94e4af">&#9670;&nbsp;</a></span>check_with_random_values() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t NumberOfBounds, class F , class T , Requires&lt; not cpp17::is_same_v&lt; typename tt::function_info&lt; cpp20::remove_cvref_t&lt; F &gt;&gt;::return_type, void &gt;&gt;  = nullptr&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void pypp::check_with_random_values </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>module_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>function_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; double, double &gt;, NumberOfBounds &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lower_and_upper_bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>used_for_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::random_device::result_type&#160;</td>
+          <td class="paramname"><em>seed</em> = <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/random_device.html">std::random_device</a>{}()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests a C++ function returning by value by comparing the result to a python function. </p>
+<p>Tests the function <code>f</code> by comparing the result to that of the python function <code>function_name</code> in the file <code>module_name</code>. The function is tested by generated random values in the half-open range [<code>lower_bound</code>, <code>upper_bound</code>). The argument <code>used_for_size</code> is used for constructing the arguments of <code>f</code> by calling <code>make_with_value&lt;ArgumentType&gt;(used_for_size, 0.0)</code>.</p>
+<dl class="section note"><dt>Note</dt><dd>You must explicitly pass the number of bounds you will be passing as the first template parameter, the rest will be inferred.</dd>
+<dd>
+If you have a test fail you can replay the scenario by feeding in the seed that was printed out in the failed test as the last argument.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>The C++ function to test </td></tr>
+    <tr><td class="paramname">module_name</td><td>The python file relative to the directory used in <code><a class="el" href="structpypp_1_1SetupLocalPythonEnvironment.html" title="Enable calling of python in the local scope, and add directory(ies) to the front of the search path f...">SetupLocalPythonEnvironment</a></code> </td></tr>
+    <tr><td class="paramname">function_name</td><td>The name of the python function inside <code>module_name</code> </td></tr>
+    <tr><td class="paramname">lower_and_upper_bounds</td><td>The lower and upper bounds for the randomly generated numbers. Must be either an array of a single pair, or of as many pairs as there are arguments to <code>f</code> that are not a <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> </td></tr>
+    <tr><td class="paramname">used_for_size</td><td>The type <code>X</code> for the arguments of <code>f</code> of type <code>Tensor&lt;X&gt;</code> </td></tr>
+    <tr><td class="paramname">seed</td><td>The seed for the random number generator. This should only be specified when debugging a failure with a particular set of random numbers, in general it should be left to the default value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6e74dbbece8aa564ede3f13b0b5e6929"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e74dbbece8aa564ede3f13b0b5e6929">&#9670;&nbsp;</a></span>check_with_random_values() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t NumberOfBounds, class F , class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void pypp::check_with_random_values </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>module_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>function_names</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; double, double &gt;, NumberOfBounds &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lower_and_upper_bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>used_for_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::random_device::result_type&#160;</td>
+          <td class="paramname"><em>seed</em> = <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/random_device.html">std::random_device</a>{}()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests a C++ function returning by <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> by comparing the result to a python function. </p>
+<p>Tests the function <code>f</code> by comparing the result to that of the python function <code>function_name</code> in the file <code>module_name</code>. The function is tested by generated random values in the half-open range [<code>lower_bound</code>, <code>upper_bound</code>) for each argument. The argument <code>used_for_size</code> is used for constructing the arguments of <code>f</code> by calling <code>make_with_value&lt;ArgumentType&gt;(used_for_size, 0.0)</code>. For functions that return by <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code>, the result will be initialized with random values rather than to signaling <code>NaN</code>s. This means functions do not need to support receiving a signaling <code>NaN</code> in their return argument to be tested using this function.</p>
+<dl class="section note"><dt>Note</dt><dd>You must explicitly pass the number of bounds you will be passing as the first template parameter, the rest will be inferred.</dd>
+<dd>
+If you have a test fail you can replay the scenario by feeding in the seed that was printed out in the failed test as the last argument.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>The C++ function to test </td></tr>
+    <tr><td class="paramname">module_name</td><td>The python file relative to the directory used in <code><a class="el" href="structpypp_1_1SetupLocalPythonEnvironment.html" title="Enable calling of python in the local scope, and add directory(ies) to the front of the search path f...">SetupLocalPythonEnvironment</a></code> </td></tr>
+    <tr><td class="paramname">function_names</td><td>The names of the python functions inside <code>module_name</code> in the order that they return the <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> results </td></tr>
+    <tr><td class="paramname">lower_and_upper_bounds</td><td>The lower and upper bounds for the randomly generated numbers. Must be either an array of a single pair, or of as many pairs as there are arguments to <code>f</code> that are not a <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> </td></tr>
+    <tr><td class="paramname">used_for_size</td><td>The type <code>X</code> for the arguments of <code>f</code> of type <code>Tensor&lt;X&gt;</code> </td></tr>
+    <tr><td class="paramname">seed</td><td>The seed for the random number generator. This should only be specified when debugging a failure with a particular set of random numbers, in general it should be left to the default value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a76def4484468e98f31cf29437e2e4920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76def4484468e98f31cf29437e2e4920">&#9670;&nbsp;</a></span>check_with_random_values() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t NumberOfBounds, class F , class T , class... MemberArgs, Requires&lt; not cpp17::is_same_v&lt; typename tt::function_info&lt; cpp20::remove_cvref_t&lt; F &gt;&gt;::return_type, void &gt;&gt;  = nullptr&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void pypp::check_with_random_values </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename <a class="el" href="group__TypeTraitsGroup.html#ga8661ba12c00913d2b002d0c47497b94e">tt::function_info</a>&lt; cpp20::remove_cvref_t&lt; F &gt;&gt;::class_type &amp;&#160;</td>
+          <td class="paramname"><em>klass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>module_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>function_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; double, double &gt;, NumberOfBounds &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lower_and_upper_bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; MemberArgs... &gt; &amp;&#160;</td>
+          <td class="paramname"><em>member_args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>used_for_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::random_device::result_type&#160;</td>
+          <td class="paramname"><em>seed</em> = <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/random_device.html">std::random_device</a>{}()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests a member function of a class returning by value by comparing the result to a python function. </p>
+<p>Tests the function <code>f</code> by comparing the result to that of the python function <code>function_name</code> in the file <code>module_name</code>. An instance of the class is passed in as the second argument and is the object on which the member function <code>f</code> will be invoked. The member function is invoked as <code>klass.function</code>, so passing in pointers is not supported. The function is tested by generated random values in the half-open range [<code>lower_bound</code>, <code>upper_bound</code>). The argument <code>used_for_size</code> is used for constructing the arguments of <code>f</code> by calling <code>make_with_value&lt;ArgumentType&gt;(used_for_size, 0.0)</code>.</p>
+<dl class="section note"><dt>Note</dt><dd>You must explicitly pass the number of bounds you will be passing as the first template parameter, the rest will be inferred.</dd>
+<dd>
+If you have a test fail you can replay the scenario by feeding in the seed that was printed out in the failed test as the last argument.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>The member function to test </td></tr>
+    <tr><td class="paramname">klass</td><td>the object on which to invoke <code>f</code> </td></tr>
+    <tr><td class="paramname">module_name</td><td>The python file relative to the directory used in <code><a class="el" href="structpypp_1_1SetupLocalPythonEnvironment.html" title="Enable calling of python in the local scope, and add directory(ies) to the front of the search path f...">SetupLocalPythonEnvironment</a></code> </td></tr>
+    <tr><td class="paramname">function_name</td><td>The name of the python function inside <code>module_name</code> </td></tr>
+    <tr><td class="paramname">lower_and_upper_bounds</td><td>The lower and upper bounds for the randomly generated numbers. Must be either an array of a single pair, or of as many pairs as there are arguments to <code>f</code> that are not a <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> </td></tr>
+    <tr><td class="paramname">member_args</td><td>a tuple of the member variables of the object <code>klass</code> that the python function will need in order to perform the computation. These should have the same types as the normal arguments passed to the member function, e.g. <code>Tensor&lt;X&gt;</code>. </td></tr>
+    <tr><td class="paramname">used_for_size</td><td>The type <code>X</code> for the arguments of <code>f</code> of type <code>Tensor&lt;X&gt;</code> </td></tr>
+    <tr><td class="paramname">seed</td><td>The seed for the random number generator. This should only be specified when debugging a failure with a particular set of random numbers, in general it should be left to the default value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a58704ca0c9078895cea89f2b605851ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58704ca0c9078895cea89f2b605851ab">&#9670;&nbsp;</a></span>check_with_random_values() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t NumberOfBounds, typename TagsList  = NoSuchType, class F , class T , class... MemberArgs&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void pypp::check_with_random_values </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename <a class="el" href="group__TypeTraitsGroup.html#ga8661ba12c00913d2b002d0c47497b94e">tt::function_info</a>&lt; cpp20::remove_cvref_t&lt; F &gt;&gt;::class_type &amp;&#160;</td>
+          <td class="paramname"><em>klass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>module_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>function_names</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; double, double &gt;, NumberOfBounds &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lower_and_upper_bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; MemberArgs... &gt; &amp;&#160;</td>
+          <td class="paramname"><em>member_args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>used_for_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::random_device::result_type&#160;</td>
+          <td class="paramname"><em>seed</em> = <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/random_device.html">std::random_device</a>{}()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests a member function of a class returning by either <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> or <code>TaggedTuple</code> by comparing the result to a python function. </p>
+<p>Tests the function <code>f</code> by comparing the result to that of the python functions <code>function_names</code> in the file <code>module_name</code>. An instance of the class is passed in as the second argument and is the object on which the member function <code>f</code> will be invoked. The member function is invoked as <code>klass.function</code>, so passing in pointers is not supported. The function is tested by generated random values in the half-open range [<code>lower_bound</code>, <code>upper_bound</code>). The argument <code>used_for_size</code> is used for constructing the arguments of <code>f</code> by calling <code>make_with_value&lt;ArgumentType&gt;(used_for_size, 0.0)</code>. For functions that return by <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code>, the result will be initialized with random values rather than to signaling <code>NaN</code>s. This means functions do not need to support receiving a signaling <code>NaN</code> in their return argument to be tested using this function.</p>
+<p>If <code>TagsList</code> is passed as a <code>tmpl::list</code>, then <code>f</code> is expected to return a TaggedTuple. The result of each python function will be compared with calling <code>tuples::get</code> on the result of <code>f</code>. The order of the tags within <code>TagsList</code> should match the order of the functions in <code>function_names</code></p>
+<dl class="section note"><dt>Note</dt><dd>You must explicitly pass the number of bounds you will be passing as the first template parameter, the rest will be inferred.</dd>
+<dd>
+If you have a test fail you can replay the scenario by feeding in the seed that was printed out in the failed test as the last argument.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>The member function to test </td></tr>
+    <tr><td class="paramname">klass</td><td>the object on which to invoke <code>f</code> </td></tr>
+    <tr><td class="paramname">module_name</td><td>The python file relative to the directory used in <code><a class="el" href="structpypp_1_1SetupLocalPythonEnvironment.html" title="Enable calling of python in the local scope, and add directory(ies) to the front of the search path f...">SetupLocalPythonEnvironment</a></code> </td></tr>
+    <tr><td class="paramname">function_names</td><td>The names of the python functions inside <code>module_name</code> in the order that they return the <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> results </td></tr>
+    <tr><td class="paramname">lower_and_upper_bounds</td><td>The lower and upper bounds for the randomly generated numbers. Must be either an array of a single pair, or of as many pairs as there are arguments to <code>f</code> that are not a <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> </td></tr>
+    <tr><td class="paramname">member_args</td><td>a tuple of the member variables of the object <code>klass</code> that the python function will need in order to perform the computation. These should have the same types as the normal arguments passed to the member function, e.g. <code>Tensor&lt;X&gt;</code>. </td></tr>
+    <tr><td class="paramname">used_for_size</td><td>The type <code>X</code> for the arguments of <code>f</code> of type <code>Tensor&lt;X&gt;</code> </td></tr>
+    <tr><td class="paramname">seed</td><td>The seed for the random number generator. This should only be specified when debugging a failure with a particular set of random numbers, in general it should be left to the default value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aff33dcd9b46966498ce918dfde0b4a86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff33dcd9b46966498ce918dfde0b4a86">&#9670;&nbsp;</a></span>make_py_tuple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">PyObject* pypp::make_py_tuple </td>
+          <td>(</td>
+          <td class="paramtype">const Args &amp;...&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a python tuple from Args. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Args</td><td>the types of the arguments to be put in the tuple (deducible) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>the arguments to put into the tuple </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> PyObject* containing a Python tuple </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

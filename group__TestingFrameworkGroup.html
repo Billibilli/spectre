@@ -1,0 +1,1037 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Testing Framework</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Testing Framework</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Classes, functions, macros, and instructions for developing tests.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceActionTesting"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceActionTesting.html">ActionTesting</a></td></tr>
+<tr class="memdesc:namespaceActionTesting"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structures used for mocking the parallel components framework in order to test actions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacepypp"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepypp.html">pypp</a></td></tr>
+<tr class="memdesc:namespacepypp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains all functions for calling python from C++. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniformCustomDistribution.html">UniformCustomDistribution&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A uniform distribution function object which redirects appropriately to either the <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution.html">std::uniform_int_distribution</a></code> or the <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/uniform_real_distribution.html">std::uniform_real_distribution</a></code>. This also provides a convenience constructor which takes a 2-element array for the bounds for either floating point or int distributions.  <a href="classUniformCustomDistribution.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActionTesting_1_1MockRuntimeSystem.html">ActionTesting::MockRuntimeSystem&lt; Metavariables &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class that mocks the infrastructure needed to run actions. It simulates message passing using the inbox infrastructure and handles most of the arguments to the apply and is_ready action methods.  <a href="classActionTesting_1_1MockRuntimeSystem.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrientationMapIterator.html">OrientationMapIterator&lt; VolumeDim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An iterator for looping through all possible orientations of the n-dim cube.  <a href="classOrientationMapIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga8cd2549e4a5627f34f8201af2bcbfd34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga8cd2549e4a5627f34f8201af2bcbfd34">INVOKE_TEST_FUNCTION</a>(FUNCTION_NAME,  TUPLE_ARGS, ...)</td></tr>
+<tr class="memdesc:ga8cd2549e4a5627f34f8201af2bcbfd34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to invoke a test function of multiple template arguments.  <a href="#ga8cd2549e4a5627f34f8201af2bcbfd34">More...</a><br /></td></tr>
+<tr class="separator:ga8cd2549e4a5627f34f8201af2bcbfd34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21fcbc0b07905e0d2f8b012b388acd73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga21fcbc0b07905e0d2f8b012b388acd73">CHECK_FOR_DOUBLES_AND_DATAVECTORS</a>(FUNCTION_NAME, ...)</td></tr>
+<tr class="memdesc:ga21fcbc0b07905e0d2f8b012b388acd73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro used to test functions whose parameter can be a <code>double</code> or a <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>.  <a href="#ga21fcbc0b07905e0d2f8b012b388acd73">More...</a><br /></td></tr>
+<tr class="separator:ga21fcbc0b07905e0d2f8b012b388acd73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaec8dcdc783140fb14fe617cc0cc1dcae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gaec8dcdc783140fb14fe617cc0cc1dcae">CHECK_OP</a>(a,  op,  b,  c)</td></tr>
+<tr class="memdesc:gaec8dcdc783140fb14fe617cc0cc1dcae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check a op b == c and also the op= version.  <a href="#gaec8dcdc783140fb14fe617cc0cc1dcae">More...</a><br /></td></tr>
+<tr class="separator:gaec8dcdc783140fb14fe617cc0cc1dcae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6b88c61cf6f312ba42d2b82be6384f6f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga6b88c61cf6f312ba42d2b82be6384f6f">CAPTURE_PRECISE</a>(variable)</td></tr>
+<tr class="memdesc:ga6b88c61cf6f312ba42d2b82be6384f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alternative to Catch's CAPTURE that prints more digits.  <a href="#ga6b88c61cf6f312ba42d2b82be6384f6f">More...</a><br /></td></tr>
+<tr class="separator:ga6b88c61cf6f312ba42d2b82be6384f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga37fce1ae5980139598815eda5a5de8ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga37fce1ae5980139598815eda5a5de8ab">SPECTRE_PARALLEL_REQUIRE</a>(expr)</td></tr>
+<tr class="memdesc:ga37fce1ae5980139598815eda5a5de8ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">A similar to Catch's REQUIRE statement, but can be used in tests that spawn several chares with possibly complex interaction between the chares.  <a href="#ga37fce1ae5980139598815eda5a5de8ab">More...</a><br /></td></tr>
+<tr class="separator:ga37fce1ae5980139598815eda5a5de8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2adb81ed48c421e8f77541f34eb3f821"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga2adb81ed48c421e8f77541f34eb3f821">SPECTRE_PARALLEL_REQUIRE_FALSE</a>(expr)</td></tr>
+<tr class="memdesc:ga2adb81ed48c421e8f77541f34eb3f821"><td class="mdescLeft">&#160;</td><td class="mdescRight">A similar to Catch's REQUIRE_FALSE statement, but can be used in tests that spawn several chares with possibly complex interaction between the chares.  <a href="#ga2adb81ed48c421e8f77541f34eb3f821">More...</a><br /></td></tr>
+<tr class="separator:ga2adb81ed48c421e8f77541f34eb3f821"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6ce5d669c94418f197e4c55c53e64a64"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga6ce5d669c94418f197e4c55c53e64a64">CHECK_ITERABLE_APPROX</a>(a,  b)</td></tr>
+<tr class="memdesc:ga6ce5d669c94418f197e4c55c53e64a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper around Catch's CHECK macro that checks approximate equality of entries in iterable containers. For maplike containers, keys are checked for strict equality and values are checked for approximate equality.  <a href="#ga6ce5d669c94418f197e4c55c53e64a64">More...</a><br /></td></tr>
+<tr class="separator:ga6ce5d669c94418f197e4c55c53e64a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4f36d1ee34e6eb0721e35918eb488f0c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga4f36d1ee34e6eb0721e35918eb488f0c">CHECK_ITERABLE_CUSTOM_APPROX</a>(a,  b,  appx)</td></tr>
+<tr class="memdesc:ga4f36d1ee34e6eb0721e35918eb488f0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <code>CHECK_ITERABLE_APPROX</code> with user-defined Approx. The third argument should be of type <code>Approx</code>.  <a href="#ga4f36d1ee34e6eb0721e35918eb488f0c">More...</a><br /></td></tr>
+<tr class="separator:ga4f36d1ee34e6eb0721e35918eb488f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf962c28abc1a1f014f2a6b32c6f01680"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gaf962c28abc1a1f014f2a6b32c6f01680">ERROR_TEST</a>()</td></tr>
+<tr class="memdesc:gaf962c28abc1a1f014f2a6b32c6f01680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark a test as checking a call to ERROR.  <a href="#gaf962c28abc1a1f014f2a6b32c6f01680">More...</a><br /></td></tr>
+<tr class="separator:gaf962c28abc1a1f014f2a6b32c6f01680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4439208ed8accb2887ff47388e91e58b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga4439208ed8accb2887ff47388e91e58b">ASSERTION_TEST</a>()</td></tr>
+<tr class="memdesc:ga4439208ed8accb2887ff47388e91e58b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark a test to be checking an ASSERT.  <a href="#ga4439208ed8accb2887ff47388e91e58b">More...</a><br /></td></tr>
+<tr class="separator:ga4439208ed8accb2887ff47388e91e58b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gafd576e7a30f9c252b5adca9c82f8aa30"><td class="memTemplParams" colspan="2"><a id="gafd576e7a30f9c252b5adca9c82f8aa30"></a>
+template&lt;typename T , typename UniformRandomBitGenerator , typename RandomNumberDistribution &gt; </td></tr>
+<tr class="memitem:gafd576e7a30f9c252b5adca9c82f8aa30"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gafd576e7a30f9c252b5adca9c82f8aa30">fill_with_random_values</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; T *&gt; data, const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; UniformRandomBitGenerator *&gt; generator, const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; RandomNumberDistribution *&gt; distribution) noexcept</td></tr>
+<tr class="memdesc:gafd576e7a30f9c252b5adca9c82f8aa30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill an existing data structure with random values. <br /></td></tr>
+<tr class="separator:gafd576e7a30f9c252b5adca9c82f8aa30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabc538e2ae11c31b66ec450ef997e1d81"><td class="memTemplParams" colspan="2">template&lt;typename ReturnType , typename T , typename UniformRandomBitGenerator , typename RandomNumberDistribution &gt; </td></tr>
+<tr class="memitem:gabc538e2ae11c31b66ec450ef997e1d81"><td class="memTemplItemLeft" align="right" valign="top">ReturnType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gabc538e2ae11c31b66ec450ef997e1d81">make_with_random_values</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; UniformRandomBitGenerator *&gt; generator, const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; RandomNumberDistribution *&gt; distribution, const T &amp;used_for_size) noexcept</td></tr>
+<tr class="memdesc:gabc538e2ae11c31b66ec450ef997e1d81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make a data structure and fill it with random values.  <a href="#gabc538e2ae11c31b66ec450ef997e1d81">More...</a><br /></td></tr>
+<tr class="separator:gabc538e2ae11c31b66ec450ef997e1d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga250d3d7bc177e6a7c5ec088ed3882ec0"><td class="memTemplParams" colspan="2">template&lt;typename T , typename UniformRandomBitGenerator , typename RandomNumberDistribution , Requires&lt; cpp17::is_floating_point_v&lt; tt::get_fundamental_type_t&lt; T &gt;&gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga250d3d7bc177e6a7c5ec088ed3882ec0"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga250d3d7bc177e6a7c5ec088ed3882ec0">make_with_random_values</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; UniformRandomBitGenerator *&gt; generator, const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; RandomNumberDistribution *&gt; distribution) noexcept</td></tr>
+<tr class="memdesc:ga250d3d7bc177e6a7c5ec088ed3882ec0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make a fixed-size data structure and fill with random values.  <a href="#ga250d3d7bc177e6a7c5ec088ed3882ec0">More...</a><br /></td></tr>
+<tr class="separator:ga250d3d7bc177e6a7c5ec088ed3882ec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga096701c2b3f24f2b277552a104661767"><td class="memTemplParams" colspan="2"><a id="ga096701c2b3f24f2b277552a104661767"></a>
+template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:ga096701c2b3f24f2b277552a104661767"><td class="memTemplItemLeft" align="right" valign="top">tnsr::I&lt; DataType, 1 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga096701c2b3f24f2b277552a104661767">random_unit_normal</a> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine.html">std::mt19937</a> *&gt; generator, const tnsr::ii&lt; DataType, 1 &gt; &amp;spatial_metric) noexcept</td></tr>
+<tr class="memdesc:ga096701c2b3f24f2b277552a104661767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make a random unit normal vector at each element of <code>DataType</code>. <br /></td></tr>
+<tr class="separator:ga096701c2b3f24f2b277552a104661767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9005fe71838426e92bf4afb2dcbf8ae2"><td class="memTemplParams" colspan="2"><a id="ga9005fe71838426e92bf4afb2dcbf8ae2"></a>
+template&lt;typename Map &gt; </td></tr>
+<tr class="memitem:ga9005fe71838426e92bf4afb2dcbf8ae2"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga9005fe71838426e92bf4afb2dcbf8ae2">are_maps_equal</a> (const Map &amp;map, const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a>, <a class="el" href="structFrame_1_1Inertial.html">Frame::Inertial</a>, Map::dim &gt; &amp;map_base)</td></tr>
+<tr class="memdesc:ga9005fe71838426e92bf4afb2dcbf8ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map and a <a class="el" href="classCoordinateMapBase.html" title="Abstract base class for CoordinateMap. ">CoordinateMapBase</a>, checks that the maps are equal by downcasting <code>map_base</code> and then comparing to <code>map</code>. Returns false if the downcast fails. <br /></td></tr>
+<tr class="separator:ga9005fe71838426e92bf4afb2dcbf8ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga61df721602d682f4b8b58ff4fee8e218"><td class="memTemplParams" colspan="2"><a id="ga61df721602d682f4b8b58ff4fee8e218"></a>
+template&lt;typename SourceFrame , typename TargetFrame , size_t VolumeDim&gt; </td></tr>
+<tr class="memitem:ga61df721602d682f4b8b58ff4fee8e218"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga61df721602d682f4b8b58ff4fee8e218">check_if_maps_are_equal</a> (const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, VolumeDim &gt; &amp;map_one, const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, VolumeDim &gt; &amp;map_two)</td></tr>
+<tr class="memdesc:ga61df721602d682f4b8b58ff4fee8e218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given two coordinate maps (but not their types), check that the maps are equal by evaluating them at a random set of points. <br /></td></tr>
+<tr class="separator:ga61df721602d682f4b8b58ff4fee8e218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf02c223800e6dff5b7ef7e26cd9346d"><td class="memTemplParams" colspan="2"><a id="gabf02c223800e6dff5b7ef7e26cd9346d"></a>
+template&lt;typename Map &gt; </td></tr>
+<tr class="memitem:gabf02c223800e6dff5b7ef7e26cd9346d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gabf02c223800e6dff5b7ef7e26cd9346d">test_jacobian</a> (const Map &amp;map, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Map::dim &gt; &amp;test_point)</td></tr>
+<tr class="memdesc:gabf02c223800e6dff5b7ef7e26cd9346d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map <code>map</code>, checks that the jacobian gives expected results when compared to the numerical derivative in each direction. <br /></td></tr>
+<tr class="separator:gabf02c223800e6dff5b7ef7e26cd9346d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa520953bc8d464f7e10e8eb194d60f48"><td class="memTemplParams" colspan="2"><a id="gaa520953bc8d464f7e10e8eb194d60f48"></a>
+template&lt;typename Map &gt; </td></tr>
+<tr class="memitem:gaa520953bc8d464f7e10e8eb194d60f48"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gaa520953bc8d464f7e10e8eb194d60f48">test_inv_jacobian</a> (const Map &amp;map, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Map::dim &gt; &amp;test_point)</td></tr>
+<tr class="memdesc:gaa520953bc8d464f7e10e8eb194d60f48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map <code>map</code>, checks that the inverse jacobian and jacobian multiply together to produce the identity matrix. <br /></td></tr>
+<tr class="separator:gaa520953bc8d464f7e10e8eb194d60f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78426b870bda77db6a8e6df8aac4db02"><td class="memTemplParams" colspan="2"><a id="ga78426b870bda77db6a8e6df8aac4db02"></a>
+template&lt;typename Map , typename... Args&gt; </td></tr>
+<tr class="memitem:ga78426b870bda77db6a8e6df8aac4db02"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga78426b870bda77db6a8e6df8aac4db02">test_coordinate_map_implementation</a> (const Map &amp;map)</td></tr>
+<tr class="memdesc:ga78426b870bda77db6a8e6df8aac4db02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks that the <a class="el" href="classCoordinateMap.html" title="A coordinate map or composition of coordinate maps. ">CoordinateMap</a> <code>map</code> functions as expected when used as the template parameter to the <code><a class="el" href="classCoordinateMap.html" title="A coordinate map or composition of coordinate maps. ">CoordinateMap</a></code> type. <br /></td></tr>
+<tr class="separator:ga78426b870bda77db6a8e6df8aac4db02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad2b86f2fe7f836fef3a95233ae9bde7c"><td class="memTemplParams" colspan="2"><a id="gad2b86f2fe7f836fef3a95233ae9bde7c"></a>
+template&lt;typename Map , typename... Args&gt; </td></tr>
+<tr class="memitem:gad2b86f2fe7f836fef3a95233ae9bde7c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gad2b86f2fe7f836fef3a95233ae9bde7c">test_coordinate_map_argument_types</a> (const Map &amp;map, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Map::dim &gt; &amp;test_point, const Args &amp;... args)</td></tr>
+<tr class="memdesc:gad2b86f2fe7f836fef3a95233ae9bde7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks that the <a class="el" href="classCoordinateMap.html" title="A coordinate map or composition of coordinate maps. ">CoordinateMap</a> <code>map</code> functions as expected when used with different argument types. <br /></td></tr>
+<tr class="separator:gad2b86f2fe7f836fef3a95233ae9bde7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39ae8490d3901771ac4387ee02128025"><td class="memTemplParams" colspan="2"><a id="ga39ae8490d3901771ac4387ee02128025"></a>
+template&lt;typename Map , typename T &gt; </td></tr>
+<tr class="memitem:ga39ae8490d3901771ac4387ee02128025"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga39ae8490d3901771ac4387ee02128025">test_inverse_map</a> (const Map &amp;map, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, Map::dim &gt; &amp;test_point)</td></tr>
+<tr class="memdesc:ga39ae8490d3901771ac4387ee02128025"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map <code>map</code>, checks that the inverse map gives expected results. <br /></td></tr>
+<tr class="separator:ga39ae8490d3901771ac4387ee02128025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga58438d363c5500b83f4f06a3a8db5910"><td class="memTemplParams" colspan="2"><a id="ga58438d363c5500b83f4f06a3a8db5910"></a>
+template&lt;typename Map &gt; </td></tr>
+<tr class="memitem:ga58438d363c5500b83f4f06a3a8db5910"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga58438d363c5500b83f4f06a3a8db5910">test_suite_for_map_on_unit_cube</a> (const Map &amp;map)</td></tr>
+<tr class="memdesc:ga58438d363c5500b83f4f06a3a8db5910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map <code>map</code>, tests the map functions, including map inverse, jacobian, and inverse jacobian, for a series of points. These points are chosen in a dim-dimensonal cube of side 2 centered at the origin. The map is expected to be valid on the boundaries of the cube. <br /></td></tr>
+<tr class="separator:ga58438d363c5500b83f4f06a3a8db5910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7baa6e16abbf3cb34691cde874db1dbc"><td class="memTemplParams" colspan="2"><a id="ga7baa6e16abbf3cb34691cde874db1dbc"></a>
+template&lt;typename Map &gt; </td></tr>
+<tr class="memitem:ga7baa6e16abbf3cb34691cde874db1dbc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga7baa6e16abbf3cb34691cde874db1dbc">test_suite_for_map_on_sphere</a> (const Map &amp;map, const bool include_origin=true, const double radius_of_sphere=1.0)</td></tr>
+<tr class="memdesc:ga7baa6e16abbf3cb34691cde874db1dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map <code>map</code>, tests the map functions, including map inverse, jacobian, and inverse jacobian, for a series of points. These points are chosen in a sphere of radius <code>radius_of_sphere</code>, and the map is expected to be valid on the boundary of that sphere as well as in its interior. The flag <code>include_origin</code> indicates whether to test the map at the origin. This test works only in 3 dimensions. <br /></td></tr>
+<tr class="separator:ga7baa6e16abbf3cb34691cde874db1dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d52ab2b276eea1d2ee938d2c8db1470"><td class="memItemLeft" align="right" valign="top"><a id="ga6d52ab2b276eea1d2ee938d2c8db1470"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; OrientationMap&lt; 3 &gt;, 6 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga6d52ab2b276eea1d2ee938d2c8db1470">all_wedge_directions</a> ()</td></tr>
+<tr class="memdesc:ga6d52ab2b276eea1d2ee938d2c8db1470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wedge OrientationMap in each of the six directions used in the Shell and Sphere domain creators. <br /></td></tr>
+<tr class="separator:ga6d52ab2b276eea1d2ee938d2c8db1470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga76bcfe09c3ecbc467d9794ed5b376316"><td class="memTemplParams" colspan="2"><a id="ga76bcfe09c3ecbc467d9794ed5b376316"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga76bcfe09c3ecbc467d9794ed5b376316"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga76bcfe09c3ecbc467d9794ed5b376316">test_creation</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;construction_string) noexcept</td></tr>
+<tr class="memdesc:ga76bcfe09c3ecbc467d9794ed5b376316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an object from a given string. Each line in the string must be indented. <br /></td></tr>
+<tr class="separator:ga76bcfe09c3ecbc467d9794ed5b376316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf2c013749c1829067e5e6cbe14cbe48"><td class="memTemplParams" colspan="2"><a id="gacf2c013749c1829067e5e6cbe14cbe48"></a>
+template&lt;typename BaseClass &gt; </td></tr>
+<tr class="memitem:gacf2c013749c1829067e5e6cbe14cbe48"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; BaseClass &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gacf2c013749c1829067e5e6cbe14cbe48">test_factory_creation</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;construction_string) noexcept</td></tr>
+<tr class="memdesc:gacf2c013749c1829067e5e6cbe14cbe48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a factory object from a given string. Each line in the string must be indented. <br /></td></tr>
+<tr class="separator:gacf2c013749c1829067e5e6cbe14cbe48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2895e57f4cacd63d2549655bb29bba7b"><td class="memTemplParams" colspan="2"><a id="ga2895e57f4cacd63d2549655bb29bba7b"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga2895e57f4cacd63d2549655bb29bba7b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga2895e57f4cacd63d2549655bb29bba7b">serialize_and_deserialize</a> (const T &amp;t)</td></tr>
+<tr class="memdesc:ga2895e57f4cacd63d2549655bb29bba7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes and deserializes an object <code>t</code> of type <code>T</code> <br /></td></tr>
+<tr class="separator:ga2895e57f4cacd63d2549655bb29bba7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4294de51e79ce048d0a76bd72f80d19a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga4294de51e79ce048d0a76bd72f80d19a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga4294de51e79ce048d0a76bd72f80d19a">test_serialization</a> (const T &amp;t)</td></tr>
+<tr class="memdesc:ga4294de51e79ce048d0a76bd72f80d19a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests the serialization of comparable types.  <a href="#ga4294de51e79ce048d0a76bd72f80d19a">More...</a><br /></td></tr>
+<tr class="separator:ga4294de51e79ce048d0a76bd72f80d19a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9032f7d7bb3698bab71a49d1df9c2d99"><td class="memTemplParams" colspan="2">template&lt;typename B , typename D , typename... Args&gt; </td></tr>
+<tr class="memitem:ga9032f7d7bb3698bab71a49d1df9c2d99"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga9032f7d7bb3698bab71a49d1df9c2d99">test_serialization_via_base</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:ga9032f7d7bb3698bab71a49d1df9c2d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test the serialization of a derived class via a base class pointer.  <a href="#ga9032f7d7bb3698bab71a49d1df9c2d99">More...</a><br /></td></tr>
+<tr class="separator:ga9032f7d7bb3698bab71a49d1df9c2d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeca05cc83258027c4547dfd39f399965"><td class="memTemplParams" colspan="2"><a id="gaeca05cc83258027c4547dfd39f399965"></a>
+template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:gaeca05cc83258027c4547dfd39f399965"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gaeca05cc83258027c4547dfd39f399965">check_cmp</a> (const T &amp;less, const U &amp;greater)</td></tr>
+<tr class="memdesc:gaeca05cc83258027c4547dfd39f399965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to test comparison operators. Pass values with less &lt; greater. <br /></td></tr>
+<tr class="separator:gaeca05cc83258027c4547dfd39f399965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf6359c268e2790615133ca038f0c362e"><td class="memTemplParams" colspan="2">template&lt;typename Invocable , size_t VolumeDim&gt; </td></tr>
+<tr class="memitem:gaf6359c268e2790615133ca038f0c362e"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, VolumeDim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gaf6359c268e2790615133ca038f0c362e">numerical_derivative</a> (const Invocable &amp;map, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, VolumeDim &gt; &amp;x, const size_t direction, const double delta)</td></tr>
+<tr class="memdesc:gaf6359c268e2790615133ca038f0c362e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the derivative of an Invocable at a point x - represented by an array of doubles - in the domain of <code>map</code> with a sixth-order finite difference method.  <a href="#gaf6359c268e2790615133ca038f0c362e">More...</a><br /></td></tr>
+<tr class="separator:gaf6359c268e2790615133ca038f0c362e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga809dd7c089188c1c15f847f73cf6d924"><td class="memTemplParams" colspan="2">template&lt;typename Exception , typename ThrowingFunctor &gt; </td></tr>
+<tr class="memitem:ga809dd7c089188c1c15f847f73cf6d924"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga809dd7c089188c1c15f847f73cf6d924">test_throw_exception</a> (const ThrowingFunctor &amp;func, const Exception &amp;expected)</td></tr>
+<tr class="memdesc:ga809dd7c089188c1c15f847f73cf6d924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute <code>func</code> and check that it throws an exception <code>expected</code>.  <a href="#ga809dd7c089188c1c15f847f73cf6d924">More...</a><br /></td></tr>
+<tr class="separator:ga809dd7c089188c1c15f847f73cf6d924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga36a219be74fba903e24ef17d3132a2b0"><td class="memTemplParams" colspan="2">template&lt;class EosType , class T , class... MemberArgs&gt; </td></tr>
+<tr class="memitem:ga36a219be74fba903e24ef17d3132a2b0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga36a219be74fba903e24ef17d3132a2b0">TestHelpers::EquationsOfState::check</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; EosType &gt; in_eos, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;python_function_prefix, const T &amp;used_for_size, const MemberArgs &amp;... member_args) noexcept</td></tr>
+<tr class="memdesc:ga36a219be74fba903e24ef17d3132a2b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test an equation of state by comparing to python functions.  <a href="group__TestingFrameworkGroup.html#ga36a219be74fba903e24ef17d3132a2b0">More...</a><br /></td></tr>
+<tr class="separator:ga36a219be74fba903e24ef17d3132a2b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3fa1d74888ffd499879aa8d634310a4a"><td class="memTemplParams" colspan="2">template&lt;class EosType , class T , class... MemberArgs&gt; </td></tr>
+<tr class="memitem:ga3fa1d74888ffd499879aa8d634310a4a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga3fa1d74888ffd499879aa8d634310a4a">TestHelpers::EquationsOfState::check</a> (EosType in_eos, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;python_function_prefix, const T &amp;used_for_size, const MemberArgs &amp;... member_args) noexcept</td></tr>
+<tr class="memdesc:ga3fa1d74888ffd499879aa8d634310a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test an equation of state by comparing to python functions.  <a href="group__TestingFrameworkGroup.html#ga3fa1d74888ffd499879aa8d634310a4a">More...</a><br /></td></tr>
+<tr class="separator:ga3fa1d74888ffd499879aa8d634310a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Classes, functions, macros, and instructions for developing tests. </p>
+<h3>Details</h3>
+<p>SpECTRE uses the testing framework <a href="https://github.com/philsquared/Catch">Catch</a>. Catch supports a variety of different styles of tests including BDD and fixture tests. The file <code>cmake/SpectreAddCatchTests.cmake</code> parses the source files and adds the found tests to ctest with the correct properties specified by tags and attributes.</p>
+<h3>Usage</h3>
+<p>To run the tests, type <code>ctest</code> in the build directory. You can specify a regex to match the test name using <code>ctest -R Unit.Blah</code>, or run all tests with a certain tag using <code>ctest -L tag</code>.</p>
+<h3>Comparing double-precision results</h3>
+<p>To compare two floating-point numbers that may differ by round-off, use the helper object <code>approx</code>. This is an instance of Catch's comparison class <code>Approx</code> in which the relative tolerance for comparisons is set to roughly \(10^{-14}\) (i.e. <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt;double&gt;::epsilon()*100</code>). When possible, we recommend using <code>approx</code> for fuzzy comparisons as follows: </p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  CHECK(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/sin.html">sin</a>(M_PI / 4.0) == approx(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/numeric/math/cos.html">cos</a>(M_PI / 4.0)));</div></div><!-- fragment --><p> For checks that need more control over the precision (e.g. an algorithm in which round-off errors accumulate to a higher level), we recommend using the <code>approx</code> helper with a one-time tolerance adjustment. A comment should explain the reason for the adjustment: </p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  <span class="comment">// This check needs tolerance 1e-12 for X reason.</span></div><div class="line">  CHECK(1.0 == approx(1.0 + 5e-13).epsilon(1e-12));</div></div><!-- fragment --><p> For tests in which the same precision adjustment is re-used many times, a new helper object can be created from Catch's <code>Approx</code> with a custom precision: </p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  <span class="comment">// The checks in this test need tolerance 1e-12 for X reason.</span></div><div class="line">  Approx my_approx = Approx::custom().epsilon(1e-12);</div><div class="line">  CHECK(1.0 == my_approx(1.0 + 5e-13));</div><div class="line">  CHECK(1.0 != my_approx(1.0 + 5e-12));</div></div><!-- fragment --><p> Note: We provide the <code>approx</code> object because Catch's <code>Approx</code> defaults to a very loose tolerance (<code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt;float&gt;::epsilon()*100</code>, or roughly \(10^{-5}\) relative error), and so is poorly-suited to checking many numerical algorithms that rely on double-precision accuracy. By providing a tighter tolerance with <code>approx</code>, we avoid having to redefine the tolerance in every test.</p>
+<h3>Attributes</h3>
+<p>Attributes allow you to modify properties of the test. Attributes are specified as follows: </p><div class="fragment"><div class="line"><span class="comment">// [[TimeOut, 10]]</span></div><div class="line"><span class="comment">// [[OutputRegex, The error message expected from the test]]</span></div><div class="line">SPECTRE_TEST_CASE(<span class="stringliteral">&quot;Unit.Blah&quot;</span>, <span class="stringliteral">&quot;[Unit]&quot;</span>) {</div></div><!-- fragment --><p>Available attributes are:</p>
+<table class="doxtable">
+<tr>
+<th>Attribute </th><th>Description   </th></tr>
+<tr>
+<td>TimeOut  </td><td>override the default timeout and set the timeout to N seconds. This should be set very sparingly since unit tests are designed to be short. If your test is too long you should consider testing smaller portions of the code if possible, or writing an integration test instead.   </td></tr>
+<tr>
+<td>OutputRegex  </td><td>When testing failure modes the exact error message must be tested, not just that the test failed. Since the string passed is a regular expression you must escape any regex tokens. For example, to match <code>some (word) and</code> you must specify the string <code>some \(word\) and</code>. If your error message contains a newline, you can match it using the dot operator <code>.</code>, which matches any character.   </td></tr>
+</table>
+<h3>Example</h3>
+<div class="fragment"><div class="line"><span class="comment">// [[OutputRegex, File &#39;./Unit.IO.H5.FileErrorExists.h5&#39; already exists and we</span></div><div class="line"><span class="comment">// are not allowed to append. To reduce the risk of accidental deletion you must</span></div><div class="line"><span class="comment">// explicitly delete the file first using the file_system library in</span></div><div class="line"><span class="comment">// SpECTRE or through your shell.]]</span></div><div class="line">SPECTRE_TEST_CASE(<span class="stringliteral">&quot;Unit.IO.H5.FileErrorExists&quot;</span>, <span class="stringliteral">&quot;[Unit][IO][H5]&quot;</span>) {</div><div class="line">  <a class="code" href="group__TestingFrameworkGroup.html#gaf962c28abc1a1f014f2a6b32c6f01680">ERROR_TEST</a>();</div></div><!-- fragment --> <h3>Testing static assert</h3>
+<p>You are able to test that a <code>static_assert</code> is being triggered using the compilation failure test framework. When creating a new <code>static_assert</code> test you must be sure to not have it in the same file as the runtime tests since the file will not compile. The new file, say <code>Test_StaticAssertDataBox.cpp</code> must be added to the <code>SPECTRE_COMPILATION_TESTS</code> CMake variable, not <code>SPECTRE_TESTS</code>. Here is an example of how to write a compilation failure test:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#ifdef COMPILATION_TEST_TEST_FRAMEWORK_WORKS</span></div><div class="line"><span class="comment">// [[TAGS: unit, CompilationTest]]</span></div><div class="line"></div><div class="line"><span class="comment">// [[COMPILER: all REGEX: Testing compilation failure tests]]</span></div><div class="line"></div><div class="line">static_assert(<span class="keyword">false</span>, <span class="stringliteral">&quot;Testing compilation failure tests&quot;</span>);</div><div class="line"></div><div class="line"><span class="keywordtype">int</span> main() {}</div><div class="line"></div><div class="line"><span class="preprocessor">#endif</span></div><div class="line"></div><div class="line">FILE_IS_COMPILATION_TEST</div></div><!-- fragment --><p> Each individual test must be inside an <code>#ifdef COMPILATION_TEST_.*</code> block and each compilation test <code>cpp</code> file must contain <code>FILE_IS_COMPILATION_TEST</code> outside of any <code>#ifdef</code>s and at the end of the file.</p>
+<p>Specific compiler versions can be specified for which the regex changes. That is, the compiler version specified and all versions newer than that will use the regex, until a newer compiler version is specified. For example, see the below code prints a different static_assert for pre-GCC 6 and GCC 6 and newer.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#ifdef COMPILATION_TEST_TEST_DIFFERENT_COMPILERS</span></div><div class="line"><span class="comment">// [[TAGS: unit, CompilationTest]]</span></div><div class="line"></div><div class="line"><span class="comment">// [[COMPILER: GNU:0.0.0 REGEX: static assertion failed: assert with GCC 5]]</span></div><div class="line"><span class="comment">// [[COMPILER: GNU:6.0.0 REGEX: static assertion failed: assert with GCC 6 or</span></div><div class="line"><span class="comment">// newer]]</span></div><div class="line"><span class="comment">// [[COMPILER: Clang REGEX: static_assert failed \&quot;assert with Clang\&quot;]]</span></div><div class="line"><span class="comment">// [[COMPILER: AppleClang REGEX: static_assert failed \&quot;assert with</span></div><div class="line"><span class="comment">// AppleClang\&quot;]]</span></div><div class="line"></div><div class="line"><span class="preprocessor">#ifdef __APPLE__</span></div><div class="line">static_assert(<span class="keyword">false</span>, <span class="stringliteral">&quot;assert with AppleClang&quot;</span>);</div><div class="line"><span class="preprocessor">#else  // __APPLE__</span></div><div class="line"><span class="preprocessor">#ifdef __clang__</span></div><div class="line">static_assert(<span class="keyword">false</span>, <span class="stringliteral">&quot;assert with Clang&quot;</span>);</div><div class="line"><span class="preprocessor">#else  // __clang__</span></div><div class="line"><span class="preprocessor">#if __GNUC__ &lt; 6</span></div><div class="line">static_assert(<span class="keyword">false</span>, <span class="stringliteral">&quot;assert with GCC 5&quot;</span>);</div><div class="line"><span class="preprocessor">#else   // __GNUC__ &lt; 6</span></div><div class="line">static_assert(<span class="keyword">false</span>, <span class="stringliteral">&quot;assert with GCC 6 or newer&quot;</span>);</div><div class="line"><span class="preprocessor">#endif  // __GNUC__ &lt; 6</span></div><div class="line"><span class="preprocessor">#endif  // __clang__</span></div><div class="line"><span class="preprocessor">#endif  // __APPLE__</span></div><div class="line"></div><div class="line"><span class="keywordtype">int</span> main() {}</div><div class="line"><span class="preprocessor">#endif</span></div></div><!-- fragment --> <h3>Debugging Tests in GDB or LLDB</h3>
+<p>Several tests fail intentionally at the executable level to test error handling like ASSERT statements in the code. CTest is aware of which should fail and passes them. If you want to debug an individual test in a debugger you need to run a single test using the RunTests executable (in dg-charm-build/bin/RunTests) you must specify the name of the test as the first argument. For example, if you want to run just the "Unit.Gradient" test you can run <code>./bin/RunTests Unit.Gradient</code>. If you are using a debugger launch the debugger, for example if you're using LLDB then run <code>lldb ./bin/RunTests</code> and then to run the executable inside the debugger use <code>run Unit.Gradient</code> inside the debugger. </p>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga4439208ed8accb2887ff47388e91e58b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4439208ed8accb2887ff47388e91e58b">&#9670;&nbsp;</a></span>ASSERTION_TEST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ASSERTION_TEST</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                          \</div><div class="line">    ERROR_TEST();                                               <a class="code" href="group__ParallelGroup.html#gaccc68e564135958d18110d2847dcc1b3">\</a></div><div class="line"><a class="code" href="group__ParallelGroup.html#gaccc68e564135958d18110d2847dcc1b3">    Parallel::abort</a>(<span class="stringliteral">&quot;### No ASSERT tests in release mode ###&quot;</span>); \</div><div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div><div class="ttc" id="group__ParallelGroup_html_gaccc68e564135958d18110d2847dcc1b3"><div class="ttname"><a href="group__ParallelGroup.html#gaccc68e564135958d18110d2847dcc1b3">Parallel::abort</a></div><div class="ttdeci">void abort(const std::string &amp;message)</div><div class="ttdoc">Abort the program with an error message. </div><div class="ttdef"><b>Definition:</b> Abort.hpp:17</div></div>
+</div><!-- fragment -->
+<p>Mark a test to be checking an ASSERT. </p>
+<h3>Details</h3>
+<p>Testing error handling is just as important as testing functionality. Tests that are supposed to exit with an error must be annotated with the attribute </p><div class="fragment"><div class="line"><span class="comment">// [[OutputRegex, The regex that should be found in the output]]</span></div></div><!-- fragment --><p> Note that the regex only needs to be a sub-expression of the error message, that is, there are implicit wildcards before and after the string.</p>
+<p>In order to test ASSERT's properly the test must also fail for release builds. This is done by adding this macro at the beginning for the test.</p>
+<h3>Example</h3>
+<div class="fragment"><div class="line"><span class="comment">// [[OutputRegex, Out of range slab fraction]]</span></div><div class="line">[[noreturn]] SPECTRE_TEST_CASE(<span class="stringliteral">&quot;Unit.Time.Time.Init.0&quot;</span>, <span class="stringliteral">&quot;[Unit][Time]&quot;</span>) {</div><div class="line">  <a class="code" href="group__TestingFrameworkGroup.html#ga4439208ed8accb2887ff47388e91e58b">ASSERTION_TEST</a>();</div><div class="line"><span class="preprocessor">#ifdef SPECTRE_DEBUG</span></div><div class="line">  <a class="code" href="classTime.html">Time</a>(<a class="code" href="classSlab.html">Slab</a>(0., 1.), -1);</div><div class="line">  <a class="code" href="group__ErrorHandlingGroup.html#ga1d27028c1827976007fe9d29ad3a2f66">ERROR</a>(<span class="stringliteral">&quot;Failed to trigger ASSERT in an assertion test&quot;</span>);</div><div class="line"><span class="preprocessor">#endif</span></div><div class="line">}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="ga6b88c61cf6f312ba42d2b82be6384f6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6b88c61cf6f312ba42d2b82be6384f6f">&#9670;&nbsp;</a></span>CAPTURE_PRECISE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CAPTURE_PRECISE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">variable</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">INFO(#variable &lt;&lt; <span class="stringliteral">&quot;: &quot;</span>          \</div><div class="line">                 &lt;&lt; TestHelpers_detail::format_capture_precise(variable))</div></div><!-- fragment -->
+<p>Alternative to Catch's CAPTURE that prints more digits. </p>
+
+</div>
+</div>
+<a id="ga21fcbc0b07905e0d2f8b012b388acd73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga21fcbc0b07905e0d2f8b012b388acd73">&#9670;&nbsp;</a></span>CHECK_FOR_DOUBLES_AND_DATAVECTORS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHECK_FOR_DOUBLES_AND_DATAVECTORS</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">FUNCTION_NAME, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">CHECK_FOR_DOUBLES(FUNCTION_NAME, __VA_ARGS__)               \</div><div class="line">  CHECK_FOR_DATAVECTORS(FUNCTION_NAME, __VA_ARGS__)</div></div><!-- fragment -->
+<p>Macro used to test functions whose parameter can be a <code>double</code> or a <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>. </p>
+<p>In testing multiple instances of a function template using random values, it often proves useful to write a wrapper around <code><a class="el" href="namespacepypp.html#aa9d3d256a4bf8f2e8abeece42d94e4af" title="Tests a C++ function returning by value by comparing the result to a python function. ">pypp::check_with_random_values</a></code>. This way, one can easily loop over several values of one or multiple template parameters (e.g. when testing a function templated in the number of spacetime dimensions.) The template parameters of the wrapper will then correspond to the template parameters of the function, which will be used by <code><a class="el" href="namespacepypp.html#aa9d3d256a4bf8f2e8abeece42d94e4af" title="Tests a C++ function returning by value by comparing the result to a python function. ">pypp::check_with_random_values</a></code> to invoke and test each instance. Each of these wrappers will generally need only one parameter, namely a variable <code>used_for_size</code> passed to <code><a class="el" href="namespacepypp.html#aa9d3d256a4bf8f2e8abeece42d94e4af" title="Tests a C++ function returning by value by comparing the result to a python function. ">pypp::check_with_random_values</a></code> that can be a <code>double</code>, a <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>, or both (provided that the function being tested is templated in the type of <code>used_for_size</code>.) Since this is applied in multiple test files, all of these files will share the same way to generate the required calls to the wrapper.</p>
+<p>This macro, along with</p>
+<div class="fragment"><div class="line">CHECK_FOR_DOUBLES(FUNCTION_NAME, ...)</div></div><!-- fragment --> <div class="fragment"><div class="line">CHECK_FOR_DATAVECTORS(FUNCTION_NAME, ...)</div></div><!-- fragment --><p>allow to generate calls to multiple instances of a test function template in the same way as done by <code>INVOKE_TEST_FUNCTION(FUNCTION_NAME, ARGS_TUPLE, ...)</code> (to which these macros call), except that the tuple of arguments is not passed, as these macros will assume that a <code>double</code> <code>d</code> and/or a <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code> <code>dv</code> will be previously defined. Although any <code>d</code>s and <code>dv</code>s will work, one can (and it is recommended to) generate signaling <code>NaN</code> values for <code>d</code> and <code>dv</code>. This can be done by invoking one of the three provided macros: <code>GENERATE_UNINIATILIZED_DOUBLE</code>, <code>GENERATE_UNINITIALIZED_DATAVECTOR</code>, or <code>GENERATE_UNINITIALIZED_DOUBLE_AND_DATAVECTOR</code>. For example,</p>
+<div class="fragment"><div class="line">GENERATE_UNINITIALIZED_DATAVECTOR;</div><div class="line">CHECK_FOR_DATAVECTORS(test_fluxes, (1, 2, 3))</div></div><!-- fragment --><p>will generate a test case for 1, 2 and 3 dimensions:</p>
+<div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> dv(5);</div><div class="line">test_fluxes&lt;1&gt;(dv);</div><div class="line">test_fluxes&lt;2&gt;(dv);</div><div class="line">test_fluxes&lt;3&gt;(dv);</div></div><!-- fragment --><p>Analogously, the wrapper</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> Dim, IndexType TypeOfIndex, <span class="keyword">typename</span> DataType&gt;</div><div class="line">test_ricci(<span class="keyword">const</span> DataType&amp; used_for_size) noexcept { ... }</div></div><!-- fragment --><p>can be invoked by writing</p>
+<div class="fragment"><div class="line">GENERATE_UNINITIALIZED_DOUBLE_AND_DATAVECTOR;</div><div class="line"></div><div class="line"><a class="code" href="group__TestingFrameworkGroup.html#ga21fcbc0b07905e0d2f8b012b388acd73">CHECK_FOR_DOUBLES_AND_DATAVECTORS</a>(test_ricci, (1, 2, 3),</div><div class="line">                                  (<a class="code" href="group__TensorGroup.html#gga875b107b929ff008a27078792ac0bc8ea33d7f1ec5fe18e7ba799474138e71504">IndexType::Spatial</a>, <a class="code" href="group__TensorGroup.html#gga875b107b929ff008a27078792ac0bc8eaed5df3a695921f514a83c22d119c0f8e">IndexType::Spacetime</a>))</div></div><!-- fragment --><p>which will generate</p>
+<div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">double</span> d(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits&lt;double&gt;::signaling_NaN</a>());</div><div class="line"><span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a> dv(5);</div><div class="line"></div><div class="line">test_ricci&lt;1, IndexType::Spatial&gt;(d);</div><div class="line">test_ricci&lt;1, IndexType::Spacetime&gt;(d);</div><div class="line">test_ricci&lt;2, IndexType::Spatial&gt;(d);</div><div class="line">test_ricci&lt;2, IndexType::Spacetime&gt;(d);</div><div class="line">test_ricci&lt;3, IndexType::Spatial&gt;(d);</div><div class="line">test_ricci&lt;3, IndexType::Spacetime&gt;(d);</div><div class="line">test_ricci&lt;1, IndexType::Spatial&gt;(dv);</div><div class="line">test_ricci&lt;1, IndexType::Spacetime&gt;(dv);</div><div class="line">test_ricci&lt;2, IndexType::Spatial&gt;(dv);</div><div class="line">test_ricci&lt;2, IndexType::Spacetime&gt;(dv);</div><div class="line">test_ricci&lt;3, IndexType::Spatial&gt;(dv);</div><div class="line">test_ricci&lt;3, IndexType::Spacetime&gt;(dv);</div></div><!-- fragment --><p>Note that it is not necessary to pass values for <code>DataType</code>, as they are deduced from <code>used_for_size</code>.</p>
+<dl class="section note"><dt>Note</dt><dd>The order of the macro-tuples of values must match the order of the template parameters of the function.</dd>
+<dd>
+The function to be called must at least have one template argument, so passing an empty set of template parameters will not work. </dd></dl>
+
+</div>
+</div>
+<a id="ga6ce5d669c94418f197e4c55c53e64a64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6ce5d669c94418f197e4c55c53e64a64">&#9670;&nbsp;</a></span>CHECK_ITERABLE_APPROX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHECK_ITERABLE_APPROX</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                       \</div><div class="line">    INFO(__FILE__ <span class="stringliteral">&quot;:&quot;</span> + std::to_string(__LINE__) + <span class="stringliteral">&quot;: &quot;</span> #a <span class="stringliteral">&quot; == &quot;</span> #b);       \</div><div class="line">    check_iterable_approx&lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/common_type.html">std::common_type_t</a>&lt;                                \</div><div class="line">        std::decay_t&lt;decltype(a)&gt;, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t&lt;decltype(b)&gt;</a>&gt;&gt;<a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">::apply</a>(a, b); \</div><div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div><div class="ttc" id="common_type_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/common_type.html">std::common_type_t</a></div></div>
+<div class="ttc" id="group__DataBoxGroup_html_ga657b0ab1e181835d5f22d20dbe8f8e70"><div class="ttname"><a href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">db::apply</a></div><div class="ttdeci">constexpr auto apply(F &amp;&amp;f, const DataBox&lt; BoxTags &gt; &amp;box, Args &amp;&amp;... args)</div><div class="ttdoc">Apply the function f with argument Tags TagsList from DataBox box </div><div class="ttdef"><b>Definition:</b> DataBox.hpp:1560</div></div>
+<div class="ttc" id="decay_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t</a></div></div>
+</div><!-- fragment -->
+<p>A wrapper around Catch's CHECK macro that checks approximate equality of entries in iterable containers. For maplike containers, keys are checked for strict equality and values are checked for approximate equality. </p>
+
+</div>
+</div>
+<a id="ga4f36d1ee34e6eb0721e35918eb488f0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4f36d1ee34e6eb0721e35918eb488f0c">&#9670;&nbsp;</a></span>CHECK_ITERABLE_CUSTOM_APPROX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHECK_ITERABLE_CUSTOM_APPROX</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">appx&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                       \</div><div class="line">    INFO(__FILE__ <span class="stringliteral">&quot;:&quot;</span> + std::to_string(__LINE__) + <span class="stringliteral">&quot;: &quot;</span> #a <span class="stringliteral">&quot; == &quot;</span> #b);       \</div><div class="line">    check_iterable_approx&lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/common_type.html">std::common_type_t</a>&lt;                                \</div><div class="line">        std::decay_t&lt;decltype(a)&gt;, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t&lt;decltype(b)&gt;</a>&gt;&gt;<a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">::apply</a>(a, b,  \</div><div class="line">                                                                      appx); \</div><div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div><div class="ttc" id="common_type_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/common_type.html">std::common_type_t</a></div></div>
+<div class="ttc" id="group__DataBoxGroup_html_ga657b0ab1e181835d5f22d20dbe8f8e70"><div class="ttname"><a href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">db::apply</a></div><div class="ttdeci">constexpr auto apply(F &amp;&amp;f, const DataBox&lt; BoxTags &gt; &amp;box, Args &amp;&amp;... args)</div><div class="ttdoc">Apply the function f with argument Tags TagsList from DataBox box </div><div class="ttdef"><b>Definition:</b> DataBox.hpp:1560</div></div>
+<div class="ttc" id="decay_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t</a></div></div>
+</div><!-- fragment -->
+<p>Same as <code>CHECK_ITERABLE_APPROX</code> with user-defined Approx. The third argument should be of type <code>Approx</code>. </p>
+
+</div>
+</div>
+<a id="gaec8dcdc783140fb14fe617cc0cc1dcae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaec8dcdc783140fb14fe617cc0cc1dcae">&#9670;&nbsp;</a></span>CHECK_OP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHECK_OP</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">op, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">c&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                          \</div><div class="line">    const <span class="keyword">auto</span>&amp; a_ = a;         \</div><div class="line">    const <span class="keyword">auto</span>&amp; b_ = b;         \</div><div class="line">    const <span class="keyword">auto</span>&amp; c_ = c;         \</div><div class="line">    CHECK(a_ op b_ == c_);      \</div><div class="line">    auto f = a_;                \</div><div class="line">    CHECK((f op## = b_) == c_); \</div><div class="line">    CHECK(f == c_);             \</div><div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div></div><!-- fragment -->
+<p>Check a op b == c and also the op= version. </p>
+
+</div>
+</div>
+<a id="gaf962c28abc1a1f014f2a6b32c6f01680"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf962c28abc1a1f014f2a6b32c6f01680">&#9670;&nbsp;</a></span>ERROR_TEST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ERROR_TEST</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                    \</div><div class="line">    std::signal(SIGABRT, spectre_testing_signal_handler); \</div><div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div></div><!-- fragment -->
+<p>Mark a test as checking a call to ERROR. </p>
+<h3>Details</h3>
+<p>In order to properly handle aborting with Catch versions newer than 1.6.1 we must install a signal handler after Catch does, which means inside the SPECTRE_TEST_CASE itself. The <a class="el" href="group__TestingFrameworkGroup.html#gaf962c28abc1a1f014f2a6b32c6f01680" title="Mark a test as checking a call to ERROR. ">ERROR_TEST()</a> macro should be the first line in the SPECTRE_TEST_CASE.</p>
+<h3>Example</h3>
+<div class="fragment"><div class="line"><span class="comment">// [[OutputRegex, I failed]]</span></div><div class="line">[[noreturn]] SPECTRE_TEST_CASE(<span class="stringliteral">&quot;Unit.TestingFramework.Abort&quot;</span>, <span class="stringliteral">&quot;[Unit]&quot;</span>) {</div><div class="line">  <a class="code" href="group__TestingFrameworkGroup.html#gaf962c28abc1a1f014f2a6b32c6f01680">ERROR_TEST</a>();</div></div><!-- fragment -->
+</div>
+</div>
+<a id="ga8cd2549e4a5627f34f8201af2bcbfd34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8cd2549e4a5627f34f8201af2bcbfd34">&#9670;&nbsp;</a></span>INVOKE_TEST_FUNCTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INVOKE_TEST_FUNCTION</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">FUNCTION_NAME, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">TUPLE_ARGS, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_ASSERT_MSG(BOOST_PP_NOT(BOOST_VMD_IS_EMPTY(__VA_ARGS__)),           \</div><div class="line">                      <span class="stringliteral">&quot;You cannot pass an empty set of template parameters &quot;</span>   \</div><div class="line">                      <span class="stringliteral">&quot;to INVOKE_TEST_FUNCTION&quot;</span>)                               \</div><div class="line">  BOOST_PP_TUPLE_ENUM(                                                         \</div><div class="line">      0,                                                                       \</div><div class="line">      BOOST_PP_IF(                                                             \</div><div class="line">          BOOST_PP_EQUAL(                                                      \</div><div class="line">              BOOST_PP_TUPLE_SIZE(BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__)),    \</div><div class="line">              1),                                                              \</div><div class="line">          (BOOST_PP_LIST_FOR_EACH(                                             \</div><div class="line">              INVOKE_FUNCTION_WITH_SINGLE_TEMPLATE_PARAM,                      \</div><div class="line">              (FUNCTION_NAME, TUPLE_ARGS),                                     \</div><div class="line">              BOOST_PP_TUPLE_TO_LIST(                                          \</div><div class="line">                  BOOST_PP_VARIADIC_ELEM(0, __VA_ARGS__)))),                   \</div><div class="line">          (INVOKE_FUNCTION_WITH_MANY_TEMPLATE_PARAMS(                          \</div><div class="line">              BOOST_PP_TUPLE_PUSH_FRONT(                                       \</div><div class="line">                  BOOST_PP_LIST_TO_TUPLE(BOOST_PP_LIST_TRANSFORM(              \</div><div class="line">                      INVOKE_FUNCTION_WITH_MANY_TEMPLATE_PARAMS_TUPLE_TO_LIST, \</div><div class="line">                      _,                                                       \</div><div class="line">                      BOOST_PP_LIST_REST(                                      \</div><div class="line">                          BOOST_PP_VARIADIC_TO_LIST(__VA_ARGS__)))),           \</div><div class="line">                  BOOST_PP_LIST_TRANSFORM(                                     \</div><div class="line">                      INVOKE_FUNCTION_TUPLE_PUSH_BACK,                         \</div><div class="line">                      (FUNCTION_NAME, TUPLE_ARGS),                             \</div><div class="line">                      BOOST_PP_TUPLE_TO_LIST(                                  \</div><div class="line">                          BOOST_PP_VARIADIC_ELEM(0, __VA_ARGS__))))))))</div></div><!-- fragment -->
+<p>Macro used to invoke a test function of multiple template arguments. </p>
+<p>This macro allows to generate calls to multiple instances of a test function template, all of which will receive the same parameters. The first argument to this macro is the name of the function. The second argument is a macro-tuple containing the parameters passed to each instance, e.g. <code>(x, y)</code>. The remaining arguments are macro-tuples of the values for each template parameter one wants to loop over, e.g. <code>(1, 2, 3), (<a class="el" href="structFrame_1_1Inertial.html">Frame::Inertial</a>, <a class="el" href="structFrame_1_1Grid.html">Frame::Grid</a>)</code>. For example, a function template</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> Arg1, <span class="keywordtype">size_t</span> Arg2, <span class="keyword">class</span> Arg3&gt;</div><div class="line">my_function(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; var_1, <span class="keyword">const</span> <span class="keywordtype">int</span>&amp; var_2) noexcept { ... }</div></div><!-- fragment --><p>can be invoked by writing</p>
+<div class="fragment"><div class="line"><a class="code" href="group__TestingFrameworkGroup.html#ga8cd2549e4a5627f34f8201af2bcbfd34">INVOKE_TEST_FUNCTION</a>(my_function, (d, i), (a, b, c), (1, 2, 3), (A, B, C))</div></div><!-- fragment --><p>which will generate</p>
+<div class="fragment"><div class="line">my_function&lt;a, 1, A&gt;(d, i);</div><div class="line">my_function&lt;a, 1, B&gt;(d, i);</div><div class="line">my_function&lt;a, 1, C&gt;(d, i);</div><div class="line">my_function&lt;a, 2, A&gt;(d, i);</div><div class="line">my_function&lt;a, 2, B&gt;(d, i);</div><div class="line">my_function&lt;a, 2, C&gt;(d, i);</div><div class="line">my_function&lt;a, 3, A&gt;(d, i);</div><div class="line">my_function&lt;a, 3, B&gt;(d, i);</div><div class="line">my_function&lt;a, 3, C&gt;(d, i);</div><div class="line">my_function&lt;b, 1, A&gt;(d, i);</div><div class="line">my_function&lt;b, 1, B&gt;(d, i);</div><div class="line">my_function&lt;b, 1, C&gt;(d, i);</div><div class="line">my_function&lt;b, 2, A&gt;(d, i);</div><div class="line">my_function&lt;b, 2, B&gt;(d, i);</div><div class="line">my_function&lt;b, 2, C&gt;(d, i);</div><div class="line">my_function&lt;b, 3, A&gt;(d, i);</div><div class="line">my_function&lt;b, 3, B&gt;(d, i);</div><div class="line">my_function&lt;b, 3, C&gt;(d, i);</div><div class="line">my_function&lt;c, 1, A&gt;(d, i);</div><div class="line">my_function&lt;c, 1, B&gt;(d, i);</div><div class="line">my_function&lt;c, 1, C&gt;(d, i);</div><div class="line">my_function&lt;c, 2, A&gt;(d, i);</div><div class="line">my_function&lt;c, 2, B&gt;(d, i);</div><div class="line">my_function&lt;c, 2, C&gt;(d, i);</div><div class="line">my_function&lt;c, 3, A&gt;(d, i);</div><div class="line">my_function&lt;c, 3, B&gt;(d, i);</div><div class="line">my_function&lt;c, 3, C&gt;(d, i);</div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The order of the macro-tuples of values must match the order of the template parameters of the function.</dd>
+<dd>
+The function to be called must at least have one template argument, so passing an empty set of template parameters will not work. </dd></dl>
+
+</div>
+</div>
+<a id="ga37fce1ae5980139598815eda5a5de8ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga37fce1ae5980139598815eda5a5de8ab">&#9670;&nbsp;</a></span>SPECTRE_PARALLEL_REQUIRE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPECTRE_PARALLEL_REQUIRE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">expr</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                  \</div><div class="line">    if (not(expr)) {                                                    \</div><div class="line">      ERROR(<span class="stringliteral">&quot;\nFailed comparison: &quot;</span> &lt;&lt; #expr &lt;&lt; <span class="stringliteral">&quot;\nLine: &quot;</span> &lt;&lt; __LINE__  \</div><div class="line">                                    &lt;&lt; <span class="stringliteral">&quot;\nFile: &quot;</span> &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>); \</div><div class="line">    }                                                                   \</div><div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div></div><!-- fragment -->
+<p>A similar to Catch's REQUIRE statement, but can be used in tests that spawn several chares with possibly complex interaction between the chares. </p>
+
+</div>
+</div>
+<a id="ga2adb81ed48c421e8f77541f34eb3f821"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2adb81ed48c421e8f77541f34eb3f821">&#9670;&nbsp;</a></span>SPECTRE_PARALLEL_REQUIRE_FALSE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPECTRE_PARALLEL_REQUIRE_FALSE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">expr</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                  \</div><div class="line">    if ((expr)) {                                                       \</div><div class="line">      ERROR(<span class="stringliteral">&quot;\nFailed comparison: &quot;</span> &lt;&lt; #expr &lt;&lt; <span class="stringliteral">&quot;\nLine: &quot;</span> &lt;&lt; __LINE__  \</div><div class="line">                                    &lt;&lt; <span class="stringliteral">&quot;\nFile: &quot;</span> &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>); \</div><div class="line">    }                                                                   \</div><div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div></div><!-- fragment -->
+<p>A similar to Catch's REQUIRE_FALSE statement, but can be used in tests that spawn several chares with possibly complex interaction between the chares. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga36a219be74fba903e24ef17d3132a2b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga36a219be74fba903e24ef17d3132a2b0">&#9670;&nbsp;</a></span>check() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class EosType , class T , class... MemberArgs&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TestHelpers::EquationsOfState::check </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; EosType &gt;&#160;</td>
+          <td class="paramname"><em>in_eos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>python_function_prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>used_for_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const MemberArgs &amp;...&#160;</td>
+          <td class="paramname"><em>member_args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test an equation of state by comparing to python functions. </p>
+<p>The python functions must be added to tests/Unit/PointwiseFunctions/Hydro/EquationsOfState/TestFunctions.py. The prefix for each class of equation of state is arbitrary, but should generally be something like "polytropic" for polytropic fluids.</p>
+<p>The <code>python_function_prefix</code> argument passed to <code>check</code> must be <code>PREFIX</code>. If an EoS class has member variables (these must be <code>double</code>s currently) that are used to compute the quantities, such as the polytropic constant and polytropic exponent for a fluid, then they must be passed in as the last arguments to the <code>check</code> function`. Each python function must take these same arguments as the trailing arguments. </p>
+
+</div>
+</div>
+<a id="ga3fa1d74888ffd499879aa8d634310a4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3fa1d74888ffd499879aa8d634310a4a">&#9670;&nbsp;</a></span>check() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class EosType , class T , class... MemberArgs&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TestHelpers::EquationsOfState::check </td>
+          <td>(</td>
+          <td class="paramtype">EosType&#160;</td>
+          <td class="paramname"><em>in_eos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>python_function_prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>used_for_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const MemberArgs &amp;...&#160;</td>
+          <td class="paramname"><em>member_args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test an equation of state by comparing to python functions. </p>
+<p>The python functions must be added to tests/Unit/PointwiseFunctions/Hydro/EquationsOfState/TestFunctions.py. The prefix for each class of equation of state is arbitrary, but should generally be something like "polytropic" for polytropic fluids.</p>
+<p>The <code>python_function_prefix</code> argument passed to <code>check</code> must be <code>PREFIX</code>. If an EoS class has member variables (these must be <code>double</code>s currently) that are used to compute the quantities, such as the polytropic constant and polytropic exponent for a fluid, then they must be passed in as the last arguments to the <code>check</code> function`. Each python function must take these same arguments as the trailing arguments. </p>
+
+</div>
+</div>
+<a id="gabc538e2ae11c31b66ec450ef997e1d81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabc538e2ae11c31b66ec450ef997e1d81">&#9670;&nbsp;</a></span>make_with_random_values() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ReturnType , typename T , typename UniformRandomBitGenerator , typename RandomNumberDistribution &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ReturnType make_with_random_values </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; UniformRandomBitGenerator *&gt;&#160;</td>
+          <td class="paramname"><em>generator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; RandomNumberDistribution *&gt;&#160;</td>
+          <td class="paramname"><em>distribution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>used_for_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Make a data structure and fill it with random values. </p>
+<h3>Details</h3>
+<p>Given an object of type <code>T</code>, create an object of type <code>ReturnType</code> whose elements are initialized to random values using the given random number generator and random number distribution.</p>
+<p><em>Requires:</em> the type <code>ReturnType</code> to be creatable using <code>make_with_value&lt;ReturnType&gt;(T)</code> </p>
+
+</div>
+</div>
+<a id="ga250d3d7bc177e6a7c5ec088ed3882ec0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga250d3d7bc177e6a7c5ec088ed3882ec0">&#9670;&nbsp;</a></span>make_with_random_values() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename UniformRandomBitGenerator , typename RandomNumberDistribution , Requires&lt; cpp17::is_floating_point_v&lt; tt::get_fundamental_type_t&lt; T &gt;&gt;&gt;  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T make_with_random_values </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; UniformRandomBitGenerator *&gt;&#160;</td>
+          <td class="paramname"><em>generator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; RandomNumberDistribution *&gt;&#160;</td>
+          <td class="paramname"><em>distribution</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Make a fixed-size data structure and fill with random values. </p>
+<h3>Details</h3>
+<p>Given a template argument type <code>T</code>, create an object of the same type, fills it with random values, and returns the result. Acts as a convenience function to avoid users needing to put in constructors with <code>signaling_NaN()</code>s or <code>max()</code>s themselves when making with random values. Used as <code>make_with_random_values&lt;Type&gt;(make_not_null(&amp;gen),make_not_null(&amp;dist))</code> </p>
+
+</div>
+</div>
+<a id="gaf6359c268e2790615133ca038f0c362e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf6359c268e2790615133ca038f0c362e">&#9670;&nbsp;</a></span>numerical_derivative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Invocable , size_t VolumeDim&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;double, VolumeDim&gt; numerical_derivative </td>
+          <td>(</td>
+          <td class="paramtype">const Invocable &amp;&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, VolumeDim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>delta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the derivative of an Invocable at a point x - represented by an array of doubles - in the domain of <code>map</code> with a sixth-order finite difference method. </p>
+<h3>Details</h3>
+<p>Intended for use with <a class="el" href="namespaceCoordinateMaps.html" title="Contains all coordinate maps. ">CoordinateMaps</a> taking the domain {xi,eta,zeta} to the range {x,y,z}. This function calculates the derivative along the direction given by <code>direction</code> with a step size of <code>h</code>.</p>
+<p><em>Requires:</em> direction be between 0 and VolumeDim </p>
+
+</div>
+</div>
+<a id="ga4294de51e79ce048d0a76bd72f80d19a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4294de51e79ce048d0a76bd72f80d19a">&#9670;&nbsp;</a></span>test_serialization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_serialization </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests the serialization of comparable types. </p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">SPECTRE_TEST_CASE(<span class="stringliteral">&quot;Unit.Serialization.tuple&quot;</span>, <span class="stringliteral">&quot;[Serialization][Unit]&quot;</span>) {</div><div class="line">  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map&lt;std::string, double&gt;</a> um;</div><div class="line">  um[<span class="stringliteral">&quot;aaa&quot;</span>] = 1.589;</div><div class="line">  um[<span class="stringliteral">&quot;bbb&quot;</span>] = -10.7392;</div><div class="line">  <span class="keyword">auto</span> test_tuple = std::make_tuple&lt;int, double, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>,</div><div class="line">                                    <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map&lt;std::string, double&gt;</a>&gt;(</div><div class="line">      2, 0.57, <span class="stringliteral">&quot;blah&quot;</span>, std::move(um));</div><div class="line">  <a class="code" href="group__TestingFrameworkGroup.html#ga4294de51e79ce048d0a76bd72f80d19a">test_serialization</a>(test_tuple);</div><div class="line">}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="ga9032f7d7bb3698bab71a49d1df9c2d99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9032f7d7bb3698bab71a49d1df9c2d99">&#9670;&nbsp;</a></span>test_serialization_via_base()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename B , typename D , typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_serialization_via_base </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test the serialization of a derived class via a base class pointer. </p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">SPECTRE_TEST_CASE(<span class="stringliteral">&quot;Unit.Serialization.unique_ptr.abstract_base&quot;</span>,</div><div class="line">                  <span class="stringliteral">&quot;[Serialization][Unit]&quot;</span>) {</div><div class="line">  <a class="code" href="group__TestingFrameworkGroup.html#ga9032f7d7bb3698bab71a49d1df9c2d99">test_serialization_via_base</a>&lt;Test_Classes::Base,</div><div class="line">                              Test_Classes::DerivedInPupStlCpp11&gt;(</div><div class="line">      <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{-1, 12.3, -7, 8});</div><div class="line">}</div></div><!-- fragment --><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">B</td><td>the base class </td></tr>
+    <tr><td class="paramname">D</td><td>the derived class </td></tr>
+    <tr><td class="paramname">Args</td><td>deduced from <code>args</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>arguments passed to a constructor of the derived class </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga809dd7c089188c1c15f847f73cf6d924"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga809dd7c089188c1c15f847f73cf6d924">&#9670;&nbsp;</a></span>test_throw_exception()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Exception , typename ThrowingFunctor &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_throw_exception </td>
+          <td>(</td>
+          <td class="paramtype">const ThrowingFunctor &amp;&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Exception &amp;&#160;</td>
+          <td class="paramname"><em>expected</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Execute <code>func</code> and check that it throws an exception <code>expected</code>. </p>
+<dl class="section note"><dt>Note</dt><dd>The <code>.what()</code> strings of the thrown and <code>expected</code> exceptions are compared for a partial match only: the <code>expected.what()</code> string must be contained in (or equal to) the <code>.what()</code> string of the thrown exception. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

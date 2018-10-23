@@ -1,0 +1,264 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: TimeDelta Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classTimeDelta-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">TimeDelta Class Reference<div class="ingroups"><a class="el" href="group__TimeGroup.html">Time</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Represents an interval of time within a single slab.  
+ <a href="classTimeDelta.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Time_8hpp_source.html">Time.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aaf35c2b99dc7590139719682b6d5200e"><td class="memItemLeft" align="right" valign="top"><a id="aaf35c2b99dc7590139719682b6d5200e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>rational_t</b> = <a class="el" href="classRational.html">Time::rational_t</a></td></tr>
+<tr class="separator:aaf35c2b99dc7590139719682b6d5200e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ab3a837f3e5f7e570e6c98abc3ddf3c7b"><td class="memItemLeft" align="right" valign="top"><a id="ab3a837f3e5f7e570e6c98abc3ddf3c7b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTimeDelta.html#ab3a837f3e5f7e570e6c98abc3ddf3c7b">TimeDelta</a> () noexcept</td></tr>
+<tr class="memdesc:ab3a837f3e5f7e570e6c98abc3ddf3c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor gives an invalid <a class="el" href="classTimeDelta.html" title="Represents an interval of time within a single slab. ">TimeDelta</a>. <br /></td></tr>
+<tr class="separator:ab3a837f3e5f7e570e6c98abc3ddf3c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad40c7753c32b64bd9d5a4e27294c86ec"><td class="memItemLeft" align="right" valign="top"><a id="ad40c7753c32b64bd9d5a4e27294c86ec"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTimeDelta.html#ad40c7753c32b64bd9d5a4e27294c86ec">TimeDelta</a> (<a class="el" href="classSlab.html">Slab</a> slab, <a class="el" href="classRational.html">rational_t</a> fraction) noexcept</td></tr>
+<tr class="memdesc:ad40c7753c32b64bd9d5a4e27294c86ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">An interval covering a given fraction of the slab. <br /></td></tr>
+<tr class="separator:ad40c7753c32b64bd9d5a4e27294c86ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c542635f72dfe24e35c413ac68f9c08"><td class="memItemLeft" align="right" valign="top"><a id="a9c542635f72dfe24e35c413ac68f9c08"></a>
+<a class="el" href="classTimeDelta.html">TimeDelta</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTimeDelta.html#a9c542635f72dfe24e35c413ac68f9c08">with_slab</a> (const <a class="el" href="classSlab.html">Slab</a> &amp;new_slab) const noexcept</td></tr>
+<tr class="memdesc:a9c542635f72dfe24e35c413ac68f9c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the interval to a different slab. The resulting interval will in general not be the same length, but will take up the same fraction of its slab. <br /></td></tr>
+<tr class="separator:a9c542635f72dfe24e35c413ac68f9c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9474d87851bfe92bbd3b4bedf8e36bc8"><td class="memItemLeft" align="right" valign="top"><a id="a9474d87851bfe92bbd3b4bedf8e36bc8"></a>
+<a class="el" href="classSlab.html">Slab</a>&#160;</td><td class="memItemRight" valign="bottom"><b>slab</b> () const noexcept</td></tr>
+<tr class="separator:a9474d87851bfe92bbd3b4bedf8e36bc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74c308dc9d2cce516c1af4def1da1b46"><td class="memItemLeft" align="right" valign="top"><a id="a74c308dc9d2cce516c1af4def1da1b46"></a>
+<a class="el" href="classRational.html">rational_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>fraction</b> () const noexcept</td></tr>
+<tr class="separator:a74c308dc9d2cce516c1af4def1da1b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4ee79784ce7a81ea454a0d1254d3821"><td class="memItemLeft" align="right" valign="top"><a id="ac4ee79784ce7a81ea454a0d1254d3821"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTimeDelta.html#ac4ee79784ce7a81ea454a0d1254d3821">value</a> () const noexcept</td></tr>
+<tr class="memdesc:ac4ee79784ce7a81ea454a0d1254d3821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximate numerical length of the interval. <br /></td></tr>
+<tr class="separator:ac4ee79784ce7a81ea454a0d1254d3821"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5597b2d1105841337eff1ad6de7d8782"><td class="memItemLeft" align="right" valign="top"><a id="a5597b2d1105841337eff1ad6de7d8782"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTimeDelta.html#a5597b2d1105841337eff1ad6de7d8782">is_positive</a> () const noexcept</td></tr>
+<tr class="memdesc:a5597b2d1105841337eff1ad6de7d8782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the interval is oriented towards larger time. <br /></td></tr>
+<tr class="separator:a5597b2d1105841337eff1ad6de7d8782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50a04664e6f14c431f0c9bb834665dea"><td class="memItemLeft" align="right" valign="top"><a id="a50a04664e6f14c431f0c9bb834665dea"></a>
+<a class="el" href="classTimeDelta.html">TimeDelta</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="classTimeDelta.html">TimeDelta</a> &amp;other) noexcept</td></tr>
+<tr class="separator:a50a04664e6f14c431f0c9bb834665dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0b102701dc045f143a289df3bf9f71d"><td class="memItemLeft" align="right" valign="top"><a id="ae0b102701dc045f143a289df3bf9f71d"></a>
+<a class="el" href="classTimeDelta.html">TimeDelta</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="classTimeDelta.html">TimeDelta</a> &amp;other) noexcept</td></tr>
+<tr class="separator:ae0b102701dc045f143a289df3bf9f71d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fef854c1ddded5de3812038f04707f6"><td class="memItemLeft" align="right" valign="top"><a id="a0fef854c1ddded5de3812038f04707f6"></a>
+<a class="el" href="classTimeDelta.html">TimeDelta</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> () const noexcept</td></tr>
+<tr class="separator:a0fef854c1ddded5de3812038f04707f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6465ec69bf00aa0b4ae589ac04a64ab7"><td class="memItemLeft" align="right" valign="top"><a id="a6465ec69bf00aa0b4ae589ac04a64ab7"></a>
+<a class="el" href="classTimeDelta.html">TimeDelta</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> () const noexcept</td></tr>
+<tr class="separator:a6465ec69bf00aa0b4ae589ac04a64ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a086589704a9c11044ce711aefb327176"><td class="memItemLeft" align="right" valign="top"><a id="a086589704a9c11044ce711aefb327176"></a>
+<a class="el" href="classTimeDelta.html">TimeDelta</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const <a class="el" href="classRational.html">rational_t</a> &amp;mult) noexcept</td></tr>
+<tr class="separator:a086589704a9c11044ce711aefb327176"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68bb2e77c4280a2900577f3a6d206ed6"><td class="memItemLeft" align="right" valign="top"><a id="a68bb2e77c4280a2900577f3a6d206ed6"></a>
+<a class="el" href="classTimeDelta.html">TimeDelta</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (const <a class="el" href="classRational.html">rational_t</a> &amp;<a class="el" href="structdiv.html">div</a>) noexcept</td></tr>
+<tr class="separator:a68bb2e77c4280a2900577f3a6d206ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a637376a740733bacdad4f38e635bdf7f"><td class="memItemLeft" align="right" valign="top"><a id="a637376a740733bacdad4f38e635bdf7f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="separator:a637376a740733bacdad4f38e635bdf7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a4638b7e7c4a9d32a59f736fe6e5ff8a2"><td class="memItemLeft" align="right" valign="top"><a id="a4638b7e7c4a9d32a59f736fe6e5ff8a2"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Time</b></td></tr>
+<tr class="separator:a4638b7e7c4a9d32a59f736fe6e5ff8a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents an interval of time within a single slab. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Time/<a class="el" href="Time_8hpp_source.html">Time.hpp</a></li>
+<li>src/Time/Time.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

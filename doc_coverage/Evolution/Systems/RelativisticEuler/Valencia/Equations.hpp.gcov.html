@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/Systems/RelativisticEuler/Valencia/Equations.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">Evolution/Systems/RelativisticEuler/Valencia</a> - Equations.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : // IWYU pragma: no_forward_declare Tensor
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : /// \cond
+<span class="lineNum">      13 </span>            : namespace gsl {
+<span class="lineNum">      14 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      15 </span>            : class not_null;
+<span class="lineNum">      16 </span>            : }  // namespace gsl
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : class DataVector;
+<span class="lineNum">      19 </span>            : /// \endcond
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : namespace RelativisticEuler {
+<span class="lineNum">      22 </span>            : namespace Valencia {
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : /*!
+<span class="lineNum">      25 </span>            :  * \brief Compute the source terms for the flux-conservative Valencia
+<span class="lineNum">      26 </span>            :  * formulation of the relativistic Euler system.
+<span class="lineNum">      27 </span>            :  *
+<span class="lineNum">      28 </span>            :  *
+<span class="lineNum">      29 </span>            :  * A flux-conservative system has the generic form:
+<span class="lineNum">      30 </span>            :  * \f[
+<span class="lineNum">      31 </span>            :  * \partial_t U_i + \partial_m F^m(U_i) = S(U_i)
+<span class="lineNum">      32 </span>            :  * \f]
+<span class="lineNum">      33 </span>            :  *
+<span class="lineNum">      34 </span>            :  * where \f$F^a()\f$ denotes the flux of a conserved variable \f$U_i\f$ and
+<span class="lineNum">      35 </span>            :  * \f$S()\f$ denotes the source term for the conserved variable.
+<span class="lineNum">      36 </span>            :  *
+<span class="lineNum">      37 </span>            :  * For the Valencia formulation:
+<span class="lineNum">      38 </span>            :  * \f{align*}
+<span class="lineNum">      39 </span>            :  * S({\tilde D}) = &amp; 0\\
+<span class="lineNum">      40 </span>            :  * S({\tilde S}_i) = &amp; \frac{1}{2} \alpha {\tilde S}^{mn} \partial_i \gamma_{mn}
+<span class="lineNum">      41 </span>            :  * + {\tilde S}_m \partial_i \beta^m - ({\tilde D} + {\tilde \tau}) \partial_i
+<span class="lineNum">      42 </span>            :  * \alpha \\ S({\tilde \tau}) = &amp; \alpha {\tilde S}^{mn} K_{mn}
+<span class="lineNum">      43 </span>            :  * - {\tilde S}^m \partial_m \alpha
+<span class="lineNum">      44 </span>            :  * \f}
+<span class="lineNum">      45 </span>            :  *
+<span class="lineNum">      46 </span>            :  * where
+<span class="lineNum">      47 </span>            :  * \f{align*}
+<span class="lineNum">      48 </span>            :  * {\tilde S}^i = &amp; {\tilde S}_m \gamma^{im} \\
+<span class="lineNum">      49 </span>            :  * {\tilde S}^{ij} = &amp; {\tilde S}^i v^j + \sqrt{\gamma} p \gamma^{ij}
+<span class="lineNum">      50 </span>            :  * \f}
+<span class="lineNum">      51 </span>            :  * where \f${\tilde D}\f$, \f${\tilde S}_i\f$, and \f${\tilde \tau}\f$ are a
+<span class="lineNum">      52 </span>            :  * generalized mass-energy density, momentum density, and specific internal
+<span class="lineNum">      53 </span>            :  * energy density as measured by an Eulerian observer, \f$\gamma\f$ is the
+<span class="lineNum">      54 </span>            :  * determinant of the spatial metric \f$\gamma_{ij}\f$, \f$\rho\f$ is the rest
+<span class="lineNum">      55 </span>            :  * mass density, \f$W\f$ is the Lorentz factor, \f$h\f$ is the specific
+<span class="lineNum">      56 </span>            :  * enthalpy, \f$v^i\f$ is the spatial velocity, \f$p\f$ is the pressure,
+<span class="lineNum">      57 </span>            :  * \f$\alpha\f$ is the lapse, \f$\beta^i\f$ is the shift, and \f$K_{ij}\f$ is
+<span class="lineNum">      58 </span>            :  * the extrinsic curvature.
+<span class="lineNum">      59 </span>            :  */
+<span class="lineNum">      60 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      61 </span><span class="lineCov">          1 : void compute_source_terms_of_u(</span>
+<span class="lineNum">      62 </span>            :     gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; source_tilde_d,
+<span class="lineNum">      63 </span>            :     gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; source_tilde_tau,
+<span class="lineNum">      64 </span>            :     gsl::not_null&lt;tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;*&gt; source_tilde_s,
+<span class="lineNum">      65 </span>            :     const Scalar&lt;DataVector&gt;&amp; tilde_d, const Scalar&lt;DataVector&gt;&amp; tilde_tau,
+<span class="lineNum">      66 </span>            :     const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp; tilde_s,
+<span class="lineNum">      67 </span>            :     const tnsr::I&lt;DataVector, Dim, Frame::Inertial&gt;&amp; spatial_velocity,
+<span class="lineNum">      68 </span>            :     const Scalar&lt;DataVector&gt;&amp; pressure, const Scalar&lt;DataVector&gt;&amp; lapse,
+<span class="lineNum">      69 </span>            :     const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp; d_lapse,
+<span class="lineNum">      70 </span>            :     const tnsr::iJ&lt;DataVector, Dim, Frame::Inertial&gt;&amp; d_shift,
+<span class="lineNum">      71 </span>            :     const tnsr::ijj&lt;DataVector, Dim, Frame::Inertial&gt;&amp; d_spatial_metric,
+<span class="lineNum">      72 </span>            :     const tnsr::II&lt;DataVector, Dim, Frame::Inertial&gt;&amp; inv_spatial_metric,
+<span class="lineNum">      73 </span>            :     const Scalar&lt;DataVector&gt;&amp; sqrt_det_spatial_metric,
+<span class="lineNum">      74 </span>            :     const tnsr::ii&lt;DataVector, Dim, Frame::Inertial&gt;&amp;
+<span class="lineNum">      75 </span>            :         extrinsic_curvature) noexcept;
+<span class="lineNum">      76 </span>            : }  // namespace Valencia
+<span class="lineNum">      77 </span>            : }  // namespace RelativisticEuler
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

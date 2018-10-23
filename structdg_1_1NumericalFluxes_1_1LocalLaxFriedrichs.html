@@ -1,0 +1,275 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: dg::NumericalFluxes::LocalLaxFriedrichs&lt; System &gt; Struct Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>dg</b></li><li class="navelem"><b>NumericalFluxes</b></li><li class="navelem"><a class="el" href="structdg_1_1NumericalFluxes_1_1LocalLaxFriedrichs.html">LocalLaxFriedrichs</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="structdg_1_1NumericalFluxes_1_1LocalLaxFriedrichs-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">dg::NumericalFluxes::LocalLaxFriedrichs&lt; System &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__DiscontinuousGalerkinGroup.html">Discontinuous Galerkin</a> &#124; <a class="el" href="group__NumericalFluxesGroup.html">Numerical Fluxes</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Compute the local Lax-Friedrichs numerical flux.  
+ <a href="structdg_1_1NumericalFluxes_1_1LocalLaxFriedrichs.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="LocalLaxFriedrichs_8hpp_source.html">LocalLaxFriedrichs.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1NumericalFluxes_1_1LocalLaxFriedrichs_1_1MaxAbsCharSpeed.html">MaxAbsCharSpeed</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a0d7f92fa97111f2a89229e81abe75a7e"><td class="memItemLeft" align="right" valign="top"><a id="a0d7f92fa97111f2a89229e81abe75a7e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>package_tags</b> = tmpl::push_back&lt; tmpl::append&lt; <a class="el" href="group__DataBoxGroup.html#ga97296c560675e55606cd3ebd7dd95b39">db::split_tag</a>&lt; <a class="el" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix</a>&lt; ::<a class="el" href="structTags_1_1NormalDotFlux.html">Tags::NormalDotFlux</a>, variables_tag &gt; &gt;, <a class="el" href="group__DataBoxGroup.html#ga97296c560675e55606cd3ebd7dd95b39">db::split_tag</a>&lt; variables_tag &gt; &gt;, <a class="el" href="structdg_1_1NumericalFluxes_1_1LocalLaxFriedrichs_1_1MaxAbsCharSpeed.html">MaxAbsCharSpeed</a> &gt;</td></tr>
+<tr class="separator:a0d7f92fa97111f2a89229e81abe75a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a30f675ca100c28ff6119e8d8bdfb6d"><td class="memItemLeft" align="right" valign="top"><a id="a1a30f675ca100c28ff6119e8d8bdfb6d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>argument_tags</b> = tmpl::push_back&lt; tmpl::append&lt; <a class="el" href="group__DataBoxGroup.html#ga97296c560675e55606cd3ebd7dd95b39">db::split_tag</a>&lt; <a class="el" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix</a>&lt; ::<a class="el" href="structTags_1_1NormalDotFlux.html">Tags::NormalDotFlux</a>, variables_tag &gt; &gt;, <a class="el" href="group__DataBoxGroup.html#ga97296c560675e55606cd3ebd7dd95b39">db::split_tag</a>&lt; variables_tag &gt; &gt;, char_speeds_tag &gt;</td></tr>
+<tr class="separator:a1a30f675ca100c28ff6119e8d8bdfb6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae351423796a788f41c8705864c393359"><td class="memItemLeft" align="right" valign="top"><a id="ae351423796a788f41c8705864c393359"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>options</b> = tmpl::list&lt;&gt;</td></tr>
+<tr class="separator:ae351423796a788f41c8705864c393359"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1b393b1086483e580737574673fc139b"><td class="memItemLeft" align="right" valign="top"><a id="a1b393b1086483e580737574673fc139b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;) noexcept</td></tr>
+<tr class="separator:a1b393b1086483e580737574673fc139b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21dd826db6439d2d882e8fdd0c2247f6"><td class="memTemplParams" colspan="2"><a id="a21dd826db6439d2d882e8fdd0c2247f6"></a>
+template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a21dd826db6439d2d882e8fdd0c2247f6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>package_data</b> (const Args &amp;... args) const noexcept</td></tr>
+<tr class="separator:a21dd826db6439d2d882e8fdd0c2247f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1f959ad89a978f165ef2eeaf71a26ee"><td class="memTemplParams" colspan="2"><a id="aa1f959ad89a978f165ef2eeaf71a26ee"></a>
+template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:aa1f959ad89a978f165ef2eeaf71a26ee"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const Args &amp;... args) const noexcept</td></tr>
+<tr class="separator:aa1f959ad89a978f165ef2eeaf71a26ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:aff7b993fe4a9910da605d509ed7871fa"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a>&#160;</td><td class="memItemRight" valign="bottom"><b>help</b></td></tr>
+<tr class="separator:aff7b993fe4a9910da605d509ed7871fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename System&gt;<br />
+struct dg::NumericalFluxes::LocalLaxFriedrichs&lt; System &gt;</h3>
+
+<p>Compute the local Lax-Friedrichs numerical flux. </p>
+<p>Let \(U\) and \(F^i(U)\) be the state vector of the system and its corresponding volume flux, respectively. Let \(n_i\) be the unit normal to the interface. Defining \(F_n(U) := n_i F^i(U)\), and denoting the corresponding projections of the numerical fluxes as \({F_n}^*(U)\), the local Lax-Friedrichs flux for each variable is</p>
+<p class="formulaDsp">
+\begin{align*} {F_n}^*(U) = \frac{F_n(U_\text{int}) + F_n(U_\text{ext})}{2} + \frac{\alpha}{2}\left( U_\text{int} - U_\text{ext}\right), \end{align*}
+</p>
+<p>where "int" and "ext" stand for interior and exterior, respectively, and \(\alpha\) is the maximum eigenvalue of either \(|\Lambda(U_\text{int}; n_\text{int})|\) or \(|\Lambda(U_\text{ext}; n_\text{ext})|\), where \(\Lambda(U; n)\) is the diagonal matrix whose entries are the characteristic speeds of the system. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="aff7b993fe4a9910da605d509ed7871fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff7b993fe4a9910da605d509ed7871fa">&#9670;&nbsp;</a></span>help</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename System &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a> <a class="el" href="structdg_1_1NumericalFluxes_1_1LocalLaxFriedrichs.html">dg::NumericalFluxes::LocalLaxFriedrichs</a>&lt; System &gt;::help</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">      <span class="stringliteral">&quot;Computes the local Lax-Friedrichs numerical flux.&quot;</span>}</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/NumericalAlgorithms/DiscontinuousGalerkin/NumericalFluxes/<a class="el" href="LocalLaxFriedrichs_8hpp_source.html">LocalLaxFriedrichs.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

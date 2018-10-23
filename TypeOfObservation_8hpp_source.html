@@ -1,0 +1,200 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/IO/Observer/TypeOfObservation.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_a0379249ed950f4ef7739b800e15b9c2.html">IO</a></li><li class="navelem"><a class="el" href="dir_35f87a258b1209cdb51cc8c0f5eead5a.html">Observer</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">TypeOfObservation.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/iosfwd.html">iosfwd</a>&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Utilities_2TypeTraits_8hpp.html">Utilities/TypeTraits.hpp</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceobservers.html">observers</a> {<span class="comment"></span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*!</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * \ingroup ObserversGroup</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * \brief Specifies the type of observation.</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * Below `sender` is the component passing the data, reduction or volume, to the</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * observer component.</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> */</span></div><div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="group__ObserversGroup.html#ga9601b9f188609201444e989ee8825b45">   18</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="group__ObserversGroup.html#ga9601b9f188609201444e989ee8825b45">TypeOfObservation</a> {<span class="comment"></span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">  /// The sender will only perform reduction observations</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"></span>  <a class="code" href="group__ObserversGroup.html#gga9601b9f188609201444e989ee8825b45a9e834f13e35e4edf64863ab414a6217a">Reduction</a>,<span class="comment"></span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">  /// The sender will only perform volume observations</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"></span>  <a class="code" href="group__ObserversGroup.html#gga9601b9f188609201444e989ee8825b45abd7a9717d29c5ddcab1bc175eda1e298">Volume</a>,<span class="comment"></span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">  /// The sender will perform both reduction and volume observations</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span>  <a class="code" href="group__ObserversGroup.html#gga9601b9f188609201444e989ee8825b45ad017a8d38fc1c8920d41f4dbcc049493">ReductionAndVolume</a></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt;(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; os, <span class="keyword">const</span> <a class="code" href="group__ObserversGroup.html#ga9601b9f188609201444e989ee8825b45">TypeOfObservation</a>&amp; t) noexcept;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// @{</span><span class="comment"></span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/// Inherits off of `std::true_type` if `T` has a member variable</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">/// `RegisterWithObserver`</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keyword">class</span> T, <span class="keyword">class</span> = cpp17::<span class="keywordtype">void</span>_t&lt;&gt;&gt;</div><div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structobservers_1_1has__register__with__observer.html">   33</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structobservers_1_1has__register__with__observer.html">has_register_with_observer</a> : <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::false_type</a> {};</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">/// \cond</span></div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">struct </span><a class="code" href="structobservers_1_1has__register__with__observer.html">has_register_with_observer</a>&lt;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    T, cpp17::<a class="code" href="group__TypeTraitsGroup.html#ga51ed2c1868c90399f4df81cb76f9eb66">void_t</a>&lt;decltype(T::RegisterWithObserver)&gt;&gt; : <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::true_type</a> {};<span class="comment"></span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/// \endcond</span></div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;constexpr <span class="keywordtype">bool</span> has_register_with_observer_v =</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="structobservers_1_1has__register__with__observer.html">has_register_with_observer&lt;T&gt;::value</a>;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// @}</span></div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}  <span class="comment">// namespace observers</span></div><div class="ttc" id="namespaceobservers_html"><div class="ttname"><a href="namespaceobservers.html">observers</a></div><div class="ttdef"><b>Definition:</b> Actions.hpp:20</div></div>
+<div class="ttc" id="structobservers_1_1has__register__with__observer_html"><div class="ttname"><a href="structobservers_1_1has__register__with__observer.html">observers::has_register_with_observer</a></div><div class="ttdoc">Inherits off of std::true_type if T has a member variable RegisterWithObserver </div><div class="ttdef"><b>Definition:</b> TypeOfObservation.hpp:33</div></div>
+<div class="ttc" id="group__ObserversGroup_html_gga9601b9f188609201444e989ee8825b45ad017a8d38fc1c8920d41f4dbcc049493"><div class="ttname"><a href="group__ObserversGroup.html#gga9601b9f188609201444e989ee8825b45ad017a8d38fc1c8920d41f4dbcc049493">observers::TypeOfObservation::ReductionAndVolume</a></div><div class="ttdoc">The sender will perform both reduction and volume observations. </div></div>
+<div class="ttc" id="group__TypeTraitsGroup_html_ga51ed2c1868c90399f4df81cb76f9eb66"><div class="ttname"><a href="group__TypeTraitsGroup.html#ga51ed2c1868c90399f4df81cb76f9eb66">cpp17::void_t</a></div><div class="ttdeci">void void_t</div><div class="ttdoc">Given a set of types, returns void </div><div class="ttdef"><b>Definition:</b> TypeTraits.hpp:213</div></div>
+<div class="ttc" id="group__ObserversGroup_html_gga9601b9f188609201444e989ee8825b45a9e834f13e35e4edf64863ab414a6217a"><div class="ttname"><a href="group__ObserversGroup.html#gga9601b9f188609201444e989ee8825b45a9e834f13e35e4edf64863ab414a6217a">observers::TypeOfObservation::Reduction</a></div><div class="ttdoc">The sender will only perform reduction observations. </div></div>
+<div class="ttc" id="group__ObserversGroup_html_ga9601b9f188609201444e989ee8825b45"><div class="ttname"><a href="group__ObserversGroup.html#ga9601b9f188609201444e989ee8825b45">observers::TypeOfObservation</a></div><div class="ttdeci">TypeOfObservation</div><div class="ttdoc">Specifies the type of observation. </div><div class="ttdef"><b>Definition:</b> TypeOfObservation.hpp:18</div></div>
+<div class="ttc" id="iosfwd_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/iosfwd.html">iosfwd</a></div></div>
+<div class="ttc" id="integral_constant_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::false_type</a></div></div>
+<div class="ttc" id="Utilities_2TypeTraits_8hpp_html"><div class="ttname"><a href="Utilities_2TypeTraits_8hpp.html">TypeTraits.hpp</a></div><div class="ttdoc">Defines type traits, some of which are future STL type_traits header. </div></div>
+<div class="ttc" id="basic_ostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a></div></div>
+<div class="ttc" id="group__ObserversGroup_html_gga9601b9f188609201444e989ee8825b45abd7a9717d29c5ddcab1bc175eda1e298"><div class="ttname"><a href="group__ObserversGroup.html#gga9601b9f188609201444e989ee8825b45abd7a9717d29c5ddcab1bc175eda1e298">observers::TypeOfObservation::Volume</a></div><div class="ttdoc">The sender will only perform volume observations. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

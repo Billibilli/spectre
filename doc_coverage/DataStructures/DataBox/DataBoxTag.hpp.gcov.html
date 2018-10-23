@@ -1,0 +1,714 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - DataStructures/DataBox/DataBoxTag.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">DataStructures/DataBox</a> - DataBoxTag.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntry">24</td>
+            <td class="headerCovTableEntryMed">75.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines classes SimpleTag, PrefixTag, ComputeTag and several
+<span class="lineNum">       6 </span>            : /// functions for retrieving tag info
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #pragma once
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      11 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">      12 </span>            : #include &lt;string&gt;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/NoSuchType.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/PrettyType.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/Requires.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : /// \cond
+<span class="lineNum">      23 </span>            : namespace Tags {
+<span class="lineNum">      24 </span>            : template &lt;typename TagsList&gt;
+<span class="lineNum">      25 </span>            : struct Variables;
+<span class="lineNum">      26 </span>            : }  // namespace Tags
+<span class="lineNum">      27 </span>            : /// \endcond
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : namespace Tags {
+<span class="lineNum">      30 </span>            : /*!
+<span class="lineNum">      31 </span>            :  * \ingroup DataBoxTagsGroup
+<span class="lineNum">      32 </span>            :  * \brief Tag used to retrieve the DataBox from the `db::get` function
+<span class="lineNum">      33 </span>            :  *
+<span class="lineNum">      34 </span>            :  * The main use of this tag is to allow fetching the DataBox from itself. The
+<span class="lineNum">      35 </span>            :  * primary use case is to allow an invokable to take a DataBox as an argument
+<span class="lineNum">      36 </span>            :  * when called through `db::apply`.
+<span class="lineNum">      37 </span>            :  *
+<span class="lineNum">      38 </span>            :  * \snippet Test_DataBox.cpp databox_self_tag_example
+<span class="lineNum">      39 </span>            :  */
+<span class="lineNum">      40 </span><span class="lineCov">          1 : struct DataBox {</span>
+<span class="lineNum">      41 </span>            :   // Trick to get friend function declaration to compile but a const void&amp; is
+<span class="lineNum">      42 </span>            :   // rather useless
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :   using type = void;</span>
+<span class="lineNum">      44 </span>            : };
+<span class="lineNum">      45 </span>            : }  // namespace Tags
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            : namespace db {
+<span class="lineNum">      48 </span>            : /*!
+<span class="lineNum">      49 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">      50 </span>            :  * \brief Tags for the DataBox inherit from this type
+<span class="lineNum">      51 </span>            :  *
+<span class="lineNum">      52 </span>            :  * \details
+<span class="lineNum">      53 </span>            :  * Used to mark a type as being a SimpleTag so that it can be used in a
+<span class="lineNum">      54 </span>            :  * DataBox.
+<span class="lineNum">      55 </span>            :  *
+<span class="lineNum">      56 </span>            :  * \derivedrequires
+<span class="lineNum">      57 </span>            :  * - type alias `type` of the type this SimpleTag represents
+<span class="lineNum">      58 </span>            :  * - static `std::string name()` method that returns a runtime name for the tag.
+<span class="lineNum">      59 </span>            :  *
+<span class="lineNum">      60 </span>            :  * \example
+<span class="lineNum">      61 </span>            :  * \snippet Test_DataBox.cpp databox_tag_example
+<span class="lineNum">      62 </span>            :  *
+<span class="lineNum">      63 </span>            :  * \see DataBox PrefixTag get_tag_name
+<span class="lineNum">      64 </span>            :  */
+<span class="lineNum">      65 </span><span class="lineCov">          1 : struct SimpleTag {};</span>
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            : /*!
+<span class="lineNum">      68 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">      69 </span>            :  * \brief Tags that are base tags, i.e. a simple or compute tag must derive
+<span class="lineNum">      70 </span>            :  * off them for them to be useful
+<span class="lineNum">      71 </span>            :  *
+<span class="lineNum">      72 </span>            :  * Base tags do not need to contain type information, unlike simple
+<span class="lineNum">      73 </span>            :  * tags which must contain the type information. Base tags are designed so
+<span class="lineNum">      74 </span>            :  * that retrieving items from the DataBox or setting argument tags in compute
+<span class="lineNum">      75 </span>            :  * items can be done without any knowledge of the type of the item.
+<span class="lineNum">      76 </span>            :  *
+<span class="lineNum">      77 </span>            :  * To use the base mechanism the base tag must inherit off of
+<span class="lineNum">      78 </span>            :  * `BaseTag` and NOT `SimpleTag`. This is very important for the
+<span class="lineNum">      79 </span>            :  * implementation. Inheriting off both and not making the tag either a simple
+<span class="lineNum">      80 </span>            :  * item or compute item is undefined behavior and is likely to end in extremely
+<span class="lineNum">      81 </span>            :  * complicated compiler errors.
+<span class="lineNum">      82 </span>            :  */
+<span class="lineNum">      83 </span><span class="lineCov">          1 : struct BaseTag {};</span>
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span>            : /*!
+<span class="lineNum">      86 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">      87 </span>            :  * \brief Marks an item as being a prefix to another tag
+<span class="lineNum">      88 </span>            :  *
+<span class="lineNum">      89 </span>            :  * \details
+<span class="lineNum">      90 </span>            :  * Used to mark a type as being a DataBoxTag where the `label` is a prefix to
+<span class="lineNum">      91 </span>            :  * the DataBoxTag that is a member type alias `tag`. A prefix tag must contain a
+<span class="lineNum">      92 </span>            :  * type alias named `type` with the type of the Tag it is a prefix to, as well
+<span class="lineNum">      93 </span>            :  * as a type alias `tag` that is the type of the Tag that this prefix tag is
+<span class="lineNum">      94 </span>            :  * a prefix for. A prefix tag must also have a `label` equal to the name of
+<span class="lineNum">      95 </span>            :  * the struct (tag).
+<span class="lineNum">      96 </span>            :  *
+<span class="lineNum">      97 </span>            :  * \derivedrequires
+<span class="lineNum">      98 </span>            :  * - type alias `tag` of the DataBoxTag that this tag is a prefix to
+<span class="lineNum">      99 </span>            :  * - type alias `type` that is the type that this PrefixTag holds
+<span class="lineNum">     100 </span>            :  * - static `std::string name()` method that returns a runtime name for the tag.
+<span class="lineNum">     101 </span>            :  *
+<span class="lineNum">     102 </span>            :  * \example
+<span class="lineNum">     103 </span>            :  * A PrefixTag tag has the structure:
+<span class="lineNum">     104 </span>            :  * \snippet Test_DataBox.cpp databox_prefix_tag_example
+<span class="lineNum">     105 </span>            :  *
+<span class="lineNum">     106 </span>            :  * The name used to retrieve a prefix tag from the DataBox is:
+<span class="lineNum">     107 </span>            :  * \snippet Test_DataBox.cpp databox_name_prefix
+<span class="lineNum">     108 </span>            :  *
+<span class="lineNum">     109 </span>            :  *
+<span class="lineNum">     110 </span>            :  * \see DataBox DataBoxTag get_tag_name ComputeTag
+<span class="lineNum">     111 </span>            :  */
+<span class="lineNum">     112 </span><span class="lineCov">          1 : struct PrefixTag {};</span>
+<span class="lineNum">     113 </span>            : 
+<span class="lineNum">     114 </span>            : /*!
+<span class="lineNum">     115 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     116 </span>            :  * \brief Marks a DataBoxTag as being a compute item that executes a function
+<span class="lineNum">     117 </span>            :  *
+<span class="lineNum">     118 </span>            :  * \details
+<span class="lineNum">     119 </span>            :  * Compute items come in two forms: mutating and non-mutating. Mutating
+<span class="lineNum">     120 </span>            :  * compute items modify a stored value in order to reduce the number of memory
+<span class="lineNum">     121 </span>            :  * allocations done. For example, if a function would return a `Variables` or
+<span class="lineNum">     122 </span>            :  * `Tensor&lt;DataVector...&gt;` and is called every time step, then it would be
+<span class="lineNum">     123 </span>            :  * preferable to use a mutating compute item so that the values in the already
+<span class="lineNum">     124 </span>            :  * allocated memory can just be changed.
+<span class="lineNum">     125 </span>            :  * In contrast, non-mutating compute items simply return the new value after a
+<span class="lineNum">     126 </span>            :  * call (if the value is out-of-date), which is fine for infrequently called
+<span class="lineNum">     127 </span>            :  * compute items or ones that do not allocate data on the heap.
+<span class="lineNum">     128 </span>            :  *
+<span class="lineNum">     129 </span>            :  * A compute item tag contains a member named `function` that is either a
+<span class="lineNum">     130 </span>            :  * function pointer, or a static constexpr function. The compute item tag
+<span class="lineNum">     131 </span>            :  * must also have a `label`, same as the DataBox tags, and a type alias
+<span class="lineNum">     132 </span>            :  * `argument_tags` that is a typelist of the tags that will
+<span class="lineNum">     133 </span>            :  * be retrieved from the DataBox and whose data will be passed to the function
+<span class="lineNum">     134 </span>            :  * (pointer). Mutating compute item tags must also contain a type alias named
+<span class="lineNum">     135 </span>            :  * `return_type` that is the type the function is mutating. The type must be
+<span class="lineNum">     136 </span>            :  * default constructible.
+<span class="lineNum">     137 </span>            :  *
+<span class="lineNum">     138 </span>            :  * \example
+<span class="lineNum">     139 </span>            :  * Most non-mutating compute item tags will look similar to:
+<span class="lineNum">     140 </span>            :  * \snippet Test_DataBox.cpp databox_compute_item_tag_example
+<span class="lineNum">     141 </span>            :  * Note that the arguments can be empty:
+<span class="lineNum">     142 </span>            :  * \snippet Test_DataBox.cpp compute_item_tag_no_tags
+<span class="lineNum">     143 </span>            :  *
+<span class="lineNum">     144 </span>            :  * Mutating compute item tags are of the form:
+<span class="lineNum">     145 </span>            :  * \snippet Test_DataBox.cpp databox_mutating_compute_item_tag
+<span class="lineNum">     146 </span>            :  * where the function is:
+<span class="lineNum">     147 </span>            :  * \snippet Test_DataBox.cpp databox_mutating_compute_item_function
+<span class="lineNum">     148 </span>            :  *
+<span class="lineNum">     149 </span>            :  * You can also have `function` be a function instead of a function pointer,
+<span class="lineNum">     150 </span>            :  * which offers a lot of simplicity for very simple compute items.
+<span class="lineNum">     151 </span>            :  * \snippet Test_DataBox.cpp compute_item_tag_function
+<span class="lineNum">     152 </span>            :  *
+<span class="lineNum">     153 </span>            :  * \see DataBox SimpleTag get_tag_name PrefixTag
+<span class="lineNum">     154 </span>            :  */
+<span class="lineNum">     155 </span><span class="lineCov">          1 : struct ComputeTag {};</span>
+<span class="lineNum">     156 </span>            : 
+<span class="lineNum">     157 </span>            : namespace DataBox_detail {
+<span class="lineNum">     158 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     159 </span>            : using list_of_matching_tags = tmpl::conditional_t&lt;
+<span class="lineNum">     160 </span>            :     cpp17::is_same_v&lt;Tag, ::Tags::DataBox&gt;, tmpl::list&lt;::Tags::DataBox&gt;,
+<span class="lineNum">     161 </span>            :     tmpl::filter&lt;TagList, std::is_base_of&lt;tmpl::pin&lt;Tag&gt;, tmpl::_1&gt;&gt;&gt;;
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     164 </span>            : using first_matching_tag = tmpl::front&lt;list_of_matching_tags&lt;TagList, Tag&gt;&gt;;
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     167 </span>            : constexpr auto number_of_matching_tags =
+<span class="lineNum">     168 </span>            :     tmpl::size&lt;list_of_matching_tags&lt;TagList, Tag&gt;&gt;::value;
+<span class="lineNum">     169 </span>            : 
+<span class="lineNum">     170 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     171 </span>            : struct has_unique_matching_tag
+<span class="lineNum">     172 </span>            :     : std::integral_constant&lt;bool, number_of_matching_tags&lt;TagList, Tag&gt; == 1&gt; {
+<span class="lineNum">     173 </span>            : };
+<span class="lineNum">     174 </span>            : 
+<span class="lineNum">     175 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     176 </span>            : using has_unique_matching_tag_t =
+<span class="lineNum">     177 </span>            :     typename has_unique_matching_tag&lt;TagList, Tag&gt;::type;
+<span class="lineNum">     178 </span>            : 
+<span class="lineNum">     179 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     180 </span>            : constexpr bool has_unique_matching_tag_v =
+<span class="lineNum">     181 </span>            :     has_unique_matching_tag&lt;TagList, Tag&gt;::value;
+<span class="lineNum">     182 </span>            : 
+<span class="lineNum">     183 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     184 </span>            : struct has_no_matching_tag
+<span class="lineNum">     185 </span>            :     : std::integral_constant&lt;bool, number_of_matching_tags&lt;TagList, Tag&gt; == 0&gt; {
+<span class="lineNum">     186 </span>            : };
+<span class="lineNum">     187 </span>            : 
+<span class="lineNum">     188 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     189 </span>            : using has_no_matching_tag_t = typename has_no_matching_tag&lt;TagList, Tag&gt;::type;
+<span class="lineNum">     190 </span>            : 
+<span class="lineNum">     191 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     192 </span>            : constexpr bool has_no_matching_tag_v = has_no_matching_tag&lt;TagList, Tag&gt;::value;
+<span class="lineNum">     193 </span>            : }  // namespace DataBox_detail
+<span class="lineNum">     194 </span>            : 
+<span class="lineNum">     195 </span>            : /*!
+<span class="lineNum">     196 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     197 </span>            :  * \brief Get the name of a DataBoxTag, including prefixes
+<span class="lineNum">     198 </span>            :  *
+<span class="lineNum">     199 </span>            :  * \details
+<span class="lineNum">     200 </span>            :  * Given a DataBoxTag returns the name of the DataBoxTag as a std::string. If
+<span class="lineNum">     201 </span>            :  * the DataBoxTag is also a PrefixTag then the prefix is added.
+<span class="lineNum">     202 </span>            :  *
+<span class="lineNum">     203 </span>            :  * \tparam Tag the DataBoxTag whose name to get
+<span class="lineNum">     204 </span>            :  * \return string holding the DataBoxTag's name
+<span class="lineNum">     205 </span>            :  */
+<span class="lineNum">     206 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     207 </span><span class="lineCov">          2 : std::string get_tag_name() {</span>
+<span class="lineNum">     208 </span>            :   return Tag::name();
+<span class="lineNum">     209 </span>            : }
+<span class="lineNum">     210 </span>            : 
+<span class="lineNum">     211 </span>            : // @{
+<span class="lineNum">     212 </span>            : /*!
+<span class="lineNum">     213 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     214 </span>            :  * \brief Check if `Tag` derives off of db::ComputeTag
+<span class="lineNum">     215 </span>            :  */
+<span class="lineNum">     216 </span>            : template &lt;typename Tag, typename = std::nullptr_t&gt;
+<span class="lineNum">     217 </span><span class="lineCov">          1 : struct is_compute_item : std::false_type {};</span>
+<span class="lineNum">     218 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     219 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     220 </span>            : struct is_compute_item&lt;Tag, Requires&lt;cpp17::is_base_of_v&lt;db::ComputeTag, Tag&gt;&gt;&gt;
+<span class="lineNum">     221 </span>            :     : std::true_type {};
+<span class="lineNum">     222 </span>            : /// \endcond
+<span class="lineNum">     223 </span>            : 
+<span class="lineNum">     224 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     225 </span><span class="lineNoCov">          0 : constexpr bool is_compute_item_v = is_compute_item&lt;Tag&gt;::value;</span>
+<span class="lineNum">     226 </span>            : // @}
+<span class="lineNum">     227 </span>            : 
+<span class="lineNum">     228 </span>            : // @{
+<span class="lineNum">     229 </span>            : /*!
+<span class="lineNum">     230 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     231 </span>            :  * \brief Check if `Tag` is a non-base DataBox tag. I.e. a SimpleTag or a
+<span class="lineNum">     232 </span>            :  * ComputeTag
+<span class="lineNum">     233 </span>            :  */
+<span class="lineNum">     234 </span>            : template &lt;typename Tag, typename = std::nullptr_t&gt;
+<span class="lineNum">     235 </span><span class="lineCov">          1 : struct is_non_base_tag : std::false_type {};</span>
+<span class="lineNum">     236 </span>            : /// \cond
+<span class="lineNum">     237 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     238 </span>            : struct is_non_base_tag&lt;Tag, Requires&lt;cpp17::is_base_of_v&lt;db::ComputeTag, Tag&gt; or
+<span class="lineNum">     239 </span>            :                                      cpp17::is_base_of_v&lt;db::SimpleTag, Tag&gt;&gt;&gt;
+<span class="lineNum">     240 </span>            :     : std::true_type {};
+<span class="lineNum">     241 </span>            : /// \endcond
+<span class="lineNum">     242 </span>            : 
+<span class="lineNum">     243 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     244 </span><span class="lineNoCov">          0 : constexpr bool is_non_base_tag_v = is_non_base_tag&lt;Tag&gt;::value;</span>
+<span class="lineNum">     245 </span>            : // @}
+<span class="lineNum">     246 </span>            : 
+<span class="lineNum">     247 </span>            : // @{
+<span class="lineNum">     248 </span>            : /*!
+<span class="lineNum">     249 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     250 </span>            :  * \brief Check if `Tag` is a BaseTag, SimpleTag, or ComputeTag
+<span class="lineNum">     251 </span>            :  */
+<span class="lineNum">     252 </span>            : template &lt;typename Tag, typename = std::nullptr_t&gt;
+<span class="lineNum">     253 </span><span class="lineCov">          1 : struct is_tag : std::false_type {};</span>
+<span class="lineNum">     254 </span>            : /// \cond
+<span class="lineNum">     255 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     256 </span>            : struct is_tag&lt;Tag, Requires&lt;cpp17::is_base_of_v&lt;db::ComputeTag, Tag&gt; or
+<span class="lineNum">     257 </span>            :                             cpp17::is_base_of_v&lt;db::SimpleTag, Tag&gt; or
+<span class="lineNum">     258 </span>            :                             cpp17::is_base_of_v&lt;db::BaseTag, Tag&gt;&gt;&gt;
+<span class="lineNum">     259 </span>            :     : std::true_type {};
+<span class="lineNum">     260 </span>            : /// \endcond
+<span class="lineNum">     261 </span>            : 
+<span class="lineNum">     262 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     263 </span><span class="lineNoCov">          0 : constexpr bool is_tag_v = is_tag&lt;Tag&gt;::value;</span>
+<span class="lineNum">     264 </span>            : // @}
+<span class="lineNum">     265 </span>            : 
+<span class="lineNum">     266 </span>            : // @{
+<span class="lineNum">     267 </span>            : /*!
+<span class="lineNum">     268 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     269 </span>            :  * \brief Check if `Tag` is a base DataBox tag
+<span class="lineNum">     270 </span>            :  */
+<span class="lineNum">     271 </span>            : template &lt;typename Tag, typename = std::nullptr_t&gt;
+<span class="lineNum">     272 </span><span class="lineCov">          1 : struct is_base_tag : std::false_type {};</span>
+<span class="lineNum">     273 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     274 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     275 </span>            : struct is_base_tag&lt;Tag, Requires&lt;cpp17::is_base_of_v&lt;db::BaseTag, Tag&gt; and
+<span class="lineNum">     276 </span>            :                                  not cpp17::is_base_of_v&lt;db::SimpleTag, Tag&gt; and
+<span class="lineNum">     277 </span>            :                                  not is_compute_item_v&lt;Tag&gt;&gt;&gt; : std::true_type {
+<span class="lineNum">     278 </span>            : };
+<span class="lineNum">     279 </span>            : /// \endcond
+<span class="lineNum">     280 </span>            : 
+<span class="lineNum">     281 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     282 </span><span class="lineNoCov">          0 : constexpr bool is_base_tag_v = is_base_tag&lt;Tag&gt;::value;</span>
+<span class="lineNum">     283 </span>            : // @}
+<span class="lineNum">     284 </span>            : 
+<span class="lineNum">     285 </span>            : namespace DataBox_detail {
+<span class="lineNum">     286 </span>            : template &lt;class T, class = void&gt;
+<span class="lineNum">     287 </span>            : struct has_return_type_member : std::false_type {};
+<span class="lineNum">     288 </span>            : template &lt;class T&gt;
+<span class="lineNum">     289 </span>            : struct has_return_type_member&lt;T, cpp17::void_t&lt;typename T::return_type&gt;&gt;
+<span class="lineNum">     290 </span>            :     : std::true_type {};
+<span class="lineNum">     291 </span>            : 
+<span class="lineNum">     292 </span>            : /*!
+<span class="lineNum">     293 </span>            :  * \brief `true` if `T` has nested type alias named `return_type`
+<span class="lineNum">     294 </span>            :  */
+<span class="lineNum">     295 </span>            : template &lt;class T&gt;
+<span class="lineNum">     296 </span>            : constexpr bool has_return_type_member_v = has_return_type_member&lt;T&gt;::value;
+<span class="lineNum">     297 </span>            : 
+<span class="lineNum">     298 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     299 </span>            : struct item_type_impl;
+<span class="lineNum">     300 </span>            : 
+<span class="lineNum">     301 </span>            : template &lt;int SelectTagType&gt;
+<span class="lineNum">     302 </span>            : struct dispatch_item_type;
+<span class="lineNum">     303 </span>            : 
+<span class="lineNum">     304 </span>            : template &lt;typename ArgsList&gt;
+<span class="lineNum">     305 </span>            : struct compute_item_type;
+<span class="lineNum">     306 </span>            : 
+<span class="lineNum">     307 </span>            : template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     308 </span>            : struct item_type_impl {
+<span class="lineNum">     309 </span>            :   // item_type_impl is intentionally a lazy metafunction rather than a
+<span class="lineNum">     310 </span>            :   // metaclosure or a metacontinuation. The reason is that it is quite likely we
+<span class="lineNum">     311 </span>            :   // call `db::item_type&lt;Tag&gt;` multiple times within the same translation unit
+<span class="lineNum">     312 </span>            :   // and so we want to memoize the resulting type. However, we do not want to
+<span class="lineNum">     313 </span>            :   // memoize the dispatch calls.
+<span class="lineNum">     314 </span>            :   using type = typename dispatch_item_type&lt;
+<span class="lineNum">     315 </span>            :       is_base_tag_v&lt;Tag&gt;
+<span class="lineNum">     316 </span>            :           ? 4
+<span class="lineNum">     317 </span>            :           : (is_compute_item_v&lt;Tag&gt;and has_return_type_member_v&lt;Tag&gt;)
+<span class="lineNum">     318 </span>            :                 ? 3
+<span class="lineNum">     319 </span>            :                 : is_compute_item_v&lt;Tag&gt;
+<span class="lineNum">     320 </span>            :                       ? 2
+<span class="lineNum">     321 </span>            :                       : cpp17::is_base_of_v&lt;db::SimpleTag, Tag&gt; ? 1 : 0&gt;::
+<span class="lineNum">     322 </span>            :       template f&lt;TagList, Tag&gt;;
+<span class="lineNum">     323 </span>            : };
+<span class="lineNum">     324 </span>            : 
+<span class="lineNum">     325 </span>            : template &lt;&gt;
+<span class="lineNum">     326 </span>            : struct dispatch_item_type&lt;0&gt; {
+<span class="lineNum">     327 </span>            :   // Tag is not a tag. This is necessary for SFINAE friendliness, specifically
+<span class="lineNum">     328 </span>            :   // if someone calls Requires&lt;tt::is_a_v&lt;std::vector, db::item_type&lt;Tag&gt;&gt;&gt;
+<span class="lineNum">     329 </span>            :   // with, say Tag = double, then this should probably SFINAE away, not fail to
+<span class="lineNum">     330 </span>            :   // compile.
+<span class="lineNum">     331 </span>            :   template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     332 </span>            :   using f = NoSuchType;
+<span class="lineNum">     333 </span>            : };
+<span class="lineNum">     334 </span>            : 
+<span class="lineNum">     335 </span>            : template &lt;&gt;
+<span class="lineNum">     336 </span>            : struct dispatch_item_type&lt;1&gt; {
+<span class="lineNum">     337 </span>            :   // simple item
+<span class="lineNum">     338 </span>            :   template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     339 </span>            :   using f = typename Tag::type;
+<span class="lineNum">     340 </span>            : };
+<span class="lineNum">     341 </span>            : 
+<span class="lineNum">     342 </span>            : template &lt;&gt;
+<span class="lineNum">     343 </span>            : struct dispatch_item_type&lt;2&gt; {
+<span class="lineNum">     344 </span>            :   // compute item
+<span class="lineNum">     345 </span>            :   template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     346 </span>            :   using f = typename compute_item_type&lt;typename Tag::argument_tags&gt;::template f&lt;
+<span class="lineNum">     347 </span>            :       TagList, Tag&gt;;
+<span class="lineNum">     348 </span>            : };
+<span class="lineNum">     349 </span>            : 
+<span class="lineNum">     350 </span>            : template &lt;&gt;
+<span class="lineNum">     351 </span>            : struct dispatch_item_type&lt;3&gt; {
+<span class="lineNum">     352 </span>            :   // mutating compute item
+<span class="lineNum">     353 </span>            :   template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     354 </span>            :   using f = typename Tag::return_type;
+<span class="lineNum">     355 </span>            : };
+<span class="lineNum">     356 </span>            : 
+<span class="lineNum">     357 </span>            : template &lt;&gt;
+<span class="lineNum">     358 </span>            : struct dispatch_item_type&lt;4&gt; {
+<span class="lineNum">     359 </span>            :   // base tag item: retrieve the derived tag from the tag list then call
+<span class="lineNum">     360 </span>            :   // item_type_impl on the result.
+<span class="lineNum">     361 </span>            :   // We do not check that there is only one matching tag in the DataBox because
+<span class="lineNum">     362 </span>            :   // the uniqueness is only checked in get and mutate. The reason for that is
+<span class="lineNum">     363 </span>            :   // that it is fine to have multiple derived tags in the DataBox as long as
+<span class="lineNum">     364 </span>            :   // they all have the same type. We do not check that the types are all the
+<span class="lineNum">     365 </span>            :   // same, it is undefined behavior if they are not and the user's
+<span class="lineNum">     366 </span>            :   // responsibility.
+<span class="lineNum">     367 </span>            :   template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     368 </span>            :   using f =
+<span class="lineNum">     369 </span>            :       typename item_type_impl&lt;TagList, first_matching_tag&lt;TagList, Tag&gt;&gt;::type;
+<span class="lineNum">     370 </span>            : };
+<span class="lineNum">     371 </span>            : 
+<span class="lineNum">     372 </span>            : CREATE_IS_CALLABLE(function)
+<span class="lineNum">     373 </span>            : 
+<span class="lineNum">     374 </span>            : template &lt;typename Tag, typename TagList, typename TagTypesList&gt;
+<span class="lineNum">     375 </span>            : struct check_compute_item_is_invokable;
+<span class="lineNum">     376 </span>            : 
+<span class="lineNum">     377 </span>            : template &lt;typename Tag, typename... Tags, typename... TagTypes&gt;
+<span class="lineNum">     378 </span>            : struct check_compute_item_is_invokable&lt;Tag, tmpl::list&lt;Tags...&gt;,
+<span class="lineNum">     379 </span>            :                                        tmpl::list&lt;TagTypes...&gt;&gt; {
+<span class="lineNum">     380 </span>            :   static_assert(
+<span class="lineNum">     381 </span>            :       is_function_callable_v&lt;Tag, TagTypes...&gt;,
+<span class="lineNum">     382 </span>            :       &quot;The compute item is not callable with the types that the tags hold. The &quot;
+<span class="lineNum">     383 </span>            :       &quot;compute item tag that is the problem should be shown in the first line &quot;
+<span class="lineNum">     384 </span>            :       &quot; after the static assert error: &quot;
+<span class="lineNum">     385 </span>            :       &quot;'check_compute_item_is_invokable&lt;TheItemThatsFailingToBeCalled, &quot;
+<span class="lineNum">     386 </span>            :       &quot;brigand::list&lt;PassedTags...&gt;, &quot;
+<span class="lineNum">     387 </span>            :       &quot;brigand::list&lt;item_type&lt;PassedTags&gt;...&gt;&gt;'&quot;);
+<span class="lineNum">     388 </span>            : };
+<span class="lineNum">     389 </span>            : 
+<span class="lineNum">     390 </span>            : template &lt;typename... Args&gt;
+<span class="lineNum">     391 </span>            : struct compute_item_type&lt;tmpl::list&lt;Args...&gt;&gt; {
+<span class="lineNum">     392 </span>            :   template &lt;typename TagList, typename Tag&gt;
+<span class="lineNum">     393 </span>            :   using f = decltype(
+<span class="lineNum">     394 </span>            : #ifdef SPECTRE_DEBUG
+<span class="lineNum">     395 </span>            :       (void)check_compute_item_is_invokable&lt;
+<span class="lineNum">     396 </span>            :           Tag, tmpl::list&lt;Args...&gt;,
+<span class="lineNum">     397 </span>            :           tmpl::list&lt;typename item_type_impl&lt;TagList, Args&gt;::type...&gt;&gt;{},
+<span class="lineNum">     398 </span>            : #endif  // SPECTRE_DEBUG
+<span class="lineNum">     399 </span>            :       Tag::function(
+<span class="lineNum">     400 </span>            :           std::declval&lt;typename item_type_impl&lt;TagList, Args&gt;::type&gt;()...));
+<span class="lineNum">     401 </span>            : };
+<span class="lineNum">     402 </span>            : }  // namespace DataBox_detail
+<span class="lineNum">     403 </span>            : 
+<span class="lineNum">     404 </span>            : /*!
+<span class="lineNum">     405 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     406 </span>            :  * \brief Get the type that is returned by the `Tag`. If it is a base tag then a
+<span class="lineNum">     407 </span>            :  * `TagList` must be passed as a second argument.
+<span class="lineNum">     408 </span>            :  */
+<span class="lineNum">     409 </span>            : template &lt;typename Tag, typename TagList = NoSuchType&gt;
+<span class="lineNum">     410 </span><span class="lineCov">          2 : using item_type = typename DataBox_detail::item_type_impl&lt;TagList, Tag&gt;::type;</span>
+<span class="lineNum">     411 </span>            : 
+<span class="lineNum">     412 </span>            : /// \ingroup DataBoxTagsGroup
+<span class="lineNum">     413 </span>            : /// \brief Create a new list of Tags by wrapping each tag in `TagList` using the
+<span class="lineNum">     414 </span>            : /// `Wrapper`.
+<span class="lineNum">     415 </span>            : template &lt;template &lt;typename...&gt; class Wrapper, typename TagList,
+<span class="lineNum">     416 </span>            :           typename... Args&gt;
+<span class="lineNum">     417 </span><span class="lineCov">          2 : using wrap_tags_in =</span>
+<span class="lineNum">     418 </span>            :     tmpl::transform&lt;TagList, tmpl::bind&lt;Wrapper, tmpl::_1, tmpl::pin&lt;Args&gt;...&gt;&gt;;
+<span class="lineNum">     419 </span>            : 
+<span class="lineNum">     420 </span>            : namespace DataBox_detail {
+<span class="lineNum">     421 </span>            : enum class DispatchTagType {
+<span class="lineNum">     422 </span>            :   Variables,
+<span class="lineNum">     423 </span>            :   Prefix,
+<span class="lineNum">     424 </span>            :   Other,
+<span class="lineNum">     425 </span>            : };
+<span class="lineNum">     426 </span>            : 
+<span class="lineNum">     427 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     428 </span>            : constexpr DispatchTagType tag_type =
+<span class="lineNum">     429 </span>            :     tt::is_a_v&lt;Tags::Variables, Tag&gt;
+<span class="lineNum">     430 </span>            :         ? DispatchTagType::Variables
+<span class="lineNum">     431 </span>            :         : cpp17::is_base_of_v&lt;db::PrefixTag, Tag&gt; ? DispatchTagType::Prefix
+<span class="lineNum">     432 </span>            :                                                   : DispatchTagType::Other;
+<span class="lineNum">     433 </span>            : 
+<span class="lineNum">     434 </span>            : template &lt;DispatchTagType TagType&gt;
+<span class="lineNum">     435 </span>            : struct add_tag_prefix_impl;
+<span class="lineNum">     436 </span>            : 
+<span class="lineNum">     437 </span>            : // Call the appropriate impl based on the type of the tag being
+<span class="lineNum">     438 </span>            : // prefixed.
+<span class="lineNum">     439 </span>            : template &lt;template &lt;typename...&gt; class Prefix, typename Tag, typename... Args&gt;
+<span class="lineNum">     440 </span>            : using dispatch_add_tag_prefix_impl =
+<span class="lineNum">     441 </span>            :     typename add_tag_prefix_impl&lt;tag_type&lt;Tag&gt;&gt;::template f&lt;Prefix, Tag,
+<span class="lineNum">     442 </span>            :                                                             Args...&gt;;
+<span class="lineNum">     443 </span>            : 
+<span class="lineNum">     444 </span>            : template &lt;&gt;
+<span class="lineNum">     445 </span>            : struct add_tag_prefix_impl&lt;DispatchTagType::Other&gt; {
+<span class="lineNum">     446 </span>            :   template &lt;template &lt;typename...&gt; class Prefix, typename Tag, typename... Args&gt;
+<span class="lineNum">     447 </span>            :   using f = Tag;
+<span class="lineNum">     448 </span>            : };
+<span class="lineNum">     449 </span>            : 
+<span class="lineNum">     450 </span>            : template &lt;&gt;
+<span class="lineNum">     451 </span>            : struct add_tag_prefix_impl&lt;DispatchTagType::Prefix&gt; {
+<span class="lineNum">     452 </span>            :   template &lt;template &lt;typename...&gt; class Prefix, typename Tag, typename... Args&gt;
+<span class="lineNum">     453 </span>            :   struct prefix_wrapper_helper;
+<span class="lineNum">     454 </span>            : 
+<span class="lineNum">     455 </span>            :   template &lt;template &lt;typename...&gt; class Prefix,
+<span class="lineNum">     456 </span>            :             template &lt;typename...&gt; class InnerPrefix, typename InnerTag,
+<span class="lineNum">     457 </span>            :             typename... InnerArgs, typename... Args&gt;
+<span class="lineNum">     458 </span>            :   struct prefix_wrapper_helper&lt;Prefix, InnerPrefix&lt;InnerTag, InnerArgs...&gt;,
+<span class="lineNum">     459 </span>            :                                Args...&gt; {
+<span class="lineNum">     460 </span>            :     static_assert(
+<span class="lineNum">     461 </span>            :         cpp17::is_same_v&lt;typename InnerPrefix&lt;InnerTag, InnerArgs...&gt;::tag,
+<span class="lineNum">     462 </span>            :                          InnerTag&gt;,
+<span class="lineNum">     463 </span>            :         &quot;Inconsistent values of prefixed tag&quot;);
+<span class="lineNum">     464 </span>            :     using type =
+<span class="lineNum">     465 </span>            :         InnerPrefix&lt;dispatch_add_tag_prefix_impl&lt;Prefix, InnerTag, Args...&gt;,
+<span class="lineNum">     466 </span>            :                     InnerArgs...&gt;;
+<span class="lineNum">     467 </span>            :   };
+<span class="lineNum">     468 </span>            : 
+<span class="lineNum">     469 </span>            :   template &lt;template &lt;typename...&gt; class Prefix, typename Tag, typename... Args&gt;
+<span class="lineNum">     470 </span>            :   using f = typename prefix_wrapper_helper&lt;Prefix, Tag, Args...&gt;::type;
+<span class="lineNum">     471 </span>            : };
+<span class="lineNum">     472 </span>            : 
+<span class="lineNum">     473 </span>            : template &lt;&gt;
+<span class="lineNum">     474 </span>            : struct add_tag_prefix_impl&lt;DispatchTagType::Variables&gt; {
+<span class="lineNum">     475 </span>            :   template &lt;template &lt;typename...&gt; class Prefix, typename Tag, typename... Args&gt;
+<span class="lineNum">     476 </span>            :   using f =
+<span class="lineNum">     477 </span>            :       Tags::Variables&lt;wrap_tags_in&lt;Prefix, typename Tag::tags_list, Args...&gt;&gt;;
+<span class="lineNum">     478 </span>            : };
+<span class="lineNum">     479 </span>            : 
+<span class="lineNum">     480 </span>            : // Implementation of remove_tag_prefix
+<span class="lineNum">     481 </span>            : template &lt;typename&gt;
+<span class="lineNum">     482 </span>            : struct remove_tag_prefix_impl;
+<span class="lineNum">     483 </span>            : 
+<span class="lineNum">     484 </span>            : template &lt;DispatchTagType TagType&gt;
+<span class="lineNum">     485 </span>            : struct remove_variables_prefix;
+<span class="lineNum">     486 </span>            : 
+<span class="lineNum">     487 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     488 </span>            : using dispatch_remove_variables_prefix =
+<span class="lineNum">     489 </span>            :     typename remove_variables_prefix&lt;tag_type&lt;Tag&gt;&gt;::template f&lt;Tag&gt;;
+<span class="lineNum">     490 </span>            : 
+<span class="lineNum">     491 </span>            : template &lt;&gt;
+<span class="lineNum">     492 </span>            : struct remove_variables_prefix&lt;DispatchTagType::Other&gt; {
+<span class="lineNum">     493 </span>            :   template &lt;typename Tag&gt;
+<span class="lineNum">     494 </span>            :   using f = Tag;
+<span class="lineNum">     495 </span>            : };
+<span class="lineNum">     496 </span>            : 
+<span class="lineNum">     497 </span>            : template &lt;&gt;
+<span class="lineNum">     498 </span>            : struct remove_variables_prefix&lt;DispatchTagType::Prefix&gt; {
+<span class="lineNum">     499 </span>            :   template &lt;typename Tag&gt;
+<span class="lineNum">     500 </span>            :   struct helper;
+<span class="lineNum">     501 </span>            : 
+<span class="lineNum">     502 </span>            :   template &lt;template &lt;typename...&gt; class Prefix, typename Tag, typename... Args&gt;
+<span class="lineNum">     503 </span>            :   struct helper&lt;Prefix&lt;Tag, Args...&gt;&gt; {
+<span class="lineNum">     504 </span>            :     using type = Prefix&lt;dispatch_remove_variables_prefix&lt;Tag&gt;, Args...&gt;;
+<span class="lineNum">     505 </span>            :   };
+<span class="lineNum">     506 </span>            : 
+<span class="lineNum">     507 </span>            :   template &lt;typename Tag&gt;
+<span class="lineNum">     508 </span>            :   using f = typename helper&lt;Tag&gt;::type;
+<span class="lineNum">     509 </span>            : };
+<span class="lineNum">     510 </span>            : 
+<span class="lineNum">     511 </span>            : template &lt;&gt;
+<span class="lineNum">     512 </span>            : struct remove_variables_prefix&lt;DispatchTagType::Variables&gt; {
+<span class="lineNum">     513 </span>            :   template &lt;typename Tag&gt;
+<span class="lineNum">     514 </span>            :   using f = Tags::Variables&lt;tmpl::transform&lt;typename Tag::tags_list,
+<span class="lineNum">     515 </span>            :                                             remove_tag_prefix_impl&lt;tmpl::_1&gt;&gt;&gt;;
+<span class="lineNum">     516 </span>            : };
+<span class="lineNum">     517 </span>            : 
+<span class="lineNum">     518 </span>            : template &lt;typename UnprefixedTag, template &lt;typename...&gt; class Prefix,
+<span class="lineNum">     519 </span>            :           typename... Args&gt;
+<span class="lineNum">     520 </span>            : struct remove_tag_prefix_impl&lt;Prefix&lt;UnprefixedTag, Args...&gt;&gt; {
+<span class="lineNum">     521 </span>            :   static_assert(cpp17::is_base_of_v&lt;db::SimpleTag, UnprefixedTag&gt;,
+<span class="lineNum">     522 </span>            :                 &quot;Unwrapped tag is not a DataBoxTag&quot;);
+<span class="lineNum">     523 </span>            :   using type = dispatch_remove_variables_prefix&lt;UnprefixedTag&gt;;
+<span class="lineNum">     524 </span>            : };
+<span class="lineNum">     525 </span>            : }  // namespace DataBox_detail
+<span class="lineNum">     526 </span>            : 
+<span class="lineNum">     527 </span>            : /// \ingroup DataBoxTagsGroup
+<span class="lineNum">     528 </span>            : /// Wrap `Tag` in `Prefix&lt;_, Args...&gt;`, also wrapping variables tags
+<span class="lineNum">     529 </span>            : /// if `Tag` is a `Tags::Variables`.
+<span class="lineNum">     530 </span>            : template &lt;template &lt;typename...&gt; class Prefix, typename Tag, typename... Args&gt;
+<span class="lineNum">     531 </span><span class="lineCov">          2 : using add_tag_prefix =</span>
+<span class="lineNum">     532 </span>            :     Prefix&lt;DataBox_detail::dispatch_add_tag_prefix_impl&lt;Prefix, Tag, Args...&gt;,
+<span class="lineNum">     533 </span>            :            Args...&gt;;
+<span class="lineNum">     534 </span>            : 
+<span class="lineNum">     535 </span>            : /// \ingroup DataBoxTagsGroup
+<span class="lineNum">     536 </span>            : /// Remove a prefix from `Tag`, also removing it from the variables
+<span class="lineNum">     537 </span>            : /// tags if the unwrapped tag is a `Tags::Variables`.
+<span class="lineNum">     538 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     539 </span><span class="lineCov">          2 : using remove_tag_prefix =</span>
+<span class="lineNum">     540 </span>            :     typename DataBox_detail::remove_tag_prefix_impl&lt;Tag&gt;::type;
+<span class="lineNum">     541 </span>            : 
+<span class="lineNum">     542 </span>            : namespace DataBox_detail {
+<span class="lineNum">     543 </span>            : template &lt;class Tag, bool IsPrefix&gt;
+<span class="lineNum">     544 </span>            : struct remove_all_prefixes_impl;
+<span class="lineNum">     545 </span>            : }  // namespace DataBox_detail
+<span class="lineNum">     546 </span>            : 
+<span class="lineNum">     547 </span>            : /// \ingroup DataBoxGroup
+<span class="lineNum">     548 </span>            : /// Completely remove all prefix tags from a Tag
+<span class="lineNum">     549 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     550 </span><span class="lineCov">          2 : using remove_all_prefixes = typename DataBox_detail::remove_all_prefixes_impl&lt;</span>
+<span class="lineNum">     551 </span>            :     Tag, cpp17::is_base_of_v&lt;db::PrefixTag, Tag&gt;&gt;::type;
+<span class="lineNum">     552 </span>            : 
+<span class="lineNum">     553 </span>            : namespace DataBox_detail {
+<span class="lineNum">     554 </span>            : template &lt;class Tag&gt;
+<span class="lineNum">     555 </span>            : struct remove_all_prefixes_impl&lt;Tag, false&gt; {
+<span class="lineNum">     556 </span>            :   using type = Tag;
+<span class="lineNum">     557 </span>            : };
+<span class="lineNum">     558 </span>            : 
+<span class="lineNum">     559 </span>            : template &lt;class Tag&gt;
+<span class="lineNum">     560 </span>            : struct remove_all_prefixes_impl&lt;Tag, true&gt; {
+<span class="lineNum">     561 </span>            :   using type = remove_all_prefixes&lt;remove_tag_prefix&lt;Tag&gt;&gt;;
+<span class="lineNum">     562 </span>            : };
+<span class="lineNum">     563 </span>            : 
+<span class="lineNum">     564 </span>            : // Implementation of variables_tag_with_tags_list
+<span class="lineNum">     565 </span>            : template &lt;DispatchTagType TagType&gt;
+<span class="lineNum">     566 </span>            : struct variables_tag_with_tags_list_impl;
+<span class="lineNum">     567 </span>            : }  // namespace DataBox_detail
+<span class="lineNum">     568 </span>            : 
+<span class="lineNum">     569 </span>            : /// \ingroup DataBoxGroup
+<span class="lineNum">     570 </span>            : /// Change the tags contained in a possibly prefixed Variables tag.
+<span class="lineNum">     571 </span>            : /// \example
+<span class="lineNum">     572 </span>            : /// \snippet Test_DataBoxTag.cpp variables_tag_with_tags_list
+<span class="lineNum">     573 </span>            : template &lt;typename Tag, typename NewTagsList&gt;
+<span class="lineNum">     574 </span><span class="lineCov">          2 : using variables_tag_with_tags_list =</span>
+<span class="lineNum">     575 </span>            :     typename DataBox_detail::variables_tag_with_tags_list_impl&lt;
+<span class="lineNum">     576 </span>            :         DataBox_detail::tag_type&lt;Tag&gt;&gt;::template f&lt;Tag, NewTagsList&gt;;
+<span class="lineNum">     577 </span>            : 
+<span class="lineNum">     578 </span>            : namespace DataBox_detail {
+<span class="lineNum">     579 </span>            : // Implementation of variables_tag_with_tags_list
+<span class="lineNum">     580 </span>            : template &lt;&gt;
+<span class="lineNum">     581 </span>            : struct variables_tag_with_tags_list_impl&lt;DispatchTagType::Variables&gt; {
+<span class="lineNum">     582 </span>            :   template &lt;typename Tag, typename NewTagsList&gt;
+<span class="lineNum">     583 </span>            :   using f = Tags::Variables&lt;NewTagsList&gt;;
+<span class="lineNum">     584 </span>            : };
+<span class="lineNum">     585 </span>            : 
+<span class="lineNum">     586 </span>            : template &lt;&gt;
+<span class="lineNum">     587 </span>            : struct variables_tag_with_tags_list_impl&lt;DispatchTagType::Prefix&gt; {
+<span class="lineNum">     588 </span>            :   template &lt;typename Tag, typename NewTagsList&gt;
+<span class="lineNum">     589 </span>            :   struct helper;
+<span class="lineNum">     590 </span>            : 
+<span class="lineNum">     591 </span>            :   template &lt;template &lt;typename...&gt; class Prefix, typename Tag, typename... Args,
+<span class="lineNum">     592 </span>            :             typename NewTagsList&gt;
+<span class="lineNum">     593 </span>            :   struct helper&lt;Prefix&lt;Tag, Args...&gt;, NewTagsList&gt; {
+<span class="lineNum">     594 </span>            :     using type =
+<span class="lineNum">     595 </span>            :         Prefix&lt;variables_tag_with_tags_list&lt;Tag, NewTagsList&gt;, Args...&gt;;
+<span class="lineNum">     596 </span>            :   };
+<span class="lineNum">     597 </span>            : 
+<span class="lineNum">     598 </span>            :   template &lt;typename Tag, typename NewTagsList&gt;
+<span class="lineNum">     599 </span>            :   using f = typename helper&lt;Tag, NewTagsList&gt;::type;
+<span class="lineNum">     600 </span>            : };
+<span class="lineNum">     601 </span>            : }  // namespace DataBox_detail
+<span class="lineNum">     602 </span>            : 
+<span class="lineNum">     603 </span>            : /// \ingroup DataBoxGroup
+<span class="lineNum">     604 </span>            : /// Struct that can be specialized to allow DataBox items to have
+<span class="lineNum">     605 </span>            : /// subitems.  Specializations must define:
+<span class="lineNum">     606 </span>            : /// * `using type = tmpl::list&lt;...&gt;` listing the subtags of `Tag`
+<span class="lineNum">     607 </span>            : /// * A static member function to initialize a subitem of a simple
+<span class="lineNum">     608 </span>            : ///   item:
+<span class="lineNum">     609 </span>            : ///   ```
+<span class="lineNum">     610 </span>            : ///   template &lt;typename Subtag&gt;
+<span class="lineNum">     611 </span>            : ///   static void create_item(
+<span class="lineNum">     612 </span>            : ///       const gsl::not_null&lt;item_type&lt;Tag&gt;*&gt; parent_value,
+<span class="lineNum">     613 </span>            : ///       const gsl::not_null&lt;item_type&lt;Subtag&gt;*&gt; sub_value) noexcept;
+<span class="lineNum">     614 </span>            : ///   ```
+<span class="lineNum">     615 </span>            : ///   Mutating the subitems must also modify the main item.
+<span class="lineNum">     616 </span>            : /// * A static member function evaluating a subitem of a compute
+<span class="lineNum">     617 </span>            : ///   item:
+<span class="lineNum">     618 </span>            : ///   ```
+<span class="lineNum">     619 </span>            : ///   template &lt;typename Subtag&gt;
+<span class="lineNum">     620 </span>            : ///   static item_type&lt;Subtag&gt; create_compute_item(
+<span class="lineNum">     621 </span>            : ///       const item_type&lt;Tag&gt;&amp; parent_value) noexcept;
+<span class="lineNum">     622 </span>            : ///   ```
+<span class="lineNum">     623 </span>            : template &lt;typename TagList, typename Tag, typename = std::nullptr_t&gt;
+<span class="lineNum">     624 </span><span class="lineCov">          1 : struct Subitems {</span>
+<span class="lineNum">     625 </span><span class="lineNoCov">          0 :   using type = tmpl::list&lt;&gt;;</span>
+<span class="lineNum">     626 </span>            : };
+<span class="lineNum">     627 </span>            : 
+<span class="lineNum">     628 </span>            : /// \ingroup DataBoxGroup
+<span class="lineNum">     629 </span>            : /// Split a tag into its subitems.  `Tag` cannot be a base tag.
+<span class="lineNum">     630 </span>            : template &lt;typename Tag, typename TagList = NoSuchType&gt;
+<span class="lineNum">     631 </span><span class="lineCov">          2 : using split_tag = tmpl::conditional_t&lt;</span>
+<span class="lineNum">     632 </span>            :     tmpl::size&lt;typename Subitems&lt;TagList, Tag&gt;::type&gt;::value == 0,
+<span class="lineNum">     633 </span>            :     tmpl::list&lt;Tag&gt;, typename Subitems&lt;TagList, Tag&gt;::type&gt;;
+<span class="lineNum">     634 </span>            : }  // namespace db
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

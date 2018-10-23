@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/Systems/RelativisticEuler/Valencia/ConservativeFromPrimitive.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">Evolution/Systems/RelativisticEuler/Valencia</a> - ConservativeFromPrimitive.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : namespace gsl {
+<span class="lineNum">      11 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      12 </span><span class="lineCov">          1 : class not_null;</span>
+<span class="lineNum">      13 </span>            : }  // namespace gsl
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : namespace RelativisticEuler {
+<span class="lineNum">      16 </span>            : namespace Valencia {
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : /*!
+<span class="lineNum">      19 </span>            :  * \brief Compute the conservative variables from primitive variables
+<span class="lineNum">      20 </span>            :  *
+<span class="lineNum">      21 </span>            :  * \f{align*}
+<span class="lineNum">      22 </span>            :  * {\tilde D} = &amp; \sqrt{\gamma} \rho W \\
+<span class="lineNum">      23 </span>            :  * {\tilde S}_i = &amp; \sqrt{\gamma} \rho h W^2 v_i \\
+<span class="lineNum">      24 </span>            :  * {\tilde \tau} = &amp; \sqrt{\gamma} \left( \rho h W^2 - p - \rho W \right)
+<span class="lineNum">      25 </span>            :  * \f}
+<span class="lineNum">      26 </span>            :  * where \f${\tilde D}\f$, \f${\tilde S}_i\f$, and \f${\tilde \tau}\f$ are a
+<span class="lineNum">      27 </span>            :  * generalized mass-energy density, momentum density, and specific internal
+<span class="lineNum">      28 </span>            :  * energy density as measured by an Eulerian observer, \f$\gamma\f$ is the
+<span class="lineNum">      29 </span>            :  * determinant of the spatial metric, \f$\rho\f$ is the rest mass density,
+<span class="lineNum">      30 </span>            :  * \f$W = 1/\sqrt{1-v_i v^i}\f$ is the Lorentz factor, \f$h = 1 + \epsilon +
+<span class="lineNum">      31 </span>            :  * \frac{p}{\rho}\f$ is the specific enthalpy, \f$v_i\f$ is the spatial
+<span class="lineNum">      32 </span>            :  * velocity, \f$\epsilon\f$ is the specific internal energy, and \f$p\f$ is the
+<span class="lineNum">      33 </span>            :  * pressure.
+<span class="lineNum">      34 </span>            :  *
+<span class="lineNum">      35 </span>            :  * Using the definitions of the Lorentz factor and the specific enthalpy, the
+<span class="lineNum">      36 </span>            :  * last equation can be rewritten in a form that has a well-behaved Newtonian
+<span class="lineNum">      37 </span>            :  * limit: \f[
+<span class="lineNum">      38 </span>            :  * {\tilde \tau} = \sqrt{\gamma} W^2 \left[ \rho \left( \epsilon + v^2
+<span class="lineNum">      39 </span>            :  * \frac{W}{W + 1} \right) + p v^2 \right] .\f]
+<span class="lineNum">      40 </span>            :  */
+<span class="lineNum">      41 </span>            : template &lt;typename DataType, size_t Dim&gt;
+<span class="lineNum">      42 </span><span class="lineCov">          1 : void conservative_from_primitive(</span>
+<span class="lineNum">      43 </span>            :     gsl::not_null&lt;Scalar&lt;DataType&gt;*&gt; tilde_d,
+<span class="lineNum">      44 </span>            :     gsl::not_null&lt;Scalar&lt;DataType&gt;*&gt; tilde_tau,
+<span class="lineNum">      45 </span>            :     gsl::not_null&lt;tnsr::i&lt;DataType, Dim, Frame::Inertial&gt;*&gt; tilde_s,
+<span class="lineNum">      46 </span>            :     const Scalar&lt;DataType&gt;&amp; rest_mass_density,
+<span class="lineNum">      47 </span>            :     const Scalar&lt;DataType&gt;&amp; specific_internal_energy,
+<span class="lineNum">      48 </span>            :     const tnsr::i&lt;DataType, Dim, Frame::Inertial&gt;&amp; spatial_velocity_oneform,
+<span class="lineNum">      49 </span>            :     const Scalar&lt;DataType&gt;&amp; spatial_velocity_squared,
+<span class="lineNum">      50 </span>            :     const Scalar&lt;DataType&gt;&amp; lorentz_factor,
+<span class="lineNum">      51 </span>            :     const Scalar&lt;DataType&gt;&amp; specific_enthalpy, const Scalar&lt;DataType&gt;&amp; pressure,
+<span class="lineNum">      52 </span>            :     const Scalar&lt;DataType&gt;&amp; sqrt_det_spatial_metric) noexcept;
+<span class="lineNum">      53 </span>            : }  // namespace Valencia
+<span class="lineNum">      54 </span>            : }  // namespace RelativisticEuler
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

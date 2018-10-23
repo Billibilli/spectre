@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - ControlSystem/Averager.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">ControlSystem</a> - Averager.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntry">22</td>
+            <td class="headerCovTableEntryLo">40.9 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;boost/none.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &lt;boost/optional.hpp&gt;
+<span class="lineNum">       9 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      10 </span>            : #include &lt;deque&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : /// \ingroup ControlSystemGroup
+<span class="lineNum">      15 </span>            : /// A weighted exponential averager of \f$Q\f$ and its derivatives
+<span class="lineNum">      16 </span>            : /// implementing Appendix A in Hemberger et al, https://arxiv.org/abs/1211.6079
+<span class="lineNum">      17 </span>            : ///
+<span class="lineNum">      18 </span>            : /// The purpose of the averager is to provide \f$Q\f$ and 'smoothed' numerical
+<span class="lineNum">      19 </span>            : /// derivatives of \f$Q\f$ up to the `DerivOrder`'th derivative. The 0th
+<span class="lineNum">      20 </span>            : /// derivative of \f$Q\f$ is not typically averaged, since no differencing is
+<span class="lineNum">      21 </span>            : /// necessary and no noise is introduced. The `average_0th_deriv_of_q` option
+<span class="lineNum">      22 </span>            : /// allows for specifying that the 0th derivative should be averaged in addition
+<span class="lineNum">      23 </span>            : /// to the derivatives. This may be desirable for control systems where
+<span class="lineNum">      24 </span>            : /// \f$Q\f$ contains some 'noise', e.g. size control typically uses an averaged
+<span class="lineNum">      25 </span>            : /// \f$Q\f$ since the raw computed \f$Q\f$ is a function of the minimum on a
+<span class="lineNum">      26 </span>            : /// surface and may jump around discontinuously.
+<span class="lineNum">      27 </span>            : ///
+<span class="lineNum">      28 </span>            : /// The averager is designed to support an arbitrary DerivOrder, however the
+<span class="lineNum">      29 </span>            : /// private get_derivs method currently only supports DerivOrder = 2.
+<span class="lineNum">      30 </span>            : /// If an additional DerivOrder is needed, finite differencing needs to be
+<span class="lineNum">      31 </span>            : /// implemented to specifically handle that order (as it seems like overkill to
+<span class="lineNum">      32 </span>            : /// generalize the differencing stencil at this time).
+<span class="lineNum">      33 </span>            : template &lt;size_t DerivOrder&gt;
+<span class="lineNum">      34 </span><span class="lineCov">          1 : class Averager {</span>
+<span class="lineNum">      35 </span>            :  public:
+<span class="lineNum">      36 </span>            :   /// `avg_timescale_frac` determines the exponential averaging timescale
+<span class="lineNum">      37 </span>            :   /// through \f$\tau_\mathrm{avg} = \f$`avg_timescale_frac`\f$\times \tau\f$,
+<span class="lineNum">      38 </span>            :   /// where \f$\tau\f$ is the damping time.
+<span class="lineNum">      39 </span>            :   /// `avg_timescale_frac` must be positive.
+<span class="lineNum">      40 </span>            :   /// `average_0th_deriv_of_q` determines whether the call operator returns an
+<span class="lineNum">      41 </span>            :   /// averaged or unaveraged quantity for the 0th derivative of \f$Q\f$.
+<span class="lineNum">      42 </span>            :   /// `true` returns an averaged 0th derivative of \f$Q\f$.
+<span class="lineNum">      43 </span>            :   /// `false` returns the raw 0th derivative of \f$Q\f$.
+<span class="lineNum">      44 </span>            :   /// The derivatives are always averaged (to reduce noise due to numerical
+<span class="lineNum">      45 </span>            :   /// differentiation), so the `average_0th_deriv_of_q` option only specifies
+<span class="lineNum">      46 </span>            :   /// whether to return an averaged value for the 0th derivative piece of the
+<span class="lineNum">      47 </span>            :   /// function.
+<span class="lineNum">      48 </span><span class="lineCov">          1 :   Averager(double avg_timescale_frac, bool average_0th_deriv_of_q) noexcept;</span>
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            :   // Explicitly defined move constructor due to the fact that the std::deque
+<span class="lineNum">      51 </span>            :   // move constructor is not marked noexcept
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :   Averager(Averager&amp;&amp; rhs) noexcept;</span>
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :   Averager&amp; operator=(Averager&amp;&amp; rhs) noexcept;</span>
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :   Averager(const Averager&amp;) = delete;</span>
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :   Averager&amp; operator=(const Averager&amp;) = delete;</span>
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 :   ~Averager() = default;</span>
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            :   /// Returns \f$Q\f$ and its derivatives at \f$t=\f$`time`, provided there is
+<span class="lineNum">      59 </span>            :   /// sufficient data. The averager is limited by the need for at least
+<span class="lineNum">      60 </span>            :   /// (`DerivOrder` + 1) data points in order to provide the `DerivOrder`'th
+<span class="lineNum">      61 </span>            :   /// derivative. If sufficient data is available, it returns \f$Q\f$ and
+<span class="lineNum">      62 </span>            :   /// averaged derivatives of \f$Q\f$ up to the `DerivOrder`'th derivative, at
+<span class="lineNum">      63 </span>            :   /// \f$t=\f$`time`. If `using_average_0th_deriv_of_q()` is `true`, then the
+<span class="lineNum">      64 </span>            :   /// returned 0th derivative of \f$Q\f$ is also averaged. In the case that
+<span class="lineNum">      65 </span>            :   /// there is insufficient data, the operator returns an
+<span class="lineNum">      66 </span>            :   /// unitialized `boost::optional` (`boost::none`).
+<span class="lineNum">      67 </span><span class="lineCov">          1 :   const boost::optional&lt;std::array&lt;DataVector, DerivOrder + 1&gt;&gt;&amp; operator()(</span>
+<span class="lineNum">      68 </span>            :       double time) const noexcept;
+<span class="lineNum">      69 </span>            :   /// A function that allows for resetting the averager.
+<span class="lineNum">      70 </span><span class="lineCov">          1 :   void clear() noexcept;</span>
+<span class="lineNum">      71 </span>            :   /// The function responsible for updating the averaged values
+<span class="lineNum">      72 </span>            :   /// at \f$t=\f$`time`. Requires `raw_q` (the raw components of \f$Q(t)\f$)
+<span class="lineNum">      73 </span>            :   /// and `timescales` (the associated damping times for each component).
+<span class="lineNum">      74 </span><span class="lineCov">          1 :   void update(double time, const DataVector&amp; raw_q,</span>
+<span class="lineNum">      75 </span>            :               const DataVector&amp; timescales) noexcept;
+<span class="lineNum">      76 </span>            :   /// Returns the latest time at which the averager has sufficient data to
+<span class="lineNum">      77 </span>            :   /// return \f$Q\f$ and its derivatives.
+<span class="lineNum">      78 </span><span class="lineCov">          1 :   double last_time_updated() const noexcept;</span>
+<span class="lineNum">      79 </span>            :   /// Returns the exponentially averaged time at \f$t=\f$`time`. The time is
+<span class="lineNum">      80 </span>            :   /// averaged along side \f$Q\f$ to determine the effective time at which
+<span class="lineNum">      81 </span>            :   /// the average value is computed. The effective time is retarded, due to the
+<span class="lineNum">      82 </span>            :   /// weighting of past times.
+<span class="lineNum">      83 </span><span class="lineCov">          1 :   DataVector average_time(double time) const noexcept;</span>
+<span class="lineNum">      84 </span>            :   /// Returns a bool corresponding to whether `average_0th_deriv_of_q`
+<span class="lineNum">      85 </span>            :   /// is `true`/`false`.
+<span class="lineNum">      86 </span><span class="lineCov">          1 :   bool using_average_0th_deriv_of_q() const noexcept {</span>
+<span class="lineNum">      87 </span>            :     return average_0th_deriv_of_q_;
+<span class="lineNum">      88 </span>            :   };
+<span class="lineNum">      89 </span>            : 
+<span class="lineNum">      90 </span>            :  private:
+<span class="lineNum">      91 </span>            :   /// Returns the function and numerical derivatives up to the
+<span class="lineNum">      92 </span>            :   /// `DerivOrder`'th derivative using backward finite differencing that
+<span class="lineNum">      93 </span>            :   /// supports non-uniform time spacing. Since we use a stencil size of
+<span class="lineNum">      94 </span>            :   /// (`DerivOrder` + 1), the order of the finite difference varies for
+<span class="lineNum">      95 </span>            :   /// different derivatives. Assuming \f$M\lte\f$`DerivOrder`, the \f$M\f$'th
+<span class="lineNum">      96 </span>            :   /// derivative is of order (`DerivOrder` + 1 - \f$M\f$).
+<span class="lineNum">      97 </span>            :   ///
+<span class="lineNum">      98 </span>            :   /// NOTE: the derivative function currently only supports DerivOrder = 2,
+<span class="lineNum">      99 </span>            :   /// and contains a static_assert to guard against the possible instantiation
+<span class="lineNum">     100 </span>            :   /// of another DerivOrder, for which finite differencing does not
+<span class="lineNum">     101 </span>            :   /// currently support.
+<span class="lineNum">     102 </span><span class="lineCov">          1 :   std::array&lt;DataVector, DerivOrder + 1&gt; get_derivs() const noexcept;</span>
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span><span class="lineNoCov">          0 :   double avg_tscale_frac_;</span>
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 :   bool average_0th_deriv_of_q_;</span>
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 :   boost::optional&lt;std::array&lt;DataVector, DerivOrder + 1&gt;&gt; averaged_values_{};</span>
+<span class="lineNum">     107 </span><span class="lineNoCov">          0 :   boost::optional&lt;std::array&lt;DataVector, DerivOrder + 1&gt;&gt; boost_none_ =</span>
+<span class="lineNum">     108 </span>            :       boost::none;
+<span class="lineNum">     109 </span><span class="lineNoCov">          0 :   std::deque&lt;double&gt; times_;</span>
+<span class="lineNum">     110 </span><span class="lineNoCov">          0 :   std::deque&lt;DataVector&gt; raw_qs_;</span>
+<span class="lineNum">     111 </span><span class="lineNoCov">          0 :   DataVector weight_k_{0.0};</span>
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 :   DataVector tau_k_{0.0};</span>
+<span class="lineNum">     113 </span>            : };
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

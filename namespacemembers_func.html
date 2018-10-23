@@ -1,0 +1,698 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Namespace Members</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="contents">
+&#160;
+
+<h3><a id="index_a"></a>- a -</h3><ul>
+<li>abort()
+: <a class="el" href="group__ParallelGroup.html#gaccc68e564135958d18110d2847dcc1b3">Parallel</a>
+</li>
+<li>accumulate()
+: <a class="el" href="namespacealg.html#aab091059fe039cb854536d3fa735e04b">alg</a>
+, <a class="el" href="group__UtilitiesGroup.html#gaa3be3b8a2b80d0c3837f82d82e5f25f5">cpp2b</a>
+</li>
+<li>all_of()
+: <a class="el" href="namespacealg.html#ac4ccfe69d35e3325e70f87b07bbca073">alg</a>
+</li>
+<li>any_of()
+: <a class="el" href="namespacealg.html#a01d6fe95f27b9d6bb67c54a1536e43b8">alg</a>
+</li>
+<li>apply()
+: <a class="el" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">db</a>
+</li>
+<li>area_element()
+: <a class="el" href="group__SurfacesGroup.html#gac2502f17cfbca07b182c85964af54fe4">StrahlkorperGr</a>
+</li>
+<li>as_const()
+: <a class="el" href="group__ConstantExpressionsGroup.html#ga98b6946dfa17b341bd35d75038d2b164">cpp17</a>
+</li>
+<li>at()
+: <a class="el" href="group__UtilitiesGroup.html#gac75622e2034e12763b1e3989b813376b">gsl</a>
+</li>
+</ul>
+
+
+<h3><a id="index_c"></a>- c -</h3><ul>
+<li>call()
+: <a class="el" href="namespacepypp.html#aecc213d312cdaa74c7d2e63a55a960df">pypp</a>
+</li>
+<li>characteristic_speeds()
+: <a class="el" href="namespacegrmhd_1_1ValenciaDivClean.html#a3f8cb283265cfcd0a683b71e69b10c23">grmhd::ValenciaDivClean</a>
+, <a class="el" href="namespaceNewtonianEuler.html#a739e0c8e8e6db156b70750e473849a23">NewtonianEuler</a>
+, <a class="el" href="namespaceRelativisticEuler_1_1Valencia.html#a45ee2fcecfa0e0a03101d15c88d9bd57">RelativisticEuler::Valencia</a>
+</li>
+<li>check_if_dir_exists()
+: <a class="el" href="group__FileSystemGroup.html#ga98b68ae4066312cefb26b034f69baa72">file_system</a>
+</li>
+<li>check_if_file_exists()
+: <a class="el" href="group__FileSystemGroup.html#ga07633adc0271276b2a30c45874bd5883">file_system</a>
+</li>
+<li>check_with_random_values()
+: <a class="el" href="namespacepypp.html#aa9d3d256a4bf8f2e8abeece42d94e4af">pypp</a>
+</li>
+<li>christoffel_first_kind()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga1760eae23740899ced0c76e6199570fd">gr</a>
+</li>
+<li>clamp()
+: <a class="el" href="group__ConstantExpressionsGroup.html#ga98c19254cc65f939a8e36481c565fa03">cpp17</a>
+</li>
+<li>collocation_points()
+: <a class="el" href="namespaceSpectral.html#a8da39baebbabfffe012d3a9433ae8138">Spectral</a>
+</li>
+<li>compute_basis_function_normalization_square()
+: <a class="el" href="namespaceSpectral.html#aae112111db00191023c93bf465549ed5">Spectral</a>
+</li>
+<li>compute_basis_function_values()
+: <a class="el" href="namespaceSpectral.html#a097202a094b9833a7cbc8e280b62976e">Spectral</a>
+</li>
+<li>compute_collocation_points_and_weights()
+: <a class="el" href="namespaceSpectral.html#a0029a8458d13dd113e3b17aedc305436">Spectral</a>
+</li>
+<li>compute_inverse_weight_function_values()
+: <a class="el" href="namespaceSpectral.html#aeb5a0a69f640063dc391c403c97d71e1">Spectral</a>
+</li>
+<li>compute_source_terms_of_u()
+: <a class="el" href="namespaceRelativisticEuler_1_1Valencia.html#ac1502fa85109c4010107c7d9c6a5fdce">RelativisticEuler::Valencia</a>
+</li>
+<li>conservative_from_primitive()
+: <a class="el" href="namespaceNewtonianEuler.html#a1947dcc37ec300671910e2c40b781ead">NewtonianEuler</a>
+, <a class="el" href="namespaceRelativisticEuler_1_1Valencia.html#ae5c81973c343c2dc4d3d1c25b8abaa33">RelativisticEuler::Valencia</a>
+</li>
+<li>contains_attribute()
+: <a class="el" href="group__HDF5Group.html#gaa7a07697b281b9f7f6488704cff02576">h5</a>
+</li>
+<li>contains_dataset_or_group()
+: <a class="el" href="group__HDF5Group.html#ga9aeb4b997862441df689e7315c6c5510">h5</a>
+</li>
+<li>contribute_to_reduction()
+: <a class="el" href="group__ParallelGroup.html#ga54a41b362281ea1321a50c609f59cf7b">Parallel</a>
+</li>
+<li>create()
+: <a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247">db</a>
+</li>
+<li>create_copy()
+: <a class="el" href="group__DataBoxGroup.html#ga72d46d18bafb1c746e6c7249576e6428">db</a>
+</li>
+<li>create_directory()
+: <a class="el" href="group__FileSystemGroup.html#gab9e523e13e2f581bc4c27372e1f18153">file_system</a>
+</li>
+<li>create_from()
+: <a class="el" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2">db</a>
+</li>
+<li>create_lock()
+: <a class="el" href="group__ParallelGroup.html#ga88e5396473adcaffed3465a9333f72f4">Parallel</a>
+</li>
+<li>cwd()
+: <a class="el" href="group__FileSystemGroup.html#gafd481e8a157f7fc00a01ee156cde4984">file_system</a>
+</li>
+</ul>
+
+
+<h3><a id="index_d"></a>- d -</h3><ul>
+<li>data_on_slice()
+: <a class="el" href="group__DataBoxGroup.html#gab0a56543f1f309293c4c8cbe4749d252">db</a>
+</li>
+<li>deriv_spatial_metric()
+: <a class="el" href="group__GeneralRelativityGroup.html#gac67afb218c9dbb323f23bea492fae254">GeneralizedHarmonic</a>
+</li>
+<li>derivatives_of_spacetime_metric()
+: <a class="el" href="group__GeneralRelativityGroup.html#gaeee14cafb15a2cf209936797a1b96a5e">gr</a>
+</li>
+<li>desired_refinement_levels()
+: <a class="el" href="group__ComputationalDomainGroup.html#gaefd6db279218361a4f20f85771e12aa6">amr</a>
+</li>
+<li>desired_refinement_levels_of_neighbor()
+: <a class="el" href="group__ComputationalDomainGroup.html#gab6b39332c0ebaf70aa94de13661b2e13">amr</a>
+</li>
+<li>differentiation_matrix()
+: <a class="el" href="namespaceSpectral.html#ad1168f9e363d2ace1b13f8a3c025f2e2">Spectral</a>
+</li>
+<li>dimensionful_spin_magnitude()
+: <a class="el" href="group__SurfacesGroup.html#gae9ed2e40aadae32abeb5d5e713aea45f">StrahlkorperGr</a>
+</li>
+</ul>
+
+
+<h3><a id="index_e"></a>- e -</h3><ul>
+<li>element_mesh()
+: <a class="el" href="namespaceInitialization.html#a1a02d56f37e50e3568e0c7327f1ac610">Initialization</a>
+</li>
+<li>equal()
+: <a class="el" href="namespacealg.html#ac03357a9eb5227a5c206480a11df1279">alg</a>
+</li>
+<li>evaluate()
+: <a class="el" href="group__TensorExpressionsGroup.html#gad5daebeb92f29bc7001f7b3bb3982918">TensorExpressions</a>
+</li>
+<li>exit()
+: <a class="el" href="group__ParallelGroup.html#ga8ca2773484152df4d8897024a244b3c0">Parallel</a>
+</li>
+<li>expansion()
+: <a class="el" href="group__SurfacesGroup.html#ga722d79ae526b8c5910cd5525e77e771a">StrahlkorperGr</a>
+</li>
+<li>extract_short_name()
+: <a class="el" href="group__PrettyTypeGroup.html#gaa845d6607c92df7fcc966e067731eb8b">pretty_type</a>
+</li>
+<li>extrinsic_curvature()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga2e5cee1422996402294e6883e47d1c3a">GeneralizedHarmonic</a>
+, <a class="el" href="group__GeneralRelativityGroup.html#ga6b034a42919410aecf93c851305f30c9">gr</a>
+, <a class="el" href="group__SurfacesGroup.html#ga69729bcebd0d528cb6214ac22bccc1c3">StrahlkorperGr</a>
+</li>
+</ul>
+
+
+<h3><a id="index_f"></a>- f -</h3><ul>
+<li>file_size()
+: <a class="el" href="group__FileSystemGroup.html#ga2f711e8bc0a08bd7830fb90047cda49d">file_system</a>
+</li>
+<li>find()
+: <a class="el" href="namespacealg.html#a576878e0d622403e4e1595e557d4948a">alg</a>
+</li>
+<li>find_if()
+: <a class="el" href="namespacealg.html#aecdec18c1140df0719d2bffff023f95f">alg</a>
+</li>
+<li>find_if_not()
+: <a class="el" href="namespacealg.html#a8f0c38619bbeb5ce00fc2a98d879f589">alg</a>
+</li>
+<li>first_proc_on_node()
+: <a class="el" href="group__ParallelGroup.html#ga6f2f2d9db4aca7b4f11370e1556b43a5">Parallel</a>
+</li>
+<li>fluxes()
+: <a class="el" href="namespaceRelativisticEuler_1_1Valencia.html#ad82ec7c639432ea8dd093d6fda513b56">RelativisticEuler::Valencia</a>
+</li>
+<li>for_each()
+: <a class="el" href="namespacealg.html#af893873f65d38df2edd4999798524cdb">alg</a>
+</li>
+<li>fortran_string()
+: <a class="el" href="group__HDF5Group.html#gaef3c3aa3a0ad0ee2e20394c73a2016d1">h5</a>
+</li>
+<li>found()
+: <a class="el" href="namespacealg.html#a7cffd086d35f1fa0c5c043e71b0ea534">alg</a>
+</li>
+<li>found_if()
+: <a class="el" href="namespacealg.html#ac1f53a740ef4abb8b3515449a6acbf41">alg</a>
+</li>
+<li>found_if_not()
+: <a class="el" href="namespacealg.html#aa632324284fc5a693963af1005af3a25">alg</a>
+</li>
+<li>free_lock()
+: <a class="el" href="group__ParallelGroup.html#gaac77c46b622bbe8ff936adc7bf7bd178">Parallel</a>
+</li>
+</ul>
+
+
+<h3><a id="index_g"></a>- g -</h3><ul>
+<li>gauge_source()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga117a90f0a602f755c96bcb686e988052">GeneralizedHarmonic</a>
+</li>
+<li>get()
+: <a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1">db</a>
+, <a class="el" href="group__ParallelGroup.html#ga5650367ede7ee5b92720ed3636df24e2">Parallel</a>
+</li>
+<li>get_absolute_path()
+: <a class="el" href="group__FileSystemGroup.html#gaa351270ecb517c45b7836902ef674875">file_system</a>
+</li>
+<li>get_attribute_names()
+: <a class="el" href="group__HDF5Group.html#gaeec903b7a858fb1a5701d281a5fa9b12">h5</a>
+</li>
+<li>get_file_name()
+: <a class="el" href="group__FileSystemGroup.html#gad126502facc68c98c9964cbeebc0974d">file_system</a>
+</li>
+<li>get_group_names()
+: <a class="el" href="group__HDF5Group.html#ga33cfa0d2358bbcd794fd5a0b1df1dd8c">h5</a>
+</li>
+<li>get_item_from_box()
+: <a class="el" href="group__DataBoxGroup.html#gabf8f521b3840fcbe17a85fb394ebf2b0">db</a>
+</li>
+<li>get_name()
+: <a class="el" href="group__PrettyTypeGroup.html#gac0b1e9dbf00ffc945748145a597379d9">pretty_type</a>
+</li>
+<li>get_parallel_component()
+: <a class="el" href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f">Parallel</a>
+</li>
+<li>get_parent_path()
+: <a class="el" href="group__FileSystemGroup.html#ga2d61b3775233662cfb90986f11b3e176">file_system</a>
+</li>
+<li>get_runtime_type_name()
+: <a class="el" href="group__PrettyTypeGroup.html#ga79e950d1d1a4de3f653cc0355a64e10f">pretty_type</a>
+</li>
+<li>get_tag_name()
+: <a class="el" href="group__DataBoxGroup.html#ga1c6873b102358c68b28e3d35486994fd">db</a>
+</li>
+<li>grad_unit_normal_one_form()
+: <a class="el" href="group__SurfacesGroup.html#ga0c5b51d919c0fdfc95948ef0d927caf9">StrahlkorperGr</a>
+</li>
+<li>grid_points_to_spectral_matrix()
+: <a class="el" href="namespaceSpectral.html#a52067885d6926718771af50b566f9666">Spectral</a>
+</li>
+</ul>
+
+
+<h3><a id="index_h"></a>- h -</h3><ul>
+<li>h5_type()
+: <a class="el" href="group__HDF5Group.html#ga2207323f530e6e11cacf06ba373f9b34">h5</a>
+</li>
+<li>has_potential_sibling()
+: <a class="el" href="group__ComputationalDomainGroup.html#gaf0e7346e59a71819c08d9efbfcb99ea2">amr</a>
+</li>
+</ul>
+
+
+<h3><a id="index_i"></a>- i -</h3><ul>
+<li>inner_product()
+: <a class="el" href="group__LinearSolverGroup.html#ga9f4f80fb21f848e2fac02bebe6c1d1e0">LinearSolver</a>
+</li>
+<li>interpolation_matrix()
+: <a class="el" href="namespaceSpectral.html#a73ec2be22ed7a694949db310c31bc5f6">Spectral</a>
+</li>
+<li>inverse_spacetime_metric()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga2b98e33761d2ce2448789007e4406551">gr</a>
+</li>
+<li>inverse_surface_metric()
+: <a class="el" href="group__SurfacesGroup.html#gaab4718f3fb57b0e3c5a7ba871d44aad2">StrahlkorperGr</a>
+</li>
+<li>iota()
+: <a class="el" href="group__UtilitiesGroup.html#ga218ddc950e1c70d86bf6455664d0b5f1">cpp2b</a>
+</li>
+<li>is_file()
+: <a class="el" href="group__FileSystemGroup.html#gadeaf91d47dc1780b6f14533a595c8cd4">file_system</a>
+</li>
+<li>iter_swap()
+: <a class="el" href="group__UtilitiesGroup.html#ga2f41a812c1350575cf0e202b59902983">cpp20</a>
+</li>
+</ul>
+
+
+<h3><a id="index_l"></a>- l -</h3><ul>
+<li>lapse()
+: <a class="el" href="group__GeneralRelativityGroup.html#gaca46ba0ea79929164495b2f587d40288">gr</a>
+</li>
+<li>linear_filter_matrix()
+: <a class="el" href="namespaceSpectral.html#af3e64dd72191760a25a1272efadf12a1">Spectral</a>
+</li>
+<li>local_rank_of()
+: <a class="el" href="group__ParallelGroup.html#gab13a71393339d7f35a3f802df360429b">Parallel</a>
+</li>
+<li>lock()
+: <a class="el" href="group__ParallelGroup.html#gad0397ccb72cb4205f5dc83d6f60d47d0">Parallel</a>
+</li>
+<li>lorentz_factor()
+: <a class="el" href="namespacehydro.html#aceba016305a50a9dd89321aa6e6bb963">hydro</a>
+</li>
+<li>ls()
+: <a class="el" href="group__FileSystemGroup.html#ga313c1c05e058c22cb9ed559303fa896b">file_system</a>
+</li>
+</ul>
+
+
+<h3><a id="index_m"></a>- m -</h3><ul>
+<li>make_py_tuple()
+: <a class="el" href="namespacepypp.html#aff33dcd9b46966498ce918dfde0b4a86">pypp</a>
+</li>
+<li>mutate()
+: <a class="el" href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc">db</a>
+</li>
+<li>mutate_apply()
+: <a class="el" href="group__DataBoxGroup.html#ga4f2eba8e937c3d2639730f79ad6885ba">db</a>
+</li>
+<li>my_local_rank()
+: <a class="el" href="group__ParallelGroup.html#ga0899b00614f1c47c6b32d1f83976a23b">Parallel</a>
+</li>
+<li>my_node()
+: <a class="el" href="group__ParallelGroup.html#ga9f24e1c6dfcfa4e9250a165973b1a524">Parallel</a>
+</li>
+<li>my_proc()
+: <a class="el" href="group__ParallelGroup.html#ga9537d2f88bafe61b07e0ceda735243ca">Parallel</a>
+</li>
+</ul>
+
+
+<h3><a id="index_n"></a>- n -</h3><ul>
+<li>narrow()
+: <a class="el" href="group__UtilitiesGroup.html#gafaf6db75ede2a9bc2fa4b6b17b8ef128">gsl</a>
+</li>
+<li>narrow_cast()
+: <a class="el" href="group__UtilitiesGroup.html#ga2da8b404f35c108209c4ce27c8d50e1c">gsl</a>
+</li>
+<li>next_permutation()
+: <a class="el" href="group__UtilitiesGroup.html#gac4ff3f48d2db8cb4a7101602d5f6ed3d">cpp20</a>
+</li>
+<li>node_of()
+: <a class="el" href="group__ParallelGroup.html#ga042f8935c6008898b980065058d0d8e2">Parallel</a>
+</li>
+<li>none_of()
+: <a class="el" href="namespacealg.html#ad8e3396dafad1641d08899c4d0c12d57">alg</a>
+</li>
+<li>number_of_nodes()
+: <a class="el" href="group__ParallelGroup.html#gaf999b9700ece84fca6cb82bb1ee9f3f2">Parallel</a>
+</li>
+<li>number_of_procs()
+: <a class="el" href="group__ParallelGroup.html#ga537d2cc78336566826c93c49f82746a8">Parallel</a>
+</li>
+</ul>
+
+
+<h3><a id="index_o"></a>- o -</h3><ul>
+<li>operator&lt;&lt;()
+: <a class="el" href="namespaceamr.html#a1a8c2260aa14ad6facdc75b133b9576b">amr</a>
+</li>
+</ul>
+
+
+<h3><a id="index_p"></a>- p -</h3><ul>
+<li>phi()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga503cdec7966f04e56519480c8a2b2cbe">GeneralizedHarmonic</a>
+</li>
+<li>pi()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga8651e2e4edee163253e3b74c95926768">GeneralizedHarmonic</a>
+</li>
+<li>prefix()
+: <a class="el" href="group__TensorGroup.html#ga8997337995d9183da158e7cc2da99101">Frame</a>
+</li>
+<li>primitive_from_conservative()
+: <a class="el" href="namespaceNewtonianEuler.html#a3cf5c0cb72fd0a7e8d299c4d68cedf5c">NewtonianEuler</a>
+, <a class="el" href="namespaceRelativisticEuler_1_1Valencia.html#a150f117bba03b387a643bc343712c4fa">RelativisticEuler::Valencia</a>
+</li>
+<li>printf()
+: <a class="el" href="group__ParallelGroup.html#gae21964b5d28608afd21ae090c1c4c073">Parallel</a>
+</li>
+<li>procs_on_node()
+: <a class="el" href="group__ParallelGroup.html#gab9459395dbb2a65f0d0b0439387067a1">Parallel</a>
+</li>
+<li>projection_matrix_element_to_mortar()
+: <a class="el" href="namespaceSpectral.html#a86e7ce003f77d16533c5008528d535f4">Spectral</a>
+</li>
+<li>projection_matrix_mortar_to_element()
+: <a class="el" href="namespaceSpectral.html#ad4986eaac565b15d265556cbee1004be">Spectral</a>
+</li>
+</ul>
+
+
+<h3><a id="index_q"></a>- q -</h3><ul>
+<li>quadrature_weights()
+: <a class="el" href="namespaceSpectral.html#aba36dd4c314b038129311dcb2c644daf">Spectral</a>
+</li>
+</ul>
+
+
+<h3><a id="index_r"></a>- r -</h3><ul>
+<li>read_data()
+: <a class="el" href="group__HDF5Group.html#ga5a1aa5adbdcc01f0599d0838d6278f7c">h5</a>
+</li>
+<li>read_extents()
+: <a class="el" href="group__HDF5Group.html#ga144858362c19f2242c9da7cd0e4dccaa">h5</a>
+</li>
+<li>read_rank1_attribute()
+: <a class="el" href="group__HDF5Group.html#ga939b66ac8afe04d6dc4244e6c74d9e98">h5</a>
+</li>
+<li>read_value_attribute()
+: <a class="el" href="group__HDF5Group.html#gad472d5cc0229a4223d83c95b80498d82">h5</a>
+</li>
+<li>receive_data()
+: <a class="el" href="group__ParallelGroup.html#gaa0ef30b3787d2bc66c81b2e1350a6684">Parallel</a>
+</li>
+<li>reverse()
+: <a class="el" href="group__UtilitiesGroup.html#ga0465ea9937545d1d3404c6ab6e71b15c">cpp20</a>
+</li>
+<li>ricci_scalar()
+: <a class="el" href="group__SurfacesGroup.html#gae0a872a8300343e48820e2576e426d0e">StrahlkorperGr</a>
+</li>
+<li>ricci_tensor()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga96f358acf00287aa8cc92d3322bc93d2">gr</a>
+</li>
+<li>rm()
+: <a class="el" href="group__FileSystemGroup.html#gaea97d1d743fccf92d7253983782319e9">file_system</a>
+</li>
+</ul>
+
+
+<h3><a id="index_s"></a>- s -</h3><ul>
+<li>send_points_to_interpolator()
+: <a class="el" href="namespaceintrp.html#a9a5281ee752b71e38bcdb2a8ec1b24fa">intrp</a>
+</li>
+<li>shift()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga193f058861f7fbe61dd01e89ee9cbda0">gr</a>
+</li>
+<li>short_name()
+: <a class="el" href="group__PrettyTypeGroup.html#gafcb02dff0e0dea61bb0854d5efa3daae">pretty_type</a>
+</li>
+<li>simple_action()
+: <a class="el" href="group__ParallelGroup.html#gaa17acf0ac876ac8cf36dfb939d7aea11">Parallel</a>
+</li>
+<li>spacetime_metric()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga4f5325d5d6b47c568c28bee1f41d30da">gr</a>
+</li>
+<li>spacetime_normal_one_form()
+: <a class="el" href="namespacegr.html#a6d0e33bafb542e9d20ca8c148a053057">gr</a>
+</li>
+<li>spacetime_normal_vector()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga6a7ef9f51dd90764071557d7420ab95b">gr</a>
+</li>
+<li>spatial_metric()
+: <a class="el" href="group__GeneralRelativityGroup.html#ga1fa35ac13f2e85e60984268789426209">gr</a>
+</li>
+<li>specific_enthalpy()
+: <a class="el" href="group__EquationsOfStateGroup.html#ga9d68b18723744ac506f1fefe52ac3282">hydro</a>
+</li>
+<li>spectral_to_grid_points_matrix()
+: <a class="el" href="namespaceSpectral.html#af8860e77fa7c5411a7115ca542587e69">Spectral</a>
+</li>
+<li>spin_function()
+: <a class="el" href="group__SurfacesGroup.html#gac4f45665647a9c10e0a5e45af21b196a">StrahlkorperGr</a>
+</li>
+<li>spin_vector()
+: <a class="el" href="group__SurfacesGroup.html#ga6cf02be759c587adc4e06896ff4f0649">StrahlkorperGr</a>
+</li>
+<li>swap()
+: <a class="el" href="group__UtilitiesGroup.html#gacb1b5375ffa8efe0793310220d2b1d5e">cpp20</a>
+</li>
+</ul>
+
+
+<h3><a id="index_t"></a>- t -</h3><ul>
+<li>threaded_action()
+: <a class="el" href="group__ParallelGroup.html#ga9400abf9bfed73781d813df2c1a9f162">Parallel</a>
+</li>
+<li>three_index_constraint()
+: <a class="el" href="namespaceGeneralizedHarmonic.html#ae5dcfdd62deac562f2b5d8515c6a264f">GeneralizedHarmonic</a>
+</li>
+<li>try_lock()
+: <a class="el" href="group__ParallelGroup.html#ga8b5b8d712c472935e5c817e9ed723c25">Parallel</a>
+</li>
+</ul>
+
+
+<h3><a id="index_u"></a>- u -</h3><ul>
+<li>unit_normal_one_form()
+: <a class="el" href="group__SurfacesGroup.html#gae260f19ff186a906174f9523707e398f">StrahlkorperGr</a>
+</li>
+<li>unlock()
+: <a class="el" href="group__ParallelGroup.html#ga26e5eb4933e796cd454b67ac773836f9">Parallel</a>
+</li>
+<li>update_amr_decision()
+: <a class="el" href="group__ComputationalDomainGroup.html#gaeb5d7ccd64c0bd2d5c87f9a0eeabd73f">amr</a>
+</li>
+</ul>
+
+
+<h3><a id="index_v"></a>- v -</h3><ul>
+<li>velocity()
+: <a class="el" href="namespaceNewtonianEuler.html#a50c2df2cb04c9d8cc10157022324e126">NewtonianEuler</a>
+</li>
+</ul>
+
+
+<h3><a id="index_w"></a>- w -</h3><ul>
+<li>wall_time()
+: <a class="el" href="group__ParallelGroup.html#ga62feba0b73433140761dad9a3127b998">Parallel</a>
+</li>
+<li>write_connectivity()
+: <a class="el" href="group__HDF5Group.html#ga515b30f7457c26b344f3a5b3ec89a0b7">h5</a>
+</li>
+<li>write_data()
+: <a class="el" href="group__HDF5Group.html#gade7f6dff92d8c4b7ea7fbc4c416c9e66">h5</a>
+</li>
+<li>write_extents()
+: <a class="el" href="group__HDF5Group.html#gae590adc731e3c843635b0872efb5e338">h5</a>
+</li>
+<li>write_to_attribute()
+: <a class="el" href="group__HDF5Group.html#ga06bfc64583f9b971c0e5a1790ce34650">h5</a>
+</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

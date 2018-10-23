@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/DiscontinuousGalerkin/MortarHelpers.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/DiscontinuousGalerkin</a> - MortarHelpers.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">       7 </span>            : #include &lt;array&gt;
+<span class="lineNum">       8 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       9 </span>            : #include &lt;functional&gt;
+<span class="lineNum">      10 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">      11 </span>            : #include &lt;utility&gt;  // IWYU pragma: keep // for std::forward
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : #include &quot;DataStructures/DataBox/DataBoxTag.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;DataStructures/DataBox/Prefixes.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;DataStructures/Matrix.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;DataStructures/Variables.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Domain/Mesh.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;NumericalAlgorithms/DiscontinuousGalerkin/LiftFlux.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;NumericalAlgorithms/LinearOperators/ApplyMatrices.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;NumericalAlgorithms/Spectral/Projection.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      22 </span>            : #include &quot;Utilities/MakeArray.hpp&quot;
+<span class="lineNum">      23 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : /// \cond
+<span class="lineNum">      26 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      27 </span>            : class ElementId;
+<span class="lineNum">      28 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      29 </span>            : class OrientationMap;
+<span class="lineNum">      30 </span>            : // IWYU pragma: no_forward_declare Variables
+<span class="lineNum">      31 </span>            : /// \endcond
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : namespace dg {
+<span class="lineNum">      34 </span>            : /// \ingroup DiscontinuousGalerkinGroup
+<span class="lineNum">      35 </span>            : /// Find a mesh for a mortar capable of representing data from either
+<span class="lineNum">      36 </span>            : /// of two faces.
+<span class="lineNum">      37 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      38 </span>            : Mesh&lt;Dim&gt; mortar_mesh(const Mesh&lt;Dim&gt;&amp; face_mesh1,
+<span class="lineNum">      39 </span>            :                       const Mesh&lt;Dim&gt;&amp; face_mesh2) noexcept;
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            : /// \ingroup DiscontinuousGalerkinGroup
+<span class="lineNum">      42 </span>            : /// Determine the size of the mortar (i.e., the part of the face it
+<span class="lineNum">      43 </span>            : /// covers) for communicating with a neighbor.  This is the size
+<span class="lineNum">      44 </span>            : /// relative to the size of \p self, and will not generally agree with
+<span class="lineNum">      45 </span>            : /// that determined by \p neighbor.
+<span class="lineNum">      46 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      47 </span>            : std::array&lt;Spectral::MortarSize, Dim - 1&gt; mortar_size(
+<span class="lineNum">      48 </span>            :     const ElementId&lt;Dim&gt;&amp; self, const ElementId&lt;Dim&gt;&amp; neighbor,
+<span class="lineNum">      49 </span>            :     size_t dimension, const OrientationMap&lt;Dim&gt;&amp; orientation) noexcept;
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            : /// \ingroup DiscontinuousGalerkinGroup
+<span class="lineNum">      52 </span>            : /// Project variables from a face to a mortar.
+<span class="lineNum">      53 </span>            : template &lt;typename Tags, size_t Dim&gt;
+<span class="lineNum">      54 </span><span class="lineCov">          2 : Variables&lt;Tags&gt; project_to_mortar(</span>
+<span class="lineNum">      55 </span>            :     const Variables&lt;Tags&gt;&amp; vars,
+<span class="lineNum">      56 </span>            :     const Mesh&lt;Dim&gt;&amp; face_mesh,
+<span class="lineNum">      57 </span>            :     const Mesh&lt;Dim&gt;&amp; mortar_mesh,
+<span class="lineNum">      58 </span>            :     const std::array&lt;Spectral::MortarSize, Dim&gt;&amp; mortar_size) noexcept {
+<span class="lineNum">      59 </span>            :   const Matrix identity{};
+<span class="lineNum">      60 </span>            :   auto projection_matrices = make_array&lt;Dim&gt;(std::cref(identity));
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span>            :   const auto face_slice_meshes = face_mesh.slices();
+<span class="lineNum">      63 </span>            :   const auto mortar_slice_meshes = mortar_mesh.slices();
+<span class="lineNum">      64 </span>            :   for (size_t i = 0; i &lt; Dim; ++i) {
+<span class="lineNum">      65 </span>            :     const auto&amp; face_slice_mesh = gsl::at(face_slice_meshes, i);
+<span class="lineNum">      66 </span>            :     const auto&amp; mortar_slice_mesh = gsl::at(mortar_slice_meshes, i);
+<span class="lineNum">      67 </span>            :     const auto&amp; slice_size = gsl::at(mortar_size, i);
+<span class="lineNum">      68 </span>            :     if (slice_size != Spectral::MortarSize::Full or
+<span class="lineNum">      69 </span>            :         face_slice_mesh != mortar_slice_mesh) {
+<span class="lineNum">      70 </span>            :       gsl::at(projection_matrices, i) = projection_matrix_element_to_mortar(
+<span class="lineNum">      71 </span>            :           slice_size, mortar_slice_mesh, face_slice_mesh);
+<span class="lineNum">      72 </span>            :     }
+<span class="lineNum">      73 </span>            :   }
+<span class="lineNum">      74 </span>            :   return apply_matrices(projection_matrices, vars, face_mesh.extents());
+<span class="lineNum">      75 </span>            : }
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span>            : /// \ingroup DiscontinuousGalerkinGroup
+<span class="lineNum">      78 </span>            : /// Project variables from a mortar to a face.
+<span class="lineNum">      79 </span>            : template &lt;typename Tags, size_t Dim&gt;
+<span class="lineNum">      80 </span><span class="lineCov">          2 : Variables&lt;Tags&gt; project_from_mortar(</span>
+<span class="lineNum">      81 </span>            :     const Variables&lt;Tags&gt;&amp; vars,
+<span class="lineNum">      82 </span>            :     const Mesh&lt;Dim&gt;&amp; face_mesh,
+<span class="lineNum">      83 </span>            :     const Mesh&lt;Dim&gt;&amp; mortar_mesh,
+<span class="lineNum">      84 </span>            :     const std::array&lt;Spectral::MortarSize, Dim&gt;&amp; mortar_size) noexcept {
+<span class="lineNum">      85 </span>            :   const Matrix identity{};
+<span class="lineNum">      86 </span>            :   auto projection_matrices = make_array&lt;Dim&gt;(std::cref(identity));
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span>            :   const auto face_slice_meshes = face_mesh.slices();
+<span class="lineNum">      89 </span>            :   const auto mortar_slice_meshes = mortar_mesh.slices();
+<span class="lineNum">      90 </span>            :   for (size_t i = 0; i &lt; Dim; ++i) {
+<span class="lineNum">      91 </span>            :     const auto&amp; face_slice_mesh = gsl::at(face_slice_meshes, i);
+<span class="lineNum">      92 </span>            :     const auto&amp; mortar_slice_mesh = gsl::at(mortar_slice_meshes, i);
+<span class="lineNum">      93 </span>            :     const auto&amp; slice_size = gsl::at(mortar_size, i);
+<span class="lineNum">      94 </span>            :     if (slice_size != Spectral::MortarSize::Full or
+<span class="lineNum">      95 </span>            :         face_slice_mesh != mortar_slice_mesh) {
+<span class="lineNum">      96 </span>            :       gsl::at(projection_matrices, i) = projection_matrix_mortar_to_element(
+<span class="lineNum">      97 </span>            :           slice_size, face_slice_mesh, mortar_slice_mesh);
+<span class="lineNum">      98 </span>            :     }
+<span class="lineNum">      99 </span>            :   }
+<span class="lineNum">     100 </span>            :   return apply_matrices(projection_matrices, vars, mortar_mesh.extents());
+<span class="lineNum">     101 </span>            : }
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span>            : namespace MortarHelpers_detail {
+<span class="lineNum">     104 </span>            : template &lt;typename NormalDotNumericalFluxComputer,
+<span class="lineNum">     105 </span>            :           typename... NumericalFluxTags, typename... SelfTags,
+<span class="lineNum">     106 </span>            :           typename... PackagedTags&gt;
+<span class="lineNum">     107 </span>            : void apply_normal_dot_numerical_flux(
+<span class="lineNum">     108 </span>            :     const gsl::not_null&lt;Variables&lt;tmpl::list&lt;NumericalFluxTags...&gt;&gt;*&gt;
+<span class="lineNum">     109 </span>            :         numerical_fluxes,
+<span class="lineNum">     110 </span>            :     const NormalDotNumericalFluxComputer&amp; normal_dot_numerical_flux_computer,
+<span class="lineNum">     111 </span>            :     const Variables&lt;tmpl::list&lt;SelfTags...&gt;&gt;&amp; self_packaged_data,
+<span class="lineNum">     112 </span>            :     const Variables&lt;tmpl::list&lt;PackagedTags...&gt;&gt;&amp;
+<span class="lineNum">     113 </span>            :         neighbor_packaged_data) noexcept {
+<span class="lineNum">     114 </span>            :   normal_dot_numerical_flux_computer(
+<span class="lineNum">     115 </span>            :       make_not_null(&amp;get&lt;NumericalFluxTags&gt;(*numerical_fluxes))...,
+<span class="lineNum">     116 </span>            :       get&lt;PackagedTags&gt;(self_packaged_data)...,
+<span class="lineNum">     117 </span>            :       get&lt;PackagedTags&gt;(neighbor_packaged_data)...);
+<span class="lineNum">     118 </span>            : }
+<span class="lineNum">     119 </span>            : }  // namespace MortarHelpers_detail
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            : /// \ingroup DiscontinuousGalerkinGroup
+<span class="lineNum">     122 </span>            : /// Compute the lifted data resulting from computing the numerical flux.
+<span class="lineNum">     123 </span>            : ///
+<span class="lineNum">     124 </span>            : /// \details
+<span class="lineNum">     125 </span>            : /// This applies the numerical flux, projects the result to the face
+<span class="lineNum">     126 </span>            : /// mesh if necessary, and then lifts it to the volume (still
+<span class="lineNum">     127 </span>            : /// presented only on the face mesh as all other points are zero).
+<span class="lineNum">     128 </span>            : ///
+<span class="lineNum">     129 </span>            : /// Projection must happen after the numerical flux calculation so
+<span class="lineNum">     130 </span>            : /// that the elements on either side of the mortar calculate the same
+<span class="lineNum">     131 </span>            : /// result.  Projection must happen before flux lifting because we
+<span class="lineNum">     132 </span>            : /// want the factor of the magnitude of the unit normal added during
+<span class="lineNum">     133 </span>            : /// the lift to cancel the Jacobian factor in integrals to preserve
+<span class="lineNum">     134 </span>            : /// conservation; this only happens if the two operations are done on
+<span class="lineNum">     135 </span>            : /// the same grid.
+<span class="lineNum">     136 </span>            : template &lt;typename FluxCommTypes, typename NormalDotNumericalFluxComputer,
+<span class="lineNum">     137 </span>            :           size_t Dim, typename LocalData&gt;
+<span class="lineNum">     138 </span><span class="lineCov">          2 : auto compute_boundary_flux_contribution(</span>
+<span class="lineNum">     139 </span>            :     const NormalDotNumericalFluxComputer&amp; normal_dot_numerical_flux_computer,
+<span class="lineNum">     140 </span>            :     LocalData&amp;&amp; local_data,
+<span class="lineNum">     141 </span>            :     const typename FluxCommTypes::PackagedData&amp; remote_data,
+<span class="lineNum">     142 </span>            :     const Mesh&lt;Dim&gt;&amp; face_mesh, const Mesh&lt;Dim&gt;&amp; mortar_mesh,
+<span class="lineNum">     143 </span>            :     const size_t extent_perpendicular_to_boundary,
+<span class="lineNum">     144 </span>            :     const std::array&lt;Spectral::MortarSize, Dim&gt;&amp; mortar_size) noexcept
+<span class="lineNum">     145 </span>            :     -&gt; db::item_type&lt;
+<span class="lineNum">     146 </span>            :         db::remove_tag_prefix&lt;typename FluxCommTypes::normal_dot_fluxes_tag&gt;&gt; {
+<span class="lineNum">     147 </span>            :   static_assert(cpp17::is_same_v&lt;std::decay_t&lt;LocalData&gt;,
+<span class="lineNum">     148 </span>            :                                  typename FluxCommTypes::LocalData&gt;,
+<span class="lineNum">     149 </span>            :                 &quot;Second argument must be a FluxCommTypes::LocalData&quot;);
+<span class="lineNum">     150 </span>            :   using variables_tag =
+<span class="lineNum">     151 </span>            :       db::remove_tag_prefix&lt;typename FluxCommTypes::normal_dot_fluxes_tag&gt;;
+<span class="lineNum">     152 </span>            :   db::item_type&lt;db::add_tag_prefix&lt;Tags::NormalDotNumericalFlux, variables_tag&gt;&gt;
+<span class="lineNum">     153 </span>            :       normal_dot_numerical_fluxes(mortar_mesh.number_of_grid_points(), 0.0);
+<span class="lineNum">     154 </span>            :   MortarHelpers_detail::apply_normal_dot_numerical_flux(
+<span class="lineNum">     155 </span>            :       make_not_null(&amp;normal_dot_numerical_fluxes),
+<span class="lineNum">     156 </span>            :       normal_dot_numerical_flux_computer, local_data.mortar_data, remote_data);
+<span class="lineNum">     157 </span>            : 
+<span class="lineNum">     158 </span>            :   tmpl::for_each&lt;typename variables_tag::tags_list&gt;(
+<span class="lineNum">     159 </span>            :       [&amp;normal_dot_numerical_fluxes, &amp;local_data](const auto tag) noexcept {
+<span class="lineNum">     160 </span>            :         using Tag = tmpl::type_from&lt;decltype(tag)&gt;;
+<span class="lineNum">     161 </span>            :         auto&amp; numerical_flux =
+<span class="lineNum">     162 </span>            :             get&lt;Tags::NormalDotNumericalFlux&lt;Tag&gt;&gt;(normal_dot_numerical_fluxes);
+<span class="lineNum">     163 </span>            :         const auto&amp; local_flux =
+<span class="lineNum">     164 </span>            :             get&lt;Tags::NormalDotFlux&lt;Tag&gt;&gt;(local_data.mortar_data);
+<span class="lineNum">     165 </span>            :         for (size_t i = 0; i &lt; numerical_flux.size(); ++i) {
+<span class="lineNum">     166 </span>            :           numerical_flux[i] -= local_flux[i];
+<span class="lineNum">     167 </span>            :         }
+<span class="lineNum">     168 </span>            :       });
+<span class="lineNum">     169 </span>            : 
+<span class="lineNum">     170 </span>            :   const bool refining =
+<span class="lineNum">     171 </span>            :       face_mesh != mortar_mesh or
+<span class="lineNum">     172 </span>            :       std::any_of(mortar_size.begin(), mortar_size.end(),
+<span class="lineNum">     173 </span>            :                   [](const Spectral::MortarSize s) noexcept {
+<span class="lineNum">     174 </span>            :                     return s != Spectral::MortarSize::Full;
+<span class="lineNum">     175 </span>            :                   });
+<span class="lineNum">     176 </span>            : 
+<span class="lineNum">     177 </span>            :   return dg::lift_flux(
+<span class="lineNum">     178 </span>            :       refining ? project_from_mortar(normal_dot_numerical_fluxes, face_mesh,
+<span class="lineNum">     179 </span>            :                                      mortar_mesh, mortar_size)
+<span class="lineNum">     180 </span>            :                : std::move(normal_dot_numerical_fluxes),
+<span class="lineNum">     181 </span>            :       extent_perpendicular_to_boundary,
+<span class="lineNum">     182 </span>            :       std::forward&lt;LocalData&gt;(local_data).magnitude_of_face_normal);
+<span class="lineNum">     183 </span>            : }
+<span class="lineNum">     184 </span>            : }  // namespace dg
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

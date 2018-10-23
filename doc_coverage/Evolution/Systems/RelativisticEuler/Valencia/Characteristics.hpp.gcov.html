@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/Systems/RelativisticEuler/Valencia/Characteristics.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">Evolution/Systems/RelativisticEuler/Valencia</a> - Characteristics.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : /// \cond
+<span class="lineNum">      12 </span>            : class DataVector;
+<span class="lineNum">      13 </span>            : /// \endcond
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : // IWYU pragma: no_forward_declare Tensor
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : namespace RelativisticEuler {
+<span class="lineNum">      18 </span>            : namespace Valencia {
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : /*!
+<span class="lineNum">      21 </span>            :  * \brief Compute the characteristic speeds for the Valencia formulation
+<span class="lineNum">      22 </span>            :  * of the relativistic Euler system.
+<span class="lineNum">      23 </span>            :  *
+<span class="lineNum">      24 </span>            :  * The principal symbol of the system is diagonalized so that the elements of
+<span class="lineNum">      25 </span>            :  * the diagonal matrix are the \f$(\text{Dim} + 2)\f$ characteristic speeds
+<span class="lineNum">      26 </span>            :  *
+<span class="lineNum">      27 </span>            :  * \f{align*}
+<span class="lineNum">      28 </span>            :  * \lambda_1 &amp;= \alpha \Lambda^- - \beta_n,\\
+<span class="lineNum">      29 </span>            :  * \lambda_{i + 1} &amp;= \alpha v_n - \beta_n,\quad i = 1,...,\text{Dim}\\
+<span class="lineNum">      30 </span>            :  * \lambda_{\text{Dim} + 2} &amp;= \alpha \Lambda^+ - \beta_n,
+<span class="lineNum">      31 </span>            :  * \f}
+<span class="lineNum">      32 </span>            :  *
+<span class="lineNum">      33 </span>            :  * where \f$\alpha\f$ is the lapse, \f$\beta_n = n_i \beta^i\f$ and
+<span class="lineNum">      34 </span>            :  * \f$v_n = n_i v^i\f$ are the projections of the shift \f$\beta^i\f$ and the
+<span class="lineNum">      35 </span>            :  * spatial velocity \f$v^i\f$ onto the normal one-form \f$n_i\f$, respectively,
+<span class="lineNum">      36 </span>            :  * and
+<span class="lineNum">      37 </span>            :  *
+<span class="lineNum">      38 </span>            :  * \f{align*}
+<span class="lineNum">      39 </span>            :  * \Lambda^{\pm} &amp;= \dfrac{1}{1 - v^2 c_s^2}\left[ v_n (1- c_s^2) \pm
+<span class="lineNum">      40 </span>            :  * c_s\sqrt{\left(1 - v^2\right)\left[1 - v^2 c_s^2 - v_n^2(1 - c_s^2)\right]}
+<span class="lineNum">      41 </span>            :  * \right],
+<span class="lineNum">      42 </span>            :  * \f}
+<span class="lineNum">      43 </span>            :  *
+<span class="lineNum">      44 </span>            :  * where \f$v^2 = \gamma_{ij}v^iv^j\f$ is the magnitude squared of the spatial
+<span class="lineNum">      45 </span>            :  * velocity, and \f$c_s\f$ is the sound speed.
+<span class="lineNum">      46 </span>            :  */
+<span class="lineNum">      47 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      48 </span><span class="lineCov">          1 : std::array&lt;DataVector, Dim + 2&gt; characteristic_speeds(</span>
+<span class="lineNum">      49 </span>            :     const Scalar&lt;DataVector&gt;&amp; lapse, const tnsr::I&lt;DataVector, Dim&gt;&amp; shift,
+<span class="lineNum">      50 </span>            :     const tnsr::I&lt;DataVector, Dim&gt;&amp; spatial_velocity,
+<span class="lineNum">      51 </span>            :     const Scalar&lt;DataVector&gt;&amp; spatial_velocity_squared,
+<span class="lineNum">      52 </span>            :     const Scalar&lt;DataVector&gt;&amp; sound_speed_squared,
+<span class="lineNum">      53 </span>            :     const tnsr::i&lt;DataVector, Dim&gt;&amp; normal) noexcept;
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : }  // namespace Valencia
+<span class="lineNum">      56 </span>            : }  // namespace RelativisticEuler
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

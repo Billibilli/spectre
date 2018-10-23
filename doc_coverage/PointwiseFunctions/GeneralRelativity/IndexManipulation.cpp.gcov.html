@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - PointwiseFunctions/GeneralRelativity/IndexManipulation.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">PointwiseFunctions/GeneralRelativity</a> - IndexManipulation.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;PointwiseFunctions/GeneralRelativity/IndexManipulation.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;Utilities/GenerateInstantiations.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;Utilities/MakeWithValue.hpp&quot;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : template &lt;typename X, typename Symm, typename IndexList&gt;
+<span class="lineNum">      13 </span>            : class Tensor;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : template &lt;typename DataType, typename Index0, typename Index1&gt;
+<span class="lineNum">      16 </span>            : Tensor&lt;DataType, Symmetry&lt;2, 1, 1&gt;,
+<span class="lineNum">      17 </span>            :        index_list&lt;change_index_up_lo&lt;Index0&gt;, Index1, Index1&gt;&gt;
+<span class="lineNum">      18 </span><span class="lineCov">          1 : raise_or_lower_first_index(</span>
+<span class="lineNum">      19 </span>            :     const Tensor&lt;DataType, Symmetry&lt;2, 1, 1&gt;,
+<span class="lineNum">      20 </span>            :                  index_list&lt;Index0, Index1, Index1&gt;&gt;&amp; tensor,
+<span class="lineNum">      21 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1, 1&gt;,
+<span class="lineNum">      22 </span>            :                  index_list&lt;change_index_up_lo&lt;Index0&gt;,
+<span class="lineNum">      23 </span>            :                             change_index_up_lo&lt;Index0&gt;&gt;&gt;&amp; metric) noexcept {
+<span class="lineNum">      24 </span>            :   auto tensor_opposite_valence = make_with_value&lt;
+<span class="lineNum">      25 </span>            :       Tensor&lt;DataType, Symmetry&lt;2, 1, 1&gt;,
+<span class="lineNum">      26 </span>            :              index_list&lt;change_index_up_lo&lt;Index0&gt;, Index1, Index1&gt;&gt;&gt;(metric,
+<span class="lineNum">      27 </span>            :                                                                       0.);
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            :   constexpr auto dimension = Index0::dim;
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            :   for (size_t i = 0; i &lt; dimension; ++i) {
+<span class="lineNum">      32 </span>            :     for (size_t j = 0; j &lt; dimension; ++j) {
+<span class="lineNum">      33 </span>            :       for (size_t k = j; k &lt; dimension; ++k) {
+<span class="lineNum">      34 </span>            :         for (size_t m = 0; m &lt; dimension; ++m) {
+<span class="lineNum">      35 </span>            :           tensor_opposite_valence.get(i, j, k) +=
+<span class="lineNum">      36 </span>            :               tensor.get(m, j, k) * metric.get(i, m);
+<span class="lineNum">      37 </span>            :         }
+<span class="lineNum">      38 </span>            :       }
+<span class="lineNum">      39 </span>            :     }
+<span class="lineNum">      40 </span>            :   }
+<span class="lineNum">      41 </span>            :   return tensor_opposite_valence;
+<span class="lineNum">      42 </span>            : }
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            : template &lt;typename DataType, typename Index0&gt;
+<span class="lineNum">      45 </span>            : Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;change_index_up_lo&lt;Index0&gt;&gt;&gt;
+<span class="lineNum">      46 </span><span class="lineCov">          1 : raise_or_lower_index(</span>
+<span class="lineNum">      47 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index0&gt;&gt;&amp; tensor,
+<span class="lineNum">      48 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1, 1&gt;,
+<span class="lineNum">      49 </span>            :                  index_list&lt;change_index_up_lo&lt;Index0&gt;,
+<span class="lineNum">      50 </span>            :                             change_index_up_lo&lt;Index0&gt;&gt;&gt;&amp; metric) noexcept {
+<span class="lineNum">      51 </span>            :   auto tensor_opposite_valence = make_with_value&lt;
+<span class="lineNum">      52 </span>            :       Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;change_index_up_lo&lt;Index0&gt;&gt;&gt;&gt;(
+<span class="lineNum">      53 </span>            :       metric, 0.);
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            :   constexpr auto dimension = Index0::dim;
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            :   for (size_t i = 0; i &lt; dimension; ++i) {
+<span class="lineNum">      58 </span>            :     for (size_t m = 0; m &lt; dimension; ++m) {
+<span class="lineNum">      59 </span>            :       tensor_opposite_valence.get(i) += tensor.get(m) * metric.get(i, m);
+<span class="lineNum">      60 </span>            :     }
+<span class="lineNum">      61 </span>            :   }
+<span class="lineNum">      62 </span>            :   return tensor_opposite_valence;
+<span class="lineNum">      63 </span>            : }
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            : template &lt;typename DataType, typename Index0, typename Index1&gt;
+<span class="lineNum">      66 </span><span class="lineCov">          1 : Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index0&gt;&gt; trace_last_indices(</span>
+<span class="lineNum">      67 </span>            :     const Tensor&lt;DataType, Symmetry&lt;2, 1, 1&gt;,
+<span class="lineNum">      68 </span>            :                  index_list&lt;Index0, Index1, Index1&gt;&gt;&amp; tensor,
+<span class="lineNum">      69 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1, 1&gt;,
+<span class="lineNum">      70 </span>            :                  index_list&lt;change_index_up_lo&lt;Index1&gt;,
+<span class="lineNum">      71 </span>            :                             change_index_up_lo&lt;Index1&gt;&gt;&gt;&amp; metric) noexcept {
+<span class="lineNum">      72 </span>            :   auto trace_of_tensor =
+<span class="lineNum">      73 </span>            :       make_with_value&lt;Tensor&lt;DataType, Symmetry&lt;1&gt;, index_list&lt;Index0&gt;&gt;&gt;(metric,
+<span class="lineNum">      74 </span>            :                                                                          0.);
+<span class="lineNum">      75 </span>            :   constexpr auto dimension_of_trace = Index0::dim;
+<span class="lineNum">      76 </span>            :   constexpr auto dimension_of_metric = Index1::dim;
+<span class="lineNum">      77 </span>            :   for (size_t i = 0; i &lt; dimension_of_trace; ++i) {
+<span class="lineNum">      78 </span>            :     for (size_t j = 0; j &lt; dimension_of_metric; ++j) {
+<span class="lineNum">      79 </span>            :       trace_of_tensor.get(i) += tensor.get(i, j, j) * metric.get(j, j);
+<span class="lineNum">      80 </span>            :       for (size_t k = j + 1; k &lt; dimension_of_metric; ++k) {
+<span class="lineNum">      81 </span>            :         trace_of_tensor.get(i) += 2.0 * tensor.get(i, j, k) * metric.get(j, k);
+<span class="lineNum">      82 </span>            :       }
+<span class="lineNum">      83 </span>            :     }
+<span class="lineNum">      84 </span>            :   }
+<span class="lineNum">      85 </span>            :   return trace_of_tensor;
+<span class="lineNum">      86 </span>            : }
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span>            : template &lt;typename DataType, typename Index0&gt;
+<span class="lineNum">      89 </span><span class="lineCov">          1 : Scalar&lt;DataType&gt; trace(</span>
+<span class="lineNum">      90 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1, 1&gt;, index_list&lt;Index0, Index0&gt;&gt;&amp; tensor,
+<span class="lineNum">      91 </span>            :     const Tensor&lt;DataType, Symmetry&lt;1, 1&gt;,
+<span class="lineNum">      92 </span>            :                  index_list&lt;change_index_up_lo&lt;Index0&gt;,
+<span class="lineNum">      93 </span>            :                             change_index_up_lo&lt;Index0&gt;&gt;&gt;&amp; metric) noexcept {
+<span class="lineNum">      94 </span>            :   auto trace = make_with_value&lt;Scalar&lt;DataType&gt;&gt;(tensor, 0.0);
+<span class="lineNum">      95 </span>            :   constexpr auto dimension = Index0::dim;
+<span class="lineNum">      96 </span>            :   for (size_t i = 0; i &lt; dimension; ++i) {
+<span class="lineNum">      97 </span>            :     for (size_t j = i + 1; j &lt; dimension; ++j) {  // symmetry
+<span class="lineNum">      98 </span>            :       get(trace) += 2.0 * tensor.get(i, j) * metric.get(i, j);
+<span class="lineNum">      99 </span>            :     }
+<span class="lineNum">     100 </span>            :     get(trace) += tensor.get(i, i) * metric.get(i, i);
+<span class="lineNum">     101 </span>            :   }
+<span class="lineNum">     102 </span>            :   return trace;
+<span class="lineNum">     103 </span>            : }
+<span class="lineNum">     104 </span>            : 
+<span class="lineNum">     105 </span>            : /// \cond
+<span class="lineNum">     106 </span>            : #define DIM(data) BOOST_PP_TUPLE_ELEM(0, data)
+<span class="lineNum">     107 </span>            : #define DTYPE(data) BOOST_PP_TUPLE_ELEM(1, data)
+<span class="lineNum">     108 </span>            : #define FRAME(data) BOOST_PP_TUPLE_ELEM(2, data)
+<span class="lineNum">     109 </span>            : #define INDEXTYPE(data) BOOST_PP_TUPLE_ELEM(3, data)
+<span class="lineNum">     110 </span>            : #define UPORLO0(data) BOOST_PP_TUPLE_ELEM(4, data)
+<span class="lineNum">     111 </span>            : #define UPORLO1(data) BOOST_PP_TUPLE_ELEM(5, data)
+<span class="lineNum">     112 </span>            : 
+<span class="lineNum">     113 </span>            : // Note: currently only instantiate these functions for the cases
+<span class="lineNum">     114 </span>            : // where Index0 and Index1 have the same spatial dimension, Frame and
+<span class="lineNum">     115 </span>            : // IndexType.  The functions above are generic and can handle any of
+<span class="lineNum">     116 </span>            : // them being different, if these cases are needed.
+<span class="lineNum">     117 </span>            : #define INDEX0(data) INDEXTYPE(data)&lt;DIM(data), UPORLO0(data), FRAME(data)&gt;
+<span class="lineNum">     118 </span>            : #define INDEX1(data) INDEXTYPE(data)&lt;DIM(data), UPORLO1(data), FRAME(data)&gt;
+<span class="lineNum">     119 </span>            : 
+<span class="lineNum">     120 </span>            : #define INSTANTIATE(_, data)                                                 \
+<span class="lineNum">     121 </span>            :   template Tensor&lt;DTYPE(data), Symmetry&lt;2, 1, 1&gt;,                            \
+<span class="lineNum">     122 </span>            :                   index_list&lt;change_index_up_lo&lt;INDEX0(data)&gt;, INDEX1(data), \
+<span class="lineNum">     123 </span>            :                              INDEX1(data)&gt;&gt;                                  \
+<span class="lineNum">     124 </span>            :   raise_or_lower_first_index(                                                \
+<span class="lineNum">     125 </span>            :       const Tensor&lt;DTYPE(data), Symmetry&lt;2, 1, 1&gt;,                           \
+<span class="lineNum">     126 </span>            :                    index_list&lt;INDEX0(data), INDEX1(data), INDEX1(data)&gt;&gt;&amp;    \
+<span class="lineNum">     127 </span>            :           tensor,                                                            \
+<span class="lineNum">     128 </span>            :       const Tensor&lt;DTYPE(data), Symmetry&lt;1, 1&gt;,                              \
+<span class="lineNum">     129 </span>            :                    index_list&lt;change_index_up_lo&lt;INDEX0(data)&gt;,              \
+<span class="lineNum">     130 </span>            :                               change_index_up_lo&lt;INDEX0(data)&gt;&gt;&gt;&amp;            \
+<span class="lineNum">     131 </span>            :           metric) noexcept;                                                  \
+<span class="lineNum">     132 </span>            :   template Tensor&lt;DTYPE(data), Symmetry&lt;1&gt;, index_list&lt;INDEX0(data)&gt;&gt;        \
+<span class="lineNum">     133 </span>            :   trace_last_indices(                                                        \
+<span class="lineNum">     134 </span>            :       const Tensor&lt;DTYPE(data), Symmetry&lt;2, 1, 1&gt;,                           \
+<span class="lineNum">     135 </span>            :                    index_list&lt;INDEX0(data), INDEX1(data), INDEX1(data)&gt;&gt;&amp;    \
+<span class="lineNum">     136 </span>            :           tensor,                                                            \
+<span class="lineNum">     137 </span>            :       const Tensor&lt;DTYPE(data), Symmetry&lt;1, 1&gt;,                              \
+<span class="lineNum">     138 </span>            :                    index_list&lt;change_index_up_lo&lt;INDEX1(data)&gt;,              \
+<span class="lineNum">     139 </span>            :                               change_index_up_lo&lt;INDEX1(data)&gt;&gt;&gt;&amp;            \
+<span class="lineNum">     140 </span>            :           metric) noexcept;
+<span class="lineNum">     141 </span>            : 
+<span class="lineNum">     142 </span>            : GENERATE_INSTANTIATIONS(INSTANTIATE, (1, 2, 3), (double, DataVector),
+<span class="lineNum">     143 </span>            :                         (Frame::Grid, Frame::Inertial,
+<span class="lineNum">     144 </span>            :                          Frame::Spherical&lt;Frame::Inertial&gt;),
+<span class="lineNum">     145 </span>            :                         (SpatialIndex, SpacetimeIndex), (UpLo::Lo, UpLo::Up),
+<span class="lineNum">     146 </span>            :                         (UpLo::Lo, UpLo::Up))
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : #undef FRAME1
+<span class="lineNum">     149 </span>            : #undef UPORLO1
+<span class="lineNum">     150 </span>            : #undef INDEXTYPE1
+<span class="lineNum">     151 </span>            : #undef INDEX1
+<span class="lineNum">     152 </span>            : #undef INSTANTIATE
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            : #define INSTANTIATE2(_, data)                                           \
+<span class="lineNum">     155 </span>            :   template Tensor&lt;DTYPE(data), Symmetry&lt;1&gt;,                             \
+<span class="lineNum">     156 </span>            :                   index_list&lt;change_index_up_lo&lt;INDEX0(data)&gt;&gt;&gt;         \
+<span class="lineNum">     157 </span>            :   raise_or_lower_index(                                                 \
+<span class="lineNum">     158 </span>            :       const Tensor&lt;DTYPE(data), Symmetry&lt;1&gt;, index_list&lt;INDEX0(data)&gt;&gt;&amp; \
+<span class="lineNum">     159 </span>            :           tensor,                                                       \
+<span class="lineNum">     160 </span>            :       const Tensor&lt;DTYPE(data), Symmetry&lt;1, 1&gt;,                         \
+<span class="lineNum">     161 </span>            :                    index_list&lt;change_index_up_lo&lt;INDEX0(data)&gt;,         \
+<span class="lineNum">     162 </span>            :                               change_index_up_lo&lt;INDEX0(data)&gt;&gt;&gt;&amp;       \
+<span class="lineNum">     163 </span>            :           metric) noexcept;                                             \
+<span class="lineNum">     164 </span>            :   template Scalar&lt;DTYPE(data)&gt; trace(                                   \
+<span class="lineNum">     165 </span>            :       const Tensor&lt;DTYPE(data), Symmetry&lt;1, 1&gt;,                         \
+<span class="lineNum">     166 </span>            :                    index_list&lt;INDEX0(data), INDEX0(data)&gt;&gt;&amp; tensor,     \
+<span class="lineNum">     167 </span>            :       const Tensor&lt;DTYPE(data), Symmetry&lt;1, 1&gt;,                         \
+<span class="lineNum">     168 </span>            :                    index_list&lt;change_index_up_lo&lt;INDEX0(data)&gt;,         \
+<span class="lineNum">     169 </span>            :                               change_index_up_lo&lt;INDEX0(data)&gt;&gt;&gt;&amp;       \
+<span class="lineNum">     170 </span>            :           metric) noexcept;
+<span class="lineNum">     171 </span>            : 
+<span class="lineNum">     172 </span>            : GENERATE_INSTANTIATIONS(INSTANTIATE2, (1, 2, 3), (double, DataVector),
+<span class="lineNum">     173 </span>            :                         (Frame::Grid, Frame::Inertial),
+<span class="lineNum">     174 </span>            :                         (SpatialIndex, SpacetimeIndex), (UpLo::Lo, UpLo::Up))
+<span class="lineNum">     175 </span>            : 
+<span class="lineNum">     176 </span>            : #undef DIM
+<span class="lineNum">     177 </span>            : #undef DTYPE
+<span class="lineNum">     178 </span>            : #undef FRAME0
+<span class="lineNum">     179 </span>            : #undef UPORLO0
+<span class="lineNum">     180 </span>            : #undef INDEXTYPE0
+<span class="lineNum">     181 </span>            : #undef INDEX0
+<span class="lineNum">     182 </span>            : #undef INSTANTIATE2
+<span class="lineNum">     183 </span>            : /// \endcond
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

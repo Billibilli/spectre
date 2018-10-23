@@ -1,0 +1,203 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/ControlSystem/PiecewisePolynomial.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_c3c75840494c92b6828d89c062a0056e.html">ControlSystem</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">PiecewisePolynomial.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/array.html">array</a>&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a>&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;ControlSystem/FunctionOfTime.hpp&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DataVector_8hpp.html">DataStructures/DataVector.hpp</a>&quot;</span>  <span class="comment">// IWYU pragma: keep</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/// \ingroup ControlSystemGroup</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/// Contains functions of time to support the dual frame system.</span></div><div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="namespaceFunctionsOfTime.html">   15</a></span>&#160;<span class="comment"></span><span class="keyword">namespace </span><a class="code" href="namespaceFunctionsOfTime.html">FunctionsOfTime</a> {<span class="comment"></span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/// \ingroup ControlSystemGroup</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/// A function that has a piecewise-constant `MaxDeriv`th derivative.</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> MaxDeriv&gt;</div><div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a> : <span class="keyword">public</span> <a class="code" href="classFunctionOfTime.html">FunctionOfTime</a> {</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; <span class="keyword">public</span>:</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a>(</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;      <span class="keywordtype">double</span> t,</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;      <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;DataVector, MaxDeriv + 1&gt;</a> initial_func_and_derivs) noexcept;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  ~<a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a>(<a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a>&amp;&amp;) noexcept = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a>&amp; operator=(<a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a>&amp;&amp;) noexcept = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a>(<span class="keyword">const</span> <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a>&amp;) = <span class="keyword">delete</span>;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html">PiecewisePolynomial</a>&amp;) = <span class="keyword">delete</span>;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">  /// Returns the function at an arbitrary time `t`.</span></div><div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a15a7f2453f31f621c4b95e600029346f">   32</a></span>&#160;<span class="comment"></span>  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;DataVector, 1&gt;</a> <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a15a7f2453f31f621c4b95e600029346f">func</a>(<span class="keywordtype">double</span> t) <span class="keyword">const</span> noexcept <span class="keyword">override</span> {</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">return</span> func_and_derivs&lt;0&gt;(t);</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  }<span class="comment"></span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">  /// Returns the function and its first derivative at an arbitrary time `t`.</span></div><div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#acba4f49a2fa1ac22a4203e069993ac04">   36</a></span>&#160;<span class="comment"></span>  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;DataVector, 2&gt;</a> <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#acba4f49a2fa1ac22a4203e069993ac04">func_and_deriv</a>(<span class="keywordtype">double</span> t) <span class="keyword">const</span> noexcept <span class="keyword">override</span> {</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">return</span> func_and_derivs&lt;1&gt;(t);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  }<span class="comment"></span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">  /// Returns the function and the first two derivatives at an arbitrary time</span></div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">  /// `t`.</span></div><div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a7513bf7ca0e84d657b1182e5766ed4de">   41</a></span>&#160;<span class="comment"></span>  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;DataVector, 3&gt;</a> <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a7513bf7ca0e84d657b1182e5766ed4de">func_and_2_derivs</a>(<span class="keywordtype">double</span> t) <span class="keyword">const</span></div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;      noexcept <span class="keyword">override</span> {</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">return</span> func_and_derivs&lt;2&gt;(t);</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  }</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">  /// Updates the `MaxDeriv`th derivative of the function at the given time.</span></div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">  /// `updated_max_deriv` is a vector of the `MaxDeriv`ths for each component</span></div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"></span>  <span class="keywordtype">void</span> <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a040f059f4cc59a458a225d0108147150">update</a>(<span class="keywordtype">double</span> time_of_update, <a class="code" href="classDataVector.html">DataVector</a> updated_max_deriv) noexcept;<span class="comment"></span></div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">  /// Returns the domain of validity of the function.</span></div><div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a7fd4b8e2e7fca83b863fb4d1ed385f27">   50</a></span>&#160;<span class="comment"></span>  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;double, 2&gt;</a> <a class="code" href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a7fd4b8e2e7fca83b863fb4d1ed385f27">time_bounds</a>() const noexcept<span class="keyword"> override </span>{</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">return</span> {{deriv_info_at_update_times_.front().time,</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;             deriv_info_at_update_times_.back().time}};</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  }</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; <span class="keyword">private</span>:<span class="comment"></span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">  /// Returns the function and `MaxDerivReturned` derivatives at</span></div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">  /// an arbitrary time `t`.</span></div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">  /// The function has multiple components.</span></div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span>  <span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> MaxDerivReturned = MaxDeriv&gt;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;DataVector, MaxDerivReturned + 1&gt;</a> func_and_derivs(<span class="keywordtype">double</span> t) <span class="keyword">const</span></div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      noexcept;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="comment">// There exists a DataVector for each deriv order that contains</span></div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="comment">// the values of that deriv order for all components.</span></div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keyword">using</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">value_type</a> = <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;DataVector, MaxDeriv + 1&gt;</a>;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="comment">// Holds information at single time at which the `MaxDeriv`th</span></div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="comment">// derivative has been updated.</span></div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keyword">struct </span>DerivInfo {</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">double</span> time;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">value_type</a> derivs_coefs;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// Constructor is needed for use of emplace_back of a vector</span></div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// (additionally, the constructor converts the supplied derivs to</span></div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// coefficients for simplified polynomial evaluation.)</span></div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    DerivInfo(<span class="keywordtype">double</span> t, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">value_type</a> <a class="code" href="structderiv.html">deriv</a>) noexcept;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  };</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">  /// Returns a DerivInfo corresponding to the closest element in the range of</span></div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">  /// DerivInfos with an update time that is less than or equal to `t`.</span></div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">  /// The function throws an error if `t` is less than all DerivInfo update</span></div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">  /// times. (unless `t` is just less than the earliest update time by roundoff,</span></div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">  /// in which case it returns the DerivInfo at the earliest update time.)</span></div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>  <span class="keyword">const</span> DerivInfo&amp; deriv_info_from_upper_bound(<span class="keywordtype">double</span> t) <span class="keyword">const</span> noexcept;</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;DerivInfo&gt;</a> deriv_info_at_update_times_;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;};</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}  <span class="comment">// namespace FunctionsOfTime</span></div><div class="ttc" id="cstddef_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a></div></div>
+<div class="ttc" id="classFunctionsOfTime_1_1PiecewisePolynomial_html_acba4f49a2fa1ac22a4203e069993ac04"><div class="ttname"><a href="classFunctionsOfTime_1_1PiecewisePolynomial.html#acba4f49a2fa1ac22a4203e069993ac04">FunctionsOfTime::PiecewisePolynomial::func_and_deriv</a></div><div class="ttdeci">std::array&lt; DataVector, 2 &gt; func_and_deriv(double t) const noexcept override</div><div class="ttdoc">Returns the function and its first derivative at an arbitrary time t. </div><div class="ttdef"><b>Definition:</b> PiecewisePolynomial.hpp:36</div></div>
+<div class="ttc" id="classFunctionsOfTime_1_1PiecewisePolynomial_html"><div class="ttname"><a href="classFunctionsOfTime_1_1PiecewisePolynomial.html">FunctionsOfTime::PiecewisePolynomial</a></div><div class="ttdoc">A function that has a piecewise-constant MaxDerivth derivative. </div><div class="ttdef"><b>Definition:</b> PiecewisePolynomial.hpp:19</div></div>
+<div class="ttc" id="classFunctionsOfTime_1_1PiecewisePolynomial_html_a040f059f4cc59a458a225d0108147150"><div class="ttname"><a href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a040f059f4cc59a458a225d0108147150">FunctionsOfTime::PiecewisePolynomial::update</a></div><div class="ttdeci">void update(double time_of_update, DataVector updated_max_deriv) noexcept</div><div class="ttdoc">Updates the MaxDerivth derivative of the function at the given time. updated_max_deriv is a vector of...</div><div class="ttdef"><b>Definition:</b> PiecewisePolynomial.cpp:57</div></div>
+<div class="ttc" id="classFunctionsOfTime_1_1PiecewisePolynomial_html_a7513bf7ca0e84d657b1182e5766ed4de"><div class="ttname"><a href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a7513bf7ca0e84d657b1182e5766ed4de">FunctionsOfTime::PiecewisePolynomial::func_and_2_derivs</a></div><div class="ttdeci">std::array&lt; DataVector, 3 &gt; func_and_2_derivs(double t) const noexcept override</div><div class="ttdoc">Returns the function and the first two derivatives at an arbitrary time t. </div><div class="ttdef"><b>Definition:</b> PiecewisePolynomial.hpp:41</div></div>
+<div class="ttc" id="namespaceFunctionsOfTime_html"><div class="ttname"><a href="namespaceFunctionsOfTime.html">FunctionsOfTime</a></div><div class="ttdoc">Contains functions of time to support the dual frame system. </div><div class="ttdef"><b>Definition:</b> PiecewisePolynomial.hpp:15</div></div>
+<div class="ttc" id="classFunctionsOfTime_1_1PiecewisePolynomial_html_a7fd4b8e2e7fca83b863fb4d1ed385f27"><div class="ttname"><a href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a7fd4b8e2e7fca83b863fb4d1ed385f27">FunctionsOfTime::PiecewisePolynomial::time_bounds</a></div><div class="ttdeci">std::array&lt; double, 2 &gt; time_bounds() const noexcept override</div><div class="ttdoc">Returns the domain of validity of the function. </div><div class="ttdef"><b>Definition:</b> PiecewisePolynomial.hpp:50</div></div>
+<div class="ttc" id="structderiv_html"><div class="ttname"><a href="structderiv.html">deriv</a></div><div class="ttdoc">Prefix indicating spatial derivatives. </div><div class="ttdef"><b>Definition:</b> PartialDerivatives.hpp:45</div></div>
+<div class="ttc" id="DataVector_8hpp_html"><div class="ttname"><a href="DataVector_8hpp.html">DataVector.hpp</a></div><div class="ttdoc">Defines class Data. </div></div>
+<div class="ttc" id="vector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
+<div class="ttc" id="classDataVector_html"><div class="ttname"><a href="classDataVector.html">DataVector</a></div><div class="ttdoc">Stores a collection of function values. </div><div class="ttdef"><b>Definition:</b> DataVector.hpp:126</div></div>
+<div class="ttc" id="classFunctionOfTime_html"><div class="ttname"><a href="classFunctionOfTime.html">FunctionOfTime</a></div><div class="ttdoc">Base class for FunctionsOfTime. </div><div class="ttdef"><b>Definition:</b> FunctionOfTime.hpp:13</div></div>
+<div class="ttc" id="array_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/array.html">array</a></div></div>
+<div class="ttc" id="classFunctionsOfTime_1_1PiecewisePolynomial_html_a15a7f2453f31f621c4b95e600029346f"><div class="ttname"><a href="classFunctionsOfTime_1_1PiecewisePolynomial.html#a15a7f2453f31f621c4b95e600029346f">FunctionsOfTime::PiecewisePolynomial::func</a></div><div class="ttdeci">std::array&lt; DataVector, 1 &gt; func(double t) const noexcept override</div><div class="ttdoc">Returns the function at an arbitrary time t. </div><div class="ttdef"><b>Definition:</b> PiecewisePolynomial.hpp:32</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - PointwiseFunctions/MathFunctions/Gaussian.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">PointwiseFunctions/MathFunctions</a> - Gaussian.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;PointwiseFunctions/MathFunctions/Gaussian.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : namespace MathFunctions {
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : Gaussian::Gaussian(const double amplitude, const double width,
+<span class="lineNum">      14 </span>            :                    const double center) noexcept
+<span class="lineNum">      15 </span>            :     : amplitude_(amplitude), inverse_width_(1.0 / width), center_(center) {}
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : double Gaussian::operator()(const double&amp; x) const noexcept {
+<span class="lineNum">      18 </span>            :   return apply_call_operator(x);
+<span class="lineNum">      19 </span>            : }
+<span class="lineNum">      20 </span>            : DataVector Gaussian::operator()(const DataVector&amp; x) const noexcept {
+<span class="lineNum">      21 </span>            :   return apply_call_operator(x);
+<span class="lineNum">      22 </span>            : }
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : double Gaussian::first_deriv(const double&amp; x) const noexcept {
+<span class="lineNum">      25 </span>            :   return apply_first_deriv(x);
+<span class="lineNum">      26 </span>            : }
+<span class="lineNum">      27 </span>            : DataVector Gaussian::first_deriv(const DataVector&amp; x) const noexcept {
+<span class="lineNum">      28 </span>            :   return apply_first_deriv(x);
+<span class="lineNum">      29 </span>            : }
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : double Gaussian::second_deriv(const double&amp; x) const noexcept {
+<span class="lineNum">      32 </span>            :   return apply_second_deriv(x);
+<span class="lineNum">      33 </span>            : }
+<span class="lineNum">      34 </span>            : DataVector Gaussian::second_deriv(const DataVector&amp; x) const noexcept {
+<span class="lineNum">      35 </span>            :   return apply_second_deriv(x);
+<span class="lineNum">      36 </span>            : }
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            : double Gaussian::third_deriv(const double&amp; x) const noexcept {
+<span class="lineNum">      39 </span>            :   return apply_third_deriv(x);
+<span class="lineNum">      40 </span>            : }
+<span class="lineNum">      41 </span>            : DataVector Gaussian::third_deriv(const DataVector&amp; x) const noexcept {
+<span class="lineNum">      42 </span>            :   return apply_third_deriv(x);
+<span class="lineNum">      43 </span>            : }
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      46 </span>            : T Gaussian::apply_call_operator(const T&amp; x) const noexcept {
+<span class="lineNum">      47 </span>            :   return amplitude_ * exp(-square((x - center_) * inverse_width_));
+<span class="lineNum">      48 </span>            : }
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      51 </span>            : T Gaussian::apply_first_deriv(const T&amp; x) const noexcept {
+<span class="lineNum">      52 </span>            :   return (-2.0 * amplitude_ * square(inverse_width_)) * (x - center_) *
+<span class="lineNum">      53 </span>            :          exp(-square((x - center_) * inverse_width_));
+<span class="lineNum">      54 </span>            : }
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      57 </span>            : T Gaussian::apply_second_deriv(const T&amp; x) const noexcept {
+<span class="lineNum">      58 </span>            :   return (-2.0 * amplitude_ * square(inverse_width_)) *
+<span class="lineNum">      59 </span>            :          (1.0 - 2.0 * square(x - center_) * square(inverse_width_)) *
+<span class="lineNum">      60 </span>            :          exp(-square((x - center_) * inverse_width_));
+<span class="lineNum">      61 </span>            : }
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      64 </span>            : T Gaussian::apply_third_deriv(const T&amp; x) const noexcept {
+<span class="lineNum">      65 </span>            :   return 4.0 * amplitude_ * pow&lt;4&gt;(inverse_width_) * (x - center_) *
+<span class="lineNum">      66 </span>            :          (3.0 - 2.0 * square((x - center_) * inverse_width_)) *
+<span class="lineNum">      67 </span>            :          exp(-square((x - center_) * inverse_width_));
+<span class="lineNum">      68 </span>            : }
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            : void Gaussian::pup(PUP::er&amp; p) {
+<span class="lineNum">      71 </span>            :   MathFunction&lt;1&gt;::pup(p);
+<span class="lineNum">      72 </span>            :   p | amplitude_;
+<span class="lineNum">      73 </span>            :   p | inverse_width_;
+<span class="lineNum">      74 </span>            :   p | center_;
+<span class="lineNum">      75 </span>            : }
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 : bool operator==(const Gaussian&amp; lhs, const Gaussian&amp; rhs) noexcept {</span>
+<span class="lineNum">      78 </span>            :   return lhs.amplitude_ == rhs.amplitude_ and
+<span class="lineNum">      79 </span>            :          lhs.inverse_width_ == rhs.inverse_width_ and
+<span class="lineNum">      80 </span>            :          lhs.center_ == rhs.center_;
+<span class="lineNum">      81 </span>            : }
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span><span class="lineNoCov">          0 : bool operator!=(const Gaussian&amp; lhs, const Gaussian&amp; rhs) noexcept {</span>
+<span class="lineNum">      84 </span>            :   return not(lhs == rhs);
+<span class="lineNum">      85 </span>            : }
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span>            : }  // namespace MathFunctions
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span>            : /// \cond
+<span class="lineNum">      90 </span>            : PUP::able::PUP_ID MathFunctions::Gaussian::my_PUP_ID =  // NOLINT
+<span class="lineNum">      91 </span>            :     0;
+<span class="lineNum">      92 </span>            : /// \endcond
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,728 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Parallel/CharmRegistration.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Parallel</a> - CharmRegistration.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntry">105</td>
+            <td class="headerCovTableEntryLo">12.4 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : #include &lt;memory&gt;
+<span class="lineNum">       9 </span>            : #include &lt;string&gt;
+<span class="lineNum">      10 </span>            : #include &lt;unordered_map&gt;
+<span class="lineNum">      11 </span>            : #include &lt;unordered_set&gt;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : #include &quot;Parallel/ParallelComponentHelpers.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Parallel/TypeTraits.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : namespace Parallel {
+<span class="lineNum">      17 </span>            : namespace charmxx {
+<span class="lineNum">      18 </span>            : /*!
+<span class="lineNum">      19 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">      20 </span>            :  * \brief Class to mark a constructor as a constructor for the main chare.
+<span class="lineNum">      21 </span>            :  *
+<span class="lineNum">      22 </span>            :  * The main chare must have a constructor that takes a `const
+<span class="lineNum">      23 </span>            :  * Parallel::charmxx::MainChareRegistrationConstructor&amp;` as its only argument.
+<span class="lineNum">      24 </span>            :  * This constructor is only used to trigger the `RegisterChare::registrar` code
+<span class="lineNum">      25 </span>            :  * needed for automatic registration.
+<span class="lineNum">      26 </span>            :  * \see RegisterChare
+<span class="lineNum">      27 </span>            :  */
+<span class="lineNum">      28 </span><span class="lineCov">          1 : struct MainChareRegistrationConstructor {};</span>
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span>            : /// \cond
+<span class="lineNum">      31 </span>            : struct RegistrationHelper;
+<span class="lineNum">      32 </span>            : extern std::unique_ptr&lt;RegistrationHelper&gt;* charm_register_list;
+<span class="lineNum">      33 </span>            : extern size_t charm_register_list_capacity;
+<span class="lineNum">      34 </span>            : extern size_t charm_register_list_size;
+<span class="lineNum">      35 </span>            : /// \endcond
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span>            : /*!
+<span class="lineNum">      38 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">      39 </span>            :  * \brief Returns the template parameter as a `std::string`
+<span class="lineNum">      40 </span>            :  *
+<span class="lineNum">      41 </span>            :  * Uses the __PRETTY_FUNCTION__ compiler intrinsic to extract the template
+<span class="lineNum">      42 </span>            :  * parameter names in the same form that Charm++ uses to register entry methods.
+<span class="lineNum">      43 </span>            :  * This is used by the generated Singleton, Array, Group and Nodegroup headers,
+<span class="lineNum">      44 </span>            :  * as well as in CharmMain.cpp.
+<span class="lineNum">      45 </span>            :  */
+<span class="lineNum">      46 </span>            : template &lt;class... Args&gt;
+<span class="lineNum">      47 </span><span class="lineCov">          2 : std::string get_template_parameters_as_string() {</span>
+<span class="lineNum">      48 </span>            :   std::string function_name(static_cast&lt;char const*&gt;(__PRETTY_FUNCTION__));
+<span class="lineNum">      49 </span>            :   std::string template_params =
+<span class="lineNum">      50 </span>            :       function_name.substr(function_name.find(std::string(&quot;Args = &quot;)) + 8);
+<span class="lineNum">      51 </span>            :   template_params.erase(template_params.end() - 2, template_params.end());
+<span class="lineNum">      52 </span>            :   size_t pos = 0;
+<span class="lineNum">      53 </span>            :   while ((pos = template_params.find(&quot; &gt;&quot;)) != std::string::npos) {
+<span class="lineNum">      54 </span>            :     template_params.replace(pos, 1, &quot;&gt;&quot;);
+<span class="lineNum">      55 </span>            :     template_params.erase(pos + 1, 1);
+<span class="lineNum">      56 </span>            :   }
+<span class="lineNum">      57 </span>            :   pos = 0;
+<span class="lineNum">      58 </span>            :   while ((pos = template_params.find(&quot;, &quot;, pos)) != std::string::npos) {
+<span class="lineNum">      59 </span>            :     template_params.erase(pos + 1, 1);
+<span class="lineNum">      60 </span>            :   }
+<span class="lineNum">      61 </span>            :   pos = 0;
+<span class="lineNum">      62 </span>            :   while ((pos = template_params.find('&gt;', pos + 2)) != std::string::npos) {
+<span class="lineNum">      63 </span>            :     template_params.replace(pos, 1, &quot; &gt;&quot;);
+<span class="lineNum">      64 </span>            :   }
+<span class="lineNum">      65 </span>            :   std::replace(template_params.begin(), template_params.end(), '%', '&gt;');
+<span class="lineNum">      66 </span>            :   // GCC's __PRETTY_FUNCTION__ adds the return type at the end, so we remove it.
+<span class="lineNum">      67 </span>            :   if (template_params.find('}') != std::string::npos) {
+<span class="lineNum">      68 </span>            :     template_params.erase(template_params.find('}'), template_params.size());
+<span class="lineNum">      69 </span>            :   }
+<span class="lineNum">      70 </span>            :   return template_params;
+<span class="lineNum">      71 </span>            : }
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span>            : /*!
+<span class="lineNum">      74 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">      75 </span>            :  * \brief The base class used for automatic registration of entry methods.
+<span class="lineNum">      76 </span>            :  *
+<span class="lineNum">      77 </span>            :  * Entry methods are automatically registered by building a list of the entry
+<span class="lineNum">      78 </span>            :  * methods that need to be registered in the `charm_register_list`. All entry
+<span class="lineNum">      79 </span>            :  * methods in the list are later registered in the
+<span class="lineNum">      80 </span>            :  * `register_parallel_components` function, at which point the list is also
+<span class="lineNum">      81 </span>            :  * deleted.
+<span class="lineNum">      82 </span>            :  *
+<span class="lineNum">      83 </span>            :  * The reason for using an abstract base class mechanism is that we need to be
+<span class="lineNum">      84 </span>            :  * able to register entry method templates. The derived classes keep track of
+<span class="lineNum">      85 </span>            :  * the template parameters and override the `register_with_charm` function.
+<span class="lineNum">      86 </span>            :  * The result is that there must be one derived class template for each entry
+<span class="lineNum">      87 </span>            :  * method template, but since we only have a few entry method templates this is
+<span class="lineNum">      88 </span>            :  * not an issue.
+<span class="lineNum">      89 </span>            :  */
+<span class="lineNum">      90 </span><span class="lineCov">          1 : struct RegistrationHelper {</span>
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   RegistrationHelper() = default;</span>
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 :   RegistrationHelper(const RegistrationHelper&amp;) = default;</span>
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :   RegistrationHelper&amp; operator=(const RegistrationHelper&amp;) = default;</span>
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :   RegistrationHelper(RegistrationHelper&amp;&amp;) = default;</span>
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :   RegistrationHelper&amp; operator=(RegistrationHelper&amp;&amp;) = default;</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :   virtual ~RegistrationHelper() = default;</span>
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :   virtual void register_with_charm() const noexcept = 0;</span>
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 :   virtual std::string name() const noexcept = 0;</span>
+<span class="lineNum">     100 </span><span class="lineNoCov">          0 :   virtual bool is_registering_chare() const noexcept { return false; };</span>
+<span class="lineNum">     101 </span>            : };
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span>            : /*!
+<span class="lineNum">     104 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     105 </span>            :  * \brief Derived class for registering parallel components.
+<span class="lineNum">     106 </span>            :  *
+<span class="lineNum">     107 </span>            :  * Calls the appropriate Charm++ function to register a parallel component.
+<span class="lineNum">     108 </span>            :  */
+<span class="lineNum">     109 </span>            : template &lt;typename ParallelComponent&gt;
+<span class="lineNum">     110 </span><span class="lineCov">          1 : struct RegisterParallelComponent : RegistrationHelper {</span>
+<span class="lineNum">     111 </span><span class="lineNoCov">          0 :   using chare_type = typename ParallelComponent::chare_type;</span>
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 :   using charm_type = charm_types_with_parameters&lt;</span>
+<span class="lineNum">     113 </span>            :       ParallelComponent,
+<span class="lineNum">     114 </span>            :       typename get_array_index&lt;chare_type&gt;::template f&lt;ParallelComponent&gt;&gt;;
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 :   using ckindex = typename charm_type::ckindex;</span>
+<span class="lineNum">     116 </span><span class="lineNoCov">          0 :   using algorithm = typename charm_type::algorithm;</span>
+<span class="lineNum">     117 </span>            : 
+<span class="lineNum">     118 </span><span class="lineNoCov">          0 :   RegisterParallelComponent() = default;</span>
+<span class="lineNum">     119 </span><span class="lineNoCov">          0 :   RegisterParallelComponent(const RegisterParallelComponent&amp;) = default;</span>
+<span class="lineNum">     120 </span><span class="lineNoCov">          0 :   RegisterParallelComponent&amp; operator=(const RegisterParallelComponent&amp;) =</span>
+<span class="lineNum">     121 </span>            :       default;
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :   RegisterParallelComponent(RegisterParallelComponent&amp;&amp;) = default;</span>
+<span class="lineNum">     123 </span><span class="lineNoCov">          0 :   RegisterParallelComponent&amp; operator=(RegisterParallelComponent&amp;&amp;) = default;</span>
+<span class="lineNum">     124 </span><span class="lineNoCov">          0 :   ~RegisterParallelComponent() override = default;</span>
+<span class="lineNum">     125 </span>            : 
+<span class="lineNum">     126 </span><span class="lineNoCov">          0 :   void register_with_charm() const noexcept override {</span>
+<span class="lineNum">     127 </span>            :     static bool done_registration{false};
+<span class="lineNum">     128 </span>            :     if (done_registration) {
+<span class="lineNum">     129 </span>            :       return;  // LCOV_EXCL_LINE
+<span class="lineNum">     130 </span>            :     }
+<span class="lineNum">     131 </span>            :     done_registration = true;
+<span class="lineNum">     132 </span>            :     ckindex::__register(get_template_parameters_as_string&lt;algorithm&gt;().c_str(),
+<span class="lineNum">     133 </span>            :                         sizeof(algorithm));
+<span class="lineNum">     134 </span>            :   }
+<span class="lineNum">     135 </span>            : 
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :   bool is_registering_chare() const noexcept override { return true; }</span>
+<span class="lineNum">     137 </span>            : 
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 :   std::string name() const noexcept override {</span>
+<span class="lineNum">     139 </span>            :     return get_template_parameters_as_string&lt;RegisterParallelComponent&gt;();
+<span class="lineNum">     140 </span>            :   }
+<span class="lineNum">     141 </span>            : 
+<span class="lineNum">     142 </span><span class="lineNoCov">          0 :   static bool registrar;</span>
+<span class="lineNum">     143 </span>            : };
+<span class="lineNum">     144 </span>            : 
+<span class="lineNum">     145 </span>            : /*!
+<span class="lineNum">     146 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     147 </span>            :  * \brief Derived class for registering chares.
+<span class="lineNum">     148 </span>            :  *
+<span class="lineNum">     149 </span>            :  * Calls the appropriate Charm++ function to register a chare
+<span class="lineNum">     150 </span>            :  *
+<span class="lineNum">     151 </span>            :  * The chare that is being registered must have the following in the destructor:
+<span class="lineNum">     152 </span>            :  * \code
+<span class="lineNum">     153 </span>            :  * (void)Parallel::charmxx::RegisterChare&lt;ChareName,
+<span class="lineNum">     154 </span>            :  *     CkIndex_ChareName&gt;::registrar;
+<span class="lineNum">     155 </span>            :  * \endcode
+<span class="lineNum">     156 </span>            :  *
+<span class="lineNum">     157 </span>            :  * The main chare must also have a constructor that takes a `const
+<span class="lineNum">     158 </span>            :  * Parallel::charmxx::MainChareRegistrationConstructor&amp;` as its only argument.
+<span class="lineNum">     159 </span>            :  * This constructor is only used to trigger the `RegisterChare::registrar` code
+<span class="lineNum">     160 </span>            :  * needed for automatic registration. The main chare is determined by specifying
+<span class="lineNum">     161 </span>            :  * the type alias `charmxx_main_component` before the `Parallel/CharmMain.cpp`
+<span class="lineNum">     162 </span>            :  * include.
+<span class="lineNum">     163 </span>            :  * \snippet Test_AlgorithmCore.cpp charm_main_example
+<span class="lineNum">     164 </span>            :  */
+<span class="lineNum">     165 </span>            : template &lt;typename Chare, typename CkIndex&gt;
+<span class="lineNum">     166 </span><span class="lineCov">          1 : struct RegisterChare : RegistrationHelper {</span>
+<span class="lineNum">     167 </span><span class="lineNoCov">          0 :   RegisterChare() = default;</span>
+<span class="lineNum">     168 </span><span class="lineNoCov">          0 :   RegisterChare(const RegisterChare&amp;) = default;</span>
+<span class="lineNum">     169 </span><span class="lineNoCov">          0 :   RegisterChare&amp; operator=(const RegisterChare&amp;) = default;</span>
+<span class="lineNum">     170 </span><span class="lineNoCov">          0 :   RegisterChare(RegisterChare&amp;&amp;) = default;</span>
+<span class="lineNum">     171 </span><span class="lineNoCov">          0 :   RegisterChare&amp; operator=(RegisterChare&amp;&amp;) = default;</span>
+<span class="lineNum">     172 </span><span class="lineNoCov">          0 :   ~RegisterChare() override = default;</span>
+<span class="lineNum">     173 </span>            : 
+<span class="lineNum">     174 </span><span class="lineNoCov">          0 :   void register_with_charm() const noexcept override {</span>
+<span class="lineNum">     175 </span>            :     static bool done_registration{false};
+<span class="lineNum">     176 </span>            :     if (done_registration) {
+<span class="lineNum">     177 </span>            :       return;  // LCOV_EXCL_LINE
+<span class="lineNum">     178 </span>            :     }
+<span class="lineNum">     179 </span>            :     done_registration = true;
+<span class="lineNum">     180 </span>            :     CkIndex::__register(get_template_parameters_as_string&lt;Chare&gt;().c_str(),
+<span class="lineNum">     181 </span>            :                         sizeof(Chare));
+<span class="lineNum">     182 </span>            :   }
+<span class="lineNum">     183 </span>            : 
+<span class="lineNum">     184 </span><span class="lineNoCov">          0 :   bool is_registering_chare() const noexcept override { return true; }</span>
+<span class="lineNum">     185 </span>            : 
+<span class="lineNum">     186 </span><span class="lineNoCov">          0 :   std::string name() const noexcept override {</span>
+<span class="lineNum">     187 </span>            :     return get_template_parameters_as_string&lt;RegisterChare&gt;();
+<span class="lineNum">     188 </span>            :   }
+<span class="lineNum">     189 </span>            : 
+<span class="lineNum">     190 </span><span class="lineNoCov">          0 :   static bool registrar;</span>
+<span class="lineNum">     191 </span>            : };
+<span class="lineNum">     192 </span>            : 
+<span class="lineNum">     193 </span>            : /*!
+<span class="lineNum">     194 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     195 </span>            :  * \brief Derived class for registering simple actions.
+<span class="lineNum">     196 </span>            :  *
+<span class="lineNum">     197 </span>            :  * Calls the appropriate Charm++ function to register a simple action.
+<span class="lineNum">     198 </span>            :  */
+<span class="lineNum">     199 </span>            : template &lt;typename ParallelComponent, typename Action, typename... Args&gt;
+<span class="lineNum">     200 </span><span class="lineCov">          1 : struct RegisterSimpleAction : RegistrationHelper {</span>
+<span class="lineNum">     201 </span><span class="lineNoCov">          0 :   using chare_type = typename ParallelComponent::chare_type;</span>
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 :   using charm_type = charm_types_with_parameters&lt;</span>
+<span class="lineNum">     203 </span>            :       ParallelComponent,
+<span class="lineNum">     204 </span>            :       typename get_array_index&lt;chare_type&gt;::template f&lt;ParallelComponent&gt;&gt;;
+<span class="lineNum">     205 </span><span class="lineNoCov">          0 :   using cproxy = typename charm_type::cproxy;</span>
+<span class="lineNum">     206 </span><span class="lineNoCov">          0 :   using ckindex = typename charm_type::ckindex;</span>
+<span class="lineNum">     207 </span><span class="lineNoCov">          0 :   using algorithm = typename charm_type::algorithm;</span>
+<span class="lineNum">     208 </span>            : 
+<span class="lineNum">     209 </span><span class="lineNoCov">          0 :   RegisterSimpleAction() = default;</span>
+<span class="lineNum">     210 </span><span class="lineNoCov">          0 :   RegisterSimpleAction(const RegisterSimpleAction&amp;) = default;</span>
+<span class="lineNum">     211 </span><span class="lineNoCov">          0 :   RegisterSimpleAction&amp; operator=(const RegisterSimpleAction&amp;) = default;</span>
+<span class="lineNum">     212 </span><span class="lineNoCov">          0 :   RegisterSimpleAction(RegisterSimpleAction&amp;&amp;) = default;</span>
+<span class="lineNum">     213 </span><span class="lineNoCov">          0 :   RegisterSimpleAction&amp; operator=(RegisterSimpleAction&amp;&amp;) = default;</span>
+<span class="lineNum">     214 </span><span class="lineNoCov">          0 :   ~RegisterSimpleAction() override = default;</span>
+<span class="lineNum">     215 </span>            : 
+<span class="lineNum">     216 </span><span class="lineNoCov">          0 :   void register_with_charm() const noexcept override {</span>
+<span class="lineNum">     217 </span>            :     static bool done_registration{false};
+<span class="lineNum">     218 </span>            :     if (done_registration) {
+<span class="lineNum">     219 </span>            :       return;  // LCOV_EXCL_LINE
+<span class="lineNum">     220 </span>            :     }
+<span class="lineNum">     221 </span>            :     done_registration = true;
+<span class="lineNum">     222 </span>            :     ckindex::template idx_simple_action&lt;Action&gt;(
+<span class="lineNum">     223 </span>            :         static_cast&lt;void (algorithm::*)(const std::tuple&lt;Args...&gt;&amp;)&gt;(nullptr));
+<span class="lineNum">     224 </span>            :   }
+<span class="lineNum">     225 </span>            : 
+<span class="lineNum">     226 </span><span class="lineNoCov">          0 :   std::string name() const noexcept override {</span>
+<span class="lineNum">     227 </span>            :     return get_template_parameters_as_string&lt;RegisterSimpleAction&gt;();
+<span class="lineNum">     228 </span>            :   }
+<span class="lineNum">     229 </span>            : 
+<span class="lineNum">     230 </span><span class="lineNoCov">          0 :   static bool registrar;</span>
+<span class="lineNum">     231 </span>            : };
+<span class="lineNum">     232 </span>            : 
+<span class="lineNum">     233 </span>            : /// \cond
+<span class="lineNum">     234 </span>            : template &lt;typename ParallelComponent, typename Action&gt;
+<span class="lineNum">     235 </span>            : struct RegisterSimpleAction&lt;ParallelComponent, Action&gt; : RegistrationHelper {
+<span class="lineNum">     236 </span>            :   using chare_type = typename ParallelComponent::chare_type;
+<span class="lineNum">     237 </span>            :   using charm_type = charm_types_with_parameters&lt;
+<span class="lineNum">     238 </span>            :       ParallelComponent,
+<span class="lineNum">     239 </span>            :       typename get_array_index&lt;chare_type&gt;::template f&lt;ParallelComponent&gt;&gt;;
+<span class="lineNum">     240 </span>            :   using cproxy = typename charm_type::cproxy;
+<span class="lineNum">     241 </span>            :   using ckindex = typename charm_type::ckindex;
+<span class="lineNum">     242 </span>            :   using algorithm = typename charm_type::algorithm;
+<span class="lineNum">     243 </span>            : 
+<span class="lineNum">     244 </span>            :   RegisterSimpleAction() = default;
+<span class="lineNum">     245 </span>            :   RegisterSimpleAction(const RegisterSimpleAction&amp;) = default;
+<span class="lineNum">     246 </span>            :   RegisterSimpleAction&amp; operator=(const RegisterSimpleAction&amp;) = default;
+<span class="lineNum">     247 </span>            :   RegisterSimpleAction(RegisterSimpleAction&amp;&amp;) = default;
+<span class="lineNum">     248 </span>            :   RegisterSimpleAction&amp; operator=(RegisterSimpleAction&amp;&amp;) = default;
+<span class="lineNum">     249 </span>            :   ~RegisterSimpleAction() override = default;
+<span class="lineNum">     250 </span>            : 
+<span class="lineNum">     251 </span>            :   void register_with_charm() const noexcept override {
+<span class="lineNum">     252 </span>            :     static bool done_registration{false};
+<span class="lineNum">     253 </span>            :     if (done_registration) {
+<span class="lineNum">     254 </span>            :       return;  // LCOV_EXCL_LINE
+<span class="lineNum">     255 </span>            :     }
+<span class="lineNum">     256 </span>            :     done_registration = true;
+<span class="lineNum">     257 </span>            :     ckindex::template idx_simple_action&lt;Action&gt;(
+<span class="lineNum">     258 </span>            :         static_cast&lt;void (algorithm::*)()&gt;(nullptr));
+<span class="lineNum">     259 </span>            :   }
+<span class="lineNum">     260 </span>            : 
+<span class="lineNum">     261 </span>            :   std::string name() const noexcept override {
+<span class="lineNum">     262 </span>            :     return get_template_parameters_as_string&lt;RegisterSimpleAction&gt;();
+<span class="lineNum">     263 </span>            :   }
+<span class="lineNum">     264 </span>            : 
+<span class="lineNum">     265 </span>            :   static bool registrar;
+<span class="lineNum">     266 </span>            : };
+<span class="lineNum">     267 </span>            : /// \endcond
+<span class="lineNum">     268 </span>            : 
+<span class="lineNum">     269 </span>            : /*!
+<span class="lineNum">     270 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     271 </span>            :  * \brief Derived class for registering threaded actions.
+<span class="lineNum">     272 </span>            :  *
+<span class="lineNum">     273 </span>            :  * Calls the appropriate Charm++ function to register a threaded action.
+<span class="lineNum">     274 </span>            :  */
+<span class="lineNum">     275 </span>            : template &lt;typename ParallelComponent, typename Action, typename... Args&gt;
+<span class="lineNum">     276 </span><span class="lineCov">          1 : struct RegisterThreadedAction : RegistrationHelper {</span>
+<span class="lineNum">     277 </span><span class="lineNoCov">          0 :   using chare_type = typename ParallelComponent::chare_type;</span>
+<span class="lineNum">     278 </span><span class="lineNoCov">          0 :   using charm_type = charm_types_with_parameters&lt;</span>
+<span class="lineNum">     279 </span>            :       ParallelComponent,
+<span class="lineNum">     280 </span>            :       typename get_array_index&lt;chare_type&gt;::template f&lt;ParallelComponent&gt;&gt;;
+<span class="lineNum">     281 </span><span class="lineNoCov">          0 :   using cproxy = typename charm_type::cproxy;</span>
+<span class="lineNum">     282 </span><span class="lineNoCov">          0 :   using ckindex = typename charm_type::ckindex;</span>
+<span class="lineNum">     283 </span><span class="lineNoCov">          0 :   using algorithm = typename charm_type::algorithm;</span>
+<span class="lineNum">     284 </span>            : 
+<span class="lineNum">     285 </span><span class="lineNoCov">          0 :   RegisterThreadedAction() = default;</span>
+<span class="lineNum">     286 </span><span class="lineNoCov">          0 :   RegisterThreadedAction(const RegisterThreadedAction&amp;) = default;</span>
+<span class="lineNum">     287 </span><span class="lineNoCov">          0 :   RegisterThreadedAction&amp; operator=(const RegisterThreadedAction&amp;) = default;</span>
+<span class="lineNum">     288 </span><span class="lineNoCov">          0 :   RegisterThreadedAction(RegisterThreadedAction&amp;&amp;) = default;</span>
+<span class="lineNum">     289 </span><span class="lineNoCov">          0 :   RegisterThreadedAction&amp; operator=(RegisterThreadedAction&amp;&amp;) = default;</span>
+<span class="lineNum">     290 </span><span class="lineNoCov">          0 :   ~RegisterThreadedAction() override = default;</span>
+<span class="lineNum">     291 </span>            : 
+<span class="lineNum">     292 </span><span class="lineNoCov">          0 :   void register_with_charm() const noexcept override {</span>
+<span class="lineNum">     293 </span>            :     static bool done_registration{false};
+<span class="lineNum">     294 </span>            :     if (done_registration) {
+<span class="lineNum">     295 </span>            :       return;  // LCOV_EXCL_LINE
+<span class="lineNum">     296 </span>            :     }
+<span class="lineNum">     297 </span>            :     done_registration = true;
+<span class="lineNum">     298 </span>            :     ckindex::template idx_threaded_action&lt;Action&gt;(
+<span class="lineNum">     299 </span>            :         static_cast&lt;void (algorithm::*)(const std::tuple&lt;Args...&gt;&amp;)&gt;(nullptr));
+<span class="lineNum">     300 </span>            :   }
+<span class="lineNum">     301 </span>            : 
+<span class="lineNum">     302 </span><span class="lineNoCov">          0 :   std::string name() const noexcept override {</span>
+<span class="lineNum">     303 </span>            :     return get_template_parameters_as_string&lt;RegisterThreadedAction&gt;();
+<span class="lineNum">     304 </span>            :   }
+<span class="lineNum">     305 </span>            : 
+<span class="lineNum">     306 </span><span class="lineNoCov">          0 :   static bool registrar;</span>
+<span class="lineNum">     307 </span>            : };
+<span class="lineNum">     308 </span>            : 
+<span class="lineNum">     309 </span>            : /// \cond
+<span class="lineNum">     310 </span>            : template &lt;typename ParallelComponent, typename Action&gt;
+<span class="lineNum">     311 </span>            : struct RegisterThreadedAction&lt;ParallelComponent, Action&gt; : RegistrationHelper {
+<span class="lineNum">     312 </span>            :   using chare_type = typename ParallelComponent::chare_type;
+<span class="lineNum">     313 </span>            :   using charm_type = charm_types_with_parameters&lt;
+<span class="lineNum">     314 </span>            :       ParallelComponent,
+<span class="lineNum">     315 </span>            :       typename get_array_index&lt;chare_type&gt;::template f&lt;ParallelComponent&gt;&gt;;
+<span class="lineNum">     316 </span>            :   using cproxy = typename charm_type::cproxy;
+<span class="lineNum">     317 </span>            :   using ckindex = typename charm_type::ckindex;
+<span class="lineNum">     318 </span>            :   using algorithm = typename charm_type::algorithm;
+<span class="lineNum">     319 </span>            : 
+<span class="lineNum">     320 </span>            :   RegisterThreadedAction() = default;
+<span class="lineNum">     321 </span>            :   RegisterThreadedAction(const RegisterThreadedAction&amp;) = default;
+<span class="lineNum">     322 </span>            :   RegisterThreadedAction&amp; operator=(const RegisterThreadedAction&amp;) = default;
+<span class="lineNum">     323 </span>            :   RegisterThreadedAction(RegisterThreadedAction&amp;&amp;) = default;
+<span class="lineNum">     324 </span>            :   RegisterThreadedAction&amp; operator=(RegisterThreadedAction&amp;&amp;) = default;
+<span class="lineNum">     325 </span>            :   ~RegisterThreadedAction() override = default;
+<span class="lineNum">     326 </span>            : 
+<span class="lineNum">     327 </span>            :   void register_with_charm() const noexcept override {
+<span class="lineNum">     328 </span>            :     static bool done_registration{false};
+<span class="lineNum">     329 </span>            :     if (done_registration) {
+<span class="lineNum">     330 </span>            :       return;  // LCOV_EXCL_LINE
+<span class="lineNum">     331 </span>            :     }
+<span class="lineNum">     332 </span>            :     done_registration = true;
+<span class="lineNum">     333 </span>            :     ckindex::template idx_threaded_action&lt;Action&gt;(
+<span class="lineNum">     334 </span>            :         static_cast&lt;void (algorithm::*)()&gt;(nullptr));
+<span class="lineNum">     335 </span>            :   }
+<span class="lineNum">     336 </span>            : 
+<span class="lineNum">     337 </span>            :   std::string name() const noexcept override {
+<span class="lineNum">     338 </span>            :     return get_template_parameters_as_string&lt;RegisterThreadedAction&gt;();
+<span class="lineNum">     339 </span>            :   }
+<span class="lineNum">     340 </span>            : 
+<span class="lineNum">     341 </span>            :   static bool registrar;
+<span class="lineNum">     342 </span>            : };
+<span class="lineNum">     343 </span>            : /// \endcond
+<span class="lineNum">     344 </span>            : 
+<span class="lineNum">     345 </span>            : namespace detail {
+<span class="lineNum">     346 </span>            : template &lt;class T&gt;
+<span class="lineNum">     347 </span>            : struct get_value_type;
+<span class="lineNum">     348 </span>            : 
+<span class="lineNum">     349 </span>            : template &lt;class Key, class Mapped, class Hash, class KeyEqual, class Allocator&gt;
+<span class="lineNum">     350 </span>            : struct get_value_type&lt;
+<span class="lineNum">     351 </span>            :     std::unordered_map&lt;Key, Mapped, Hash, KeyEqual, Allocator&gt;&gt; {
+<span class="lineNum">     352 </span>            :   // When sending data it is typical to use `std:make_pair(a, b)` which results
+<span class="lineNum">     353 </span>            :   // in a non-const Key type, which is different from what
+<span class="lineNum">     354 </span>            :   // `unordered_map::value_type` is. This difference leads to issues with
+<span class="lineNum">     355 </span>            :   // function registration with Charm++.
+<span class="lineNum">     356 </span>            :   using type = std::pair&lt;Key, Mapped&gt;;
+<span class="lineNum">     357 </span>            : };
+<span class="lineNum">     358 </span>            : 
+<span class="lineNum">     359 </span>            : template &lt;class Key, class Hash, class KeyEqual, class Allocator&gt;
+<span class="lineNum">     360 </span>            : struct get_value_type&lt;std::unordered_multiset&lt;Key, Hash, KeyEqual, Allocator&gt;&gt; {
+<span class="lineNum">     361 </span>            :   using type = Key;
+<span class="lineNum">     362 </span>            : };
+<span class="lineNum">     363 </span>            : 
+<span class="lineNum">     364 </span>            : template &lt;class T&gt;
+<span class="lineNum">     365 </span>            : using get_value_type_t = typename get_value_type&lt;T&gt;::type;
+<span class="lineNum">     366 </span>            : }  // namespace detail
+<span class="lineNum">     367 </span>            : 
+<span class="lineNum">     368 </span>            : /*!
+<span class="lineNum">     369 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     370 </span>            :  * \brief Derived class for registering receive_data functions
+<span class="lineNum">     371 </span>            :  *
+<span class="lineNum">     372 </span>            :  * Calls the appropriate Charm++ function to register a receive_data function.
+<span class="lineNum">     373 </span>            :  * There is a bug in Charm++ that doesn't allow default values for entry method
+<span class="lineNum">     374 </span>            :  * arguments for groups and nodegroups, so we have to handle the (node)group
+<span class="lineNum">     375 </span>            :  * cases separately from the singleton and array cases.
+<span class="lineNum">     376 </span>            :  */
+<span class="lineNum">     377 </span>            : template &lt;typename ParallelComponent, typename ReceiveTag&gt;
+<span class="lineNum">     378 </span><span class="lineCov">          1 : struct RegisterReceiveData : RegistrationHelper {</span>
+<span class="lineNum">     379 </span><span class="lineNoCov">          0 :   using chare_type = typename ParallelComponent::chare_type;</span>
+<span class="lineNum">     380 </span><span class="lineNoCov">          0 :   using charm_type = charm_types_with_parameters&lt;</span>
+<span class="lineNum">     381 </span>            :       ParallelComponent,
+<span class="lineNum">     382 </span>            :       typename get_array_index&lt;chare_type&gt;::template f&lt;ParallelComponent&gt;&gt;;
+<span class="lineNum">     383 </span><span class="lineNoCov">          0 :   using cproxy = typename charm_type::cproxy;</span>
+<span class="lineNum">     384 </span><span class="lineNoCov">          0 :   using ckindex = typename charm_type::ckindex;</span>
+<span class="lineNum">     385 </span><span class="lineNoCov">          0 :   using algorithm = typename charm_type::algorithm;</span>
+<span class="lineNum">     386 </span>            : 
+<span class="lineNum">     387 </span><span class="lineNoCov">          0 :   RegisterReceiveData() = default;</span>
+<span class="lineNum">     388 </span><span class="lineNoCov">          0 :   RegisterReceiveData(const RegisterReceiveData&amp;) = default;</span>
+<span class="lineNum">     389 </span><span class="lineNoCov">          0 :   RegisterReceiveData&amp; operator=(const RegisterReceiveData&amp;) = default;</span>
+<span class="lineNum">     390 </span><span class="lineNoCov">          0 :   RegisterReceiveData(RegisterReceiveData&amp;&amp;) = default;</span>
+<span class="lineNum">     391 </span><span class="lineNoCov">          0 :   RegisterReceiveData&amp; operator=(RegisterReceiveData&amp;&amp;) = default;</span>
+<span class="lineNum">     392 </span><span class="lineNoCov">          0 :   ~RegisterReceiveData() override = default;</span>
+<span class="lineNum">     393 </span>            : 
+<span class="lineNum">     394 </span><span class="lineNoCov">          0 :   void register_with_charm() const noexcept override {</span>
+<span class="lineNum">     395 </span>            :     static bool done_registration{false};
+<span class="lineNum">     396 </span>            :     if (done_registration) {
+<span class="lineNum">     397 </span>            :       return;  // LCOV_EXCL_LINE
+<span class="lineNum">     398 </span>            :     }
+<span class="lineNum">     399 </span>            :     done_registration = true;
+<span class="lineNum">     400 </span>            :     register_with_charm_helper(
+<span class="lineNum">     401 </span>            :         std::integral_constant&lt;
+<span class="lineNum">     402 </span>            :             bool, (not Parallel::is_group_proxy&lt;cproxy&gt;::value and
+<span class="lineNum">     403 </span>            :                    not Parallel::is_node_group_proxy&lt;cproxy&gt;::value)&gt;{});
+<span class="lineNum">     404 </span>            :   }
+<span class="lineNum">     405 </span>            : 
+<span class="lineNum">     406 </span><span class="lineNoCov">          0 :   std::string name() const noexcept override {</span>
+<span class="lineNum">     407 </span>            :     return get_template_parameters_as_string&lt;RegisterReceiveData&gt;();
+<span class="lineNum">     408 </span>            :   }
+<span class="lineNum">     409 </span>            : 
+<span class="lineNum">     410 </span><span class="lineNoCov">          0 :   static bool registrar;</span>
+<span class="lineNum">     411 </span>            : 
+<span class="lineNum">     412 </span>            :  private:
+<span class="lineNum">     413 </span><span class="lineNoCov">          0 :   void register_with_charm_helper(std::true_type /*not is_group*/) const</span>
+<span class="lineNum">     414 </span>            :       noexcept {
+<span class="lineNum">     415 </span>            :     ckindex::template idx_receive_data&lt;ReceiveTag&gt;(
+<span class="lineNum">     416 </span>            :         static_cast&lt;void (algorithm::*)(
+<span class="lineNum">     417 </span>            :             const typename ReceiveTag::temporal_id&amp;,
+<span class="lineNum">     418 </span>            :             const detail::get_value_type_t&lt;
+<span class="lineNum">     419 </span>            :                 typename ReceiveTag::type::mapped_type&gt;&amp;,
+<span class="lineNum">     420 </span>            :             bool)&gt;(nullptr));
+<span class="lineNum">     421 </span>            :   }
+<span class="lineNum">     422 </span><span class="lineNoCov">          0 :   void register_with_charm_helper(std::false_type /*is_group*/) const noexcept {</span>
+<span class="lineNum">     423 </span>            :     ckindex::template idx_receive_data&lt;ReceiveTag&gt;(
+<span class="lineNum">     424 </span>            :         static_cast&lt;void (algorithm::*)(
+<span class="lineNum">     425 </span>            :             const typename ReceiveTag::temporal_id&amp;,
+<span class="lineNum">     426 </span>            :             const typename std::decay&lt;
+<span class="lineNum">     427 </span>            :                 typename ReceiveTag::type::mapped_type::value_type&gt;::type&amp;)&gt;(
+<span class="lineNum">     428 </span>            :             nullptr));
+<span class="lineNum">     429 </span>            :   }
+<span class="lineNum">     430 </span>            : };
+<span class="lineNum">     431 </span>            : 
+<span class="lineNum">     432 </span>            : /*!
+<span class="lineNum">     433 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     434 </span>            :  * \brief Derived class for registering reduction actions
+<span class="lineNum">     435 </span>            :  *
+<span class="lineNum">     436 </span>            :  * Calls the appropriate Charm++ functions to register a reduction action.
+<span class="lineNum">     437 </span>            :  */
+<span class="lineNum">     438 </span>            : template &lt;typename ParallelComponent, typename Action, typename ReductionType&gt;
+<span class="lineNum">     439 </span><span class="lineCov">          1 : struct RegisterReductionAction : RegistrationHelper {</span>
+<span class="lineNum">     440 </span><span class="lineNoCov">          0 :   using chare_type = typename ParallelComponent::chare_type;</span>
+<span class="lineNum">     441 </span><span class="lineNoCov">          0 :   using charm_type = charm_types_with_parameters&lt;</span>
+<span class="lineNum">     442 </span>            :       ParallelComponent,
+<span class="lineNum">     443 </span>            :       typename get_array_index&lt;chare_type&gt;::template f&lt;ParallelComponent&gt;&gt;;
+<span class="lineNum">     444 </span><span class="lineNoCov">          0 :   using cproxy = typename charm_type::cproxy;</span>
+<span class="lineNum">     445 </span><span class="lineNoCov">          0 :   using ckindex = typename charm_type::ckindex;</span>
+<span class="lineNum">     446 </span><span class="lineNoCov">          0 :   using algorithm = typename charm_type::algorithm;</span>
+<span class="lineNum">     447 </span>            : 
+<span class="lineNum">     448 </span><span class="lineNoCov">          0 :   RegisterReductionAction() = default;</span>
+<span class="lineNum">     449 </span><span class="lineNoCov">          0 :   RegisterReductionAction(const RegisterReductionAction&amp;) = default;</span>
+<span class="lineNum">     450 </span><span class="lineNoCov">          0 :   RegisterReductionAction&amp; operator=(const RegisterReductionAction&amp;) = default;</span>
+<span class="lineNum">     451 </span><span class="lineNoCov">          0 :   RegisterReductionAction(RegisterReductionAction&amp;&amp;) = default;</span>
+<span class="lineNum">     452 </span><span class="lineNoCov">          0 :   RegisterReductionAction&amp; operator=(RegisterReductionAction&amp;&amp;) = default;</span>
+<span class="lineNum">     453 </span><span class="lineNoCov">          0 :   ~RegisterReductionAction() override = default;</span>
+<span class="lineNum">     454 </span>            : 
+<span class="lineNum">     455 </span><span class="lineNoCov">          0 :   void register_with_charm() const noexcept override {</span>
+<span class="lineNum">     456 </span>            :     static bool done_registration{false};
+<span class="lineNum">     457 </span>            :     if (done_registration) {
+<span class="lineNum">     458 </span>            :       return;  // LCOV_EXCL_LINE
+<span class="lineNum">     459 </span>            :     }
+<span class="lineNum">     460 </span>            :     done_registration = true;
+<span class="lineNum">     461 </span>            :     ckindex::template idx_reduction_action&lt;Action, ReductionType&gt;(
+<span class="lineNum">     462 </span>            :         static_cast&lt;void (algorithm::*)(const ReductionType&amp;)&gt;(nullptr));
+<span class="lineNum">     463 </span>            :     ckindex::template redn_wrapper_reduction_action&lt;Action, ReductionType&gt;(
+<span class="lineNum">     464 </span>            :         nullptr);
+<span class="lineNum">     465 </span>            :   }
+<span class="lineNum">     466 </span>            : 
+<span class="lineNum">     467 </span><span class="lineNoCov">          0 :   std::string name() const noexcept override {</span>
+<span class="lineNum">     468 </span>            :     return get_template_parameters_as_string&lt;RegisterReductionAction&gt;();
+<span class="lineNum">     469 </span>            :   }
+<span class="lineNum">     470 </span>            : 
+<span class="lineNum">     471 </span><span class="lineNoCov">          0 :   static bool registrar;</span>
+<span class="lineNum">     472 </span>            : };
+<span class="lineNum">     473 </span>            : 
+<span class="lineNum">     474 </span>            : /*!
+<span class="lineNum">     475 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     476 </span>            :  * \brief Function that adds a pointer to a specific derived class to the
+<span class="lineNum">     477 </span>            :  * `charm_register_list`
+<span class="lineNum">     478 </span>            :  *
+<span class="lineNum">     479 </span>            :  * Used to initialize the `registrar` bool of derived classes of
+<span class="lineNum">     480 </span>            :  * `RegistrationHelper`. When the function is invoked it appends the derived
+<span class="lineNum">     481 </span>            :  * class to the `charm_register_list`.
+<span class="lineNum">     482 </span>            :  *
+<span class="lineNum">     483 </span>            :  * \note The reason for not using a `std::vector` is that this did not behave
+<span class="lineNum">     484 </span>            :  * correctly when calling `push_back`. Specifically, the final vector was always
+<span class="lineNum">     485 </span>            :  * size 1, even though multiple elements were pushed back. The reason for that
+<span class="lineNum">     486 </span>            :  * behavior was never tracked down and so in the future it could be possible to
+<span class="lineNum">     487 </span>            :  * use a `std::vector`.
+<span class="lineNum">     488 </span>            :  */
+<span class="lineNum">     489 </span>            : template &lt;typename Derived&gt;
+<span class="lineNum">     490 </span><span class="lineCov">          2 : bool register_func_with_charm() noexcept {</span>
+<span class="lineNum">     491 </span>            :   if (charm_register_list_size &gt;= charm_register_list_capacity) {
+<span class="lineNum">     492 </span>            :     // clang-tidy: use gsl::owner (we don't use raw owning pointers unless
+<span class="lineNum">     493 </span>            :     // necessary)
+<span class="lineNum">     494 </span>            :     auto* const t =  // NOLINT
+<span class="lineNum">     495 </span>            :         new std::unique_ptr&lt;RegistrationHelper&gt;[charm_register_list_capacity +
+<span class="lineNum">     496 </span>            :                                                 10];
+<span class="lineNum">     497 </span>            :     for (size_t i = 0; i &lt; charm_register_list_capacity; ++i) {
+<span class="lineNum">     498 </span>            :       // clang-tidy: do not use pointer arithmetic
+<span class="lineNum">     499 </span>            :       t[i] = std::move(charm_register_list[i]);  // NOLINT
+<span class="lineNum">     500 </span>            :     }
+<span class="lineNum">     501 </span>            :     // clang-tidy: use gsl::owner (we don't use raw owning pointers unless
+<span class="lineNum">     502 </span>            :     // necessary)
+<span class="lineNum">     503 </span>            :     delete[] charm_register_list;  // NOLINT
+<span class="lineNum">     504 </span>            :     charm_register_list = t;
+<span class="lineNum">     505 </span>            :     charm_register_list_capacity += 10;
+<span class="lineNum">     506 </span>            :   }
+<span class="lineNum">     507 </span>            :   charm_register_list_size++;
+<span class="lineNum">     508 </span>            :   // clang-tidy: do not use pointer arithmetic
+<span class="lineNum">     509 </span>            :   charm_register_list[charm_register_list_size - 1] =  // NOLINT
+<span class="lineNum">     510 </span>            :       std::make_unique&lt;Derived&gt;();
+<span class="lineNum">     511 </span>            :   return true;
+<span class="lineNum">     512 </span>            : }
+<span class="lineNum">     513 </span>            : }  // namespace charmxx
+<span class="lineNum">     514 </span>            : }  // namespace Parallel
+<span class="lineNum">     515 </span>            : 
+<span class="lineNum">     516 </span>            : // clang-tidy: redundant declaration
+<span class="lineNum">     517 </span>            : template &lt;typename ParallelComponent&gt;
+<span class="lineNum">     518 </span>            : bool Parallel::charmxx::RegisterParallelComponent&lt;
+<span class="lineNum">     519 </span>            :     ParallelComponent&gt;::registrar =  // NOLINT
+<span class="lineNum">     520 </span>            :     Parallel::charmxx::register_func_with_charm&lt;
+<span class="lineNum">     521 </span>            :         RegisterParallelComponent&lt;ParallelComponent&gt;&gt;();
+<span class="lineNum">     522 </span>            : 
+<span class="lineNum">     523 </span>            : // clang-tidy: redundant declaration
+<span class="lineNum">     524 </span>            : template &lt;typename Chare, typename CkIndex&gt;
+<span class="lineNum">     525 </span>            : bool Parallel::charmxx::RegisterChare&lt;Chare, CkIndex&gt;::registrar =  // NOLINT
+<span class="lineNum">     526 </span>            :     Parallel::charmxx::register_func_with_charm&lt;
+<span class="lineNum">     527 </span>            :         RegisterChare&lt;Chare, CkIndex&gt;&gt;();
+<span class="lineNum">     528 </span>            : 
+<span class="lineNum">     529 </span>            : // clang-tidy: redundant declaration
+<span class="lineNum">     530 </span>            : template &lt;typename ParallelComponent, typename Action, typename... Args&gt;
+<span class="lineNum">     531 </span>            : bool Parallel::charmxx::RegisterSimpleAction&lt;ParallelComponent, Action,
+<span class="lineNum">     532 </span>            :                                              Args...&gt;::registrar =  // NOLINT
+<span class="lineNum">     533 </span>            :     Parallel::charmxx::register_func_with_charm&lt;
+<span class="lineNum">     534 </span>            :         RegisterSimpleAction&lt;ParallelComponent, Action, Args...&gt;&gt;();
+<span class="lineNum">     535 </span>            : 
+<span class="lineNum">     536 </span>            : // clang-tidy: redundant declaration
+<span class="lineNum">     537 </span>            : template &lt;typename ParallelComponent, typename Action&gt;
+<span class="lineNum">     538 </span>            : bool Parallel::charmxx::RegisterSimpleAction&lt;ParallelComponent,
+<span class="lineNum">     539 </span>            :                                              Action&gt;::registrar =  // NOLINT
+<span class="lineNum">     540 </span>            :     Parallel::charmxx::register_func_with_charm&lt;
+<span class="lineNum">     541 </span>            :         RegisterSimpleAction&lt;ParallelComponent, Action&gt;&gt;();
+<span class="lineNum">     542 </span>            : 
+<span class="lineNum">     543 </span>            : // clang-tidy: redundant declaration
+<span class="lineNum">     544 </span>            : template &lt;typename ParallelComponent, typename Action, typename... Args&gt;
+<span class="lineNum">     545 </span>            : bool Parallel::charmxx::RegisterThreadedAction&lt;ParallelComponent, Action,
+<span class="lineNum">     546 </span>            :                                                Args...&gt;::registrar =  // NOLINT
+<span class="lineNum">     547 </span>            :     Parallel::charmxx::register_func_with_charm&lt;
+<span class="lineNum">     548 </span>            :         RegisterThreadedAction&lt;ParallelComponent, Action, Args...&gt;&gt;();
+<span class="lineNum">     549 </span>            : 
+<span class="lineNum">     550 </span>            : // clang-tidy: redundant declaration
+<span class="lineNum">     551 </span>            : template &lt;typename ParallelComponent, typename Action&gt;
+<span class="lineNum">     552 </span>            : bool Parallel::charmxx::RegisterThreadedAction&lt;ParallelComponent,
+<span class="lineNum">     553 </span>            :                                                Action&gt;::registrar =  // NOLINT
+<span class="lineNum">     554 </span>            :     Parallel::charmxx::register_func_with_charm&lt;
+<span class="lineNum">     555 </span>            :         RegisterThreadedAction&lt;ParallelComponent, Action&gt;&gt;();
+<span class="lineNum">     556 </span>            : 
+<span class="lineNum">     557 </span>            : // clang-tidy: redundant declaration
+<span class="lineNum">     558 </span>            : template &lt;typename ParallelComponent, typename ReceiveTag&gt;
+<span class="lineNum">     559 </span>            : bool Parallel::charmxx::RegisterReceiveData&lt;ParallelComponent,
+<span class="lineNum">     560 </span>            :                                             ReceiveTag&gt;::registrar =  // NOLINT
+<span class="lineNum">     561 </span>            :     Parallel::charmxx::register_func_with_charm&lt;
+<span class="lineNum">     562 </span>            :         RegisterReceiveData&lt;ParallelComponent, ReceiveTag&gt;&gt;();
+<span class="lineNum">     563 </span>            : 
+<span class="lineNum">     564 </span>            : // clang-tidy: redundant declaration
+<span class="lineNum">     565 </span>            : template &lt;typename ParallelComponent, typename Action, typename ReductionType&gt;
+<span class="lineNum">     566 </span>            : bool Parallel::charmxx::RegisterReductionAction&lt;
+<span class="lineNum">     567 </span>            :     ParallelComponent, Action, ReductionType&gt;::registrar =  // NOLINT
+<span class="lineNum">     568 </span>            :     Parallel::charmxx::register_func_with_charm&lt;
+<span class="lineNum">     569 </span>            :         RegisterReductionAction&lt;ParallelComponent, Action, ReductionType&gt;&gt;();
+<span class="lineNum">     570 </span>            : 
+<span class="lineNum">     571 </span>            : /// \cond
+<span class="lineNum">     572 </span>            : class CkReductionMsg;
+<span class="lineNum">     573 </span>            : /// \endcond
+<span class="lineNum">     574 </span>            : 
+<span class="lineNum">     575 </span>            : namespace Parallel {
+<span class="lineNum">     576 </span>            : namespace charmxx {
+<span class="lineNum">     577 </span>            : /*!
+<span class="lineNum">     578 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     579 </span>            :  * \brief The type of a function pointer to a Charm++ custom reduction function.
+<span class="lineNum">     580 </span>            :  */
+<span class="lineNum">     581 </span><span class="lineCov">          2 : using ReducerFunctions = CkReductionMsg* (*)(int, CkReductionMsg**);</span>
+<span class="lineNum">     582 </span>            : /// \cond
+<span class="lineNum">     583 </span>            : extern ReducerFunctions* charm_reducer_functions_list;
+<span class="lineNum">     584 </span>            : extern size_t charm_reducer_functions_capacity;
+<span class="lineNum">     585 </span>            : extern size_t charm_reducer_functions_size;
+<span class="lineNum">     586 </span>            : extern std::unordered_map&lt;size_t, CkReduction::reducerType&gt;
+<span class="lineNum">     587 </span>            :     charm_reducer_functions;
+<span class="lineNum">     588 </span>            : /// \endcond
+<span class="lineNum">     589 </span>            : 
+<span class="lineNum">     590 </span>            : /*!
+<span class="lineNum">     591 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     592 </span>            :  * \brief Class used for registering custom reduction function
+<span class="lineNum">     593 </span>            :  *
+<span class="lineNum">     594 </span>            :  * The static member variable is initialized before main is entered. This means
+<span class="lineNum">     595 </span>            :  * we are able to inject code into the beginning of the execution of an
+<span class="lineNum">     596 </span>            :  * executable by &quot;using&quot; the variable (casting to void counts) the function that
+<span class="lineNum">     597 </span>            :  * initializes the variable is called. We &quot;use&quot; `registrar` inside the
+<span class="lineNum">     598 </span>            :  * `Parallel::contribute_to_reduction` function.
+<span class="lineNum">     599 </span>            :  */
+<span class="lineNum">     600 </span>            : template &lt;ReducerFunctions&gt;
+<span class="lineNum">     601 </span><span class="lineCov">          1 : struct RegisterReducerFunction {</span>
+<span class="lineNum">     602 </span><span class="lineNoCov">          0 :   static bool registrar;</span>
+<span class="lineNum">     603 </span>            : };
+<span class="lineNum">     604 </span>            : 
+<span class="lineNum">     605 </span>            : /*!
+<span class="lineNum">     606 </span>            :  * \ingroup CharmExtensionsGroup
+<span class="lineNum">     607 </span>            :  * \brief Function that stores a function pointer to the custom reduction
+<span class="lineNum">     608 </span>            :  * function to be registered later.
+<span class="lineNum">     609 </span>            :  *
+<span class="lineNum">     610 </span>            :  * Used to initialize the `registrar` bool of `RegisterReducerFunction`. When
+<span class="lineNum">     611 </span>            :  * invoked it adds the function `F` of type `ReducerFunctions` to the list
+<span class="lineNum">     612 </span>            :  * `charm_reducer_functions_list`.
+<span class="lineNum">     613 </span>            :  *
+<span class="lineNum">     614 </span>            :  * \note The reason for not using a `std::vector&lt;ReducerFunctions&gt;` is that this
+<span class="lineNum">     615 </span>            :  * did not behave correctly when calling `push_back`. Specifically, the final
+<span class="lineNum">     616 </span>            :  * vector was always size 1, even though multiple elements were pushed back. The
+<span class="lineNum">     617 </span>            :  * reason for that behavior was never tracked down and so in the future it could
+<span class="lineNum">     618 </span>            :  * be possible to use a `std::vector`.
+<span class="lineNum">     619 </span>            :  */
+<span class="lineNum">     620 </span>            : template &lt;ReducerFunctions F&gt;
+<span class="lineNum">     621 </span><span class="lineCov">          2 : bool register_reducer_function() noexcept {</span>
+<span class="lineNum">     622 </span>            :   if (charm_reducer_functions_size &gt;= charm_reducer_functions_capacity) {
+<span class="lineNum">     623 </span>            :     // clang-tidy: use gsl::owner (we don't use raw owning pointers unless
+<span class="lineNum">     624 </span>            :     // necessary)
+<span class="lineNum">     625 </span>            :     auto* const t =  // NOLINT
+<span class="lineNum">     626 </span>            :         new ReducerFunctions[charm_reducer_functions_capacity + 10];
+<span class="lineNum">     627 </span>            :     for (size_t i = 0; i &lt; charm_reducer_functions_capacity; ++i) {
+<span class="lineNum">     628 </span>            :       // clang-tidy: do not use pointer arithmetic
+<span class="lineNum">     629 </span>            :       t[i] = std::move(charm_reducer_functions_list[i]);  // NOLINT
+<span class="lineNum">     630 </span>            :     }
+<span class="lineNum">     631 </span>            :     // clang-tidy: use gsl::owner (we don't use raw owning pointers unless
+<span class="lineNum">     632 </span>            :     // necessary)
+<span class="lineNum">     633 </span>            :     delete[] charm_reducer_functions_list;  // NOLINT
+<span class="lineNum">     634 </span>            :     charm_reducer_functions_list = t;
+<span class="lineNum">     635 </span>            :     charm_reducer_functions_capacity += 10;
+<span class="lineNum">     636 </span>            :   }
+<span class="lineNum">     637 </span>            :   charm_reducer_functions_size++;
+<span class="lineNum">     638 </span>            :   // clang-tidy: do not use pointer arithmetic
+<span class="lineNum">     639 </span>            :   charm_reducer_functions_list[charm_reducer_functions_size - 1] = F;  // NOLINT
+<span class="lineNum">     640 </span>            :   return true;
+<span class="lineNum">     641 </span>            : }
+<span class="lineNum">     642 </span>            : }  // namespace charmxx
+<span class="lineNum">     643 </span>            : }  // namespace Parallel
+<span class="lineNum">     644 </span>            : 
+<span class="lineNum">     645 </span>            : // clang-tidy: do not use pointer arithmetic
+<span class="lineNum">     646 </span>            : template &lt;Parallel::charmxx::ReducerFunctions F&gt;
+<span class="lineNum">     647 </span>            : bool Parallel::charmxx::RegisterReducerFunction&lt;F&gt;::registrar =  // NOLINT
+<span class="lineNum">     648 </span>            :     Parallel::charmxx::register_reducer_function&lt;F&gt;();
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

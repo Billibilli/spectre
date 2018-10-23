@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Parallel/ArrayIndex.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Parallel</a> - ArrayIndex.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntryLo">7.1 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;charm++.h&gt;
+<span class="lineNum">       7 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : namespace Parallel {
+<span class="lineNum">      10 </span>            : /*!
+<span class="lineNum">      11 </span>            :  * \ingroup ParallelGroup
+<span class="lineNum">      12 </span>            :  * \brief The array index used for indexing Chare Arrays, mostly an
+<span class="lineNum">      13 </span>            :  * implementation detail
+<span class="lineNum">      14 </span>            :  *
+<span class="lineNum">      15 </span>            :  * The implementation is generic and can handle custom array indices. This
+<span class="lineNum">      16 </span>            :  * replaces the generated, hard-coded Charm++ array indices with a template,
+<span class="lineNum">      17 </span>            :  * allowing a single implementation to be used for different array indices.
+<span class="lineNum">      18 </span>            :  */
+<span class="lineNum">      19 </span>            : template &lt;class Index&gt;
+<span class="lineNum">      20 </span><span class="lineCov">          1 : struct ArrayIndex : public CkArrayIndex {</span>
+<span class="lineNum">      21 </span>            :   static_assert(std::is_pod&lt;Index&gt;::value,
+<span class="lineNum">      22 </span>            :                 &quot;The array index type must be a POD, plain-old-data&quot;);
+<span class="lineNum">      23 </span>            :   // clang-tidy: suspicious use of sizeof
+<span class="lineNum">      24 </span>            :   static_assert(sizeof(Index) / sizeof(int) &lt;= 3,  // NOLINT
+<span class="lineNum">      25 </span>            :                 &quot;The default Charm++ CK_ARRAYINDEX_MAXLEN is 3. If you have &quot;
+<span class="lineNum">      26 </span>            :                 &quot;changed this at Charm++ configuration time then please update &quot;
+<span class="lineNum">      27 </span>            :                 &quot;the static_assert, otherwise your Index type is too large.&quot;);
+<span class="lineNum">      28 </span>            :   // clang-tidy: suspicious use of sizeof
+<span class="lineNum">      29 </span>            :   static_assert(sizeof(Index) % sizeof(int) == 0,  // NOLINT
+<span class="lineNum">      30 </span>            :                 &quot;The Charm++ array Index type must be exactly a multiple of &quot;
+<span class="lineNum">      31 </span>            :                 &quot;the size of an integer, but the user-provided one is not.&quot;);
+<span class="lineNum">      32 </span>            :   static_assert(
+<span class="lineNum">      33 </span>            :       alignof(Index) == alignof(decltype(index)),
+<span class="lineNum">      34 </span>            :       &quot;Incorrect alignment of Charm++ array Index type. The &quot;
+<span class="lineNum">      35 </span>            :       &quot;alignment must match the alignment of the internal Charm++ type&quot;);
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span>            :   // Use placement new to ensure that the custom index object is placed in the
+<span class="lineNum">      38 </span>            :   // memory reserved for it in the base class
+<span class="lineNum">      39 </span>            :   // clang-tidy: mark explicit: it's a conversion constructor
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 :   ArrayIndex(const Index&amp; array_index)  // NOLINT</span>
+<span class="lineNum">      41 </span>            :                                         // clang-tidy: do not use unions
+<span class="lineNum">      42 </span>            :       : array_index_(new (index) Index(array_index)) {  // NOLINT
+<span class="lineNum">      43 </span>            :     // clang-tidy: suspicious use of sizeof
+<span class="lineNum">      44 </span>            :     nInts = sizeof(array_index) / sizeof(int);  // NOLINT
+<span class="lineNum">      45 </span>            :   }
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :   ArrayIndex(const ArrayIndex&amp; rhs) = delete;</span>
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 :   ArrayIndex&amp; operator=(const ArrayIndex&amp; rhs) = delete;</span>
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 :   ArrayIndex(ArrayIndex&amp;&amp; /*rhs*/) noexcept = delete;</span>
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 :   ArrayIndex&amp; operator=(ArrayIndex&amp;&amp; /*rhs*/) noexcept = delete;</span>
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :   ~ArrayIndex() = default;</span>
+<span class="lineNum">      53 </span>            : 
+<span class="lineNum">      54 </span>            :  private:
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :   Index* array_index_ = nullptr;</span>
+<span class="lineNum">      56 </span>            : };
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 : using ArrayIndex1D = ArrayIndex&lt;CkIndex1D&gt;;</span>
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 : using ArrayIndex2D = ArrayIndex&lt;CkIndex2D&gt;;</span>
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 : using ArrayIndex3D = ArrayIndex&lt;CkIndex3D&gt;;</span>
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 : using ArrayIndex4D = ArrayIndex&lt;CkIndex4D&gt;;</span>
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 : using ArrayIndex5D = ArrayIndex&lt;CkIndex5D&gt;;</span>
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 : using ArrayIndex6D = ArrayIndex&lt;CkIndex6D&gt;;</span>
+<span class="lineNum">      64 </span>            : }  // namespace Parallel
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

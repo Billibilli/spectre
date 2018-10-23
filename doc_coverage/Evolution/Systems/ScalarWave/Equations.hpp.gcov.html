@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/Systems/ScalarWave/Equations.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">Evolution/Systems/ScalarWave</a> - Equations.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryLo">20.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : #include &lt;string&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;Domain/FaceNormal.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;NumericalAlgorithms/LinearOperators/PartialDerivatives.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Options/Options.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : /// \cond
+<span class="lineNum">      17 </span>            : template &lt;typename&gt;
+<span class="lineNum">      18 </span>            : class Variables;
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : class DataVector;
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : namespace gsl {
+<span class="lineNum">      23 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      24 </span>            : class not_null;
+<span class="lineNum">      25 </span>            : }  // namespace gsl
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : namespace Tags {
+<span class="lineNum">      28 </span>            : template &lt;typename&gt;
+<span class="lineNum">      29 </span>            : struct NormalDotFlux;
+<span class="lineNum">      30 </span>            : template &lt;typename&gt;
+<span class="lineNum">      31 </span>            : struct Normalized;
+<span class="lineNum">      32 </span>            : }  // namespace Tags
+<span class="lineNum">      33 </span>            : 
+<span class="lineNum">      34 </span>            : namespace ScalarWave {
+<span class="lineNum">      35 </span>            : struct Pi;
+<span class="lineNum">      36 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      37 </span>            : struct Phi;
+<span class="lineNum">      38 </span>            : }  // namespace ScalarWave
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            : namespace PUP {
+<span class="lineNum">      41 </span>            : class er;
+<span class="lineNum">      42 </span>            : }  // namespace PUP
+<span class="lineNum">      43 </span>            : /// \endcond
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            : // IWYU pragma: no_forward_declare Tensor
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            : namespace ScalarWave {
+<span class="lineNum">      48 </span>            : /*!
+<span class="lineNum">      49 </span>            :  * \brief Compute the time derivative of the evolved variables of the
+<span class="lineNum">      50 </span>            :  * first-order scalar wave system.
+<span class="lineNum">      51 </span>            :  *
+<span class="lineNum">      52 </span>            :  * The evolution equations for the first-order scalar wave system are given by:
+<span class="lineNum">      53 </span>            :  * \f{align}
+<span class="lineNum">      54 </span>            :  * \partial_t\psi = &amp; -\pi \\
+<span class="lineNum">      55 </span>            :  * \partial_t\Phi_i = &amp; -\partial_i \pi \\
+<span class="lineNum">      56 </span>            :  * \partial_t\pi = &amp; - \delta^{ij}\partial_i\Phi_j
+<span class="lineNum">      57 </span>            :  * \f}
+<span class="lineNum">      58 </span>            :  *
+<span class="lineNum">      59 </span>            :  * where \f$\psi\f$ is the scalar field, \f$\pi=-\partial_t\psi\f$ is the
+<span class="lineNum">      60 </span>            :  * conjugate momentum to \f$\psi\f$, and \f$\Phi_i=\partial_i\psi\f$ is an
+<span class="lineNum">      61 </span>            :  * auxiliary variable.
+<span class="lineNum">      62 </span>            :  */
+<span class="lineNum">      63 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      64 </span><span class="lineCov">          1 : struct ComputeDuDt {</span>
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   using argument_tags =</span>
+<span class="lineNum">      66 </span>            :       tmpl::list&lt;Pi, Tags::deriv&lt;Pi, tmpl::size_t&lt;Dim&gt;, Frame::Inertial&gt;,
+<span class="lineNum">      67 </span>            :                  Tags::deriv&lt;Phi&lt;Dim&gt;, tmpl::size_t&lt;Dim&gt;, Frame::Inertial&gt;&gt;;
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :   static void apply(</span>
+<span class="lineNum">      69 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; dt_pi,
+<span class="lineNum">      70 </span>            :       gsl::not_null&lt;tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;*&gt; dt_phi,
+<span class="lineNum">      71 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; dt_psi, const Scalar&lt;DataVector&gt;&amp; pi,
+<span class="lineNum">      72 </span>            :       const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp; d_pi,
+<span class="lineNum">      73 </span>            :       const tnsr::ij&lt;DataVector, Dim, Frame::Inertial&gt;&amp; d_phi) noexcept;
+<span class="lineNum">      74 </span>            : };
+<span class="lineNum">      75 </span>            : 
+<span class="lineNum">      76 </span>            : /*!
+<span class="lineNum">      77 </span>            :  * \brief Compute normal component of flux on a boundary.
+<span class="lineNum">      78 </span>            :  *
+<span class="lineNum">      79 </span>            :  * \f{align}
+<span class="lineNum">      80 </span>            :  * F(\Psi) =&amp; 0 \\
+<span class="lineNum">      81 </span>            :  * F(\Pi) =&amp; n^i \Phi_i \\
+<span class="lineNum">      82 </span>            :  * F(\Phi_i) =&amp; n_i \Pi
+<span class="lineNum">      83 </span>            :  * \f}
+<span class="lineNum">      84 </span>            :  */
+<span class="lineNum">      85 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      86 </span><span class="lineCov">          1 : struct ComputeNormalDotFluxes {</span>
+<span class="lineNum">      87 </span><span class="lineNoCov">          0 :   using argument_tags =</span>
+<span class="lineNum">      88 </span>            :       tmpl::list&lt;Pi, Phi&lt;Dim&gt;,
+<span class="lineNum">      89 </span>            :                  Tags::Normalized&lt;Tags::UnnormalizedFaceNormal&lt;Dim&gt;&gt;&gt;;
+<span class="lineNum">      90 </span><span class="lineNoCov">          0 :   static void apply(gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; pi_normal_dot_flux,</span>
+<span class="lineNum">      91 </span>            :                     gsl::not_null&lt;tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;*&gt;
+<span class="lineNum">      92 </span>            :                         phi_normal_dot_flux,
+<span class="lineNum">      93 </span>            :                     gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; psi_normal_dot_flux,
+<span class="lineNum">      94 </span>            :                     const Scalar&lt;DataVector&gt;&amp; pi,
+<span class="lineNum">      95 </span>            :                     const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp; phi,
+<span class="lineNum">      96 </span>            :                     const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp;
+<span class="lineNum">      97 </span>            :                         interface_unit_normal) noexcept;
+<span class="lineNum">      98 </span>            : };
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span>            : /*!
+<span class="lineNum">     101 </span>            :  * \ingroup NumericalFluxesGroup
+<span class="lineNum">     102 </span>            :  * \brief Computes the upwind flux
+<span class="lineNum">     103 </span>            :  *
+<span class="lineNum">     104 </span>            :  * The upwind flux is given by:
+<span class="lineNum">     105 </span>            :  * \f{align}
+<span class="lineNum">     106 </span>            :  * F^*(\Psi) =&amp; 0 \\
+<span class="lineNum">     107 </span>            :  * F^*(\Pi) =&amp; \frac{1}{2}\left(F(\Pi)_{\mathrm{int}} + F(\Pi)_{\mathrm{ext}}
+<span class="lineNum">     108 </span>            :  *                    + \Pi_{\mathrm{int}} - \Pi_{\mathrm{ext}}\right) \\
+<span class="lineNum">     109 </span>            :  * F^*(\Phi_i) =&amp; \frac{1}{2} \left(F(\Phi_i)_{\mathrm{int}}
+<span class="lineNum">     110 </span>            :  *                   + F(\Phi_i)_{\mathrm{ext}}
+<span class="lineNum">     111 </span>            :  *                   + (n_i)_{\mathrm{int}} F(\Pi)_{\mathrm{int}}
+<span class="lineNum">     112 </span>            :  *                   - (n_i)_{\mathrm{ext}} F(\Pi)_{\mathrm{ext}}\right)
+<span class="lineNum">     113 </span>            :  * \f}
+<span class="lineNum">     114 </span>            :  * where \f$F^*\f$ is the normal dotted with the numerical flux and \f$F\f$ is
+<span class="lineNum">     115 </span>            :  * the normal dotted with the flux, which is computed in
+<span class="lineNum">     116 </span>            :  * ScalarWave::ComputeNormalDotFluxes
+<span class="lineNum">     117 </span>            :  */
+<span class="lineNum">     118 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">     119 </span><span class="lineCov">          1 : struct UpwindFlux {</span>
+<span class="lineNum">     120 </span>            :  private:
+<span class="lineNum">     121 </span><span class="lineNoCov">          0 :   struct NormalTimesFluxPi {</span>
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :     using type = tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;;</span>
+<span class="lineNum">     123 </span><span class="lineNoCov">          0 :     static std::string name() noexcept { return &quot;NormalTimesFluxPi&quot;; }</span>
+<span class="lineNum">     124 </span>            :   };
+<span class="lineNum">     125 </span>            : 
+<span class="lineNum">     126 </span>            :  public:
+<span class="lineNum">     127 </span><span class="lineNoCov">          0 :   using options = tmpl::list&lt;&gt;;</span>
+<span class="lineNum">     128 </span><span class="lineNoCov">          0 :   static constexpr OptionString help = {</span>
+<span class="lineNum">     129 </span>            :       &quot;Computes the upwind flux for a scalar wave system. It requires no &quot;
+<span class="lineNum">     130 </span>            :       &quot;options.&quot;};
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span>            :   // clang-tidy: non-const reference
+<span class="lineNum">     133 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; /*p*/) noexcept {}  // NOLINT</span>
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            :   // This is the data needed to compute the numerical flux.
+<span class="lineNum">     136 </span>            :   // `dg::SendBoundaryFluxes` calls `package_data` to store these tags in a
+<span class="lineNum">     137 </span>            :   // Variables. Local and remote values of this data are then combined in the
+<span class="lineNum">     138 </span>            :   // `()` operator.
+<span class="lineNum">     139 </span><span class="lineNoCov">          0 :   using package_tags =</span>
+<span class="lineNum">     140 </span>            :       tmpl::list&lt;Tags::NormalDotFlux&lt;Pi&gt;, Tags::NormalDotFlux&lt;Phi&lt;Dim&gt;&gt;, Pi,
+<span class="lineNum">     141 </span>            :                  NormalTimesFluxPi&gt;;
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span>            :   // These tags on the interface of the element are passed to
+<span class="lineNum">     144 </span>            :   // `package_data` to provide the data needed to compute the numerical fluxes.
+<span class="lineNum">     145 </span><span class="lineNoCov">          0 :   using argument_tags =</span>
+<span class="lineNum">     146 </span>            :       tmpl::list&lt;Tags::NormalDotFlux&lt;Pi&gt;, Tags::NormalDotFlux&lt;Phi&lt;Dim&gt;&gt;, Pi,
+<span class="lineNum">     147 </span>            :                  Tags::Normalized&lt;Tags::UnnormalizedFaceNormal&lt;Dim&gt;&gt;&gt;;
+<span class="lineNum">     148 </span>            : 
+<span class="lineNum">     149 </span>            :   // pseudo-interface: used internally by Algorithm infrastructure, not
+<span class="lineNum">     150 </span>            :   // user-level code
+<span class="lineNum">     151 </span>            :   // Following the not-null pointer to packaged_data, this function expects as
+<span class="lineNum">     152 </span>            :   // arguments the databox types of the `argument_tags`.
+<span class="lineNum">     153 </span><span class="lineNoCov">          0 :   void package_data(</span>
+<span class="lineNum">     154 </span>            :       gsl::not_null&lt;Variables&lt;package_tags&gt;*&gt; packaged_data,
+<span class="lineNum">     155 </span>            :       const Scalar&lt;DataVector&gt;&amp; normal_dot_flux_pi,
+<span class="lineNum">     156 </span>            :       const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp; normal_dot_flux_phi,
+<span class="lineNum">     157 </span>            :       const Scalar&lt;DataVector&gt;&amp; pi,
+<span class="lineNum">     158 </span>            :       const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp; interface_unit_normal)
+<span class="lineNum">     159 </span>            :       const noexcept;
+<span class="lineNum">     160 </span>            : 
+<span class="lineNum">     161 </span>            :   // pseudo-interface: used internally by Algorithm infrastructure, not
+<span class="lineNum">     162 </span>            :   // user-level code
+<span class="lineNum">     163 </span>            :   // The arguments are first the system::variables_tag::tags_list wrapped in
+<span class="lineNum">     164 </span>            :   // Tags::NormalDotNumericalFLux as not-null pointers to write the results
+<span class="lineNum">     165 </span>            :   // into, then the package_tags on the interior side of the mortar followed by
+<span class="lineNum">     166 </span>            :   // the package_tags on the exterior side.
+<span class="lineNum">     167 </span><span class="lineNoCov">          0 :   void operator()(</span>
+<span class="lineNum">     168 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; pi_normal_dot_numerical_flux,
+<span class="lineNum">     169 </span>            :       gsl::not_null&lt;tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;*&gt;
+<span class="lineNum">     170 </span>            :           phi_normal_dot_numerical_flux,
+<span class="lineNum">     171 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; psi_normal_dot_numerical_flux,
+<span class="lineNum">     172 </span>            :       const Scalar&lt;DataVector&gt;&amp; normal_dot_flux_pi_interior,
+<span class="lineNum">     173 </span>            :       const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp;
+<span class="lineNum">     174 </span>            :           normal_dot_flux_phi_interior,
+<span class="lineNum">     175 </span>            :       const Scalar&lt;DataVector&gt;&amp; pi_interior,
+<span class="lineNum">     176 </span>            :       const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp;
+<span class="lineNum">     177 </span>            :           normal_times_flux_pi_interior,
+<span class="lineNum">     178 </span>            :       const Scalar&lt;DataVector&gt;&amp; minus_normal_dot_flux_pi_exterior,
+<span class="lineNum">     179 </span>            :       const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp;
+<span class="lineNum">     180 </span>            :           minus_normal_dot_flux_phi_exterior,
+<span class="lineNum">     181 </span>            :       const Scalar&lt;DataVector&gt;&amp; pi_exterior,
+<span class="lineNum">     182 </span>            :       const tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;&amp;
+<span class="lineNum">     183 </span>            :           normal_times_flux_pi_exterior) const noexcept;
+<span class="lineNum">     184 </span>            : };
+<span class="lineNum">     185 </span>            : 
+<span class="lineNum">     186 </span>            : /// Compute the maximum magnitude of the characteristic speeds.
+<span class="lineNum">     187 </span><span class="lineCov">          1 : struct ComputeLargestCharacteristicSpeed {</span>
+<span class="lineNum">     188 </span><span class="lineNoCov">          0 :   using argument_tags = tmpl::list&lt;&gt;;</span>
+<span class="lineNum">     189 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE static constexpr double apply() noexcept { return 1.0; }</span>
+<span class="lineNum">     190 </span>            : };
+<span class="lineNum">     191 </span>            : }  // namespace ScalarWave
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

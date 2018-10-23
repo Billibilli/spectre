@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - ApparentHorizons/SpherepackIterator.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">ApparentHorizons</a> - SpherepackIterator.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntry">26</td>
+            <td class="headerCovTableEntryLo">34.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : ///
+<span class="lineNum">       5 </span>            : /// \file
+<span class="lineNum">       6 </span>            : /// Defines class SpherepackIterator.
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #pragma once
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">      11 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      12 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">      13 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : /*!
+<span class="lineNum">      18 </span>            :  * \ingroup SpectralGroup
+<span class="lineNum">      19 </span>            :  * \brief
+<span class="lineNum">      20 </span>            :  * Iterates over spectral coefficients stored in SPHEREPACK format.
+<span class="lineNum">      21 </span>            :  *
+<span class="lineNum">      22 </span>            :  * \details
+<span class="lineNum">      23 </span>            :  * The internal SPHEREPACK ordering is not intuitive, so
+<span class="lineNum">      24 </span>            :  * SpherepackIterator exists for the purpose of iterating over an
+<span class="lineNum">      25 </span>            :  * array containing SPHEREPACK coefficients and determining the
+<span class="lineNum">      26 </span>            :  * (l,m) of each entry in the array.
+<span class="lineNum">      27 </span>            :  *
+<span class="lineNum">      28 </span>            :  * SPHEREPACK expands \f$f(\theta,\phi)\f$ as
+<span class="lineNum">      29 </span>            :  * \f[
+<span class="lineNum">      30 </span>            :  * f(\theta,\phi) =
+<span class="lineNum">      31 </span>            :  * \frac{1}{2} \sum_{l=0}^{l_{max}} \bar{P}_l^0 a(0,l)
+<span class="lineNum">      32 </span>            :  *   + \sum_{m=1}^{m_{max}} \sum_{l=m}^{l_{max}} \bar{P}_l^m
+<span class="lineNum">      33 </span>            :  *         \left(  a(m,l) \cos(m \phi) - b(m,l) \sin(m \phi)\right)
+<span class="lineNum">      34 </span>            :  * \f]
+<span class="lineNum">      35 </span>            :  * where \f$a(m,l)\f$ and \f$b(m,l)\f$ are the SPHEREPACK
+<span class="lineNum">      36 </span>            :  * spectral coefficients, and \f$\bar{P}_l^m\f$ are
+<span class="lineNum">      37 </span>            :  * unit-orthonormal associated Legendre polynomials:
+<span class="lineNum">      38 </span>            :  * \f[
+<span class="lineNum">      39 </span>            :  * \bar{P}_l^m =
+<span class="lineNum">      40 </span>            :  * (-1)^m \sqrt{\frac{(2l+1)(l-m)!}{2(l+m)!}} P_l^m,
+<span class="lineNum">      41 </span>            :  * \f]
+<span class="lineNum">      42 </span>            :  * where \f$P_l^m\f$ are the associated Legendre polynomials as defined
+<span class="lineNum">      43 </span>            :  * for example in Jackson &quot;Classical Electrodynamics&quot;.
+<span class="lineNum">      44 </span>            :  * \example
+<span class="lineNum">      45 </span>            :  * \snippet Test_SpherepackIterator.cpp spherepack_iterator_example
+<span class="lineNum">      46 </span>            :  */
+<span class="lineNum">      47 </span><span class="lineCov">          1 : class SpherepackIterator {</span>
+<span class="lineNum">      48 </span>            :  public:
+<span class="lineNum">      49 </span>            :   /// SPHEREPACK has two coefficient variables, 'a' and 'b', that hold
+<span class="lineNum">      50 </span>            :   /// the cos(m*phi) and sin(m*phi) parts of the spectral
+<span class="lineNum">      51 </span>            :   /// coefficients.
+<span class="lineNum">      52 </span><span class="lineCov">          1 :   enum class CoefficientArray { a, b };</span>
+<span class="lineNum">      53 </span>            : 
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :   SpherepackIterator(size_t l_max_input, size_t m_max_input, size_t stride = 1);</span>
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 :   size_t l_max() const noexcept { return l_max_; }</span>
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :   size_t m_max() const noexcept { return m_max_; }</span>
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 :   size_t n_th() const noexcept { return n_th_; }</span>
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :   size_t n_ph() const noexcept { return n_ph_; }</span>
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :   size_t stride() const noexcept { return stride_; }</span>
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span>            :   /// Size of a SPHEREPACK coefficient array (a and b combined), not
+<span class="lineNum">      63 </span>            :   /// counting stride.  For non-unit stride, the size of the array
+<span class="lineNum">      64 </span>            :   /// should be spherepack_array_size()*stride.
+<span class="lineNum">      65 </span><span class="lineCov">          1 :   size_t spherepack_array_size() const noexcept {</span>
+<span class="lineNum">      66 </span>            :     return (l_max_ + 1) * (m_max_ + 1) * 2;
+<span class="lineNum">      67 </span>            :   }
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   SpherepackIterator&amp; operator++() noexcept {</span>
+<span class="lineNum">      70 </span>            :     ASSERT(current_compact_index_ != offset_into_spherepack_array.size(),
+<span class="lineNum">      71 </span>            :            &quot;Incrementing an invalid iterator: &quot;
+<span class="lineNum">      72 </span>            :                &lt;&lt; current_compact_index_ &lt;&lt; &quot; &quot;
+<span class="lineNum">      73 </span>            :                &lt;&lt; offset_into_spherepack_array.size());
+<span class="lineNum">      74 </span>            :     ++current_compact_index_;
+<span class="lineNum">      75 </span>            :     return *this;
+<span class="lineNum">      76 </span>            :   }
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span><span class="lineNoCov">          0 :   explicit operator bool() const noexcept {</span>
+<span class="lineNum">      79 </span>            :     return current_compact_index_ &lt; offset_into_spherepack_array.size();
+<span class="lineNum">      80 </span>            :   }
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span>            :   /// Current index into a SPHEREPACK coefficient array.
+<span class="lineNum">      83 </span><span class="lineCov">          1 :   size_t operator()() const noexcept {</span>
+<span class="lineNum">      84 </span>            :     return offset_into_spherepack_array[current_compact_index_];
+<span class="lineNum">      85 </span>            :   }
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span>            :   /// Current values of l and m.
+<span class="lineNum">      88 </span><span class="lineCov">          1 :   size_t l() const noexcept { return compact_l_[current_compact_index_]; }</span>
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 :   size_t m() const noexcept { return compact_m_[current_compact_index_]; }</span>
+<span class="lineNum">      90 </span>            :   ///  Whether the iterator points to an element of 'a' or 'b',
+<span class="lineNum">      91 </span>            :   ///  i.e. points to the cos(m*phi) or sin(m*phi) part of a spectral
+<span class="lineNum">      92 </span>            :   ///  coefficient.
+<span class="lineNum">      93 </span><span class="lineCov">          1 :   CoefficientArray coefficient_array() const noexcept {</span>
+<span class="lineNum">      94 </span>            :     return (current_compact_index_ &lt; number_of_valid_entries_in_a_
+<span class="lineNum">      95 </span>            :                 ? CoefficientArray::a
+<span class="lineNum">      96 </span>            :                 : CoefficientArray::b);
+<span class="lineNum">      97 </span>            :   }
+<span class="lineNum">      98 </span>            : 
+<span class="lineNum">      99 </span>            :   /// Reset iterator back to beginning value. Returns *this.
+<span class="lineNum">     100 </span><span class="lineCov">          1 :   SpherepackIterator&amp; reset() noexcept;</span>
+<span class="lineNum">     101 </span>            : 
+<span class="lineNum">     102 </span>            :   /// Set iterator to specific value of l, m, array.  Returns *this.
+<span class="lineNum">     103 </span><span class="lineCov">          1 :   SpherepackIterator&amp; set(size_t l_input, size_t m_input,</span>
+<span class="lineNum">     104 </span>            :                           CoefficientArray coefficient_array_input) noexcept;
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span>            :   /// Same as 'set' above, but assumes CoefficientArray is 'a' for m&gt;=0 and
+<span class="lineNum">     107 </span>            :   /// 'b' for m&lt;0.  This is useful when converting between true
+<span class="lineNum">     108 </span>            :   /// spherical harmonics (which allow negative values of m) and
+<span class="lineNum">     109 </span>            :   /// SPHEREPACK coefficients (which have only positive values of m,
+<span class="lineNum">     110 </span>            :   /// but two arrays for sin(m*phi) and cos(m*phi) parts).
+<span class="lineNum">     111 </span><span class="lineCov">          1 :   SpherepackIterator&amp; set(size_t l_input, int m_input) noexcept {</span>
+<span class="lineNum">     112 </span>            :     return set(l_input, size_t(abs(m_input)),
+<span class="lineNum">     113 </span>            :                m_input &gt;= 0 ? CoefficientArray::a : CoefficientArray::b);
+<span class="lineNum">     114 </span>            :   }
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            :  private:
+<span class="lineNum">     117 </span><span class="lineNoCov">          0 :   size_t l_max_, m_max_, n_th_, n_ph_, stride_;</span>
+<span class="lineNum">     118 </span><span class="lineNoCov">          0 :   size_t number_of_valid_entries_in_a_;</span>
+<span class="lineNum">     119 </span><span class="lineNoCov">          0 :   size_t current_compact_index_;</span>
+<span class="lineNum">     120 </span><span class="lineNoCov">          0 :   std::vector&lt;size_t&gt; offset_into_spherepack_array;</span>
+<span class="lineNum">     121 </span><span class="lineNoCov">          0 :   std::vector&lt;size_t&gt; compact_l_, compact_m_;</span>
+<span class="lineNum">     122 </span>            : };
+<span class="lineNum">     123 </span>            : 
+<span class="lineNum">     124 </span><span class="lineNoCov">          0 : inline bool operator==(const SpherepackIterator&amp; lhs,</span>
+<span class="lineNum">     125 </span>            :                        const SpherepackIterator&amp; rhs) {
+<span class="lineNum">     126 </span>            :   return lhs.l_max() == rhs.l_max() and lhs.m_max() == rhs.m_max() and
+<span class="lineNum">     127 </span>            :          lhs.stride() == rhs.stride() and lhs() == rhs();
+<span class="lineNum">     128 </span>            : }
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 : inline bool operator!=(const SpherepackIterator&amp; lhs,</span>
+<span class="lineNum">     131 </span>            :                        const SpherepackIterator&amp; rhs) {
+<span class="lineNum">     132 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     133 </span>            : }
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span><span class="lineNoCov">          0 : inline std::ostream&amp; operator&lt;&lt;(</span>
+<span class="lineNum">     136 </span>            :     std::ostream&amp; os,
+<span class="lineNum">     137 </span>            :     const SpherepackIterator::CoefficientArray&amp; coefficient_array) {
+<span class="lineNum">     138 </span>            :   return os &lt;&lt; (coefficient_array == SpherepackIterator::CoefficientArray::a
+<span class="lineNum">     139 </span>            :                     ? 'a'
+<span class="lineNum">     140 </span>            :                     : 'b');
+<span class="lineNum">     141 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

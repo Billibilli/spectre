@@ -1,0 +1,275 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Deferred&lt; Rt, MakeConstReference &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classDeferred-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">Deferred&lt; Rt, MakeConstReference &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__DataBoxGroup.html">DataBox</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Provides deferred or lazy evaluation of a function or function object, as well as efficient storage of an object that is mutable.  
+ <a href="classDeferred.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Deferred_8hpp_source.html">Deferred.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:abfedf19de58616fcf533970cda671e9a"><td class="memItemLeft" align="right" valign="top"><a id="abfedf19de58616fcf533970cda671e9a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/remove_cv.html">std::remove_const_t</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/remove_reference.html">std::remove_reference_t</a>&lt; Rt &gt; &gt;</td></tr>
+<tr class="separator:abfedf19de58616fcf533970cda671e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a5685da1d3c3f1651ffe8562247a8ef97"><td class="memTemplParams" colspan="2"><a id="a5685da1d3c3f1651ffe8562247a8ef97"></a>
+template&lt;typename Dummy  = Rt, Requires&lt; cpp17::is_same_v&lt; Dummy, value_type &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a5685da1d3c3f1651ffe8562247a8ef97"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Deferred</b> (Rt t)</td></tr>
+<tr class="separator:a5685da1d3c3f1651ffe8562247a8ef97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2fcab7965bfeb9a009ef9ab53dc742f"><td class="memItemLeft" align="right" valign="top"><a id="ae2fcab7965bfeb9a009ef9ab53dc742f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Deferred</b> (const <a class="el" href="classDeferred.html">Deferred</a> &amp;)=default</td></tr>
+<tr class="separator:ae2fcab7965bfeb9a009ef9ab53dc742f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a694b687012c794bb00cf58c0f0dacc14"><td class="memItemLeft" align="right" valign="top"><a id="a694b687012c794bb00cf58c0f0dacc14"></a>
+<a class="el" href="classDeferred.html">Deferred</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classDeferred.html">Deferred</a> &amp;)=default</td></tr>
+<tr class="separator:a694b687012c794bb00cf58c0f0dacc14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a320716f8c80b771cc8b7d057b5426330"><td class="memItemLeft" align="right" valign="top"><a id="a320716f8c80b771cc8b7d057b5426330"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Deferred</b> (<a class="el" href="classDeferred.html">Deferred</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a320716f8c80b771cc8b7d057b5426330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0125ddef82dda3bd1212925adc0d53a6"><td class="memItemLeft" align="right" valign="top"><a id="a0125ddef82dda3bd1212925adc0d53a6"></a>
+<a class="el" href="classDeferred.html">Deferred</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classDeferred.html">Deferred</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a0125ddef82dda3bd1212925adc0d53a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53adf00dd4cfebe54b674b2734be093b"><td class="memItemLeft" align="right" valign="top"><a id="a53adf00dd4cfebe54b674b2734be093b"></a>
+constexpr const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/remove_cv.html">value_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> () const noexcept</td></tr>
+<tr class="separator:a53adf00dd4cfebe54b674b2734be093b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0145c97c134bcf0652d8f8c3b9795e55"><td class="memItemLeft" align="right" valign="top"><a id="a0145c97c134bcf0652d8f8c3b9795e55"></a>
+constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/remove_cv.html">value_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>mutate</b> () noexcept</td></tr>
+<tr class="separator:a0145c97c134bcf0652d8f8c3b9795e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a949e3b0f4f83af9dbe33c45ad00bb081"><td class="memItemLeft" align="right" valign="top"><a id="a949e3b0f4f83af9dbe33c45ad00bb081"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pack_unpack_lazy_function</b> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="separator:a949e3b0f4f83af9dbe33c45ad00bb081"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ce91dc6a2f5f74eed9da0a1666e7570"><td class="memItemLeft" align="right" valign="top"><a id="a4ce91dc6a2f5f74eed9da0a1666e7570"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>evaluated</b> () const noexcept</td></tr>
+<tr class="separator:a4ce91dc6a2f5f74eed9da0a1666e7570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace9df632982bdbdb987026bdaca229a8"><td class="memItemLeft" align="right" valign="top"><a id="ace9df632982bdbdb987026bdaca229a8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> () noexcept</td></tr>
+<tr class="separator:ace9df632982bdbdb987026bdaca229a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6893ca19f8542de6bf8c12a06e8bd0e7"><td class="memItemLeft" align="right" valign="top"><a id="a6893ca19f8542de6bf8c12a06e8bd0e7"></a>
+<a class="el" href="classDeferred.html">Deferred</a>&#160;</td><td class="memItemRight" valign="bottom"><b>deep_copy</b> () const noexcept</td></tr>
+<tr class="separator:a6893ca19f8542de6bf8c12a06e8bd0e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f267c86342b29ba344bd51983766150"><td class="memItemLeft" align="right" valign="top"><a id="a1f267c86342b29ba344bd51983766150"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Deferred</b> (boost::shared_ptr&lt; Deferred_detail::assoc_state&lt; tmpl::conditional_t&lt; MakeConstReference::value, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/remove_cv.html">value_type</a> &amp;, <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/remove_cv.html">value_type</a> &gt;&gt;&gt; &amp;&amp;state) noexcept</td></tr>
+<tr class="separator:a1f267c86342b29ba344bd51983766150"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ae8b4e2f24ffbbdb597594305a739fc6b"><td class="memTemplParams" colspan="2"><a id="ae8b4e2f24ffbbdb597594305a739fc6b"></a>
+template&lt;typename Rt1 , typename Fp , typename... Args&gt; </td></tr>
+<tr class="memitem:ae8b4e2f24ffbbdb597594305a739fc6b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>update_deferred_args</b> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDeferred.html">Deferred</a>&lt; Rt1 &gt; *&gt; deferred, Fp, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="separator:ae8b4e2f24ffbbdb597594305a739fc6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa144b96c18de7b998c5d35e757d5169c"><td class="memTemplParams" colspan="2"><a id="aa144b96c18de7b998c5d35e757d5169c"></a>
+template&lt;typename Rt1 , typename Fp , typename... Args&gt; </td></tr>
+<tr class="memitem:aa144b96c18de7b998c5d35e757d5169c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>update_deferred_args</b> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDeferred.html">Deferred</a>&lt; Rt1 &gt; *&gt; deferred, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="separator:aa144b96c18de7b998c5d35e757d5169c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename Rt, typename MakeConstReference&gt;<br />
+class Deferred&lt; Rt, MakeConstReference &gt;</h3>
+
+<p>Provides deferred or lazy evaluation of a function or function object, as well as efficient storage of an object that is mutable. </p>
+<p>The class is similar to a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/thread/shared_future.html">std::shared_future</a> that is able to hold and allow mutation of objects. <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/thread/shared_future.html">std::shared_future</a> allows lazy evaluation of functions but does not allow mutation of stored objects. Since mutation is only defined for storage of objects, not for lazily evaluated functions, attempts to mutate a lazily evaluated function's data is an error.</p>
+<p>To construct a <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> for lazy evaluation use the <a class="el" href="group__DataBoxGroup.html#gab16ffafee767da670cf8af4b26da919e" title="Create a deferred function call object. ">make_deferred()</a> function.</p>
+<h3>Example</h3>
+<p>Construction of a <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> with an object followed by mutation: </p><div class="fragment"><div class="line">  <span class="keyword">auto</span> obj = <a class="code" href="classDeferred.html">Deferred&lt;double&gt;</a>(3.8);</div><div class="line">  CHECK(obj.evaluated());</div><div class="line">  CHECK(3.8 == obj.get());</div><div class="line">  <span class="keyword">auto</span>&amp; obj_val = obj.mutate();</div><div class="line">  CHECK(3.8 == obj_val);</div><div class="line">  obj_val = 5.0;</div><div class="line">  CHECK(5.0 == obj.get());</div></div><!-- fragment --> <dl class="section warning"><dt>Warning</dt><dd>If passed a lazy function that returns a <code>const Rt&amp; t</code> (a const lvalue reference) the underlying data stored is actually a pointer to <code>t</code>, which will be dereferenced upon retrieval. This could lead to a dangling pointer/reference if care isn't taken. The reason for this design is that:<ol type="1">
+<li>We need to be able to retrieve data stored in the ConstGlobalCache from the DataBox. The way to do this is to have a pointer to the ConstGlobalCache inside the DataBox alongside compute items that return <code>const Rt&amp;</code> to the ConstGlobalCache data.</li>
+<li>Functions used in the DataBox shouldn't return references, they are compute tags and should return by value. If we find an actual use-case for compute tags returning <code>const Rt&amp;</code> where referencing behavior is undesired then this design needs to be reconsidered. It is currently the least breaking way to implement referencing DataBox members that can point to any memory.</li>
+</ol>
+</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Rt</td><td>the type being stored </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/DataStructures/DataBox/<a class="el" href="Deferred_8hpp_source.html">Deferred.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

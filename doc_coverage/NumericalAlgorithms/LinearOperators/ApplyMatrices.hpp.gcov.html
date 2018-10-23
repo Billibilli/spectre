@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/LinearOperators/ApplyMatrices.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/LinearOperators</a> - ApplyMatrices.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/Variables.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/DereferenceWrapper.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : /// \cond
+<span class="lineNum">      17 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      18 </span>            : class Index;
+<span class="lineNum">      19 </span>            : // IWYU pragma: no_forward_declare Variables
+<span class="lineNum">      20 </span>            : /// \endcond
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : namespace apply_matrices_detail {
+<span class="lineNum">      23 </span>            : template &lt;size_t Dim, bool... DimensionIsIdentity&gt;
+<span class="lineNum">      24 </span>            : struct Impl {
+<span class="lineNum">      25 </span>            :   template &lt;typename MatrixType&gt;
+<span class="lineNum">      26 </span>            :   static void apply(gsl::not_null&lt;double*&gt; result,
+<span class="lineNum">      27 </span>            :                     const std::array&lt;MatrixType, Dim&gt;&amp; matrices,
+<span class="lineNum">      28 </span>            :                     const double* data, const Index&lt;Dim&gt;&amp; extents,
+<span class="lineNum">      29 </span>            :                     size_t number_of_independent_components) noexcept;
+<span class="lineNum">      30 </span>            : };
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : template &lt;typename MatrixType, size_t Dim&gt;
+<span class="lineNum">      33 </span>            : size_t result_size(const std::array&lt;MatrixType, Dim&gt;&amp; matrices,
+<span class="lineNum">      34 </span>            :                    const Index&lt;Dim&gt;&amp; extents) noexcept {
+<span class="lineNum">      35 </span>            :   size_t num_points_result = 1;
+<span class="lineNum">      36 </span>            :   for (size_t d = 0; d &lt; Dim; ++d) {
+<span class="lineNum">      37 </span>            :     const size_t cols = dereference_wrapper(gsl::at(matrices, d)).columns();
+<span class="lineNum">      38 </span>            :     if (cols == 0) {
+<span class="lineNum">      39 </span>            :       // An empty matrix is treated as the identity.
+<span class="lineNum">      40 </span>            :       num_points_result *= extents[d];
+<span class="lineNum">      41 </span>            :     } else {
+<span class="lineNum">      42 </span>            :       ASSERT(cols == extents[d],
+<span class="lineNum">      43 </span>            :              &quot;Matrix &quot; &lt;&lt; d &lt;&lt; &quot; has wrong number of columns: &quot;
+<span class="lineNum">      44 </span>            :              &lt;&lt; cols &lt;&lt; &quot; (expected &quot; &lt;&lt; extents[d] &lt;&lt; &quot;)&quot;);
+<span class="lineNum">      45 </span>            :       num_points_result *= dereference_wrapper(gsl::at(matrices, d)).rows();
+<span class="lineNum">      46 </span>            :     }
+<span class="lineNum">      47 </span>            :   }
+<span class="lineNum">      48 </span>            :   return num_points_result;
+<span class="lineNum">      49 </span>            : }
+<span class="lineNum">      50 </span>            : }  // namespace apply_matrices_detail
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            : /// \ingroup NumericalAlgorithmsGroup
+<span class="lineNum">      53 </span>            : /// \brief Multiply by matrices in each dimension
+<span class="lineNum">      54 </span>            : ///
+<span class="lineNum">      55 </span>            : /// Multiplies each stripe in the first dimension of `u` by
+<span class="lineNum">      56 </span>            : /// `matrices[0]`, each stripe in the second dimension of `u` by
+<span class="lineNum">      57 </span>            : /// `matrices[1]`, and so on.  If any of the matrices are empty they
+<span class="lineNum">      58 </span>            : /// will be treated as the identity, but the matrix multiplications
+<span class="lineNum">      59 </span>            : /// will be skipped for increased efficiency.
+<span class="lineNum">      60 </span>            : //@{
+<span class="lineNum">      61 </span>            : template &lt;typename VariableTags, typename MatrixType, size_t Dim&gt;
+<span class="lineNum">      62 </span><span class="lineCov">          2 : void apply_matrices(const gsl::not_null&lt;Variables&lt;VariableTags&gt;*&gt; result,</span>
+<span class="lineNum">      63 </span>            :                     const std::array&lt;MatrixType, Dim&gt;&amp; matrices,
+<span class="lineNum">      64 </span>            :                     const Variables&lt;VariableTags&gt;&amp; u,
+<span class="lineNum">      65 </span>            :                     const Index&lt;Dim&gt;&amp; extents) noexcept {
+<span class="lineNum">      66 </span>            :   ASSERT(u.number_of_grid_points() == extents.product(),
+<span class="lineNum">      67 </span>            :          &quot;Mismatch between extents (&quot; &lt;&lt; extents.product()
+<span class="lineNum">      68 </span>            :          &lt;&lt; &quot;) and variables (&quot; &lt;&lt; u.number_of_grid_points() &lt;&lt; &quot;).&quot;);
+<span class="lineNum">      69 </span>            :   ASSERT(result-&gt;number_of_grid_points() ==
+<span class="lineNum">      70 </span>            :          apply_matrices_detail::result_size(matrices, extents),
+<span class="lineNum">      71 </span>            :          &quot;result has wrong size.  Expected &quot;
+<span class="lineNum">      72 </span>            :          &lt;&lt; apply_matrices_detail::result_size(matrices, extents)
+<span class="lineNum">      73 </span>            :          &lt;&lt; &quot;, received &quot; &lt;&lt; result-&gt;number_of_grid_points());
+<span class="lineNum">      74 </span>            :   apply_matrices_detail::Impl&lt;Dim&gt;::apply(result-&gt;data(), matrices, u.data(),
+<span class="lineNum">      75 </span>            :                                           extents,
+<span class="lineNum">      76 </span>            :                                           u.number_of_independent_components);
+<span class="lineNum">      77 </span>            : }
+<span class="lineNum">      78 </span>            : 
+<span class="lineNum">      79 </span>            : template &lt;typename VariableTags, typename MatrixType, size_t Dim&gt;
+<span class="lineNum">      80 </span><span class="lineCov">          2 : Variables&lt;VariableTags&gt; apply_matrices(</span>
+<span class="lineNum">      81 </span>            :     const std::array&lt;MatrixType, Dim&gt;&amp; matrices,
+<span class="lineNum">      82 </span>            :     const Variables&lt;VariableTags&gt;&amp; u, const Index&lt;Dim&gt;&amp; extents) noexcept {
+<span class="lineNum">      83 </span>            :   Variables&lt;VariableTags&gt; result(
+<span class="lineNum">      84 </span>            :       apply_matrices_detail::result_size(matrices, extents));
+<span class="lineNum">      85 </span>            :   apply_matrices(make_not_null(&amp;result), matrices, u, extents);
+<span class="lineNum">      86 </span>            :   return result;
+<span class="lineNum">      87 </span>            : }
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span>            : template &lt;typename MatrixType, size_t Dim&gt;
+<span class="lineNum">      90 </span><span class="lineCov">          2 : void apply_matrices(const gsl::not_null&lt;DataVector*&gt; result,</span>
+<span class="lineNum">      91 </span>            :                     const std::array&lt;MatrixType, Dim&gt;&amp; matrices,
+<span class="lineNum">      92 </span>            :                     const DataVector&amp; u, const Index&lt;Dim&gt;&amp; extents) noexcept {
+<span class="lineNum">      93 </span>            :   ASSERT(u.size() == extents.product(),
+<span class="lineNum">      94 </span>            :          &quot;Mismatch between extents (&quot; &lt;&lt; extents.product() &lt;&lt; &quot;) and size (&quot;
+<span class="lineNum">      95 </span>            :          &lt;&lt; u.size() &lt;&lt; &quot;).&quot;);
+<span class="lineNum">      96 </span>            :   ASSERT(result-&gt;size() ==
+<span class="lineNum">      97 </span>            :          apply_matrices_detail::result_size(matrices, extents),
+<span class="lineNum">      98 </span>            :          &quot;result has wrong size.  Expected &quot;
+<span class="lineNum">      99 </span>            :          &lt;&lt; apply_matrices_detail::result_size(matrices, extents)
+<span class="lineNum">     100 </span>            :          &lt;&lt; &quot;, received &quot; &lt;&lt; result-&gt;size());
+<span class="lineNum">     101 </span>            :   apply_matrices_detail::Impl&lt;Dim&gt;::apply(result-&gt;data(), matrices, u.data(),
+<span class="lineNum">     102 </span>            :                                           extents, 1);
+<span class="lineNum">     103 </span>            : }
+<span class="lineNum">     104 </span>            : 
+<span class="lineNum">     105 </span>            : template &lt;typename MatrixType, size_t Dim&gt;
+<span class="lineNum">     106 </span><span class="lineCov">          2 : DataVector apply_matrices(const std::array&lt;MatrixType, Dim&gt;&amp; matrices,</span>
+<span class="lineNum">     107 </span>            :                           const DataVector&amp; u,
+<span class="lineNum">     108 </span>            :                           const Index&lt;Dim&gt;&amp; extents) noexcept {
+<span class="lineNum">     109 </span>            :   DataVector result(apply_matrices_detail::result_size(matrices, extents));
+<span class="lineNum">     110 </span>            :   apply_matrices(make_not_null(&amp;result), matrices, u, extents);
+<span class="lineNum">     111 </span>            :   return result;
+<span class="lineNum">     112 </span>            : }
+<span class="lineNum">     113 </span>            : //@}
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

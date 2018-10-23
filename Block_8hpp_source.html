@@ -1,0 +1,208 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Domain/Block.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_7afaef6ae7a94ddf3cc0ef59b99b3f6c.html">Domain</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Block.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Block_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/// \file</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/// Defines class template Block.</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a>&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a>&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a>&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/unordered_map.html">unordered_map</a>&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/unordered_set.html">unordered_set</a>&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BlockNeighbor_8hpp.html">Domain/BlockNeighbor.hpp</a>&quot;</span>  <span class="comment">// IWYU pragma: keep</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="CoordinateMap_8hpp.html">Domain/CoordinateMaps/CoordinateMap.hpp</a>&quot;</span>  <span class="comment">// IWYU pragma: keep</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Direction_8hpp.html">Domain/Direction.hpp</a>&quot;</span>  <span class="comment">// IWYU pragma: keep</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/// \cond</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"></span><span class="keyword">namespace </span><a class="code" href="namespaceFrame.html">Frame</a> {</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">struct </span>Logical;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}  <span class="comment">// namespace Frame</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePUP.html">PUP</a> {</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">class </span>er;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}  <span class="comment">// namespace PUP</span><span class="comment"></span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">/// \endcond</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"></span><span class="comment"></span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/// \ingroup ComputationalDomainGroup</span></div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">/// A Block&lt;VolumeDim&gt; is a region of a VolumeDim-dimensional computational</span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/// domain that defines the root node of a tree which is used to construct the</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">/// Elements that cover a region of the computational domain.</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">///</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/// Each codimension 1 boundary of a Block&lt;VolumeDim&gt; is either an external</span></div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">/// boundary or identical to a boundary of one other Block.</span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">///</span></div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/// A Block has logical coordinates that go from -1 to +1 in each</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">/// dimension.  The global coordinates are obtained from the logical</span></div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">/// coordinates from the Coordinatemap:  CoordinateMap::operator() takes</span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/// Points in the Logical Frame (i.e., logical coordinates) and</span></div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/// returns Points in the Grid Frame (i.e., global coordinates).</span></div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> VolumeDim, <span class="keyword">typename</span> TargetFrame&gt;</div><div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classBlock.html">   42</a></span>&#160;<span class="keyword">class </span><a class="code" href="classBlock.html">Block</a> {</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; <span class="keyword">public</span>:<span class="comment"></span></div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">  /// \param map the CoordinateMap.</span></div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">  /// \param id a unique ID.</span></div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">  /// \param neighbors info about the Blocks that share a codimension 1</span></div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">  /// boundary with this Block.</span></div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"></span>  <a class="code" href="classBlock.html">Block</a>(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="classCoordinateMapBase.html">CoordinateMapBase&lt;Frame::Logical, TargetFrame, VolumeDim&gt;</a>&gt;&amp;&amp; map,</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordtype">size_t</span> <span class="keywordtype">id</span>,</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt;<a class="code" href="classDirection.html">Direction&lt;VolumeDim&gt;</a>, <a class="code" href="classBlockNeighbor.html">BlockNeighbor&lt;VolumeDim&gt;</a>&gt;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            neighbors) noexcept;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <a class="code" href="classBlock.html">Block</a>() = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  ~<a class="code" href="classBlock.html">Block</a>() = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <a class="code" href="classBlock.html">Block</a>(<span class="keyword">const</span> <a class="code" href="classBlock.html">Block</a>&amp;) = <span class="keyword">delete</span>;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <a class="code" href="classBlock.html">Block</a>(<a class="code" href="classBlock.html">Block</a>&amp;&amp;) = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <a class="code" href="classBlock.html">Block</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classBlock.html">Block</a>&amp;) = <span class="keyword">delete</span>;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <a class="code" href="classBlock.html">Block</a>&amp; operator=(<a class="code" href="classBlock.html">Block</a>&amp;&amp;) = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keyword">const</span> <a class="code" href="classCoordinateMapBase.html">CoordinateMapBase&lt;Frame::Logical, TargetFrame, VolumeDim&gt;</a>&amp;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  coordinate_map() <span class="keyword">const</span> noexcept {</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">return</span> *map_;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  }</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">  /// A unique identifier for the Block that is in the range</span></div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">  /// [0, number_of_blocks -1] where number_of_blocks is the number</span></div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">  /// of Blocks that cover the computational domain.</span></div><div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classBlock.html#ad0ceec13ea48e059964be85dba23f2ca">   69</a></span>&#160;<span class="comment"></span>  <span class="keywordtype">size_t</span> <a class="code" href="classBlock.html#ad0ceec13ea48e059964be85dba23f2ca">id</a>() const noexcept { <span class="keywordflow">return</span> id_; }</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">  /// Information about the neighboring Blocks.</span></div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span>  <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map&lt;Direction&lt;VolumeDim&gt;</a>, <a class="code" href="classBlockNeighbor.html">BlockNeighbor&lt;VolumeDim&gt;</a>&gt;&amp;</div><div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classBlock.html#a280e1f9ce832d76d6a653b13c0bd18cb">   73</a></span>&#160;  <a class="code" href="classBlock.html#a280e1f9ce832d76d6a653b13c0bd18cb">neighbors</a>() const noexcept {</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> neighbors_;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  }</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">  /// The directions of the faces of the Block that are external boundaries.</span></div><div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classBlock.html#a00e077ce0a91f3480bf3e7f063142e42">   78</a></span>&#160;<span class="comment"></span>  <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_set.html">std::unordered_set&lt;Direction&lt;VolumeDim&gt;</a>&gt;&amp; <a class="code" href="classBlock.html#a00e077ce0a91f3480bf3e7f063142e42">external_boundaries</a>() const</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      noexcept {</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">return</span> external_boundaries_;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  }</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">  /// Serialization for Charm++</span></div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>  <span class="keywordtype">void</span> pup(PUP::er&amp; p) noexcept;  <span class="comment">// NOLINT</span></div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; <span class="keyword">private</span>:</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, TargetFrame, VolumeDim&gt;</a>&gt;</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      map_;</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <span class="keywordtype">size_t</span> id_{0};</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map&lt;Direction&lt;VolumeDim&gt;</a>, <a class="code" href="classBlockNeighbor.html">BlockNeighbor&lt;VolumeDim&gt;</a>&gt; neighbors_;</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_set.html">std::unordered_set&lt;Direction&lt;VolumeDim&gt;</a>&gt; external_boundaries_;</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;};</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> VolumeDim, <span class="keyword">typename</span> TargetFrame&gt;</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt;(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; os,</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                         <span class="keyword">const</span> <a class="code" href="classBlock.html">Block&lt;VolumeDim, TargetFrame&gt;</a>&amp; block) noexcept;</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> VolumeDim, <span class="keyword">typename</span> TargetFrame&gt;</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classBlock.html">Block&lt;VolumeDim, TargetFrame&gt;</a>&amp; lhs,</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                <span class="keyword">const</span> <a class="code" href="classBlock.html">Block&lt;VolumeDim, TargetFrame&gt;</a>&amp; rhs) noexcept;</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> VolumeDim, <span class="keyword">typename</span> TargetFrame&gt;</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keywordtype">bool</span> operator!=(<span class="keyword">const</span> <a class="code" href="classBlock.html">Block&lt;VolumeDim, TargetFrame&gt;</a>&amp; lhs,</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <span class="keyword">const</span> <a class="code" href="classBlock.html">Block&lt;VolumeDim, TargetFrame&gt;</a>&amp; rhs) noexcept;</div><div class="ttc" id="cstddef_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a></div></div>
+<div class="ttc" id="Direction_8hpp_html"><div class="ttname"><a href="Direction_8hpp.html">Direction.hpp</a></div><div class="ttdoc">Defines class template Direction. </div></div>
+<div class="ttc" id="namespacePUP_html"><div class="ttname"><a href="namespacePUP.html">PUP</a></div><div class="ttdef"><b>Definition:</b> Strahlkorper.hpp:14</div></div>
+<div class="ttc" id="BlockNeighbor_8hpp_html"><div class="ttname"><a href="BlockNeighbor_8hpp.html">BlockNeighbor.hpp</a></div><div class="ttdoc">Defines class template BlockNeighbor. </div></div>
+<div class="ttc" id="classBlock_html_a280e1f9ce832d76d6a653b13c0bd18cb"><div class="ttname"><a href="classBlock.html#a280e1f9ce832d76d6a653b13c0bd18cb">Block::neighbors</a></div><div class="ttdeci">const std::unordered_map&lt; Direction&lt; VolumeDim &gt;, BlockNeighbor&lt; VolumeDim &gt; &gt; &amp; neighbors() const noexcept</div><div class="ttdoc">Information about the neighboring Blocks. </div><div class="ttdef"><b>Definition:</b> Block.hpp:73</div></div>
+<div class="ttc" id="classCoordinateMapBase_html"><div class="ttname"><a href="classCoordinateMapBase.html">CoordinateMapBase</a></div><div class="ttdoc">Abstract base class for CoordinateMap. </div><div class="ttdef"><b>Definition:</b> CoordinateMap.hpp:48</div></div>
+<div class="ttc" id="classBlock_html_a00e077ce0a91f3480bf3e7f063142e42"><div class="ttname"><a href="classBlock.html#a00e077ce0a91f3480bf3e7f063142e42">Block::external_boundaries</a></div><div class="ttdeci">const std::unordered_set&lt; Direction&lt; VolumeDim &gt; &gt; &amp; external_boundaries() const noexcept</div><div class="ttdoc">The directions of the faces of the Block that are external boundaries. </div><div class="ttdef"><b>Definition:</b> Block.hpp:78</div></div>
+<div class="ttc" id="ostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a></div></div>
+<div class="ttc" id="classDirection_html"><div class="ttname"><a href="classDirection.html">Direction</a></div><div class="ttdoc">A particular Side along a particular coordinate Axis. </div><div class="ttdef"><b>Definition:</b> Direction.hpp:23</div></div>
+<div class="ttc" id="classBlock_html_ad0ceec13ea48e059964be85dba23f2ca"><div class="ttname"><a href="classBlock.html#ad0ceec13ea48e059964be85dba23f2ca">Block::id</a></div><div class="ttdeci">size_t id() const noexcept</div><div class="ttdoc">A unique identifier for the Block that is in the range [0, number_of_blocks -1] where number_of_block...</div><div class="ttdef"><b>Definition:</b> Block.hpp:69</div></div>
+<div class="ttc" id="unordered_set_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/unordered_set.html">unordered_set</a></div></div>
+<div class="ttc" id="namespaceFrame_html"><div class="ttname"><a href="namespaceFrame.html">Frame</a></div><div class="ttdoc">Indicates the Frame that a TensorIndexType is in. </div><div class="ttdef"><b>Definition:</b> IndexType.hpp:36</div></div>
+<div class="ttc" id="CoordinateMap_8hpp_html"><div class="ttname"><a href="CoordinateMap_8hpp.html">CoordinateMap.hpp</a></div><div class="ttdoc">Defines class CoordinateMap. </div></div>
+<div class="ttc" id="memory_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a></div></div>
+<div class="ttc" id="unique_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a></div></div>
+<div class="ttc" id="classBlockNeighbor_html"><div class="ttname"><a href="classBlockNeighbor.html">BlockNeighbor</a></div><div class="ttdoc">Information about the neighbor of a Block in a particular direction. </div><div class="ttdef"><b>Definition:</b> BlockNeighbor.hpp:25</div></div>
+<div class="ttc" id="basic_ostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a></div></div>
+<div class="ttc" id="classBlock_html"><div class="ttname"><a href="classBlock.html">Block</a></div><div class="ttdoc">A Block&lt;VolumeDim&gt; is a region of a VolumeDim-dimensional computational domain that defines the root ...</div><div class="ttdef"><b>Definition:</b> Block.hpp:42</div></div>
+<div class="ttc" id="unordered_map_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/unordered_map.html">unordered_map</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

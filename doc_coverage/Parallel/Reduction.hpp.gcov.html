@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Parallel/Reduction.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Parallel</a> - Reduction.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">21</td>
+            <td class="headerCovTableEntryLo">14.3 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;charm++.h&gt;
+<span class="lineNum">       7 </span>            : #include &lt;tuple&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;Parallel/CharmRegistration.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;Parallel/ConstGlobalCache.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Parallel/PupStlCpp11.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/Functional.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/Requires.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : namespace Parallel {
+<span class="lineNum">      19 </span>            : /// \cond
+<span class="lineNum">      20 </span>            : template &lt;class... Ts&gt;
+<span class="lineNum">      21 </span>            : struct ReductionData;
+<span class="lineNum">      22 </span>            : /// \endcond
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : namespace detail {
+<span class="lineNum">      25 </span>            : /*!
+<span class="lineNum">      26 </span>            :  * \ingroup ParallelGroup
+<span class="lineNum">      27 </span>            :  * \brief Convert a `ReductionData` to a `CkReductionMsg`. Used in custom
+<span class="lineNum">      28 </span>            :  * reducers.
+<span class="lineNum">      29 </span>            :  */
+<span class="lineNum">      30 </span>            : template &lt;class... Ts&gt;
+<span class="lineNum">      31 </span>            : CkReductionMsg* new_reduction_msg(
+<span class="lineNum">      32 </span>            :     ReductionData&lt;Ts...&gt;&amp; reduction_data) noexcept {
+<span class="lineNum">      33 </span>            :   return CkReductionMsg::buildNew(static_cast&lt;int&gt;(reduction_data.size()),
+<span class="lineNum">      34 </span>            :                                   reduction_data.packed().get());
+<span class="lineNum">      35 </span>            : }
+<span class="lineNum">      36 </span>            : }  // namespace detail
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            : /*!
+<span class="lineNum">      39 </span>            :  * \ingroup ParallelGroup
+<span class="lineNum">      40 </span>            :  * \brief The data to be reduced, and invokables to be called whenever two
+<span class="lineNum">      41 </span>            :  * reduction messages are combined and after the reduction has been completed.
+<span class="lineNum">      42 </span>            :  *
+<span class="lineNum">      43 </span>            :  * `InvokeCombine` is a binary invokable that maps `(T current_state, T element)
+<span class="lineNum">      44 </span>            :  * -&gt; T`, where the `current_state` is the result of reductions so far. The
+<span class="lineNum">      45 </span>            :  * `InvokeFinal` is an n-ary that takes as its first argument a `T
+<span class="lineNum">      46 </span>            :  * result_of_reduction` and is invoked once after the reduction is completed.
+<span class="lineNum">      47 </span>            :  * The additional arguments correspond to the resultant data of earlier
+<span class="lineNum">      48 </span>            :  * `ReductionDatum` template parameters in the `ReductionData`, and are
+<span class="lineNum">      49 </span>            :  * identified via the `InvokeFinalExtraArgsIndices`, which must be a
+<span class="lineNum">      50 </span>            :  * `std::index_sequence`. Specifically, say you want the third
+<span class="lineNum">      51 </span>            :  * `ReductionDatum`'s `InvokeFinal` to be passed the first `ReductionDatum` then
+<span class="lineNum">      52 </span>            :  * `std::index_sequence&lt;0&gt;` would be passed for `InvokeFinalExtraArgsIndices`.
+<span class="lineNum">      53 </span>            :  * Here is an example of computing the RMS error of the evolved variables `u`
+<span class="lineNum">      54 </span>            :  * and `v`:
+<span class="lineNum">      55 </span>            :  *
+<span class="lineNum">      56 </span>            :  * \snippet Test_AlgorithmReduction.cpp contribute_to_rms_reduction
+<span class="lineNum">      57 </span>            :  *
+<span class="lineNum">      58 </span>            :  * with the receiving action:
+<span class="lineNum">      59 </span>            :  *
+<span class="lineNum">      60 </span>            :  * \snippet Test_AlgorithmReduction.cpp reduce_rms_action
+<span class="lineNum">      61 </span>            :  */
+<span class="lineNum">      62 </span>            : template &lt;class T, class InvokeCombine, class InvokeFinal = funcl::Identity,
+<span class="lineNum">      63 </span>            :           class InvokeFinalExtraArgsIndices = std::index_sequence&lt;&gt;&gt;
+<span class="lineNum">      64 </span><span class="lineCov">          1 : struct ReductionDatum {</span>
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   using value_type = T;</span>
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :   using invoke_combine = InvokeCombine;</span>
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :   using invoke_final = InvokeFinal;</span>
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :   using invoke_final_extra_args_indices = InvokeFinalExtraArgsIndices;</span>
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   T value;</span>
+<span class="lineNum">      70 </span>            : };
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            : /*!
+<span class="lineNum">      73 </span>            :  * \ingroup ParallelGroup
+<span class="lineNum">      74 </span>            :  * \brief Used for reducing a possibly heterogeneous collection of types in a
+<span class="lineNum">      75 </span>            :  * single reduction call
+<span class="lineNum">      76 </span>            :  */
+<span class="lineNum">      77 </span>            : template &lt;class... Ts, class... InvokeCombines, class... InvokeFinals,
+<span class="lineNum">      78 </span>            :           class... InvokeFinalExtraArgsIndices&gt;
+<span class="lineNum">      79 </span>            : struct ReductionData&lt;ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">      80 </span><span class="lineCov">          1 :                                     InvokeFinalExtraArgsIndices&gt;...&gt; {</span>
+<span class="lineNum">      81 </span>            :   static_assert(sizeof...(Ts) &gt; 0,
+<span class="lineNum">      82 </span>            :                 &quot;Must be reducing at least one piece of data.&quot;);
+<span class="lineNum">      83 </span><span class="lineNoCov">          0 :   static constexpr size_t pack_size() noexcept { return sizeof...(Ts); }</span>
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 :   explicit ReductionData(</span>
+<span class="lineNum">      86 </span>            :       ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">      87 </span>            :                      InvokeFinalExtraArgsIndices&gt;... args) noexcept;
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 :   explicit ReductionData(Ts... args) noexcept;</span>
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   ReductionData() = default;</span>
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 :   ReductionData(const ReductionData&amp; /*rhs*/) = default;</span>
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :   ReductionData&amp; operator=(const ReductionData&amp; /*rhs*/) = default;</span>
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :   ReductionData(ReductionData&amp;&amp; /*rhs*/) = default;</span>
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :   ReductionData&amp; operator=(ReductionData&amp;&amp; /*rhs*/) = default;</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :   ~ReductionData() = default;</span>
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :   explicit ReductionData(CkReductionMsg* const message) noexcept {</span>
+<span class="lineNum">      99 </span>            :     PUP::fromMem creator(message-&gt;getData());
+<span class="lineNum">     100 </span>            :     creator | *this;
+<span class="lineNum">     101 </span>            :   }
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span><span class="lineNoCov">          0 :   static CkReductionMsg* combine(int number_of_messages,</span>
+<span class="lineNum">     104 </span>            :                                  CkReductionMsg** msgs) noexcept;
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 :   ReductionData&amp; combine(ReductionData&amp;&amp; t) noexcept {</span>
+<span class="lineNum">     107 </span>            :     ReductionData::combine_helper(this, std::move(t),
+<span class="lineNum">     108 </span>            :                                   std::make_index_sequence&lt;sizeof...(Ts)&gt;{});
+<span class="lineNum">     109 </span>            :     return *this;
+<span class="lineNum">     110 </span>            :   }
+<span class="lineNum">     111 </span>            : 
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 :   ReductionData&amp; finalize() noexcept {</span>
+<span class="lineNum">     113 </span>            :     invoke_final_loop_over_tuple(std::make_index_sequence&lt;sizeof...(Ts)&gt;{});
+<span class="lineNum">     114 </span>            :     return *this;
+<span class="lineNum">     115 </span>            :   }
+<span class="lineNum">     116 </span>            : 
+<span class="lineNum">     117 </span>            :   /// \cond
+<span class="lineNum">     118 </span>            :   // clang-tidy: non-const reference
+<span class="lineNum">     119 </span>            :   void pup(PUP::er&amp; p) noexcept { p | data_; }  // NOLINT
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            :   std::unique_ptr&lt;char[]&gt; packed() noexcept;
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            :   size_t size() noexcept;
+<span class="lineNum">     124 </span>            : 
+<span class="lineNum">     125 </span>            :   const std::tuple&lt;Ts...&gt;&amp; data() const noexcept { return data_; }
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            :   std::tuple&lt;Ts...&gt;&amp; data() noexcept { return data_; }
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span>            :  private:
+<span class="lineNum">     130 </span>            :   template &lt;size_t... Is&gt;
+<span class="lineNum">     131 </span>            :   static void combine_helper(gsl::not_null&lt;ReductionData*&gt; reduced,
+<span class="lineNum">     132 </span>            :                              ReductionData&amp;&amp; current,
+<span class="lineNum">     133 </span>            :                              std::index_sequence&lt;Is...&gt; /*meta*/) noexcept;
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            :   template &lt;size_t I, class InvokeFinal, size_t... Js&gt;
+<span class="lineNum">     136 </span>            :   void invoke_final_helper(std::index_sequence&lt;Js...&gt; /*meta*/) noexcept;
+<span class="lineNum">     137 </span>            : 
+<span class="lineNum">     138 </span>            :   template &lt;size_t... Is&gt;
+<span class="lineNum">     139 </span>            :   void invoke_final_loop_over_tuple(
+<span class="lineNum">     140 </span>            :       std::index_sequence&lt;Is...&gt; /*meta*/) noexcept;
+<span class="lineNum">     141 </span>            : 
+<span class="lineNum">     142 </span>            :   std::tuple&lt;Ts...&gt; data_;
+<span class="lineNum">     143 </span>            :   /// \endcond
+<span class="lineNum">     144 </span>            : };
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span>            : /// \cond
+<span class="lineNum">     147 </span>            : template &lt;class... Ts, class... InvokeCombines, class... InvokeFinals,
+<span class="lineNum">     148 </span>            :           class... InvokeFinalExtraArgsIndices&gt;
+<span class="lineNum">     149 </span>            : ReductionData&lt;ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">     150 </span>            :                              InvokeFinalExtraArgsIndices&gt;...&gt;::
+<span class="lineNum">     151 </span>            :     ReductionData(ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">     152 </span>            :                                  InvokeFinalExtraArgsIndices&gt;... args) noexcept
+<span class="lineNum">     153 </span>            :     : data_(std::move(args.value)...) {}
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span>            : template &lt;class... Ts, class... InvokeCombines, class... InvokeFinals,
+<span class="lineNum">     156 </span>            :           class... InvokeFinalExtraArgsIndices&gt;
+<span class="lineNum">     157 </span>            : ReductionData&lt;ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">     158 </span>            :                              InvokeFinalExtraArgsIndices&gt;...&gt;::
+<span class="lineNum">     159 </span>            :     ReductionData(Ts... args) noexcept
+<span class="lineNum">     160 </span>            :     : data_(std::move(args)...) {}
+<span class="lineNum">     161 </span>            : 
+<span class="lineNum">     162 </span>            : template &lt;class... Ts, class... InvokeCombines, class... InvokeFinals,
+<span class="lineNum">     163 </span>            :           class... InvokeFinalExtraArgsIndices&gt;
+<span class="lineNum">     164 </span>            : CkReductionMsg* ReductionData&lt;ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">     165 </span>            :                                              InvokeFinalExtraArgsIndices&gt;...&gt;::
+<span class="lineNum">     166 </span>            :     combine(const int number_of_messages,
+<span class="lineNum">     167 </span>            :             CkReductionMsg** const msgs) noexcept {
+<span class="lineNum">     168 </span>            :   // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+<span class="lineNum">     169 </span>            :   ReductionData reduced(msgs[0]);
+<span class="lineNum">     170 </span>            :   for (int msg_id = 1; msg_id &lt; number_of_messages; ++msg_id) {
+<span class="lineNum">     171 </span>            :     // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+<span class="lineNum">     172 </span>            :     ReductionData current(msgs[msg_id]);
+<span class="lineNum">     173 </span>            :     ReductionData::combine_helper(&amp;reduced, std::move(current),
+<span class="lineNum">     174 </span>            :                                   std::make_index_sequence&lt;sizeof...(Ts)&gt;{});
+<span class="lineNum">     175 </span>            :   }
+<span class="lineNum">     176 </span>            :   return detail::new_reduction_msg(reduced);
+<span class="lineNum">     177 </span>            : }
+<span class="lineNum">     178 </span>            : 
+<span class="lineNum">     179 </span>            : template &lt;class... Ts, class... InvokeCombines, class... InvokeFinals,
+<span class="lineNum">     180 </span>            :           class... InvokeFinalExtraArgsIndices&gt;
+<span class="lineNum">     181 </span>            : std::unique_ptr&lt;char[]&gt; ReductionData&lt;
+<span class="lineNum">     182 </span>            :     ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">     183 </span>            :                    InvokeFinalExtraArgsIndices&gt;...&gt;::packed() noexcept {
+<span class="lineNum">     184 </span>            :   auto result = std::make_unique&lt;char[]&gt;(size());
+<span class="lineNum">     185 </span>            :   PUP::toMem packer(result.get());
+<span class="lineNum">     186 </span>            :   packer | *this;
+<span class="lineNum">     187 </span>            :   return result;
+<span class="lineNum">     188 </span>            : }
+<span class="lineNum">     189 </span>            : 
+<span class="lineNum">     190 </span>            : template &lt;class... Ts, class... InvokeCombines, class... InvokeFinals,
+<span class="lineNum">     191 </span>            :           class... InvokeFinalExtraArgsIndices&gt;
+<span class="lineNum">     192 </span>            : size_t
+<span class="lineNum">     193 </span>            : ReductionData&lt;ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">     194 </span>            :                              InvokeFinalExtraArgsIndices&gt;...&gt;::size() noexcept {
+<span class="lineNum">     195 </span>            :   PUP::sizer size_pup;
+<span class="lineNum">     196 </span>            :   size_pup | *this;
+<span class="lineNum">     197 </span>            :   return size_pup.size();
+<span class="lineNum">     198 </span>            : }
+<span class="lineNum">     199 </span>            : 
+<span class="lineNum">     200 </span>            : template &lt;class... Ts, class... InvokeCombines, class... InvokeFinals,
+<span class="lineNum">     201 </span>            :           class... InvokeFinalExtraArgsIndices&gt;
+<span class="lineNum">     202 </span>            : template &lt;size_t... Is&gt;
+<span class="lineNum">     203 </span>            : void ReductionData&lt;ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">     204 </span>            :                                   InvokeFinalExtraArgsIndices&gt;...&gt;::
+<span class="lineNum">     205 </span>            :     combine_helper(const gsl::not_null&lt;ReductionData*&gt; reduced,
+<span class="lineNum">     206 </span>            :                    ReductionData&amp;&amp; current,
+<span class="lineNum">     207 </span>            :                    std::index_sequence&lt;Is...&gt; /*meta*/) noexcept {
+<span class="lineNum">     208 </span>            :   EXPAND_PACK_LEFT_TO_RIGHT((std::get&lt;Is&gt;(reduced-&gt;data_) = InvokeCombines{}(
+<span class="lineNum">     209 </span>            :                                  std::move(std::get&lt;Is&gt;(reduced-&gt;data_)),
+<span class="lineNum">     210 </span>            :                                  std::move(std::get&lt;Is&gt;(current.data_)))));
+<span class="lineNum">     211 </span>            : }
+<span class="lineNum">     212 </span>            : 
+<span class="lineNum">     213 </span>            : template &lt;class... Ts, class... InvokeCombines, class... InvokeFinals,
+<span class="lineNum">     214 </span>            :           class... InvokeFinalExtraArgsIndices&gt;
+<span class="lineNum">     215 </span>            : template &lt;size_t I, class InvokeFinal, size_t... Js&gt;
+<span class="lineNum">     216 </span>            : void ReductionData&lt;ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">     217 </span>            :                                   InvokeFinalExtraArgsIndices&gt;...&gt;::
+<span class="lineNum">     218 </span>            :     invoke_final_helper(std::index_sequence&lt;Js...&gt; /*meta*/) noexcept {
+<span class="lineNum">     219 </span>            :   std::get&lt;I&gt;(data_) = InvokeFinal{}(std::move(std::get&lt;I&gt;(data_)),
+<span class="lineNum">     220 </span>            :                                      cpp17::as_const(std::get&lt;Js&gt;(data_))...);
+<span class="lineNum">     221 </span>            : }
+<span class="lineNum">     222 </span>            : 
+<span class="lineNum">     223 </span>            : template &lt;class... Ts, class... InvokeCombines, class... InvokeFinals,
+<span class="lineNum">     224 </span>            :           class... InvokeFinalExtraArgsIndices&gt;
+<span class="lineNum">     225 </span>            : template &lt;size_t... Is&gt;
+<span class="lineNum">     226 </span>            : void ReductionData&lt;ReductionDatum&lt;Ts, InvokeCombines, InvokeFinals,
+<span class="lineNum">     227 </span>            :                                   InvokeFinalExtraArgsIndices&gt;...&gt;::
+<span class="lineNum">     228 </span>            :     invoke_final_loop_over_tuple(std::index_sequence&lt;Is...&gt; /*meta*/) noexcept {
+<span class="lineNum">     229 </span>            :   EXPAND_PACK_LEFT_TO_RIGHT(
+<span class="lineNum">     230 </span>            :       invoke_final_helper&lt;Is, InvokeFinals&gt;(InvokeFinalExtraArgsIndices{}));
+<span class="lineNum">     231 </span>            : }
+<span class="lineNum">     232 </span>            : /// \endcond
+<span class="lineNum">     233 </span>            : 
+<span class="lineNum">     234 </span>            : /*!
+<span class="lineNum">     235 </span>            :  * \ingroup ParallelGroup
+<span class="lineNum">     236 </span>            :  * \brief Perform a reduction from the `sender_component` (typically your own
+<span class="lineNum">     237 </span>            :  * parallel component) to the `target_component`, performing the `Action` upon
+<span class="lineNum">     238 </span>            :  * receiving the reduction.
+<span class="lineNum">     239 </span>            :  */
+<span class="lineNum">     240 </span>            : template &lt;class Action, class SenderProxy, class TargetProxy, class... Ts&gt;
+<span class="lineNum">     241 </span><span class="lineCov">          2 : void contribute_to_reduction(ReductionData&lt;Ts...&gt; reduction_data,</span>
+<span class="lineNum">     242 </span>            :                              const SenderProxy&amp; sender_component,
+<span class="lineNum">     243 </span>            :                              const TargetProxy&amp; target_component) noexcept {
+<span class="lineNum">     244 </span>            :   (void)Parallel::charmxx::RegisterReducerFunction&lt;
+<span class="lineNum">     245 </span>            :       &amp;ReductionData&lt;Ts...&gt;::combine&gt;::registrar;
+<span class="lineNum">     246 </span>            :   CkCallback callback(
+<span class="lineNum">     247 </span>            :       TargetProxy::index_t::template redn_wrapper_reduction_action&lt;
+<span class="lineNum">     248 </span>            :           Action, std::decay_t&lt;ReductionData&lt;Ts...&gt;&gt;&gt;(nullptr),
+<span class="lineNum">     249 </span>            :       target_component);
+<span class="lineNum">     250 </span>            :   sender_component.ckLocal()-&gt;contribute(
+<span class="lineNum">     251 </span>            :       static_cast&lt;int&gt;(reduction_data.size()), reduction_data.packed().get(),
+<span class="lineNum">     252 </span>            :       Parallel::charmxx::charm_reducer_functions.at(
+<span class="lineNum">     253 </span>            :           std::hash&lt;Parallel::charmxx::ReducerFunctions&gt;{}(
+<span class="lineNum">     254 </span>            :               &amp;ReductionData&lt;Ts...&gt;::combine)),
+<span class="lineNum">     255 </span>            :       callback);
+<span class="lineNum">     256 </span>            : }
+<span class="lineNum">     257 </span>            : }  // namespace Parallel
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

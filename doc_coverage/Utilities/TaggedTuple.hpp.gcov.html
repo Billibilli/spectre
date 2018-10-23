@@ -1,0 +1,827 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Utilities/TaggedTuple.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - TaggedTuple.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntry">52</td>
+            <td class="headerCovTableEntryLo">17.3 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class tuples::TaggedTuple
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      10 </span>            : #include &lt;functional&gt;
+<span class="lineNum">      11 </span>            : #include &lt;initializer_list&gt;
+<span class="lineNum">      12 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">      13 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : #include &quot;Parallel/PupStlCpp11.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/Overloader.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : #include &lt;initializer_list&gt;
+<span class="lineNum">      20 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">      21 </span>            : #include &lt;stack&gt;
+<span class="lineNum">      22 </span>            : #include &lt;string&gt;
+<span class="lineNum">      23 </span>            : namespace PUP { class er; }
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : namespace tuples {
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : #if __cplusplus &gt;= 201402L
+<span class="lineNum">      28 </span>            : #define TUPLES_LIB_CONSTEXPR_CXX_14 constexpr
+<span class="lineNum">      29 </span>            : #else
+<span class="lineNum">      30 </span><span class="lineNoCov">          0 : #define TUPLES_LIB_CONSTEXPR_CXX_14</span>
+<span class="lineNum">      31 </span>            : #endif
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : namespace tuples_detail {
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span>            : template &lt;class T&gt;
+<span class="lineNum">      36 </span>            : inline constexpr T&amp;&amp; forward(
+<span class="lineNum">      37 </span>            :     typename std::remove_reference&lt;T&gt;::type&amp; t) noexcept {
+<span class="lineNum">      38 </span>            :   return static_cast&lt;T&amp;&amp;&gt;(t);
+<span class="lineNum">      39 </span>            : }
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            : template &lt;class T&gt;
+<span class="lineNum">      42 </span>            : inline constexpr T&amp;&amp; forward(
+<span class="lineNum">      43 </span>            :     typename std::remove_reference&lt;T&gt;::type&amp;&amp; t) noexcept {
+<span class="lineNum">      44 </span>            :   static_assert(!std::is_lvalue_reference&lt;T&gt;::value,
+<span class="lineNum">      45 </span>            :                 &quot;cannot forward an rvalue as an lvalue&quot;);
+<span class="lineNum">      46 </span>            :   return static_cast&lt;T&amp;&amp;&gt;(t);
+<span class="lineNum">      47 </span>            : }
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            : template &lt;class T, T...&gt;
+<span class="lineNum">      50 </span>            : struct value_list {};
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            : template &lt;class...&gt;
+<span class="lineNum">      53 </span>            : struct typelist {};
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : template &lt;bool... Bs&gt;
+<span class="lineNum">      56 </span>            : using all = typename std::is_same&lt;
+<span class="lineNum">      57 </span>            :     value_list&lt;bool, Bs...&gt;,
+<span class="lineNum">      58 </span>            :     value_list&lt;bool, (static_cast&lt;void&gt;(Bs), true)...&gt;&gt;::type;
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            : struct no_such_type {
+<span class="lineNum">      61 </span>            :   no_such_type() = delete;
+<span class="lineNum">      62 </span>            :   no_such_type(no_such_type const&amp; /*unused*/) = delete;
+<span class="lineNum">      63 </span>            :   no_such_type(no_such_type&amp;&amp; /*unused*/) = delete;
+<span class="lineNum">      64 </span>            :   ~no_such_type() = delete;
+<span class="lineNum">      65 </span>            :   no_such_type&amp; operator=(no_such_type const&amp; /*unused*/) = delete;
+<span class="lineNum">      66 </span>            :   no_such_type operator=(no_such_type&amp;&amp; /*unused*/) = delete;
+<span class="lineNum">      67 </span>            : };
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            : namespace detail {
+<span class="lineNum">      70 </span>            : using std::swap;
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            : template &lt;class T, class S,
+<span class="lineNum">      73 </span>            :           bool = not std::is_void&lt;T&gt;::value and not std::is_void&lt;S&gt;::value&gt;
+<span class="lineNum">      74 </span>            : struct is_swappable_with {
+<span class="lineNum">      75 </span>            :   template &lt;class L, class R&gt;
+<span class="lineNum">      76 </span>            :   static auto test_swap(int) noexcept
+<span class="lineNum">      77 </span>            :       -&gt; decltype(swap(std::declval&lt;L&amp;&gt;(), std::declval&lt;R&amp;&gt;()));
+<span class="lineNum">      78 </span>            :   template &lt;class L, class R&gt;
+<span class="lineNum">      79 </span>            :   static tuples::tuples_detail::no_such_type test_swap(...) noexcept;
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            :   static const bool value =
+<span class="lineNum">      82 </span>            :       not std::is_same&lt;decltype(test_swap&lt;T, S&gt;(0)),
+<span class="lineNum">      83 </span>            :                        tuples::tuples_detail::no_such_type&gt;::value and
+<span class="lineNum">      84 </span>            :       not std::is_same&lt;decltype(test_swap&lt;S, T&gt;(0)),
+<span class="lineNum">      85 </span>            :                        tuples::tuples_detail::no_such_type&gt;::value;
+<span class="lineNum">      86 </span>            : };
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span>            : template &lt;class T, class S&gt;
+<span class="lineNum">      89 </span>            : struct is_swappable_with&lt;T, S, false&gt; : std::false_type {};
+<span class="lineNum">      90 </span>            : }  // namespace detail
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            : template &lt;class T, class S&gt;
+<span class="lineNum">      93 </span>            : using is_swappable_with = detail::is_swappable_with&lt;T, S&gt;;
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span>            : template &lt;class T, class S, bool = is_swappable_with&lt;T, S&gt;::value&gt;
+<span class="lineNum">      96 </span>            : struct is_nothrow_swappable_with {
+<span class="lineNum">      97 </span>            :  private:
+<span class="lineNum">      98 </span>            :   static constexpr bool check() noexcept {
+<span class="lineNum">      99 </span>            :     using std::swap;
+<span class="lineNum">     100 </span>            :     return noexcept(swap(std::declval&lt;T&amp;&gt;(), std::declval&lt;S&amp;&gt;())) and
+<span class="lineNum">     101 </span>            :            noexcept(swap(std::declval&lt;S&amp;&gt;(), std::declval&lt;T&amp;&gt;()));
+<span class="lineNum">     102 </span>            :   }
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span>            :  public:
+<span class="lineNum">     105 </span>            :   static const bool value = check();
+<span class="lineNum">     106 </span>            : };
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span>            : template &lt;class T, class S&gt;
+<span class="lineNum">     109 </span>            : struct is_nothrow_swappable_with&lt;T, S, false&gt; : std::false_type {};
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            : template &lt;typename... Ts&gt;
+<span class="lineNum">     112 </span>            : constexpr char expand_pack(Ts&amp;&amp;... /*unused*/) noexcept {
+<span class="lineNum">     113 </span>            :   return '0';
+<span class="lineNum">     114 </span>            : }
+<span class="lineNum">     115 </span>            : }  // namespace tuples_detail
+<span class="lineNum">     116 </span>            : 
+<span class="lineNum">     117 </span>            : namespace tuples_detail {
+<span class="lineNum">     118 </span>            : template &lt;class Tag,
+<span class="lineNum">     119 </span>            :           bool Ebo = std::is_empty&lt;typename Tag::type&gt;::value &amp;&amp;
+<span class="lineNum">     120 </span>            :                      !__is_final(typename Tag::type)&gt;
+<span class="lineNum">     121 </span>            : class TaggedTupleLeaf;
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            : template &lt;class T, bool B&gt;
+<span class="lineNum">     124 </span>            : void swap(TaggedTupleLeaf&lt;T, B&gt;&amp; lhs, TaggedTupleLeaf&lt;T, B&gt;&amp; rhs) noexcept(
+<span class="lineNum">     125 </span>            :     is_nothrow_swappable_with&lt;typename T::type, typename T::type&gt;::value) {
+<span class="lineNum">     126 </span>            :   using std::swap;
+<span class="lineNum">     127 </span>            :   swap(lhs.get(), rhs.get());
+<span class="lineNum">     128 </span>            : }
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span>            : template &lt;class Tag&gt;
+<span class="lineNum">     131 </span>            : class TaggedTupleLeaf&lt;Tag, false&gt; {
+<span class="lineNum">     132 </span>            :   using value_type = typename Tag::type;
+<span class="lineNum">     133 </span>            :   value_type value_;
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            :   template &lt;class T&gt;
+<span class="lineNum">     136 </span>            :   static constexpr bool can_bind_reference() noexcept {
+<span class="lineNum">     137 </span>            :     using rem_ref_value_type = typename std::remove_reference&lt;value_type&gt;::type;
+<span class="lineNum">     138 </span>            :     using rem_ref_T = typename std::remove_reference&lt;T&gt;::type;
+<span class="lineNum">     139 </span>            :     using is_lvalue_type = std::integral_constant&lt;
+<span class="lineNum">     140 </span>            :         bool,
+<span class="lineNum">     141 </span>            :         std::is_lvalue_reference&lt;T&gt;::value or
+<span class="lineNum">     142 </span>            :             std::is_same&lt;std::reference_wrapper&lt;rem_ref_value_type&gt;,
+<span class="lineNum">     143 </span>            :                          rem_ref_T&gt;::value or
+<span class="lineNum">     144 </span>            :             std::is_same&lt;std::reference_wrapper&lt;typename std::remove_const&lt;
+<span class="lineNum">     145 </span>            :                              rem_ref_value_type&gt;::type&gt;,
+<span class="lineNum">     146 </span>            :                          rem_ref_T&gt;::value&gt;;
+<span class="lineNum">     147 </span>            :     return not std::is_reference&lt;value_type&gt;::value or
+<span class="lineNum">     148 </span>            :            (std::is_lvalue_reference&lt;value_type&gt;::value and
+<span class="lineNum">     149 </span>            :             is_lvalue_type::value) or
+<span class="lineNum">     150 </span>            :            (std::is_rvalue_reference&lt;value_type&gt;::value and
+<span class="lineNum">     151 </span>            :             not std::is_lvalue_reference&lt;T&gt;::value);
+<span class="lineNum">     152 </span>            :   }
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            :  public:
+<span class="lineNum">     155 </span>            :   // Tested in constexpr context in Unit.TaggedTuple.Ebo
+<span class="lineNum">     156 </span>            :   constexpr TaggedTupleLeaf() noexcept(
+<span class="lineNum">     157 </span>            :       std::is_nothrow_default_constructible&lt;value_type&gt;::value)
+<span class="lineNum">     158 </span>            :       : value_() {
+<span class="lineNum">     159 </span>            :     static_assert(
+<span class="lineNum">     160 </span>            :         !std::is_reference&lt;value_type&gt;::value,
+<span class="lineNum">     161 </span>            :         &quot;Cannot default construct a reference element in a TaggedTuple&quot;);
+<span class="lineNum">     162 </span>            :   }
+<span class="lineNum">     163 </span>            : 
+<span class="lineNum">     164 </span>            :   // clang-tidy: forwarding references can be bad
+<span class="lineNum">     165 </span>            :   template &lt;
+<span class="lineNum">     166 </span>            :       class T,
+<span class="lineNum">     167 </span>            :       typename std::enable_if&lt;
+<span class="lineNum">     168 </span>            :           !std::is_same&lt;typename std::decay&lt;T&gt;::type, TaggedTupleLeaf&gt;::value &amp;&amp;
+<span class="lineNum">     169 </span>            :           std::is_constructible&lt;value_type, T&gt;::value&gt;::type* = nullptr&gt;
+<span class="lineNum">     170 </span>            :   constexpr explicit TaggedTupleLeaf(T&amp;&amp; t) noexcept(  // NOLINT
+<span class="lineNum">     171 </span>            :       std::is_nothrow_constructible&lt;value_type, T&amp;&amp;&gt;::value)
+<span class="lineNum">     172 </span>            :       : value_(tuples_detail::forward&lt;T&gt;(t)) {  // NOLINT
+<span class="lineNum">     173 </span>            :     static_assert(can_bind_reference&lt;T&gt;(),
+<span class="lineNum">     174 </span>            :                   &quot;Cannot construct an lvalue reference with an rvalue&quot;);
+<span class="lineNum">     175 </span>            :   }
+<span class="lineNum">     176 </span>            : 
+<span class="lineNum">     177 </span>            :   constexpr TaggedTupleLeaf(TaggedTupleLeaf const&amp; /*rhs*/) = default;
+<span class="lineNum">     178 </span>            :   constexpr TaggedTupleLeaf(TaggedTupleLeaf&amp;&amp; /*rhs*/) = default;
+<span class="lineNum">     179 </span>            :   constexpr TaggedTupleLeaf&amp; operator=(TaggedTupleLeaf const&amp; /*rhs*/) =
+<span class="lineNum">     180 </span>            :       default;
+<span class="lineNum">     181 </span>            :   constexpr TaggedTupleLeaf&amp; operator=(TaggedTupleLeaf&amp;&amp; /*rhs*/) = default;
+<span class="lineNum">     182 </span>            : 
+<span class="lineNum">     183 </span>            :   ~TaggedTupleLeaf() = default;
+<span class="lineNum">     184 </span>            : 
+<span class="lineNum">     185 </span>            : #if __cplusplus &lt; 201402L
+<span class="lineNum">     186 </span>            :   value_type&amp; get() noexcept { return value_; }
+<span class="lineNum">     187 </span>            : #else
+<span class="lineNum">     188 </span>            :   constexpr value_type&amp; get() noexcept { return value_; }
+<span class="lineNum">     189 </span>            : #endif
+<span class="lineNum">     190 </span>            :   constexpr const value_type&amp; get() const noexcept { return value_; }
+<span class="lineNum">     191 </span>            : 
+<span class="lineNum">     192 </span>            :   bool swap(TaggedTupleLeaf&amp; t) noexcept(
+<span class="lineNum">     193 </span>            :       is_nothrow_swappable_with&lt;TaggedTupleLeaf, TaggedTupleLeaf&gt;::value) {
+<span class="lineNum">     194 </span>            :     using std::swap;
+<span class="lineNum">     195 </span>            :     swap(*this, t);
+<span class="lineNum">     196 </span>            :     return false;
+<span class="lineNum">     197 </span>            :   }
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            :   // clang-tidy: runtime-references
+<span class="lineNum">     200 </span>            :   void pup(PUP::er&amp; p) { p | value_; }  // NOLINT
+<span class="lineNum">     201 </span>            : };
+<span class="lineNum">     202 </span>            : 
+<span class="lineNum">     203 </span>            : template &lt;class Tag&gt;
+<span class="lineNum">     204 </span>            : class TaggedTupleLeaf&lt;Tag, true&gt; : private Tag::type {
+<span class="lineNum">     205 </span>            :   using value_type = typename Tag::type;
+<span class="lineNum">     206 </span>            : 
+<span class="lineNum">     207 </span>            :  public:
+<span class="lineNum">     208 </span>            :   constexpr TaggedTupleLeaf() noexcept(
+<span class="lineNum">     209 </span>            :       std::is_nothrow_default_constructible&lt;value_type&gt;::value)
+<span class="lineNum">     210 </span>            :       : value_type{} {}
+<span class="lineNum">     211 </span>            : 
+<span class="lineNum">     212 </span>            :   template &lt;
+<span class="lineNum">     213 </span>            :       class T,
+<span class="lineNum">     214 </span>            :       typename std::enable_if&lt;
+<span class="lineNum">     215 </span>            :           !std::is_same&lt;typename std::decay&lt;T&gt;::type, TaggedTupleLeaf&gt;::value &amp;&amp;
+<span class="lineNum">     216 </span>            :           std::is_constructible&lt;value_type, T&amp;&amp;&gt;::value&gt;::type* = nullptr&gt;
+<span class="lineNum">     217 </span>            :   constexpr explicit TaggedTupleLeaf(T&amp;&amp; t) noexcept(  // NOLINT
+<span class="lineNum">     218 </span>            :       std::is_nothrow_constructible&lt;value_type, T&amp;&amp;&gt;::value)
+<span class="lineNum">     219 </span>            :       : value_type(tuples_detail::forward&lt;T&gt;(t)) {}
+<span class="lineNum">     220 </span>            : 
+<span class="lineNum">     221 </span>            :   constexpr TaggedTupleLeaf(TaggedTupleLeaf const&amp; /*rhs*/) = default;
+<span class="lineNum">     222 </span>            :   constexpr TaggedTupleLeaf(TaggedTupleLeaf&amp;&amp; /*rhs*/) = default;
+<span class="lineNum">     223 </span>            :   constexpr TaggedTupleLeaf&amp; operator=(TaggedTupleLeaf const&amp; /*rhs*/) =
+<span class="lineNum">     224 </span>            :       default;
+<span class="lineNum">     225 </span>            :   constexpr TaggedTupleLeaf&amp; operator=(TaggedTupleLeaf&amp;&amp; /*rhs*/) = default;
+<span class="lineNum">     226 </span>            : 
+<span class="lineNum">     227 </span>            :   ~TaggedTupleLeaf() = default;
+<span class="lineNum">     228 </span>            : 
+<span class="lineNum">     229 </span>            : #if __cplusplus &lt; 201402L
+<span class="lineNum">     230 </span>            :   value_type&amp; get() noexcept { return static_cast&lt;value_type&amp;&gt;(*this); }
+<span class="lineNum">     231 </span>            : #else
+<span class="lineNum">     232 </span>            :   constexpr value_type&amp; get() noexcept {
+<span class="lineNum">     233 </span>            :     return static_cast&lt;value_type&amp;&gt;(*this);
+<span class="lineNum">     234 </span>            :   }
+<span class="lineNum">     235 </span>            : #endif
+<span class="lineNum">     236 </span>            : 
+<span class="lineNum">     237 </span>            :   constexpr const value_type&amp; get() const noexcept {
+<span class="lineNum">     238 </span>            :     return static_cast&lt;const value_type&amp;&gt;(*this);
+<span class="lineNum">     239 </span>            :   }
+<span class="lineNum">     240 </span>            : 
+<span class="lineNum">     241 </span>            :   bool swap(TaggedTupleLeaf&amp; t) noexcept(
+<span class="lineNum">     242 </span>            :       is_nothrow_swappable_with&lt;TaggedTupleLeaf, TaggedTupleLeaf&gt;::value) {
+<span class="lineNum">     243 </span>            :     using std::swap;
+<span class="lineNum">     244 </span>            :     swap(*this, t);
+<span class="lineNum">     245 </span>            :     return false;
+<span class="lineNum">     246 </span>            :   }
+<span class="lineNum">     247 </span>            : 
+<span class="lineNum">     248 </span>            :   // clang-tidy: runtime-references
+<span class="lineNum">     249 </span>            :   void pup(PUP::er&amp; p) {  // NOLINT
+<span class="lineNum">     250 </span>            :     p | static_cast&lt;typename Tag::type&amp;&gt;(*this);
+<span class="lineNum">     251 </span>            :   }
+<span class="lineNum">     252 </span>            : };
+<span class="lineNum">     253 </span>            : 
+<span class="lineNum">     254 </span>            : struct disable_constructors {
+<span class="lineNum">     255 </span>            :   static constexpr bool enable_default() noexcept { return false; }
+<span class="lineNum">     256 </span>            :   static constexpr bool enable_explicit() noexcept { return false; }
+<span class="lineNum">     257 </span>            :   static constexpr bool enable_implicit() noexcept { return false; }
+<span class="lineNum">     258 </span>            : };
+<span class="lineNum">     259 </span>            : }  // namespace tuples_detail
+<span class="lineNum">     260 </span>            : 
+<span class="lineNum">     261 </span>            : /*!
+<span class="lineNum">     262 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">     263 </span>            :  * \brief An associative container that is indexed by structs
+<span class="lineNum">     264 </span>            :  *
+<span class="lineNum">     265 </span>            :  * A data structure that is indexed by Tags. A Tag is a struct that contains
+<span class="lineNum">     266 </span>            :  * a type alias named `type`, which is the type of the object stored with
+<span class="lineNum">     267 </span>            :  * index Tag.
+<span class="lineNum">     268 </span>            :  *
+<span class="lineNum">     269 </span>            :  * \tparam Tags the tags of the objects to be placed in the tuple
+<span class="lineNum">     270 </span>            :  */
+<span class="lineNum">     271 </span>            : template &lt;class... Tags&gt;
+<span class="lineNum">     272 </span><span class="lineCov">          1 : class TaggedTuple;</span>
+<span class="lineNum">     273 </span>            : 
+<span class="lineNum">     274 </span>            : template &lt;class Tag, class... Tags&gt;
+<span class="lineNum">     275 </span><span class="lineCov">          2 : constexpr const typename Tag::type&amp; get(</span>
+<span class="lineNum">     276 </span>            :     const TaggedTuple&lt;Tags...&gt;&amp; t) noexcept;
+<span class="lineNum">     277 </span>            : template &lt;class Tag, class... Tags&gt;
+<span class="lineNum">     278 </span><span class="lineCov">          2 : constexpr typename Tag::type&amp; get(TaggedTuple&lt;Tags...&gt;&amp; t) noexcept;</span>
+<span class="lineNum">     279 </span>            : template &lt;class Tag, class... Tags&gt;
+<span class="lineNum">     280 </span><span class="lineCov">          2 : constexpr const typename Tag::type&amp;&amp; get(</span>
+<span class="lineNum">     281 </span>            :     const TaggedTuple&lt;Tags...&gt;&amp;&amp; t) noexcept;
+<span class="lineNum">     282 </span>            : template &lt;class Tag, class... Tags&gt;
+<span class="lineNum">     283 </span><span class="lineCov">          2 : constexpr typename Tag::type&amp;&amp; get(TaggedTuple&lt;Tags...&gt;&amp;&amp; t) noexcept;</span>
+<span class="lineNum">     284 </span>            : 
+<span class="lineNum">     285 </span>            : /*!
+<span class="lineNum">     286 </span>            :  * \brief Returns the type of the Tag
+<span class="lineNum">     287 </span>            :  */
+<span class="lineNum">     288 </span>            : template &lt;class Tag&gt;
+<span class="lineNum">     289 </span><span class="lineCov">          1 : using tag_type = typename Tag::type;</span>
+<span class="lineNum">     290 </span>            : 
+<span class="lineNum">     291 </span>            : // clang-tidy: class does not define copy or move assignment (it does)
+<span class="lineNum">     292 </span>            : template &lt;class... Tags&gt;
+<span class="lineNum">     293 </span>            : class TaggedTuple : private tuples_detail::TaggedTupleLeaf&lt;Tags&gt;... {  // NOLINT
+<span class="lineNum">     294 </span>            :   template &lt;class... Args&gt;
+<span class="lineNum">     295 </span><span class="lineNoCov">          0 :   struct pack_is_TaggedTuple : std::false_type {};</span>
+<span class="lineNum">     296 </span>            :   template &lt;class... Args&gt;
+<span class="lineNum">     297 </span><span class="lineNoCov">          0 :   struct pack_is_TaggedTuple&lt;TaggedTuple&lt;Args...&gt;&gt; : std::true_type {};</span>
+<span class="lineNum">     298 </span>            : 
+<span class="lineNum">     299 </span>            :   template &lt;bool EnableConstructor, class Dummy = void&gt;
+<span class="lineNum">     300 </span><span class="lineNoCov">          0 :   struct args_constructor : tuples_detail::disable_constructors {};</span>
+<span class="lineNum">     301 </span>            : 
+<span class="lineNum">     302 </span>            :   template &lt;class Dummy&gt;
+<span class="lineNum">     303 </span><span class="lineNoCov">          0 :   struct args_constructor&lt;true, Dummy&gt; {</span>
+<span class="lineNum">     304 </span><span class="lineNoCov">          0 :     static constexpr bool enable_default() {</span>
+<span class="lineNum">     305 </span>            :       return tuples_detail::all&lt;
+<span class="lineNum">     306 </span>            :           std::is_default_constructible&lt;tag_type&lt;Tags&gt;&gt;::value...&gt;::value;
+<span class="lineNum">     307 </span>            :     }
+<span class="lineNum">     308 </span>            : 
+<span class="lineNum">     309 </span>            :     template &lt;class... Ts&gt;
+<span class="lineNum">     310 </span><span class="lineNoCov">          0 :     static constexpr bool enable_explicit() noexcept {</span>
+<span class="lineNum">     311 </span>            :       return tuples_detail::all&lt;std::is_constructible&lt;
+<span class="lineNum">     312 </span>            :                  tuples_detail::TaggedTupleLeaf&lt;Tags&gt;, Ts&gt;::value...&gt;::value and
+<span class="lineNum">     313 </span>            :              not tuples_detail::all&lt;
+<span class="lineNum">     314 </span>            :                  std::is_convertible&lt;Ts, tag_type&lt;Tags&gt;&gt;::value...&gt;::value;
+<span class="lineNum">     315 </span>            :     }
+<span class="lineNum">     316 </span>            :     template &lt;class... Ts&gt;
+<span class="lineNum">     317 </span><span class="lineNoCov">          0 :     static constexpr bool enable_implicit() noexcept {</span>
+<span class="lineNum">     318 </span>            :       return tuples_detail::all&lt;std::is_constructible&lt;
+<span class="lineNum">     319 </span>            :                  tuples_detail::TaggedTupleLeaf&lt;Tags&gt;, Ts&gt;::value...&gt;::value and
+<span class="lineNum">     320 </span>            :              tuples_detail::all&lt;
+<span class="lineNum">     321 </span>            :                  std::is_convertible&lt;Ts, tag_type&lt;Tags&gt;&gt;::value...&gt;::value;
+<span class="lineNum">     322 </span>            :     }
+<span class="lineNum">     323 </span>            :   };
+<span class="lineNum">     324 </span>            : 
+<span class="lineNum">     325 </span>            :   // C++17 Draft 23.5.3.2 Assignment - helper aliases
+<span class="lineNum">     326 </span><span class="lineNoCov">          0 :   using is_copy_assignable =</span>
+<span class="lineNum">     327 </span>            :       tuples_detail::all&lt;std::is_copy_assignable&lt;tag_type&lt;Tags&gt;&gt;::value...&gt;;
+<span class="lineNum">     328 </span><span class="lineNoCov">          0 :   using is_nothrow_copy_assignable = tuples_detail::all&lt;</span>
+<span class="lineNum">     329 </span>            :       std::is_nothrow_copy_assignable&lt;tag_type&lt;Tags&gt;&gt;::value...&gt;;
+<span class="lineNum">     330 </span><span class="lineNoCov">          0 :   using is_move_assignable =</span>
+<span class="lineNum">     331 </span>            :       tuples_detail::all&lt;std::is_move_assignable&lt;tag_type&lt;Tags&gt;&gt;::value...&gt;;
+<span class="lineNum">     332 </span><span class="lineNoCov">          0 :   using is_nothrow_move_assignable = tuples_detail::all&lt;</span>
+<span class="lineNum">     333 </span>            :       std::is_nothrow_move_assignable&lt;tag_type&lt;Tags&gt;&gt;::value...&gt;;
+<span class="lineNum">     334 </span>            : 
+<span class="lineNum">     335 </span>            :   // clang-tidy: redundant declaration
+<span class="lineNum">     336 </span>            :   template &lt;class Tag, class... LTags&gt;
+<span class="lineNum">     337 </span>            :   friend constexpr const typename Tag::type&amp; get(  // NOLINT
+<span class="lineNum">     338 </span>            :       const TaggedTuple&lt;LTags...&gt;&amp; t) noexcept;
+<span class="lineNum">     339 </span>            :   template &lt;class Tag, class... LTags&gt;
+<span class="lineNum">     340 </span>            :   friend constexpr typename Tag::type&amp; get(  // NOLINT
+<span class="lineNum">     341 </span>            :       TaggedTuple&lt;LTags...&gt;&amp; t) noexcept;
+<span class="lineNum">     342 </span>            :   template &lt;class Tag, class... LTags&gt;
+<span class="lineNum">     343 </span>            :   friend constexpr const typename Tag::type&amp;&amp; get(  // NOLINT
+<span class="lineNum">     344 </span>            :       const TaggedTuple&lt;LTags...&gt;&amp;&amp; t) noexcept;
+<span class="lineNum">     345 </span>            :   template &lt;class Tag, class... LTags&gt;
+<span class="lineNum">     346 </span>            :   friend constexpr typename Tag::type&amp;&amp; get(  // NOLINT
+<span class="lineNum">     347 </span>            :       TaggedTuple&lt;LTags...&gt;&amp;&amp; t) noexcept;
+<span class="lineNum">     348 </span>            : 
+<span class="lineNum">     349 </span>            :  public:
+<span class="lineNum">     350 </span><span class="lineNoCov">          0 :   static constexpr size_t size() noexcept { return sizeof...(Tags); }</span>
+<span class="lineNum">     351 </span>            : 
+<span class="lineNum">     352 </span>            :   // clang-tidy: runtime-references
+<span class="lineNum">     353 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p) {  // NOLINT</span>
+<span class="lineNum">     354 </span>            :     static_cast&lt;void&gt;(std::initializer_list&lt;char&gt;{
+<span class="lineNum">     355 </span>            :         (tuples_detail::TaggedTupleLeaf&lt;Tags&gt;::pup(p), '0')...});
+<span class="lineNum">     356 </span>            :   }
+<span class="lineNum">     357 </span>            : 
+<span class="lineNum">     358 </span>            :   // C++17 Draft 23.5.3.1 Construction
+<span class="lineNum">     359 </span>            :   template &lt;bool Dummy = true,
+<span class="lineNum">     360 </span>            :             typename std::enable_if&lt;
+<span class="lineNum">     361 </span>            :                 args_constructor&lt;Dummy&gt;::enable_default()&gt;::type* = nullptr&gt;
+<span class="lineNum">     362 </span>            :   // clang-tidy: use = default, can't because won't compile
+<span class="lineNum">     363 </span><span class="lineNoCov">          0 :   constexpr TaggedTuple() noexcept(  // NOLINT</span>
+<span class="lineNum">     364 </span>            :       tuples_detail::all&lt;std::is_nothrow_default_constructible&lt;
+<span class="lineNum">     365 </span>            :           tag_type&lt;Tags&gt;&gt;::value...&gt;::value) {}
+<span class="lineNum">     366 </span>            : 
+<span class="lineNum">     367 </span><span class="lineNoCov">          0 :   TaggedTuple(TaggedTuple const&amp; /*rhs*/) = default;</span>
+<span class="lineNum">     368 </span><span class="lineNoCov">          0 :   TaggedTuple(TaggedTuple&amp;&amp; /*rhs*/) = default;</span>
+<span class="lineNum">     369 </span>            : 
+<span class="lineNum">     370 </span>            :   /*!
+<span class="lineNum">     371 </span>            :    * \brief Construct a TaggedTuple with Args
+<span class="lineNum">     372 </span>            :    * \requires `std::is_convertible_v&lt;Us, typename Tags::type&gt;...` is `true`
+<span class="lineNum">     373 </span>            :    *
+<span class="lineNum">     374 </span>            :    * \example
+<span class="lineNum">     375 </span>            :    * \snippet Test_TaggedTuple.cpp construction_example
+<span class="lineNum">     376 </span>            :    */
+<span class="lineNum">     377 </span>            :   template &lt;class... Us,
+<span class="lineNum">     378 </span>            :             typename std::enable_if&lt;
+<span class="lineNum">     379 </span>            :                 args_constructor&lt;not pack_is_TaggedTuple&lt;Us...&gt;::value and
+<span class="lineNum">     380 </span>            :                                  sizeof...(Us) == sizeof...(Tags)&gt;::
+<span class="lineNum">     381 </span>            :                     template enable_explicit&lt;Us...&gt;()&gt;::type* = nullptr&gt;
+<span class="lineNum">     382 </span><span class="lineCov">          1 :   constexpr explicit TaggedTuple(Us&amp;&amp;... us) noexcept(</span>
+<span class="lineNum">     383 </span>            :       tuples_detail::all&lt;std::is_nothrow_constructible&lt;
+<span class="lineNum">     384 </span>            :           tuples_detail::TaggedTupleLeaf&lt;Tags&gt;, Us&gt;::value...&gt;::value)
+<span class="lineNum">     385 </span>            :       : tuples_detail::TaggedTupleLeaf&lt;Tags&gt;(
+<span class="lineNum">     386 </span>            :             tuples_detail::forward&lt;Us&gt;(us))... {}
+<span class="lineNum">     387 </span>            : 
+<span class="lineNum">     388 </span>            :   /*!
+<span class="lineNum">     389 </span>            :    * \brief Construct a TaggedTuple with Args
+<span class="lineNum">     390 </span>            :    * \requires `std::is_convertible_v&lt;Us, typename Tags::type&gt;...` is `true`
+<span class="lineNum">     391 </span>            :    *
+<span class="lineNum">     392 </span>            :    * \example
+<span class="lineNum">     393 </span>            :    * \snippet Test_TaggedTuple.cpp construction_example
+<span class="lineNum">     394 </span>            :    */
+<span class="lineNum">     395 </span>            :   template &lt;class... Us,
+<span class="lineNum">     396 </span>            :             typename std::enable_if&lt;
+<span class="lineNum">     397 </span>            :                 args_constructor&lt;not pack_is_TaggedTuple&lt;Us...&gt;::value and
+<span class="lineNum">     398 </span>            :                                  sizeof...(Us) == sizeof...(Tags)&gt;::
+<span class="lineNum">     399 </span>            :                     template enable_implicit&lt;Us...&gt;()&gt;::type* = nullptr&gt;
+<span class="lineNum">     400 </span>            :   // clang-tidy: mark explicit
+<span class="lineNum">     401 </span><span class="lineCov">          1 :   constexpr TaggedTuple(Us&amp;&amp;... us) noexcept(  // NOLINT</span>
+<span class="lineNum">     402 </span>            :       tuples_detail::all&lt;std::is_nothrow_constructible&lt;
+<span class="lineNum">     403 </span>            :           tuples_detail::TaggedTupleLeaf&lt;Tags&gt;, Us&gt;::value...&gt;::value)
+<span class="lineNum">     404 </span>            :       : tuples_detail::TaggedTupleLeaf&lt;Tags&gt;(
+<span class="lineNum">     405 </span>            :             tuples_detail::forward&lt;Us&gt;(us))... {}
+<span class="lineNum">     406 </span>            : 
+<span class="lineNum">     407 </span>            :   template &lt;
+<span class="lineNum">     408 </span>            :       class... UTags,
+<span class="lineNum">     409 </span>            :       typename std::enable_if&lt;
+<span class="lineNum">     410 </span>            :           sizeof...(Tags) == sizeof...(UTags) and
+<span class="lineNum">     411 </span>            :           tuples_detail::all&lt;std::is_constructible&lt;
+<span class="lineNum">     412 </span>            :               tag_type&lt;Tags&gt;, const tag_type&lt;UTags&gt;&amp;&gt;::value...&gt;::value and
+<span class="lineNum">     413 </span>            :           not tuples_detail::all&lt;std::is_same&lt;Tags, UTags&gt;::value...&gt;::value&gt;::
+<span class="lineNum">     414 </span>            :           type* = nullptr&gt;
+<span class="lineNum">     415 </span><span class="lineNoCov">          0 :   constexpr explicit TaggedTuple(TaggedTuple&lt;UTags...&gt; const&amp; t) noexcept(</span>
+<span class="lineNum">     416 </span>            :       tuples_detail::all&lt;std::is_nothrow_constructible&lt;
+<span class="lineNum">     417 </span>            :           tag_type&lt;Tags&gt;, tag_type&lt;UTags&gt; const&amp;&gt;::value...&gt;::value)
+<span class="lineNum">     418 </span>            :       : tuples_detail::TaggedTupleLeaf&lt;Tags&gt;(get&lt;UTags&gt;(t))... {}
+<span class="lineNum">     419 </span>            : 
+<span class="lineNum">     420 </span>            :   template &lt;class... UTags,
+<span class="lineNum">     421 </span>            :             typename std::enable_if&lt;
+<span class="lineNum">     422 </span>            :                 sizeof...(Tags) == sizeof...(UTags) and
+<span class="lineNum">     423 </span>            :                 tuples_detail::all&lt;std::is_constructible&lt;
+<span class="lineNum">     424 </span>            :                     tag_type&lt;Tags&gt;, tag_type&lt;UTags&gt;&amp;&amp;&gt;::value...&gt;::value and
+<span class="lineNum">     425 </span>            :                 not tuples_detail::all&lt;std::is_same&lt;Tags, UTags&gt;::value...&gt;::
+<span class="lineNum">     426 </span>            :                     value&gt;::type* = nullptr&gt;
+<span class="lineNum">     427 </span><span class="lineNoCov">          0 :   constexpr explicit TaggedTuple(TaggedTuple&lt;UTags...&gt;&amp;&amp; t) noexcept(</span>
+<span class="lineNum">     428 </span>            :       tuples_detail::all&lt;std::is_nothrow_constructible&lt;
+<span class="lineNum">     429 </span>            :           tag_type&lt;Tags&gt;, tag_type&lt;UTags&gt;&amp;&amp;&gt;::value...&gt;::value)
+<span class="lineNum">     430 </span>            :       : tuples_detail::TaggedTupleLeaf&lt;Tags&gt;(std::move(get&lt;UTags&gt;(t)))... {}
+<span class="lineNum">     431 </span>            : 
+<span class="lineNum">     432 </span><span class="lineNoCov">          0 :   ~TaggedTuple() = default;</span>
+<span class="lineNum">     433 </span>            : 
+<span class="lineNum">     434 </span>            :   // C++17 Draft 23.5.3.2 Assignment
+<span class="lineNum">     435 </span><span class="lineNoCov">          0 :   TaggedTuple&amp; operator=(</span>
+<span class="lineNum">     436 </span>            :       typename std::conditional&lt;is_copy_assignable::value, TaggedTuple,
+<span class="lineNum">     437 </span>            :                                 tuples_detail::no_such_type&gt;::type const&amp;
+<span class="lineNum">     438 </span>            :           t) noexcept(is_nothrow_copy_assignable::value) {
+<span class="lineNum">     439 </span>            :     static_cast&lt;void&gt;(
+<span class="lineNum">     440 </span>            :         tuples_detail::expand_pack((get&lt;Tags&gt;(*this) = get&lt;Tags&gt;(t))...));
+<span class="lineNum">     441 </span>            :     return *this;
+<span class="lineNum">     442 </span>            :   }
+<span class="lineNum">     443 </span>            : 
+<span class="lineNum">     444 </span><span class="lineNoCov">          0 :   TaggedTuple&amp; operator=(</span>
+<span class="lineNum">     445 </span>            :       typename std::conditional&lt;is_move_assignable::value, TaggedTuple,
+<span class="lineNum">     446 </span>            :                                 tuples_detail::no_such_type&gt;::type&amp;&amp;
+<span class="lineNum">     447 </span>            :           t) noexcept(is_nothrow_move_assignable::value) {
+<span class="lineNum">     448 </span>            :     static_cast&lt;void&gt;(tuples_detail::expand_pack(
+<span class="lineNum">     449 </span>            :         (get&lt;Tags&gt;(*this) =
+<span class="lineNum">     450 </span>            :              tuples_detail::forward&lt;tag_type&lt;Tags&gt;&gt;(get&lt;Tags&gt;(t)))...));
+<span class="lineNum">     451 </span>            :     return *this;
+<span class="lineNum">     452 </span>            :   }
+<span class="lineNum">     453 </span>            : 
+<span class="lineNum">     454 </span>            :   template &lt;class... UTags,
+<span class="lineNum">     455 </span>            :             typename std::enable_if&lt;
+<span class="lineNum">     456 </span>            :                 sizeof...(Tags) == sizeof...(UTags) and
+<span class="lineNum">     457 </span>            :                 tuples_detail::all&lt;std::is_assignable&lt;
+<span class="lineNum">     458 </span>            :                     tag_type&lt;Tags&gt;&amp;,
+<span class="lineNum">     459 </span>            :                     tag_type&lt;UTags&gt; const&amp;&gt;::value...&gt;::value&gt;::type* = nullptr&gt;
+<span class="lineNum">     460 </span><span class="lineNoCov">          0 :   TaggedTuple&amp; operator=(TaggedTuple&lt;UTags...&gt; const&amp; t) noexcept(</span>
+<span class="lineNum">     461 </span>            :       tuples_detail::all&lt;std::is_nothrow_assignable&lt;
+<span class="lineNum">     462 </span>            :           tag_type&lt;Tags&gt;&amp;, tag_type&lt;UTags&gt; const&amp;&gt;::value...&gt;::value) {
+<span class="lineNum">     463 </span>            :     static_cast&lt;void&gt;(
+<span class="lineNum">     464 </span>            :         tuples_detail::expand_pack((get&lt;Tags&gt;(*this) = get&lt;UTags&gt;(t))...));
+<span class="lineNum">     465 </span>            :     return *this;
+<span class="lineNum">     466 </span>            :   }
+<span class="lineNum">     467 </span>            : 
+<span class="lineNum">     468 </span>            :   template &lt;
+<span class="lineNum">     469 </span>            :       class... UTags,
+<span class="lineNum">     470 </span>            :       typename std::enable_if&lt;
+<span class="lineNum">     471 </span>            :           sizeof...(Tags) == sizeof...(UTags) and
+<span class="lineNum">     472 </span>            :           tuples_detail::all&lt;std::is_assignable&lt;
+<span class="lineNum">     473 </span>            :               tag_type&lt;Tags&gt;&amp;, tag_type&lt;UTags&gt;&amp;&amp;&gt;::value...&gt;::value&gt;::type* =
+<span class="lineNum">     474 </span>            :           nullptr&gt;
+<span class="lineNum">     475 </span><span class="lineNoCov">          0 :   TaggedTuple&amp; operator=(TaggedTuple&lt;UTags...&gt;&amp;&amp; t) noexcept(</span>
+<span class="lineNum">     476 </span>            :       tuples_detail::all&lt;std::is_nothrow_assignable&lt;
+<span class="lineNum">     477 </span>            :           tag_type&lt;Tags&gt;&amp;, tag_type&lt;UTags&gt;&amp;&amp;&gt;::value...&gt;::value) {
+<span class="lineNum">     478 </span>            :     static_cast&lt;void&gt;(tuples_detail::expand_pack(
+<span class="lineNum">     479 </span>            :         (get&lt;Tags&gt;(*this) =
+<span class="lineNum">     480 </span>            :              tuples_detail::forward&lt;tag_type&lt;UTags&gt;&gt;(get&lt;UTags&gt;(t)))...));
+<span class="lineNum">     481 </span>            :     return *this;
+<span class="lineNum">     482 </span>            :   }
+<span class="lineNum">     483 </span>            : 
+<span class="lineNum">     484 </span>            :   // C++17 Draft 23.5.3.3 swap
+<span class="lineNum">     485 </span><span class="lineNoCov">          0 :   void swap(TaggedTuple&amp; t) noexcept(</span>
+<span class="lineNum">     486 </span>            :       tuples_detail::all&lt;tuples_detail::is_nothrow_swappable_with&lt;
+<span class="lineNum">     487 </span>            :           tuples_detail::TaggedTupleLeaf&lt;Tags&gt;,
+<span class="lineNum">     488 </span>            :           tuples_detail::TaggedTupleLeaf&lt;Tags&gt;&gt;::value...&gt;::value) {
+<span class="lineNum">     489 </span>            :     tuples_detail::expand_pack(tuples_detail::TaggedTupleLeaf&lt;Tags&gt;::swap(
+<span class="lineNum">     490 </span>            :         static_cast&lt;tuples_detail::TaggedTupleLeaf&lt;Tags&gt;&amp;&gt;(t))...);
+<span class="lineNum">     491 </span>            :   }
+<span class="lineNum">     492 </span>            : };
+<span class="lineNum">     493 </span>            : 
+<span class="lineNum">     494 </span>            : template &lt;&gt;
+<span class="lineNum">     495 </span><span class="lineNoCov">          0 : class TaggedTuple&lt;&gt; {</span>
+<span class="lineNum">     496 </span>            :  public:
+<span class="lineNum">     497 </span><span class="lineNoCov">          0 :   static constexpr size_t size() noexcept { return 0; }</span>
+<span class="lineNum">     498 </span><span class="lineNoCov">          0 :   TaggedTuple() noexcept = default;</span>
+<span class="lineNum">     499 </span><span class="lineNoCov">          0 :   void swap(TaggedTuple&amp; /*unused*/) noexcept {}</span>
+<span class="lineNum">     500 </span>            :   // clang-tidy: runtime-references
+<span class="lineNum">     501 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; /*p*/) noexcept {}  // NOLINT</span>
+<span class="lineNum">     502 </span>            : };
+<span class="lineNum">     503 </span>            : 
+<span class="lineNum">     504 </span>            : // C++17 Draft 23.5.3.6 Tuple helper classes
+<span class="lineNum">     505 </span>            : template &lt;class T&gt;
+<span class="lineNum">     506 </span><span class="lineNoCov">          0 : struct tuple_size;</span>
+<span class="lineNum">     507 </span>            : 
+<span class="lineNum">     508 </span>            : template &lt;class... Tags&gt;
+<span class="lineNum">     509 </span>            : struct tuple_size&lt;TaggedTuple&lt;Tags...&gt;&gt;
+<span class="lineNum">     510 </span><span class="lineNoCov">          0 :     : std::integral_constant&lt;size_t, sizeof...(Tags)&gt; {};</span>
+<span class="lineNum">     511 </span>            : template &lt;class... Tags&gt;
+<span class="lineNum">     512 </span>            : struct tuple_size&lt;const TaggedTuple&lt;Tags...&gt;&gt;
+<span class="lineNum">     513 </span><span class="lineNoCov">          0 :     : tuple_size&lt;TaggedTuple&lt;Tags...&gt;&gt; {};</span>
+<span class="lineNum">     514 </span>            : template &lt;class... Tags&gt;
+<span class="lineNum">     515 </span>            : struct tuple_size&lt;volatile TaggedTuple&lt;Tags...&gt;&gt;
+<span class="lineNum">     516 </span><span class="lineNoCov">          0 :     : tuple_size&lt;TaggedTuple&lt;Tags...&gt;&gt; {};</span>
+<span class="lineNum">     517 </span>            : template &lt;class... Tags&gt;
+<span class="lineNum">     518 </span>            : struct tuple_size&lt;const volatile TaggedTuple&lt;Tags...&gt;&gt;
+<span class="lineNum">     519 </span><span class="lineNoCov">          0 :     : tuple_size&lt;TaggedTuple&lt;Tags...&gt;&gt; {};</span>
+<span class="lineNum">     520 </span>            : 
+<span class="lineNum">     521 </span>            : // C++17 Draft 23.5.3.7 Element access
+<span class="lineNum">     522 </span>            : // @{
+<span class="lineNum">     523 </span>            : /*!
+<span class="lineNum">     524 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">     525 </span>            :  * \brief Retrieve the element of `Tag` in the TaggedTuple
+<span class="lineNum">     526 </span>            :  */
+<span class="lineNum">     527 </span>            : template &lt;class Tag, class... Tags&gt;
+<span class="lineNum">     528 </span>            : inline constexpr const typename Tag::type&amp; get(
+<span class="lineNum">     529 </span>            :     const TaggedTuple&lt;Tags...&gt;&amp; t) noexcept {
+<span class="lineNum">     530 </span>            :   static_assert(std::is_base_of&lt;tuples_detail::TaggedTupleLeaf&lt;Tag&gt;,
+<span class="lineNum">     531 </span>            :                                 TaggedTuple&lt;Tags...&gt;&gt;::value,
+<span class="lineNum">     532 </span>            :                 &quot;Could not retrieve Tag from TaggedTuple. See the first &quot;
+<span class="lineNum">     533 </span>            :                 &quot;template parameter of the instantiation for what Tag is being &quot;
+<span class="lineNum">     534 </span>            :                 &quot;retrieved and the remaining template parameters for what Tags &quot;
+<span class="lineNum">     535 </span>            :                 &quot;are available.&quot;);
+<span class="lineNum">     536 </span>            :   return static_cast&lt;const tuples_detail::TaggedTupleLeaf&lt;Tag&gt;&amp;&gt;(t).get();
+<span class="lineNum">     537 </span>            : }
+<span class="lineNum">     538 </span>            : template &lt;class Tag, class... Tags&gt;
+<span class="lineNum">     539 </span>            : inline constexpr typename Tag::type&amp; get(TaggedTuple&lt;Tags...&gt;&amp; t) noexcept {
+<span class="lineNum">     540 </span>            :   static_assert(std::is_base_of&lt;tuples_detail::TaggedTupleLeaf&lt;Tag&gt;,
+<span class="lineNum">     541 </span>            :                                 TaggedTuple&lt;Tags...&gt;&gt;::value,
+<span class="lineNum">     542 </span>            :                 &quot;Could not retrieve Tag from TaggedTuple. See the first &quot;
+<span class="lineNum">     543 </span>            :                 &quot;template parameter of the instantiation for what Tag is being &quot;
+<span class="lineNum">     544 </span>            :                 &quot;retrieved and the remaining template parameters for what Tags &quot;
+<span class="lineNum">     545 </span>            :                 &quot;are available.&quot;);
+<span class="lineNum">     546 </span>            :   return static_cast&lt;tuples_detail::TaggedTupleLeaf&lt;Tag&gt;&amp;&gt;(t).get();
+<span class="lineNum">     547 </span>            : }
+<span class="lineNum">     548 </span>            : template &lt;class Tag, class... Tags&gt;
+<span class="lineNum">     549 </span>            : inline constexpr const typename Tag::type&amp;&amp; get(
+<span class="lineNum">     550 </span>            :     const TaggedTuple&lt;Tags...&gt;&amp;&amp; t) noexcept {
+<span class="lineNum">     551 </span>            :   static_assert(std::is_base_of&lt;tuples_detail::TaggedTupleLeaf&lt;Tag&gt;,
+<span class="lineNum">     552 </span>            :                                 TaggedTuple&lt;Tags...&gt;&gt;::value,
+<span class="lineNum">     553 </span>            :                 &quot;Could not retrieve Tag from TaggedTuple. See the first &quot;
+<span class="lineNum">     554 </span>            :                 &quot;template parameter of the instantiation for what Tag is being &quot;
+<span class="lineNum">     555 </span>            :                 &quot;retrieved and the remaining template parameters for what Tags &quot;
+<span class="lineNum">     556 </span>            :                 &quot;are available.&quot;);
+<span class="lineNum">     557 </span>            :   return static_cast&lt;const typename Tag::type&amp;&amp;&gt;(
+<span class="lineNum">     558 </span>            :       static_cast&lt;const tuples_detail::TaggedTupleLeaf&lt;Tag&gt;&amp;&amp;&gt;(t).get());
+<span class="lineNum">     559 </span>            : }
+<span class="lineNum">     560 </span>            : template &lt;class Tag, class... Tags&gt;
+<span class="lineNum">     561 </span>            : inline constexpr typename Tag::type&amp;&amp; get(TaggedTuple&lt;Tags...&gt;&amp;&amp; t) noexcept {
+<span class="lineNum">     562 </span>            :   static_assert(std::is_base_of&lt;tuples_detail::TaggedTupleLeaf&lt;Tag&gt;,
+<span class="lineNum">     563 </span>            :                                 TaggedTuple&lt;Tags...&gt;&gt;::value,
+<span class="lineNum">     564 </span>            :                 &quot;Could not retrieve Tag from TaggedTuple. See the first &quot;
+<span class="lineNum">     565 </span>            :                 &quot;template parameter of the instantiation for what Tag is being &quot;
+<span class="lineNum">     566 </span>            :                 &quot;retrieved and the remaining template parameters for what Tags &quot;
+<span class="lineNum">     567 </span>            :                 &quot;are available.&quot;);
+<span class="lineNum">     568 </span>            :   return static_cast&lt;typename Tag::type&amp;&amp;&gt;(
+<span class="lineNum">     569 </span>            :       static_cast&lt;tuples_detail::TaggedTupleLeaf&lt;Tag&gt;&amp;&amp;&gt;(t).get());
+<span class="lineNum">     570 </span>            : }
+<span class="lineNum">     571 </span>            : // @}
+<span class="lineNum">     572 </span>            : 
+<span class="lineNum">     573 </span>            : // C++17 Draft 23.5.3.8 Relational operators
+<span class="lineNum">     574 </span>            : namespace tuples_detail {
+<span class="lineNum">     575 </span>            : struct equal {
+<span class="lineNum">     576 </span>            :   template &lt;class T, class U&gt;
+<span class="lineNum">     577 </span>            :   static TUPLES_LIB_CONSTEXPR_CXX_14 void apply(
+<span class="lineNum">     578 </span>            :       T const&amp; lhs, U const&amp; rhs, bool* result) noexcept(noexcept(lhs == rhs)) {
+<span class="lineNum">     579 </span>            :     *result = *result and lhs == rhs;
+<span class="lineNum">     580 </span>            :   }
+<span class="lineNum">     581 </span>            : };
+<span class="lineNum">     582 </span>            : 
+<span class="lineNum">     583 </span>            : template &lt;class... LTags, class... RTags&gt;
+<span class="lineNum">     584 </span>            : TUPLES_LIB_CONSTEXPR_CXX_14 bool tuple_equal_impl(
+<span class="lineNum">     585 </span>            :     TaggedTuple&lt;LTags...&gt; const&amp; lhs,
+<span class="lineNum">     586 </span>            :     TaggedTuple&lt;RTags...&gt; const&amp;
+<span class="lineNum">     587 </span>            :         rhs) noexcept(noexcept(std::initializer_list&lt;bool&gt;{
+<span class="lineNum">     588 </span>            :     (get&lt;LTags&gt;(lhs) == get&lt;RTags&gt;(rhs))...})) {
+<span class="lineNum">     589 </span>            :   bool equal = true;
+<span class="lineNum">     590 </span>            :   // This short circuits in the sense that the operator== is only evaluated if
+<span class="lineNum">     591 </span>            :   // the result thus far is true
+<span class="lineNum">     592 </span>            :   static_cast&lt;void&gt;(std::initializer_list&lt;char&gt;{
+<span class="lineNum">     593 </span>            :       (equal::apply(get&lt;LTags&gt;(lhs), get&lt;RTags&gt;(rhs), &amp;equal), '0')...});
+<span class="lineNum">     594 </span>            :   return equal;
+<span class="lineNum">     595 </span>            : }
+<span class="lineNum">     596 </span>            : }  // namespace tuples_detail
+<span class="lineNum">     597 </span>            : 
+<span class="lineNum">     598 </span>            : template &lt;class... LTags, class... RTags,
+<span class="lineNum">     599 </span>            :           typename std::enable_if&lt;sizeof...(LTags) == sizeof...(RTags)&gt;::type* =
+<span class="lineNum">     600 </span>            :               nullptr&gt;
+<span class="lineNum">     601 </span><span class="lineNoCov">          0 : TUPLES_LIB_CONSTEXPR_CXX_14 bool operator==(</span>
+<span class="lineNum">     602 </span>            :     TaggedTuple&lt;LTags...&gt; const&amp; lhs,
+<span class="lineNum">     603 </span>            :     TaggedTuple&lt;RTags...&gt; const&amp;
+<span class="lineNum">     604 </span>            :         rhs) noexcept(noexcept(tuples_detail::tuple_equal_impl(lhs, rhs))) {
+<span class="lineNum">     605 </span>            :   return tuples_detail::tuple_equal_impl(lhs, rhs);
+<span class="lineNum">     606 </span>            : }
+<span class="lineNum">     607 </span>            : 
+<span class="lineNum">     608 </span>            : template &lt;class... LTags, class... RTags,
+<span class="lineNum">     609 </span>            :           typename std::enable_if&lt;sizeof...(LTags) == sizeof...(RTags)&gt;::type* =
+<span class="lineNum">     610 </span>            :               nullptr&gt;
+<span class="lineNum">     611 </span><span class="lineNoCov">          0 : TUPLES_LIB_CONSTEXPR_CXX_14 bool operator!=(</span>
+<span class="lineNum">     612 </span>            :     TaggedTuple&lt;LTags...&gt; const&amp; lhs,
+<span class="lineNum">     613 </span>            :     TaggedTuple&lt;RTags...&gt; const&amp; rhs) noexcept(noexcept(lhs == rhs)) {
+<span class="lineNum">     614 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     615 </span>            : }
+<span class="lineNum">     616 </span>            : 
+<span class="lineNum">     617 </span>            : namespace tuples_detail {
+<span class="lineNum">     618 </span>            : struct less {
+<span class="lineNum">     619 </span>            :   template &lt;class T, class U&gt;
+<span class="lineNum">     620 </span>            :   static TUPLES_LIB_CONSTEXPR_CXX_14 void apply(
+<span class="lineNum">     621 </span>            :       T const&amp; lhs, U const&amp; rhs, bool* last_rhs_less_lhs,
+<span class="lineNum">     622 </span>            :       bool* result) noexcept(noexcept(lhs &lt; rhs) and noexcept(rhs &lt; lhs)) {
+<span class="lineNum">     623 </span>            :     if (*result or *last_rhs_less_lhs) {
+<span class="lineNum">     624 </span>            :       return;
+<span class="lineNum">     625 </span>            :     }
+<span class="lineNum">     626 </span>            :     *result = lhs &lt; rhs;
+<span class="lineNum">     627 </span>            :     if (*result) {
+<span class="lineNum">     628 </span>            :       return;
+<span class="lineNum">     629 </span>            :     }
+<span class="lineNum">     630 </span>            :     *last_rhs_less_lhs = rhs &lt; lhs;
+<span class="lineNum">     631 </span>            :   }
+<span class="lineNum">     632 </span>            : };
+<span class="lineNum">     633 </span>            : 
+<span class="lineNum">     634 </span>            : template &lt;class... LTags, class... RTags&gt;
+<span class="lineNum">     635 </span>            : TUPLES_LIB_CONSTEXPR_CXX_14 bool tuple_less_impl(
+<span class="lineNum">     636 </span>            :     TaggedTuple&lt;LTags...&gt; const&amp; lhs,
+<span class="lineNum">     637 </span>            :     TaggedTuple&lt;RTags...&gt; const&amp;
+<span class="lineNum">     638 </span>            :         rhs) noexcept(noexcept(std::initializer_list&lt;bool&gt;{
+<span class="lineNum">     639 </span>            :     (get&lt;LTags&gt;(lhs) &lt; get&lt;RTags&gt;(rhs))...})) {
+<span class="lineNum">     640 </span>            :   bool result = false;
+<span class="lineNum">     641 </span>            :   bool last_rhs_less_lhs = false;
+<span class="lineNum">     642 </span>            :   static_cast&lt;void&gt;(
+<span class="lineNum">     643 </span>            :       std::initializer_list&lt;char&gt;{(less::apply(get&lt;LTags&gt;(lhs), get&lt;RTags&gt;(rhs),
+<span class="lineNum">     644 </span>            :                                                &amp;last_rhs_less_lhs, &amp;result),
+<span class="lineNum">     645 </span>            :                                    '0')...});
+<span class="lineNum">     646 </span>            :   return result;
+<span class="lineNum">     647 </span>            : }
+<span class="lineNum">     648 </span>            : }  // namespace tuples_detail
+<span class="lineNum">     649 </span>            : 
+<span class="lineNum">     650 </span>            : template &lt;class... LTags, class... RTags,
+<span class="lineNum">     651 </span>            :           typename std::enable_if&lt;sizeof...(LTags) == sizeof...(RTags)&gt;::type* =
+<span class="lineNum">     652 </span>            :               nullptr&gt;
+<span class="lineNum">     653 </span><span class="lineNoCov">          0 : TUPLES_LIB_CONSTEXPR_CXX_14 bool operator&lt;(</span>
+<span class="lineNum">     654 </span>            :     TaggedTuple&lt;LTags...&gt; const&amp; lhs,
+<span class="lineNum">     655 </span>            :     TaggedTuple&lt;RTags...&gt; const&amp;
+<span class="lineNum">     656 </span>            :         rhs) noexcept(noexcept(tuples_detail::tuple_less_impl(lhs, rhs))) {
+<span class="lineNum">     657 </span>            :   return tuples_detail::tuple_less_impl(lhs, rhs);
+<span class="lineNum">     658 </span>            : }
+<span class="lineNum">     659 </span>            : 
+<span class="lineNum">     660 </span>            : template &lt;class... LTags, class... RTags,
+<span class="lineNum">     661 </span>            :           typename std::enable_if&lt;sizeof...(LTags) == sizeof...(RTags)&gt;::type* =
+<span class="lineNum">     662 </span>            :               nullptr&gt;
+<span class="lineNum">     663 </span><span class="lineNoCov">          0 : TUPLES_LIB_CONSTEXPR_CXX_14 bool operator&gt;(</span>
+<span class="lineNum">     664 </span>            :     TaggedTuple&lt;LTags...&gt; const&amp; lhs,
+<span class="lineNum">     665 </span>            :     TaggedTuple&lt;RTags...&gt; const&amp; rhs) noexcept(noexcept(rhs &lt; lhs)) {
+<span class="lineNum">     666 </span>            :   return rhs &lt; lhs;
+<span class="lineNum">     667 </span>            : }
+<span class="lineNum">     668 </span>            : 
+<span class="lineNum">     669 </span>            : template &lt;class... LTags, class... RTags,
+<span class="lineNum">     670 </span>            :           typename std::enable_if&lt;sizeof...(LTags) == sizeof...(RTags)&gt;::type* =
+<span class="lineNum">     671 </span>            :               nullptr&gt;
+<span class="lineNum">     672 </span><span class="lineNoCov">          0 : TUPLES_LIB_CONSTEXPR_CXX_14 bool operator&lt;=(</span>
+<span class="lineNum">     673 </span>            :     TaggedTuple&lt;LTags...&gt; const&amp; lhs,
+<span class="lineNum">     674 </span>            :     TaggedTuple&lt;RTags...&gt; const&amp; rhs) noexcept(noexcept(rhs &lt; lhs)) {
+<span class="lineNum">     675 </span>            :   return not(rhs &lt; lhs);
+<span class="lineNum">     676 </span>            : }
+<span class="lineNum">     677 </span>            : 
+<span class="lineNum">     678 </span>            : template &lt;class... LTags, class... RTags,
+<span class="lineNum">     679 </span>            :           typename std::enable_if&lt;sizeof...(LTags) == sizeof...(RTags)&gt;::type* =
+<span class="lineNum">     680 </span>            :               nullptr&gt;
+<span class="lineNum">     681 </span><span class="lineNoCov">          0 : TUPLES_LIB_CONSTEXPR_CXX_14 bool operator&gt;=(</span>
+<span class="lineNum">     682 </span>            :     TaggedTuple&lt;LTags...&gt; const&amp; lhs,
+<span class="lineNum">     683 </span>            :     TaggedTuple&lt;RTags...&gt; const&amp; rhs) noexcept(noexcept(lhs &lt; rhs)) {
+<span class="lineNum">     684 </span>            :   return not(lhs &lt; rhs);
+<span class="lineNum">     685 </span>            : }
+<span class="lineNum">     686 </span>            : 
+<span class="lineNum">     687 </span>            : // C++17 Draft 23.5.3.3 swap
+<span class="lineNum">     688 </span>            : template &lt;
+<span class="lineNum">     689 </span>            :     class... Tags,
+<span class="lineNum">     690 </span>            :     typename std::enable_if&lt;tuples_detail::all&lt;tuples_detail::is_swappable_with&lt;
+<span class="lineNum">     691 </span>            :         tuples_detail::TaggedTupleLeaf&lt;Tags&gt;,
+<span class="lineNum">     692 </span>            :         tuples_detail::TaggedTupleLeaf&lt;Tags&gt;&gt;::value...&gt;::value&gt;::type* =
+<span class="lineNum">     693 </span>            :         nullptr&gt;
+<span class="lineNum">     694 </span><span class="lineNoCov">          0 : void swap(TaggedTuple&lt;Tags...&gt;&amp; lhs, TaggedTuple&lt;Tags...&gt;&amp; rhs) noexcept(</span>
+<span class="lineNum">     695 </span>            :     tuples_detail::all&lt;tuples_detail::is_nothrow_swappable_with&lt;
+<span class="lineNum">     696 </span>            :         tuples_detail::TaggedTupleLeaf&lt;Tags&gt;,
+<span class="lineNum">     697 </span>            :         tuples_detail::TaggedTupleLeaf&lt;Tags&gt;&gt;::value...&gt;::value) {
+<span class="lineNum">     698 </span>            :   lhs.swap(rhs);
+<span class="lineNum">     699 </span>            : }
+<span class="lineNum">     700 </span>            : 
+<span class="lineNum">     701 </span>            : namespace TaggedTuple_detail {
+<span class="lineNum">     702 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     703 </span>            : struct tagged_tuple_typelist_impl;
+<span class="lineNum">     704 </span>            : 
+<span class="lineNum">     705 </span>            : template &lt;template &lt;typename...&gt; class List, typename... Tags&gt;
+<span class="lineNum">     706 </span>            : struct tagged_tuple_typelist_impl&lt;List&lt;Tags...&gt;&gt; {
+<span class="lineNum">     707 </span>            :   using type = TaggedTuple&lt;Tags...&gt;;
+<span class="lineNum">     708 </span>            : };
+<span class="lineNum">     709 </span>            : }  // namespace TaggedTuple_detail
+<span class="lineNum">     710 </span>            : 
+<span class="lineNum">     711 </span>            : /// \ingroup UtilitiesGroup
+<span class="lineNum">     712 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     713 </span><span class="lineNoCov">          0 : using tagged_tuple_from_typelist =</span>
+<span class="lineNum">     714 </span>            :     typename TaggedTuple_detail::tagged_tuple_typelist_impl&lt;T&gt;::type;
+<span class="lineNum">     715 </span>            : 
+<span class="lineNum">     716 </span>            : /// Stream operator for TaggedTuple
+<span class="lineNum">     717 </span>            : template &lt;class... Tags&gt;
+<span class="lineNum">     718 </span><span class="lineCov">          1 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const TaggedTuple&lt;Tags...&gt;&amp; t) {</span>
+<span class="lineNum">     719 </span>            :   os &lt;&lt; &quot;(&quot;;
+<span class="lineNum">     720 </span>            :   size_t current_value = 0;
+<span class="lineNum">     721 </span>            :   auto helper = make_overloader(
+<span class="lineNum">     722 </span>            :       [&amp;current_value, &amp;os](const auto&amp; element,
+<span class="lineNum">     723 </span>            :                             const std::integral_constant&lt;bool, true&gt; /*meta*/) {
+<span class="lineNum">     724 </span>            :         os &lt;&lt; element;
+<span class="lineNum">     725 </span>            :         current_value++;
+<span class="lineNum">     726 </span>            :         if (current_value &lt; sizeof...(Tags)) {
+<span class="lineNum">     727 </span>            :           os &lt;&lt; &quot;, &quot;;
+<span class="lineNum">     728 </span>            :         }
+<span class="lineNum">     729 </span>            :       },
+<span class="lineNum">     730 </span>            :       [&amp;current_value, &amp;os](
+<span class="lineNum">     731 </span>            :           const auto&amp; /*element*/,
+<span class="lineNum">     732 </span>            :           const std::integral_constant&lt;bool, false&gt; /*meta*/) {
+<span class="lineNum">     733 </span>            :         os &lt;&lt; &quot;NOT STREAMABLE&quot;;
+<span class="lineNum">     734 </span>            :         current_value++;
+<span class="lineNum">     735 </span>            :         if (current_value &lt; sizeof...(Tags)) {
+<span class="lineNum">     736 </span>            :           os &lt;&lt; &quot;, &quot;;
+<span class="lineNum">     737 </span>            :         }
+<span class="lineNum">     738 </span>            :       });
+<span class="lineNum">     739 </span>            :   // With empty TaggedTuple's helper is unused
+<span class="lineNum">     740 </span>            :   static_cast&lt;void&gt;(helper);
+<span class="lineNum">     741 </span>            :   static_cast&lt;void&gt;(std::initializer_list&lt;char&gt;{(
+<span class="lineNum">     742 </span>            :       helper(get&lt;Tags&gt;(t), tt::is_streamable_t&lt;std::ostream, tag_type&lt;Tags&gt;&gt;{}),
+<span class="lineNum">     743 </span>            :       '0')...});
+<span class="lineNum">     744 </span>            :   return os &lt;&lt; &quot;)&quot;;
+<span class="lineNum">     745 </span>            : }
+<span class="lineNum">     746 </span>            : 
+<span class="lineNum">     747 </span>            : }  // namespace tuples
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

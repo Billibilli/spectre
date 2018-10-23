@@ -1,0 +1,476 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: CoordinateMaps::Wedge3D Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceCoordinateMaps.html">CoordinateMaps</a></li><li class="navelem"><a class="el" href="classCoordinateMaps_1_1Wedge3D.html">Wedge3D</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classCoordinateMaps_1_1Wedge3D-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">CoordinateMaps::Wedge3D Class Reference<div class="ingroups"><a class="el" href="group__CoordinateMapsGroup.html">Coordinate Maps</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Three dimensional map from the cube to a wedge.  
+ <a href="classCoordinateMaps_1_1Wedge3D.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Wedge3D_8hpp_source.html">Wedge3D.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aa850ad752725a67a8831789d901e3ea3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMaps_1_1Wedge3D.html#aa850ad752725a67a8831789d901e3ea3">WedgeHalves</a> { <a class="el" href="classCoordinateMaps_1_1Wedge3D.html#aa850ad752725a67a8831789d901e3ea3a130c5b3473c57faa76e2a1c54e26f88e">WedgeHalves::Both</a>, 
+<a class="el" href="classCoordinateMaps_1_1Wedge3D.html#aa850ad752725a67a8831789d901e3ea3ab5cece95d3c855427c7ecfd597df02a2">WedgeHalves::UpperOnly</a>, 
+<a class="el" href="classCoordinateMaps_1_1Wedge3D.html#aa850ad752725a67a8831789d901e3ea3a56e5c05093b6f35ba74db402c472b355">WedgeHalves::LowerOnly</a>
+ }</td></tr>
+<tr class="separator:aa850ad752725a67a8831789d901e3ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a6902954a0598126d29b6ed9274e8161b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMaps_1_1Wedge3D.html#a6902954a0598126d29b6ed9274e8161b">Wedge3D</a> (double radius_inner, double radius_outer, OrientationMap&lt; 3 &gt; orientation_of_wedge, double sphericity_inner, double sphericity_outer, bool with_equiangular_map, <a class="el" href="classCoordinateMaps_1_1Wedge3D.html#aa850ad752725a67a8831789d901e3ea3">WedgeHalves</a> halves_to_use=<a class="el" href="classCoordinateMaps_1_1Wedge3D.html#aa850ad752725a67a8831789d901e3ea3a130c5b3473c57faa76e2a1c54e26f88e">WedgeHalves::Both</a>, bool with_logarithmic_map=false) noexcept</td></tr>
+<tr class="separator:a6902954a0598126d29b6ed9274e8161b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a07ca5485ee480e6a756da5048acd4d"><td class="memItemLeft" align="right" valign="top"><a id="a2a07ca5485ee480e6a756da5048acd4d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Wedge3D</b> (<a class="el" href="classCoordinateMaps_1_1Wedge3D.html">Wedge3D</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a2a07ca5485ee480e6a756da5048acd4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd713ea2c01830c5418a0e51d2449ff3"><td class="memItemLeft" align="right" valign="top"><a id="afd713ea2c01830c5418a0e51d2449ff3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Wedge3D</b> (const <a class="el" href="classCoordinateMaps_1_1Wedge3D.html">Wedge3D</a> &amp;)=default</td></tr>
+<tr class="separator:afd713ea2c01830c5418a0e51d2449ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eb5d7f8dc5dff7a9b43b7f445a47789"><td class="memItemLeft" align="right" valign="top"><a id="a7eb5d7f8dc5dff7a9b43b7f445a47789"></a>
+<a class="el" href="classCoordinateMaps_1_1Wedge3D.html">Wedge3D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classCoordinateMaps_1_1Wedge3D.html">Wedge3D</a> &amp;)=default</td></tr>
+<tr class="separator:a7eb5d7f8dc5dff7a9b43b7f445a47789"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab291c3e4cabd665600472293ee7afffb"><td class="memItemLeft" align="right" valign="top"><a id="ab291c3e4cabd665600472293ee7afffb"></a>
+<a class="el" href="classCoordinateMaps_1_1Wedge3D.html">Wedge3D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classCoordinateMaps_1_1Wedge3D.html">Wedge3D</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:ab291c3e4cabd665600472293ee7afffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25e08b2065ad90c1f05b0009ccc4de5a"><td class="memTemplParams" colspan="2"><a id="a25e08b2065ad90c1f05b0009ccc4de5a"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a25e08b2065ad90c1f05b0009ccc4de5a"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 3 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 3 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:a25e08b2065ad90c1f05b0009ccc4de5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67a7bf5b11f2f92890fa7e98e951d81f"><td class="memItemLeft" align="right" valign="top"><a id="a67a7bf5b11f2f92890fa7e98e951d81f"></a>
+boost::optional&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMaps_1_1Wedge3D.html#a67a7bf5b11f2f92890fa7e98e951d81f">inverse</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 3 &gt; &amp;target_coords) const noexcept</td></tr>
+<tr class="memdesc:a67a7bf5b11f2f92890fa7e98e951d81f"><td class="mdescLeft">&#160;</td><td class="mdescRight">For a \(+z\)-oriented <code><a class="el" href="classCoordinateMaps_1_1Wedge3D.html" title="Three dimensional map from the cube to a wedge. ">Wedge3D</a></code>, returns invalid if \(z&lt;=0\) or if \((x,y,z)\) is on or outside the cone defined by \((x^2/z^2 + y^2/z^2+1)^{1/2} = -S/F\), where \(S = \frac{1}{2}(s_1 r_1 - s_0 r_0)\) and \(F = \frac{1}{2\sqrt{3}}((1-s_1) r_1 - (1-s_0) r_0)\). Here \(s_0,s_1\) and \(r_0,r_1\) are the specified sphericities and radii of the inner and outer \(z\) surfaces. The map is singular on the cone and on the xy plane. <br /></td></tr>
+<tr class="separator:a67a7bf5b11f2f92890fa7e98e951d81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a196729b313ac030b74db29d08801bd13"><td class="memTemplParams" colspan="2"><a id="a196729b313ac030b74db29d08801bd13"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a196729b313ac030b74db29d08801bd13"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Ij&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 3, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>jacobian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 3 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:a196729b313ac030b74db29d08801bd13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48085609e746a05f72e9644811156277"><td class="memTemplParams" colspan="2"><a id="a48085609e746a05f72e9644811156277"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a48085609e746a05f72e9644811156277"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Ij&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 3, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>inv_jacobian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 3 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:a48085609e746a05f72e9644811156277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c143d84e2c0e18c5a349f36f7eabbd"><td class="memItemLeft" align="right" valign="top"><a id="a18c143d84e2c0e18c5a349f36f7eabbd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="separator:a18c143d84e2c0e18c5a349f36f7eabbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:aad98342dc7861bca18c0a59ef195c360"><td class="memItemLeft" align="right" valign="top"><a id="aad98342dc7861bca18c0a59ef195c360"></a>
+static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>dim</b> = 3</td></tr>
+<tr class="separator:aad98342dc7861bca18c0a59ef195c360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a0211e67b52bbc3985c5c41334e7cbbd1"><td class="memItemLeft" align="right" valign="top"><a id="a0211e67b52bbc3985c5c41334e7cbbd1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classCoordinateMaps_1_1Wedge3D.html">Wedge3D</a> &amp;lhs, const <a class="el" href="classCoordinateMaps_1_1Wedge3D.html">Wedge3D</a> &amp;rhs) noexcept</td></tr>
+<tr class="separator:a0211e67b52bbc3985c5c41334e7cbbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Three dimensional map from the cube to a wedge. </p>
+<div class="image">
+<img src="Shell.png" alt="Shell.png"/>
+<div class="caption">
+A shell can be constructed out of six wedges.</div></div>
+ <h3>Details</h3>
+<p>The mapping that goes from a reference cube to a three-dimensional wedge centered on a coordinate axis covering a volume between an inner surface and outer surface. Each surface can be given a curvature between flat (a sphericity of 0) or spherical (a sphericity of 1).</p>
+<p>The first two logical coordinates correspond to the two angular coordinates, and the third to the radial coordinate.</p>
+<p>The <a class="el" href="classCoordinateMaps_1_1Wedge3D.html" title="Three dimensional map from the cube to a wedge. ">Wedge3D</a> map is constructed by linearly interpolating between a bulged face of radius <code>radius_of_inner_surface</code> to a bulged face of radius <code>radius_of_outer_surface</code>, where the radius of each bulged face is defined to be the radius of the sphere circumscribing the bulge.</p>
+<p>We make a choice here as to whether we wish to use the logical coordinates parameterizing these surface as they are, in which case we have the equidistant choice of coordinates, or whether to apply a tangent map to them which leads us to the equiangular choice of coordinates. In terms of the logical coordinates, the equiangular coordinates are:</p>
+<p class="formulaDsp">
+\[\textrm{equiangular xi} : \Xi(\xi) = \textrm{tan}(\xi\pi/4)\]
+</p>
+<p class="formulaDsp">
+\[\textrm{equiangular eta} : \mathrm{H}(\eta) = \textrm{tan}(\eta\pi/4)\]
+</p>
+<p>With derivatives:</p>
+<p class="formulaDsp">
+\[\Xi&#39;(\xi) = \frac{\pi}{4}(1+\Xi^2)\]
+</p>
+<p class="formulaDsp">
+\[\mathrm{H}&#39;(\eta) = \frac{\pi}{4}(1+\mathrm{H}^2)\]
+</p>
+<p>The equidistant coordinates are:</p>
+<p class="formulaDsp">
+\[ \textrm{equidistant xi} : \Xi = \xi\]
+</p>
+<p class="formulaDsp">
+\[ \textrm{equidistant eta} : \mathrm{H} = \eta\]
+</p>
+<p>with derivatives:</p>
+<center> \(\Xi&#39;(\xi) = 1\), and \(\mathrm{H}&#39;(\eta) = 1\)</center><p>We also define the variable \(\rho\), given by:</p>
+<p class="formulaDsp">
+\[\textrm{rho} : \rho = \sqrt{1+\Xi^2+\mathrm{H}^2}\]
+</p>
+<h3>The Spherical Face Map</h3>
+<p>The surface map for the spherical face of radius \(R\) lying in the \(+z\) direction in either choice of coordinates is then given by:</p>
+<p class="formulaDsp">
+\[\vec{\sigma}_{spherical}: \vec{\xi} \rightarrow \vec{x}(\vec{\xi})\]
+</p>
+<p> Where </p><p class="formulaDsp">
+\[ \vec{x}(\xi,\eta) = \begin{bmatrix} x(\xi,\eta)\\ y(\xi,\eta)\\ z(\xi,\eta)\\ \end{bmatrix} = \frac{R}{\rho} \begin{bmatrix} \Xi\\ \mathrm{H}\\ 1\\ \end{bmatrix}\]
+</p>
+<h3>The Bulged Face Map</h3>
+<p>The bulged surface is itself constructed by linearly interpolating between a cubical face and a spherical face. The surface map for the cubical face of side length \(2L\) lying in the \(+z\) direction is given by:</p>
+<p class="formulaDsp">
+\[\vec{\sigma}_{cubical}: \vec{\xi} \rightarrow \vec{x}(\vec{\xi})\]
+</p>
+<p> Where </p><p class="formulaDsp">
+\[ \vec{x}(\xi,\eta) = \begin{bmatrix} x(\xi,\eta)\\ y(\xi,\eta)\\ L\\ \end{bmatrix} = L \begin{bmatrix} \Xi\\ \mathrm{H}\\ 1\\ \end{bmatrix}\]
+</p>
+<p>To construct the bulged map we interpolate between this cubical face map and a spherical face map of radius \(R\), with the interpolation parameter being \(s\). The surface map for the bulged face lying in the \(+z\) direction is then given by:</p>
+<p class="formulaDsp">
+\[\vec{\sigma}_{bulged}(\xi,\eta) = {(1-s)L + \frac{sR}{\rho}} \begin{bmatrix} \Xi\\ \mathrm{H}\\ 1\\ \end{bmatrix}\]
+</p>
+<p>We constrain L by demanding that the spherical face circumscribe the cube. With this condition, we have \(L = R/\sqrt3\). </p><dl class="section note"><dt>Note</dt><dd>This differs from the choice in SpEC where it is demanded that the surfaces touch at the center, which leads to \(L = R\).</dd></dl>
+<h3>The Full Volume Map</h3>
+<p>The final map for the wedge which lies along the \(+z\) is obtained by interpolating between the two surfaces with the interpolation parameter being the logical coordinate \(\zeta\). This results in:</p>
+<p class="formulaDsp">
+\[\vec{x}(\xi,\eta,\zeta) = \frac{1}{2}\left\{(1-\zeta)\Big[(1-s_{inner})\frac{R_{inner}}{\sqrt 3} + s_{inner}\frac{R_{inner}}{\rho}\Big] + (1+\zeta)\Big[(1-s_{outer})\frac{R_{outer}}{\sqrt 3} +s_{outer} \frac{R_{outer}}{\rho}\Big] \right\}\begin{bmatrix} \Xi\\ \mathrm{H}\\ 1\\ \end{bmatrix}\]
+</p>
+<p>We will define the variables \(F(\zeta)\) and \(S(\zeta)\), the frustum and sphere factors: </p><p class="formulaDsp">
+\[F(\zeta) = F_0 + F_1\zeta\]
+</p>
+ <p class="formulaDsp">
+\[S(\zeta) = S_0 + S_1\zeta\]
+</p>
+<p> Where </p><p class="formulaDsp">
+\begin{align*}F_0 &amp;= \frac{1}{2} \big\{ (1-s_{outer})R_{outer} + (1-s_{inner})R_{inner}\big\}\\ F_1 &amp;= \partial_{\zeta} F = \frac{1}{2} \big\{ (1-s_{outer})R_{outer} - (1-s_{inner})R_{inner}\big\}\\ S_0 &amp;= \frac{1}{2} \big\{ s_{outer}R_{outer} + s_{inner}R_{inner}\big\}\\ S_1 &amp;= \partial_{\zeta} F = \frac{1}{2} \big\{ s_{outer}R_{outer} - s_{inner}R_{inner}\big\}\end{align*}
+</p>
+<p>The map can then be rewritten as: </p><p class="formulaDsp">
+\[\vec{x}(\xi,\eta,\zeta) = \left\{\frac{F(\zeta)}{\sqrt 3} + \frac{S(\zeta)}{\rho}\right\}\begin{bmatrix} \Xi\\ \mathrm{H}\\ 1\\ \end{bmatrix}\]
+</p>
+<p>We provide some common derivatives: </p><p class="formulaDsp">
+\[\partial_{\xi}z = \frac{-S(\zeta)\Xi\Xi&#39;}{\rho^3}\]
+</p>
+ <p class="formulaDsp">
+\[\partial_{\eta}z = \frac{-S(\zeta)\mathrm{H}\mathrm{H}&#39;}{\rho^3}\]
+</p>
+ <p class="formulaDsp">
+\[\partial_{\zeta}z = \frac{F&#39;}{\sqrt 3} + \frac{S&#39;}{\rho}\]
+</p>
+<p> The Jacobian then is: </p><p class="formulaDsp">
+\[J = \begin{bmatrix} \Xi&#39;z + \Xi\partial_{\xi}z &amp; \Xi\partial_{\eta}z &amp; \Xi\partial_{\zeta}z \\ \mathrm{H}\partial_{\xi}z &amp; \mathrm{H}&#39;z + \mathrm{H}\partial_{\eta}z &amp; \mathrm{H}\partial_{\zeta}z\\ \partial_{\xi}z&amp;\partial_{\eta}z &amp;\partial_{\zeta}z \\ \end{bmatrix} \]
+</p>
+<p>A common factor that shows up in the inverse jacobian is: </p><p class="formulaDsp">
+\[ T:= \frac{S(\zeta)}{(\partial_{\zeta}z)\rho^3}\]
+</p>
+<p>The inverse Jacobian then is: </p><p class="formulaDsp">
+\[J^{-1} = \frac{1}{z}\begin{bmatrix} \Xi&#39;^{-1} &amp; 0 &amp; -\Xi\Xi&#39;^{-1}\\ 0 &amp; \mathrm{H}&#39;^{-1} &amp; -\mathrm{H}\mathrm{H}&#39;^{-1}\\ T\Xi &amp; T\mathrm{H} &amp; T + F(\partial_{\zeta}z)^{-1}/\sqrt 3\\ \end{bmatrix} \]
+</p>
+<h3>Changing the radial distribution of the gridpoints</h3>
+<p>By default, <a class="el" href="classCoordinateMaps_1_1Wedge3D.html" title="Three dimensional map from the cube to a wedge. ">Wedge3D</a> linearly distributes its gridpoints in the radial direction. An exponential map can be applied to the sphere factor \(S(\zeta)\) in order to obtain a relatively higher resolution at smaller radii. Since this is a radial rescaling of <a class="el" href="classCoordinateMaps_1_1Wedge3D.html" title="Three dimensional map from the cube to a wedge. ">Wedge3D</a>, this option is only supported for fully spherical wedges with <code>sphericity_inner</code> = <code>sphericity_outer</code> = 1.</p>
+<p>The map then is: </p><p class="formulaDsp">
+\[\vec{x}(\xi,\eta,\zeta) = \frac{e^{S(\zeta)}}{\rho}\begin{bmatrix} \Xi\\ \mathrm{H}\\ 1\\ \end{bmatrix}\]
+</p>
+<p>The jacobian simplifies similarly. </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="aa850ad752725a67a8831789d901e3ea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa850ad752725a67a8831789d901e3ea3">&#9670;&nbsp;</a></span>WedgeHalves</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classCoordinateMaps_1_1Wedge3D.html#aa850ad752725a67a8831789d901e3ea3">CoordinateMaps::Wedge3D::WedgeHalves</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa850ad752725a67a8831789d901e3ea3a130c5b3473c57faa76e2a1c54e26f88e"></a>Both&#160;</td><td class="fielddoc"><p>Use the entire wedge. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa850ad752725a67a8831789d901e3ea3ab5cece95d3c855427c7ecfd597df02a2"></a>UpperOnly&#160;</td><td class="fielddoc"><p>Use only the upper logical half. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa850ad752725a67a8831789d901e3ea3a56e5c05093b6f35ba74db402c472b355"></a>LowerOnly&#160;</td><td class="fielddoc"><p>Use only the lower logical half. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6902954a0598126d29b6ed9274e8161b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6902954a0598126d29b6ed9274e8161b">&#9670;&nbsp;</a></span>Wedge3D()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CoordinateMaps::Wedge3D::Wedge3D </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>radius_inner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>radius_outer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OrientationMap&lt; 3 &gt;&#160;</td>
+          <td class="paramname"><em>orientation_of_wedge</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sphericity_inner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sphericity_outer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>with_equiangular_map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCoordinateMaps_1_1Wedge3D.html#aa850ad752725a67a8831789d901e3ea3">WedgeHalves</a>&#160;</td>
+          <td class="paramname"><em>halves_to_use</em> = <code><a class="el" href="classCoordinateMaps_1_1Wedge3D.html#aa850ad752725a67a8831789d901e3ea3a130c5b3473c57faa76e2a1c54e26f88e">WedgeHalves::Both</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>with_logarithmic_map</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constructs a 3D wedge. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">radius_inner</td><td>Distance from the origin to one of the corners which lie on the inner surface. </td></tr>
+    <tr><td class="paramname">radius_outer</td><td>Distance from the origin to one of the corners which lie on the outer surface. </td></tr>
+    <tr><td class="paramname">orientation_of_wedge</td><td>The orientation of the desired wedge relative to the orientation of the default wedge which is a wedge that has its curved surfaces pierced by the upper-z axis. The logical xi and eta coordinates point in the cartesian x and y directions, respectively. </td></tr>
+    <tr><td class="paramname">sphericity_inner</td><td>Value between 0 and 1 which determines whether the inner surface is flat (value of 0), spherical (value of 1) or somewhere in between </td></tr>
+    <tr><td class="paramname">sphericity_outer</td><td>Value between 0 and 1 which determines whether the outer surface is flat (value of 0), spherical (value of 1) or somewhere in between </td></tr>
+    <tr><td class="paramname">with_equiangular_map</td><td>Determines whether to apply a tangent function mapping to the logical coordinates (for <code>true</code>) or not (for <code>false</code>). </td></tr>
+    <tr><td class="paramname">halves_to_use</td><td>Determines whether to use the logical xi coordinates in the [0,1] interval (value of <code>UpperOnly</code>) of the full wedge, the coordinates in the [-1,0] interval (value of <code>LowerOnly</code>) of the full wedge, or the full wedge entirely (value of <code>Both</code>). Half wedges are currently only useful in constructing domains for binary systems. </td></tr>
+    <tr><td class="paramname">with_logarithmic_map</td><td>Determines whether to apply an exponential function mapping to the "sphere factor", the effect of which is to distribute the radial gridpoints logarithmically in physical space. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Domain/CoordinateMaps/<a class="el" href="Wedge3D_8hpp_source.html">Wedge3D.hpp</a></li>
+<li>src/Domain/CoordinateMaps/Wedge3D.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: TimeSteppers Namespace Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">TimeSteppers Namespace Reference<div class="ingroups"><a class="el" href="group__TimeSteppersGroup.html">Time Steppers</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Holds classes that take time steps.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTimeSteppers_1_1AdamsBashforthN.html">AdamsBashforthN</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An Nth Adams-Bashforth time stepper.  <a href="classTimeSteppers_1_1AdamsBashforthN.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTimeSteppers_1_1BoundaryHistory.html">BoundaryHistory</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classTimeSteppers_1_1History.html" title="History data used by a TimeStepper. ">History</a> data used by a <a class="el" href="classTimeStepper.html" title="Abstract base class for TimeSteppers. ">TimeStepper</a> for boundary integration.  <a href="classTimeSteppers_1_1BoundaryHistory.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTimeSteppers_1_1History.html">History</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classTimeSteppers_1_1History.html" title="History data used by a TimeStepper. ">History</a> data used by a <a class="el" href="classTimeStepper.html" title="Abstract base class for TimeSteppers. ">TimeStepper</a>.  <a href="classTimeSteppers_1_1History.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTimeSteppers_1_1HistoryIterator.html">HistoryIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator over history data used by a <a class="el" href="classTimeStepper.html" title="Abstract base class for TimeSteppers. ">TimeStepper</a>. See <a class="el" href="classTimeSteppers_1_1History.html" title="History data used by a TimeStepper. ">History</a> for details.  <a href="classTimeSteppers_1_1HistoryIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTimeSteppers_1_1RungeKutta3.html">RungeKutta3</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A "strong stability-preserving" 3rd-order Runge-Kutta time-stepper. Major reference: J. Hesthaven &amp; T. Warburton, Nodal Discontinuous Galerkin Methods. section 5.7.  <a href="classTimeSteppers_1_1RungeKutta3.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a27ce45b9aa9f857b44c44773fd9fafa3"><td class="memTemplParams" colspan="2"><a id="a27ce45b9aa9f857b44c44773fd9fafa3"></a>
+template&lt;typename Vars , typename DerivVars &gt; </td></tr>
+<tr class="memitem:a27ce45b9aa9f857b44c44773fd9fafa3"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classTimeSteppers_1_1HistoryIterator.html">HistoryIterator</a>&lt; Vars, DerivVars &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classTimeSteppers_1_1HistoryIterator.html">HistoryIterator</a>&lt; Vars, DerivVars &gt; it, typename <a class="el" href="classTimeSteppers_1_1HistoryIterator.html">HistoryIterator</a>&lt; Vars, DerivVars &gt;::difference_type n) noexcept</td></tr>
+<tr class="separator:a27ce45b9aa9f857b44c44773fd9fafa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56166c5d4b7961969a64df3f920705af"><td class="memTemplParams" colspan="2"><a id="a56166c5d4b7961969a64df3f920705af"></a>
+template&lt;typename Vars , typename DerivVars &gt; </td></tr>
+<tr class="memitem:a56166c5d4b7961969a64df3f920705af"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classTimeSteppers_1_1HistoryIterator.html">HistoryIterator</a>&lt; Vars, DerivVars &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (typename <a class="el" href="classTimeSteppers_1_1HistoryIterator.html">HistoryIterator</a>&lt; Vars, DerivVars &gt;::difference_type n, <a class="el" href="classTimeSteppers_1_1HistoryIterator.html">HistoryIterator</a>&lt; Vars, DerivVars &gt; it) noexcept</td></tr>
+<tr class="separator:a56166c5d4b7961969a64df3f920705af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb573ad7c24943832f55afdd3ca5a6c1"><td class="memTemplParams" colspan="2"><a id="acb573ad7c24943832f55afdd3ca5a6c1"></a>
+template&lt;typename Vars , typename DerivVars &gt; </td></tr>
+<tr class="memitem:acb573ad7c24943832f55afdd3ca5a6c1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classTimeSteppers_1_1HistoryIterator.html">HistoryIterator</a>&lt; Vars, DerivVars &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classTimeSteppers_1_1HistoryIterator.html">HistoryIterator</a>&lt; Vars, DerivVars &gt; it, typename <a class="el" href="classTimeSteppers_1_1HistoryIterator.html">HistoryIterator</a>&lt; Vars, DerivVars &gt;::difference_type n) noexcept</td></tr>
+<tr class="separator:acb573ad7c24943832f55afdd3ca5a6c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad15c5af4fb751c3517a4105b6237d9a8"><td class="memItemLeft" align="right" valign="top"><a id="ad15c5af4fb751c3517a4105b6237d9a8"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classTimeSteppers_1_1AdamsBashforthN.html">AdamsBashforthN</a> &amp;lhs, const <a class="el" href="classTimeSteppers_1_1AdamsBashforthN.html">AdamsBashforthN</a> &amp;rhs) noexcept</td></tr>
+<tr class="separator:ad15c5af4fb751c3517a4105b6237d9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21a78ca9591835f7ee884bb034887fb0"><td class="memItemLeft" align="right" valign="top"><a id="a21a78ca9591835f7ee884bb034887fb0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classTimeSteppers_1_1AdamsBashforthN.html">AdamsBashforthN</a> &amp;lhs, const <a class="el" href="classTimeSteppers_1_1AdamsBashforthN.html">AdamsBashforthN</a> &amp;rhs) noexcept</td></tr>
+<tr class="separator:a21a78ca9591835f7ee884bb034887fb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae164616a2442736e9267eabb89b37517"><td class="memItemLeft" align="right" valign="top"><a id="ae164616a2442736e9267eabb89b37517"></a>
+bool constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classTimeSteppers_1_1RungeKutta3.html">RungeKutta3</a> &amp;, const <a class="el" href="classTimeSteppers_1_1RungeKutta3.html">RungeKutta3</a> &amp;) noexcept</td></tr>
+<tr class="separator:ae164616a2442736e9267eabb89b37517"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3deeddc6799b16de1fe038e64ee9b6ed"><td class="memItemLeft" align="right" valign="top"><a id="a3deeddc6799b16de1fe038e64ee9b6ed"></a>
+bool constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classTimeSteppers_1_1RungeKutta3.html">RungeKutta3</a> &amp;, const <a class="el" href="classTimeSteppers_1_1RungeKutta3.html">RungeKutta3</a> &amp;) noexcept</td></tr>
+<tr class="separator:a3deeddc6799b16de1fe038e64ee9b6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Holds classes that take time steps. </p>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

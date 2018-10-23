@@ -1,0 +1,291 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: db::DataBox&lt; tmpl::list&lt; Tags... &gt; &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacedb.html">db</a></li><li class="navelem"><a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html">DataBox&lt; tmpl::list&lt; Tags... &gt; &gt;</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">db::DataBox&lt; tmpl::list&lt; Tags... &gt; &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__DataBoxGroup.html">DataBox</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>A DataBox stores objects that can be retrieved by using Tags.  
+ <a href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="DataBox_8hpp_source.html">DataBox.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a8c5a612de96f60713c7970a393284f3a"><td class="memItemLeft" align="right" valign="top"><a id="a8c5a612de96f60713c7970a393284f3a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8c5a612de96f60713c7970a393284f3a">tags_list</a> = tmpl::list&lt; Tags... &gt;</td></tr>
+<tr class="memdesc:a8c5a612de96f60713c7970a393284f3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A typelist (<code>tmpl::list</code>) of Tags that the DataBox holds. <br /></td></tr>
+<tr class="separator:a8c5a612de96f60713c7970a393284f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab92e6ea74036916afc22e2df487839a3"><td class="memItemLeft" align="right" valign="top"><a id="ab92e6ea74036916afc22e2df487839a3"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#ab92e6ea74036916afc22e2df487839a3">compute_item_tags</a> = tmpl::filter&lt; <a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8c5a612de96f60713c7970a393284f3a">tags_list</a>, <a class="el" href="structdb_1_1is__compute__item.html">db::is_compute_item</a>&lt; tmpl::_1 &gt; &gt;</td></tr>
+<tr class="memdesc:ab92e6ea74036916afc22e2df487839a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all the compute item tags, excluding their subitems. <br /></td></tr>
+<tr class="separator:ab92e6ea74036916afc22e2df487839a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc62496ecc127cda0bdb8aa824955bca"><td class="memItemLeft" align="right" valign="top"><a id="afc62496ecc127cda0bdb8aa824955bca"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#afc62496ecc127cda0bdb8aa824955bca">compute_with_subitems_tags</a> = DataBox_detail::expand_subitems_from_list&lt; <a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8c5a612de96f60713c7970a393284f3a">tags_list</a>, <a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#ab92e6ea74036916afc22e2df487839a3">compute_item_tags</a> &gt;</td></tr>
+<tr class="memdesc:afc62496ecc127cda0bdb8aa824955bca"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all the compute items, including subitems from the compute items. <br /></td></tr>
+<tr class="separator:afc62496ecc127cda0bdb8aa824955bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8771f0380a0cdd9fcc89c30d1748a64d"><td class="memItemLeft" align="right" valign="top"><a id="a8771f0380a0cdd9fcc89c30d1748a64d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8771f0380a0cdd9fcc89c30d1748a64d">simple_item_tags</a> = tmpl::list_difference&lt; <a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8c5a612de96f60713c7970a393284f3a">tags_list</a>, <a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#afc62496ecc127cda0bdb8aa824955bca">compute_with_subitems_tags</a> &gt;</td></tr>
+<tr class="memdesc:a8771f0380a0cdd9fcc89c30d1748a64d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all the simple items, including subitems from the simple items. <br /></td></tr>
+<tr class="separator:a8771f0380a0cdd9fcc89c30d1748a64d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8997f53de02f307bb459b8678c41746c"><td class="memItemLeft" align="right" valign="top"><a id="a8997f53de02f307bb459b8678c41746c"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8997f53de02f307bb459b8678c41746c">simple_subitems_tags</a> = tmpl::filter&lt; <a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8771f0380a0cdd9fcc89c30d1748a64d">simple_item_tags</a>, tmpl::bind&lt; DataBox_detail::has_subitems, tmpl::pin&lt; <a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8c5a612de96f60713c7970a393284f3a">tags_list</a> &gt;, tmpl::_1 &gt; &gt;</td></tr>
+<tr class="memdesc:a8997f53de02f307bb459b8678c41746c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of the simple items that have subitems, without expanding the subitems out. <br /></td></tr>
+<tr class="separator:a8997f53de02f307bb459b8678c41746c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac40f6a909c5dc94c355cfad324da1a80"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#ac40f6a909c5dc94c355cfad324da1a80">simple_only_expanded_subitems_tags</a> = tmpl::flatten&lt; tmpl::transform&lt; <a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8997f53de02f307bb459b8678c41746c">simple_subitems_tags</a>, <a class="el" href="structdb_1_1Subitems.html">db::Subitems</a>&lt; tmpl::pin&lt; <a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8c5a612de96f60713c7970a393284f3a">tags_list</a> &gt;, tmpl::_1 &gt; &gt;&gt;</td></tr>
+<tr class="memdesc:ac40f6a909c5dc94c355cfad324da1a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of the expanded simple subitems, not including the main Subitem tags themselves.  <a href="#ac40f6a909c5dc94c355cfad324da1a80">More...</a><br /></td></tr>
+<tr class="separator:ac40f6a909c5dc94c355cfad324da1a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a476dc8225df2eacaeab6d1babcfa3fde"><td class="memItemLeft" align="right" valign="top"><a id="a476dc8225df2eacaeab6d1babcfa3fde"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="separator:a476dc8225df2eacaeab6d1babcfa3fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a135ce7055e4998d38d9ed570ba6db2a3"><td class="memTemplParams" colspan="2"><a id="a135ce7055e4998d38d9ed570ba6db2a3"></a>
+template&lt;typename Box , typename... KeepTags, typename... AddTags, typename... AddComputeTags, typename... Args&gt; </td></tr>
+<tr class="memitem:a135ce7055e4998d38d9ed570ba6db2a3"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>DataBox</b> (Box &amp;&amp;old_box, tmpl::list&lt; KeepTags... &gt;, tmpl::list&lt; AddTags... &gt;, tmpl::list&lt; AddComputeTags... &gt;, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="separator:a135ce7055e4998d38d9ed570ba6db2a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f73dd8c36de31da1b229357ac8a6b3"><td class="memTemplParams" colspan="2"><a id="a62f73dd8c36de31da1b229357ac8a6b3"></a>
+template&lt;typename... TagsInArgsOrder, typename... FullItems, typename... ComputeTags, typename... FullComputeItems, typename... Args, Requires&lt; not tmpl2::flat_any_v&lt; db::is_databox&lt; std::decay_t&lt; Args &gt;&gt;::value... &gt;&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a62f73dd8c36de31da1b229357ac8a6b3"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>DataBox</b> (tmpl::list&lt; TagsInArgsOrder... &gt;, tmpl::list&lt; FullItems... &gt;, tmpl::list&lt; ComputeTags... &gt;, tmpl::list&lt; FullComputeItems... &gt;, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="separator:a62f73dd8c36de31da1b229357ac8a6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ac5e513e24d204c479c4a25e5b1df8ab8"><td class="memTemplParams" colspan="2"><a id="ac5e513e24d204c479c4a25e5b1df8ab8"></a>
+template&lt;typename OtherTags &gt; </td></tr>
+<tr class="memitem:ac5e513e24d204c479c4a25e5b1df8ab8"><td class="memTemplItemLeft" align="right" valign="top">class&#160;</td><td class="memTemplItemRight" valign="bottom"><b>DataBox</b></td></tr>
+<tr class="separator:ac5e513e24d204c479c4a25e5b1df8ab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b5ed8ea559f6191dca89de7fb13b0c8"><td class="memTemplParams" colspan="2"><a id="a1b5ed8ea559f6191dca89de7fb13b0c8"></a>
+template&lt;typename... MutateTags, typename TagList , typename Invokable , typename... Args&gt; </td></tr>
+<tr class="memitem:a1b5ed8ea559f6191dca89de7fb13b0c8"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>mutate</b> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; DataBox&lt; TagList &gt; *&gt; box, Invokable &amp;&amp;invokable, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="separator:a1b5ed8ea559f6191dca89de7fb13b0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a572e9db18d1f16f5e07fb7b362d26735"><td class="memTemplParams" colspan="2"><a id="a572e9db18d1f16f5e07fb7b362d26735"></a>
+template&lt;typename TagsList_ &gt; </td></tr>
+<tr class="memitem:a572e9db18d1f16f5e07fb7b362d26735"><td class="memTemplItemLeft" align="right" valign="top">constexpr DataBox&lt; TagsList_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>create_copy</b> (const DataBox&lt; TagsList_ &gt; &amp;box) noexcept</td></tr>
+<tr class="separator:a572e9db18d1f16f5e07fb7b362d26735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename... Tags&gt;<br />
+class db::DataBox&lt; tmpl::list&lt; Tags... &gt; &gt;</h3>
+
+<p>A DataBox stores objects that can be retrieved by using Tags. </p>
+<dl class="section warning"><dt>Warning</dt><dd>The order of the tags in DataBoxes returned by <a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247" title="Create a new DataBox. ">db::create</a> and <a class="el" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2" title="Create a new DataBox from an existing one adding or removing items and compute items. ">db::create_from</a> depends on implementation-defined behavior, and therefore should not be specified in source files. If explicitly naming a DataBox type is necessary they should be generated using <a class="el" href="group__DataBoxGroup.html#ga8b1b1d429f0faf5e11d06015467312d2" title="Returns the type of the DataBox that would be constructed from the TagList of tags. ">db::compute_databox_type</a>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247" title="Create a new DataBox. ">db::create</a> <a class="el" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2" title="Create a new DataBox from an existing one adding or removing items and compute items. ">db::create_from</a></dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Tags</td><td>list of DataBoxTag's </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="ac40f6a909c5dc94c355cfad324da1a80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac40f6a909c5dc94c355cfad324da1a80">&#9670;&nbsp;</a></span>simple_only_expanded_subitems_tags</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using db::DataBox&lt; tmpl::list&lt; Tags... &gt; &gt;::<a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#ac40f6a909c5dc94c355cfad324da1a80">simple_only_expanded_subitems_tags</a> =  tmpl::flatten&lt;tmpl::transform&lt; <a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8997f53de02f307bb459b8678c41746c">simple_subitems_tags</a>, <a class="el" href="structdb_1_1Subitems.html">db::Subitems</a>&lt;tmpl::pin&lt;<a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8c5a612de96f60713c7970a393284f3a">tags_list</a>&gt;, tmpl::_1&gt; &gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A list of the expanded simple subitems, not including the main Subitem tags themselves. </p>
+<p>Specifically, if there is a <code>Variables&lt;Tag0, Tag1&gt;</code>, then this list would contain <code>Tag0, Tag1</code>. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/DataStructures/DataBox/<a class="el" href="DataBox_8hpp_source.html">DataBox.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Domain/OrientationMap.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Domain</a> - OrientationMap.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntry">21</td>
+            <td class="headerCovTableEntryLo">52.4 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : #include &lt;iosfwd&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;Domain/Direction.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Domain/Mesh.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Domain/SegmentId.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      13 </span>            : #include &quot;Domain/Side.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : namespace PUP {
+<span class="lineNum">      18 </span>            : class er;
+<span class="lineNum">      19 </span>            : }  // namespace PUP
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : /*!
+<span class="lineNum">      22 </span>            :  * \ingroup DomainCreatorsGroup
+<span class="lineNum">      23 </span>            :  * \brief A mapping of the logical coordinate axes of a host to the logical
+<span class="lineNum">      24 </span>            :  * coordinate axes of a neighbor of the host.
+<span class="lineNum">      25 </span>            :  * \usage Given a `size_t dimension`, a `Direction`, or a `SegmentId` of the
+<span class="lineNum">      26 </span>            :  * host, an `OrientationMap` will give the corresponding value in the neighbor.
+<span class="lineNum">      27 </span>            :  * \tparam VolumeDim the dimension of the blocks.
+<span class="lineNum">      28 </span>            :  *
+<span class="lineNum">      29 </span>            :  * See the [tutorial](@ref tutorial_orientations) for information on how
+<span class="lineNum">      30 </span>            :  * OrientationMaps are used and constructed.
+<span class="lineNum">      31 </span>            :  */
+<span class="lineNum">      32 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      33 </span>            : class OrientationMap {
+<span class="lineNum">      34 </span>            :  public:
+<span class="lineNum">      35 </span>            :   /// The default orientation is the identity map on directions.
+<span class="lineNum">      36 </span>            :   /// The bool `is_aligned_` is correspondingly set to `true`.
+<span class="lineNum">      37 </span><span class="lineCov">          1 :   OrientationMap() noexcept;</span>
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :   explicit OrientationMap(</span>
+<span class="lineNum">      39 </span>            :       std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt; mapped_directions) noexcept;
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 :   OrientationMap(</span>
+<span class="lineNum">      41 </span>            :       const std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt;&amp; directions_in_host,
+<span class="lineNum">      42 </span>            :       const std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt;&amp;
+<span class="lineNum">      43 </span>            :           directions_in_neighbor) noexcept;
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :   ~OrientationMap() = default;</span>
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :   OrientationMap(const OrientationMap&amp;) = default;</span>
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :   OrientationMap&amp; operator=(const OrientationMap&amp;) = default;</span>
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :   OrientationMap(OrientationMap&amp;&amp; /*rhs*/) noexcept = default;</span>
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 :   OrientationMap&amp; operator=(OrientationMap&amp;&amp; /*rhs*/) noexcept = default;</span>
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            :   /// True when mapped(Direction) == Direction
+<span class="lineNum">      51 </span><span class="lineCov">          1 :   bool is_aligned() const noexcept { return is_aligned_; }</span>
+<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      53 </span>            :   /// The corresponding dimension in the neighbor.
+<span class="lineNum">      54 </span><span class="lineCov">          1 :   size_t operator()(const size_t dim) const noexcept {</span>
+<span class="lineNum">      55 </span>            :     return gsl::at(mapped_directions_, dim).dimension();
+<span class="lineNum">      56 </span>            :   }
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            :   /// The corresponding direction in the neighbor.
+<span class="lineNum">      59 </span><span class="lineCov">          1 :   Direction&lt;VolumeDim&gt; operator()(const Direction&lt;VolumeDim&gt;&amp; direction) const</span>
+<span class="lineNum">      60 </span>            :       noexcept {
+<span class="lineNum">      61 </span>            :     return direction.side() == Side::Upper
+<span class="lineNum">      62 </span>            :                ? gsl::at(mapped_directions_, direction.dimension())
+<span class="lineNum">      63 </span>            :                : gsl::at(mapped_directions_, direction.dimension()).opposite();
+<span class="lineNum">      64 </span>            :   }
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span>            :   /// The corresponding SegmentIds in the neighbor.
+<span class="lineNum">      67 </span><span class="lineCov">          1 :   std::array&lt;SegmentId, VolumeDim&gt; operator()(</span>
+<span class="lineNum">      68 </span>            :       const std::array&lt;SegmentId, VolumeDim&gt;&amp; segmentIds) const noexcept;
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            :   /// The corresponding Mesh in the neighbor
+<span class="lineNum">      71 </span><span class="lineCov">          1 :   Mesh&lt;VolumeDim&gt; operator()(const Mesh&lt;VolumeDim&gt;&amp; mesh) const noexcept;</span>
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span>            :   /// An array whose elements are permuted such that
+<span class="lineNum">      74 </span>            :   /// `result[d] = array_in_neighbor[this-&gt;operator()(d)]`
+<span class="lineNum">      75 </span>            :   ///
+<span class="lineNum">      76 </span>            :   /// \note the permutation depends only on how the dimension is mapped
+<span class="lineNum">      77 </span>            :   /// and ignores the side of the mapped direction.
+<span class="lineNum">      78 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">      79 </span><span class="lineCov">          1 :   std::array&lt;T, VolumeDim&gt; permute_from_neighbor(</span>
+<span class="lineNum">      80 </span>            :       const std::array&lt;T, VolumeDim&gt;&amp; array_in_neighbor) const noexcept;
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span>            :   /// The corresponding Orientation of the host in the frame of the neighbor.
+<span class="lineNum">      83 </span><span class="lineCov">          1 :   OrientationMap&lt;VolumeDim&gt; inverse_map() const noexcept;</span>
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span>            :   /// Serialization for Charm++
+<span class="lineNum">      86 </span><span class="lineCov">          1 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span>            :  private:
+<span class="lineNum">      89 </span>            :   friend bool operator==(const OrientationMap&amp; lhs,
+<span class="lineNum">      90 </span>            :                          const OrientationMap&amp; rhs) noexcept {
+<span class="lineNum">      91 </span>            :     return (lhs.mapped_directions_ == rhs.mapped_directions_ and
+<span class="lineNum">      92 </span>            :             lhs.is_aligned_ == rhs.is_aligned_);
+<span class="lineNum">      93 </span>            :   }
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :   std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt; mapped_directions_;</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :   bool is_aligned_ = true;</span>
+<span class="lineNum">      97 </span>            : };
+<span class="lineNum">      98 </span>            : 
+<span class="lineNum">      99 </span>            : /// Output operator for OrientationMap.
+<span class="lineNum">     100 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     101 </span><span class="lineCov">          1 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
+<span class="lineNum">     102 </span>            :                          const OrientationMap&lt;VolumeDim&gt;&amp; orientation) noexcept;
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 : bool operator!=(const OrientationMap&lt;VolumeDim&gt;&amp; lhs,</span>
+<span class="lineNum">     106 </span>            :                 const OrientationMap&lt;VolumeDim&gt;&amp; rhs) noexcept {
+<span class="lineNum">     107 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     108 </span>            : }
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">     111 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     112 </span>            : std::array&lt;T, VolumeDim&gt; OrientationMap&lt;VolumeDim&gt;::permute_from_neighbor(
+<span class="lineNum">     113 </span>            :     const std::array&lt;T, VolumeDim&gt;&amp; array_in_neighbor) const noexcept {
+<span class="lineNum">     114 </span>            :   std::array&lt;T, VolumeDim&gt; result = array_in_neighbor;
+<span class="lineNum">     115 </span>            :   if (not is_aligned_ and VolumeDim &gt; 1) {
+<span class="lineNum">     116 </span>            :     for (size_t i = 0; i &lt; VolumeDim; i++) {
+<span class="lineNum">     117 </span>            :       gsl::at(result, i) = gsl::at(array_in_neighbor, this-&gt;operator()(i));
+<span class="lineNum">     118 </span>            :     }
+<span class="lineNum">     119 </span>            :   }
+<span class="lineNum">     120 </span>            :   return result;
+<span class="lineNum">     121 </span>            : }
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            : /// \ingroup DomainCreatorsGroup
+<span class="lineNum">     124 </span>            : /// `OrientationMap`s define an active rotation of the logical axes that bring
+<span class="lineNum">     125 </span>            : /// the axes of a host block into alignment with the logical axes of the
+<span class="lineNum">     126 </span>            : /// neighbor block. `discrete_rotation` applies this active rotation on the
+<span class="lineNum">     127 </span>            : /// coordinates as opposed to the axes.
+<span class="lineNum">     128 </span>            : /// For a two-dimensional example, consider a host block and a neighbor block,
+<span class="lineNum">     129 </span>            : /// where the OrientationMap between them is \f$\{-\eta,+\xi\}\f$. A quarter-
+<span class="lineNum">     130 </span>            : /// turn counterclockwise of the host block's logical axes would bring them into
+<span class="lineNum">     131 </span>            : /// alignment with those of the neighbor. That is, after this active rotation,
+<span class="lineNum">     132 </span>            : /// the blocks would be Aligned. Now consider a point A with coordinates
+<span class="lineNum">     133 </span>            : /// (+1.0,-0.5). An active quarter-turn rotation counter-clockwise about the
+<span class="lineNum">     134 </span>            : /// origin, keeping the axes fixed, brings point A into the coordinates
+<span class="lineNum">     135 </span>            : /// (+0.5,+1.0). This is how `discrete_rotation` interprets the
+<span class="lineNum">     136 </span>            : /// `OrientationMap` passed to it.
+<span class="lineNum">     137 </span>            : template &lt;size_t VolumeDim, typename T&gt;
+<span class="lineNum">     138 </span><span class="lineCov">          2 : std::array&lt;tt::remove_cvref_wrap_t&lt;T&gt;, VolumeDim&gt; discrete_rotation(</span>
+<span class="lineNum">     139 </span>            :     const OrientationMap&lt;VolumeDim&gt;&amp; rotation,
+<span class="lineNum">     140 </span>            :     std::array&lt;T, VolumeDim&gt; source_coords) noexcept {
+<span class="lineNum">     141 </span>            :   using ReturnType = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">     142 </span>            :   std::array&lt;ReturnType, VolumeDim&gt; new_coords{};
+<span class="lineNum">     143 </span>            :   for (size_t i = 0; i &lt; VolumeDim; i++) {
+<span class="lineNum">     144 </span>            :     const auto new_direction = rotation(Direction&lt;VolumeDim&gt;(i, Side::Upper));
+<span class="lineNum">     145 </span>            :     gsl::at(new_coords, i) =
+<span class="lineNum">     146 </span>            :         std::move(gsl::at(source_coords, new_direction.dimension()));
+<span class="lineNum">     147 </span>            :     if (new_direction.side() != Side::Upper) {
+<span class="lineNum">     148 </span>            :       gsl::at(new_coords, i) *= -1.0;
+<span class="lineNum">     149 </span>            :     }
+<span class="lineNum">     150 </span>            :   }
+<span class="lineNum">     151 </span>            :   return new_coords;
+<span class="lineNum">     152 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

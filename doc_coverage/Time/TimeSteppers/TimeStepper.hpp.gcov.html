@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Time/TimeSteppers/TimeStepper.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Time/TimeSteppers</a> - TimeStepper.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntryLo">62.5 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstdint&gt;
+<span class="lineNum">       8 </span>            : #include &lt;pup.h&gt;
+<span class="lineNum">       9 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;Parallel/CharmPupable.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Time/TimeId.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/FakeVirtual.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : /// \cond
+<span class="lineNum">      18 </span>            : class TimeDelta;
+<span class="lineNum">      19 </span>            : namespace TimeSteppers {
+<span class="lineNum">      20 </span>            : class AdamsBashforthN;  // IWYU pragma: keep
+<span class="lineNum">      21 </span>            : template &lt;typename LocalVars, typename RemoteVars, typename CouplingResult&gt;
+<span class="lineNum">      22 </span>            : class BoundaryHistory;
+<span class="lineNum">      23 </span>            : template &lt;typename Vars, typename DerivVars&gt;
+<span class="lineNum">      24 </span>            : class History;
+<span class="lineNum">      25 </span>            : }  // namespace TimeSteppers
+<span class="lineNum">      26 </span>            : /// \endcond
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : /// \ingroup TimeSteppersGroup
+<span class="lineNum">      29 </span>            : ///
+<span class="lineNum">      30 </span>            : /// Holds classes that take time steps.
+<span class="lineNum">      31 </span>            : namespace TimeSteppers {
+<span class="lineNum">      32 </span>            : class AdamsBashforthN;  // IWYU pragma: keep
+<span class="lineNum">      33 </span>            : class RungeKutta3;  // IWYU pragma: keep
+<span class="lineNum">      34 </span>            : }  // namespace TimeSteppers
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : namespace TimeStepper_detail {
+<span class="lineNum">      37 </span>            : DEFINE_FAKE_VIRTUAL(update_u)
+<span class="lineNum">      38 </span>            : }  // namespace TimeStepper_detail
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            : /// \ingroup TimeSteppersGroup
+<span class="lineNum">      41 </span>            : ///
+<span class="lineNum">      42 </span>            : /// Abstract base class for TimeSteppers.
+<span class="lineNum">      43 </span><span class="lineCov">          1 : class TimeStepper : public PUP::able {</span>
+<span class="lineNum">      44 </span>            :  public:
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :   using Inherit = TimeStepper_detail::FakeVirtualInherit_update_u&lt;TimeStepper&gt;;</span>
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :   using creatable_classes =</span>
+<span class="lineNum">      47 </span>            :       tmpl::list&lt;TimeSteppers::AdamsBashforthN, TimeSteppers::RungeKutta3&gt;;
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 :   WRAPPED_PUPable_abstract(TimeStepper);  // NOLINT</span>
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            :   /// Add the change for the current substep to u.
+<span class="lineNum">      52 </span>            :   template &lt;typename Vars, typename DerivVars&gt;
+<span class="lineNum">      53 </span><span class="lineCov">          1 :   void update_u(</span>
+<span class="lineNum">      54 </span>            :       const gsl::not_null&lt;Vars*&gt; u,
+<span class="lineNum">      55 </span>            :       const gsl::not_null&lt;TimeSteppers::History&lt;Vars, DerivVars&gt;*&gt; history,
+<span class="lineNum">      56 </span>            :       const TimeDelta&amp; time_step) const noexcept {
+<span class="lineNum">      57 </span>            :     return TimeStepper_detail::fake_virtual_update_u&lt;creatable_classes&gt;(
+<span class="lineNum">      58 </span>            :         this, u, history, time_step);
+<span class="lineNum">      59 </span>            :   }
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            :   /// Number of substeps in this TimeStepper
+<span class="lineNum">      62 </span><span class="lineCov">          1 :   virtual uint64_t number_of_substeps() const noexcept = 0;</span>
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            :   /// Number of past time steps needed for multi-step method
+<span class="lineNum">      65 </span><span class="lineCov">          1 :   virtual size_t number_of_past_steps() const noexcept = 0;</span>
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            :   /// Rough estimate of the maximum step size this method can take
+<span class="lineNum">      68 </span>            :   /// stably as a multiple of the step for Euler's method.
+<span class="lineNum">      69 </span><span class="lineCov">          1 :   virtual double stable_step() const noexcept = 0;</span>
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            :   /// The TimeId after the current substep
+<span class="lineNum">      72 </span><span class="lineCov">          1 :   virtual TimeId next_time_id(const TimeId&amp; current_id,</span>
+<span class="lineNum">      73 </span>            :                               const TimeDelta&amp; time_step) const noexcept = 0;
+<span class="lineNum">      74 </span>            : };
+<span class="lineNum">      75 </span>            : 
+<span class="lineNum">      76 </span>            : // LtsTimeStepper cannot be split out into its own file because the
+<span class="lineNum">      77 </span>            : // LtsTimeStepper -&gt; TimeStepper -&gt; AdamsBashforthN -&gt; LtsTimeStepper
+<span class="lineNum">      78 </span>            : // include loop causes AdamsBashforthN to be defined before its base
+<span class="lineNum">      79 </span>            : // class if LtsTimeStepper is included first.
+<span class="lineNum">      80 </span>            : namespace LtsTimeStepper_detail {
+<span class="lineNum">      81 </span>            : DEFINE_FAKE_VIRTUAL(can_change_step_size)
+<span class="lineNum">      82 </span>            : DEFINE_FAKE_VIRTUAL(compute_boundary_delta)
+<span class="lineNum">      83 </span>            : }  // namespace LtsTimeStepper_detail
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span>            : /// \ingroup TimeSteppersGroup
+<span class="lineNum">      86 </span>            : ///
+<span class="lineNum">      87 </span>            : /// Base class for TimeSteppers with local time-stepping support,
+<span class="lineNum">      88 </span>            : /// derived from TimeStepper.
+<span class="lineNum">      89 </span><span class="lineCov">          1 : class LtsTimeStepper : public TimeStepper::Inherit {</span>
+<span class="lineNum">      90 </span>            :  public:
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   using Inherit =</span>
+<span class="lineNum">      92 </span>            :       LtsTimeStepper_detail::FakeVirtualInherit_can_change_step_size&lt;
+<span class="lineNum">      93 </span>            :           LtsTimeStepper_detail::FakeVirtualInherit_compute_boundary_delta&lt;
+<span class="lineNum">      94 </span>            :               LtsTimeStepper&gt;&gt;;
+<span class="lineNum">      95 </span>            :   // When you add a class here, remember to add it to TimeStepper as well.
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :   using creatable_classes = tmpl::list&lt;TimeSteppers::AdamsBashforthN&gt;;</span>
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :   WRAPPED_PUPable_abstract(LtsTimeStepper);  // NOLINT</span>
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span>            :   /// \brief Compute the change in a boundary quantity due to the
+<span class="lineNum">     101 </span>            :   /// coupling on the interface.
+<span class="lineNum">     102 </span>            :   ///
+<span class="lineNum">     103 </span>            :   /// The coupling function `coupling` should take the local and
+<span class="lineNum">     104 </span>            :   /// remote flux data and compute the derivative of the boundary
+<span class="lineNum">     105 </span>            :   /// quantity.  These values may be used to form a linear combination
+<span class="lineNum">     106 </span>            :   /// internally, so the result should have appropriate mathematical
+<span class="lineNum">     107 </span>            :   /// operators defined to allow that.
+<span class="lineNum">     108 </span>            :   template &lt;typename LocalVars, typename RemoteVars, typename Coupling&gt;
+<span class="lineNum">     109 </span>            :   std::result_of_t&lt;const Coupling&amp;(LocalVars, RemoteVars)&gt;
+<span class="lineNum">     110 </span><span class="lineCov">          1 :   compute_boundary_delta(</span>
+<span class="lineNum">     111 </span>            :       const Coupling&amp; coupling,
+<span class="lineNum">     112 </span>            :       const gsl::not_null&lt;TimeSteppers::BoundaryHistory&lt;
+<span class="lineNum">     113 </span>            :           LocalVars, RemoteVars,
+<span class="lineNum">     114 </span>            :           std::result_of_t&lt;const Coupling&amp;(LocalVars, RemoteVars)&gt;&gt;*&gt;
+<span class="lineNum">     115 </span>            :           history,
+<span class="lineNum">     116 </span>            :       const TimeDelta&amp; time_step) const noexcept {
+<span class="lineNum">     117 </span>            :     return LtsTimeStepper_detail::fake_virtual_compute_boundary_delta&lt;
+<span class="lineNum">     118 </span>            :         creatable_classes&gt;(this, coupling, history, time_step);
+<span class="lineNum">     119 </span>            :   }
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            :   /// Substep LTS integrators are not supported, so this is always 1.
+<span class="lineNum">     122 </span><span class="lineCov">          1 :   uint64_t number_of_substeps() const noexcept final { return 1; }</span>
+<span class="lineNum">     123 </span>            : 
+<span class="lineNum">     124 </span>            :   /// Whether a local change in the step size is allowed before taking
+<span class="lineNum">     125 </span>            :   /// a step.  This should be called after the history has been
+<span class="lineNum">     126 </span>            :   /// updated with the current time derivative.  This does not control
+<span class="lineNum">     127 </span>            :   /// global step size changes, which are always allowed at slab
+<span class="lineNum">     128 </span>            :   /// boundaries.
+<span class="lineNum">     129 </span>            :   template &lt;typename Vars, typename DerivVars&gt;
+<span class="lineNum">     130 </span><span class="lineCov">          1 :   bool can_change_step_size(</span>
+<span class="lineNum">     131 </span>            :       const TimeId&amp; time_id,
+<span class="lineNum">     132 </span>            :       const TimeSteppers::History&lt;Vars, DerivVars&gt;&amp; history) const noexcept {
+<span class="lineNum">     133 </span>            :     return LtsTimeStepper_detail::fake_virtual_can_change_step_size&lt;
+<span class="lineNum">     134 </span>            :         creatable_classes&gt;(this, time_id, history);
+<span class="lineNum">     135 </span>            :   }
+<span class="lineNum">     136 </span>            : 
+<span class="lineNum">     137 </span>            :   /// \cond
+<span class="lineNum">     138 </span>            :   // FakeVirtual forces derived classes to override the fake virtual
+<span class="lineNum">     139 </span>            :   // methods.  Here the base class method is actually what we want
+<span class="lineNum">     140 </span>            :   // because we are not a most-derived class, so we forward to the
+<span class="lineNum">     141 </span>            :   // TimeStepper version.
+<span class="lineNum">     142 </span>            :   template &lt;typename Vars, typename DerivVars&gt;
+<span class="lineNum">     143 </span>            :   void update_u(
+<span class="lineNum">     144 </span>            :       const gsl::not_null&lt;Vars*&gt; u,
+<span class="lineNum">     145 </span>            :       const gsl::not_null&lt;TimeSteppers::History&lt;Vars, DerivVars&gt;*&gt; history,
+<span class="lineNum">     146 </span>            :       const TimeDelta&amp; time_step) const noexcept {
+<span class="lineNum">     147 </span>            :     return TimeStepper::update_u(u, history, time_step);
+<span class="lineNum">     148 </span>            :   }
+<span class="lineNum">     149 </span>            :   /// \endcond
+<span class="lineNum">     150 </span>            : };
+<span class="lineNum">     151 </span>            : 
+<span class="lineNum">     152 </span>            : 
+<span class="lineNum">     153 </span>            : #include &quot;Time/TimeSteppers/AdamsBashforthN.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">     154 </span>            : #include &quot;Time/TimeSteppers/RungeKutta3.hpp&quot;  // IWYU pragma: keep
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

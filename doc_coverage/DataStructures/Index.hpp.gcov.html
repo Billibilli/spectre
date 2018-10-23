@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - DataStructures/Index.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">DataStructures</a> - Index.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntryLo">31.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class template Index.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;array&gt;
+<span class="lineNum">      10 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      11 </span>            : #include &lt;limits&gt;
+<span class="lineNum">      12 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/MakeArray.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/Requires.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      19 </span>            : namespace PUP {
+<span class="lineNum">      20 </span>            : class er;
+<span class="lineNum">      21 </span>            : }  // namespace PUP
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : /// \ingroup DataStructuresGroup
+<span class="lineNum">      24 </span>            : /// An integer multi-index.
+<span class="lineNum">      25 </span>            : ///
+<span class="lineNum">      26 </span>            : /// \tparam Dim the number of integers in the Index.
+<span class="lineNum">      27 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      28 </span><span class="lineCov">          1 : class Index {</span>
+<span class="lineNum">      29 </span>            :  public:
+<span class="lineNum">      30 </span>            :   /// Construct with each element set to the same value.
+<span class="lineNum">      31 </span><span class="lineCov">          1 :   explicit Index(const size_t i0 = std::numeric_limits&lt;size_t&gt;::max()) noexcept</span>
+<span class="lineNum">      32 </span>            :       : indices_(make_array&lt;Dim&gt;(i0)) {}
+<span class="lineNum">      33 </span>            : 
+<span class="lineNum">      34 </span>            :   /// Construct specifying value in each dimension
+<span class="lineNum">      35 </span>            :   template &lt;typename... I, Requires&lt;(sizeof...(I) &gt; 1)&gt; = nullptr&gt;
+<span class="lineNum">      36 </span><span class="lineCov">          1 :   explicit Index(I... i) noexcept</span>
+<span class="lineNum">      37 </span>            :       : indices_(make_array(static_cast&lt;size_t&gt;(i)...)) {
+<span class="lineNum">      38 </span>            :     static_assert(cpp17::conjunction_v&lt;tt::is_integer&lt;I&gt;...&gt;,
+<span class="lineNum">      39 </span>            :                   &quot;You must pass in a set of size_t's to Index.&quot;);
+<span class="lineNum">      40 </span>            :     static_assert(Dim == sizeof...(I),
+<span class="lineNum">      41 </span>            :                   &quot;The number of indices given to Index must be the same as &quot;
+<span class="lineNum">      42 </span>            :                   &quot;the dimensionality of the Index.&quot;);
+<span class="lineNum">      43 </span>            :   }
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :   explicit Index(std::array&lt;size_t, Dim&gt; i) noexcept : indices_(std::move(i)) {}</span>
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :   size_t operator[](const size_t d) const noexcept {</span>
+<span class="lineNum">      48 </span>            :     return gsl::at(indices_, d);
+<span class="lineNum">      49 </span>            :   }
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 :   size_t&amp; operator[](const size_t d) noexcept { return gsl::at(indices_, d); }</span>
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :   typename std::array&lt;size_t, Dim&gt;::iterator begin() {</span>
+<span class="lineNum">      53 </span>            :     return indices_.begin();
+<span class="lineNum">      54 </span>            :   }
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :   typename std::array&lt;size_t, Dim&gt;::const_iterator begin() const {</span>
+<span class="lineNum">      56 </span>            :     return indices_.begin();
+<span class="lineNum">      57 </span>            :   }
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :   typename std::array&lt;size_t, Dim&gt;::iterator end() { return indices_.end(); }</span>
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :   typename std::array&lt;size_t, Dim&gt;::const_iterator end() const {</span>
+<span class="lineNum">      61 </span>            :     return indices_.end();
+<span class="lineNum">      62 </span>            :   }
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :   size_t size() const noexcept { return Dim; }</span>
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span>            :   /// The product of the indices.
+<span class="lineNum">      67 </span>            :   /// If Dim = 0, the product is defined as 1.
+<span class="lineNum">      68 </span>            :   template &lt;int N = Dim, Requires&lt;(N &gt; 0)&gt; = nullptr&gt;
+<span class="lineNum">      69 </span><span class="lineCov">          1 :   constexpr size_t product() const noexcept {</span>
+<span class="lineNum">      70 </span>            :     return indices_[N - 1] * product&lt;N - 1&gt;();
+<span class="lineNum">      71 </span>            :   }
+<span class="lineNum">      72 </span>            :   /// \cond
+<span class="lineNum">      73 </span>            :   // Specialization for N = 0 to stop recursion
+<span class="lineNum">      74 </span>            :   template &lt;int N = Dim, Requires&lt;(N == 0)&gt; = nullptr&gt;
+<span class="lineNum">      75 </span>            :   constexpr size_t product() const noexcept {
+<span class="lineNum">      76 </span>            :     return 1;
+<span class="lineNum">      77 </span>            :   }
+<span class="lineNum">      78 </span>            :   /// \endcond
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            :   /// Return a smaller Index with the d-th element removed.
+<span class="lineNum">      81 </span>            :   ///
+<span class="lineNum">      82 </span>            :   /// \param d the element to remove.
+<span class="lineNum">      83 </span>            :   template &lt;size_t N = Dim, Requires&lt;(N &gt; 0)&gt; = nullptr&gt;
+<span class="lineNum">      84 </span><span class="lineCov">          1 :   Index&lt;Dim - 1&gt; slice_away(const size_t d) const noexcept {</span>
+<span class="lineNum">      85 </span>            :     ASSERT(d &lt; Dim,
+<span class="lineNum">      86 </span>            :            &quot;Can't slice dimension &quot; &lt;&lt; d &lt;&lt; &quot; from an Index&lt;&quot; &lt;&lt; Dim &lt;&lt; &quot;&gt;&quot;);
+<span class="lineNum">      87 </span>            :     std::array&lt;size_t, Dim - 1&gt; t{};
+<span class="lineNum">      88 </span>            :     for (size_t i = 0; i &lt; Dim; ++i) {
+<span class="lineNum">      89 </span>            :       if (i &lt; d) {
+<span class="lineNum">      90 </span>            :         gsl::at(t, i) = gsl::at(indices_, i);
+<span class="lineNum">      91 </span>            :       } else if (i &gt; d) {
+<span class="lineNum">      92 </span>            :         gsl::at(t, i - 1) = gsl::at(indices_, i);
+<span class="lineNum">      93 </span>            :       }
+<span class="lineNum">      94 </span>            :     }
+<span class="lineNum">      95 </span>            :     return Index&lt;Dim - 1&gt;(t);
+<span class="lineNum">      96 </span>            :   }
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span>            :   /// \cond
+<span class="lineNum">      99 </span>            :   // clang-tidy: runtime-references
+<span class="lineNum">     100 </span>            :   void pup(PUP::er&amp; p) noexcept;  // NOLINT
+<span class="lineNum">     101 </span>            :   /// \endcond
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span>            :   template &lt;size_t N&gt;
+<span class="lineNum">     104 </span>            :   friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,  // NOLINT
+<span class="lineNum">     105 </span>            :                                   const Index&lt;N&gt;&amp; i);
+<span class="lineNum">     106 </span>            : 
+<span class="lineNum">     107 </span><span class="lineNoCov">          0 :   const size_t* data() const noexcept { return indices_.data(); }</span>
+<span class="lineNum">     108 </span><span class="lineNoCov">          0 :   size_t* data() noexcept { return indices_.data(); }</span>
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span><span class="lineNoCov">          0 :   const std::array&lt;size_t, Dim&gt;&amp; indices() const noexcept { return indices_; }</span>
+<span class="lineNum">     111 </span>            : 
+<span class="lineNum">     112 </span>            :  private:
+<span class="lineNum">     113 </span><span class="lineNoCov">          0 :   std::array&lt;size_t, Dim&gt; indices_;</span>
+<span class="lineNum">     114 </span>            : };
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            : /// \ingroup DataStructuresGroup
+<span class="lineNum">     117 </span>            : /// Get the collapsed index into a 1D array of the data corresponding to this
+<span class="lineNum">     118 </span>            : /// Index. Note that the first dimension of the Index varies fastest when
+<span class="lineNum">     119 </span>            : /// computing the collapsed index.
+<span class="lineNum">     120 </span>            : template &lt;size_t N&gt;
+<span class="lineNum">     121 </span><span class="lineCov">          2 : size_t collapsed_index(const Index&lt;N&gt;&amp; index, const Index&lt;N&gt;&amp; extents) noexcept;</span>
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            : template &lt;size_t N&gt;
+<span class="lineNum">     124 </span><span class="lineNoCov">          0 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Index&lt;N&gt;&amp; i);</span>
+<span class="lineNum">     125 </span>            : 
+<span class="lineNum">     126 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     127 </span>            : template &lt;size_t N&gt;
+<span class="lineNum">     128 </span>            : bool operator==(const Index&lt;N&gt;&amp; lhs, const Index&lt;N&gt;&amp; rhs) noexcept;
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span>            : template &lt;size_t N&gt;
+<span class="lineNum">     131 </span>            : bool operator!=(const Index&lt;N&gt;&amp; lhs, const Index&lt;N&gt;&amp; rhs) noexcept;
+<span class="lineNum">     132 </span>            : /// \endcond
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

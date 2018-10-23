@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/DiscontinuousGalerkin/MortarHelpers.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/DiscontinuousGalerkin</a> - MortarHelpers.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;NumericalAlgorithms/DiscontinuousGalerkin/MortarHelpers.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;algorithm&gt;  // IWYU pragma: keep // for std::max
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/Index.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;Domain/ElementId.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      10 </span>            : #include &quot;Domain/OrientationMap.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      11 </span>            : #include &quot;Domain/Side.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;NumericalAlgorithms/Spectral/Spectral.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/GenerateInstantiations.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/StdArrayHelpers.hpp&quot;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : namespace dg {
+<span class="lineNum">      18 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      19 </span><span class="lineCov">          2 : Mesh&lt;Dim&gt; mortar_mesh(const Mesh&lt;Dim&gt;&amp; face_mesh1,</span>
+<span class="lineNum">      20 </span>            :                       const Mesh&lt;Dim&gt;&amp; face_mesh2) noexcept {
+<span class="lineNum">      21 </span>            :   Index&lt;Dim&gt; mortar_extents{};
+<span class="lineNum">      22 </span>            :   for (size_t i = 0; i &lt; Dim; ++i) {
+<span class="lineNum">      23 </span>            :     mortar_extents[i] = std::max(face_mesh1.extents(i), face_mesh2.extents(i));
+<span class="lineNum">      24 </span>            :   }
+<span class="lineNum">      25 </span>            :   return {mortar_extents.indices(), Spectral::Basis::Legendre,
+<span class="lineNum">      26 </span>            :           Spectral::Quadrature::GaussLobatto};
+<span class="lineNum">      27 </span>            : }
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      30 </span><span class="lineCov">          2 : std::array&lt;Spectral::MortarSize, Dim - 1&gt; mortar_size(</span>
+<span class="lineNum">      31 </span>            :     const ElementId&lt;Dim&gt;&amp; self, const ElementId&lt;Dim&gt;&amp; neighbor,
+<span class="lineNum">      32 </span>            :     const size_t dimension, const OrientationMap&lt;Dim&gt;&amp; orientation) noexcept {
+<span class="lineNum">      33 </span>            :   const auto self_segments =
+<span class="lineNum">      34 </span>            :       all_but_specified_element_of(self.segment_ids(), dimension);
+<span class="lineNum">      35 </span>            :   const auto neighbor_segments = all_but_specified_element_of(
+<span class="lineNum">      36 </span>            :       orientation.inverse_map()(neighbor.segment_ids()), dimension);
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            :   std::array&lt;Spectral::MortarSize, Dim - 1&gt; result{};
+<span class="lineNum">      39 </span>            :   for (size_t d = 0; d &lt; Dim - 1; ++d) {
+<span class="lineNum">      40 </span>            :     const auto&amp; self_segment = gsl::at(self_segments, d);
+<span class="lineNum">      41 </span>            :     const auto&amp; neighbor_segment = gsl::at(neighbor_segments, d);
+<span class="lineNum">      42 </span>            :     if (neighbor_segment == self_segment.id_of_child(Side::Lower)) {
+<span class="lineNum">      43 </span>            :       gsl::at(result, d) = Spectral::MortarSize::LowerHalf;
+<span class="lineNum">      44 </span>            :     } else if (neighbor_segment == self_segment.id_of_child(Side::Upper)) {
+<span class="lineNum">      45 </span>            :       gsl::at(result, d) = Spectral::MortarSize::UpperHalf;
+<span class="lineNum">      46 </span>            :     } else {
+<span class="lineNum">      47 </span>            :       ASSERT(neighbor_segment == self_segment or
+<span class="lineNum">      48 </span>            :              neighbor_segment == self_segment.id_of_parent(),
+<span class="lineNum">      49 </span>            :              &quot;Neighbor elements do not overlap 1:1 or 2:1: &quot; &lt;&lt; self_segment
+<span class="lineNum">      50 </span>            :              &lt;&lt; &quot; &quot; &lt;&lt; neighbor_segment);
+<span class="lineNum">      51 </span>            :       gsl::at(result, d) = Spectral::MortarSize::Full;
+<span class="lineNum">      52 </span>            :     }
+<span class="lineNum">      53 </span>            :   }
+<span class="lineNum">      54 </span>            :   return result;
+<span class="lineNum">      55 </span>            : }
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 : #define DIM(data) BOOST_PP_TUPLE_ELEM(0, data)</span>
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 : #define INSTANTIATE(_, data)                                        \</span>
+<span class="lineNum">      59 </span>            :   template Mesh&lt;DIM(data)&gt; mortar_mesh(                             \
+<span class="lineNum">      60 </span>            :       const Mesh&lt;DIM(data)&gt;&amp; face_mesh1,                            \
+<span class="lineNum">      61 </span>            :       const Mesh&lt;DIM(data)&gt;&amp; face_mesh2) noexcept;                  \
+<span class="lineNum">      62 </span>            :   template std::array&lt;Spectral::MortarSize, DIM(data)&gt; mortar_size( \
+<span class="lineNum">      63 </span>            :       const ElementId&lt;DIM(data) + 1&gt;&amp; self,                         \
+<span class="lineNum">      64 </span>            :       const ElementId&lt;DIM(data) + 1&gt;&amp; neighbor, size_t dimension,   \
+<span class="lineNum">      65 </span>            :       const OrientationMap&lt;DIM(data) + 1&gt;&amp; orientation) noexcept;
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            : GENERATE_INSTANTIATIONS(INSTANTIATE, (0, 1, 2))
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            : #undef INSTANTIATE
+<span class="lineNum">      70 </span>            : #undef DIM
+<span class="lineNum">      71 </span>            : }  // namespace dg
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

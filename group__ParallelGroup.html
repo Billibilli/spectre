@@ -1,0 +1,855 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Parallelization</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Parallelization</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Functions, classes and documentation related to parallelization and Charm++.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElementIndex.html">ElementIndex&lt; VolumeDim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for indexing a Charm array by <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a>.  <a href="classElementIndex.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html">Parallel::AlgorithmImpl&lt; ParallelComponent, tmpl::list&lt; ActionsPack... &gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A distributed object (Charm++ Chare) that executes a series of Actions and is capable of sending and receiving data. Acts as an interface to Charm++.  <a href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1ArrayIndex.html">Parallel::ArrayIndex&lt; Index &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The array index used for indexing Chare Arrays, mostly an implementation detail.  <a href="structParallel_1_1ArrayIndex.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache&lt; Metavariables &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Charm++ chare that caches constant data once per Charm++ node.  <a href="classParallel_1_1ConstGlobalCache.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1Tags_1_1ConstGlobalCache.html">Parallel::Tags::ConstGlobalCache</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag to retrieve the <code><a class="el" href="classParallel_1_1ConstGlobalCache.html" title="A Charm++ chare that caches constant data once per Charm++ node. ">Parallel::ConstGlobalCache</a></code> from the DataBox.  <a href="structParallel_1_1Tags_1_1ConstGlobalCache.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1Tags_1_1FromConstGlobalCache.html">Parallel::Tags::FromConstGlobalCache&lt; CacheTag &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag used to retrieve data from the <code><a class="el" href="classParallel_1_1ConstGlobalCache.html" title="A Charm++ chare that caches constant data once per Charm++ node. ">Parallel::ConstGlobalCache</a></code>. This is the recommended way for compute tags to retrieve data out of the global cache.  <a href="structParallel_1_1Tags_1_1FromConstGlobalCache.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1Main.html">Parallel::Main&lt; Metavariables &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main function of a Charm++ executable. See <a href="group__ParallelGroup.html#details">the Parallelization documentation</a> for an overview of Metavariables, Phases, and parallel components.  <a href="classParallel_1_1Main.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1ReductionDatum.html">Parallel::ReductionDatum&lt; T, InvokeCombine, InvokeFinal, InvokeFinalExtraArgsIndices &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The data to be reduced, and invokables to be called whenever two reduction messages are combined and after the reduction has been completed.  <a href="structParallel_1_1ReductionDatum.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1ReductionData_3_01ReductionDatum_3_01Ts_00_01InvokeCombines_00_01InvokeFinals_92b572618a1ebe21ccf137654ec822ac.html">Parallel::ReductionData&lt; ReductionDatum&lt; Ts, InvokeCombines, InvokeFinals, InvokeFinalExtraArgsIndices &gt;... &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for reducing a possibly heterogeneous collection of types in a single reduction call.  <a href="structParallel_1_1ReductionData_3_01ReductionDatum_3_01Ts_00_01InvokeCombines_00_01InvokeFinals_92b572618a1ebe21ccf137654ec822ac.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__array__proxy.html">Parallel::is_array_proxy&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> is a Charm++ proxy for an array chare.  <a href="structParallel_1_1is__array__proxy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__chare__proxy.html">Parallel::is_chare_proxy&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> is a Charm++ proxy for a chare.  <a href="structParallel_1_1is__chare__proxy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__group__proxy.html">Parallel::is_group_proxy&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> is a Charm++ proxy for a group chare.  <a href="structParallel_1_1is__group__proxy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__node__group__proxy.html">Parallel::is_node_group_proxy&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> is a Charm++ proxy for a node group chare.  <a href="structParallel_1_1is__node__group__proxy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__bound__array.html">Parallel::is_bound_array&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> is a ParallelComponent for a Charm++ bound array.  <a href="structParallel_1_1is__bound__array.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1has__pup__member.html">Parallel::has_pup_member&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> has a <code>pup</code> member function.  <a href="structParallel_1_1has__pup__member.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__pupable.html">Parallel::is_pupable&lt; T, U &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> has operator| defined for Charm++ serialization.  <a href="structParallel_1_1is__pupable.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga54770b986b9c522da6d651e1be125a03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga54770b986b9c522da6d651e1be125a03">WRAPPED_PUPable_decl_template</a>(className)&#160;&#160;&#160;PUPable_decl_template(SINGLE_ARG(className))</td></tr>
+<tr class="memdesc:ga54770b986b9c522da6d651e1be125a03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark derived classes as serializable.  <a href="#ga54770b986b9c522da6d651e1be125a03">More...</a><br /></td></tr>
+<tr class="separator:ga54770b986b9c522da6d651e1be125a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gade9eecd27ecadb3501ddae591bf07db0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gade9eecd27ecadb3501ddae591bf07db0">WRAPPED_PUPable_decl_base_template</a>(baseClassName,  className)&#160;&#160;&#160;PUPable_decl_base_template(SINGLE_ARG(baseClassName), SINGLE_ARG(className))</td></tr>
+<tr class="memdesc:gade9eecd27ecadb3501ddae591bf07db0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark derived template classes as serializable.  <a href="#gade9eecd27ecadb3501ddae591bf07db0">More...</a><br /></td></tr>
+<tr class="separator:gade9eecd27ecadb3501ddae591bf07db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gad7e6795b004146d4e17884a684ea186d"><td class="memTemplParams" colspan="2"><a id="gad7e6795b004146d4e17884a684ea186d"></a>
+template&lt;class Action &gt; </td></tr>
+<tr class="memitem:gad7e6795b004146d4e17884a684ea186d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gad7e6795b004146d4e17884a684ea186d">Parallel::get_inbox_tags_from_action</a> = typename Parallel_detail::get_inbox_tags_from_action&lt; Action &gt;::type</td></tr>
+<tr class="memdesc:gad7e6795b004146d4e17884a684ea186d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an Action returns the list of inbox tags for that action. <br /></td></tr>
+<tr class="separator:gad7e6795b004146d4e17884a684ea186d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga38356d0b7aa1951e586ba2acce9eab8f"><td class="memTemplParams" colspan="2"><a id="ga38356d0b7aa1951e586ba2acce9eab8f"></a>
+template&lt;class ActionsList &gt; </td></tr>
+<tr class="memitem:ga38356d0b7aa1951e586ba2acce9eab8f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga38356d0b7aa1951e586ba2acce9eab8f">Parallel::get_inbox_tags</a> = tmpl::remove_duplicates&lt; tmpl::join&lt; tmpl::transform&lt; ActionsList, Parallel_detail::get_inbox_tags_from_action&lt; tmpl::_1 &gt; &gt;&gt; &gt;</td></tr>
+<tr class="memdesc:ga38356d0b7aa1951e586ba2acce9eab8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a list of Actions, get a list of the unique inbox tags. <br /></td></tr>
+<tr class="separator:ga38356d0b7aa1951e586ba2acce9eab8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga825db080773f9528e2628fc4a0048725"><td class="memTemplParams" colspan="2"><a id="ga825db080773f9528e2628fc4a0048725"></a>
+template&lt;class Action &gt; </td></tr>
+<tr class="memitem:ga825db080773f9528e2628fc4a0048725"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga825db080773f9528e2628fc4a0048725">Parallel::get_const_global_cache_tags_from_action</a> = typename Parallel_detail::get_const_global_cache_tags_from_action&lt; Action &gt;::type</td></tr>
+<tr class="memdesc:ga825db080773f9528e2628fc4a0048725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an Action returns the contents of the <code>const_global_cache_tags</code> alias for that action, or an empty list if no such alias exists. <br /></td></tr>
+<tr class="separator:ga825db080773f9528e2628fc4a0048725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga095a18db8905ca8e5c3af70735ee6462"><td class="memTemplParams" colspan="2"><a id="ga095a18db8905ca8e5c3af70735ee6462"></a>
+template&lt;class ActionsList &gt; </td></tr>
+<tr class="memitem:ga095a18db8905ca8e5c3af70735ee6462"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga095a18db8905ca8e5c3af70735ee6462">Parallel::get_const_global_cache_tags</a> = tmpl::remove_duplicates&lt; tmpl::join&lt; tmpl::transform&lt; ActionsList, Parallel_detail::get_const_global_cache_tags_from_action&lt; tmpl::_1 &gt; &gt;&gt; &gt;</td></tr>
+<tr class="memdesc:ga095a18db8905ca8e5c3af70735ee6462"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a list of Actions, get a list of the unique tags specified in the actions' <code>const_global_cache_tags</code> aliases. <br /></td></tr>
+<tr class="separator:ga095a18db8905ca8e5c3af70735ee6462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaccc68e564135958d18110d2847dcc1b3"><td class="memItemLeft" align="right" valign="top"><a id="gaccc68e564135958d18110d2847dcc1b3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaccc68e564135958d18110d2847dcc1b3">Parallel::abort</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;message)</td></tr>
+<tr class="memdesc:gaccc68e564135958d18110d2847dcc1b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort the program with an error message. <br /></td></tr>
+<tr class="separator:gaccc68e564135958d18110d2847dcc1b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8ca2773484152df4d8897024a244b3c0"><td class="memItemLeft" align="right" valign="top"><a id="ga8ca2773484152df4d8897024a244b3c0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga8ca2773484152df4d8897024a244b3c0">Parallel::exit</a> ()</td></tr>
+<tr class="memdesc:ga8ca2773484152df4d8897024a244b3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit the program normally. This should only be called once over all processors. <br /></td></tr>
+<tr class="separator:ga8ca2773484152df4d8897024a244b3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga537d2cc78336566826c93c49f82746a8"><td class="memItemLeft" align="right" valign="top"><a id="ga537d2cc78336566826c93c49f82746a8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga537d2cc78336566826c93c49f82746a8">Parallel::number_of_procs</a> ()</td></tr>
+<tr class="memdesc:ga537d2cc78336566826c93c49f82746a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of processing elements. <br /></td></tr>
+<tr class="separator:ga537d2cc78336566826c93c49f82746a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9537d2f88bafe61b07e0ceda735243ca"><td class="memItemLeft" align="right" valign="top"><a id="ga9537d2f88bafe61b07e0ceda735243ca"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga9537d2f88bafe61b07e0ceda735243ca">Parallel::my_proc</a> ()</td></tr>
+<tr class="memdesc:ga9537d2f88bafe61b07e0ceda735243ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of my processing element. <br /></td></tr>
+<tr class="separator:ga9537d2f88bafe61b07e0ceda735243ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf999b9700ece84fca6cb82bb1ee9f3f2"><td class="memItemLeft" align="right" valign="top"><a id="gaf999b9700ece84fca6cb82bb1ee9f3f2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaf999b9700ece84fca6cb82bb1ee9f3f2">Parallel::number_of_nodes</a> ()</td></tr>
+<tr class="memdesc:gaf999b9700ece84fca6cb82bb1ee9f3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of nodes. <br /></td></tr>
+<tr class="separator:gaf999b9700ece84fca6cb82bb1ee9f3f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f24e1c6dfcfa4e9250a165973b1a524"><td class="memItemLeft" align="right" valign="top"><a id="ga9f24e1c6dfcfa4e9250a165973b1a524"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga9f24e1c6dfcfa4e9250a165973b1a524">Parallel::my_node</a> ()</td></tr>
+<tr class="memdesc:ga9f24e1c6dfcfa4e9250a165973b1a524"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of my node. <br /></td></tr>
+<tr class="separator:ga9f24e1c6dfcfa4e9250a165973b1a524"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab9459395dbb2a65f0d0b0439387067a1"><td class="memItemLeft" align="right" valign="top"><a id="gab9459395dbb2a65f0d0b0439387067a1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gab9459395dbb2a65f0d0b0439387067a1">Parallel::procs_on_node</a> (const int node_index)</td></tr>
+<tr class="memdesc:gab9459395dbb2a65f0d0b0439387067a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of processing elements on the given node. <br /></td></tr>
+<tr class="separator:gab9459395dbb2a65f0d0b0439387067a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0899b00614f1c47c6b32d1f83976a23b"><td class="memItemLeft" align="right" valign="top"><a id="ga0899b00614f1c47c6b32d1f83976a23b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga0899b00614f1c47c6b32d1f83976a23b">Parallel::my_local_rank</a> ()</td></tr>
+<tr class="memdesc:ga0899b00614f1c47c6b32d1f83976a23b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The local index of my processing element on my node. This is in the interval 0, ..., procs_on_node(my_node()) - 1. <br /></td></tr>
+<tr class="separator:ga0899b00614f1c47c6b32d1f83976a23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f2f2d9db4aca7b4f11370e1556b43a5"><td class="memItemLeft" align="right" valign="top"><a id="ga6f2f2d9db4aca7b4f11370e1556b43a5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga6f2f2d9db4aca7b4f11370e1556b43a5">Parallel::first_proc_on_node</a> (const int node_index)</td></tr>
+<tr class="memdesc:ga6f2f2d9db4aca7b4f11370e1556b43a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of first processing element on the given node. <br /></td></tr>
+<tr class="separator:ga6f2f2d9db4aca7b4f11370e1556b43a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga042f8935c6008898b980065058d0d8e2"><td class="memItemLeft" align="right" valign="top"><a id="ga042f8935c6008898b980065058d0d8e2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga042f8935c6008898b980065058d0d8e2">Parallel::node_of</a> (const int proc_index)</td></tr>
+<tr class="memdesc:ga042f8935c6008898b980065058d0d8e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of the node for the given processing element. <br /></td></tr>
+<tr class="separator:ga042f8935c6008898b980065058d0d8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab13a71393339d7f35a3f802df360429b"><td class="memItemLeft" align="right" valign="top"><a id="gab13a71393339d7f35a3f802df360429b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gab13a71393339d7f35a3f802df360429b">Parallel::local_rank_of</a> (const int proc_index)</td></tr>
+<tr class="memdesc:gab13a71393339d7f35a3f802df360429b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The local index for the given processing element on its node. <br /></td></tr>
+<tr class="separator:gab13a71393339d7f35a3f802df360429b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga62feba0b73433140761dad9a3127b998"><td class="memItemLeft" align="right" valign="top"><a id="ga62feba0b73433140761dad9a3127b998"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga62feba0b73433140761dad9a3127b998">Parallel::wall_time</a> ()</td></tr>
+<tr class="memdesc:ga62feba0b73433140761dad9a3127b998"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current wall time in seconds. <br /></td></tr>
+<tr class="separator:ga62feba0b73433140761dad9a3127b998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga88e5396473adcaffed3465a9333f72f4"><td class="memItemLeft" align="right" valign="top"><a id="ga88e5396473adcaffed3465a9333f72f4"></a>
+CmiNodeLock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga88e5396473adcaffed3465a9333f72f4">Parallel::create_lock</a> () noexcept</td></tr>
+<tr class="memdesc:ga88e5396473adcaffed3465a9333f72f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a converse CmiNodeLock. <br /></td></tr>
+<tr class="separator:ga88e5396473adcaffed3465a9333f72f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaac77c46b622bbe8ff936adc7bf7bd178"><td class="memItemLeft" align="right" valign="top"><a id="gaac77c46b622bbe8ff936adc7bf7bd178"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaac77c46b622bbe8ff936adc7bf7bd178">Parallel::free_lock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:gaac77c46b622bbe8ff936adc7bf7bd178"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a converse CmiNodeLock. Using the lock after free is undefined behavior. <br /></td></tr>
+<tr class="separator:gaac77c46b622bbe8ff936adc7bf7bd178"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad0397ccb72cb4205f5dc83d6f60d47d0"><td class="memItemLeft" align="right" valign="top"><a id="gad0397ccb72cb4205f5dc83d6f60d47d0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gad0397ccb72cb4205f5dc83d6f60d47d0">Parallel::lock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:gad0397ccb72cb4205f5dc83d6f60d47d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock a converse CmiNodeLock. <br /></td></tr>
+<tr class="separator:gad0397ccb72cb4205f5dc83d6f60d47d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b5b8d712c472935e5c817e9ed723c25"><td class="memItemLeft" align="right" valign="top"><a id="ga8b5b8d712c472935e5c817e9ed723c25"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga8b5b8d712c472935e5c817e9ed723c25">Parallel::try_lock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:ga8b5b8d712c472935e5c817e9ed723c25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the lock was successfully acquired and false if the lock is already acquired by another processor. <br /></td></tr>
+<tr class="separator:ga8b5b8d712c472935e5c817e9ed723c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga26e5eb4933e796cd454b67ac773836f9"><td class="memItemLeft" align="right" valign="top"><a id="ga26e5eb4933e796cd454b67ac773836f9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga26e5eb4933e796cd454b67ac773836f9">Parallel::unlock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:ga26e5eb4933e796cd454b67ac773836f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock a converse CmiNodeLock. <br /></td></tr>
+<tr class="separator:ga26e5eb4933e796cd454b67ac773836f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae21964b5d28608afd21ae090c1c4c073"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:gae21964b5d28608afd21ae090c1c4c073"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gae21964b5d28608afd21ae090c1c4c073">Parallel::printf</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;format, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:gae21964b5d28608afd21ae090c1c4c073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print an atomic message to stdout with C printf usage.  <a href="group__ParallelGroup.html#gae21964b5d28608afd21ae090c1c4c073">More...</a><br /></td></tr>
+<tr class="separator:gae21964b5d28608afd21ae090c1c4c073"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga54a41b362281ea1321a50c609f59cf7b"><td class="memTemplParams" colspan="2"><a id="ga54a41b362281ea1321a50c609f59cf7b"></a>
+template&lt;class Action , class SenderProxy , class TargetProxy , class... Ts&gt; </td></tr>
+<tr class="memitem:ga54a41b362281ea1321a50c609f59cf7b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga54a41b362281ea1321a50c609f59cf7b">Parallel::contribute_to_reduction</a> (ReductionData&lt; Ts... &gt; reduction_data, const SenderProxy &amp;sender_component, const TargetProxy &amp;target_component) noexcept</td></tr>
+<tr class="memdesc:ga54a41b362281ea1321a50c609f59cf7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a reduction from the <code>sender_component</code> (typically your own parallel component) to the <code>target_component</code>, performing the <code>Action</code> upon receiving the reduction. <br /></td></tr>
+<tr class="separator:ga54a41b362281ea1321a50c609f59cf7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf46b590510bd8fad34c7055079262707"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:gaf46b590510bd8fad34c7055079262707"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; char &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaf46b590510bd8fad34c7055079262707">serialize</a> (const U &amp;obj)</td></tr>
+<tr class="memdesc:gaf46b590510bd8fad34c7055079262707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize an object using PUP.  <a href="#gaf46b590510bd8fad34c7055079262707">More...</a><br /></td></tr>
+<tr class="separator:gaf46b590510bd8fad34c7055079262707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6fb3864413e851ea6dcd1ffa319f2f25"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga6fb3864413e851ea6dcd1ffa319f2f25"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga6fb3864413e851ea6dcd1ffa319f2f25">deserialize</a> (const void *const data)</td></tr>
+<tr class="memdesc:ga6fb3864413e851ea6dcd1ffa319f2f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize an object using PUP.  <a href="#ga6fb3864413e851ea6dcd1ffa319f2f25">More...</a><br /></td></tr>
+<tr class="separator:ga6fb3864413e851ea6dcd1ffa319f2f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga267c8d6d5f2313bd05ed69f91485776f"><td class="memTemplParams" colspan="2">template&lt;typename ParallelComponentTag , typename Metavariables &gt; </td></tr>
+<tr class="memitem:ga267c8d6d5f2313bd05ed69f91485776f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f">Parallel::get_parallel_component</a> (<a class="el" href="classParallel_1_1ConstGlobalCache.html">ConstGlobalCache</a>&lt; Metavariables &gt; &amp;cache) noexcept -&gt; Parallel::proxy_from_parallel_component&lt; ConstGlobalCache_detail::get_component_if_mocked&lt; typename Metavariables::component_list, ParallelComponentTag &gt;&gt; &amp;</td></tr>
+<tr class="memdesc:ga267c8d6d5f2313bd05ed69f91485776f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the Charm++ proxy associated with a ParallelComponent.  <a href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f">More...</a><br /></td></tr>
+<tr class="separator:ga267c8d6d5f2313bd05ed69f91485776f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga992eab06d03182bf63eeeea8880fcf1f"><td class="memTemplParams" colspan="2">template&lt;typename ParallelComponentTag , typename Metavariables &gt; </td></tr>
+<tr class="memitem:ga992eab06d03182bf63eeeea8880fcf1f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga992eab06d03182bf63eeeea8880fcf1f">Parallel::get_parallel_component</a> (const <a class="el" href="classParallel_1_1ConstGlobalCache.html">ConstGlobalCache</a>&lt; Metavariables &gt; &amp;cache) noexcept -&gt; const Parallel::proxy_from_parallel_component&lt; ConstGlobalCache_detail::get_component_if_mocked&lt; typename Metavariables::component_list, ParallelComponentTag &gt;&gt; &amp;</td></tr>
+<tr class="memdesc:ga992eab06d03182bf63eeeea8880fcf1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the Charm++ proxy associated with a ParallelComponent.  <a href="group__ParallelGroup.html#ga992eab06d03182bf63eeeea8880fcf1f">More...</a><br /></td></tr>
+<tr class="separator:ga992eab06d03182bf63eeeea8880fcf1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5650367ede7ee5b92720ed3636df24e2"><td class="memTemplParams" colspan="2">template&lt;typename ConstGlobalCacheTag , typename Metavariables &gt; </td></tr>
+<tr class="memitem:ga5650367ede7ee5b92720ed3636df24e2"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga5650367ede7ee5b92720ed3636df24e2">Parallel::get</a> (const <a class="el" href="classParallel_1_1ConstGlobalCache.html">ConstGlobalCache</a>&lt; Metavariables &gt; &amp;cache) noexcept -&gt; const ConstGlobalCache_detail::type_for_get&lt; ConstGlobalCacheTag, Metavariables &gt; &amp;</td></tr>
+<tr class="memdesc:ga5650367ede7ee5b92720ed3636df24e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access data in the cache.  <a href="group__ParallelGroup.html#ga5650367ede7ee5b92720ed3636df24e2">More...</a><br /></td></tr>
+<tr class="separator:ga5650367ede7ee5b92720ed3636df24e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa0ef30b3787d2bc66c81b2e1350a6684"><td class="memTemplParams" colspan="2">template&lt;typename ReceiveTag , typename Proxy , typename ReceiveDataType &gt; </td></tr>
+<tr class="memitem:gaa0ef30b3787d2bc66c81b2e1350a6684"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaa0ef30b3787d2bc66c81b2e1350a6684">Parallel::receive_data</a> (Proxy &amp;&amp;proxy, typename ReceiveTag::temporal_id temporal_id, ReceiveDataType &amp;&amp;receive_data, const bool enable_if_disabled) noexcept</td></tr>
+<tr class="memdesc:gaa0ef30b3787d2bc66c81b2e1350a6684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the data <code>args...</code> to the algorithm running on <code>proxy</code>, and tag the message with the identifier <code>temporal_id</code>.  <a href="group__ParallelGroup.html#gaa0ef30b3787d2bc66c81b2e1350a6684">More...</a><br /></td></tr>
+<tr class="separator:gaa0ef30b3787d2bc66c81b2e1350a6684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga55cab4598f5003581f83f0abfcb90982"><td class="memTemplParams" colspan="2">template&lt;typename ReceiveTag , typename Proxy , typename ReceiveDataType &gt; </td></tr>
+<tr class="memitem:ga55cab4598f5003581f83f0abfcb90982"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga55cab4598f5003581f83f0abfcb90982">Parallel::receive_data</a> (Proxy &amp;&amp;proxy, typename ReceiveTag::temporal_id temporal_id, ReceiveDataType &amp;&amp;receive_data) noexcept</td></tr>
+<tr class="memdesc:ga55cab4598f5003581f83f0abfcb90982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the data <code>args...</code> to the algorithm running on <code>proxy</code>, and tag the message with the identifier <code>temporal_id</code>.  <a href="group__ParallelGroup.html#ga55cab4598f5003581f83f0abfcb90982">More...</a><br /></td></tr>
+<tr class="separator:ga55cab4598f5003581f83f0abfcb90982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa17acf0ac876ac8cf36dfb939d7aea11"><td class="memTemplParams" colspan="2"><a id="gaa17acf0ac876ac8cf36dfb939d7aea11"></a>
+template&lt;typename Action , typename Proxy &gt; </td></tr>
+<tr class="memitem:gaa17acf0ac876ac8cf36dfb939d7aea11"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaa17acf0ac876ac8cf36dfb939d7aea11">Parallel::simple_action</a> (Proxy &amp;&amp;proxy) noexcept</td></tr>
+<tr class="memdesc:gaa17acf0ac876ac8cf36dfb939d7aea11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a simple action on <code>proxy</code> <br /></td></tr>
+<tr class="separator:gaa17acf0ac876ac8cf36dfb939d7aea11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa8624f46f3a77806a85190891437ee67"><td class="memTemplParams" colspan="2"><a id="gaa8624f46f3a77806a85190891437ee67"></a>
+template&lt;typename Action , typename Proxy , typename Arg0 , typename... Args&gt; </td></tr>
+<tr class="memitem:gaa8624f46f3a77806a85190891437ee67"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaa8624f46f3a77806a85190891437ee67">Parallel::simple_action</a> (Proxy &amp;&amp;proxy, Arg0 &amp;&amp;arg0, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="memdesc:gaa8624f46f3a77806a85190891437ee67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a simple action on <code>proxy</code> <br /></td></tr>
+<tr class="separator:gaa8624f46f3a77806a85190891437ee67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9400abf9bfed73781d813df2c1a9f162"><td class="memTemplParams" colspan="2"><a id="ga9400abf9bfed73781d813df2c1a9f162"></a>
+template&lt;typename Action , typename Proxy &gt; </td></tr>
+<tr class="memitem:ga9400abf9bfed73781d813df2c1a9f162"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga9400abf9bfed73781d813df2c1a9f162">Parallel::threaded_action</a> (Proxy &amp;&amp;proxy) noexcept</td></tr>
+<tr class="memdesc:ga9400abf9bfed73781d813df2c1a9f162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a threaded action on <code>proxy</code>, where the proxy must be a nodegroup. <br /></td></tr>
+<tr class="separator:ga9400abf9bfed73781d813df2c1a9f162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac875d2accf84d68a10b5a9c8b450cb5d"><td class="memTemplParams" colspan="2"><a id="gac875d2accf84d68a10b5a9c8b450cb5d"></a>
+template&lt;typename Action , typename Proxy , typename Arg0 , typename... Args&gt; </td></tr>
+<tr class="memitem:gac875d2accf84d68a10b5a9c8b450cb5d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gac875d2accf84d68a10b5a9c8b450cb5d">Parallel::threaded_action</a> (Proxy &amp;&amp;proxy, Arg0 &amp;&amp;arg0, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="memdesc:gac875d2accf84d68a10b5a9c8b450cb5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a threaded action on <code>proxy</code>, where the proxy must be a nodegroup. <br /></td></tr>
+<tr class="separator:gac875d2accf84d68a10b5a9c8b450cb5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Functions, classes and documentation related to parallelization and Charm++. </p>
+<p>SpECTRE builds a layer on top of Charm++ that performs various safety checks and initialization for the user that can otherwise lead to difficult-to-debug undefined behavior. The central concept is what is called a Parallel Component. A Parallel Component is a struct with several type aliases that is used by SpECTRE to set up the Charm++ chares and allowed communication patterns. Parallel Components are input arguments to the compiler, which then writes the parallelization infrastructure that you requested for the executable. There is no restriction on the number of Parallel Components, though practically it is best to have around 10 at most.</p>
+<p>Here is an overview of what is described in detail in the sections below:</p>
+<ul>
+<li>Metavariables: Provides high-level configuration to the compiler, e.g. the physical system to be simulated.</li>
+<li>Phase: Defines distinct simulation phases separated by a global synchronization point, e.g. <code>Initialize</code>, <code>Evolve</code> and <code>Exit</code>.</li>
+<li>Algorithm: In each phase, iterates over a list of actions until the current phase ends.</li>
+<li>Parallel component: Maintains and executes its algorithm.</li>
+<li>Action: Performs a computational task, e.g. evaluating the right hand side of the time evolution equations. May require data to be received from another action potentially being executed on a different core or node.</li>
+</ul>
+<h3>The Metavariables Class</h3>
+<p>SpECTRE takes a different approach to input options passed to an executable than is common. SpECTRE not only reads an input file at runtime but also has many choices made at compile time. The compile time options are specified by what is referred to as the metavariables. What exactly the metavariables struct specifies depends somewhat on the executable, but all metavariables structs must specify the following:</p>
+<ul>
+<li><code>help</code>: a <code>static constexpr OptionString</code> that will be printed as part of the help message. It should describe the executable and basic usage of it, as well as any non-standard options that must be specified in the metavariables and their current values. An example of a help string for one of the testing executables is: <div class="fragment"><div class="line">  <span class="keyword">static</span> constexpr <a class="code" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a> help =</div><div class="line">      <span class="stringliteral">&quot;An executable for testing the core functionality of the Algorithm. &quot;</span></div><div class="line">      <span class="stringliteral">&quot;Actions that do not perform any operations (no-ops), invoking simple &quot;</span></div><div class="line">      <span class="stringliteral">&quot;actions, mutating data in the DataBox, adding and removing items from &quot;</span></div><div class="line">      <span class="stringliteral">&quot;the DataBox, receiving data from other parallel components, and &quot;</span></div><div class="line">      <span class="stringliteral">&quot;out-of-order execution of Actions are all tested. All tests are run &quot;</span></div><div class="line">      <span class="stringliteral">&quot;just by running the executable, no input file or command line arguments &quot;</span></div><div class="line">      <span class="stringliteral">&quot;are required&quot;</span>;</div></div><!-- fragment --></li>
+<li><code>component_list</code>: a <code>tmpl::list</code> of the parallel components (described below) that are to be created. Most evolution executables will have the <code><a class="el" href="structDgElementArray.html">DgElementArray</a></code> parallel component listed. An example of a <code>component_list</code> for one of the test executables is: <div class="fragment"><div class="line">  <span class="keyword">using</span> component_list = tmpl::list&lt;NoOpsComponent&lt;TestMetavariables&gt;,</div><div class="line">                                    MutateComponent&lt;TestMetavariables&gt;,</div><div class="line">                                    ReceiveComponent&lt;TestMetavariables&gt;,</div><div class="line">                                    AnyOrderComponent&lt;TestMetavariables&gt;&gt;;</div></div><!-- fragment --></li>
+<li><code>using const_global_cache_tag_list</code> is set to a (possibly empty) <code>tmpl::list</code> of OptionTags that are needed by the metavariables.</li>
+<li><code>Phase</code>: an <code>enum class</code> that must contain at least <code><a class="el" href="namespaceInitialization.html" title="Items for initializing the DataBoxes of parallel components. ">Initialization</a></code> and <code>Exit</code>. Phases are described in the next section.</li>
+<li><code>determine_next_phase</code>: a static function with the signature <div class="fragment"><div class="line"><span class="keyword">static</span> Phase determine_next_phase(</div><div class="line">  <span class="keyword">const</span> Phase&amp; current_phase,</div><div class="line">  <span class="keyword">const</span> Parallel::CProxy_ConstGlobalCache&lt;EvolutionMetavars&gt;&amp; cache_proxy)</div><div class="line">  noexcept;</div></div><!-- fragment --> What this function does is described below in the discussion of phases.</li>
+</ul>
+<p>There are also several optional members:</p>
+<ul>
+<li><code>input_file</code>: a <code>static constexpr OptionString</code> that is the default name of the input file that is to be read. This can be overridden at runtime by passing the <code>--input-file</code> argument to the executable.</li>
+<li><code>ignore_unrecognized_command_line_options</code>: a <code>static constexpr bool</code> that defaults to <code>false</code>. If set to <code>true</code> then unrecognized command line options are ignored. Ignoring unrecognized options is generally only necessary for tests where arguments for the testing framework, Catch, are passed to the executable.</li>
+</ul>
+<h3>Phases of an Execution</h3>
+<p>Global synchronization points, where all cores wait for each other, are undesirable for scalability reasons. However, they are sometimes inevitable for algorithmic reasons. That is, in order to actually get a correct solution you need to have a global synchronization. SpECTRE executables can have multiple phases, where after each phase a global synchronization occurs. By global synchronization we mean that no parallel components are executing or have more tasks to execute: everything is waiting on a task to perform.</p>
+<p>Every executable must have at least two phases, <code><a class="el" href="namespaceInitialization.html" title="Items for initializing the DataBoxes of parallel components. ">Initialization</a></code> and <code>Exit</code>. The next phase is decided by the static member function <code>determine_next_phase</code> in the metavariables. Currently this function has access to the phase that is ending, and also the global cache. In the future we will add support for receiving data from various components to allow for more complex decision making. Here is an example of a <code>determine_next_phase</code> function and the <code>Phase</code> enum class: </p><div class="fragment"><div class="line">  <span class="keyword">enum class</span> Phase {</div><div class="line">    <a class="code" href="namespaceInitialization.html">Initialization</a>,</div><div class="line">    NoOpsStart,</div><div class="line">    NoOpsFinish,</div><div class="line">    MutateStart,</div><div class="line">    MutateFinish,</div><div class="line">    ReceiveStart,</div><div class="line">    ReceiveSendData,</div><div class="line">    ReceiveFinish,</div><div class="line">    AnyOrderStart,</div><div class="line">    AnyOrderFinish,</div><div class="line">    Exit</div><div class="line">  };</div><div class="line"></div><div class="line">  <span class="keyword">static</span> Phase determine_next_phase(</div><div class="line">      <span class="keyword">const</span> Phase&amp; current_phase,</div><div class="line">      <span class="keyword">const</span> Parallel::CProxy_ConstGlobalCache&lt;</div><div class="line">          TestMetavariables&gt;&amp; <span class="comment">/*cache_proxy*/</span>) noexcept {</div><div class="line">    <span class="keywordflow">switch</span> (current_phase) {</div><div class="line">      <span class="keywordflow">case</span> Phase::Initialization:</div><div class="line">        <span class="keywordflow">return</span> Phase::NoOpsStart;</div><div class="line">      <span class="keywordflow">case</span> Phase::NoOpsStart:</div><div class="line">        <span class="keywordflow">return</span> Phase::NoOpsFinish;</div><div class="line">      <span class="keywordflow">case</span> Phase::NoOpsFinish:</div><div class="line">        <span class="keywordflow">return</span> Phase::MutateStart;</div><div class="line">      <span class="keywordflow">case</span> Phase::MutateStart:</div><div class="line">        <span class="keywordflow">return</span> Phase::MutateFinish;</div><div class="line">      <span class="keywordflow">case</span> Phase::MutateFinish:</div><div class="line">        <span class="keywordflow">return</span> Phase::ReceiveStart;</div><div class="line">      <span class="keywordflow">case</span> Phase::ReceiveStart:</div><div class="line">        <span class="keywordflow">return</span> Phase::ReceiveSendData;</div><div class="line">      <span class="keywordflow">case</span> Phase::ReceiveSendData:</div><div class="line">        <span class="keywordflow">return</span> Phase::ReceiveFinish;</div><div class="line">      <span class="keywordflow">case</span> Phase::ReceiveFinish:</div><div class="line">        <span class="keywordflow">return</span> Phase::AnyOrderStart;</div><div class="line">      <span class="keywordflow">case</span> Phase::AnyOrderStart:</div><div class="line">        <span class="keywordflow">return</span> Phase::AnyOrderFinish;</div><div class="line">      <span class="keywordflow">case</span> Phase::AnyOrderFinish:</div><div class="line">        <span class="keywordflow">return</span> Phase::Exit;</div><div class="line">      <span class="keywordflow">case</span> Phase::Exit:</div><div class="line">        <span class="keywordflow">return</span> Phase::Exit;</div><div class="line">      <span class="keywordflow">default</span>:</div><div class="line">        <a class="code" href="group__ErrorHandlingGroup.html#ga1d27028c1827976007fe9d29ad3a2f66">ERROR</a>(<span class="stringliteral">&quot;Unknown Phase...&quot;</span>);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keywordflow">return</span> Phase::Exit;</div><div class="line">  }</div></div><!-- fragment --><p> In contrast, an evolution executable might have phases <code><a class="el" href="namespaceInitialization.html" title="Items for initializing the DataBoxes of parallel components. ">Initialization</a></code>, <code>SetInitialData</code>, <code>Evolve</code>, and <code>Exit</code>, but have a similar <code>switch</code> or <code>if-else</code> logic in the <code>determine_next_phase</code> function. The first phase that is entered is always <code><a class="el" href="namespaceInitialization.html" title="Items for initializing the DataBoxes of parallel components. ">Initialization</a></code>. During the <code><a class="el" href="namespaceInitialization.html" title="Items for initializing the DataBoxes of parallel components. ">Initialization</a></code> phase the <code>initialize</code> function is called on all parallel components. Once all parallel components' <code>initialize</code> function is complete, the next phase is determined and the <code>execute_next_phase</code> function is called after on all the parallel components.</p>
+<p>At the end of an execution the <code>Exit</code> phase has the executable wait to make sure no parallel components are performing or need to perform any more tasks, and then exits. An example where this approach is important is if we are done evolving a system but still need to write data to disk. We do not want to exit the simulation until all data has been written to disk, even though we've reached the final time of the evolution.</p>
+<h3>The Algorithm</h3>
+<p>Since most numerical algorithms repeat steps until some criterion such as the final time or convergence is met, SpECTRE's parallel components are designed to do such iterations for the user. An Algorithm executes an ordered list of actions until one of the actions cannot be evaluated, typically because it is waiting on data from elsewhere. When an algorithm can no longer evaluate actions it passively waits by handing control back to Charm++. Once an algorithm receives data, typically done by having another parallel component call the <code>receive_data</code> function, the algorithm will try again to execute the next action. If the algorithm is still waiting on more data then the algorithm will again return control to Charm++ and passively wait for more data. This is repeated until all required data is available. The actions that are iterated over by the algorithm are called iterable actions and are described below.</p>
+<dl class="section note"><dt>Note</dt><dd>Currently all Algorithms must execute the same actions (described below) in all phases. This restriction is also planned on being relaxed if the need arises.</dd></dl>
+<h3>Parallel Components</h3>
+<p>Each Parallel Component struct must have the following type aliases:</p><ol type="1">
+<li><code>using chare_type</code> is set to one of:<ol type="a">
+<li><code>Parallel::Algorithms::Singleton</code>s have one object in the entire execution of the program.</li>
+<li><code>Parallel::Algorithms::Array</code>s hold zero or more elements, each of which is an object distributed to some core. An array can grow and shrink in size dynamically if need be and can also be bound to another array. A bound array has the same number of elements as the array it is bound to, and elements with the same ID are on the same core. See Charm++'s chare arrays for details.</li>
+<li><code>Parallel::Algorithms::Group</code>s are arrays with one element per core which are not able to be moved around between cores. These are typically useful for gathering data from array elements on their core, and then processing or reducing the data further. See <a href="http://charm.cs.illinois.edu/help">Charm++'s</a> group chares for details.</li>
+<li><code>Parallel::Algorithms::Nodegroup</code>s are similar to groups except that there is one element per node. For Charm++ SMP (shared memory parallelism) builds, a node corresponds to the usual definition of a node on a supercomputer. However, for non-SMP builds nodes and cores are equivalent. We ensure that all entry method calls done through the Algorithm's <code>simple_action</code> and <code>receive_data</code> functions are threadsafe. User controlled threading is possible by calling the non-entry method member function <code>threaded_action</code>.</li>
+</ol>
+</li>
+<li><code>using metavariables</code> is set to the Metavariables struct that stores the global metavariables. It is often easiest to have the Parallel Component struct have a template parameter <code>Metavariables</code> that is the global metavariables struct. Examples of this technique are given below.</li>
+<li><code>using action_list</code> is set to a <code>tmpl::list</code> of the Actions (described below) that the Algorithm running on the Parallel Component executes. The Actions are executed in the order that they are given in the <code>tmpl::list</code>.</li>
+<li><code>using initial_databox</code> is set to the type of the DataBox that will be passed to the first Action of the <code>action_list</code>. Typically it is the output of some simple action called during the <code><a class="el" href="namespaceInitialization.html" title="Items for initializing the DataBoxes of parallel components. ">Initialization</a></code> Phase.</li>
+<li><code>using options</code> is set to a (possibly empty) <code>tmpl::list</code> of the option structs. The options are read in from the input file specified in the main <code>Metavariables</code> struct. After being read in they are passed to the <code>initialize</code> function of the parallel component, which is described below.</li>
+<li><code>using const_global_cache_tag_list</code> is set to a <code>tmpl::list</code> of OptionTags that are required by the parallel component. This is usually obtained from the <code>action_list</code> using the <code><a class="el" href="group__ParallelGroup.html#ga095a18db8905ca8e5c3af70735ee6462" title="Given a list of Actions, get a list of the unique tags specified in the actions&#39; const_global_cache_t...">Parallel::get_const_global_cache_tags</a></code> metafunction.</li>
+</ol>
+<dl class="section note"><dt>Note</dt><dd>Array parallel components must also specify the type alias <code>using array_index</code>, which is set to the type that indexes the Parallel Component Array. Charm++ allows arrays to be 1 through 6 dimensional or be indexed by a custom type. The Charm++ provided indexes are wrapped as <code>Parallel::ArrayIndex1D</code> through <code>Parallel::ArrayIndex6D</code>. When writing custom array indices, the <a href="http://charm.cs.illinois.edu/help">Charm++ manual</a> tells you to write your own <code>CkArrayIndex</code>, but we have written a general implementation that provides this functionality; all that you need to provide is a plain-old-data (<a href="http://en.cppreference.com/w/cpp/concept/PODType">POD</a>) struct of the size of at most 3 integers.</dd></dl>
+<p>Parallel Components have a static <code>initialize</code> function that is used effectively as the constructor of the components. The signature of the initialize functions must be: </p><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> initialize(</div><div class="line">   Parallel::CProxy_ConstGlobalCache&lt;metavariables&gt;&amp; global_cache, opts...);</div></div><!-- fragment --><p> The <code>initialize</code> function is called by the Main Parallel Component when the execution starts and will typically call a simple Action to set up the initial state of the Algorithm, similar to what a constructor does for classes. The <code>initialize</code> function also receives arguments that are read from the input file which were specified in the <code>options</code> typelist described above. The options are usually used to initialize the Parallel Component's DataBox, or even the component itself. An example of initializing the component itself would be using the value of an option to control the size of the Parallel Component Array. The <code>initialize</code> functions of different Parallel Components are called in random order and so it is not safe to have them depend on each other.</p>
+<p>Each parallel component must also decide what to do in the different phases of the execution. This is controlled by an <code>execute_next_phase</code> function with signature: </p><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> execute_next_phase(</div><div class="line">    <span class="keyword">const</span> <span class="keyword">typename</span> metavariables::Phase next_phase,</div><div class="line">    <span class="keyword">const</span> Parallel::CProxy_ConstGlobalCache&lt;metavariables&gt;&amp; global_cache);</div></div><!-- fragment --><p> The <code>determine_next_phase</code> function in the Metavariables determines the next phase, after which the <code>execute_next_phase</code> function gets called. The <code>execute_next_phase</code> function determines what the Parallel Component should do during the next phase. For example, it may simply call <code>perform_algorithm</code>, call a series of simple actions, perform a reduction over an Array, or not do anything at all. Note that <code>perform_algorithm</code> performs the same actions (the ones in <code>action_list</code>) no matter what Phase it is called in.</p>
+<p>An example of a singleton Parallel Component is: </p><div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> Metavariables&gt;</div><div class="line"><span class="keyword">struct </span>SingletonParallelComponent {</div><div class="line">  <span class="keyword">using</span> chare_type = Parallel::Algorithms::Singleton;</div><div class="line">  <span class="keyword">using</span> const_global_cache_tag_list = tmpl::list&lt;&gt;;</div><div class="line">  <span class="keyword">using</span> metavariables = Metavariables;</div><div class="line">  <span class="keyword">using</span> action_list = tmpl::list&lt;SingletonActions::CountReceives&gt;;</div><div class="line">  <span class="keyword">using</span> initial_databox = <a class="code" href="group__DataBoxGroup.html#ga8b1b1d429f0faf5e11d06015467312d2">db::compute_databox_type&lt;tmpl::list&lt;&gt;</a>&gt;;</div><div class="line">  <span class="keyword">using</span> options = tmpl::list&lt;&gt;;</div><div class="line"></div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> initialize(</div><div class="line">      Parallel::CProxy_ConstGlobalCache&lt;Metavariables&gt;&amp; global_cache) {</div><div class="line">    <span class="keyword">auto</span>&amp; local_cache = *(global_cache.ckLocalBranch());</div><div class="line">    Parallel::simple_action&lt;SingletonActions::Initialize&gt;(</div><div class="line">        Parallel::get_parallel_component&lt;SingletonParallelComponent&gt;(</div><div class="line">            local_cache));</div><div class="line">  }</div><div class="line"></div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> execute_next_phase(</div><div class="line">      <span class="keyword">const</span> <span class="keyword">typename</span> Metavariables::Phase next_phase,</div><div class="line">      <span class="keyword">const</span> Parallel::CProxy_ConstGlobalCache&lt;Metavariables&gt;&amp; global_cache) {</div><div class="line">    <span class="keywordflow">if</span> (next_phase == Metavariables::Phase::PerformSingletonAlgorithm) {</div><div class="line">      <span class="keyword">auto</span>&amp; local_cache = *(global_cache.ckLocalBranch());</div><div class="line">      Parallel::get_parallel_component&lt;SingletonParallelComponent&gt;(local_cache)</div><div class="line">          .perform_algorithm();</div><div class="line">      <span class="keywordflow">return</span>;</div><div class="line">    }</div><div class="line">  }</div><div class="line">};</div></div><!-- fragment --><p> An example of an array Parallel Component is: </p><div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> Metavariables&gt;</div><div class="line"><span class="keyword">struct </span>ArrayParallelComponent {</div><div class="line">  <span class="keyword">using</span> chare_type = Parallel::Algorithms::Array;</div><div class="line">  <span class="keyword">using</span> const_global_cache_tag_list = tmpl::list&lt;&gt;;</div><div class="line">  <span class="keyword">using</span> metavariables = Metavariables;</div><div class="line">  <span class="keyword">using</span> action_list =</div><div class="line">      tmpl::list&lt;ArrayActions::AddIntValue10, ArrayActions::IncrementInt0,</div><div class="line">                 ArrayActions::RemoveInt0, ArrayActions::SendToSingleton&gt;;</div><div class="line">  <span class="keyword">using</span> array_index = int;</div><div class="line">  <span class="keyword">using</span> initial_databox =</div><div class="line">      <a class="code" href="group__DataBoxGroup.html#ga8b1b1d429f0faf5e11d06015467312d2">db::compute_databox_type&lt;tmpl::list&lt;Tags::CountActionsCalled&gt;</a>&gt;;</div><div class="line">  <span class="keyword">using</span> options = tmpl::list&lt;&gt;;</div><div class="line"></div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> initialize(</div><div class="line">      Parallel::CProxy_ConstGlobalCache&lt;Metavariables&gt;&amp; global_cache) {</div><div class="line">    <span class="keyword">auto</span>&amp; local_cache = *(global_cache.ckLocalBranch());</div><div class="line">    <span class="keyword">auto</span>&amp; array_proxy =</div><div class="line">        Parallel::get_parallel_component&lt;ArrayParallelComponent&gt;(local_cache);</div><div class="line"></div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0, which_proc = 0,</div><div class="line">             <a class="code" href="group__ParallelGroup.html#ga537d2cc78336566826c93c49f82746a8">number_of_procs</a> = <a class="code" href="group__ParallelGroup.html#ga537d2cc78336566826c93c49f82746a8">Parallel::number_of_procs</a>();</div><div class="line">         i &lt; number_of_1d_array_elements; ++i) {</div><div class="line">      array_proxy[i].insert(global_cache, which_proc);</div><div class="line">      which_proc = which_proc + 1 == <a class="code" href="group__ParallelGroup.html#ga537d2cc78336566826c93c49f82746a8">number_of_procs</a> ? 0 : which_proc + 1;</div><div class="line">    }</div><div class="line">    array_proxy.doneInserting();</div><div class="line"></div><div class="line">    Parallel::simple_action&lt;ArrayActions::Initialize&gt;(array_proxy);</div><div class="line">  }</div><div class="line"></div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> execute_next_phase(</div><div class="line">      <span class="keyword">const</span> <span class="keyword">typename</span> Metavariables::Phase next_phase,</div><div class="line">      Parallel::CProxy_ConstGlobalCache&lt;Metavariables&gt;&amp; global_cache) {</div><div class="line">    <span class="keyword">auto</span>&amp; local_cache = *(global_cache.ckLocalBranch());</div><div class="line">    <span class="keywordflow">if</span> (next_phase == Metavariables::Phase::PerformArrayAlgorithm) {</div><div class="line">      Parallel::get_parallel_component&lt;ArrayParallelComponent&gt;(local_cache)</div><div class="line">          .perform_algorithm();</div><div class="line">    }</div><div class="line">  }</div><div class="line">};</div></div><!-- fragment --><p>Elements are inserted into the Array by using the Charm++ <code>insert</code> member function of the CProxy for the array. The <code>insert</code> function is documented in the Charm++ manual. In the above Array example <code>array_proxy</code> is a <code>CProxy</code> and so all the documentation for Charm++ array proxies applies. SpECTRE always creates empty Arrays with the constructor and requires users to insert however many elements they want and on which cores they want them to be placed. Note that load balancing calls may result in Array elements being moved.</p>
+<h3>Actions</h3>
+<p>For those familiar with Charm++, actions should be thought of as effectively being entry methods. They are functions that can be invoked on a remote object (chare/parallel component) using a <code>CProxy</code> (see the <a href="http://charm.cs.illinois.edu/help">Charm++ manual</a>), which is retrieved from the ConstGlobalCache using the parallel component struct and the <code><a class="el" href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f" title="Access the Charm++ proxy associated with a ParallelComponent. ">Parallel::get_parallel_component()</a></code> function. Actions are structs with a static <code>apply</code> method and come in three variants: simple actions, iterable actions, and reduction actions. One important thing to note is that actions cannot return any data to the caller of the remote method. Instead, "returning" data must be done via callbacks or a callback-like mechanism.</p>
+<p>The simplest signature of an <code>apply</code> method is for iterable actions: </p><div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> DbTags, <span class="keyword">typename</span>... InboxTags, <span class="keyword">typename</span> Metavariables,</div><div class="line">            <span class="keyword">typename</span> ArrayIndex, <span class="keyword">typename</span> ActionList,</div><div class="line">            <span class="keyword">typename</span> ParallelComponent&gt;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">apply</a>(db::DataBox&lt;DbTags&gt;&amp; box,</div><div class="line">                    <span class="keyword">const</span> <a class="code" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple&lt;InboxTags...&gt;</a>&amp; <span class="comment">/*inboxes*/</span>,</div><div class="line">                    <span class="keyword">const</span> <a class="code" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache&lt;Metavariables&gt;</a>&amp; <span class="comment">/*cache*/</span>,</div><div class="line">                    <span class="keyword">const</span> ArrayIndex&amp; <span class="comment">/*array_index*/</span>,</div><div class="line">                    <span class="keyword">const</span> ActionList <span class="comment">/*meta*/</span>,</div><div class="line">                    <span class="keyword">const</span> ParallelComponent* <span class="keyword">const</span> <span class="comment">/*meta*/</span>) noexcept</div></div><!-- fragment --><p>The return type is discussed at the end of each section describing a particular type of action. Simple actions can have additional arguments but must have at least the arguments shown above. Reduction actions must have the above arguments and an argument taken by value that is of the type the reduction was made over. The <code>db::DataBox</code> should be thought of as the member data of the parallel component while the actions are the member functions. The combination of a <code>db::DataBox</code> and actions allows building up classes with arbitrary member data and methods using template parameters and invocation of actions. This approach allows us to eliminate the need for users to work with Charm++'s interface files, which can be error prone and difficult to use.</p>
+<p>The ConstGlobalCache is passed to each action so that the action has access to global data and is able to invoke actions on other parallel components. The <code>ParallelComponent</code> template parameter is the tag of the parallel component that invoked the action. A proxy to the calling parallel component can then be retrieved from the ConstGlobalCache. The remote entry method invocations are slightly different for different types of actions, so they will be discussed below. However, one thing that is disallowed for all actions is calling an action locally from within an action on the same parallel component. Specifically,</p>
+<div class="fragment"><div class="line">    <span class="keyword">auto</span>&amp; local_parallel_component =</div><div class="line">        *Parallel::get_parallel_component&lt;ParallelComponent&gt;(cache).ckLocal();</div><div class="line">    Parallel::simple_action&lt;error_call_single_action_from_action&gt;(</div><div class="line">        local_parallel_component);</div></div><!-- fragment --><p> Here <code>ckLocal()</code> is a Charm++ provided method that returns a pointer to the local (currently executing) parallel component. See the <a href="http://charm.cs.illinois.edu/help">Charm++ manual</a> for more information. However, you are able to queue a new action to be executed later on the same parallel component by getting your own parallel component from the ConstGlobalCache (<code><a class="el" href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f" title="Access the Charm++ proxy associated with a ParallelComponent. ">Parallel::get_parallel_component</a>&lt;ParallelComponent&gt;(cache)</code>). The difference between the two calls is that by calling an action through the parallel component you will first finish the series of actions you are in, then when they are complete Charm++ will call the next queued action.</p>
+<p>Array, group, and nodegroup parallel components can have actions invoked in two ways. First is a broadcast where the action is called on all elements of the array:</p>
+<div class="fragment"><div class="line">      <span class="keyword">auto</span>&amp; group_parallel_component = <a class="code" href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f">Parallel::get_parallel_component</a>&lt;</div><div class="line">          GroupParallelComponent&lt;Metavariables&gt;&gt;(cache);</div><div class="line">      Parallel::receive_data&lt;Tags::IntReceiveTag&gt;(</div><div class="line">          group_parallel_component,</div><div class="line">          db::get&lt;Tags::CountActionsCalled&gt;(box) + 100 * array_index,</div><div class="line">          db::get&lt;Tags::CountActionsCalled&gt;(box));</div></div><!-- fragment --><p> The second case is invoking an action on a specific array element by using the array element's index. The below example shows how a broadcast would be done manually by looping over all elements in the array:</p>
+<div class="fragment"><div class="line">    <span class="keyword">auto</span>&amp; array_parallel_component =</div><div class="line">        Parallel::get_parallel_component&lt;ArrayParallelComponent&lt;Metavariables&gt;&gt;(</div><div class="line">            cache);</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; number_of_1d_array_elements; ++i) {</div><div class="line">      Parallel::receive_data&lt;Tags::IntReceiveTag&gt;(array_parallel_component[i],</div><div class="line">                                                  0, 101, <span class="keyword">true</span>);</div><div class="line">    }</div></div><!-- fragment --><p> Note that in general you will not know what all the elements in the array are and so a broadcast is the correct method of sending data to or invoking an action on all elements of an array parallel component.</p>
+<p>The <code>array_index</code> argument passed to all <code>apply</code> methods is the index into the parallel component array. If the parallel component is not an array the value and type of <code>array_index</code> is implementation defined and cannot be relied on. The <code>ActionList</code> type is the <code>tmpl::list</code> of iterable actions run on the algorithm. That is, it is equal to the <code>action_list</code> type alias in the parallel component.</p>
+<h4>1. Simple Actions</h4>
+<p>Simple actions are designed to be called in a similar fashion to member functions of classes. They are the direct analog of entry methods in Charm++ except that the member data is stored in the <code>db::DataBox</code> that is passed in as the first argument. There are a couple of important things to note with simple actions:</p>
+<ol type="1">
+<li>A simple action must return void but can use <code><a class="el" href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc" title="Allows changing the state of one or more non-computed elements in the DataBox. ">db::mutate</a></code> to change values of items in the DataBox if the DataBox is taken as a non-const reference. There is one exception: if the input DataBox is empty, then the simple action can return a DataBox of type <code>initial_databox</code>. That is, an action taking an empty DataBox and returning the <code>initial_databox</code> is effectively constructing the DataBox in its initial state.</li>
+<li>A simple action is instantiated once for an empty <code>db::DataBox&lt;tmpl::list&lt;&gt;&gt;</code>, once for a DataBox of type <code>initial_databox</code> (listed in the parallel component), and once for each returned DataBox from the iterable actions in the <code>action_list</code> in the parallel component. In some cases you will need specific items to be in the DataBox otherwise the action won't compile. To restrict which DataBoxes can be passed you should use <code>Requires</code> in the action's <code>apply</code> function template parameter list. For example, <div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... DbTags, <span class="keyword">typename</span>... InboxTags, <span class="keyword">typename</span> Metavariables,</div><div class="line">            <span class="keyword">typename</span> ArrayIndex, <span class="keyword">typename</span> ActionList,</div><div class="line">            <span class="keyword">typename</span> ParallelComponent,</div><div class="line">            <a class="code" href="group__UtilitiesGroup.html#ga084d535585c18d4e80f8ec6052d341a3">Requires</a>&lt;<a class="code" href="group__UtilitiesGroup.html#ga8a328cb983ebb1947b0eb9d924f40253">tmpl2::flat_any_v</a>&lt;</div><div class="line">                cpp17::is_same_v&lt;CountActionsCalled, DbTags&gt;...&gt;&gt; = <span class="keyword">nullptr</span>&gt;</div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">apply</a>(db::DataBox&lt;tmpl::list&lt;DbTags...&gt;&gt;&amp; box,</div><div class="line">                    <span class="keyword">const</span> <a class="code" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple&lt;InboxTags...&gt;</a>&amp; inboxes,</div><div class="line">                    <span class="keyword">const</span> <a class="code" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache&lt;Metavariables&gt;</a>&amp; <span class="comment">/*cache*/</span>,</div><div class="line">                    <span class="keyword">const</span> ArrayIndex&amp; <span class="comment">/*array_index*/</span>,</div><div class="line">                    <span class="keyword">const</span> ActionList <span class="comment">/*meta*/</span>,</div><div class="line">                    <span class="keyword">const</span> ParallelComponent* <span class="keyword">const</span> <span class="comment">/*meta*/</span>) noexcept {</div></div><!-- fragment --> where the conditional checks if any element in the parameter pack <code>DbTags</code> is <code>CountActionsCalled</code>.</li>
+</ol>
+<p>A simple action that does not take any arguments can be called using a <code>CProxy</code> from the ConstGlobalCache as follows:</p>
+<div class="fragment"><div class="line">    Parallel::simple_action&lt;add_remove_test::initialize&gt;(</div><div class="line">        Parallel::get_parallel_component&lt;MutateComponent&gt;(cache));</div></div><!-- fragment --><p> If the simple action takes arguments then the arguments must be passed to the <code>simple_action</code> method as a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a></code> (because Charm++ doesn't yet support variadic entry method templates). For example,</p>
+<div class="fragment"><div class="line">    Parallel::simple_action&lt;nodegroup_receive&gt;(local_nodegroup, array_index);</div></div><!-- fragment --><p> Multiple arguments can be passed to the <code>std::make_tuple</code> call.</p>
+<dl class="section note"><dt>Note</dt><dd>You must be careful about type deduction when using <code>std::make_tuple</code> because <code>std::make_tuple(0)</code> will be of type <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt;int&gt;</code>, which will not work if the action is expecting to receive a <code>size_t</code> as its extra argument. Instead, you can get a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt;size_t&gt;</code> in one of two ways. First, you can pass in <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt;size_t&gt;(0)</code>, second you can include the header <code><a class="el" href="Literals_8hpp.html" title="Defines useful literals. ">Utilities/Literals.hpp</a></code> and then pass in <code>std::make_tuple(0_st)</code>.</dd></dl>
+<h4>2. Iterable Actions</h4>
+<p>Actions in the algorithm that are part of the <code>action_list</code> are executed one after the other until one of them cannot be evaluated. Iterable actions may have an <code>is_ready</code> method that returns <code>true</code> or <code>false</code> depending on whether or not the action is ready to be evaluated. If no <code>is_ready</code> method is provided then the action is assumed to be ready to be evaluated. The <code>is_ready</code> method typically checks that required data from other parallel components has been received. For example, it may check that all data from neighboring elements has arrived to be able to continue integrating in time. The signature of an <code>is_ready</code> method must be:</p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> DbTags, <span class="keyword">typename</span>... InboxTags, <span class="keyword">typename</span> Metavariables,</div><div class="line">            <span class="keyword">typename</span> ArrayIndex&gt;</div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">bool</span> is_ready(</div><div class="line">      <span class="keyword">const</span> db::DataBox&lt;DbTags&gt;&amp; box,</div><div class="line">      <span class="keyword">const</span> <a class="code" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple&lt;InboxTags...&gt;</a>&amp; inboxes,</div><div class="line">      <span class="keyword">const</span> <a class="code" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache&lt;Metavariables&gt;</a>&amp; <span class="comment">/*cache*/</span>,</div><div class="line">      <span class="keyword">const</span> ArrayIndex&amp; <span class="comment">/*array_index*/</span>) noexcept</div></div><!-- fragment --><p> The <code>inboxes</code> is a collection of the tags passed to <code>receive_data</code> and are specified in the iterable actions member type alias <code>inbox_tags</code>, which must be a <code>tmpl::list</code>. The <code>inbox_tags</code> must have two member type aliases, a <code>temporal_id</code> which is used to identify when the data was sent, and a <code>type</code> which is the type of the data to be stored in the <code>inboxes</code>. The types are typically a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt;temporal_id, DATA&gt;</code>. In the discussed scenario of waiting for neighboring elements to send their data the <code>DATA</code> type would be a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt;TheElementIndex, DataSent&gt;</code>. Having <code>DATA</code> be a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_multiset.html">std::unordered_multiset</a></code> is currently also supported. Here is an example of a receive tag:</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>IntReceiveTag {</div><div class="line">  <span class="keyword">using</span> temporal_id = int;</div><div class="line">  <span class="keyword">using</span> type = <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map&lt;temporal_id, std::unordered_multiset&lt;int&gt;</a>&gt;;</div><div class="line">};</div></div><!-- fragment --><p> The <code>inbox_tags</code> type alias for the action is:</p>
+<div class="fragment"><div class="line">  <span class="keyword">using</span> inbox_tags = tmpl::list&lt;Tags::IntReceiveTag&gt;;</div></div><!-- fragment --><p> and the <code>is_ready</code> function is:</p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> DbTags, <span class="keyword">typename</span>... InboxTags, <span class="keyword">typename</span> Metavariables,</div><div class="line">            <span class="keyword">typename</span> ArrayIndex&gt;</div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">bool</span> is_ready(</div><div class="line">      <span class="keyword">const</span> db::DataBox&lt;DbTags&gt;&amp; <span class="comment">/*box*/</span>,</div><div class="line">      <span class="keyword">const</span> <a class="code" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple&lt;InboxTags...&gt;</a>&amp; inboxes,</div><div class="line">      <span class="keyword">const</span> <a class="code" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache&lt;Metavariables&gt;</a>&amp; <span class="comment">/*cache*/</span>,</div><div class="line">      <span class="keyword">const</span> ArrayIndex&amp; <span class="comment">/*array_index*/</span>) noexcept {</div><div class="line">    <span class="keyword">auto</span>&amp; int_receives = tuples::get&lt;Tags::IntReceiveTag&gt;(inboxes);</div><div class="line">    <span class="keywordflow">return</span> int_receives.size() == 70;</div><div class="line">  }</div></div><!-- fragment --><p> Once all of the <code>int</code>s have been received, the iterable action is executed, not before.</p>
+<dl class="section warning"><dt>Warning</dt><dd>It is the responsibility of the iterable action to remove data from the inboxes that will no longer be needed. The removal of unneeded data should be done in the <code>apply</code> function.</dd></dl>
+<p>Iterable actions can change the type of the DataBox by adding or removing elements/tags from the DataBox. The only requirement is that the last action in the <code>action_list</code> returns a DataBox that is the same type as the <code>initial_databox</code>. Iterable actions can also request that the algorithm no longer be executed, and choose which action in the <code>ActionList</code>/<code>action_list</code> to execute next. This is all done via the return value from the <code>apply</code> function. The <code>apply</code> function for iterable actions must return a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a></code> of one, two, or three elements. The first element of the tuple is the new DataBox, which can be the same as the type passed in or a DataBox with different tags. Most iterable actions will simply return:</p>
+<div class="fragment"><div class="line">    <span class="keywordflow">return</span> std::forward_as_tuple(std::move(box));</div></div><!-- fragment --><p> By returning the DataBox as a reference in a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a></code> we avoid any unnecessary copying of the DataBox. The second argument is an optional bool, and controls whether or not the algorithm is terminated. If the bool is <code>true</code> then the algorithm is terminated, by default it is <code>false</code>. Here is an example of how to return a DataBox with the same type that is passed in and also terminate the algorithm:</p>
+<div class="fragment"><div class="line">    <span class="keywordflow">return</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple&lt;db::DataBox&lt;DbTags&gt;</a>&amp;&amp;, <span class="keywordtype">bool</span>&gt;(std::move(box), <span class="keyword">true</span>);</div></div><!-- fragment --><p> Notice that we again return a reference to the DataBox, which is done to avoid any copying. After an algorithm has been terminated it can be restarted by passing <code>false</code> to the <code>set_terminate</code> method followed by calling the <code>perform_algorithm</code> or <code>receive_data</code> methods.</p>
+<p>The third optional element in the returned <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a></code> is a <code>size_t</code> whose value corresponds to the index of the action to be called next in the <code>action_list</code>. The metafunction <code>tmpl::index_of&lt;list, element&gt;</code> can be used to get an <code>tmpl::integral_constant</code> with the value of the index of the element <code>element</code> in the typelist <code>list</code>. For example,</p>
+<div class="fragment"><div class="line">    <span class="keywordflow">return</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple&lt;decltype(std::move(box)), bool, size_t&gt;</a>(</div><div class="line">        std::move(box), <span class="keyword">true</span>,</div><div class="line">        tmpl::index_of&lt;ActionList, iterate_increment_int0&gt;::value + 1);</div></div><!-- fragment --><p> Again a reference to the DataBox is returned, while the termination <code>bool</code> and next action <code>size_t</code> are returned by value. The metafunction call <code>tmpl::index_of&lt;ActionList, iterate_increment_int0&gt;::value</code> returns a <code>size_t</code> whose value is that of the action <code>iterate_increment_int0</code> in the <code>action_list</code>. The indexing of actions in the <code>action_list</code> starts at <code>0</code>.</p>
+<p>Iterable actions are invoked as part of the algorithm and so the only way to request they be invoked is by having the algorithm run on the parallel component. The algorithm can be explicitly evaluated by call the <code>perform_algorithm</code> method:</p>
+<div class="fragment"><div class="line">      Parallel::get_parallel_component&lt;NoOpsComponent&gt;(local_cache)</div><div class="line">          .perform_algorithm();</div></div><!-- fragment --><p> The algorithm is also evaluated by calling the <code>receive_data</code> function, either on an entire array or singleton (this does a broadcast), or an on individual element of the array. Here is an example of a broadcast call:</p>
+<div class="fragment"><div class="line">      <span class="keyword">auto</span>&amp; group_parallel_component = <a class="code" href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f">Parallel::get_parallel_component</a>&lt;</div><div class="line">          GroupParallelComponent&lt;Metavariables&gt;&gt;(cache);</div><div class="line">      Parallel::receive_data&lt;Tags::IntReceiveTag&gt;(</div><div class="line">          group_parallel_component,</div><div class="line">          db::get&lt;Tags::CountActionsCalled&gt;(box) + 100 * array_index,</div><div class="line">          db::get&lt;Tags::CountActionsCalled&gt;(box));</div></div><!-- fragment --><p> and of calling individual elements:</p>
+<div class="fragment"><div class="line">    <span class="keyword">auto</span>&amp; array_parallel_component =</div><div class="line">        Parallel::get_parallel_component&lt;ArrayParallelComponent&lt;Metavariables&gt;&gt;(</div><div class="line">            cache);</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; number_of_1d_array_elements; ++i) {</div><div class="line">      Parallel::receive_data&lt;Tags::IntReceiveTag&gt;(array_parallel_component[i],</div><div class="line">                                                  0, 101, <span class="keyword">true</span>);</div><div class="line">    }</div></div><!-- fragment --><p> The <code>receive_data</code> function always takes a <code>ReceiveTag</code>, which is set in the actions <code>inbox_tags</code> type alias as described above. The first argument is the temporal identifier, and the second is the data to be sent.</p>
+<h4>3. Reduction Actions</h4>
+<p>Finally, there are reduction actions which are used when reducing data over an array. For example, you may want to know the sum of a <code>int</code> from every element in the array. You can do this as follows:</p>
+<div class="fragment"><div class="line">    Parallel::ReductionData&lt;Parallel::ReductionDatum&lt;int, funcl::Plus&lt;&gt;&gt;&gt;</div><div class="line">        my_send_int{array_index};</div><div class="line">    Parallel::contribute_to_reduction&lt;ProcessReducedSumOfInts&gt;(</div><div class="line">        my_send_int, my_proxy, singleton_proxy);</div></div><!-- fragment --><p> This reduces over the parallel component <code>ArrayParallelComponent&lt;Metavariables&gt;</code>, reduces to the parallel component <code>SingletonParallelComponent&lt;Metavariables&gt;</code>, and calls the action <code>ProcessReducedSumOfInts</code> after the reduction has been performed. The reduction action is:</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>ProcessReducedSumOfInts {</div><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> DbTags, <span class="keyword">typename</span>... InboxTags, <span class="keyword">typename</span> Metavariables,</div><div class="line">            <span class="keyword">typename</span> ArrayIndex, <span class="keyword">typename</span> ActionList,</div><div class="line">            <span class="keyword">typename</span> ParallelComponent&gt;</div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">apply</a>(db::DataBox&lt;DbTags&gt;&amp; <span class="comment">/*box*/</span>,</div><div class="line">                    <a class="code" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple&lt;InboxTags...&gt;</a>&amp; <span class="comment">/*inboxes*/</span>,</div><div class="line">                    <span class="keyword">const</span> <a class="code" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache&lt;Metavariables&gt;</a>&amp; <span class="comment">/*cache*/</span>,</div><div class="line">                    <span class="keyword">const</span> ArrayIndex&amp; <span class="comment">/*array_index*/</span>,</div><div class="line">                    <span class="keyword">const</span> ActionList <span class="comment">/*meta*/</span>,</div><div class="line">                    <span class="keyword">const</span> ParallelComponent* <span class="keyword">const</span> <span class="comment">/*meta*/</span>,</div><div class="line">                    <span class="keyword">const</span> <span class="keywordtype">int</span>&amp; value) noexcept {</div><div class="line">    <a class="code" href="group__TestingFrameworkGroup.html#ga37fce1ae5980139598815eda5a5de8ab">SPECTRE_PARALLEL_REQUIRE</a>(number_of_1d_array_elements *</div><div class="line">                                 (number_of_1d_array_elements - 1) / 2 ==</div><div class="line">                             value);</div><div class="line">  }</div><div class="line">};</div></div><!-- fragment --><p> As you can see, the last argument to the <code>apply</code> function is of type <code>int</code>, and is the reduced value.</p>
+<p>You can also broadcast the result back to an array, even yourself. For example,</p>
+<div class="fragment"><div class="line">    Parallel::contribute_to_reduction&lt;ProcessReducedSumOfInts&gt;(</div><div class="line">        my_send_int, my_proxy, array_proxy);</div></div><!-- fragment --><p> It is often necessary to reduce custom data types, such as <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a></code> or <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a></code>. Charm++ supports such custom reductions, and so does our layer on top of Charm++. Custom reductions require one additional step to calling <code>contribute_to_reduction</code>, which is writing a reduction function to reduce the custom data. We provide a generic type that can be used in custom reductions, <code>Parallel::ReductionData</code>, which takes a series of <code><a class="el" href="structParallel_1_1ReductionDatum.html" title="The data to be reduced, and invokables to be called whenever two reduction messages are combined and ...">Parallel::ReductionDatum</a></code> as template parameters and <code>ReductionDatum::value_type</code>s as the arguments to the constructor. Each <code>ReductionDatum</code> takes up to four template parameters (two are required). The first is the type of data to reduce, and the second is a binary invokable that is called at each step of the reduction to combine two messages. The last two template parameters are used after the reduction has completed. The third parameter is an n-ary invokable that is called once the reduction is complete, whose first argument is the result of the reduction. The additional arguments can be any <code>ReductionDatum::value_type</code> in the <code>ReductionData</code> that are before the current one. The fourth template parameter of <code>ReductionDatum</code> is used to specify which data should be passed. It is a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/integer_sequence.html">std::index_sequence</a></code> indexing into the <code>ReductionData</code>.</p>
+<p>The action that is invoked with the result of the reduction is:</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>ProcessCustomReductionAction {</div><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> DbTags, <span class="keyword">typename</span>... InboxTags, <span class="keyword">typename</span> Metavariables,</div><div class="line">            <span class="keyword">typename</span> ArrayIndex, <span class="keyword">typename</span> ActionList,</div><div class="line">            <span class="keyword">typename</span> ParallelComponent&gt;</div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">apply</a>(db::DataBox&lt;DbTags&gt;&amp; <span class="comment">/*box*/</span>,</div><div class="line">                    <a class="code" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple&lt;InboxTags...&gt;</a>&amp; <span class="comment">/*inboxes*/</span>,</div><div class="line">                    <span class="keyword">const</span> <a class="code" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache&lt;Metavariables&gt;</a>&amp; <span class="comment">/*cache*/</span>,</div><div class="line">                    <span class="keyword">const</span> ArrayIndex&amp; <span class="comment">/*array_index*/</span>,</div><div class="line">                    <span class="keyword">const</span> ActionList <span class="comment">/*meta*/</span>,</div><div class="line">                    <span class="keyword">const</span> ParallelComponent* <span class="keyword">const</span> <span class="comment">/*meta*/</span>, <span class="keywordtype">int</span> reduced_int,</div><div class="line">                    <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map&lt;std::string, int&gt;</a> reduced_map,</div><div class="line">                    <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a>&amp;&amp; reduced_vector) noexcept {</div><div class="line">    <a class="code" href="group__TestingFrameworkGroup.html#ga37fce1ae5980139598815eda5a5de8ab">SPECTRE_PARALLEL_REQUIRE</a>(reduced_int == 10);</div><div class="line">    <a class="code" href="group__TestingFrameworkGroup.html#ga37fce1ae5980139598815eda5a5de8ab">SPECTRE_PARALLEL_REQUIRE</a>(reduced_map.at(<span class="stringliteral">&quot;unity&quot;</span>) ==</div><div class="line">                             number_of_1d_array_elements - 1);</div><div class="line">    <a class="code" href="group__TestingFrameworkGroup.html#ga37fce1ae5980139598815eda5a5de8ab">SPECTRE_PARALLEL_REQUIRE</a>(reduced_map.at(<span class="stringliteral">&quot;double&quot;</span>) ==</div><div class="line">                             2 * number_of_1d_array_elements - 2);</div><div class="line">    <a class="code" href="group__TestingFrameworkGroup.html#ga37fce1ae5980139598815eda5a5de8ab">SPECTRE_PARALLEL_REQUIRE</a>(reduced_map.at(<span class="stringliteral">&quot;negative&quot;</span>) == 0);</div><div class="line">    <a class="code" href="group__TestingFrameworkGroup.html#ga37fce1ae5980139598815eda5a5de8ab">SPECTRE_PARALLEL_REQUIRE</a>(</div><div class="line">        reduced_vector ==</div><div class="line">        (<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a>{-reduced_int * number_of_1d_array_elements *</div><div class="line">                              (number_of_1d_array_elements - 1) / 2,</div><div class="line">                          -reduced_int * number_of_1d_array_elements * 10,</div><div class="line">                          8 * reduced_int * number_of_1d_array_elements}));</div><div class="line">  }</div><div class="line">};</div></div><!-- fragment --><p> Note that it takes a <code>Parallel::ReductionData</code> object as its last argument.</p>
+<dl class="section warning"><dt>Warning</dt><dd>All elements of the array must call the same reductions in the same order. It is defined behavior to do multiple reductions at once as long as all contribute calls on all array elements occurred in the same order. It is undefined behavior if the contribute calls are made in different orders on different array elements.</dd></dl>
+<h3>Charm++ Node and Processor Level <a class="el" href="namespaceInitialization.html" title="Items for initializing the DataBoxes of parallel components. ">Initialization</a> Functions</h3>
+<p>Charm++ allows running functions once per core and once per node before the construction of any parallel components. This is commonly used for setting up error handling and enabling floating point exceptions. Other functions could also be run. Which functions are run on each node and core is set by specifying a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;void (*)()&gt;</code> called <code>charm_init_node_funcs</code> and <code>charm_init_proc_funcs</code> with function pointers to the functions to be called. For example, </p><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;void (*)()&gt;</a> charm_init_node_funcs{</div><div class="line">    &amp;setup_error_handling};</div><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;void (*)()&gt;</a> charm_init_proc_funcs{</div><div class="line">    &amp;<a class="code" href="group__ErrorHandlingGroup.html#gac5fde843ca62e1d4288f4a4e6d480aa0">enable_floating_point_exceptions</a>};</div></div><!-- fragment --><p> Finally, the user must include the <code><a class="el" href="CharmMain_8cpp.html" title="Defines functions used by Charm++ to register classes/chares and entry methods. ">Parallel/CharmMain.cpp</a></code> file at the end of the main executable cpp file. So, the end of an executables main cpp file will then typically look as follows: </p><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;void (*)()&gt;</a> charm_init_node_funcs{</div><div class="line">    &amp;setup_error_handling};</div><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;void (*)()&gt;</a> charm_init_proc_funcs{</div><div class="line">    &amp;<a class="code" href="group__ErrorHandlingGroup.html#gac5fde843ca62e1d4288f4a4e6d480aa0">enable_floating_point_exceptions</a>};</div><div class="line"></div><div class="line"><span class="keyword">using</span> charmxx_main_component = <a class="code" href="classParallel_1_1Main.html">Parallel::Main&lt;TestMetavariables&gt;</a>;</div><div class="line"></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="CharmMain_8cpp.html">Parallel/CharmMain.cpp</a>&quot;</span></div></div><!-- fragment --><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="gade9eecd27ecadb3501ddae591bf07db0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gade9eecd27ecadb3501ddae591bf07db0">&#9670;&nbsp;</a></span>WRAPPED_PUPable_decl_base_template</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WRAPPED_PUPable_decl_base_template</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">baseClassName, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">className&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;PUPable_decl_base_template(SINGLE_ARG(baseClassName), SINGLE_ARG(className))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mark derived template classes as serializable. </p>
+<p>Any class that derives off of a class template base class must contain this macro if it is to be serialized. </p>
+
+</div>
+</div>
+<a id="ga54770b986b9c522da6d651e1be125a03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga54770b986b9c522da6d651e1be125a03">&#9670;&nbsp;</a></span>WRAPPED_PUPable_decl_template</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WRAPPED_PUPable_decl_template</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">className</td><td>)</td>
+          <td>&#160;&#160;&#160;PUPable_decl_template(SINGLE_ARG(className))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mark derived classes as serializable. </p>
+<p>Any class that derives off of a non-class template base class must contain this macro if it is to be serialized. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga6fb3864413e851ea6dcd1ffa319f2f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6fb3864413e851ea6dcd1ffa319f2f25">&#9670;&nbsp;</a></span>deserialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T deserialize </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deserialize an object using PUP. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>the type to deserialize to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5650367ede7ee5b92720ed3636df24e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5650367ede7ee5b92720ed3636df24e2">&#9670;&nbsp;</a></span>get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ConstGlobalCacheTag , typename Metavariables &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Parallel::get </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classParallel_1_1ConstGlobalCache.html">ConstGlobalCache</a>&lt; Metavariables &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td> -&gt; const
+    ConstGlobalCache_detail::type_for_get&lt;ConstGlobalCacheTag, Metavariables&gt;&amp; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access data in the cache. </p>
+<p><em>Requires:</em> ConstGlobalCacheTag is a tag in tag_list</p>
+<p><em>Returns:</em> a constant reference to an object in the cache </p>
+
+</div>
+</div>
+<a id="ga267c8d6d5f2313bd05ed69f91485776f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga267c8d6d5f2313bd05ed69f91485776f">&#9670;&nbsp;</a></span>get_parallel_component() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ParallelComponentTag , typename Metavariables &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Parallel::get_parallel_component </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classParallel_1_1ConstGlobalCache.html">ConstGlobalCache</a>&lt; Metavariables &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td> -&gt; Parallel::proxy_from_parallel_component&lt;
+        ConstGlobalCache_detail::get_component_if_mocked&lt;
+            typename Metavariables::component_list, ParallelComponentTag&gt;&gt;&amp; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access the Charm++ proxy associated with a ParallelComponent. </p>
+<p><em>Requires:</em> ParallelComponentTag is a tag in component_list</p>
+<p><em>Returns:</em> a Charm++ proxy that can be used to call an entry method on the chare(s) </p>
+
+</div>
+</div>
+<a id="ga992eab06d03182bf63eeeea8880fcf1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga992eab06d03182bf63eeeea8880fcf1f">&#9670;&nbsp;</a></span>get_parallel_component() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ParallelComponentTag , typename Metavariables &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Parallel::get_parallel_component </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classParallel_1_1ConstGlobalCache.html">ConstGlobalCache</a>&lt; Metavariables &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td> -&gt; const Parallel::proxy_from_parallel_component&lt;
+        ConstGlobalCache_detail::get_component_if_mocked&lt;
+            typename Metavariables::component_list, ParallelComponentTag&gt;&gt;&amp; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access the Charm++ proxy associated with a ParallelComponent. </p>
+<p><em>Requires:</em> ParallelComponentTag is a tag in component_list</p>
+<p><em>Returns:</em> a Charm++ proxy that can be used to call an entry method on the chare(s) </p>
+
+</div>
+</div>
+<a id="gae21964b5d28608afd21ae090c1c4c073"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae21964b5d28608afd21ae090c1c4c073">&#9670;&nbsp;</a></span>printf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parallel::printf </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Print an atomic message to stdout with C printf usage. </p>
+<p>Similar to Python, you can print any object that's streamable by passing it in as an argument and using the formatter "%s". For example, </p><div class="fragment"><div class="line"><a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> a{0.8, 73, 9.8};</div><div class="line"><a class="code" href="group__ParallelGroup.html#gae21964b5d28608afd21ae090c1c4c073">Parallel::printf</a>(<span class="stringliteral">&quot;%s\n&quot;</span>, a);</div></div><!-- fragment --> 
+</div>
+</div>
+<a id="gaa0ef30b3787d2bc66c81b2e1350a6684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa0ef30b3787d2bc66c81b2e1350a6684">&#9670;&nbsp;</a></span>receive_data() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ReceiveTag , typename Proxy , typename ReceiveDataType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parallel::receive_data </td>
+          <td>(</td>
+          <td class="paramtype">Proxy &amp;&amp;&#160;</td>
+          <td class="paramname"><em>proxy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename ReceiveTag::temporal_id&#160;</td>
+          <td class="paramname"><em>temporal_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ReceiveDataType &amp;&amp;&#160;</td>
+          <td class="paramname"><em>receive_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>enable_if_disabled</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Send the data <code>args...</code> to the algorithm running on <code>proxy</code>, and tag the message with the identifier <code>temporal_id</code>. </p>
+<p>If the algorithm was previously disabled, set <code>enable_if_disabled</code> to true to enable the algorithm on the parallel component.</p>
+<dl class="section note"><dt>Note</dt><dd>The reason there are two separate functions is because Charm++ does not allow defaulted arguments for group and nodegroup chares. </dd></dl>
+
+</div>
+</div>
+<a id="ga55cab4598f5003581f83f0abfcb90982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga55cab4598f5003581f83f0abfcb90982">&#9670;&nbsp;</a></span>receive_data() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ReceiveTag , typename Proxy , typename ReceiveDataType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parallel::receive_data </td>
+          <td>(</td>
+          <td class="paramtype">Proxy &amp;&amp;&#160;</td>
+          <td class="paramname"><em>proxy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename ReceiveTag::temporal_id&#160;</td>
+          <td class="paramname"><em>temporal_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ReceiveDataType &amp;&amp;&#160;</td>
+          <td class="paramname"><em>receive_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Send the data <code>args...</code> to the algorithm running on <code>proxy</code>, and tag the message with the identifier <code>temporal_id</code>. </p>
+<p>If the algorithm was previously disabled, set <code>enable_if_disabled</code> to true to enable the algorithm on the parallel component.</p>
+<dl class="section note"><dt>Note</dt><dd>The reason there are two separate functions is because Charm++ does not allow defaulted arguments for group and nodegroup chares. </dd></dl>
+
+</div>
+</div>
+<a id="gaf46b590510bd8fad34c7055079262707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf46b590510bd8fad34c7055079262707">&#9670;&nbsp;</a></span>serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename U &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;char&gt; serialize </td>
+          <td>(</td>
+          <td class="paramtype">const U &amp;&#160;</td>
+          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serialize an object using PUP. </p>
+<p>The type to serialize as must be explicitly specified. We require this because a mismatch between the serialize and deserialize calls causes undefined behavior and we do not want this to depend on inferred types for safety.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>type to serialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

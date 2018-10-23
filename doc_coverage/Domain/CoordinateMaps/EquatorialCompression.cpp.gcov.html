@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Domain/CoordinateMaps/EquatorialCompression.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Domain/CoordinateMaps</a> - EquatorialCompression.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;Domain/CoordinateMaps/EquatorialCompression.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cmath&gt;  // IWYU pragma: keep
+<span class="lineNum">       7 </span>            : #include &lt;pup.h&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;Domain/SegmentId.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      11 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/ContainerHelpers.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/DereferenceWrapper.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/EqualWithinRoundoff.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/GenerateInstantiations.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/MakeWithValue.hpp&quot;
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : namespace CoordinateMaps {
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : EquatorialCompression::EquatorialCompression(const double aspect_ratio) noexcept
+<span class="lineNum">      23 </span>            :     : aspect_ratio_(aspect_ratio), inverse_aspect_ratio_(1.0 / aspect_ratio) {
+<span class="lineNum">      24 </span>            :   ASSERT(aspect_ratio &gt; 0.0, &quot;The aspect_ratio must be greater than zero.&quot;);
+<span class="lineNum">      25 </span>            : }
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      28 </span>            : std::array&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3&gt;
+<span class="lineNum">      29 </span>            : EquatorialCompression::angular_distortion(const std::array&lt;T, 3&gt;&amp; coords,
+<span class="lineNum">      30 </span>            :                                           const double inverse_alpha) const
+<span class="lineNum">      31 </span>            :     noexcept {
+<span class="lineNum">      32 </span>            :   using ReturnType = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">      33 </span>            :   const ReturnType&amp; x = coords[0];
+<span class="lineNum">      34 </span>            :   const ReturnType&amp; y = coords[1];
+<span class="lineNum">      35 </span>            :   const ReturnType&amp; z = coords[2];
+<span class="lineNum">      36 </span>            :   const ReturnType rho =
+<span class="lineNum">      37 </span>            :       sqrt(square(x) + square(y) + square(inverse_alpha * z));
+<span class="lineNum">      38 </span>            :   ReturnType radius_over_rho = sqrt(square(x) + square(y) + square(z));
+<span class="lineNum">      39 </span>            :   for (size_t i = 0; i &lt; get_size(rho); i++) {
+<span class="lineNum">      40 </span>            :     if (LIKELY(get_element(rho, i) != 0.0)) {
+<span class="lineNum">      41 </span>            :       get_element(radius_over_rho, i) /= get_element(rho, i);
+<span class="lineNum">      42 </span>            :     }
+<span class="lineNum">      43 </span>            :     // There is no 'else' covering the case rho==0.  The only way that
+<span class="lineNum">      44 </span>            :     // rho can be zero is if x=y=z=0 (because inverse_alpha is
+<span class="lineNum">      45 </span>            :     // nonzero).  So in that case, what value do we choose for radius_over_rho?
+<span class="lineNum">      46 </span>            :     // Note that radius_over_rho^2 = (x^2+y^2+z^2)/(x^2+y^2+inverse_alpha^2 z^2)
+<span class="lineNum">      47 </span>            :     // does not tend to a limit at the origin. (The limit is
+<span class="lineNum">      48 </span>            :     // 1/inverse_alpha^2 if you approach the origin along the z axis;
+<span class="lineNum">      49 </span>            :     // the limit is 1 if you approach the origin along any path in the
+<span class="lineNum">      50 </span>            :     // xy plane).  But all is ok: notice that radius_over_rho is
+<span class="lineNum">      51 </span>            :     // finite at the origin, and notice that the value returned by this
+<span class="lineNum">      52 </span>            :     // function is multiplied by (x,y,z) below so it will be zero at the
+<span class="lineNum">      53 </span>            :     // origin. Therefore we just leave radius_over_rho unchanged (with
+<span class="lineNum">      54 </span>            :     // a value of zero) in the case rho==0.
+<span class="lineNum">      55 </span>            :   }
+<span class="lineNum">      56 </span>            :   return std::array&lt;ReturnType, 3&gt;{{radius_over_rho * x, radius_over_rho * y,
+<span class="lineNum">      57 </span>            :                                     inverse_alpha * radius_over_rho * z}};
+<span class="lineNum">      58 </span>            : }
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      61 </span>            : tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3, Frame::NoFrame&gt;
+<span class="lineNum">      62 </span>            : EquatorialCompression::angular_distortion_jacobian(
+<span class="lineNum">      63 </span>            :     const std::array&lt;T, 3&gt;&amp; coords, const double inverse_alpha) const noexcept {
+<span class="lineNum">      64 </span>            :   using ReturnType = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">      65 </span>            :   const ReturnType&amp; x = coords[0];
+<span class="lineNum">      66 </span>            :   const ReturnType&amp; y = coords[1];
+<span class="lineNum">      67 </span>            :   const ReturnType&amp; z = coords[2];
+<span class="lineNum">      68 </span>            :   const ReturnType radius = sqrt(square(x) + square(y) + square(z));
+<span class="lineNum">      69 </span>            :   const ReturnType rho =
+<span class="lineNum">      70 </span>            :       sqrt(square(x) + square(y) + square(inverse_alpha * z));
+<span class="lineNum">      71 </span>            :   // Various common factors:
+<span class="lineNum">      72 </span>            :   const ReturnType lambda1 = (pow&lt;2&gt;(inverse_alpha) - 1.0) * z * z;
+<span class="lineNum">      73 </span>            :   const ReturnType lambda2 = (1.0 - pow&lt;2&gt;(inverse_alpha)) * (x * x + y * y);
+<span class="lineNum">      74 </span>            :   const ReturnType lambda3 = pow&lt;2&gt;(rho * radius);
+<span class="lineNum">      75 </span>            :   const ReturnType lambda4 = radius * pow&lt;3&gt;(rho);
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span>            :   auto jacobian_matrix =
+<span class="lineNum">      78 </span>            :       make_with_value&lt;tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3, Frame::NoFrame&gt;&gt;(
+<span class="lineNum">      79 </span>            :           dereference_wrapper(coords[0]), 0.0);
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            :   get&lt;0, 0&gt;(jacobian_matrix) = (x * x * lambda1 + lambda3);
+<span class="lineNum">      82 </span>            :   get&lt;1, 0&gt;(jacobian_matrix) = x * y * lambda1;
+<span class="lineNum">      83 </span>            :   get&lt;2, 0&gt;(jacobian_matrix) = inverse_alpha * x * z * lambda1;
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span>            :   get&lt;0, 1&gt;(jacobian_matrix) = get&lt;1, 0&gt;(jacobian_matrix);
+<span class="lineNum">      86 </span>            :   get&lt;1, 1&gt;(jacobian_matrix) = (y * y * lambda1 + lambda3);
+<span class="lineNum">      87 </span>            :   get&lt;2, 1&gt;(jacobian_matrix) = inverse_alpha * y * z * lambda1;
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span>            :   get&lt;0, 2&gt;(jacobian_matrix) = x * z * lambda2;
+<span class="lineNum">      90 </span>            :   get&lt;1, 2&gt;(jacobian_matrix) = y * z * lambda2;
+<span class="lineNum">      91 </span>            :   get&lt;2, 2&gt;(jacobian_matrix) = inverse_alpha * (z * z * lambda2 + lambda3);
+<span class="lineNum">      92 </span>            : 
+<span class="lineNum">      93 </span>            :   for (size_t i = 0; i &lt; get_size(radius); i++) {
+<span class="lineNum">      94 </span>            :     if (LIKELY(not equal_within_roundoff(get_element(lambda4, i), 0.0))) {
+<span class="lineNum">      95 </span>            :       const double one_over_lambda4 = 1.0 / get_element(lambda4, i);
+<span class="lineNum">      96 </span>            :       get_element(get&lt;0, 0&gt;(jacobian_matrix), i) *= one_over_lambda4;
+<span class="lineNum">      97 </span>            :       get_element(get&lt;1, 0&gt;(jacobian_matrix), i) *= one_over_lambda4;
+<span class="lineNum">      98 </span>            :       get_element(get&lt;2, 0&gt;(jacobian_matrix), i) *= one_over_lambda4;
+<span class="lineNum">      99 </span>            :       get_element(get&lt;0, 1&gt;(jacobian_matrix), i) *= one_over_lambda4;
+<span class="lineNum">     100 </span>            :       get_element(get&lt;1, 1&gt;(jacobian_matrix), i) *= one_over_lambda4;
+<span class="lineNum">     101 </span>            :       get_element(get&lt;2, 1&gt;(jacobian_matrix), i) *= one_over_lambda4;
+<span class="lineNum">     102 </span>            :       get_element(get&lt;0, 2&gt;(jacobian_matrix), i) *= one_over_lambda4;
+<span class="lineNum">     103 </span>            :       get_element(get&lt;1, 2&gt;(jacobian_matrix), i) *= one_over_lambda4;
+<span class="lineNum">     104 </span>            :       get_element(get&lt;2, 2&gt;(jacobian_matrix), i) *= one_over_lambda4;
+<span class="lineNum">     105 </span>            :     } else {
+<span class="lineNum">     106 </span>            :       // Let the jacobian of this map be the identity at the origin:
+<span class="lineNum">     107 </span>            :       get_element(get&lt;0, 0&gt;(jacobian_matrix), i) = 1.0;
+<span class="lineNum">     108 </span>            :       get_element(get&lt;1, 0&gt;(jacobian_matrix), i) = 0.0;
+<span class="lineNum">     109 </span>            :       get_element(get&lt;2, 0&gt;(jacobian_matrix), i) = 0.0;
+<span class="lineNum">     110 </span>            :       get_element(get&lt;0, 1&gt;(jacobian_matrix), i) = 0.0;
+<span class="lineNum">     111 </span>            :       get_element(get&lt;1, 1&gt;(jacobian_matrix), i) = 1.0;
+<span class="lineNum">     112 </span>            :       get_element(get&lt;2, 1&gt;(jacobian_matrix), i) = 0.0;
+<span class="lineNum">     113 </span>            :       get_element(get&lt;0, 2&gt;(jacobian_matrix), i) = 0.0;
+<span class="lineNum">     114 </span>            :       get_element(get&lt;1, 2&gt;(jacobian_matrix), i) = 0.0;
+<span class="lineNum">     115 </span>            :       get_element(get&lt;2, 2&gt;(jacobian_matrix), i) = 1.0;
+<span class="lineNum">     116 </span>            :     }
+<span class="lineNum">     117 </span>            :   }
+<span class="lineNum">     118 </span>            :   return jacobian_matrix;
+<span class="lineNum">     119 </span>            : }
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     122 </span>            : std::array&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3&gt; EquatorialCompression::operator()(
+<span class="lineNum">     123 </span>            :     const std::array&lt;T, 3&gt;&amp; source_coords) const noexcept {
+<span class="lineNum">     124 </span>            :   return angular_distortion(source_coords, inverse_aspect_ratio_);
+<span class="lineNum">     125 </span>            : }
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            : boost::optional&lt;std::array&lt;double, 3&gt;&gt; EquatorialCompression::inverse(
+<span class="lineNum">     128 </span>            :     const std::array&lt;double, 3&gt;&amp; target_coords) const noexcept {
+<span class="lineNum">     129 </span>            :   return angular_distortion(target_coords, aspect_ratio_);
+<span class="lineNum">     130 </span>            : }
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     133 </span>            : tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3, Frame::NoFrame&gt;
+<span class="lineNum">     134 </span>            : EquatorialCompression::jacobian(const std::array&lt;T, 3&gt;&amp; source_coords) const
+<span class="lineNum">     135 </span>            :     noexcept {
+<span class="lineNum">     136 </span>            :   return angular_distortion_jacobian(source_coords, inverse_aspect_ratio_);
+<span class="lineNum">     137 </span>            : }
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     140 </span>            : tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, 3, Frame::NoFrame&gt;
+<span class="lineNum">     141 </span>            : EquatorialCompression::inv_jacobian(const std::array&lt;T, 3&gt;&amp; source_coords) const
+<span class="lineNum">     142 </span>            :     noexcept {
+<span class="lineNum">     143 </span>            :   return angular_distortion_jacobian((*this)(source_coords), aspect_ratio_);
+<span class="lineNum">     144 </span>            : }
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span>            : void EquatorialCompression::pup(PUP::er&amp; p) noexcept {
+<span class="lineNum">     147 </span>            :   p | aspect_ratio_;
+<span class="lineNum">     148 </span>            :   p | inverse_aspect_ratio_;
+<span class="lineNum">     149 </span>            : }
+<span class="lineNum">     150 </span>            : 
+<span class="lineNum">     151 </span><span class="lineNoCov">          0 : bool operator==(const EquatorialCompression&amp; lhs,</span>
+<span class="lineNum">     152 </span>            :                 const EquatorialCompression&amp; rhs) noexcept {
+<span class="lineNum">     153 </span>            :   return lhs.aspect_ratio_ == rhs.aspect_ratio_ and
+<span class="lineNum">     154 </span>            :          lhs.inverse_aspect_ratio_ == rhs.inverse_aspect_ratio_;
+<span class="lineNum">     155 </span>            : }
+<span class="lineNum">     156 </span>            : 
+<span class="lineNum">     157 </span><span class="lineNoCov">          0 : bool operator!=(const EquatorialCompression&amp; lhs,</span>
+<span class="lineNum">     158 </span>            :                 const EquatorialCompression&amp; rhs) noexcept {
+<span class="lineNum">     159 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     160 </span>            : }
+<span class="lineNum">     161 </span>            : 
+<span class="lineNum">     162 </span>            : // Explicit instantiations
+<span class="lineNum">     163 </span>            : /// \cond
+<span class="lineNum">     164 </span>            : #define DTYPE(data) BOOST_PP_TUPLE_ELEM(0, data)
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span>            : #define INSTANTIATE(_, data)                                                 \
+<span class="lineNum">     167 </span>            :   template std::array&lt;tt::remove_cvref_wrap_t&lt;DTYPE(data)&gt;, 3&gt;               \
+<span class="lineNum">     168 </span>            :   EquatorialCompression::operator()(                                         \
+<span class="lineNum">     169 </span>            :       const std::array&lt;DTYPE(data), 3&gt;&amp; source_coords) const noexcept;       \
+<span class="lineNum">     170 </span>            :   template tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;DTYPE(data)&gt;, 3, Frame::NoFrame&gt; \
+<span class="lineNum">     171 </span>            :   EquatorialCompression::jacobian(                                           \
+<span class="lineNum">     172 </span>            :       const std::array&lt;DTYPE(data), 3&gt;&amp; source_coords) const noexcept;       \
+<span class="lineNum">     173 </span>            :   template tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;DTYPE(data)&gt;, 3, Frame::NoFrame&gt; \
+<span class="lineNum">     174 </span>            :   EquatorialCompression::inv_jacobian(                                       \
+<span class="lineNum">     175 </span>            :       const std::array&lt;DTYPE(data), 3&gt;&amp; source_coords) const noexcept;
+<span class="lineNum">     176 </span>            : 
+<span class="lineNum">     177 </span>            : GENERATE_INSTANTIATIONS(INSTANTIATE, (double, DataVector,
+<span class="lineNum">     178 </span>            :                                       std::reference_wrapper&lt;const double&gt;,
+<span class="lineNum">     179 </span>            :                                       std::reference_wrapper&lt;const DataVector&gt;))
+<span class="lineNum">     180 </span>            : #undef DTYPE
+<span class="lineNum">     181 </span>            : #undef INSTANTIATE
+<span class="lineNum">     182 </span>            : /// \endcond
+<span class="lineNum">     183 </span>            : }  // namespace CoordinateMaps
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

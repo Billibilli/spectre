@@ -1,0 +1,260 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: MathFunction&lt; 1 &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classMathFunction_3_011_01_4-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">MathFunction&lt; 1 &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__MathFunctionsGroup.html">Math Functions</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="MathFunction_8hpp_source.html">MathFunction.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a7e9d11052774cbb172a7e75ea8f67ff2"><td class="memItemLeft" align="right" valign="top"><a id="a7e9d11052774cbb172a7e75ea8f67ff2"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>creatable_classes</b> = tmpl::list&lt; <a class="el" href="classMathFunctions_1_1Gaussian.html">MathFunctions::Gaussian</a>, <a class="el" href="classMathFunctions_1_1PowX.html">MathFunctions::PowX</a>, <a class="el" href="classMathFunctions_1_1Sinusoid.html">MathFunctions::Sinusoid</a> &gt;</td></tr>
+<tr class="separator:a7e9d11052774cbb172a7e75ea8f67ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a761371084c9a506b1562b62207249599"><td class="memItemLeft" align="right" valign="top"><a id="a761371084c9a506b1562b62207249599"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>WRAPPED_PUPable_abstract</b> (<a class="el" href="classMathFunction.html">MathFunction</a>)</td></tr>
+<tr class="separator:a761371084c9a506b1562b62207249599"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad751845a8615381349c432971b331b70"><td class="memItemLeft" align="right" valign="top"><a id="ad751845a8615381349c432971b331b70"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MathFunction</b> (const <a class="el" href="classMathFunction.html">MathFunction</a> &amp;)=delete</td></tr>
+<tr class="separator:ad751845a8615381349c432971b331b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f5f5e017543882045907d1dc7c8a04b"><td class="memItemLeft" align="right" valign="top"><a id="a0f5f5e017543882045907d1dc7c8a04b"></a>
+<a class="el" href="classMathFunction.html">MathFunction</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classMathFunction.html">MathFunction</a> &amp;)=delete</td></tr>
+<tr class="separator:a0f5f5e017543882045907d1dc7c8a04b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af151748c07002999ca75ccdf85eff234"><td class="memItemLeft" align="right" valign="top"><a id="af151748c07002999ca75ccdf85eff234"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MathFunction</b> (<a class="el" href="classMathFunction.html">MathFunction</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:af151748c07002999ca75ccdf85eff234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6d2cc78bd28979805a0e6f8f62efb9f"><td class="memItemLeft" align="right" valign="top"><a id="ab6d2cc78bd28979805a0e6f8f62efb9f"></a>
+<a class="el" href="classMathFunction.html">MathFunction</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classMathFunction.html">MathFunction</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:ab6d2cc78bd28979805a0e6f8f62efb9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:aadbe030b500f677c2e547976858305b8"><td class="memItemLeft" align="right" valign="top"><a id="aadbe030b500f677c2e547976858305b8"></a>
+virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunction_3_011_01_4.html#aadbe030b500f677c2e547976858305b8">operator()</a> (const double &amp;x) const noexcept=0</td></tr>
+<tr class="memdesc:aadbe030b500f677c2e547976858305b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the function value at the coordinate 'x'. <br /></td></tr>
+<tr class="separator:aadbe030b500f677c2e547976858305b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a48735071db20a7c53fa0c9dd4b56d7"><td class="memItemLeft" align="right" valign="top"><a id="a5a48735071db20a7c53fa0c9dd4b56d7"></a>
+virtual <a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunction_3_011_01_4.html#a5a48735071db20a7c53fa0c9dd4b56d7">operator()</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;x) const noexcept=0</td></tr>
+<tr class="memdesc:a5a48735071db20a7c53fa0c9dd4b56d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the function value at the coordinate 'x'. <br /></td></tr>
+<tr class="separator:a5a48735071db20a7c53fa0c9dd4b56d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a10d8b61fcc52b759f7b96a65b395b74f"><td class="memItemLeft" align="right" valign="top"><a id="a10d8b61fcc52b759f7b96a65b395b74f"></a>
+virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunction_3_011_01_4.html#a10d8b61fcc52b759f7b96a65b395b74f">first_deriv</a> (const double &amp;x) const noexcept=0</td></tr>
+<tr class="memdesc:a10d8b61fcc52b759f7b96a65b395b74f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first derivative at 'x'. <br /></td></tr>
+<tr class="separator:a10d8b61fcc52b759f7b96a65b395b74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a569a97f64b8dd59c1cd44f8d30b6cf81"><td class="memItemLeft" align="right" valign="top"><a id="a569a97f64b8dd59c1cd44f8d30b6cf81"></a>
+virtual <a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunction_3_011_01_4.html#a569a97f64b8dd59c1cd44f8d30b6cf81">first_deriv</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;x) const noexcept=0</td></tr>
+<tr class="memdesc:a569a97f64b8dd59c1cd44f8d30b6cf81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first derivative at 'x'. <br /></td></tr>
+<tr class="separator:a569a97f64b8dd59c1cd44f8d30b6cf81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ac6a529b425ae1d01d9f5d8efad0ae603"><td class="memItemLeft" align="right" valign="top"><a id="ac6a529b425ae1d01d9f5d8efad0ae603"></a>
+virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunction_3_011_01_4.html#ac6a529b425ae1d01d9f5d8efad0ae603">second_deriv</a> (const double &amp;x) const noexcept=0</td></tr>
+<tr class="memdesc:ac6a529b425ae1d01d9f5d8efad0ae603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the second derivative at 'x'. <br /></td></tr>
+<tr class="separator:ac6a529b425ae1d01d9f5d8efad0ae603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41392fe31d93c7187fed15d06257e428"><td class="memItemLeft" align="right" valign="top"><a id="a41392fe31d93c7187fed15d06257e428"></a>
+virtual <a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunction_3_011_01_4.html#a41392fe31d93c7187fed15d06257e428">second_deriv</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;x) const noexcept=0</td></tr>
+<tr class="memdesc:a41392fe31d93c7187fed15d06257e428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the second derivative at 'x'. <br /></td></tr>
+<tr class="separator:a41392fe31d93c7187fed15d06257e428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a2643026d6893a6474ab80ac88d97d7d4"><td class="memItemLeft" align="right" valign="top"><a id="a2643026d6893a6474ab80ac88d97d7d4"></a>
+virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunction_3_011_01_4.html#a2643026d6893a6474ab80ac88d97d7d4">third_deriv</a> (const double &amp;x) const noexcept=0</td></tr>
+<tr class="memdesc:a2643026d6893a6474ab80ac88d97d7d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the third derivative at 'x'. <br /></td></tr>
+<tr class="separator:a2643026d6893a6474ab80ac88d97d7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a053fe915f2793a8baa701f3d72a29773"><td class="memItemLeft" align="right" valign="top"><a id="a053fe915f2793a8baa701f3d72a29773"></a>
+virtual <a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunction_3_011_01_4.html#a053fe915f2793a8baa701f3d72a29773">third_deriv</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;x) const noexcept=0</td></tr>
+<tr class="memdesc:a053fe915f2793a8baa701f3d72a29773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the third derivative at 'x'. <br /></td></tr>
+<tr class="separator:a053fe915f2793a8baa701f3d72a29773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;&gt;<br />
+class MathFunction&lt; 1 &gt;</h3>
+
+<p>Partial template specialization of <a class="el" href="classMathFunction.html">MathFunction</a> which encodes a function \(R \to R\). </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/PointwiseFunctions/MathFunctions/<a class="el" href="MathFunction_8hpp_source.html">MathFunction.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

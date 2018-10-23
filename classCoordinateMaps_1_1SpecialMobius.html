@@ -1,0 +1,281 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: CoordinateMaps::SpecialMobius Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceCoordinateMaps.html">CoordinateMaps</a></li><li class="navelem"><a class="el" href="classCoordinateMaps_1_1SpecialMobius.html">SpecialMobius</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classCoordinateMaps_1_1SpecialMobius-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">CoordinateMaps::SpecialMobius Class Reference<div class="ingroups"><a class="el" href="group__CoordinateMapsGroup.html">Coordinate Maps</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Redistributes gridpoints within the unit sphere.  
+ <a href="classCoordinateMaps_1_1SpecialMobius.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="SpecialMobius_8hpp_source.html">SpecialMobius.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ab77dccdbe63461390961fb24b9229f64"><td class="memItemLeft" align="right" valign="top"><a id="ab77dccdbe63461390961fb24b9229f64"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SpecialMobius</b> (double mu) noexcept</td></tr>
+<tr class="separator:ab77dccdbe63461390961fb24b9229f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab67ed50d5c62ff028b4b11abc026f009"><td class="memItemLeft" align="right" valign="top"><a id="ab67ed50d5c62ff028b4b11abc026f009"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SpecialMobius</b> (<a class="el" href="classCoordinateMaps_1_1SpecialMobius.html">SpecialMobius</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:ab67ed50d5c62ff028b4b11abc026f009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a187bc2cdad31ad235644bb479a4600c3"><td class="memItemLeft" align="right" valign="top"><a id="a187bc2cdad31ad235644bb479a4600c3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SpecialMobius</b> (const <a class="el" href="classCoordinateMaps_1_1SpecialMobius.html">SpecialMobius</a> &amp;)=default</td></tr>
+<tr class="separator:a187bc2cdad31ad235644bb479a4600c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb3af8b47a08a032ad407ec770b32f15"><td class="memItemLeft" align="right" valign="top"><a id="abb3af8b47a08a032ad407ec770b32f15"></a>
+<a class="el" href="classCoordinateMaps_1_1SpecialMobius.html">SpecialMobius</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classCoordinateMaps_1_1SpecialMobius.html">SpecialMobius</a> &amp;)=default</td></tr>
+<tr class="separator:abb3af8b47a08a032ad407ec770b32f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47cb00f79058a8cc58a4b8565024d6e0"><td class="memItemLeft" align="right" valign="top"><a id="a47cb00f79058a8cc58a4b8565024d6e0"></a>
+<a class="el" href="classCoordinateMaps_1_1SpecialMobius.html">SpecialMobius</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classCoordinateMaps_1_1SpecialMobius.html">SpecialMobius</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a47cb00f79058a8cc58a4b8565024d6e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9705404ab13308dcefc24d0022f603d"><td class="memTemplParams" colspan="2"><a id="ad9705404ab13308dcefc24d0022f603d"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad9705404ab13308dcefc24d0022f603d"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 3 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 3 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:ad9705404ab13308dcefc24d0022f603d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac66599f4c1f9eab6334b564160ca3e8a"><td class="memItemLeft" align="right" valign="top"><a id="ac66599f4c1f9eab6334b564160ca3e8a"></a>
+boost::optional&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMaps_1_1SpecialMobius.html#ac66599f4c1f9eab6334b564160ca3e8a">inverse</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 3 &gt; &amp;target_coords) const noexcept</td></tr>
+<tr class="memdesc:ac66599f4c1f9eab6334b564160ca3e8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns boost::none for target_coords outside the unit sphere. <br /></td></tr>
+<tr class="separator:ac66599f4c1f9eab6334b564160ca3e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98f0434de3417fb388ce930bc67b4adb"><td class="memTemplParams" colspan="2"><a id="a98f0434de3417fb388ce930bc67b4adb"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a98f0434de3417fb388ce930bc67b4adb"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Ij&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 3, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>jacobian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 3 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:a98f0434de3417fb388ce930bc67b4adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af56d892de3fce4cc2c12770f98abd350"><td class="memTemplParams" colspan="2"><a id="af56d892de3fce4cc2c12770f98abd350"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af56d892de3fce4cc2c12770f98abd350"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Ij&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 3, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>inv_jacobian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 3 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:af56d892de3fce4cc2c12770f98abd350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1acd0905733d4e336e66165264ff332"><td class="memItemLeft" align="right" valign="top"><a id="aa1acd0905733d4e336e66165264ff332"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="separator:aa1acd0905733d4e336e66165264ff332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ac82c89449da8b4b12ff63a60d1b77c8d"><td class="memItemLeft" align="right" valign="top"><a id="ac82c89449da8b4b12ff63a60d1b77c8d"></a>
+static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>dim</b> = 3</td></tr>
+<tr class="separator:ac82c89449da8b4b12ff63a60d1b77c8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a02cbea806987911e32e8f0c711d787bd"><td class="memItemLeft" align="right" valign="top"><a id="a02cbea806987911e32e8f0c711d787bd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classCoordinateMaps_1_1SpecialMobius.html">SpecialMobius</a> &amp;lhs, const <a class="el" href="classCoordinateMaps_1_1SpecialMobius.html">SpecialMobius</a> &amp;rhs) noexcept</td></tr>
+<tr class="separator:a02cbea806987911e32e8f0c711d787bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Redistributes gridpoints within the unit sphere. </p>
+<div class="image">
+<img src="SpecialMobius.png" alt="SpecialMobius.png"/>
+<div class="caption">
+A sphere with a `mu` of 0.25.</div></div>
+ <h3>Details</h3>
+<p>A special case of the conformal Mobius transformation that maps the unit ball to itself. This map depends on a single parameter, <code>mu</code> \( = \mu\), which is the x-coordinate of the preimage of the origin under this map. This map has the fixed points \(x=1\) and \(x=-1\). The map is singular for \(\mu=1\) but we have found that this map is accurate up to 12 decimal places for values of \(\mu\) up to 0.96.</p>
+<p>We define the auxiliary variables </p><p class="formulaDsp">
+\[ r := \sqrt{x^2 + y^2 +z^2}\]
+</p>
+<p> and </p><p class="formulaDsp">
+\[ \lambda := \frac{1}{1 - 2 x \mu + \mu^2 r^2}\]
+</p>
+<p>The map corresponding to this transformation in cartesian coordinates is then given by:</p>
+<p class="formulaDsp">
+\[\vec{x}&#39;(x,y,z) = \lambda\begin{bmatrix} x(1+\mu^2) - \mu(1+r^2)\\ y(1-\mu^2)\\ z(1-\mu^2)\\ \end{bmatrix}\]
+</p>
+<p>The inverse map is the same as the forward map with \(\mu\) replaced by \(-\mu\).</p>
+<p>This map is intended to be used only inside the unit sphere. A point inside the unit sphere maps to another point inside the unit sphere. The map can have undesirable behavior at certain points outside the unit sphere: The map is singular at \((x,y,z) = (1/\mu, 0, 0)\) (which is outside the unit sphere since \(|\mu| &lt; 1\)). Moreover, a point on the \(x\)-axis arbitrarily close to the singularity maps to an arbitrarily large value on the \(\pm x\)-axis, where the sign depends on which side of the singularity the point is on.</p>
+<p>A general Mobius transformation is a function on the complex plane, and takes the form \( f(z) = \frac{az+b}{cz+d}\), where \(z, a, b, c, d \in \mathbb{C}\), and \(ad-bc\neq 0\).</p>
+<p>The special case used in this map is the function \( f(z) = \frac{z - \mu}{1 - z\mu}\). This has the desired properties:</p><ul>
+<li>The unit disk in the complex plane is mapped to itself.</li>
+<li>The x-axis is mapped to itself.</li>
+<li>\(f(\mu) = 0\).</li>
+</ul>
+<p>The three-dimensional version of this map is obtained by rotating the disk in the plane about the x-axis.</p>
+<p>This map is useful for performing transformations along the x-axis that preserve the unit disk. A concrete example of this is in the BBH domain, where two BBHs with a center-of-mass at x= \(\mu\) can be shifted such that the new center of mass is now located at x=0. Additionally, the spherical shape of the outer wave-zone is preserved and, as a mobius map, the spherical coordinate shapes of the black holes is also preserved. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Domain/CoordinateMaps/<a class="el" href="SpecialMobius_8hpp_source.html">SpecialMobius.hpp</a></li>
+<li>src/Domain/CoordinateMaps/SpecialMobius.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

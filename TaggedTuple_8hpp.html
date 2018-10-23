@@ -1,0 +1,302 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Utilities/TaggedTuple.hpp File Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_9aa73582304dae90a1100b0a33d608e3.html">Utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">TaggedTuple.hpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Defines class <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">tuples::TaggedTuple</a>.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/functional.html">functional</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/initializer_list.html">initializer_list</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="PupStlCpp11_8hpp_source.html">Parallel/PupStlCpp11.hpp</a>&quot;</code><br />
+<code>#include &quot;Utilities/Overloader.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="Utilities_2TypeTraits_8hpp_source.html">Utilities/TypeTraits.hpp</a>&quot;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/stack.html">stack</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</code><br />
+</div>
+<p><a href="TaggedTuple_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple&lt; Tags &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An associative container that is indexed by structs.  <a href="classtuples_1_1TaggedTuple.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple&lt; Tags &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An associative container that is indexed by structs.  <a href="classtuples_1_1TaggedTuple.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtuples_1_1TaggedTuple_3_4.html">tuples::TaggedTuple&lt;&gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtuples_1_1tuple__size.html">tuples::tuple_size&lt; T &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtuples_1_1tuple__size_3_01TaggedTuple_3_01Tags_8_8_8_01_4_01_4.html">tuples::tuple_size&lt; TaggedTuple&lt; Tags... &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtuples_1_1tuple__size_3_01const_01TaggedTuple_3_01Tags_8_8_8_01_4_01_4.html">tuples::tuple_size&lt; const TaggedTuple&lt; Tags... &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtuples_1_1tuple__size_3_01volatile_01TaggedTuple_3_01Tags_8_8_8_01_4_01_4.html">tuples::tuple_size&lt; volatile TaggedTuple&lt; Tags... &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtuples_1_1tuple__size_3_01const_01volatile_01TaggedTuple_3_01Tags_8_8_8_01_4_01_4.html">tuples::tuple_size&lt; const volatile TaggedTuple&lt; Tags... &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a5a3ddac73b227a1e7e943d20a0a849e0"><td class="memTemplParams" colspan="2"><a id="a5a3ddac73b227a1e7e943d20a0a849e0"></a>
+template&lt;class Tag &gt; </td></tr>
+<tr class="memitem:a5a3ddac73b227a1e7e943d20a0a849e0"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="TaggedTuple_8hpp.html#a5a3ddac73b227a1e7e943d20a0a849e0">tuples::tag_type</a> = typename Tag::type</td></tr>
+<tr class="memdesc:a5a3ddac73b227a1e7e943d20a0a849e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of the Tag. <br /></td></tr>
+<tr class="separator:a5a3ddac73b227a1e7e943d20a0a849e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab28f70a6916977ab004146c9ad07cf5f"><td class="memTemplParams" colspan="2">
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:gab28f70a6916977ab004146c9ad07cf5f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tuples::tagged_tuple_from_typelist</b> = typename TaggedTuple_detail::tagged_tuple_typelist_impl&lt; T &gt;::type</td></tr>
+<tr class="separator:gab28f70a6916977ab004146c9ad07cf5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a32410b8e4855428fcf05ae45ceb3324e"><td class="memTemplParams" colspan="2"><a id="a32410b8e4855428fcf05ae45ceb3324e"></a>
+template&lt;class... LTags, class... RTags, typename std::enable_if&lt; sizeof...(LTags)==sizeof...(RTags)&gt;::type *  = nullptr&gt; </td></tr>
+<tr class="memitem:a32410b8e4855428fcf05ae45ceb3324e"><td class="memTemplItemLeft" align="right" valign="top">TUPLES_LIB_CONSTEXPR_CXX_14 bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tuples::operator==</b> (TaggedTuple&lt; LTags... &gt; const &amp;lhs, TaggedTuple&lt; RTags... &gt; const &amp;rhs) noexcept(noexcept(tuples_detail::tuple_equal_impl(lhs, rhs)))</td></tr>
+<tr class="separator:a32410b8e4855428fcf05ae45ceb3324e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dca1e8c194797b029a2e2f62082c5dd"><td class="memTemplParams" colspan="2"><a id="a7dca1e8c194797b029a2e2f62082c5dd"></a>
+template&lt;class... LTags, class... RTags, typename std::enable_if&lt; sizeof...(LTags)==sizeof...(RTags)&gt;::type *  = nullptr&gt; </td></tr>
+<tr class="memitem:a7dca1e8c194797b029a2e2f62082c5dd"><td class="memTemplItemLeft" align="right" valign="top">TUPLES_LIB_CONSTEXPR_CXX_14 bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tuples::operator!=</b> (TaggedTuple&lt; LTags... &gt; const &amp;lhs, TaggedTuple&lt; RTags... &gt; const &amp;rhs) noexcept(noexcept(lhs==rhs))</td></tr>
+<tr class="separator:a7dca1e8c194797b029a2e2f62082c5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe238c60503130277fca147e4aa52ae7"><td class="memTemplParams" colspan="2"><a id="abe238c60503130277fca147e4aa52ae7"></a>
+template&lt;class... LTags, class... RTags, typename std::enable_if&lt; sizeof...(LTags)==sizeof...(RTags)&gt;::type *  = nullptr&gt; </td></tr>
+<tr class="memitem:abe238c60503130277fca147e4aa52ae7"><td class="memTemplItemLeft" align="right" valign="top">TUPLES_LIB_CONSTEXPR_CXX_14 bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tuples::operator&lt;</b> (TaggedTuple&lt; LTags... &gt; const &amp;lhs, TaggedTuple&lt; RTags... &gt; const &amp;rhs) noexcept(noexcept(tuples_detail::tuple_less_impl(lhs, rhs)))</td></tr>
+<tr class="separator:abe238c60503130277fca147e4aa52ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa486b58d2a1c39976b1970e6332380f4"><td class="memTemplParams" colspan="2"><a id="aa486b58d2a1c39976b1970e6332380f4"></a>
+template&lt;class... LTags, class... RTags, typename std::enable_if&lt; sizeof...(LTags)==sizeof...(RTags)&gt;::type *  = nullptr&gt; </td></tr>
+<tr class="memitem:aa486b58d2a1c39976b1970e6332380f4"><td class="memTemplItemLeft" align="right" valign="top">TUPLES_LIB_CONSTEXPR_CXX_14 bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tuples::operator&gt;</b> (TaggedTuple&lt; LTags... &gt; const &amp;lhs, TaggedTuple&lt; RTags... &gt; const &amp;rhs) noexcept(noexcept(rhs&lt; lhs))</td></tr>
+<tr class="separator:aa486b58d2a1c39976b1970e6332380f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adff63148b54d96db936a819dc2d5776b"><td class="memTemplParams" colspan="2"><a id="adff63148b54d96db936a819dc2d5776b"></a>
+template&lt;class... LTags, class... RTags, typename std::enable_if&lt; sizeof...(LTags)==sizeof...(RTags)&gt;::type *  = nullptr&gt; </td></tr>
+<tr class="memitem:adff63148b54d96db936a819dc2d5776b"><td class="memTemplItemLeft" align="right" valign="top">TUPLES_LIB_CONSTEXPR_CXX_14 bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tuples::operator&lt;=</b> (TaggedTuple&lt; LTags... &gt; const &amp;lhs, TaggedTuple&lt; RTags... &gt; const &amp;rhs) noexcept(noexcept(rhs&lt; lhs))</td></tr>
+<tr class="separator:adff63148b54d96db936a819dc2d5776b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb04b3b10219548ddfde7015f241090b"><td class="memTemplParams" colspan="2"><a id="afb04b3b10219548ddfde7015f241090b"></a>
+template&lt;class... LTags, class... RTags, typename std::enable_if&lt; sizeof...(LTags)==sizeof...(RTags)&gt;::type *  = nullptr&gt; </td></tr>
+<tr class="memitem:afb04b3b10219548ddfde7015f241090b"><td class="memTemplItemLeft" align="right" valign="top">TUPLES_LIB_CONSTEXPR_CXX_14 bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tuples::operator&gt;=</b> (TaggedTuple&lt; LTags... &gt; const &amp;lhs, TaggedTuple&lt; RTags... &gt; const &amp;rhs) noexcept(noexcept(lhs&lt; rhs))</td></tr>
+<tr class="separator:afb04b3b10219548ddfde7015f241090b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87971dea085a57d211d6bc30582f1fa8"><td class="memTemplParams" colspan="2"><a id="a87971dea085a57d211d6bc30582f1fa8"></a>
+template&lt;class... Tags, typename std::enable_if&lt; tuples_detail::all&lt; tuples_detail::is_swappable_with&lt; tuples_detail::TaggedTupleLeaf&lt; Tags &gt;, tuples_detail::TaggedTupleLeaf&lt; Tags &gt;&gt;::value... &gt;::value &gt;::type *  = nullptr&gt; </td></tr>
+<tr class="memitem:a87971dea085a57d211d6bc30582f1fa8"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tuples::swap</b> (TaggedTuple&lt; Tags... &gt; &amp;lhs, TaggedTuple&lt; Tags... &gt; &amp;rhs) noexcept(tuples_detail::all&lt; tuples_detail::is_nothrow_swappable_with&lt; tuples_detail::TaggedTupleLeaf&lt; Tags &gt;, tuples_detail::TaggedTupleLeaf&lt; Tags &gt;&gt;::value... &gt;::value)</td></tr>
+<tr class="separator:a87971dea085a57d211d6bc30582f1fa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0672013bd1d2ee84e7a31466f83c46ed"><td class="memTemplParams" colspan="2"><a id="a0672013bd1d2ee84e7a31466f83c46ed"></a>
+template&lt;class... Tags&gt; </td></tr>
+<tr class="memitem:a0672013bd1d2ee84e7a31466f83c46ed"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="TaggedTuple_8hpp.html#a0672013bd1d2ee84e7a31466f83c46ed">tuples::operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const TaggedTuple&lt; Tags... &gt; &amp;t)</td></tr>
+<tr class="memdesc:a0672013bd1d2ee84e7a31466f83c46ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream operator for <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a>. <br /></td></tr>
+<tr class="separator:a0672013bd1d2ee84e7a31466f83c46ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:gaf29c2fe540b02e47a11c1ff9287bf169"><td class="memTemplParams" colspan="2">
+template&lt;class Tag , class... Tags&gt; </td></tr>
+<tr class="memitem:gaf29c2fe540b02e47a11c1ff9287bf169"><td class="memTemplItemLeft" align="right" valign="top">constexpr const Tag::type &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__UtilitiesGroup.html#gaf29c2fe540b02e47a11c1ff9287bf169">tuples::get</a> (const TaggedTuple&lt; Tags... &gt; &amp;t) noexcept</td></tr>
+<tr class="memdesc:gaf29c2fe540b02e47a11c1ff9287bf169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the element of <code>Tag</code> in the <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a>. <br /></td></tr>
+<tr class="separator:gaf29c2fe540b02e47a11c1ff9287bf169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa0295bce7da8fd1957eecb2e0f31566a"><td class="memTemplParams" colspan="2">
+template&lt;class Tag , class... Tags&gt; </td></tr>
+<tr class="memitem:gaa0295bce7da8fd1957eecb2e0f31566a"><td class="memTemplItemLeft" align="right" valign="top">constexpr Tag::type &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__UtilitiesGroup.html#gaa0295bce7da8fd1957eecb2e0f31566a">tuples::get</a> (TaggedTuple&lt; Tags... &gt; &amp;t) noexcept</td></tr>
+<tr class="memdesc:gaa0295bce7da8fd1957eecb2e0f31566a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the element of <code>Tag</code> in the <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a>. <br /></td></tr>
+<tr class="separator:gaa0295bce7da8fd1957eecb2e0f31566a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3b1f97e933f2b274b8b7f2d4e92ec32e"><td class="memTemplParams" colspan="2">
+template&lt;class Tag , class... Tags&gt; </td></tr>
+<tr class="memitem:ga3b1f97e933f2b274b8b7f2d4e92ec32e"><td class="memTemplItemLeft" align="right" valign="top">constexpr const Tag::type &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__UtilitiesGroup.html#ga3b1f97e933f2b274b8b7f2d4e92ec32e">tuples::get</a> (const TaggedTuple&lt; Tags... &gt; &amp;&amp;t) noexcept</td></tr>
+<tr class="memdesc:ga3b1f97e933f2b274b8b7f2d4e92ec32e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the element of <code>Tag</code> in the <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a>. <br /></td></tr>
+<tr class="separator:ga3b1f97e933f2b274b8b7f2d4e92ec32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30114b7db6af87e7e06e3ea6bac687eb"><td class="memTemplParams" colspan="2">
+template&lt;class Tag , class... Tags&gt; </td></tr>
+<tr class="memitem:ga30114b7db6af87e7e06e3ea6bac687eb"><td class="memTemplItemLeft" align="right" valign="top">constexpr Tag::type &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__UtilitiesGroup.html#ga30114b7db6af87e7e06e3ea6bac687eb">tuples::get</a> (TaggedTuple&lt; Tags... &gt; &amp;&amp;t) noexcept</td></tr>
+<tr class="memdesc:ga30114b7db6af87e7e06e3ea6bac687eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the element of <code>Tag</code> in the <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a>. <br /></td></tr>
+<tr class="separator:ga30114b7db6af87e7e06e3ea6bac687eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines class <a class="el" href="classtuples_1_1TaggedTuple.html" title="An associative container that is indexed by structs. ">tuples::TaggedTuple</a>. </p>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

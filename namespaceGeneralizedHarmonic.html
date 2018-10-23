@@ -1,0 +1,344 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: GeneralizedHarmonic Namespace Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">GeneralizedHarmonic Namespace Reference<div class="ingroups"><a class="el" href="group__EvolutionSystemsGroup.html">Evolution Systems</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Items related to evolving the first-order generalized harmonic system.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGeneralizedHarmonic_1_1ComputeDuDt.html">ComputeDuDt</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the RHS of the Generalized Harmonic formulation of Einstein's equations.  <a href="structGeneralizedHarmonic_1_1ComputeDuDt.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGeneralizedHarmonic_1_1ComputeNormalDotFluxes.html">ComputeNormalDotFluxes</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the fluxes of the Generalized Harmonic formulation of Einstein's equations.  <a href="structGeneralizedHarmonic_1_1ComputeNormalDotFluxes.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGeneralizedHarmonic_1_1ConstraintGamma0.html">ConstraintGamma0</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGeneralizedHarmonic_1_1ConstraintGamma1.html">ConstraintGamma1</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGeneralizedHarmonic_1_1ConstraintGamma2.html">ConstraintGamma2</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGeneralizedHarmonic_1_1GaugeH.html">GaugeH</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGeneralizedHarmonic_1_1Phi.html">Phi</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary variable which is analytically the spatial derivative of the spacetime metric.  <a href="structGeneralizedHarmonic_1_1Phi.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGeneralizedHarmonic_1_1Pi.html">Pi</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conjugate momentum to the spacetime metric.  <a href="structGeneralizedHarmonic_1_1Pi.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGeneralizedHarmonic_1_1SpacetimeDerivGaugeH.html">SpacetimeDerivGaugeH</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGeneralizedHarmonic_1_1System.html">System</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga503cdec7966f04e56519480c8a2b2cbe"><td class="memTemplParams" colspan="2">template&lt;size_t SpatialDim, typename Frame , typename DataType &gt; </td></tr>
+<tr class="memitem:ga503cdec7966f04e56519480c8a2b2cbe"><td class="memTemplItemLeft" align="right" valign="top">tnsr::iaa&lt; DataType, SpatialDim, Frame &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__GeneralRelativityGroup.html#ga503cdec7966f04e56519480c8a2b2cbe">phi</a> (const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;lapse, const tnsr::i&lt; DataType, SpatialDim, Frame &gt; &amp;deriv_lapse, const tnsr::I&lt; DataType, SpatialDim, Frame &gt; &amp;shift, const tnsr::iJ&lt; DataType, SpatialDim, Frame &gt; &amp;deriv_shift, const tnsr::ii&lt; DataType, SpatialDim, Frame &gt; &amp;spatial_metric, const tnsr::ijj&lt; DataType, SpatialDim, Frame &gt; &amp;<a class="el" href="group__GeneralRelativityGroup.html#gac67afb218c9dbb323f23bea492fae254">deriv_spatial_metric</a>) noexcept</td></tr>
+<tr class="memdesc:ga503cdec7966f04e56519480c8a2b2cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the auxiliary variable \(\Phi_{iab}\) used by the generalized harmonic formulation of Einstein's equations.  <a href="group__GeneralRelativityGroup.html#ga503cdec7966f04e56519480c8a2b2cbe">More...</a><br /></td></tr>
+<tr class="separator:ga503cdec7966f04e56519480c8a2b2cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8651e2e4edee163253e3b74c95926768"><td class="memTemplParams" colspan="2">template&lt;size_t SpatialDim, typename Frame , typename DataType &gt; </td></tr>
+<tr class="memitem:ga8651e2e4edee163253e3b74c95926768"><td class="memTemplItemLeft" align="right" valign="top">tnsr::aa&lt; DataType, SpatialDim, Frame &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__GeneralRelativityGroup.html#ga8651e2e4edee163253e3b74c95926768">pi</a> (const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;lapse, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;dt_lapse, const tnsr::I&lt; DataType, SpatialDim, Frame &gt; &amp;shift, const tnsr::I&lt; DataType, SpatialDim, Frame &gt; &amp;dt_shift, const tnsr::ii&lt; DataType, SpatialDim, Frame &gt; &amp;spatial_metric, const tnsr::ii&lt; DataType, SpatialDim, Frame &gt; &amp;dt_spatial_metric, const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;<a class="el" href="group__GeneralRelativityGroup.html#ga503cdec7966f04e56519480c8a2b2cbe">phi</a>) noexcept</td></tr>
+<tr class="memdesc:ga8651e2e4edee163253e3b74c95926768"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the conjugate momentum \(\Pi_{ab}\) of the spacetime metric \( \psi_{ab} \).  <a href="group__GeneralRelativityGroup.html#ga8651e2e4edee163253e3b74c95926768">More...</a><br /></td></tr>
+<tr class="separator:ga8651e2e4edee163253e3b74c95926768"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga117a90f0a602f755c96bcb686e988052"><td class="memTemplParams" colspan="2">template&lt;size_t SpatialDim, typename Frame , typename DataType &gt; </td></tr>
+<tr class="memitem:ga117a90f0a602f755c96bcb686e988052"><td class="memTemplItemLeft" align="right" valign="top">tnsr::a&lt; DataType, SpatialDim, Frame &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__GeneralRelativityGroup.html#ga117a90f0a602f755c96bcb686e988052">gauge_source</a> (const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;lapse, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;dt_lapse, const tnsr::i&lt; DataType, SpatialDim, Frame &gt; &amp;deriv_lapse, const tnsr::I&lt; DataType, SpatialDim, Frame &gt; &amp;shift, const tnsr::I&lt; DataType, SpatialDim, Frame &gt; &amp;dt_shift, const tnsr::iJ&lt; DataType, SpatialDim, Frame &gt; &amp;deriv_shift, const tnsr::ii&lt; DataType, SpatialDim, Frame &gt; &amp;spatial_metric, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;trace_extrinsic_curvature, const tnsr::i&lt; DataType, SpatialDim, Frame &gt; &amp;trace_christoffel_last_indices) noexcept</td></tr>
+<tr class="memdesc:ga117a90f0a602f755c96bcb686e988052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes generalized harmonic gauge source function.  <a href="group__GeneralRelativityGroup.html#ga117a90f0a602f755c96bcb686e988052">More...</a><br /></td></tr>
+<tr class="separator:ga117a90f0a602f755c96bcb686e988052"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2e5cee1422996402294e6883e47d1c3a"><td class="memTemplParams" colspan="2">template&lt;size_t SpatialDim, typename Frame , typename DataType &gt; </td></tr>
+<tr class="memitem:ga2e5cee1422996402294e6883e47d1c3a"><td class="memTemplItemLeft" align="right" valign="top">tnsr::ii&lt; DataType, SpatialDim, Frame &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__GeneralRelativityGroup.html#ga2e5cee1422996402294e6883e47d1c3a">extrinsic_curvature</a> (const tnsr::A&lt; DataType, SpatialDim, Frame &gt; &amp;spacetime_normal_vector, const tnsr::aa&lt; DataType, SpatialDim, Frame &gt; &amp;<a class="el" href="group__GeneralRelativityGroup.html#ga8651e2e4edee163253e3b74c95926768">pi</a>, const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;<a class="el" href="group__GeneralRelativityGroup.html#ga503cdec7966f04e56519480c8a2b2cbe">phi</a>) noexcept</td></tr>
+<tr class="memdesc:ga2e5cee1422996402294e6883e47d1c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes extrinsic curvature from generalized harmonic variables and the spacetime normal vector.  <a href="group__GeneralRelativityGroup.html#ga2e5cee1422996402294e6883e47d1c3a">More...</a><br /></td></tr>
+<tr class="separator:ga2e5cee1422996402294e6883e47d1c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac67afb218c9dbb323f23bea492fae254"><td class="memTemplParams" colspan="2">template&lt;size_t SpatialDim, typename Frame , typename DataType &gt; </td></tr>
+<tr class="memitem:gac67afb218c9dbb323f23bea492fae254"><td class="memTemplItemLeft" align="right" valign="top">tnsr::ijj&lt; DataType, SpatialDim, Frame &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__GeneralRelativityGroup.html#gac67afb218c9dbb323f23bea492fae254">deriv_spatial_metric</a> (const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;<a class="el" href="group__GeneralRelativityGroup.html#ga503cdec7966f04e56519480c8a2b2cbe">phi</a>) noexcept</td></tr>
+<tr class="memdesc:gac67afb218c9dbb323f23bea492fae254"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes spatial derivatives of the spatial metric from the generalized harmonic spatial derivative variable.  <a href="group__GeneralRelativityGroup.html#gac67afb218c9dbb323f23bea492fae254">More...</a><br /></td></tr>
+<tr class="separator:gac67afb218c9dbb323f23bea492fae254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ae5dcfdd62deac562f2b5d8515c6a264f"><td class="memTemplParams" colspan="2">template&lt;size_t SpatialDim, typename Frame , typename DataType &gt; </td></tr>
+<tr class="memitem:ae5dcfdd62deac562f2b5d8515c6a264f"><td class="memTemplItemLeft" align="right" valign="top">tnsr::iaa&lt; DataType, SpatialDim, Frame &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceGeneralizedHarmonic.html#ae5dcfdd62deac562f2b5d8515c6a264f">three_index_constraint</a> (const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;d_spacetime_metric, const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;<a class="el" href="group__GeneralRelativityGroup.html#ga503cdec7966f04e56519480c8a2b2cbe">phi</a>) noexcept</td></tr>
+<tr class="memdesc:ae5dcfdd62deac562f2b5d8515c6a264f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the generalized-harmonic 3-index constraint.  <a href="#ae5dcfdd62deac562f2b5d8515c6a264f">More...</a><br /></td></tr>
+<tr class="separator:ae5dcfdd62deac562f2b5d8515c6a264f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77f7d36ba4742ae44efa4ff33f5ac793"><td class="memTemplParams" colspan="2">template&lt;size_t SpatialDim, typename Frame , typename DataType &gt; </td></tr>
+<tr class="memitem:a77f7d36ba4742ae44efa4ff33f5ac793"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceGeneralizedHarmonic.html#a77f7d36ba4742ae44efa4ff33f5ac793">three_index_constraint</a> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; *&gt; constraint, const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;d_spacetime_metric, const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;<a class="el" href="group__GeneralRelativityGroup.html#ga503cdec7966f04e56519480c8a2b2cbe">phi</a>) noexcept</td></tr>
+<tr class="memdesc:a77f7d36ba4742ae44efa4ff33f5ac793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the generalized-harmonic 3-index constraint.  <a href="#a77f7d36ba4742ae44efa4ff33f5ac793">More...</a><br /></td></tr>
+<tr class="separator:a77f7d36ba4742ae44efa4ff33f5ac793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Items related to evolving the first-order generalized harmonic system. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ae5dcfdd62deac562f2b5d8515c6a264f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5dcfdd62deac562f2b5d8515c6a264f">&#9670;&nbsp;</a></span>three_index_constraint() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t SpatialDim, typename Frame , typename DataType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; GeneralizedHarmonic::three_index_constraint </td>
+          <td>(</td>
+          <td class="paramtype">const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>d_spacetime_metric</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>phi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the generalized-harmonic 3-index constraint. </p>
+<h3>Details</h3>
+<p>Computes the generalized-harmonic 3-index constraint, \(C_{iab} = \partial_i\psi_{ab} - \Phi_{iab},\) which is given by Eq. (26) of <a href="http://arXiv.org/abs/gr-qc/0512093v3">http://arXiv.org/abs/gr-qc/0512093v3</a> </p>
+
+</div>
+</div>
+<a id="a77f7d36ba4742ae44efa4ff33f5ac793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77f7d36ba4742ae44efa4ff33f5ac793">&#9670;&nbsp;</a></span>three_index_constraint() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t SpatialDim, typename Frame , typename DataType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GeneralizedHarmonic::three_index_constraint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>constraint</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>d_spacetime_metric</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::iaa&lt; DataType, SpatialDim, Frame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>phi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the generalized-harmonic 3-index constraint. </p>
+<h3>Details</h3>
+<p>Computes the generalized-harmonic 3-index constraint, \(C_{iab} = \partial_i\psi_{ab} - \Phi_{iab},\) which is given by Eq. (26) of <a href="http://arXiv.org/abs/gr-qc/0512093v3">http://arXiv.org/abs/gr-qc/0512093v3</a> </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

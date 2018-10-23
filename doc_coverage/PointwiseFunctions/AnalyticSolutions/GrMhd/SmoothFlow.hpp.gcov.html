@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - PointwiseFunctions/AnalyticSolutions/GrMhd/SmoothFlow.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">PointwiseFunctions/AnalyticSolutions/GrMhd</a> - SmoothFlow.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntry">61</td>
+            <td class="headerCovTableEntryLo">24.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;limits&gt;
+<span class="lineNum">       8 </span>            : #include &lt;pup.h&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Options/Options.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;PointwiseFunctions/AnalyticSolutions/GeneralRelativity/Minkowski.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;PointwiseFunctions/Hydro/EquationsOfState/EquationOfState.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;PointwiseFunctions/Hydro/Tags.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/MakeArray.hpp&quot;            // IWYU pragma: keep
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/TaggedTuple.hpp&quot;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : namespace grmhd {
+<span class="lineNum">      20 </span>            : namespace Solutions {
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : /*!
+<span class="lineNum">      23 </span>            :  * \brief Periodic GrMhd solution in Minkowski spacetime.
+<span class="lineNum">      24 </span>            :  *
+<span class="lineNum">      25 </span>            :  * An analytic solution to the 3-D GrMhd system. The user specifies the mean
+<span class="lineNum">      26 </span>            :  * flow velocity of the fluid, the wavevector of the density profile, and the
+<span class="lineNum">      27 </span>            :  * amplitude \f$A\f$ of the density profile. The magnetic field is taken to be
+<span class="lineNum">      28 </span>            :  * zero everywhere. In Cartesian coordinates \f$(x, y, z)\f$, and using
+<span class="lineNum">      29 </span>            :  * dimensionless units, the primitive quantities at a given time \f$t\f$ are
+<span class="lineNum">      30 </span>            :  * then
+<span class="lineNum">      31 </span>            :  *
+<span class="lineNum">      32 </span>            :  * \f{align*}
+<span class="lineNum">      33 </span>            :  * \rho(\vec{x},t) &amp;= 1 + A \sin(\vec{k}\cdot(\vec{x} - \vec{v}t)) \\
+<span class="lineNum">      34 </span>            :  * \vec{v}(\vec{x},t) &amp;= [v_x, v_y, v_z]^{T},\\
+<span class="lineNum">      35 </span>            :  * P(\vec{x},t) &amp;= P, \\
+<span class="lineNum">      36 </span>            :  * \epsilon(\vec{x}, t) &amp;= \frac{P}{(\gamma - 1)\rho}\\
+<span class="lineNum">      37 </span>            :  * \vec{B}(\vec{x},t) &amp;= [0, 0, 0]^{T}
+<span class="lineNum">      38 </span>            :  * \f}
+<span class="lineNum">      39 </span>            :  */
+<span class="lineNum">      40 </span><span class="lineCov">          1 : class SmoothFlow {</span>
+<span class="lineNum">      41 </span>            :  public:
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 :   using equation_of_state_type = EquationsOfState::IdealFluid&lt;true&gt;;</span>
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :   using background_spacetime_type = gr::Solutions::Minkowski&lt;3&gt;;</span>
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            :   /// The mean flow velocity.
+<span class="lineNum">      46 </span><span class="lineCov">          1 :   struct MeanVelocity {</span>
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :     using type = std::array&lt;double, 3&gt;;</span>
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {&quot;The mean flow velocity.&quot;};</span>
+<span class="lineNum">      49 </span>            :   };
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            :   /// The wave vector of the profile.
+<span class="lineNum">      52 </span><span class="lineCov">          1 :   struct WaveVector {</span>
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :     using type = std::array&lt;double, 3&gt;;</span>
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {&quot;The wave vector of the profile.&quot;};</span>
+<span class="lineNum">      55 </span>            :   };
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            :   /// The constant pressure throughout the fluid.
+<span class="lineNum">      58 </span><span class="lineCov">          1 :   struct Pressure {</span>
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :     using type = double;</span>
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">      61 </span>            :         &quot;The constant pressure throughout the fluid.&quot;};
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :     static type lower_bound() { return 0.0; }</span>
+<span class="lineNum">      63 </span>            :   };
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            :   /// The adiabatic index for the ideal fluid.
+<span class="lineNum">      66 </span><span class="lineCov">          1 :   struct AdiabaticIndex {</span>
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :     using type = double;</span>
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">      69 </span>            :         &quot;The adiabatic index for the ideal fluid.&quot;};
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :     static type lower_bound() { return 1.0; }</span>
+<span class="lineNum">      71 </span>            :   };
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span>            :   /// The perturbation amplitude of the rest mass density of the fluid.
+<span class="lineNum">      74 </span><span class="lineCov">          1 :   struct PerturbationSize {</span>
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 :     using type = double;</span>
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">      77 </span>            :         &quot;The perturbation size of the rest mass density.&quot;};
+<span class="lineNum">      78 </span><span class="lineNoCov">          0 :     static type lower_bound() { return -1.0; }</span>
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 :     static type upper_bound() { return 1.0; }</span>
+<span class="lineNum">      80 </span>            :   };
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span><span class="lineNoCov">          0 :   using options = tmpl::list&lt;MeanVelocity, WaveVector, Pressure, AdiabaticIndex,</span>
+<span class="lineNum">      83 </span>            :                              PerturbationSize&gt;;
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :   static constexpr OptionString help = {</span>
+<span class="lineNum">      85 </span>            :       &quot;Periodic smooth flow in Minkowski spacetime with zero magnetic field.&quot;};
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span><span class="lineNoCov">          0 :   SmoothFlow() = default;</span>
+<span class="lineNum">      88 </span><span class="lineNoCov">          0 :   SmoothFlow(const SmoothFlow&amp; /*rhs*/) = delete;</span>
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 :   SmoothFlow&amp; operator=(const SmoothFlow&amp; /*rhs*/) = delete;</span>
+<span class="lineNum">      90 </span><span class="lineNoCov">          0 :   SmoothFlow(SmoothFlow&amp;&amp; /*rhs*/) noexcept = default;</span>
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   SmoothFlow&amp; operator=(SmoothFlow&amp;&amp; /*rhs*/) noexcept = default;</span>
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 :   ~SmoothFlow() = default;</span>
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :   SmoothFlow(MeanVelocity::type mean_velocity, WaveVector::type wavevector,</span>
+<span class="lineNum">      95 </span>            :              Pressure::type pressure, AdiabaticIndex::type adiabatic_index,
+<span class="lineNum">      96 </span>            :              PerturbationSize::type perturbation_size) noexcept;
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :   explicit SmoothFlow(CkMigrateMessage* /*unused*/) noexcept {}</span>
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span>            :   // @{
+<span class="lineNum">     101 </span>            :   /// Retrieve hydro variable at `(x, t)`
+<span class="lineNum">     102 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     103 </span><span class="lineCov">          1 :   auto variables(</span>
+<span class="lineNum">     104 </span>            :       const tnsr::I&lt;DataType, 3&gt;&amp; x, double t,
+<span class="lineNum">     105 </span>            :       tmpl::list&lt;hydro::Tags::RestMassDensity&lt;DataType&gt;&gt; /*meta*/) const
+<span class="lineNum">     106 </span>            :       noexcept -&gt; tuples::TaggedTuple&lt;hydro::Tags::RestMassDensity&lt;DataType&gt;&gt;;
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     109 </span><span class="lineCov">          1 :   auto variables(</span>
+<span class="lineNum">     110 </span>            :       const tnsr::I&lt;DataType, 3&gt;&amp; x, double t,
+<span class="lineNum">     111 </span>            :       tmpl::list&lt;hydro::Tags::SpecificInternalEnergy&lt;DataType&gt;&gt; /*meta*/) const
+<span class="lineNum">     112 </span>            :       noexcept
+<span class="lineNum">     113 </span>            :       -&gt; tuples::TaggedTuple&lt;hydro::Tags::SpecificInternalEnergy&lt;DataType&gt;&gt;;
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     116 </span><span class="lineCov">          1 :   auto variables(const tnsr::I&lt;DataType, 3&gt;&amp; x, double /*t*/,</span>
+<span class="lineNum">     117 </span>            :                  tmpl::list&lt;hydro::Tags::Pressure&lt;DataType&gt;&gt; /*meta*/) const
+<span class="lineNum">     118 </span>            :       noexcept -&gt; tuples::TaggedTuple&lt;hydro::Tags::Pressure&lt;DataType&gt;&gt;;
+<span class="lineNum">     119 </span>            : 
+<span class="lineNum">     120 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     121 </span><span class="lineCov">          1 :   auto variables(const tnsr::I&lt;DataType, 3&gt;&amp; x, double /*t*/,</span>
+<span class="lineNum">     122 </span>            :                  tmpl::list&lt;hydro::Tags::SpatialVelocity&lt;
+<span class="lineNum">     123 </span>            :                      DataType, 3, Frame::Inertial&gt;&gt; /*meta*/) const noexcept
+<span class="lineNum">     124 </span>            :       -&gt; tuples::TaggedTuple&lt;
+<span class="lineNum">     125 </span>            :           hydro::Tags::SpatialVelocity&lt;DataType, 3, Frame::Inertial&gt;&gt;;
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     128 </span><span class="lineCov">          1 :   auto variables(const tnsr::I&lt;DataType, 3&gt;&amp; x, double /*t*/,</span>
+<span class="lineNum">     129 </span>            :                  tmpl::list&lt;hydro::Tags::MagneticField&lt;
+<span class="lineNum">     130 </span>            :                      DataType, 3, Frame::Inertial&gt;&gt; /*meta*/) const noexcept
+<span class="lineNum">     131 </span>            :       -&gt; tuples::TaggedTuple&lt;
+<span class="lineNum">     132 </span>            :           hydro::Tags::MagneticField&lt;DataType, 3, Frame::Inertial&gt;&gt;;
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     135 </span><span class="lineCov">          1 :   auto variables(</span>
+<span class="lineNum">     136 </span>            :       const tnsr::I&lt;DataType, 3&gt;&amp; x, double /*t*/,
+<span class="lineNum">     137 </span>            :       tmpl::list&lt;hydro::Tags::DivergenceCleaningField&lt;DataType&gt;&gt; /*meta*/) const
+<span class="lineNum">     138 </span>            :       noexcept
+<span class="lineNum">     139 </span>            :       -&gt; tuples::TaggedTuple&lt;hydro::Tags::DivergenceCleaningField&lt;DataType&gt;&gt;;
+<span class="lineNum">     140 </span>            : 
+<span class="lineNum">     141 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     142 </span><span class="lineCov">          1 :   auto variables(</span>
+<span class="lineNum">     143 </span>            :       const tnsr::I&lt;DataType, 3&gt;&amp; x, double /*t*/,
+<span class="lineNum">     144 </span>            :       tmpl::list&lt;hydro::Tags::LorentzFactor&lt;DataType&gt;&gt; /*meta*/) const noexcept
+<span class="lineNum">     145 </span>            :       -&gt; tuples::TaggedTuple&lt;hydro::Tags::LorentzFactor&lt;DataType&gt;&gt;;
+<span class="lineNum">     146 </span>            : 
+<span class="lineNum">     147 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     148 </span><span class="lineCov">          1 :   auto variables(</span>
+<span class="lineNum">     149 </span>            :       const tnsr::I&lt;DataType, 3&gt;&amp; x, double t,
+<span class="lineNum">     150 </span>            :       tmpl::list&lt;hydro::Tags::SpecificEnthalpy&lt;DataType&gt;&gt; /*meta*/) const
+<span class="lineNum">     151 </span>            :       noexcept -&gt; tuples::TaggedTuple&lt;hydro::Tags::SpecificEnthalpy&lt;DataType&gt;&gt;;
+<span class="lineNum">     152 </span>            :   // @}
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            :   /// Retrieve a collection of hydro variables at `(x, t)`
+<span class="lineNum">     155 </span>            :   template &lt;typename DataType, typename... Tags&gt;
+<span class="lineNum">     156 </span><span class="lineCov">          1 :   tuples::TaggedTuple&lt;Tags...&gt; variables(const tnsr::I&lt;DataType, 3&gt;&amp; x,</span>
+<span class="lineNum">     157 </span>            :                                          double t,
+<span class="lineNum">     158 </span>            :                                          tmpl::list&lt;Tags...&gt; /*meta*/) const
+<span class="lineNum">     159 </span>            :       noexcept {
+<span class="lineNum">     160 </span>            :     static_assert(sizeof...(Tags) &gt; 1,
+<span class="lineNum">     161 </span>            :                   &quot;The generic template will recurse infinitely if only one &quot;
+<span class="lineNum">     162 </span>            :                   &quot;tag is being retrieved.&quot;);
+<span class="lineNum">     163 </span>            :     return {get&lt;Tags&gt;(variables(x, t, tmpl::list&lt;Tags&gt;{}))...};
+<span class="lineNum">     164 </span>            :   }
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span>            :   // clang-tidy: no runtime references
+<span class="lineNum">     167 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; /*p*/) noexcept;  //  NOLINT</span>
+<span class="lineNum">     168 </span><span class="lineNoCov">          0 :   MeanVelocity::type mean_velocity() const noexcept { return mean_velocity_; }</span>
+<span class="lineNum">     169 </span><span class="lineNoCov">          0 :   WaveVector::type wavevector() const noexcept { return wavevector_; }</span>
+<span class="lineNum">     170 </span><span class="lineNoCov">          0 :   Pressure::type pressure() const noexcept { return pressure_; }</span>
+<span class="lineNum">     171 </span><span class="lineNoCov">          0 :   AdiabaticIndex::type adiabatic_index() const noexcept {</span>
+<span class="lineNum">     172 </span>            :     return adiabatic_index_;
+<span class="lineNum">     173 </span>            :   }
+<span class="lineNum">     174 </span><span class="lineNoCov">          0 :   PerturbationSize::type perturbation_size() const noexcept {</span>
+<span class="lineNum">     175 </span>            :     return perturbation_size_;
+<span class="lineNum">     176 </span>            :   }
+<span class="lineNum">     177 </span><span class="lineNoCov">          0 :   double k_dot_v() const noexcept { return k_dot_v_; }</span>
+<span class="lineNum">     178 </span>            : 
+<span class="lineNum">     179 </span><span class="lineNoCov">          0 :   const EquationsOfState::IdealFluid&lt;true&gt;&amp; equation_of_state() const noexcept {</span>
+<span class="lineNum">     180 </span>            :     return equation_of_state_;
+<span class="lineNum">     181 </span>            :   }
+<span class="lineNum">     182 </span>            : 
+<span class="lineNum">     183 </span><span class="lineNoCov">          0 :   const gr::Solutions::Minkowski&lt;3&gt;&amp; background_spacetime() const noexcept {</span>
+<span class="lineNum">     184 </span>            :     return background_spacetime_;
+<span class="lineNum">     185 </span>            :   }
+<span class="lineNum">     186 </span>            : 
+<span class="lineNum">     187 </span>            :  private:
+<span class="lineNum">     188 </span>            :   // Computes the phase.
+<span class="lineNum">     189 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     190 </span><span class="lineNoCov">          0 :   DataType k_dot_x_minus_vt(const tnsr::I&lt;DataType, 3&gt;&amp; x, double t) const</span>
+<span class="lineNum">     191 </span>            :       noexcept;
+<span class="lineNum">     192 </span><span class="lineNoCov">          0 :   MeanVelocity::type mean_velocity_ =</span>
+<span class="lineNum">     193 </span>            :       make_array&lt;3&gt;(std::numeric_limits&lt;double&gt;::signaling_NaN());
+<span class="lineNum">     194 </span><span class="lineNoCov">          0 :   WaveVector::type wavevector_ =</span>
+<span class="lineNum">     195 </span>            :       make_array&lt;3&gt;(std::numeric_limits&lt;double&gt;::signaling_NaN());
+<span class="lineNum">     196 </span><span class="lineNoCov">          0 :   Pressure::type pressure_ = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
+<span class="lineNum">     197 </span><span class="lineNoCov">          0 :   AdiabaticIndex::type adiabatic_index_ =</span>
+<span class="lineNum">     198 </span>            :       std::numeric_limits&lt;double&gt;::signaling_NaN();
+<span class="lineNum">     199 </span><span class="lineNoCov">          0 :   PerturbationSize::type perturbation_size_ =</span>
+<span class="lineNum">     200 </span>            :       std::numeric_limits&lt;double&gt;::signaling_NaN();
+<span class="lineNum">     201 </span>            :   // The angular frequency.
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 :   double k_dot_v_ = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
+<span class="lineNum">     203 </span><span class="lineNoCov">          0 :   EquationsOfState::IdealFluid&lt;true&gt; equation_of_state_{};</span>
+<span class="lineNum">     204 </span><span class="lineNoCov">          0 :   gr::Solutions::Minkowski&lt;3&gt; background_spacetime_{};</span>
+<span class="lineNum">     205 </span>            : };
+<span class="lineNum">     206 </span>            : 
+<span class="lineNum">     207 </span><span class="lineNoCov">          0 : bool operator==(const SmoothFlow&amp; lhs, const SmoothFlow&amp; rhs) noexcept;</span>
+<span class="lineNum">     208 </span><span class="lineNoCov">          0 : bool operator!=(const SmoothFlow&amp; lhs, const SmoothFlow&amp; rhs) noexcept;</span>
+<span class="lineNum">     209 </span>            : }  // namespace Solutions
+<span class="lineNum">     210 </span>            : }  // namespace grmhd
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

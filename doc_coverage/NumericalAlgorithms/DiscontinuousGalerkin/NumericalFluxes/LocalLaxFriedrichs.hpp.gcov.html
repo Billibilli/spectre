@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/DiscontinuousGalerkin/NumericalFluxes/LocalLaxFriedrichs.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/DiscontinuousGalerkin/NumericalFluxes</a> - LocalLaxFriedrichs.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntryLo">5.3 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/DataBox/DataBoxTag.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/DataBox/Prefixes.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Options/Options.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/MakeWithValue.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : namespace dg {
+<span class="lineNum">      17 </span>            : namespace NumericalFluxes {
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : /*!
+<span class="lineNum">      20 </span>            :  * \ingroup DiscontinuousGalerkinGroup
+<span class="lineNum">      21 </span>            :  * \ingroup NumericalFluxesGroup
+<span class="lineNum">      22 </span>            :  * \brief Compute the local Lax-Friedrichs numerical flux.
+<span class="lineNum">      23 </span>            :  *
+<span class="lineNum">      24 </span>            :  * Let \f$U\f$ and \f$F^i(U)\f$ be the state vector of the system and its
+<span class="lineNum">      25 </span>            :  * corresponding volume flux, respectively. Let \f$n_i\f$ be the unit normal to
+<span class="lineNum">      26 </span>            :  * the interface. Defining \f$F_n(U) := n_i F^i(U)\f$, and denoting the
+<span class="lineNum">      27 </span>            :  * corresponding projections of the numerical fluxes as \f${F_n}^*(U)\f$, the
+<span class="lineNum">      28 </span>            :  * local Lax-Friedrichs flux for each variable is
+<span class="lineNum">      29 </span>            :  *
+<span class="lineNum">      30 </span>            :  * \f{align*}
+<span class="lineNum">      31 </span>            :  * {F_n}^*(U) = \frac{F_n(U_\text{int}) + F_n(U_\text{ext})}{2} +
+<span class="lineNum">      32 </span>            :  * \frac{\alpha}{2}\left( U_\text{int} - U_\text{ext}\right),
+<span class="lineNum">      33 </span>            :  * \f}
+<span class="lineNum">      34 </span>            :  *
+<span class="lineNum">      35 </span>            :  * where &quot;int&quot; and &quot;ext&quot; stand for interior and exterior, respectively,
+<span class="lineNum">      36 </span>            :  * and \f$\alpha\f$ is the maximum eigenvalue of either
+<span class="lineNum">      37 </span>            :  * \f$|\Lambda(U_\text{int}; n_\text{int})|\f$ or
+<span class="lineNum">      38 </span>            :  * \f$|\Lambda(U_\text{ext}; n_\text{ext})|\f$, where
+<span class="lineNum">      39 </span>            :  * \f$\Lambda(U; n)\f$ is the diagonal matrix whose entries are the
+<span class="lineNum">      40 </span>            :  * characteristic speeds of the system.
+<span class="lineNum">      41 </span>            :  */
+<span class="lineNum">      42 </span>            : template &lt;typename System&gt;
+<span class="lineNum">      43 </span><span class="lineCov">          1 : struct LocalLaxFriedrichs {</span>
+<span class="lineNum">      44 </span>            :  private:
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :   using char_speeds_tag = typename System::char_speeds_tag;</span>
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :   using variables_tag = typename System::variables_tag;</span>
+<span class="lineNum">      47 </span>            : 
+<span class="lineNum">      48 </span>            :  public:
+<span class="lineNum">      49 </span>            :   // The maximum characteristic speed modulus on one side of the interface.
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 :   struct MaxAbsCharSpeed : db::SimpleTag {</span>
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 :     using type = Scalar&lt;DataVector&gt;;</span>
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :     static std::string name() noexcept { return &quot;MaxAbsCharSpeed&quot;; }</span>
+<span class="lineNum">      53 </span>            :   };
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :   using package_tags =</span>
+<span class="lineNum">      56 </span>            :       tmpl::push_back&lt;tmpl::append&lt;db::split_tag&lt;db::add_tag_prefix&lt;
+<span class="lineNum">      57 </span>            :                                        ::Tags::NormalDotFlux, variables_tag&gt;&gt;,
+<span class="lineNum">      58 </span>            :                                    db::split_tag&lt;variables_tag&gt;&gt;,
+<span class="lineNum">      59 </span>            :                       MaxAbsCharSpeed&gt;;
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 :   using argument_tags =</span>
+<span class="lineNum">      62 </span>            :       tmpl::push_back&lt;tmpl::append&lt;db::split_tag&lt;db::add_tag_prefix&lt;
+<span class="lineNum">      63 </span>            :                                        ::Tags::NormalDotFlux, variables_tag&gt;&gt;,
+<span class="lineNum">      64 </span>            :                                    db::split_tag&lt;variables_tag&gt;&gt;,
+<span class="lineNum">      65 </span>            :                       char_speeds_tag&gt;;
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            :  private:
+<span class="lineNum">      68 </span>            :   template &lt;typename VariablesTagList, typename NormalDoFluxTagList&gt;
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   struct package_data_helper;</span>
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            :   template &lt;typename... VariablesTags, typename... NormalDotFluxTags&gt;
+<span class="lineNum">      72 </span>            :   struct package_data_helper&lt;tmpl::list&lt;VariablesTags...&gt;,
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 :                              tmpl::list&lt;NormalDotFluxTags...&gt;&gt; {</span>
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 :     static void function(</span>
+<span class="lineNum">      75 </span>            :         const gsl::not_null&lt;Variables&lt;package_tags&gt;*&gt; packaged_data,
+<span class="lineNum">      76 </span>            :         const db::item_type&lt;NormalDotFluxTags&gt;&amp;... n_dot_f_to_package,
+<span class="lineNum">      77 </span>            :         const db::item_type&lt;VariablesTags&gt;&amp;... u_to_package,
+<span class="lineNum">      78 </span>            :         const db::item_type&lt;char_speeds_tag&gt;&amp; characteristic_speeds) noexcept {
+<span class="lineNum">      79 </span>            :       expand_pack((get&lt;VariablesTags&gt;(*packaged_data) = u_to_package)...);
+<span class="lineNum">      80 </span>            :       expand_pack(
+<span class="lineNum">      81 </span>            :           (get&lt;NormalDotFluxTags&gt;(*packaged_data) = n_dot_f_to_package)...);
+<span class="lineNum">      82 </span>            :       get&lt;MaxAbsCharSpeed&gt;(
+<span class="lineNum">      83 </span>            :           *packaged_data) = [&amp;characteristic_speeds]() noexcept {
+<span class="lineNum">      84 </span>            :         auto result = make_with_value&lt;Scalar&lt;DataVector&gt;&gt;(
+<span class="lineNum">      85 </span>            :             characteristic_speeds[0],
+<span class="lineNum">      86 </span>            :             std::numeric_limits&lt;double&gt;::signaling_NaN());
+<span class="lineNum">      87 </span>            :         for (size_t s = 0; s &lt; characteristic_speeds[0].size(); ++s) {
+<span class="lineNum">      88 </span>            :           double local_max_speed = 0.0;
+<span class="lineNum">      89 </span>            :           for (size_t u = 0; u &lt; characteristic_speeds.size(); ++u) {
+<span class="lineNum">      90 </span>            :             local_max_speed =
+<span class="lineNum">      91 </span>            :                 std::max(local_max_speed,
+<span class="lineNum">      92 </span>            :                          std::abs(gsl::at(characteristic_speeds, u)[s]));
+<span class="lineNum">      93 </span>            :           }
+<span class="lineNum">      94 </span>            :           get(result)[s] = local_max_speed;
+<span class="lineNum">      95 </span>            :         }
+<span class="lineNum">      96 </span>            :         return result;
+<span class="lineNum">      97 </span>            :       }
+<span class="lineNum">      98 </span>            :       ();
+<span class="lineNum">      99 </span>            :     }
+<span class="lineNum">     100 </span>            :   };
+<span class="lineNum">     101 </span>            : 
+<span class="lineNum">     102 </span>            :   template &lt;typename NormalDotNumericalFluxTagList, typename VariablesTagList,
+<span class="lineNum">     103 </span>            :             typename NormalDotFluxTagList&gt;
+<span class="lineNum">     104 </span><span class="lineNoCov">          0 :   struct call_operator_helper;</span>
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span>            :   template &lt;typename... NormalDotNumericalFluxTags, typename... VariablesTags,
+<span class="lineNum">     107 </span>            :             typename... NormalDotFluxTags&gt;
+<span class="lineNum">     108 </span>            :   struct call_operator_helper&lt;tmpl::list&lt;NormalDotNumericalFluxTags...&gt;,
+<span class="lineNum">     109 </span>            :                               tmpl::list&lt;VariablesTags...&gt;,
+<span class="lineNum">     110 </span><span class="lineNoCov">          0 :                               tmpl::list&lt;NormalDotFluxTags...&gt;&gt; {</span>
+<span class="lineNum">     111 </span><span class="lineNoCov">          0 :     static void function(</span>
+<span class="lineNum">     112 </span>            :         const gsl::not_null&lt;
+<span class="lineNum">     113 </span>            :             db::item_type&lt;NormalDotNumericalFluxTags&gt;*&gt;... n_dot_numerical_f,
+<span class="lineNum">     114 </span>            :         const db::item_type&lt;NormalDotFluxTags&gt;&amp;... n_dot_f_interior,
+<span class="lineNum">     115 </span>            :         const db::item_type&lt;VariablesTags&gt;&amp;... u_interior,
+<span class="lineNum">     116 </span>            :         const db::item_type&lt;MaxAbsCharSpeed&gt;&amp; max_abs_speed_interior,
+<span class="lineNum">     117 </span>            :         const db::item_type&lt;NormalDotFluxTags&gt;&amp;... minus_n_dot_f_exterior,
+<span class="lineNum">     118 </span>            :         const db::item_type&lt;VariablesTags&gt;&amp;... u_exterior,
+<span class="lineNum">     119 </span>            :         const db::item_type&lt;MaxAbsCharSpeed&gt;&amp; max_abs_speed_exterior) noexcept {
+<span class="lineNum">     120 </span>            :       const auto max_abs_speed =
+<span class="lineNum">     121 </span>            :           [&amp;max_abs_speed_interior, &amp;max_abs_speed_exterior ]() noexcept {
+<span class="lineNum">     122 </span>            :         auto result = make_with_value&lt;db::item_type&lt;MaxAbsCharSpeed&gt;&gt;(
+<span class="lineNum">     123 </span>            :             max_abs_speed_interior,
+<span class="lineNum">     124 </span>            :             std::numeric_limits&lt;double&gt;::signaling_NaN());
+<span class="lineNum">     125 </span>            :         for (size_t s = 0; s &lt; result.begin()-&gt;size(); ++s) {
+<span class="lineNum">     126 </span>            :           get(result)[s] = std::max(get(max_abs_speed_interior)[s],
+<span class="lineNum">     127 </span>            :                                     get(max_abs_speed_exterior)[s]);
+<span class="lineNum">     128 </span>            :         }
+<span class="lineNum">     129 </span>            :         return result;
+<span class="lineNum">     130 </span>            :       }
+<span class="lineNum">     131 </span>            :       ();
+<span class="lineNum">     132 </span>            :       const auto assemble_numerical_flux = [&amp;max_abs_speed](
+<span class="lineNum">     133 </span>            :           const auto n_dot_num_f, const auto&amp; n_dot_f_in, const auto&amp; u_in,
+<span class="lineNum">     134 </span>            :           const auto&amp; minus_n_dot_f_ex, const auto&amp; u_ex) noexcept {
+<span class="lineNum">     135 </span>            :         for (size_t i = 0; i &lt; n_dot_num_f-&gt;size(); ++i) {
+<span class="lineNum">     136 </span>            :           (*n_dot_num_f)[i] = 0.5 * (n_dot_f_in[i] - minus_n_dot_f_ex[i] +
+<span class="lineNum">     137 </span>            :                                      get(max_abs_speed) * (u_in[i] - u_ex[i]));
+<span class="lineNum">     138 </span>            :         }
+<span class="lineNum">     139 </span>            :         return nullptr;
+<span class="lineNum">     140 </span>            :       };
+<span class="lineNum">     141 </span>            :       expand_pack(assemble_numerical_flux(n_dot_numerical_f, n_dot_f_interior,
+<span class="lineNum">     142 </span>            :                                           u_interior, minus_n_dot_f_exterior,
+<span class="lineNum">     143 </span>            :                                           u_exterior)...);
+<span class="lineNum">     144 </span>            :     }
+<span class="lineNum">     145 </span>            :   };
+<span class="lineNum">     146 </span>            : 
+<span class="lineNum">     147 </span>            :  public:
+<span class="lineNum">     148 </span><span class="lineNoCov">          0 :   using options = tmpl::list&lt;&gt;;</span>
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :   static constexpr OptionString help = {</span>
+<span class="lineNum">     150 </span>            :       &quot;Computes the local Lax-Friedrichs numerical flux.&quot;};
+<span class="lineNum">     151 </span>            : 
+<span class="lineNum">     152 </span>            :   // clang-tidy: google-runtime-references
+<span class="lineNum">     153 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; /*p*/) noexcept {}  // NOLINT</span>
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span>            :   template &lt;class... Args&gt;
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :   void package_data(const Args&amp;... args) const noexcept {</span>
+<span class="lineNum">     157 </span>            :     package_data_helper&lt;
+<span class="lineNum">     158 </span>            :         db::split_tag&lt;variables_tag&gt;,
+<span class="lineNum">     159 </span>            :         db::split_tag&lt;db::add_tag_prefix&lt;::Tags::NormalDotFlux,
+<span class="lineNum">     160 </span>            :                                          variables_tag&gt;&gt;&gt;::function(args...);
+<span class="lineNum">     161 </span>            :   }
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            :   template &lt;class... Args&gt;
+<span class="lineNum">     164 </span><span class="lineNoCov">          0 :   void operator()(const Args&amp;... args) const noexcept {</span>
+<span class="lineNum">     165 </span>            :     call_operator_helper&lt;
+<span class="lineNum">     166 </span>            :         db::split_tag&lt;
+<span class="lineNum">     167 </span>            :             db::add_tag_prefix&lt;::Tags::NormalDotNumericalFlux, variables_tag&gt;&gt;,
+<span class="lineNum">     168 </span>            :         db::split_tag&lt;variables_tag&gt;,
+<span class="lineNum">     169 </span>            :         db::split_tag&lt;db::add_tag_prefix&lt;::Tags::NormalDotFlux,
+<span class="lineNum">     170 </span>            :                                          variables_tag&gt;&gt;&gt;::function(args...);
+<span class="lineNum">     171 </span>            :   }
+<span class="lineNum">     172 </span>            : };
+<span class="lineNum">     173 </span>            : 
+<span class="lineNum">     174 </span>            : }  // namespace NumericalFluxes
+<span class="lineNum">     175 </span>            : }  // namespace dg
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Time/Actions/SelfStartActions.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Time/Actions</a> - SelfStartActions.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntryLo">46.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : #include &lt;string&gt;
+<span class="lineNum">       8 </span>            : #include &lt;tuple&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/DataBox/DataBox.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/DataBox/DataBoxTag.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/DataBox/Prefixes.hpp&quot;
+<span class="lineNum">      13 </span>            : // IWYU pragma: no_include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Parallel/GotoAction.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      15 </span>            : #include &quot;Time/Actions/AdvanceTime.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      16 </span>            : #include &quot;Time/Slab.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Time/Tags.hpp&quot;  // IWYU pragma: keep // for item_type&lt;Tags::TimeStep&gt;
+<span class="lineNum">      18 </span>            : #include &quot;Time/Time.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Time/TimeId.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      22 </span>            : #include &quot;Utilities/TaggedTuple.hpp&quot;
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : /// \cond
+<span class="lineNum">      25 </span>            : namespace Parallel {
+<span class="lineNum">      26 </span>            : template &lt;typename Metavariables&gt;
+<span class="lineNum">      27 </span>            : class ConstGlobalCache;
+<span class="lineNum">      28 </span>            : }  // namespace Parallel
+<span class="lineNum">      29 </span>            : // IWYU pragma: no_forward_declare db::DataBox
+<span class="lineNum">      30 </span>            : /// \endcond
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : /// \ingroup TimeGroup
+<span class="lineNum">      33 </span>            : /// Definition of the integrator self-starting procedure.
+<span class="lineNum">      34 </span>            : ///
+<span class="lineNum">      35 </span>            : /// The self-start procedure generates \f$N\f$ function values of
+<span class="lineNum">      36 </span>            : /// accuracy \f$O\left((\Delta t)^N\right)\f$, where \f$N\f$ is the
+<span class="lineNum">      37 </span>            : /// negative of the initial slab number.  To generate values, it
+<span class="lineNum">      38 </span>            : /// requires the time stepper to be a multistep integrator that will
+<span class="lineNum">      39 </span>            : /// produce an order-\f$k\f$-accurate result given \f$k-1\f$ history
+<span class="lineNum">      40 </span>            : /// values.
+<span class="lineNum">      41 </span>            : ///
+<span class="lineNum">      42 </span>            : /// If the integrator is started from analytic history data or
+<span class="lineNum">      43 </span>            : /// requires no history (such as for a substep integrator), then the
+<span class="lineNum">      44 </span>            : /// initial slab number can be set to zero and no self-start steps
+<span class="lineNum">      45 </span>            : /// will be taken.
+<span class="lineNum">      46 </span>            : ///
+<span class="lineNum">      47 </span>            : /// \details
+<span class="lineNum">      48 </span>            : /// To self-start a multistep integrator, the function is integrated
+<span class="lineNum">      49 </span>            : /// repeatedly with increasing accuracy.  A first order integrator
+<span class="lineNum">      50 </span>            : /// (Euler's method) requires no history values, so it can be used,
+<span class="lineNum">      51 </span>            : /// starting from the initial point, to generate a
+<span class="lineNum">      52 </span>            : /// first-order-accurate value at a later time.  We then reset to the
+<span class="lineNum">      53 </span>            : /// start conditions and use the new &quot;history&quot; value (at a discarded
+<span class="lineNum">      54 </span>            : /// point later in time) to take two steps with a second-order method.
+<span class="lineNum">      55 </span>            : /// These values are second-order-accurate despite the history only
+<span class="lineNum">      56 </span>            : /// being first-order because the calculation of the change in the
+<span class="lineNum">      57 </span>            : /// value multiplies the previous derivatives by a factor of
+<span class="lineNum">      58 </span>            : /// \f$\Delta t\f$.  The time and value are then again reset to their
+<span class="lineNum">      59 </span>            : /// starting values and we start again at third order, and so on.
+<span class="lineNum">      60 </span>            : ///
+<span class="lineNum">      61 </span>            : /// The choice of performing the low-order integrations in the same
+<span class="lineNum">      62 </span>            : /// direction as the main integration makes this a _forward_
+<span class="lineNum">      63 </span>            : /// self-start procedure, as opposed to a _backward_ procedure that
+<span class="lineNum">      64 </span>            : /// produces values for times before the start time.  The primary
+<span class="lineNum">      65 </span>            : /// advantage of the forward version is that the solution is
+<span class="lineNum">      66 </span>            : /// guaranteed to exist after the start time, but not before.  It also
+<span class="lineNum">      67 </span>            : /// makes bookkeeping easier, as the reset after each order increase
+<span class="lineNum">      68 </span>            : /// is to the initial state, rather than to a time one step further
+<span class="lineNum">      69 </span>            : /// back for each order.  It does have the disadvantage, however, of
+<span class="lineNum">      70 </span>            : /// leaving a non-monotonic history at the end of the procedure, which
+<span class="lineNum">      71 </span>            : /// the main evolution loop must be able to handle.
+<span class="lineNum">      72 </span>            : ///
+<span class="lineNum">      73 </span>            : /// Each time the state is reset the slab number is increased by one.
+<span class="lineNum">      74 </span>            : /// This ensures that the evaluations are considered to be ordered in
+<span class="lineNum">      75 </span>            : /// their evaluation order, even though they are not monotonic in
+<span class="lineNum">      76 </span>            : /// time.  When the slab number reaches zero the initialization
+<span class="lineNum">      77 </span>            : /// procedure is complete and history appropriate for use for an
+<span class="lineNum">      78 </span>            : /// integrator of order \f$N+1\f$ has been generated.
+<span class="lineNum">      79 </span>            : ///
+<span class="lineNum">      80 </span>            : /// The self-start procedure performs all its evaluations before the
+<span class="lineNum">      81 </span>            : /// end of the first time step of the main evolution.  It is important
+<span class="lineNum">      82 </span>            : /// that none of the early steps fall at the same time as the
+<span class="lineNum">      83 </span>            : /// self-start history values, so the main evolution should not
+<span class="lineNum">      84 </span>            : /// decrease its step size on the first step after the procedure.
+<span class="lineNum">      85 </span>            : /// Additionally, the history times will not be monotonicly increasing
+<span class="lineNum">      86 </span>            : /// until \f$N\f$ steps have been taken.  The local-time-stepping
+<span class="lineNum">      87 </span>            : /// calculations require monotonic time, so local time-stepping should
+<span class="lineNum">      88 </span>            : /// not be initiated until the self-start values have expired from the
+<span class="lineNum">      89 </span>            : /// history.  These restrictions on step-size changing are checked in
+<span class="lineNum">      90 </span>            : /// the TimeStepper::can_change_step_size method.
+<span class="lineNum">      91 </span>            : namespace SelfStart {
+<span class="lineNum">      92 </span>            : /// Self-start tags
+<span class="lineNum">      93 </span>            : namespace Tags {
+<span class="lineNum">      94 </span>            : /// \ingroup TimeGroup
+<span class="lineNum">      95 </span>            : /// The initial value of a quantity.  The contents are stored in a
+<span class="lineNum">      96 </span>            : /// tuple to avoid putting duplicate tensors into the DataBox.
+<span class="lineNum">      97 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">      98 </span><span class="lineCov">          1 : struct InitialValue : db::PrefixTag, db::SimpleTag {</span>
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 :   static std::string name() noexcept {</span>
+<span class="lineNum">     100 </span>            :     return &quot;InitialValue(&quot; + Tag::name() + &quot;)&quot;;
+<span class="lineNum">     101 </span>            :   }
+<span class="lineNum">     102 </span><span class="lineNoCov">          0 :   using tag = Tag;</span>
+<span class="lineNum">     103 </span><span class="lineNoCov">          0 :   using type = std::tuple&lt;db::item_type&lt;Tag&gt;&gt;;</span>
+<span class="lineNum">     104 </span>            : };
+<span class="lineNum">     105 </span>            : }  // namespace Tags
+<span class="lineNum">     106 </span>            : 
+<span class="lineNum">     107 </span>            : /// Self-start actions
+<span class="lineNum">     108 </span>            : namespace Actions {
+<span class="lineNum">     109 </span>            : /// \ingroup ActionsGroup
+<span class="lineNum">     110 </span>            : /// \ingroup TimeGroup
+<span class="lineNum">     111 </span>            : /// Prepares the evolution for time-stepper self-starting.
+<span class="lineNum">     112 </span>            : ///
+<span class="lineNum">     113 </span>            : /// Stores the initial values of the variables and time step and sets
+<span class="lineNum">     114 </span>            : /// an appropriate step for self-starting.
+<span class="lineNum">     115 </span>            : ///
+<span class="lineNum">     116 </span>            : /// \details The self-start procedure must take place within one slab,
+<span class="lineNum">     117 </span>            : /// and we want to avoid the end of the slab so that we don't have to
+<span class="lineNum">     118 </span>            : /// deal with another action advancing the slab on us.  There will be
+<span class="lineNum">     119 </span>            : /// problems if the main evolution tries to evaluate at a time that
+<span class="lineNum">     120 </span>            : /// the self-start procedure used before the self-start version falls
+<span class="lineNum">     121 </span>            : /// out of the history, so we have to make sure that does not happen.
+<span class="lineNum">     122 </span>            : /// We can't do that by making sure our steps are large enough to keep
+<span class="lineNum">     123 </span>            : /// ahead because of the slab restriction, so instead we have to make
+<span class="lineNum">     124 </span>            : /// the self-start step smaller to ensure no collisions.  The easiest
+<span class="lineNum">     125 </span>            : /// way to do that is to fit the entire procedure before the first
+<span class="lineNum">     126 </span>            : /// real step, so we pick an initialization time step of
+<span class="lineNum">     127 </span>            : /// \f$\Delta t/(N+1)\f$, for \f$\Delta t\f$ the initial evolution
+<span class="lineNum">     128 </span>            : /// time step and \f$N\f$ the number of history points to be
+<span class="lineNum">     129 </span>            : /// generated.
+<span class="lineNum">     130 </span>            : ///
+<span class="lineNum">     131 </span>            : /// Uses:
+<span class="lineNum">     132 </span>            : /// - ConstGlobalCache: nothing
+<span class="lineNum">     133 </span>            : /// - DataBox:
+<span class="lineNum">     134 </span>            : ///   - Tags::TimeId
+<span class="lineNum">     135 </span>            : ///   - Tags::TimeStep
+<span class="lineNum">     136 </span>            : ///   - variables_tag
+<span class="lineNum">     137 </span>            : ///
+<span class="lineNum">     138 </span>            : /// DataBox changes:
+<span class="lineNum">     139 </span>            : /// - Adds:
+<span class="lineNum">     140 </span>            : ///   - SelfStart::Tags::InitialValue&lt;Tags::TimeStep&gt;
+<span class="lineNum">     141 </span>            : ///   - SelfStart::Tags::InitialValue&lt;variables_tag&gt;
+<span class="lineNum">     142 </span>            : /// - Removes: nothing
+<span class="lineNum">     143 </span>            : /// - Modifies: Tags::TimeStep
+<span class="lineNum">     144 </span><span class="lineCov">          1 : struct Initialize {</span>
+<span class="lineNum">     145 </span>            :   template &lt;typename DbTags, typename... InboxTags, typename Metavariables,
+<span class="lineNum">     146 </span>            :             typename ArrayIndex, typename ActionList,
+<span class="lineNum">     147 </span>            :             typename ParallelComponent&gt;
+<span class="lineNum">     148 </span><span class="lineNoCov">          0 :   static auto apply(db::DataBox&lt;DbTags&gt;&amp; box,</span>
+<span class="lineNum">     149 </span>            :                     const tuples::TaggedTuple&lt;InboxTags...&gt;&amp; /*inboxes*/,
+<span class="lineNum">     150 </span>            :                     const Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; /*cache*/,
+<span class="lineNum">     151 </span>            :                     const ArrayIndex&amp; /*array_index*/,
+<span class="lineNum">     152 </span>            :                     const ActionList /*meta*/,
+<span class="lineNum">     153 </span>            :                     const ParallelComponent* const /*meta*/) noexcept {
+<span class="lineNum">     154 </span>            :     using variables_tag = typename Metavariables::system::variables_tag;
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span>            :     const TimeDelta initial_step = db::get&lt;::Tags::TimeStep&gt;(box);
+<span class="lineNum">     157 </span>            :     // The slab number increments each time a new point is generated
+<span class="lineNum">     158 </span>            :     // until it reaches zero.
+<span class="lineNum">     159 </span>            :     const auto values_needed =
+<span class="lineNum">     160 </span>            :         -db::get&lt;::Tags::Next&lt;::Tags::TimeId&gt;&gt;(box).slab_number();
+<span class="lineNum">     161 </span>            :     const TimeDelta self_start_step = initial_step / (values_needed + 1);
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            :     db::mutate&lt;::Tags::TimeStep&gt;(
+<span class="lineNum">     164 </span>            :         make_not_null(&amp;box), [&amp;self_start_step](
+<span class="lineNum">     165 </span>            :                                  const gsl::not_null&lt;
+<span class="lineNum">     166 </span>            :                                      db::item_type&lt;::Tags::TimeStep&gt;*&gt;
+<span class="lineNum">     167 </span>            :                                      time_step) noexcept {
+<span class="lineNum">     168 </span>            :           *time_step = self_start_step;
+<span class="lineNum">     169 </span>            :         });
+<span class="lineNum">     170 </span>            : 
+<span class="lineNum">     171 </span>            :     return std::make_tuple(
+<span class="lineNum">     172 </span>            :         db::create_from&lt;db::RemoveTags&lt;&gt;,
+<span class="lineNum">     173 </span>            :                         db::AddSimpleTags&lt;Tags::InitialValue&lt;::Tags::TimeStep&gt;,
+<span class="lineNum">     174 </span>            :                                           Tags::InitialValue&lt;variables_tag&gt;&gt;&gt;(
+<span class="lineNum">     175 </span>            :             std::move(box), std::make_tuple(initial_step),
+<span class="lineNum">     176 </span>            :             std::make_tuple(db::get&lt;variables_tag&gt;(box))));
+<span class="lineNum">     177 </span>            :   }
+<span class="lineNum">     178 </span>            : };
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span>            : /// \ingroup ActionsGroup
+<span class="lineNum">     181 </span>            : /// \ingroup TimeGroup
+<span class="lineNum">     182 </span>            : /// Terminates the self-start phase if the required order has been
+<span class="lineNum">     183 </span>            : /// reached.
+<span class="lineNum">     184 </span>            : ///
+<span class="lineNum">     185 </span>            : /// Uses:
+<span class="lineNum">     186 </span>            : /// - ConstGlobalCache: nothing
+<span class="lineNum">     187 </span>            : /// - DataBox: Tags::Next&lt;Tags::TimeId&gt;
+<span class="lineNum">     188 </span>            : ///
+<span class="lineNum">     189 </span>            : /// DataBox changes:
+<span class="lineNum">     190 </span>            : /// - Adds: nothing
+<span class="lineNum">     191 </span>            : /// - Removes: nothing
+<span class="lineNum">     192 </span>            : /// - Modifies: nothing
+<span class="lineNum">     193 </span>            : template &lt;typename ExitTag&gt;
+<span class="lineNum">     194 </span><span class="lineCov">          1 : struct CheckForCompletion {</span>
+<span class="lineNum">     195 </span>            :   template &lt;typename DbTags, typename... InboxTags, typename Metavariables,
+<span class="lineNum">     196 </span>            :             typename ArrayIndex, typename ActionList,
+<span class="lineNum">     197 </span>            :             typename ParallelComponent&gt;
+<span class="lineNum">     198 </span><span class="lineNoCov">          0 :   static auto apply(db::DataBox&lt;DbTags&gt;&amp; box,</span>
+<span class="lineNum">     199 </span>            :                     const tuples::TaggedTuple&lt;InboxTags...&gt;&amp; /*inboxes*/,
+<span class="lineNum">     200 </span>            :                     const Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; /*cache*/,
+<span class="lineNum">     201 </span>            :                     const ArrayIndex&amp; /*array_index*/,
+<span class="lineNum">     202 </span>            :                     const ActionList /*meta*/,
+<span class="lineNum">     203 </span>            :                     const ParallelComponent* const /*meta*/) noexcept {
+<span class="lineNum">     204 </span>            :     // The self start procedure begins with slab number
+<span class="lineNum">     205 </span>            :     // -number_of_past_steps and counts up.  When we reach 0 we should
+<span class="lineNum">     206 </span>            :     // start the evolution proper.  The first thing the evolution loop
+<span class="lineNum">     207 </span>            :     // will do is update the time, so here we need to check if the
+<span class="lineNum">     208 </span>            :     // next time should be the first real step.
+<span class="lineNum">     209 </span>            :     return std::tuple&lt;db::DataBox&lt;DbTags&gt;&amp;&amp;, bool, size_t&gt;(
+<span class="lineNum">     210 </span>            :         std::move(box), false,
+<span class="lineNum">     211 </span>            :         db::get&lt;::Tags::Next&lt;::Tags::TimeId&gt;&gt;(box).slab_number() == 0
+<span class="lineNum">     212 </span>            :             ? tmpl::index_of&lt;ActionList, ::Actions::Label&lt;ExitTag&gt;&gt;::value
+<span class="lineNum">     213 </span>            :             : tmpl::index_of&lt;ActionList, CheckForCompletion&gt;::value + 1);
+<span class="lineNum">     214 </span>            :     // Once we have full support for phases this action should
+<span class="lineNum">     215 </span>            :     // terminate the phase:
+<span class="lineNum">     216 </span>            :     // return std::tuple&lt;db::DataBox&lt;DbTags&gt;&amp;&amp;, bool&gt;(
+<span class="lineNum">     217 </span>            :     //     std::move(box),
+<span class="lineNum">     218 </span>            :     //     db::get&lt;::Tags::Next&lt;::Tags::TimeId&gt;&gt;(box).slab_number() == 0);
+<span class="lineNum">     219 </span>            :   }
+<span class="lineNum">     220 </span>            : };
+<span class="lineNum">     221 </span>            : 
+<span class="lineNum">     222 </span>            : /// \ingroup ActionsGroup
+<span class="lineNum">     223 </span>            : /// \ingroup TimeGroup
+<span class="lineNum">     224 </span>            : /// If we have taken enough steps for this order, set the next time to
+<span class="lineNum">     225 </span>            : /// the start time and increment the slab number
+<span class="lineNum">     226 </span>            : ///
+<span class="lineNum">     227 </span>            : /// Uses:
+<span class="lineNum">     228 </span>            : /// - ConstGlobalCache: nothing
+<span class="lineNum">     229 </span>            : /// - DataBox:
+<span class="lineNum">     230 </span>            : ///   - Tags::HistoryEvolvedVariables&lt;variables_tag, dt_variables_tag&gt;
+<span class="lineNum">     231 </span>            : ///   - Tags::Time
+<span class="lineNum">     232 </span>            : ///   - Tags::TimeId
+<span class="lineNum">     233 </span>            : ///   - Tags::TimeStep
+<span class="lineNum">     234 </span>            : ///
+<span class="lineNum">     235 </span>            : /// DataBox changes:
+<span class="lineNum">     236 </span>            : /// - Adds: nothing
+<span class="lineNum">     237 </span>            : /// - Removes: nothing
+<span class="lineNum">     238 </span>            : /// - Modifies: Tags::Next&lt;Tags::TimeId&gt; if there is an order increase
+<span class="lineNum">     239 </span><span class="lineCov">          1 : struct CheckForOrderIncrease {</span>
+<span class="lineNum">     240 </span>            :   template &lt;typename DbTags, typename... InboxTags, typename Metavariables,
+<span class="lineNum">     241 </span>            :             typename ArrayIndex, typename ActionList,
+<span class="lineNum">     242 </span>            :             typename ParallelComponent&gt;
+<span class="lineNum">     243 </span><span class="lineNoCov">          0 :   static auto apply(db::DataBox&lt;DbTags&gt;&amp; box,</span>
+<span class="lineNum">     244 </span>            :                     const tuples::TaggedTuple&lt;InboxTags...&gt;&amp; /*inboxes*/,
+<span class="lineNum">     245 </span>            :                     const Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; /*cache*/,
+<span class="lineNum">     246 </span>            :                     const ArrayIndex&amp; /*array_index*/,
+<span class="lineNum">     247 </span>            :                     const ActionList /*meta*/,
+<span class="lineNum">     248 </span>            :                     const ParallelComponent* const /*meta*/) noexcept {
+<span class="lineNum">     249 </span>            :     using variables_tag = typename Metavariables::system::variables_tag;
+<span class="lineNum">     250 </span>            : 
+<span class="lineNum">     251 </span>            :     const auto&amp; time = db::get&lt;::Tags::Time&gt;(box);
+<span class="lineNum">     252 </span>            :     const auto&amp; time_step = db::get&lt;::Tags::TimeStep&gt;(box);
+<span class="lineNum">     253 </span>            :     const auto&amp; history = db::get&lt;::Tags::HistoryEvolvedVariables&lt;
+<span class="lineNum">     254 </span>            :         variables_tag, db::add_tag_prefix&lt;::Tags::dt, variables_tag&gt;&gt;&gt;(box);
+<span class="lineNum">     255 </span>            : 
+<span class="lineNum">     256 </span>            :     const Time required_time =
+<span class="lineNum">     257 </span>            :         (time_step.is_positive() ? time.slab().start() : time.slab().end()) +
+<span class="lineNum">     258 </span>            :         (history.size() + 1) * time_step;
+<span class="lineNum">     259 </span>            :     const bool done_with_order = time == required_time;
+<span class="lineNum">     260 </span>            : 
+<span class="lineNum">     261 </span>            :     if (done_with_order) {
+<span class="lineNum">     262 </span>            :       db::mutate&lt;::Tags::Next&lt;::Tags::TimeId&gt;&gt;(
+<span class="lineNum">     263 </span>            :           make_not_null(&amp;box),
+<span class="lineNum">     264 </span>            :           [](const gsl::not_null&lt;db::item_type&lt;::Tags::Next&lt;::Tags::TimeId&gt;&gt;*&gt;
+<span class="lineNum">     265 </span>            :                  next_time_id,
+<span class="lineNum">     266 </span>            :              const db::item_type&lt;::Tags::TimeId&gt;&amp; current_time_id) noexcept {
+<span class="lineNum">     267 </span>            :             const Slab slab = current_time_id.time().slab();
+<span class="lineNum">     268 </span>            :             *next_time_id =
+<span class="lineNum">     269 </span>            :                 TimeId(current_time_id.time_runs_forward(),
+<span class="lineNum">     270 </span>            :                        current_time_id.slab_number() + 1,
+<span class="lineNum">     271 </span>            :                        current_time_id.time_runs_forward() ? slab.start()
+<span class="lineNum">     272 </span>            :                                                            : slab.end());
+<span class="lineNum">     273 </span>            :           },
+<span class="lineNum">     274 </span>            :           db::get&lt;::Tags::TimeId&gt;(box));
+<span class="lineNum">     275 </span>            :     }
+<span class="lineNum">     276 </span>            : 
+<span class="lineNum">     277 </span>            :     return std::forward_as_tuple(std::move(box));
+<span class="lineNum">     278 </span>            :   }
+<span class="lineNum">     279 </span>            : };
+<span class="lineNum">     280 </span>            : 
+<span class="lineNum">     281 </span>            : /// \ingroup ActionsGroup
+<span class="lineNum">     282 </span>            : /// \ingroup TimeGroup
+<span class="lineNum">     283 </span>            : /// Jumps to the start of the self-start algorithm (skipping taking a
+<span class="lineNum">     284 </span>            : /// step from the last point) if the generation of the points for the
+<span class="lineNum">     285 </span>            : /// current order is complete.
+<span class="lineNum">     286 </span>            : ///
+<span class="lineNum">     287 </span>            : /// Uses:
+<span class="lineNum">     288 </span>            : /// - ConstGlobalCache: nothing
+<span class="lineNum">     289 </span>            : /// - DataBox:
+<span class="lineNum">     290 </span>            : ///   - Tags::Next&lt;Tags::TimeId&gt;
+<span class="lineNum">     291 </span>            : ///   - SelfStart::Tags::InitialValue&lt;variables_tag&gt;
+<span class="lineNum">     292 </span>            : ///
+<span class="lineNum">     293 </span>            : /// DataBox changes:
+<span class="lineNum">     294 </span>            : /// - Adds: nothing
+<span class="lineNum">     295 </span>            : /// - Removes: nothing
+<span class="lineNum">     296 </span>            : /// - Modifies: variables_tag if there is an order increase
+<span class="lineNum">     297 </span>            : template &lt;typename RestartTag&gt;
+<span class="lineNum">     298 </span><span class="lineCov">          1 : struct StartNextOrderIfReady {</span>
+<span class="lineNum">     299 </span>            :   template &lt;typename DbTags, typename... InboxTags, typename Metavariables,
+<span class="lineNum">     300 </span>            :             typename ArrayIndex, typename ActionList,
+<span class="lineNum">     301 </span>            :             typename ParallelComponent&gt;
+<span class="lineNum">     302 </span><span class="lineNoCov">          0 :   static auto apply(db::DataBox&lt;DbTags&gt;&amp; box,</span>
+<span class="lineNum">     303 </span>            :                     const tuples::TaggedTuple&lt;InboxTags...&gt;&amp; /*inboxes*/,
+<span class="lineNum">     304 </span>            :                     const Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; /*cache*/,
+<span class="lineNum">     305 </span>            :                     const ArrayIndex&amp; /*array_index*/,
+<span class="lineNum">     306 </span>            :                     const ActionList /*meta*/,
+<span class="lineNum">     307 </span>            :                     const ParallelComponent* const /*meta*/) noexcept {
+<span class="lineNum">     308 </span>            :     using variables_tag = typename Metavariables::system::variables_tag;
+<span class="lineNum">     309 </span>            : 
+<span class="lineNum">     310 </span>            :     constexpr size_t restart_index =
+<span class="lineNum">     311 </span>            :         tmpl::index_of&lt;ActionList, ::Actions::Label&lt;RestartTag&gt;&gt;::value + 1;
+<span class="lineNum">     312 </span>            :     constexpr size_t continue_index =
+<span class="lineNum">     313 </span>            :         tmpl::index_of&lt;ActionList, StartNextOrderIfReady&gt;::value + 1;
+<span class="lineNum">     314 </span>            : 
+<span class="lineNum">     315 </span>            :     const bool done_with_order =
+<span class="lineNum">     316 </span>            :         db::get&lt;::Tags::Next&lt;::Tags::TimeId&gt;&gt;(box).is_at_slab_boundary();
+<span class="lineNum">     317 </span>            : 
+<span class="lineNum">     318 </span>            :     if (done_with_order) {
+<span class="lineNum">     319 </span>            :       db::mutate&lt;variables_tag&gt;(
+<span class="lineNum">     320 </span>            :           make_not_null(&amp;box),
+<span class="lineNum">     321 </span>            :           [](const gsl::not_null&lt;db::item_type&lt;variables_tag&gt;*&gt; variables,
+<span class="lineNum">     322 </span>            :              const db::item_type&lt;Tags::InitialValue&lt;variables_tag&gt;&gt;&amp;
+<span class="lineNum">     323 </span>            :                  initial_variables) noexcept {
+<span class="lineNum">     324 </span>            :             *variables = get&lt;0&gt;(initial_variables);
+<span class="lineNum">     325 </span>            :           },
+<span class="lineNum">     326 </span>            :           db::get&lt;Tags::InitialValue&lt;variables_tag&gt;&gt;(box));
+<span class="lineNum">     327 </span>            :     }
+<span class="lineNum">     328 </span>            : 
+<span class="lineNum">     329 </span>            :     return std::tuple&lt;db::DataBox&lt;DbTags&gt;&amp;&amp;, bool, size_t&gt;(
+<span class="lineNum">     330 </span>            :         std::move(box), false,
+<span class="lineNum">     331 </span>            :         done_with_order ? restart_index : continue_index);
+<span class="lineNum">     332 </span>            :   }
+<span class="lineNum">     333 </span>            : };
+<span class="lineNum">     334 </span>            : 
+<span class="lineNum">     335 </span>            : /// \ingroup ActionsGroup
+<span class="lineNum">     336 </span>            : /// \ingroup TimeGroup
+<span class="lineNum">     337 </span>            : /// Cleans up after the self-start procedure
+<span class="lineNum">     338 </span>            : ///
+<span class="lineNum">     339 </span>            : /// Resets the time step to that requested for the evolution and
+<span class="lineNum">     340 </span>            : /// removes temporary self-start data.
+<span class="lineNum">     341 </span>            : ///
+<span class="lineNum">     342 </span>            : /// Uses:
+<span class="lineNum">     343 </span>            : /// - ConstGlobalCache: nothing
+<span class="lineNum">     344 </span>            : /// - DataBox: SelfStart::Tags::InitialValue&lt;Tags::TimeStep&gt;
+<span class="lineNum">     345 </span>            : ///
+<span class="lineNum">     346 </span>            : /// DataBox changes:
+<span class="lineNum">     347 </span>            : /// - Adds: nothing
+<span class="lineNum">     348 </span>            : /// - Removes:
+<span class="lineNum">     349 </span>            : ///   - SelfStart::Tags::InitialValue&lt;Tags::TimeStep&gt;
+<span class="lineNum">     350 </span>            : ///   - SelfStart::Tags::InitialValue&lt;variables_tag&gt;
+<span class="lineNum">     351 </span>            : /// - Modifies: Tags::TimeStep
+<span class="lineNum">     352 </span><span class="lineCov">          1 : struct Cleanup {</span>
+<span class="lineNum">     353 </span>            :   template &lt;typename DbTags, typename... InboxTags, typename Metavariables,
+<span class="lineNum">     354 </span>            :             typename ArrayIndex, typename ActionList,
+<span class="lineNum">     355 </span>            :             typename ParallelComponent&gt;
+<span class="lineNum">     356 </span><span class="lineNoCov">          0 :   static auto apply(db::DataBox&lt;DbTags&gt;&amp; box,</span>
+<span class="lineNum">     357 </span>            :                     const tuples::TaggedTuple&lt;InboxTags...&gt;&amp; /*inboxes*/,
+<span class="lineNum">     358 </span>            :                     const Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; /*cache*/,
+<span class="lineNum">     359 </span>            :                     const ArrayIndex&amp; /*array_index*/,
+<span class="lineNum">     360 </span>            :                     const ActionList /*meta*/,
+<span class="lineNum">     361 </span>            :                     const ParallelComponent* const /*meta*/) noexcept {
+<span class="lineNum">     362 </span>            :     using variables_tag = typename Metavariables::system::variables_tag;
+<span class="lineNum">     363 </span>            :     using initial_step_tag = Tags::InitialValue&lt;::Tags::TimeStep&gt;;
+<span class="lineNum">     364 </span>            : 
+<span class="lineNum">     365 </span>            :     // Reset the time step to the value requested by the user.  The
+<span class="lineNum">     366 </span>            :     // variables were reset in StartNextOrderIfReady.
+<span class="lineNum">     367 </span>            :     db::mutate&lt;::Tags::TimeStep&gt;(
+<span class="lineNum">     368 </span>            :         make_not_null(&amp;box),
+<span class="lineNum">     369 </span>            :         [](const gsl::not_null&lt;db::item_type&lt;::Tags::TimeStep&gt;*&gt; time_step,
+<span class="lineNum">     370 </span>            :            const db::item_type&lt;initial_step_tag&gt;&amp; initial_step) noexcept {
+<span class="lineNum">     371 </span>            :           *time_step = get&lt;0&gt;(initial_step);
+<span class="lineNum">     372 </span>            :         },
+<span class="lineNum">     373 </span>            :         db::get&lt;initial_step_tag&gt;(box));
+<span class="lineNum">     374 </span>            : 
+<span class="lineNum">     375 </span>            :     return std::make_tuple(
+<span class="lineNum">     376 </span>            :         db::create_from&lt;db::RemoveTags&lt;initial_step_tag,
+<span class="lineNum">     377 </span>            :                                        Tags::InitialValue&lt;variables_tag&gt;&gt;&gt;(
+<span class="lineNum">     378 </span>            :             std::move(box)));
+<span class="lineNum">     379 </span>            :   }
+<span class="lineNum">     380 </span>            : };
+<span class="lineNum">     381 </span>            : }  // namespace Actions
+<span class="lineNum">     382 </span>            : 
+<span class="lineNum">     383 </span>            : namespace detail {
+<span class="lineNum">     384 </span>            : struct PhaseStart;
+<span class="lineNum">     385 </span>            : struct PhaseEnd;
+<span class="lineNum">     386 </span>            : }  // namespace detail
+<span class="lineNum">     387 </span>            : 
+<span class="lineNum">     388 </span>            : /// \ingroup TimeGroup
+<span class="lineNum">     389 </span>            : /// The list of actions required to self-start an integrator.
+<span class="lineNum">     390 </span>            : ///
+<span class="lineNum">     391 </span>            : /// \tparam ComputeRhs Action or list of actions computing and
+<span class="lineNum">     392 </span>            : /// recording the system derivative.
+<span class="lineNum">     393 </span>            : /// \tparam UpdateVariables Action or list of actions updating the
+<span class="lineNum">     394 </span>            : /// evolved variables (but not the time).
+<span class="lineNum">     395 </span>            : ///
+<span class="lineNum">     396 </span>            : /// \see SelfStart
+<span class="lineNum">     397 </span>            : // clang-format off
+<span class="lineNum">     398 </span>            : template &lt;typename ComputeRhs, typename UpdateVariables&gt;
+<span class="lineNum">     399 </span><span class="lineCov">          2 : using self_start_procedure = tmpl::flatten&lt;tmpl::list&lt;</span>
+<span class="lineNum">     400 </span>            :     SelfStart::Actions::Initialize,
+<span class="lineNum">     401 </span>            :     ::Actions::Label&lt;detail::PhaseStart&gt;,
+<span class="lineNum">     402 </span>            :     SelfStart::Actions::CheckForCompletion&lt;detail::PhaseEnd&gt;,
+<span class="lineNum">     403 </span>            :     ::Actions::AdvanceTime,
+<span class="lineNum">     404 </span>            :     SelfStart::Actions::CheckForOrderIncrease,
+<span class="lineNum">     405 </span>            :     ComputeRhs,
+<span class="lineNum">     406 </span>            :     SelfStart::Actions::StartNextOrderIfReady&lt;detail::PhaseStart&gt;,
+<span class="lineNum">     407 </span>            :     UpdateVariables,
+<span class="lineNum">     408 </span>            :     ::Actions::Goto&lt;detail::PhaseStart&gt;,
+<span class="lineNum">     409 </span>            :     ::Actions::Label&lt;detail::PhaseEnd&gt;,
+<span class="lineNum">     410 </span>            :     SelfStart::Actions::Cleanup&gt;&gt;;
+<span class="lineNum">     411 </span>            : // clang-format on
+<span class="lineNum">     412 </span>            : }  // namespace SelfStart
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

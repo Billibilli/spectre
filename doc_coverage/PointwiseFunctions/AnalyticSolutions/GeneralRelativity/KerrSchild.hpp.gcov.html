@@ -1,0 +1,380 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - PointwiseFunctions/AnalyticSolutions/GeneralRelativity/KerrSchild.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">PointwiseFunctions/AnalyticSolutions/GeneralRelativity</a> - KerrSchild.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">38</td>
+            <td class="headerCovTableEntryLo">2.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;NumericalAlgorithms/LinearOperators/PartialDerivatives.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;Options/Options.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;PointwiseFunctions/GeneralRelativity/TagsDeclarations.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/TaggedTuple.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : /// \cond
+<span class="lineNum">      17 </span>            : namespace PUP {
+<span class="lineNum">      18 </span>            : class er;  // IWYU pragma: keep
+<span class="lineNum">      19 </span>            : }  // namespace PUP
+<span class="lineNum">      20 </span>            : namespace Tags {
+<span class="lineNum">      21 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">      22 </span>            : struct dt;
+<span class="lineNum">      23 </span>            : }  // namespace Tags
+<span class="lineNum">      24 </span>            : /// \endcond
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : // IWYU pragma: no_include &lt;pup.h&gt;
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : namespace gr {
+<span class="lineNum">      29 </span>            : namespace Solutions {
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : /*!
+<span class="lineNum">      32 </span>            :  * \brief Kerr black hole in Kerr-Schild coordinates
+<span class="lineNum">      33 </span>            :  *
+<span class="lineNum">      34 </span>            :  * \details
+<span class="lineNum">      35 </span>            :  * The metric is \f$g_{\mu\nu} = \eta_{\mu\nu} + 2 H l_\mu l_\nu\f$,
+<span class="lineNum">      36 </span>            :  * where \f$\eta_{\mu\nu}\f$ is the Minkowski metric, \f$H\f$ is a scalar
+<span class="lineNum">      37 </span>            :  * function, and \f$l_\mu\f$ is the outgoing null vector.
+<span class="lineNum">      38 </span>            :  * \f$H\f$ and \f$l_\mu\f$ are known functions of the coordinates
+<span class="lineNum">      39 </span>            :  * and of the mass and spin vector.
+<span class="lineNum">      40 </span>            :  *
+<span class="lineNum">      41 </span>            :  * The following are input file options that can be specified:
+<span class="lineNum">      42 </span>            :  *  - Mass (default: 1.)
+<span class="lineNum">      43 </span>            :  *  - Center (default: {0,0,0})
+<span class="lineNum">      44 </span>            :  *  - Spin (default: {0,0,0})
+<span class="lineNum">      45 </span>            :  *
+<span class="lineNum">      46 </span>            :  * ## Kerr-Schild Coordinates
+<span class="lineNum">      47 </span>            :  *
+<span class="lineNum">      48 </span>            :  *
+<span class="lineNum">      49 </span>            :  * A Kerr-Schild coordinate system is defined by
+<span class="lineNum">      50 </span>            :  * \f{equation}{
+<span class="lineNum">      51 </span>            :  * g_{\mu\nu}  \equiv \eta_{\mu\nu} + 2 H l_\mu l_\nu,
+<span class="lineNum">      52 </span>            :  * \f}
+<span class="lineNum">      53 </span>            :  * where \f$H\f$ is a scalar function of the coordinates, \f$\eta_{\mu\nu}\f$
+<span class="lineNum">      54 </span>            :  * is the Minkowski metric, and \f$l^\mu\f$ is a null vector. Note that the
+<span class="lineNum">      55 </span>            :  * form of the metric along with the nullness of \f$l^\mu\f$ allows one to
+<span class="lineNum">      56 </span>            :  * raise and lower indices of \f$l^\mu\f$ using \f$\eta_{\mu\nu}\f$, and
+<span class="lineNum">      57 </span>            :  * that \f$l^t l^t = l_t l_t = l^i l_i\f$.
+<span class="lineNum">      58 </span>            :  * Note also that
+<span class="lineNum">      59 </span>            :  * \f{equation}{
+<span class="lineNum">      60 </span>            :  * g^{\mu\nu}  \equiv \eta^{\mu\nu} - 2 H l^\mu l^\nu,
+<span class="lineNum">      61 </span>            :  * \f}
+<span class="lineNum">      62 </span>            :  * and that \f$\sqrt{-g}=1\f$.
+<span class="lineNum">      63 </span>            :  * Also, \f$l_\mu\f$ is a geodesic with respect to both the physical metric
+<span class="lineNum">      64 </span>            :  * and the Minkowski metric:
+<span class="lineNum">      65 </span>            :  * \f{equation}{
+<span class="lineNum">      66 </span>            :  * l^\mu \partial_\mu l_\nu = l^\mu\nabla_\mu l_\nu = 0.
+<span class="lineNum">      67 </span>            :  * \f}
+<span class="lineNum">      68 </span>            :  *
+<span class="lineNum">      69 </span>            :  *
+<span class="lineNum">      70 </span>            :  * The corresponding 3+1 quantities are
+<span class="lineNum">      71 </span>            :  * \f{eqnarray}{
+<span class="lineNum">      72 </span>            :  * g_{i j}     &amp;=&amp; \delta_{i j} + 2 H l_i l_j,\\
+<span class="lineNum">      73 </span>            :  * g^{i j}  &amp;=&amp; \delta^{i j} - {2 H l^i l^j \over 1+2H l^t l^t},\\
+<span class="lineNum">      74 </span>            :  * {\rm det} g_{i j}&amp;=&amp; 1+2H l^t l^t,\\
+<span class="lineNum">      75 </span>            :  * \beta^i       &amp;=&amp; - {2 H l^t l^i \over 1+2H l^t l^t},\\
+<span class="lineNum">      76 </span>            :  * N        &amp;=&amp; \left(1+2 H l^t l^t\right)^{-1/2},\quad\hbox{(lapse)}\\
+<span class="lineNum">      77 </span>            :  * \alpha     &amp;=&amp; \left(1+2 H l^t l^t\right)^{-1},
+<span class="lineNum">      78 </span>            :  *                \quad\hbox{(densitized lapse)}\\
+<span class="lineNum">      79 </span>            :  * K_{i j}  &amp;=&amp; - \left(1+2 H l^t l^t\right)^{1/2}
+<span class="lineNum">      80 </span>            :  *       \left[l_i l_j \partial_{t} H + 2 H l_{(i} \partial_{t} l_{j)}\right]
+<span class="lineNum">      81 </span>            :  *                 \nonumber \\
+<span class="lineNum">      82 </span>            :  *                 &amp;&amp;-2\left(1+2 H l^t l^t\right)^{-1/2}
+<span class="lineNum">      83 </span>            :  *                \left[H l^t \partial_{(i}l_{j)} + H l_{(i}\partial_{j)}l^t
+<span class="lineNum">      84 </span>            :  *          + l^t l_{(i}\partial_{j)} H + 2H^2 l^t l_{(i} l^k\partial_{k}l_{j)}
+<span class="lineNum">      85 </span>            :  *          + H l^t l_i l_j l^k \partial_{k} H\right],\\
+<span class="lineNum">      86 </span>            :  * \partial_{k}g_{i j}&amp;=&amp; 2 l_i l_j\partial_{k} H +
+<span class="lineNum">      87 </span>            :  *    4 H l_{(i} \partial_{k}l_{j)},\\
+<span class="lineNum">      88 </span>            :  * \partial_{k}N   &amp;=&amp; -\left(1+2 H l^t l^t\right)^{-3/2}
+<span class="lineNum">      89 </span>            :  *                    \left(l^tl^t\partial_{k}H+2Hl^t\partial_{k}l^t\right),\\
+<span class="lineNum">      90 </span>            :  * \partial_{k}\beta^i  &amp;=&amp; - 2\left(1+2H l^t l^t\right)^{-1}
+<span class="lineNum">      91 </span>            :  *    \left(l^tl^i\partial_{k}H+Hl^t\partial_{k}l^i+Hl^i\partial_{k}l^t\right)
+<span class="lineNum">      92 </span>            :  *                   + 4 H l^t l^i \left(1+2H l^t l^t\right)^{-2}
+<span class="lineNum">      93 </span>            :  *                     \left(l^tl^t\partial_{k}H+2Hl^t\partial_{k}l^t\right),\\
+<span class="lineNum">      94 </span>            :  * \Gamma^k{}_{i j}&amp;=&amp; -\delta^{k m}\left(l_i l_j \partial_{m}H
+<span class="lineNum">      95 </span>            :  *                                    + 2l_{(i} \partial_{m}l_{j)} \right)
+<span class="lineNum">      96 </span>            :  *                   + 2 H l_{(i}\partial_{j)} l^k
+<span class="lineNum">      97 </span>            :  *          \nonumber \\
+<span class="lineNum">      98 </span>            :  *                  &amp;&amp;+\left(1+2 H l^t l^t\right)^{-1}
+<span class="lineNum">      99 </span>            :  *                     \left[2 l^k l_{(i}\partial_{j)} H
+<span class="lineNum">     100 </span>            :  *                          +2 H l_i l_j l^k l^m \partial_{m}H
+<span class="lineNum">     101 </span>            :  *                          +2 H l^k \partial_{(i}l_{j)}
+<span class="lineNum">     102 </span>            :  *                          +4 H^2 l^k l_{(i} (l^m \partial_{m}l_{j)}
+<span class="lineNum">     103 </span>            :  *                                      -\partial_{j)} l^t)
+<span class="lineNum">     104 </span>            :  *                     \right].
+<span class="lineNum">     105 </span>            :  * \f}
+<span class="lineNum">     106 </span>            :  * Note that \f$l^i\f$ is **not** equal to \f$g^{i j} l_j\f$; it is equal
+<span class="lineNum">     107 </span>            :  * to \f${}^{(4)}g^{i \mu} l_\mu\f$.
+<span class="lineNum">     108 </span>            :  *
+<span class="lineNum">     109 </span>            :  * ## Kerr Spacetime
+<span class="lineNum">     110 </span>            :  *
+<span class="lineNum">     111 </span>            :  * ### Spin in the z direction
+<span class="lineNum">     112 </span>            :  *
+<span class="lineNum">     113 </span>            :  * Assume Cartesian coordinates \f$(t,x,y,z)\f$. Then for stationary Kerr
+<span class="lineNum">     114 </span>            :  * spacetime with mass \f$M\f$ and angular momentum \f$a M\f$
+<span class="lineNum">     115 </span>            :  * in the \f$z\f$ direction,
+<span class="lineNum">     116 </span>            :  * \f{eqnarray}{
+<span class="lineNum">     117 </span>            :  * H     &amp;=&amp; {M r^3 \over r^4 + a^2 z^2},\\
+<span class="lineNum">     118 </span>            :  * l_\mu &amp;=&amp;
+<span class="lineNum">     119 </span>            :  * \left(1,{rx+ay\over r^2+a^2},{ry-ax\over r^2+a^2},{z\over r}\right),
+<span class="lineNum">     120 </span>            :  * \f}
+<span class="lineNum">     121 </span>            :  * where \f$r\f$ is defined by
+<span class="lineNum">     122 </span>            :  * \f{equation}{
+<span class="lineNum">     123 </span>            :  * \label{eq:rdefinition1}
+<span class="lineNum">     124 </span>            :  * {x^2+y^2\over a^2+r^2} + {z^2\over r^2} = 1,
+<span class="lineNum">     125 </span>            :  * \f}
+<span class="lineNum">     126 </span>            :  * or equivalently,
+<span class="lineNum">     127 </span>            :  * \f{equation}{
+<span class="lineNum">     128 </span>            :  * r^2 = {1\over 2}(x^2 + y^2 + z^2 - a^2)
+<span class="lineNum">     129 </span>            :  *      + \left({1\over 4}(x^2 + y^2 + z^2 - a^2)^2 + a^2 z^2\right)^{1/2}.
+<span class="lineNum">     130 </span>            :  * \f}
+<span class="lineNum">     131 </span>            :  *
+<span class="lineNum">     132 </span>            :  * Possibly useful formula:
+<span class="lineNum">     133 </span>            :  * \f{equation}{
+<span class="lineNum">     134 </span>            :  * \partial_{i} r = {x_i + z \delta_{i z} \displaystyle {a^2\over r^2} \over
+<span class="lineNum">     135 </span>            :  *   2 r\left(1 - \displaystyle {x^2 + y^2 + z^2 - a^2\over 2 r^2}\right)}.
+<span class="lineNum">     136 </span>            :  * \f}
+<span class="lineNum">     137 </span>            :  *
+<span class="lineNum">     138 </span>            :  * ### Spin in an arbitrary direction
+<span class="lineNum">     139 </span>            :  *
+<span class="lineNum">     140 </span>            :  * For arbitrary spin direction, let \f$\vec{x}\equiv (x,y,z)\f$ and
+<span class="lineNum">     141 </span>            :  * \f$\vec{a}\f$ be a flat-space three-vector with magnitude-squared
+<span class="lineNum">     142 </span>            :  * (\f$\delta_{ij}\f$ norm) equal to \f$a^2\f$.
+<span class="lineNum">     143 </span>            :  * Then the Kerr-Schild quantities for Kerr spacetime are:
+<span class="lineNum">     144 </span>            :  * \f{eqnarray}{
+<span class="lineNum">     145 </span>            :  * H       &amp;=&amp; {M r^3 \over r^4 + (\vec{a}\cdot\vec{x})^2},\\
+<span class="lineNum">     146 </span>            :  * \vec{l} &amp;=&amp; {r\vec{x}-\vec{a}\times\vec{x}+(\vec{a}\cdot\vec{x})\vec{a}/r
+<span class="lineNum">     147 </span>            :  *              \over r^2+a^2 },\\
+<span class="lineNum">     148 </span>            :  * l_t     &amp;=&amp; 1,\\
+<span class="lineNum">     149 </span>            :  * \label{eq:rdefinition2}
+<span class="lineNum">     150 </span>            :  * r^2     &amp;=&amp; {1\over 2}(\vec{x}\cdot\vec{x}-a^2)
+<span class="lineNum">     151 </span>            :  *      + \left({1\over 4}(\vec{x}\cdot\vec{x}-a^2)^2
+<span class="lineNum">     152 </span>            :  *              + (\vec{a}\cdot\vec{x})^2\right)^{1/2},
+<span class="lineNum">     153 </span>            :  * \f}
+<span class="lineNum">     154 </span>            :  * where \f$\vec{l}\equiv (l_x,l_y,l_z)\f$, and
+<span class="lineNum">     155 </span>            :  * all dot and cross products are evaluated as flat-space 3-vector operations.
+<span class="lineNum">     156 </span>            :  *
+<span class="lineNum">     157 </span>            :  * Possibly useful formulae:
+<span class="lineNum">     158 </span>            :  * \f{equation}{
+<span class="lineNum">     159 </span>            :  * \partial_{i} r = {x_i + (\vec{a}\cdot\vec{x})a_i/r^2 \over
+<span class="lineNum">     160 </span>            :  *   2 r\left(1 - \displaystyle {\vec{x}\cdot\vec{x}-a^2\over 2 r^2}\right)},
+<span class="lineNum">     161 </span>            :  * \f}
+<span class="lineNum">     162 </span>            :  * \f{equation}{
+<span class="lineNum">     163 </span>            :  * {\partial_{i} H \over H} =
+<span class="lineNum">     164 </span>            :  *  {3\partial_{i}r\over r} - {4 r^3 \partial_{i}r +
+<span class="lineNum">     165 </span>            :  *                     2(\vec{a}\cdot\vec{x})\vec{a}
+<span class="lineNum">     166 </span>            :  *                     \over r^4 + (\vec{a}\cdot\vec{x})^2},
+<span class="lineNum">     167 </span>            :  * \f}
+<span class="lineNum">     168 </span>            :  * \f{equation}{
+<span class="lineNum">     169 </span>            :  * (r^2+a^2)\partial_{j} l_i =
+<span class="lineNum">     170 </span>            :  *                 (x_i-2 r l_i-(\vec{a}\cdot\vec{x})a_i/r^2)\partial_{j}r
+<span class="lineNum">     171 </span>            :  *                 + r\delta_{ij} + a_i a_j/r + \epsilon^{ijk} a_k.
+<span class="lineNum">     172 </span>            :  * \f}
+<span class="lineNum">     173 </span>            :  *
+<span class="lineNum">     174 </span>            :  * ## Cartesian and Spherical Coordinates for Kerr
+<span class="lineNum">     175 </span>            :  *
+<span class="lineNum">     176 </span>            :  * The Kerr-Schild coordinates are defined in terms of the Cartesian
+<span class="lineNum">     177 </span>            :  * coordinates \f$(x,y,z)\f$.  If one wishes to express Kerr-Schild
+<span class="lineNum">     178 </span>            :  * coordinates in terms of the spherical polar coordinates
+<span class="lineNum">     179 </span>            :  * \f$(\tilde{r},\theta,\phi)\f$ then one can make the obvious and
+<span class="lineNum">     180 </span>            :  * usual transformation
+<span class="lineNum">     181 </span>            :  * \f{equation}{
+<span class="lineNum">     182 </span>            :  * \label{eq:sphertocartsimple}
+<span class="lineNum">     183 </span>            :  * x=\tilde{r}\sin\theta\cos\phi,\quad
+<span class="lineNum">     184 </span>            :  * y=\tilde{r}\sin\theta\sin\phi,\quad
+<span class="lineNum">     185 </span>            :  * z=\tilde{r}\cos\theta.
+<span class="lineNum">     186 </span>            :  * \f}
+<span class="lineNum">     187 </span>            :  *
+<span class="lineNum">     188 </span>            :  * This is simple, and has the advantage that in this coordinate system
+<span class="lineNum">     189 </span>            :  * for \f$M\to0\f$, Kerr spacetime becomes Minkowski space in spherical
+<span class="lineNum">     190 </span>            :  * coordinates \f$(\tilde{r},\theta,\phi)\f$. However, the disadvantage is
+<span class="lineNum">     191 </span>            :  * that the horizon of a Kerr hole is **not** located at constant
+<span class="lineNum">     192 </span>            :  * \f$\tilde{r}\f$, but is located instead at constant \f$r\f$,
+<span class="lineNum">     193 </span>            :  * where \f$r\f$ is the radial
+<span class="lineNum">     194 </span>            :  * Boyer-Lindquist coordinate defined in (\f$\ref{eq:rdefinition2}\f$).
+<span class="lineNum">     195 </span>            :  *
+<span class="lineNum">     196 </span>            :  * For spin in the \f$z\f$ direction, one could use the transformation
+<span class="lineNum">     197 </span>            :  * \f{equation}{
+<span class="lineNum">     198 </span>            :  * x=\sqrt{r^2+a^2}\sin\theta\cos\phi,\quad
+<span class="lineNum">     199 </span>            :  * y=\sqrt{r^2+a^2}\sin\theta\sin\phi,\quad
+<span class="lineNum">     200 </span>            :  * z=r\cos\theta.
+<span class="lineNum">     201 </span>            :  * \f}
+<span class="lineNum">     202 </span>            :  * In this case, for \f$M\to0\f$, Kerr spacetime becomes Minkowski space in
+<span class="lineNum">     203 </span>            :  * spheroidal coordinates, but now the horizon is on a constant-coordinate
+<span class="lineNum">     204 </span>            :  * surface.
+<span class="lineNum">     205 </span>            :  *
+<span class="lineNum">     206 </span>            :  * Right now we use (\f$\ref{eq:sphertocartsimple}\f$), but we may
+<span class="lineNum">     207 </span>            :  * wish to use the other transformation in the future.
+<span class="lineNum">     208 </span>            :  */
+<span class="lineNum">     209 </span><span class="lineCov">          1 : class KerrSchild {</span>
+<span class="lineNum">     210 </span>            :  public:
+<span class="lineNum">     211 </span><span class="lineNoCov">          0 :   struct Mass {</span>
+<span class="lineNum">     212 </span><span class="lineNoCov">          0 :     using type = double;</span>
+<span class="lineNum">     213 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {&quot;Mass of the black hole&quot;};</span>
+<span class="lineNum">     214 </span><span class="lineNoCov">          0 :     static type default_value() { return 1.; }</span>
+<span class="lineNum">     215 </span><span class="lineNoCov">          0 :     static type lower_bound() { return 0.; }</span>
+<span class="lineNum">     216 </span>            :   };
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :   struct Spin {</span>
+<span class="lineNum">     218 </span><span class="lineNoCov">          0 :     using type = std::array&lt;double, 3&gt;;</span>
+<span class="lineNum">     219 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">     220 </span>            :         &quot;The [x,y,z] dimensionless spin of the black hole&quot;};
+<span class="lineNum">     221 </span><span class="lineNoCov">          0 :     static type default_value() { return {{0., 0., 0.}}; }</span>
+<span class="lineNum">     222 </span>            :   };
+<span class="lineNum">     223 </span><span class="lineNoCov">          0 :   struct Center {</span>
+<span class="lineNum">     224 </span><span class="lineNoCov">          0 :     using type = std::array&lt;double, 3&gt;;</span>
+<span class="lineNum">     225 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">     226 </span>            :         &quot;The [x,y,z] center of the black hole&quot;};
+<span class="lineNum">     227 </span><span class="lineNoCov">          0 :     static type default_value() { return {{0., 0., 0.}}; }</span>
+<span class="lineNum">     228 </span>            :   };
+<span class="lineNum">     229 </span><span class="lineNoCov">          0 :   using options = tmpl::list&lt;Mass, Spin, Center&gt;;</span>
+<span class="lineNum">     230 </span><span class="lineNoCov">          0 :   static constexpr OptionString help{&quot;Black hole in Kerr-Schild coordinates&quot;};</span>
+<span class="lineNum">     231 </span>            : 
+<span class="lineNum">     232 </span><span class="lineNoCov">          0 :   KerrSchild(double mass, Spin::type dimensionless_spin, Center::type center,</span>
+<span class="lineNum">     233 </span>            :              const OptionContext&amp; context = {});
+<span class="lineNum">     234 </span>            : 
+<span class="lineNum">     235 </span><span class="lineNoCov">          0 :   explicit KerrSchild(CkMigrateMessage* /*unused*/) noexcept {}</span>
+<span class="lineNum">     236 </span>            : 
+<span class="lineNum">     237 </span><span class="lineNoCov">          0 :   KerrSchild() = default;</span>
+<span class="lineNum">     238 </span><span class="lineNoCov">          0 :   KerrSchild(const KerrSchild&amp; /*rhs*/) = default;</span>
+<span class="lineNum">     239 </span><span class="lineNoCov">          0 :   KerrSchild&amp; operator=(const KerrSchild&amp; /*rhs*/) = default;</span>
+<span class="lineNum">     240 </span><span class="lineNoCov">          0 :   KerrSchild(KerrSchild&amp;&amp; /*rhs*/) noexcept = default;</span>
+<span class="lineNum">     241 </span><span class="lineNoCov">          0 :   KerrSchild&amp; operator=(KerrSchild&amp;&amp; /*rhs*/) noexcept = default;</span>
+<span class="lineNum">     242 </span><span class="lineNoCov">          0 :   ~KerrSchild() = default;</span>
+<span class="lineNum">     243 </span>            : 
+<span class="lineNum">     244 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     245 </span><span class="lineNoCov">          0 :   using DerivLapse = ::Tags::deriv&lt;gr::Tags::Lapse&lt;DataType&gt;, tmpl::size_t&lt;3&gt;,</span>
+<span class="lineNum">     246 </span>            :                                    Frame::Inertial&gt;;
+<span class="lineNum">     247 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     248 </span><span class="lineNoCov">          0 :   using DerivShift =</span>
+<span class="lineNum">     249 </span>            :       ::Tags::deriv&lt;gr::Tags::Shift&lt;3, Frame::Inertial, DataType&gt;,
+<span class="lineNum">     250 </span>            :                     tmpl::size_t&lt;3&gt;, Frame::Inertial&gt;;
+<span class="lineNum">     251 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     252 </span><span class="lineNoCov">          0 :   using DerivSpatialMetric =</span>
+<span class="lineNum">     253 </span>            :       ::Tags::deriv&lt;gr::Tags::SpatialMetric&lt;3, Frame::Inertial, DataType&gt;,
+<span class="lineNum">     254 </span>            :                     tmpl::size_t&lt;3&gt;, Frame::Inertial&gt;;
+<span class="lineNum">     255 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     256 </span><span class="lineNoCov">          0 :   using tags = tmpl::list&lt;</span>
+<span class="lineNum">     257 </span>            :       gr::Tags::Lapse&lt;DataType&gt;, ::Tags::dt&lt;gr::Tags::Lapse&lt;DataType&gt;&gt;,
+<span class="lineNum">     258 </span>            :       DerivLapse&lt;DataType&gt;, gr::Tags::Shift&lt;3, Frame::Inertial, DataType&gt;,
+<span class="lineNum">     259 </span>            :       ::Tags::dt&lt;gr::Tags::Shift&lt;3, Frame::Inertial, DataType&gt;&gt;,
+<span class="lineNum">     260 </span>            :       DerivShift&lt;DataType&gt;,
+<span class="lineNum">     261 </span>            :       gr::Tags::SpatialMetric&lt;3, Frame::Inertial, DataType&gt;,
+<span class="lineNum">     262 </span>            :       ::Tags::dt&lt;gr::Tags::SpatialMetric&lt;3, Frame::Inertial, DataType&gt;&gt;,
+<span class="lineNum">     263 </span>            :       DerivSpatialMetric&lt;DataType&gt;&gt;;
+<span class="lineNum">     264 </span>            : 
+<span class="lineNum">     265 </span>            :   template &lt;typename DataType&gt;
+<span class="lineNum">     266 </span><span class="lineNoCov">          0 :   tuples::tagged_tuple_from_typelist&lt;tags&lt;DataType&gt;&gt; variables(</span>
+<span class="lineNum">     267 </span>            :       const tnsr::I&lt;DataType, 3&gt;&amp; x, double t, tags&lt;DataType&gt; /*meta*/) const
+<span class="lineNum">     268 </span>            :       noexcept;
+<span class="lineNum">     269 </span>            : 
+<span class="lineNum">     270 </span>            :   // clang-tidy: no runtime references
+<span class="lineNum">     271 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">     272 </span>            : 
+<span class="lineNum">     273 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE double mass() const noexcept { return mass_; }</span>
+<span class="lineNum">     274 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE const std::array&lt;double, 3&gt;&amp; center() const noexcept {</span>
+<span class="lineNum">     275 </span>            :     return center_;
+<span class="lineNum">     276 </span>            :   }
+<span class="lineNum">     277 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE const std::array&lt;double, 3&gt;&amp; dimensionless_spin() const</span>
+<span class="lineNum">     278 </span>            :       noexcept {
+<span class="lineNum">     279 </span>            :     return dimensionless_spin_;
+<span class="lineNum">     280 </span>            :   }
+<span class="lineNum">     281 </span>            : 
+<span class="lineNum">     282 </span>            :  private:
+<span class="lineNum">     283 </span><span class="lineNoCov">          0 :   double mass_{1.0};</span>
+<span class="lineNum">     284 </span><span class="lineNoCov">          0 :   std::array&lt;double, 3&gt; dimensionless_spin_{{0.0, 0.0, 0.0}},</span>
+<span class="lineNum">     285 </span><span class="lineNoCov">          0 :       center_{{0.0, 0.0, 0.0}};</span>
+<span class="lineNum">     286 </span>            : };
+<span class="lineNum">     287 </span>            : 
+<span class="lineNum">     288 </span><span class="lineNoCov">          0 : SPECTRE_ALWAYS_INLINE bool operator==(const KerrSchild&amp; lhs,</span>
+<span class="lineNum">     289 </span>            :                                       const KerrSchild&amp; rhs) noexcept {
+<span class="lineNum">     290 </span>            :   return lhs.mass() == rhs.mass() and
+<span class="lineNum">     291 </span>            :          lhs.dimensionless_spin() == rhs.dimensionless_spin() and
+<span class="lineNum">     292 </span>            :          lhs.center() == rhs.center();
+<span class="lineNum">     293 </span>            : }
+<span class="lineNum">     294 </span>            : 
+<span class="lineNum">     295 </span><span class="lineNoCov">          0 : SPECTRE_ALWAYS_INLINE bool operator!=(const KerrSchild&amp; lhs,</span>
+<span class="lineNum">     296 </span>            :                                       const KerrSchild&amp; rhs) noexcept {
+<span class="lineNum">     297 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     298 </span>            : }
+<span class="lineNum">     299 </span>            : }  // namespace Solutions
+<span class="lineNum">     300 </span>            : }  // namespace gr
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

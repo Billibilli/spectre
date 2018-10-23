@@ -1,0 +1,296 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: CoordinateMaps::Wedge2D Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceCoordinateMaps.html">CoordinateMaps</a></li><li class="navelem"><a class="el" href="classCoordinateMaps_1_1Wedge2D.html">Wedge2D</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classCoordinateMaps_1_1Wedge2D-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">CoordinateMaps::Wedge2D Class Reference<div class="ingroups"><a class="el" href="group__CoordinateMapsGroup.html">Coordinate Maps</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Two dimensional map from the logical square to a wedge, which is used by domains which use disks or annuli.  
+ <a href="classCoordinateMaps_1_1Wedge2D.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Wedge2D_8hpp_source.html">Wedge2D.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a6cc615e348289aa7c802de702bebe895"><td class="memItemLeft" align="right" valign="top"><a id="a6cc615e348289aa7c802de702bebe895"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Wedge2D</b> (double radius_inner, double radius_outer, double circularity_inner, double circularity_outer, OrientationMap&lt; 2 &gt; orientation_of_wedge, bool with_equiangular_map) noexcept</td></tr>
+<tr class="separator:a6cc615e348289aa7c802de702bebe895"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2043a2e3138b3dc22edf99328b0ea2c0"><td class="memItemLeft" align="right" valign="top"><a id="a2043a2e3138b3dc22edf99328b0ea2c0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Wedge2D</b> (<a class="el" href="classCoordinateMaps_1_1Wedge2D.html">Wedge2D</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a2043a2e3138b3dc22edf99328b0ea2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb7be585cc19927d3356938b1e78886c"><td class="memItemLeft" align="right" valign="top"><a id="aeb7be585cc19927d3356938b1e78886c"></a>
+<a class="el" href="classCoordinateMaps_1_1Wedge2D.html">Wedge2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classCoordinateMaps_1_1Wedge2D.html">Wedge2D</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:aeb7be585cc19927d3356938b1e78886c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5051b916028b67344c180b15853e7429"><td class="memItemLeft" align="right" valign="top"><a id="a5051b916028b67344c180b15853e7429"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Wedge2D</b> (const <a class="el" href="classCoordinateMaps_1_1Wedge2D.html">Wedge2D</a> &amp;)=default</td></tr>
+<tr class="separator:a5051b916028b67344c180b15853e7429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a688a7da6094c78b91e64724a17df66ff"><td class="memItemLeft" align="right" valign="top"><a id="a688a7da6094c78b91e64724a17df66ff"></a>
+<a class="el" href="classCoordinateMaps_1_1Wedge2D.html">Wedge2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classCoordinateMaps_1_1Wedge2D.html">Wedge2D</a> &amp;)=default</td></tr>
+<tr class="separator:a688a7da6094c78b91e64724a17df66ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae082c06730004d62fb061b9f6e0f3e98"><td class="memTemplParams" colspan="2"><a id="ae082c06730004d62fb061b9f6e0f3e98"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ae082c06730004d62fb061b9f6e0f3e98"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 2 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:ae082c06730004d62fb061b9f6e0f3e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5060b762bfc356f3a0171a1c43b6ce8f"><td class="memItemLeft" align="right" valign="top"><a id="a5060b762bfc356f3a0171a1c43b6ce8f"></a>
+boost::optional&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 2 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMaps_1_1Wedge2D.html#a5060b762bfc356f3a0171a1c43b6ce8f">inverse</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, 2 &gt; &amp;target_coords) const noexcept</td></tr>
+<tr class="memdesc:a5060b762bfc356f3a0171a1c43b6ce8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns invalid if \(x&lt;=0\) (for a \(+x\)-oriented <code><a class="el" href="classCoordinateMaps_1_1Wedge2D.html" title="Two dimensional map from the logical square to a wedge, which is used by domains which use disks or a...">Wedge2D</a></code>). <br /></td></tr>
+<tr class="separator:a5060b762bfc356f3a0171a1c43b6ce8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9765ae20471dc136114996f90e0e1772"><td class="memTemplParams" colspan="2"><a id="a9765ae20471dc136114996f90e0e1772"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a9765ae20471dc136114996f90e0e1772"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Ij&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 2, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>jacobian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 2 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:a9765ae20471dc136114996f90e0e1772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50ce49db6249d7d68b1ffebeef25308c"><td class="memTemplParams" colspan="2"><a id="a50ce49db6249d7d68b1ffebeef25308c"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a50ce49db6249d7d68b1ffebeef25308c"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Ij&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 2, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>inv_jacobian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 2 &gt; &amp;source_coords) const noexcept</td></tr>
+<tr class="separator:a50ce49db6249d7d68b1ffebeef25308c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb8421fd035dbba1e31b60d66b512bde"><td class="memItemLeft" align="right" valign="top"><a id="afb8421fd035dbba1e31b60d66b512bde"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;p)</td></tr>
+<tr class="separator:afb8421fd035dbba1e31b60d66b512bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ae2483c4bedc94b957e7fefae71152e32"><td class="memItemLeft" align="right" valign="top"><a id="ae2483c4bedc94b957e7fefae71152e32"></a>
+static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>dim</b> = 2</td></tr>
+<tr class="separator:ae2483c4bedc94b957e7fefae71152e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:af639561fbde171f119bcfd72265cd5fa"><td class="memItemLeft" align="right" valign="top"><a id="af639561fbde171f119bcfd72265cd5fa"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classCoordinateMaps_1_1Wedge2D.html">Wedge2D</a> &amp;lhs, const <a class="el" href="classCoordinateMaps_1_1Wedge2D.html">Wedge2D</a> &amp;rhs) noexcept</td></tr>
+<tr class="separator:af639561fbde171f119bcfd72265cd5fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Two dimensional map from the logical square to a wedge, which is used by domains which use disks or annuli. </p>
+<h3>Details</h3>
+<p>The coordinate map is constructed by linearly interpolating between a bulged arc which is circumscribed by a circular arc of radius <code>radius_outer</code> and a bulged arc which is circumscribed by a circular arc of radius <code>radius_inner</code>. These arcs can be made to be straight or circular, based on the value of <code>circularity_inner</code> or <code>circularity_outer</code>, which can take on values between 0 (for straight) and 1 (for circular). These arcs extend \(\pi/2\) in angle, and can be oriented along the +/- x or y axis. The choice of using either equiangular or equidistant coordinates along the arcs is specifiable with <code>with_equiangular_map</code>. The default logical coordinate that points in the angular direction is \(\eta\). We introduce the auxiliary variable \(\mathrm{H}\) which is a function of \(\eta\). If we are using equiangular coordinates, we have:</p>
+<p class="formulaDsp">
+\[\mathrm{H}(\eta) = \textrm{tan}(\eta\pi/4)\]
+</p>
+<p>With derivative:</p>
+<p class="formulaDsp">
+\[\mathrm{H}&#39;(\eta) = \frac{\pi}{4}(1+\mathrm{H}^2)\]
+</p>
+<p>If we are using equidistant coordinates, we have:</p>
+<p class="formulaDsp">
+\[\mathrm{H}(\eta) = \eta\]
+</p>
+<p>with derivative:</p>
+<center> \(\mathrm{H}&#39;(\eta) = 1\)</center><p>We also define the variable \(\rho\), given by:</p>
+<p class="formulaDsp">
+\[\rho = \sqrt{1+\mathrm{H}^2}\]
+</p>
+<p>In terms of the the circularity \(c\) and the radius \(R\), the mapping is:</p>
+<p class="formulaDsp">
+\[\vec{x}(\xi,\eta) = \frac{1}{2}\left\{(1-\xi)\Big[(1-c_{inner})\frac{R_{inner}}{\sqrt 2} + c_{inner}\frac{R_{inner}}{\rho}\Big] + (1+\xi)\Big[(1-c_{outer})\frac{R_{outer}}{\sqrt 2} +c_{outer} \frac{R_{outer}}{\rho}\Big] \right\}\begin{bmatrix} 1\\ \mathrm{H}\\ \end{bmatrix}\]
+</p>
+<p>We will define the variables \(T(\xi)\) and \(A(\xi)\), the trapezoid and annulus factors: </p><p class="formulaDsp">
+\[T(\xi) = T_0 + T_1\xi\]
+</p>
+ <p class="formulaDsp">
+\[A(\xi) = A_0 + A_1\xi\]
+</p>
+<p> Where </p><p class="formulaDsp">
+\begin{align*}T_0 &amp;= \frac{1}{2} \big\{ (1-c_{outer})R_{outer} + (1-c_{inner})R_{inner}\big\}\\ T_1 &amp;= \partial_{\xi} T = \frac{1}{2} \big\{ (1-c_{outer})R_{outer} - (1-c_{inner})R_{inner}\big\}\\ A_0 &amp;= \frac{1}{2} \big\{ c_{outer}R_{outer} + c_{inner}R_{inner}\big\}\\ A_1 &amp;= \partial_{\xi} A = \frac{1}{2} \big\{ c_{outer}R_{outer} - c_{inner}R_{inner}\big\}\end{align*}
+</p>
+<p>The map can then be rewritten as: </p><p class="formulaDsp">
+\[\vec{x}(\xi,\eta) = \left\{\frac{T(\xi)}{\sqrt 2} + \frac{A(\xi)}{\rho}\right\}\begin{bmatrix} 1\\ \mathrm{H}\\ \end{bmatrix}\]
+</p>
+<p>The Jacobian is: </p><p class="formulaDsp">
+\[J = \begin{bmatrix} \frac{T_1}{\sqrt 2} + \frac{A_1}{\rho} &amp; \mathrm{H}\mathrm{H}&#39;\frac{A(\xi)}{\rho^3} \\ \mathrm{H}\partial_{\xi}x &amp; \mathrm{H}\partial_{\eta}x + \mathrm{H}&#39;x\\ \end{bmatrix} \]
+</p>
+<p>The inverse Jacobian is: </p><p class="formulaDsp">
+\[J^{-1} = \frac{1}{x}\begin{bmatrix} \frac{1}{\partial_{\xi}x}\Big\{ \frac{T(\xi)}{\sqrt 2}+\frac{A(\xi)}{\rho^3} \Big\} &amp; \mathrm{H}\frac{1}{\partial_{\xi}x}\frac{A(\xi)}{\rho^3}\\ -\mathrm{H}\mathrm{H}&#39;^{-1} &amp; \mathrm{H}&#39;^{-1}\\ \end{bmatrix} \]
+</p>
+<p>For a more detailed discussion, see the documentation for <a class="el" href="classCoordinateMaps_1_1Wedge3D.html" title="Three dimensional map from the cube to a wedge. ">Wedge3D</a>, where the default logical coordinate that points in the radial direction is \(\zeta\) (In <a class="el" href="classCoordinateMaps_1_1Wedge2D.html" title="Two dimensional map from the logical square to a wedge, which is used by domains which use disks or a...">Wedge2D</a> the logical coordinate that points in the radial direction is \(\xi\)), and one may set either of the two other logical coordinates to zero to obtain an equivalent <a class="el" href="classCoordinateMaps_1_1Wedge2D.html" title="Two dimensional map from the logical square to a wedge, which is used by domains which use disks or a...">Wedge2D</a> map. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Domain/CoordinateMaps/<a class="el" href="Wedge2D_8hpp_source.html">Wedge2D.hpp</a></li>
+<li>src/Domain/CoordinateMaps/Wedge2D.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/Interpolation/BarycentricRational.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/Interpolation</a> - BarycentricRational.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryLo">10.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : #include &lt;unistd.h&gt;  // IWYU pragma: keep
+<span class="lineNum">       8 </span>            : #include &lt;vector&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : namespace PUP {
+<span class="lineNum">      11 </span>            : class er;
+<span class="lineNum">      12 </span>            : }  // namespace PUP
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : /*!
+<span class="lineNum">      15 </span>            :  * \ingroup NumericalAlgorithmsGroup
+<span class="lineNum">      16 </span>            :  * \brief Contains classes and functions for interpolation
+<span class="lineNum">      17 </span>            :  */
+<span class="lineNum">      18 </span>            : namespace intrp {
+<span class="lineNum">      19 </span>            : /*!
+<span class="lineNum">      20 </span>            :  * \ingroup NumericalAlgorithmsGroup
+<span class="lineNum">      21 </span>            :  * \brief A barycentric rational interpolation class
+<span class="lineNum">      22 </span>            :  *
+<span class="lineNum">      23 </span>            :  * The class builds a barycentric rational interpolant of a specified order
+<span class="lineNum">      24 </span>            :  * using the `x_values` and `y_values` passed into the constructor.
+<span class="lineNum">      25 </span>            :  * Barycentric interpolation requires \f$3N\f$ storage, and costs
+<span class="lineNum">      26 </span>            :  * \f$\mathcal{O}(Nd)\f$ to construct, where \f$N\f$ is the size of the x- and
+<span class="lineNum">      27 </span>            :  * y-value vectors and \f$d\f$ is the order of the interpolant. The evaluation
+<span class="lineNum">      28 </span>            :  * cost is \f$\mathcal{O}(N)\f$ compared to \f$\mathcal{O}(d)\f$ of a spline
+<span class="lineNum">      29 </span>            :  * method, but constructing the barycentric interpolant does not require any
+<span class="lineNum">      30 </span>            :  * derivatives of the function to be known.
+<span class="lineNum">      31 </span>            :  *
+<span class="lineNum">      32 </span>            :  * The interpolation function is
+<span class="lineNum">      33 </span>            :  *
+<span class="lineNum">      34 </span>            :  * \f[
+<span class="lineNum">      35 </span>            :  *   \mathcal{I}(x)=\frac{\sum_{i=0}^{N-1}w_i y_i /
+<span class="lineNum">      36 </span>            :  *   (x-x_i)}{\sum_{i=0}^{N-1}w_i/(x-x_i)}
+<span class="lineNum">      37 </span>            :  * \f]
+<span class="lineNum">      38 </span>            :  *
+<span class="lineNum">      39 </span>            :  * where \f$w_i\f$ are the weights. The weights are computed using
+<span class="lineNum">      40 </span>            :  *
+<span class="lineNum">      41 </span>            :  * \f[
+<span class="lineNum">      42 </span>            :  *   w_k=\sum_{i=k-d\\0\le i &lt; N-d}^{k}(-1)^{i}
+<span class="lineNum">      43 </span>            :  *       \prod_{j=i\\j\ne k}^{i+d}\frac{1}{x_k-x_j} \f]
+<span class="lineNum">      44 </span>            :  *
+<span class="lineNum">      45 </span>            :  * \requires `x_values.size() == y_values.size()` and
+<span class="lineNum">      46 </span>            :  * `x_values_.size() &gt;= order`
+<span class="lineNum">      47 </span>            :  */
+<span class="lineNum">      48 </span><span class="lineCov">          1 : class BarycentricRational {</span>
+<span class="lineNum">      49 </span>            :  public:
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 :   BarycentricRational() noexcept = default;</span>
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 :   BarycentricRational(std::vector&lt;double&gt; x_values,</span>
+<span class="lineNum">      52 </span>            :                       std::vector&lt;double&gt; y_values, size_t order) noexcept;
+<span class="lineNum">      53 </span>            : 
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :   double operator()(double x_to_interp_to) const noexcept;</span>
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 :   size_t order() const noexcept;</span>
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            :   // clang-tidy: no runtime references
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            :  private:
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :   std::vector&lt;double&gt; x_values_;</span>
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 :   std::vector&lt;double&gt; y_values_;</span>
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :   std::vector&lt;double&gt; weights_;</span>
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   ssize_t order_{0};</span>
+<span class="lineNum">      66 </span>            : };
+<span class="lineNum">      67 </span>            : }  // namespace intrp
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

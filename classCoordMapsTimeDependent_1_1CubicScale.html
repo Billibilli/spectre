@@ -1,0 +1,254 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: CoordMapsTimeDependent::CubicScale Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>CoordMapsTimeDependent</b></li><li class="navelem"><a class="el" href="classCoordMapsTimeDependent_1_1CubicScale.html">CubicScale</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classCoordMapsTimeDependent_1_1CubicScale-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">CoordMapsTimeDependent::CubicScale Class Reference<div class="ingroups"><a class="el" href="group__CoordMapsTimeDependentGroup.html">Coordinate Maps, Time-dependent</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><a class="el" href="classCoordMapsTimeDependent_1_1CubicScale.html" title="CubicScale map defined by , where  is the outer boundary. ">CubicScale</a> map defined by \(x = a(t)*\xi+(b(t)-a(t))\xi^3/X^2\), where \(X\) is the outer boundary.  
+ <a href="classCoordMapsTimeDependent_1_1CubicScale.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="CubicScale_8hpp_source.html">CubicScale.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a4a1f3ed8ab6c99c0bf7624d28b30254a"><td class="memItemLeft" align="right" valign="top"><a id="a4a1f3ed8ab6c99c0bf7624d28b30254a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CubicScale</b> (double outer_boundary) noexcept</td></tr>
+<tr class="separator:a4a1f3ed8ab6c99c0bf7624d28b30254a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af09405b9e1132e0edadbac44e607e893"><td class="memTemplParams" colspan="2"><a id="af09405b9e1132e0edadbac44e607e893"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af09405b9e1132e0edadbac44e607e893"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 1 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 1 &gt; &amp;source_coords, double time, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;map_list) const noexcept</td></tr>
+<tr class="separator:af09405b9e1132e0edadbac44e607e893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5742966e2ec5efcc08bc2cb7acbac1e"><td class="memTemplParams" colspan="2"><a id="ae5742966e2ec5efcc08bc2cb7acbac1e"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ae5742966e2ec5efcc08bc2cb7acbac1e"><td class="memTemplItemLeft" align="right" valign="top">boost::optional&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 1 &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCoordMapsTimeDependent_1_1CubicScale.html#ae5742966e2ec5efcc08bc2cb7acbac1e">inverse</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 1 &gt; &amp;target_coords, double time, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;map_list) const noexcept</td></tr>
+<tr class="memdesc:ae5742966e2ec5efcc08bc2cb7acbac1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns boost::none if the point is outside the range of the map. <br /></td></tr>
+<tr class="separator:ae5742966e2ec5efcc08bc2cb7acbac1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2298c73526a7c20d678a716197530f5a"><td class="memTemplParams" colspan="2"><a id="a2298c73526a7c20d678a716197530f5a"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a2298c73526a7c20d678a716197530f5a"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 1 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>frame_velocity</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 1 &gt; &amp;source_coords, double time, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;map_list) const noexcept</td></tr>
+<tr class="separator:a2298c73526a7c20d678a716197530f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36106124864e8ef90f49516a26237838"><td class="memTemplParams" colspan="2"><a id="a36106124864e8ef90f49516a26237838"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a36106124864e8ef90f49516a26237838"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Ij&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 1, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>inv_jacobian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 1 &gt; &amp;source_coords, double time, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;map_list) const noexcept</td></tr>
+<tr class="separator:a36106124864e8ef90f49516a26237838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3d67b90207fdac4f8db6e9f3ed1e8ac"><td class="memTemplParams" colspan="2"><a id="ad3d67b90207fdac4f8db6e9f3ed1e8ac"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad3d67b90207fdac4f8db6e9f3ed1e8ac"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Ij&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 1, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>jacobian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 1 &gt; &amp;source_coords, double time, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;map_list) const noexcept</td></tr>
+<tr class="separator:ad3d67b90207fdac4f8db6e9f3ed1e8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affa501a3a137c4b484a4df2c2f84f304"><td class="memTemplParams" colspan="2"><a id="affa501a3a137c4b484a4df2c2f84f304"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:affa501a3a137c4b484a4df2c2f84f304"><td class="memTemplItemLeft" align="right" valign="top">tnsr::Iaa&lt; tt::remove_cvref_wrap_t&lt; T &gt;, 1, <a class="el" href="structFrame_1_1NoFrame.html">Frame::NoFrame</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>hessian</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, 1 &gt; &amp;source_coords, double time, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classFunctionOfTime.html">FunctionOfTime</a> &amp;&gt; &amp;map_list) const noexcept</td></tr>
+<tr class="separator:affa501a3a137c4b484a4df2c2f84f304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a069b0dca5f68063df5ae98b49f38e315"><td class="memItemLeft" align="right" valign="top"><a id="a069b0dca5f68063df5ae98b49f38e315"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="separator:a069b0dca5f68063df5ae98b49f38e315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a6f11533b3e58f35e08fc3a17f80477d7"><td class="memItemLeft" align="right" valign="top"><a id="a6f11533b3e58f35e08fc3a17f80477d7"></a>
+static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>dim</b> = 1</td></tr>
+<tr class="separator:a6f11533b3e58f35e08fc3a17f80477d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a2659cd9611b926c440c023d0a60080b2"><td class="memItemLeft" align="right" valign="top"><a id="a2659cd9611b926c440c023d0a60080b2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classCoordMapsTimeDependent_1_1CubicScale.html">CubicScale</a> &amp;lhs, const <a class="el" href="classCoordMapsTimeDependent_1_1CubicScale.html">CubicScale</a> &amp;rhs) noexcept</td></tr>
+<tr class="separator:a2659cd9611b926c440c023d0a60080b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classCoordMapsTimeDependent_1_1CubicScale.html" title="CubicScale map defined by , where  is the outer boundary. ">CubicScale</a> map defined by \(x = a(t)*\xi+(b(t)-a(t))\xi^3/X^2\), where \(X\) is the outer boundary. </p>
+<p>The map scales the coordinates \(\xi\) near the center by a factor \(a(t)\), while the coordinates near the outer boundary \(X\), are scaled by a factor \(b(t)\). Here \(a(t)\) and \(b(t)\) are <a class="el" href="namespaceFunctionsOfTime.html" title="Contains functions of time to support the dual frame system. ">FunctionsOfTime</a>.</p>
+<p>Currently, only a 1-D implementation. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Domain/CoordinateMaps/<a class="el" href="CubicScale_8hpp_source.html">CubicScale.hpp</a></li>
+<li>src/Domain/CoordinateMaps/CubicScale.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

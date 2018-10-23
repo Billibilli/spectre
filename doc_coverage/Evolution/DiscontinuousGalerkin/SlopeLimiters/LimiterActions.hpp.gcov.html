@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/DiscontinuousGalerkin/SlopeLimiters/LimiterActions.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">Evolution/DiscontinuousGalerkin/SlopeLimiters</a> - LimiterActions.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntryLo">20.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines actions ApplyLimiter and SendDataForLimiter
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;boost/functional/hash.hpp&gt;  // IWYU pragma: keep
+<span class="lineNum">      10 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      11 </span>            : #include &lt;map&gt;
+<span class="lineNum">      12 </span>            : #include &lt;unordered_map&gt;
+<span class="lineNum">      13 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : #include &quot;DataStructures/DataBox/DataBox.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Domain/Tags.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Parallel/ConstGlobalCache.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Parallel/Invoke.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/TaggedTuple.hpp&quot;
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : namespace SlopeLimiters {
+<span class="lineNum">      23 </span>            : namespace Tags {
+<span class="lineNum">      24 </span>            : /// \ingroup DiscontinuousGalerkinGroup
+<span class="lineNum">      25 </span>            : /// \ingroup SlopeLimitersGroup
+<span class="lineNum">      26 </span>            : /// \brief The inbox tag for limiter communication.
+<span class="lineNum">      27 </span>            : template &lt;typename Metavariables&gt;
+<span class="lineNum">      28 </span><span class="lineCov">          1 : struct LimiterCommunicationTag {</span>
+<span class="lineNum">      29 </span><span class="lineNoCov">          0 :   static constexpr size_t volume_dim = Metavariables::system::volume_dim;</span>
+<span class="lineNum">      30 </span><span class="lineNoCov">          0 :   using packaged_data_t = typename Metavariables::limiter::type::PackagedData;</span>
+<span class="lineNum">      31 </span><span class="lineNoCov">          0 :   using temporal_id = db::item_type&lt;typename Metavariables::temporal_id&gt;;</span>
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 :   using type =</span>
+<span class="lineNum">      33 </span>            :       std::map&lt;temporal_id,
+<span class="lineNum">      34 </span>            :                std::unordered_map&lt;
+<span class="lineNum">      35 </span>            :                    std::pair&lt;Direction&lt;volume_dim&gt;, ElementId&lt;volume_dim&gt;&gt;,
+<span class="lineNum">      36 </span>            :                    packaged_data_t,
+<span class="lineNum">      37 </span>            :                    boost::hash&lt;std::pair&lt;Direction&lt;volume_dim&gt;,
+<span class="lineNum">      38 </span>            :                                          ElementId&lt;volume_dim&gt;&gt;&gt;&gt;&gt;;
+<span class="lineNum">      39 </span>            : };
+<span class="lineNum">      40 </span>            : }  // namespace Tags
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            : namespace Actions {
+<span class="lineNum">      43 </span>            : /// \ingroup ActionsGroup
+<span class="lineNum">      44 </span>            : /// \ingroup DiscontinuousGalerkinGroup
+<span class="lineNum">      45 </span>            : /// \ingroup SlopeLimitersGroup
+<span class="lineNum">      46 </span>            : /// \brief Receive limiter data from neighbors, then apply limiter.
+<span class="lineNum">      47 </span>            : ///
+<span class="lineNum">      48 </span>            : /// Currently, is not tested for support of:
+<span class="lineNum">      49 </span>            : /// - h-refinement
+<span class="lineNum">      50 </span>            : /// Currently, does not support:
+<span class="lineNum">      51 </span>            : /// - Local time-stepping
+<span class="lineNum">      52 </span>            : ///
+<span class="lineNum">      53 </span>            : /// Uses:
+<span class="lineNum">      54 </span>            : /// - ConstGlobalCache:
+<span class="lineNum">      55 </span>            : ///   - Metavariables::limiter
+<span class="lineNum">      56 </span>            : /// - DataBox:
+<span class="lineNum">      57 </span>            : ///   - Metavariables::limiter::type::limit_argument_tags
+<span class="lineNum">      58 </span>            : ///   - Metavariables::temporal_id
+<span class="lineNum">      59 </span>            : ///   - Tags::Element&lt;volume_dim&gt;
+<span class="lineNum">      60 </span>            : /// DataBox changes:
+<span class="lineNum">      61 </span>            : /// - Adds: nothing
+<span class="lineNum">      62 </span>            : /// - Removes: nothing
+<span class="lineNum">      63 </span>            : /// - Modifies:
+<span class="lineNum">      64 </span>            : ///   - Metavariables::limiter::type::limit_tags
+<span class="lineNum">      65 </span>            : ///
+<span class="lineNum">      66 </span>            : /// \see SendDataForLimiter
+<span class="lineNum">      67 </span>            : template &lt;typename Metavariables&gt;
+<span class="lineNum">      68 </span><span class="lineCov">          1 : struct Limit {</span>
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   using const_global_cache_tags = tmpl::list&lt;typename Metavariables::limiter&gt;;</span>
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            :   static_assert(
+<span class="lineNum">      72 </span>            :       not Metavariables::local_time_stepping,
+<span class="lineNum">      73 </span>            :       &quot;Limiter communication actions do not yet support local time stepping&quot;);
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            :  public:
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 :   using limiter_comm_tag =</span>
+<span class="lineNum">      77 </span>            :       SlopeLimiters::Tags::LimiterCommunicationTag&lt;Metavariables&gt;;
+<span class="lineNum">      78 </span><span class="lineNoCov">          0 :   using inbox_tags = tmpl::list&lt;limiter_comm_tag&gt;;</span>
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            :   template &lt;typename DbTags, typename... InboxTags, typename ArrayIndex,
+<span class="lineNum">      81 </span>            :             typename ActionList, typename ParallelComponent&gt;
+<span class="lineNum">      82 </span><span class="lineNoCov">          0 :   static auto apply(db::DataBox&lt;DbTags&gt;&amp; box,</span>
+<span class="lineNum">      83 </span>            :                     tuples::TaggedTuple&lt;InboxTags...&gt;&amp; inboxes,
+<span class="lineNum">      84 </span>            :                     const Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; cache,
+<span class="lineNum">      85 </span>            :                     const ArrayIndex&amp; /*array_index*/,
+<span class="lineNum">      86 </span>            :                     const ActionList /*meta*/,
+<span class="lineNum">      87 </span>            :                     const ParallelComponent* const /*meta*/) noexcept {
+<span class="lineNum">      88 </span>            :     using mutate_tags = typename Metavariables::limiter::type::limit_tags;
+<span class="lineNum">      89 </span>            :     using argument_tags =
+<span class="lineNum">      90 </span>            :         typename Metavariables::limiter::type::limit_argument_tags;
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            :     const auto&amp; limiter = get&lt;typename Metavariables::limiter&gt;(cache);
+<span class="lineNum">      93 </span>            :     const auto&amp; local_temporal_id =
+<span class="lineNum">      94 </span>            :         db::get&lt;typename Metavariables::temporal_id&gt;(box);
+<span class="lineNum">      95 </span>            :     auto&amp; inbox = tuples::get&lt;limiter_comm_tag&gt;(inboxes);
+<span class="lineNum">      96 </span>            :     db::mutate_apply&lt;mutate_tags, argument_tags&gt;(limiter, make_not_null(&amp;box),
+<span class="lineNum">      97 </span>            :                                                  inbox[local_temporal_id]);
+<span class="lineNum">      98 </span>            : 
+<span class="lineNum">      99 </span>            :     inbox.erase(local_temporal_id);
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            :     return std::forward_as_tuple(std::move(box));
+<span class="lineNum">     102 </span>            :   }
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span>            :   template &lt;typename DbTags, typename... InboxTags, typename ArrayIndex&gt;
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 :   static bool is_ready(</span>
+<span class="lineNum">     106 </span>            :       const db::DataBox&lt;DbTags&gt;&amp; box,
+<span class="lineNum">     107 </span>            :       const tuples::TaggedTuple&lt;InboxTags...&gt;&amp; inboxes,
+<span class="lineNum">     108 </span>            :       const Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; /*cache*/,
+<span class="lineNum">     109 </span>            :       const ArrayIndex&amp; /*array_index*/) noexcept {
+<span class="lineNum">     110 </span>            :     constexpr size_t volume_dim = Metavariables::system::volume_dim;
+<span class="lineNum">     111 </span>            :     const auto&amp; element = db::get&lt;::Tags::Element&lt;volume_dim&gt;&gt;(box);
+<span class="lineNum">     112 </span>            :     const auto num_expected = element.neighbors().size();
+<span class="lineNum">     113 </span>            :     // Edge case where we do not receive any data
+<span class="lineNum">     114 </span>            :     if (UNLIKELY(num_expected == 0)) {
+<span class="lineNum">     115 </span>            :       return true;
+<span class="lineNum">     116 </span>            :     }
+<span class="lineNum">     117 </span>            :     const auto&amp; local_temporal_id =
+<span class="lineNum">     118 </span>            :         db::get&lt;typename Metavariables::temporal_id&gt;(box);
+<span class="lineNum">     119 </span>            :     const auto&amp; inbox = tuples::get&lt;limiter_comm_tag&gt;(inboxes);
+<span class="lineNum">     120 </span>            :     const auto&amp; received = inbox.find(local_temporal_id);
+<span class="lineNum">     121 </span>            :     // Check we have at least some data from correct time
+<span class="lineNum">     122 </span>            :     if (received == inbox.end()) {
+<span class="lineNum">     123 </span>            :       return false;
+<span class="lineNum">     124 </span>            :     }
+<span class="lineNum">     125 </span>            :     // Check data was received from each neighbor
+<span class="lineNum">     126 </span>            :     const size_t num_neighbors_received = received-&gt;second.size();
+<span class="lineNum">     127 </span>            :     return (num_neighbors_received == num_expected);
+<span class="lineNum">     128 </span>            :   }
+<span class="lineNum">     129 </span>            : };
+<span class="lineNum">     130 </span>            : 
+<span class="lineNum">     131 </span>            : /// \ingroup ActionsGroup
+<span class="lineNum">     132 </span>            : /// \ingroup DiscontinuousGalerkinGroup
+<span class="lineNum">     133 </span>            : /// \ingroup SlopeLimitersGroup
+<span class="lineNum">     134 </span>            : /// \brief Send local data needed for limiting.
+<span class="lineNum">     135 </span>            : ///
+<span class="lineNum">     136 </span>            : /// Currently, is not tested for support of:
+<span class="lineNum">     137 </span>            : /// - h-refinement
+<span class="lineNum">     138 </span>            : /// Currently, does not support:
+<span class="lineNum">     139 </span>            : /// - Local time-stepping
+<span class="lineNum">     140 </span>            : ///
+<span class="lineNum">     141 </span>            : /// Uses:
+<span class="lineNum">     142 </span>            : /// - ConstGlobalCache:
+<span class="lineNum">     143 </span>            : ///   - Metavariables::limiter
+<span class="lineNum">     144 </span>            : /// - DataBox:
+<span class="lineNum">     145 </span>            : ///   - Tags::Element&lt;volume_dim&gt;
+<span class="lineNum">     146 </span>            : ///   - Metavariables::limiter::type::package_argument_tags
+<span class="lineNum">     147 </span>            : ///   - Metavariables::temporal_id
+<span class="lineNum">     148 </span>            : ///
+<span class="lineNum">     149 </span>            : /// DataBox changes:
+<span class="lineNum">     150 </span>            : /// - Adds: nothing
+<span class="lineNum">     151 </span>            : /// - Removes: nothing
+<span class="lineNum">     152 </span>            : /// - Modifies: nothing
+<span class="lineNum">     153 </span>            : ///
+<span class="lineNum">     154 </span>            : /// \see ApplyLimiter
+<span class="lineNum">     155 </span>            : template &lt;typename Metavariables&gt;
+<span class="lineNum">     156 </span><span class="lineCov">          1 : struct SendData {</span>
+<span class="lineNum">     157 </span><span class="lineNoCov">          0 :   using const_global_cache_tags = tmpl::list&lt;typename Metavariables::limiter&gt;;</span>
+<span class="lineNum">     158 </span><span class="lineNoCov">          0 :   using limiter_comm_tag =</span>
+<span class="lineNum">     159 </span>            :       SlopeLimiters::Tags::LimiterCommunicationTag&lt;Metavariables&gt;;
+<span class="lineNum">     160 </span>            : 
+<span class="lineNum">     161 </span>            :   static_assert(
+<span class="lineNum">     162 </span>            :       not Metavariables::local_time_stepping,
+<span class="lineNum">     163 </span>            :       &quot;Limiter communication actions do not yet support local time stepping&quot;);
+<span class="lineNum">     164 </span>            : 
+<span class="lineNum">     165 </span>            :   template &lt;typename DbTags, typename... InboxTags, typename ArrayIndex,
+<span class="lineNum">     166 </span>            :             typename ActionList, typename ParallelComponent&gt;
+<span class="lineNum">     167 </span><span class="lineNoCov">          0 :   static auto apply(db::DataBox&lt;DbTags&gt;&amp; box,</span>
+<span class="lineNum">     168 </span>            :                     tuples::TaggedTuple&lt;InboxTags...&gt;&amp; /*inboxes*/,
+<span class="lineNum">     169 </span>            :                     Parallel::ConstGlobalCache&lt;Metavariables&gt;&amp; cache,
+<span class="lineNum">     170 </span>            :                     const ArrayIndex&amp; /*array_index*/,
+<span class="lineNum">     171 </span>            :                     const ActionList /*meta*/,
+<span class="lineNum">     172 </span>            :                     const ParallelComponent* const /*meta*/) noexcept {
+<span class="lineNum">     173 </span>            :     constexpr size_t volume_dim = Metavariables::system::volume_dim;
+<span class="lineNum">     174 </span>            : 
+<span class="lineNum">     175 </span>            :     auto&amp; receiver_proxy =
+<span class="lineNum">     176 </span>            :         Parallel::get_parallel_component&lt;ParallelComponent&gt;(cache);
+<span class="lineNum">     177 </span>            :     const auto&amp; element = db::get&lt;::Tags::Element&lt;volume_dim&gt;&gt;(box);
+<span class="lineNum">     178 </span>            :     const auto&amp; temporal_id = db::get&lt;typename Metavariables::temporal_id&gt;(box);
+<span class="lineNum">     179 </span>            :     const auto&amp; limiter = get&lt;typename Metavariables::limiter&gt;(cache);
+<span class="lineNum">     180 </span>            : 
+<span class="lineNum">     181 </span>            :     for (const auto&amp; direction_neighbors : element.neighbors()) {
+<span class="lineNum">     182 </span>            :       const auto&amp; direction = direction_neighbors.first;
+<span class="lineNum">     183 </span>            :       const size_t dimension = direction.dimension();
+<span class="lineNum">     184 </span>            :       const auto&amp; neighbors_in_direction = direction_neighbors.second;
+<span class="lineNum">     185 </span>            :       ASSERT(neighbors_in_direction.size() == 1,
+<span class="lineNum">     186 </span>            :              &quot;h-adaptivity is not supported yet.\nDirection: &quot;
+<span class="lineNum">     187 </span>            :                  &lt;&lt; direction &lt;&lt; &quot;\nDimension: &quot; &lt;&lt; dimension
+<span class="lineNum">     188 </span>            :                  &lt;&lt; &quot;\nNeighbors:\n&quot;
+<span class="lineNum">     189 </span>            :                  &lt;&lt; neighbors_in_direction);
+<span class="lineNum">     190 </span>            :       const auto&amp; orientation = neighbors_in_direction.orientation();
+<span class="lineNum">     191 </span>            :       const auto direction_from_neighbor = orientation(direction.opposite());
+<span class="lineNum">     192 </span>            : 
+<span class="lineNum">     193 </span>            :       using argument_tags =
+<span class="lineNum">     194 </span>            :           typename Metavariables::limiter::type::package_argument_tags;
+<span class="lineNum">     195 </span>            :       const auto packaged_data = db::apply&lt;argument_tags&gt;(
+<span class="lineNum">     196 </span>            :           [&amp;limiter](const auto&amp;... args) noexcept {
+<span class="lineNum">     197 </span>            :             // Note: orientation is received as last element of pack `args`
+<span class="lineNum">     198 </span>            :             typename Metavariables::limiter::type::PackagedData pack{};
+<span class="lineNum">     199 </span>            :             limiter.package_data(make_not_null(&amp;pack), args...);
+<span class="lineNum">     200 </span>            :             return pack;
+<span class="lineNum">     201 </span>            :           },
+<span class="lineNum">     202 </span>            :           box, orientation);
+<span class="lineNum">     203 </span>            : 
+<span class="lineNum">     204 </span>            :       for (const auto&amp; neighbor : neighbors_in_direction) {
+<span class="lineNum">     205 </span>            :         Parallel::receive_data&lt;limiter_comm_tag&gt;(
+<span class="lineNum">     206 </span>            :             receiver_proxy[neighbor], temporal_id,
+<span class="lineNum">     207 </span>            :             std::make_pair(
+<span class="lineNum">     208 </span>            :                 std::make_pair(direction_from_neighbor, element.id()),
+<span class="lineNum">     209 </span>            :                 packaged_data));
+<span class="lineNum">     210 </span>            : 
+<span class="lineNum">     211 </span>            :       }  // loop over neighbors_in_direction
+<span class="lineNum">     212 </span>            :     }    // loop over element.neighbors()
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span>            :     return std::forward_as_tuple(std::move(box));
+<span class="lineNum">     215 </span>            :   }
+<span class="lineNum">     216 </span>            : };
+<span class="lineNum">     217 </span>            : }  // namespace Actions
+<span class="lineNum">     218 </span>            : }  // namespace SlopeLimiters
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

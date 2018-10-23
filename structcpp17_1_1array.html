@@ -1,0 +1,294 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: cpp17::array&lt; T, Size &gt; Struct Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacecpp17.html">cpp17</a></li><li class="navelem"><a class="el" href="structcpp17_1_1array.html">array</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structcpp17_1_1array-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">cpp17::array&lt; T, Size &gt; Struct Template Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a5146bf8b960347c8088c2710344c0a71"><td class="memItemLeft" align="right" valign="top"><a id="a5146bf8b960347c8088c2710344c0a71"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = T</td></tr>
+<tr class="separator:a5146bf8b960347c8088c2710344c0a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8284b83e1abb9f1254fb00308c50e6c"><td class="memItemLeft" align="right" valign="top"><a id="af8284b83e1abb9f1254fb00308c50e6c"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>reference</b> = value_type &amp;</td></tr>
+<tr class="separator:af8284b83e1abb9f1254fb00308c50e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7005f65b92ea9251fe16ada437b03613"><td class="memItemLeft" align="right" valign="top"><a id="a7005f65b92ea9251fe16ada437b03613"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_reference</b> = const value_type &amp;</td></tr>
+<tr class="separator:a7005f65b92ea9251fe16ada437b03613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a448ec19354430412762340f64fe0d2b8"><td class="memItemLeft" align="right" valign="top"><a id="a448ec19354430412762340f64fe0d2b8"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>iterator</b> = value_type *</td></tr>
+<tr class="separator:a448ec19354430412762340f64fe0d2b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21cdb425a694c82fc921a927274be00e"><td class="memItemLeft" align="right" valign="top"><a id="a21cdb425a694c82fc921a927274be00e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_iterator</b> = const value_type *</td></tr>
+<tr class="separator:a21cdb425a694c82fc921a927274be00e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9a98ecb0af90943f670e5746a1d7463"><td class="memItemLeft" align="right" valign="top"><a id="ac9a98ecb0af90943f670e5746a1d7463"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>pointer</b> = value_type *</td></tr>
+<tr class="separator:ac9a98ecb0af90943f670e5746a1d7463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3105d13510b2cbb1700170697152354f"><td class="memItemLeft" align="right" valign="top"><a id="a3105d13510b2cbb1700170697152354f"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_pointer</b> = const value_type *</td></tr>
+<tr class="separator:a3105d13510b2cbb1700170697152354f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2391eb56fb24affe9efddd139f1213a"><td class="memItemLeft" align="right" valign="top"><a id="ad2391eb56fb24affe9efddd139f1213a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>size_type</b> = size_t</td></tr>
+<tr class="separator:ad2391eb56fb24affe9efddd139f1213a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08371441cbff6867221d4cd5420e687"><td class="memItemLeft" align="right" valign="top"><a id="af08371441cbff6867221d4cd5420e687"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/ptrdiff_t.html">std::ptrdiff_t</a></td></tr>
+<tr class="separator:af08371441cbff6867221d4cd5420e687"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2899a1c484dd4239aaec25d123a62c9d"><td class="memItemLeft" align="right" valign="top"><a id="a2899a1c484dd4239aaec25d123a62c9d"></a>
+constexpr iterator&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> () noexcept</td></tr>
+<tr class="separator:a2899a1c484dd4239aaec25d123a62c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26a0fdbb1e76947c661ad904f9c762b1"><td class="memItemLeft" align="right" valign="top"><a id="a26a0fdbb1e76947c661ad904f9c762b1"></a>
+constexpr const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> () const noexcept</td></tr>
+<tr class="separator:a26a0fdbb1e76947c661ad904f9c762b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafce283ec71294517defd689258a574d"><td class="memItemLeft" align="right" valign="top"><a id="aafce283ec71294517defd689258a574d"></a>
+constexpr iterator&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> () noexcept</td></tr>
+<tr class="separator:aafce283ec71294517defd689258a574d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9da6c7bc01ca1a45bd2bbe165f05d495"><td class="memItemLeft" align="right" valign="top"><a id="a9da6c7bc01ca1a45bd2bbe165f05d495"></a>
+constexpr const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> () const noexcept</td></tr>
+<tr class="separator:a9da6c7bc01ca1a45bd2bbe165f05d495"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade269ee6c61be5cf152774151f6e9c43"><td class="memItemLeft" align="right" valign="top"><a id="ade269ee6c61be5cf152774151f6e9c43"></a>
+constexpr const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>cbegin</b> () const noexcept</td></tr>
+<tr class="separator:ade269ee6c61be5cf152774151f6e9c43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47b07ba521b82aff391a3999f3007659"><td class="memItemLeft" align="right" valign="top"><a id="a47b07ba521b82aff391a3999f3007659"></a>
+constexpr const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>cend</b> () const noexcept</td></tr>
+<tr class="separator:a47b07ba521b82aff391a3999f3007659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64199554e9a14beb9d2b8b885707d42"><td class="memItemLeft" align="right" valign="top"><a id="ac64199554e9a14beb9d2b8b885707d42"></a>
+constexpr size_type&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const noexcept</td></tr>
+<tr class="separator:ac64199554e9a14beb9d2b8b885707d42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3506176ed0b8ebf688d3439d376871c0"><td class="memItemLeft" align="right" valign="top"><a id="a3506176ed0b8ebf688d3439d376871c0"></a>
+constexpr size_type&#160;</td><td class="memItemRight" valign="bottom"><b>max_size</b> () const noexcept</td></tr>
+<tr class="separator:a3506176ed0b8ebf688d3439d376871c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afac0619f75302900c94cdcfb9f7114b4"><td class="memItemLeft" align="right" valign="top"><a id="afac0619f75302900c94cdcfb9f7114b4"></a>
+constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>empty</b> () const noexcept</td></tr>
+<tr class="separator:afac0619f75302900c94cdcfb9f7114b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a873791f3dc40bb1f3b338e1867d4abc6"><td class="memItemLeft" align="right" valign="top"><a id="a873791f3dc40bb1f3b338e1867d4abc6"></a>
+constexpr reference&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (const size_type i) noexcept</td></tr>
+<tr class="separator:a873791f3dc40bb1f3b338e1867d4abc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19bd4585a2c5a2631aeeab3e1c88ad5f"><td class="memItemLeft" align="right" valign="top"><a id="a19bd4585a2c5a2631aeeab3e1c88ad5f"></a>
+constexpr const_reference&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (const size_type i) const noexcept</td></tr>
+<tr class="separator:a19bd4585a2c5a2631aeeab3e1c88ad5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fb82f4cad25d57bc6de550a118c5778"><td class="memItemLeft" align="right" valign="top"><a id="a1fb82f4cad25d57bc6de550a118c5778"></a>
+constexpr reference&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (const size_type i) noexcept</td></tr>
+<tr class="separator:a1fb82f4cad25d57bc6de550a118c5778"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ffe4ce5c506552f621568b3c91b536d"><td class="memItemLeft" align="right" valign="top"><a id="a1ffe4ce5c506552f621568b3c91b536d"></a>
+constexpr const_reference&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (const size_type i) const noexcept</td></tr>
+<tr class="separator:a1ffe4ce5c506552f621568b3c91b536d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadd8675cad31fe89b33eae0f9d650639"><td class="memItemLeft" align="right" valign="top"><a id="aadd8675cad31fe89b33eae0f9d650639"></a>
+constexpr reference&#160;</td><td class="memItemRight" valign="bottom"><b>front</b> ()</td></tr>
+<tr class="separator:aadd8675cad31fe89b33eae0f9d650639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67ece78246981a8b2ef644ea9fe9e3ed"><td class="memItemLeft" align="right" valign="top"><a id="a67ece78246981a8b2ef644ea9fe9e3ed"></a>
+constexpr const_reference&#160;</td><td class="memItemRight" valign="bottom"><b>front</b> () const</td></tr>
+<tr class="separator:a67ece78246981a8b2ef644ea9fe9e3ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a7d805f3f90a4aa6e486f785fdb60f4"><td class="memItemLeft" align="right" valign="top"><a id="a6a7d805f3f90a4aa6e486f785fdb60f4"></a>
+constexpr reference&#160;</td><td class="memItemRight" valign="bottom"><b>back</b> ()</td></tr>
+<tr class="separator:a6a7d805f3f90a4aa6e486f785fdb60f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b426e2306da033da59da3233e370d07"><td class="memItemLeft" align="right" valign="top"><a id="a0b426e2306da033da59da3233e370d07"></a>
+constexpr const_reference&#160;</td><td class="memItemRight" valign="bottom"><b>back</b> () const</td></tr>
+<tr class="separator:a0b426e2306da033da59da3233e370d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a575b0d272fa4570ed9d985224aa44093"><td class="memItemLeft" align="right" valign="top"><a id="a575b0d272fa4570ed9d985224aa44093"></a>
+constexpr value_type *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> () noexcept</td></tr>
+<tr class="separator:a575b0d272fa4570ed9d985224aa44093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a483762b4eba52b08db13fb85e8d8e104"><td class="memItemLeft" align="right" valign="top"><a id="a483762b4eba52b08db13fb85e8d8e104"></a>
+constexpr const value_type *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> () const noexcept</td></tr>
+<tr class="separator:a483762b4eba52b08db13fb85e8d8e104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a72e40f3eedba1bbb863d94e540e2409e"><td class="memItemLeft" align="right" valign="top"><a id="a72e40f3eedba1bbb863d94e540e2409e"></a>
+value_type&#160;</td><td class="memItemRight" valign="bottom"><b>data_</b> [Size &gt; 0 ? Size :1]</td></tr>
+<tr class="separator:a72e40f3eedba1bbb863d94e540e2409e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/Utilities/<a class="el" href="Array_8hpp_source.html">Array.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

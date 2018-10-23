@@ -1,0 +1,588 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - DataStructures/DataVector.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">DataStructures</a> - DataVector.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntry">62</td>
+            <td class="headerCovTableEntryLo">21.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class Data.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;array&gt;
+<span class="lineNum">      10 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">      11 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      12 </span>            : #include &lt;functional&gt;  // for std::reference_wrapper
+<span class="lineNum">      13 </span>            : #include &lt;initializer_list&gt;
+<span class="lineNum">      14 </span>            : #include &lt;limits&gt;
+<span class="lineNum">      15 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">      16 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">      17 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      22 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      23 </span>            : #include &quot;Utilities/MakeWithValue.hpp&quot;
+<span class="lineNum">      24 </span>            : #include &quot;Utilities/PointerVector.hpp&quot;
+<span class="lineNum">      25 </span>            : #include &quot;Utilities/Requires.hpp&quot;
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      28 </span>            : // IWYU pragma: no_forward_declare ConstantExpressions_detail::pow
+<span class="lineNum">      29 </span>            : namespace PUP {
+<span class="lineNum">      30 </span>            : class er;
+<span class="lineNum">      31 </span>            : }  // namespace PUP
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : // clang-tidy: no using declarations in header files
+<span class="lineNum">      34 </span>            : //             We want the std::abs to be used
+<span class="lineNum">      35 </span>            : using std::abs;  // NOLINT
+<span class="lineNum">      36 </span>            : /// \endcond
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            : // IWYU doesn't like that we want PointerVector.hpp to expose Blaze and also
+<span class="lineNum">      39 </span>            : // have DataVector.hpp to expose PointerVector.hpp without including Blaze
+<span class="lineNum">      40 </span>            : // directly in DataVector.hpp
+<span class="lineNum">      41 </span>            : //
+<span class="lineNum">      42 </span>            : // IWYU pragma: no_include &lt;blaze/math/dense/DenseVector.h&gt;
+<span class="lineNum">      43 </span>            : // IWYU pragma: no_include &lt;blaze/math/expressions/DVecDVecAddExpr.h&gt;
+<span class="lineNum">      44 </span>            : // IWYU pragma: no_include &lt;blaze/math/expressions/DVecDVecDivExpr.h&gt;
+<span class="lineNum">      45 </span>            : // IWYU pragma: no_include &lt;blaze/math/expressions/DVecDVecMultExpr.h&gt;
+<span class="lineNum">      46 </span>            : // IWYU pragma: no_include &lt;blaze/math/expressions/DVecDVecSubExpr.h&gt;
+<span class="lineNum">      47 </span>            : // IWYU pragma: no_include &lt;blaze/math/expressions/DVecMapExpr.h&gt;
+<span class="lineNum">      48 </span>            : // IWYU pragma: no_include &lt;blaze/math/expressions/DVecScalarDivExpr.h&gt;
+<span class="lineNum">      49 </span>            : // IWYU pragma: no_include &lt;blaze/math/expressions/DVecScalarMultExpr.h&gt;
+<span class="lineNum">      50 </span>            : // IWYU pragma: no_include &lt;blaze/math/expressions/DenseVector.h&gt;
+<span class="lineNum">      51 </span>            : // IWYU pragma: no_include &lt;blaze/math/expressions/Vector.h&gt;
+<span class="lineNum">      52 </span>            : // IWYU pragma: no_include &lt;blaze/math/typetraits/IsVector.h&gt;
+<span class="lineNum">      53 </span>            : // IWYU pragma: no_include &lt;blaze/math/expressions/Forward.h&gt;
+<span class="lineNum">      54 </span>            : // IWYU pragma: no_include &lt;blaze/math/AlignmentFlag.h&gt;
+<span class="lineNum">      55 </span>            : // IWYU pragma: no_include &lt;blaze/math/PaddingFlag.h&gt;
+<span class="lineNum">      56 </span>            : // IWYU pragma: no_include &lt;blaze/math/traits/AddTrait.h&gt;
+<span class="lineNum">      57 </span>            : // IWYU pragma: no_include &lt;blaze/math/traits/DivTrait.h&gt;
+<span class="lineNum">      58 </span>            : // IWYU pragma: no_include &lt;blaze/math/traits/MultTrait.h&gt;
+<span class="lineNum">      59 </span>            : // IWYU pragma: no_include &lt;blaze/math/traits/SubTrait.h&gt;
+<span class="lineNum">      60 </span>            : // IWYU pragma: no_include &lt;blaze/system/TransposeFlag.h&gt;
+<span class="lineNum">      61 </span>            : // IWYU pragma: no_include &lt;blaze/math/traits/BinaryMapTrait.h&gt;
+<span class="lineNum">      62 </span>            : // IWYU pragma: no_include &lt;blaze/math/traits/UnaryMapTrait.h&gt;
+<span class="lineNum">      63 </span>            : // IWYU pragma: no_include &lt;blaze/math/typetraits/TransposeFlag.h&gt;
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            : // IWYU pragma: no_forward_declare blaze::DenseVector
+<span class="lineNum">      66 </span>            : // IWYU pragma: no_forward_declare blaze::UnaryMapTrait
+<span class="lineNum">      67 </span>            : // IWYU pragma: no_forward_declare blaze::BinaryMapTrait
+<span class="lineNum">      68 </span>            : // IWYU pragma: no_forward_declare blaze::IsVector
+<span class="lineNum">      69 </span>            : // IWYU pragma: no_forward_declare blaze::TransposeFlag
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            : /*!
+<span class="lineNum">      72 </span>            :  * \ingroup DataStructuresGroup
+<span class="lineNum">      73 </span>            :  * \brief Stores a collection of function values.
+<span class="lineNum">      74 </span>            :  *
+<span class="lineNum">      75 </span>            :  * \details Use DataVector to represent function values on the computational
+<span class="lineNum">      76 </span>            :  * domain. Note that interpreting the data also requires knowledge of the points
+<span class="lineNum">      77 </span>            :  * that these function values correspond to.
+<span class="lineNum">      78 </span>            :  *
+<span class="lineNum">      79 </span>            :  * A DataVector holds an array of contiguous data. The DataVector can be owning,
+<span class="lineNum">      80 </span>            :  * meaning the array is deleted when the DataVector goes out of scope, or
+<span class="lineNum">      81 </span>            :  * non-owning, meaning it just has a pointer to an array.
+<span class="lineNum">      82 </span>            :  *
+<span class="lineNum">      83 </span>            :  * Refer to the \ref DataStructuresGroup documentation for a list of other
+<span class="lineNum">      84 </span>            :  * available types. In particular, to represent a generic vector that supports
+<span class="lineNum">      85 </span>            :  * common vector and matrix operations and whose meaning may not be of function
+<span class="lineNum">      86 </span>            :  * values at points, use DenseVector instead.
+<span class="lineNum">      87 </span>            :  *
+<span class="lineNum">      88 </span>            :  * DataVectors support a variety of mathematical operations that are applicable
+<span class="lineNum">      89 </span>            :  * to nodal coefficients. In addition to common arithmetic operations such as
+<span class="lineNum">      90 </span>            :  * elementwise addition, subtraction, multiplication and division the following
+<span class="lineNum">      91 </span>            :  * elementwise operations are implemented:
+<span class="lineNum">      92 </span>            :  *
+<span class="lineNum">      93 </span>            :  * - abs
+<span class="lineNum">      94 </span>            :  * - acos
+<span class="lineNum">      95 </span>            :  * - acosh
+<span class="lineNum">      96 </span>            :  * - asin
+<span class="lineNum">      97 </span>            :  * - asinh
+<span class="lineNum">      98 </span>            :  * - atan
+<span class="lineNum">      99 </span>            :  * - atan2
+<span class="lineNum">     100 </span>            :  * - atanh
+<span class="lineNum">     101 </span>            :  * - cbrt
+<span class="lineNum">     102 </span>            :  * - cos
+<span class="lineNum">     103 </span>            :  * - cosh
+<span class="lineNum">     104 </span>            :  * - erf
+<span class="lineNum">     105 </span>            :  * - erfc
+<span class="lineNum">     106 </span>            :  * - exp
+<span class="lineNum">     107 </span>            :  * - exp2
+<span class="lineNum">     108 </span>            :  * - exp10
+<span class="lineNum">     109 </span>            :  * - fabs
+<span class="lineNum">     110 </span>            :  * - hypot
+<span class="lineNum">     111 </span>            :  * - invcbrt
+<span class="lineNum">     112 </span>            :  * - invsqrt
+<span class="lineNum">     113 </span>            :  * - log
+<span class="lineNum">     114 </span>            :  * - log2
+<span class="lineNum">     115 </span>            :  * - log10
+<span class="lineNum">     116 </span>            :  * - max
+<span class="lineNum">     117 </span>            :  * - min
+<span class="lineNum">     118 </span>            :  * - pow
+<span class="lineNum">     119 </span>            :  * - sin
+<span class="lineNum">     120 </span>            :  * - sinh
+<span class="lineNum">     121 </span>            :  * - sqrt
+<span class="lineNum">     122 </span>            :  * - step_function: if less than zero returns zero, otherwise returns one
+<span class="lineNum">     123 </span>            :  * - tan
+<span class="lineNum">     124 </span>            :  * - tanh
+<span class="lineNum">     125 </span>            :  */
+<span class="lineNum">     126 </span>            : class DataVector
+<span class="lineNum">     127 </span>            :     : public PointerVector&lt;double, blaze::unaligned, blaze::unpadded,
+<span class="lineNum">     128 </span><span class="lineCov">          1 :                            blaze::defaultTransposeFlag, DataVector&gt; {</span>
+<span class="lineNum">     129 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     130 </span>            :   static constexpr void private_asserts() noexcept {
+<span class="lineNum">     131 </span>            :     static_assert(std::is_nothrow_move_constructible&lt;DataVector&gt;::value,
+<span class="lineNum">     132 </span>            :                   &quot;Missing move semantics&quot;);
+<span class="lineNum">     133 </span>            :   }
+<span class="lineNum">     134 </span>            :   /// \endcond
+<span class="lineNum">     135 </span>            :  public:
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :   using value_type = double;</span>
+<span class="lineNum">     137 </span><span class="lineNoCov">          0 :   using allocator_type = std::allocator&lt;value_type&gt;;</span>
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 :   using size_type = size_t;</span>
+<span class="lineNum">     139 </span><span class="lineNoCov">          0 :   using difference_type = std::ptrdiff_t;</span>
+<span class="lineNum">     140 </span><span class="lineNoCov">          0 :   using BaseType = PointerVector&lt;double, blaze::unaligned, blaze::unpadded,</span>
+<span class="lineNum">     141 </span>            :                                  blaze::defaultTransposeFlag, DataVector&gt;;
+<span class="lineNum">     142 </span><span class="lineNoCov">          0 :   static constexpr bool transpose_flag = blaze::defaultTransposeFlag;</span>
+<span class="lineNum">     143 </span>            : 
+<span class="lineNum">     144 </span>            :   using BaseType::ElementType;
+<span class="lineNum">     145 </span><span class="lineNoCov">          0 :   using TransposeType = DataVector;</span>
+<span class="lineNum">     146 </span><span class="lineNoCov">          0 :   using CompositeType = const DataVector&amp;;</span>
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            :   using BaseType::operator[];
+<span class="lineNum">     149 </span>            :   using BaseType::begin;
+<span class="lineNum">     150 </span>            :   using BaseType::cbegin;
+<span class="lineNum">     151 </span>            :   using BaseType::cend;
+<span class="lineNum">     152 </span>            :   using BaseType::data;
+<span class="lineNum">     153 </span>            :   using BaseType::end;
+<span class="lineNum">     154 </span>            :   using BaseType::size;
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span>            :   // @{
+<span class="lineNum">     157 </span>            :   // Upcast to `BaseType`
+<span class="lineNum">     158 </span><span class="lineNoCov">          0 :   const BaseType&amp; operator~() const noexcept {</span>
+<span class="lineNum">     159 </span>            :     return static_cast&lt;const BaseType&amp;&gt;(*this);
+<span class="lineNum">     160 </span>            :   }
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :   BaseType&amp; operator~() noexcept { return static_cast&lt;BaseType&amp;&gt;(*this); }</span>
+<span class="lineNum">     162 </span>            :   // @}
+<span class="lineNum">     163 </span>            : 
+<span class="lineNum">     164 </span>            :   /// Create with the given size and value.
+<span class="lineNum">     165 </span>            :   ///
+<span class="lineNum">     166 </span>            :   /// \param size number of values
+<span class="lineNum">     167 </span>            :   /// \param value the value to initialize each element.
+<span class="lineNum">     168 </span><span class="lineCov">          1 :   explicit DataVector(</span>
+<span class="lineNum">     169 </span>            :       size_t size,
+<span class="lineNum">     170 </span>            :       double value = std::numeric_limits&lt;double&gt;::signaling_NaN()) noexcept;
+<span class="lineNum">     171 </span>            : 
+<span class="lineNum">     172 </span>            :   /// Create a non-owning DataVector that points to `start`
+<span class="lineNum">     173 </span><span class="lineCov">          1 :   DataVector(double* start, size_t size) noexcept;</span>
+<span class="lineNum">     174 </span>            : 
+<span class="lineNum">     175 </span>            :   /// Create from an initializer list of doubles. All elements in the
+<span class="lineNum">     176 </span>            :   /// `std::initializer_list` must have decimal points
+<span class="lineNum">     177 </span>            :   template &lt;class T, Requires&lt;cpp17::is_same_v&lt;T, double&gt;&gt; = nullptr&gt;
+<span class="lineNum">     178 </span><span class="lineCov">          1 :   DataVector(std::initializer_list&lt;T&gt; list) noexcept;</span>
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span>            :   /// Empty DataVector
+<span class="lineNum">     181 </span><span class="lineCov">          1 :   DataVector() noexcept = default;</span>
+<span class="lineNum">     182 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     183 </span>            :   ~DataVector() = default;
+<span class="lineNum">     184 </span>            : 
+<span class="lineNum">     185 </span>            :   DataVector(const DataVector&amp; rhs);
+<span class="lineNum">     186 </span>            :   DataVector(DataVector&amp;&amp; rhs) noexcept;
+<span class="lineNum">     187 </span>            :   DataVector&amp; operator=(const DataVector&amp; rhs);
+<span class="lineNum">     188 </span>            :   DataVector&amp; operator=(DataVector&amp;&amp; rhs) noexcept;
+<span class="lineNum">     189 </span>            : 
+<span class="lineNum">     190 </span>            :   // This is a converting constructor. clang-tidy complains that it's not
+<span class="lineNum">     191 </span>            :   // explicit, but we want it to allow conversion.
+<span class="lineNum">     192 </span>            :   // clang-tidy: mark as explicit (we want conversion to DataVector)
+<span class="lineNum">     193 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     194 </span>            :   DataVector(const blaze::DenseVector&lt;VT, VF&gt;&amp; expression) noexcept;  // NOLINT
+<span class="lineNum">     195 </span>            : 
+<span class="lineNum">     196 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     197 </span>            :   DataVector&amp; operator=(const blaze::DenseVector&lt;VT, VF&gt;&amp; expression) noexcept;
+<span class="lineNum">     198 </span>            :   /// \endcond
+<span class="lineNum">     199 </span>            : 
+<span class="lineNum">     200 </span>            :   MAKE_EXPRESSION_MATH_ASSIGN_PV(+=, DataVector)
+<span class="lineNum">     201 </span>            :   MAKE_EXPRESSION_MATH_ASSIGN_PV(-=, DataVector)
+<span class="lineNum">     202 </span>            :   MAKE_EXPRESSION_MATH_ASSIGN_PV(*=, DataVector)
+<span class="lineNum">     203 </span>            :   MAKE_EXPRESSION_MATH_ASSIGN_PV(/=, DataVector)
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span><span class="lineNoCov">          0 :   DataVector&amp; operator=(const double&amp; rhs) noexcept {</span>
+<span class="lineNum">     206 </span>            :     ~*this = rhs;
+<span class="lineNum">     207 </span>            :     return *this;
+<span class="lineNum">     208 </span>            :   }
+<span class="lineNum">     209 </span>            : 
+<span class="lineNum">     210 </span>            :   // @{
+<span class="lineNum">     211 </span>            :   /// Set the DataVector to be a reference to another DataVector object
+<span class="lineNum">     212 </span><span class="lineCov">          1 :   void set_data_ref(gsl::not_null&lt;DataVector*&gt; rhs) noexcept {</span>
+<span class="lineNum">     213 </span>            :     set_data_ref(rhs-&gt;data(), rhs-&gt;size());
+<span class="lineNum">     214 </span>            :   }
+<span class="lineNum">     215 </span><span class="lineCov">          1 :   void set_data_ref(double* start, size_t size) noexcept {</span>
+<span class="lineNum">     216 </span>            :     owned_data_ = decltype(owned_data_){};
+<span class="lineNum">     217 </span>            :     (~*this).reset(start, size);
+<span class="lineNum">     218 </span>            :     owning_ = false;
+<span class="lineNum">     219 </span>            :   }
+<span class="lineNum">     220 </span>            :   // @}
+<span class="lineNum">     221 </span>            : 
+<span class="lineNum">     222 </span>            :   /// Returns true if the class owns the data
+<span class="lineNum">     223 </span><span class="lineCov">          1 :   bool is_owning() const noexcept { return owning_; }</span>
+<span class="lineNum">     224 </span>            : 
+<span class="lineNum">     225 </span>            :   /// Serialization for Charm++
+<span class="lineNum">     226 </span>            :   // clang-tidy: google-runtime-references
+<span class="lineNum">     227 </span><span class="lineCov">          1 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">     228 </span>            : 
+<span class="lineNum">     229 </span>            :  private:
+<span class="lineNum">     230 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE void reset_pointer_vector() noexcept {</span>
+<span class="lineNum">     231 </span>            :     reset(owned_data_.data(), owned_data_.size());
+<span class="lineNum">     232 </span>            :   }
+<span class="lineNum">     233 </span>            : 
+<span class="lineNum">     234 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     235 </span>            :   std::vector&lt;double, allocator_type&gt; owned_data_;
+<span class="lineNum">     236 </span>            :   bool owning_{true};
+<span class="lineNum">     237 </span>            :   /// \endcond
+<span class="lineNum">     238 </span>            : };
+<span class="lineNum">     239 </span>            : 
+<span class="lineNum">     240 </span>            : /// Output operator for DataVector
+<span class="lineNum">     241 </span><span class="lineCov">          1 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const DataVector&amp; d);</span>
+<span class="lineNum">     242 </span>            : 
+<span class="lineNum">     243 </span>            : /// Equivalence operator for DataVector
+<span class="lineNum">     244 </span><span class="lineCov">          1 : bool operator==(const DataVector&amp; lhs, const DataVector&amp; rhs) noexcept;</span>
+<span class="lineNum">     245 </span>            : 
+<span class="lineNum">     246 </span>            : /// Inequivalence operator for DataVector
+<span class="lineNum">     247 </span><span class="lineCov">          1 : bool operator!=(const DataVector&amp; lhs, const DataVector&amp; rhs) noexcept;</span>
+<span class="lineNum">     248 </span>            : 
+<span class="lineNum">     249 </span>            : /// \cond
+<span class="lineNum">     250 </span>            : // Used for comparing DataVector to an expression
+<span class="lineNum">     251 </span>            : template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     252 </span>            : bool operator==(const DataVector&amp; lhs,
+<span class="lineNum">     253 </span>            :                 const blaze::DenseVector&lt;VT, VF&gt;&amp; rhs) noexcept {
+<span class="lineNum">     254 </span>            :   return lhs == DataVector(rhs);
+<span class="lineNum">     255 </span>            : }
+<span class="lineNum">     256 </span>            : 
+<span class="lineNum">     257 </span>            : template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     258 </span>            : bool operator!=(const DataVector&amp; lhs,
+<span class="lineNum">     259 </span>            :                 const blaze::DenseVector&lt;VT, VF&gt;&amp; rhs) noexcept {
+<span class="lineNum">     260 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     261 </span>            : }
+<span class="lineNum">     262 </span>            : 
+<span class="lineNum">     263 </span>            : template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     264 </span>            : bool operator==(const blaze::DenseVector&lt;VT, VF&gt;&amp; lhs,
+<span class="lineNum">     265 </span>            :                 const DataVector&amp; rhs) noexcept {
+<span class="lineNum">     266 </span>            :   return DataVector(lhs) == rhs;
+<span class="lineNum">     267 </span>            : }
+<span class="lineNum">     268 </span>            : 
+<span class="lineNum">     269 </span>            : template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     270 </span>            : bool operator!=(const blaze::DenseVector&lt;VT, VF&gt;&amp; lhs,
+<span class="lineNum">     271 </span>            :                 const DataVector&amp; rhs) noexcept {
+<span class="lineNum">     272 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     273 </span>            : }
+<span class="lineNum">     274 </span>            : /// \endcond
+<span class="lineNum">     275 </span>            : 
+<span class="lineNum">     276 </span>            : // Specialize the Blaze type traits to correctly handle DataVector
+<span class="lineNum">     277 </span>            : namespace blaze {
+<span class="lineNum">     278 </span>            : template &lt;&gt;
+<span class="lineNum">     279 </span><span class="lineNoCov">          0 : struct IsVector&lt;DataVector&gt; : std::true_type {};</span>
+<span class="lineNum">     280 </span>            : 
+<span class="lineNum">     281 </span>            : template &lt;&gt;
+<span class="lineNum">     282 </span><span class="lineNoCov">          0 : struct TransposeFlag&lt;DataVector&gt; : BoolConstant&lt;DataVector::transpose_flag&gt; {};</span>
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span>            : template &lt;&gt;
+<span class="lineNum">     285 </span><span class="lineNoCov">          0 : struct AddTrait&lt;DataVector, DataVector&gt; {</span>
+<span class="lineNum">     286 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     287 </span>            : };
+<span class="lineNum">     288 </span>            : 
+<span class="lineNum">     289 </span>            : template &lt;&gt;
+<span class="lineNum">     290 </span><span class="lineNoCov">          0 : struct AddTrait&lt;DataVector, double&gt; {</span>
+<span class="lineNum">     291 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     292 </span>            : };
+<span class="lineNum">     293 </span>            : 
+<span class="lineNum">     294 </span>            : template &lt;&gt;
+<span class="lineNum">     295 </span><span class="lineNoCov">          0 : struct AddTrait&lt;double, DataVector&gt; {</span>
+<span class="lineNum">     296 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     297 </span>            : };
+<span class="lineNum">     298 </span>            : 
+<span class="lineNum">     299 </span>            : template &lt;&gt;
+<span class="lineNum">     300 </span><span class="lineNoCov">          0 : struct SubTrait&lt;DataVector, DataVector&gt; {</span>
+<span class="lineNum">     301 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     302 </span>            : };
+<span class="lineNum">     303 </span>            : 
+<span class="lineNum">     304 </span>            : template &lt;&gt;
+<span class="lineNum">     305 </span><span class="lineNoCov">          0 : struct SubTrait&lt;DataVector, double&gt; {</span>
+<span class="lineNum">     306 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     307 </span>            : };
+<span class="lineNum">     308 </span>            : 
+<span class="lineNum">     309 </span>            : template &lt;&gt;
+<span class="lineNum">     310 </span><span class="lineNoCov">          0 : struct SubTrait&lt;double, DataVector&gt; {</span>
+<span class="lineNum">     311 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     312 </span>            : };
+<span class="lineNum">     313 </span>            : 
+<span class="lineNum">     314 </span>            : template &lt;&gt;
+<span class="lineNum">     315 </span><span class="lineNoCov">          0 : struct MultTrait&lt;DataVector, DataVector&gt; {</span>
+<span class="lineNum">     316 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     317 </span>            : };
+<span class="lineNum">     318 </span>            : 
+<span class="lineNum">     319 </span>            : template &lt;&gt;
+<span class="lineNum">     320 </span><span class="lineNoCov">          0 : struct MultTrait&lt;DataVector, double&gt; {</span>
+<span class="lineNum">     321 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     322 </span>            : };
+<span class="lineNum">     323 </span>            : 
+<span class="lineNum">     324 </span>            : template &lt;&gt;
+<span class="lineNum">     325 </span><span class="lineNoCov">          0 : struct MultTrait&lt;double, DataVector&gt; {</span>
+<span class="lineNum">     326 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     327 </span>            : };
+<span class="lineNum">     328 </span>            : 
+<span class="lineNum">     329 </span>            : template &lt;&gt;
+<span class="lineNum">     330 </span><span class="lineNoCov">          0 : struct DivTrait&lt;DataVector, DataVector&gt; {</span>
+<span class="lineNum">     331 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     332 </span>            : };
+<span class="lineNum">     333 </span>            : 
+<span class="lineNum">     334 </span>            : template &lt;&gt;
+<span class="lineNum">     335 </span><span class="lineNoCov">          0 : struct DivTrait&lt;DataVector, double&gt; {</span>
+<span class="lineNum">     336 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     337 </span>            : };
+<span class="lineNum">     338 </span>            : 
+<span class="lineNum">     339 </span>            : template &lt;typename Operator&gt;
+<span class="lineNum">     340 </span><span class="lineNoCov">          0 : struct UnaryMapTrait&lt;DataVector, Operator&gt; {</span>
+<span class="lineNum">     341 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     342 </span>            : };
+<span class="lineNum">     343 </span>            : 
+<span class="lineNum">     344 </span>            : template &lt;typename Operator&gt;
+<span class="lineNum">     345 </span><span class="lineNoCov">          0 : struct BinaryMapTrait&lt;DataVector, DataVector, Operator&gt; {</span>
+<span class="lineNum">     346 </span><span class="lineNoCov">          0 :   using Type = DataVector;</span>
+<span class="lineNum">     347 </span>            : };
+<span class="lineNum">     348 </span>            : }  // namespace blaze
+<span class="lineNum">     349 </span>            : 
+<span class="lineNum">     350 </span><span class="lineNoCov">          0 : SPECTRE_ALWAYS_INLINE decltype(auto) fabs(const DataVector&amp; t) noexcept {</span>
+<span class="lineNum">     351 </span>            :   return abs(~t);
+<span class="lineNum">     352 </span>            : }
+<span class="lineNum">     353 </span>            : 
+<span class="lineNum">     354 </span>            : template &lt;typename T, size_t Dim&gt;
+<span class="lineNum">     355 </span><span class="lineNoCov">          0 : std::array&lt;DataVector, Dim&gt; operator+(</span>
+<span class="lineNum">     356 </span>            :     const std::array&lt;T, Dim&gt;&amp; lhs,
+<span class="lineNum">     357 </span>            :     const std::array&lt;DataVector, Dim&gt;&amp; rhs) noexcept {
+<span class="lineNum">     358 </span>            :   std::array&lt;DataVector, Dim&gt; result;
+<span class="lineNum">     359 </span>            :   for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">     360 </span>            :     gsl::at(result, i) = gsl::at(lhs, i) + gsl::at(rhs, i);
+<span class="lineNum">     361 </span>            :   }
+<span class="lineNum">     362 </span>            :   return result;
+<span class="lineNum">     363 </span>            : }
+<span class="lineNum">     364 </span>            : template &lt;typename U, size_t Dim&gt;
+<span class="lineNum">     365 </span><span class="lineNoCov">          0 : std::array&lt;DataVector, Dim&gt; operator+(const std::array&lt;DataVector, Dim&gt;&amp; lhs,</span>
+<span class="lineNum">     366 </span>            :                                       const std::array&lt;U, Dim&gt;&amp; rhs) noexcept {
+<span class="lineNum">     367 </span>            :   return rhs + lhs;
+<span class="lineNum">     368 </span>            : }
+<span class="lineNum">     369 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">     370 </span><span class="lineNoCov">          0 : std::array&lt;DataVector, Dim&gt; operator+(</span>
+<span class="lineNum">     371 </span>            :     const std::array&lt;DataVector, Dim&gt;&amp; lhs,
+<span class="lineNum">     372 </span>            :     const std::array&lt;DataVector, Dim&gt;&amp; rhs) noexcept {
+<span class="lineNum">     373 </span>            :   std::array&lt;DataVector, Dim&gt; result;
+<span class="lineNum">     374 </span>            :   for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">     375 </span>            :     gsl::at(result, i) = gsl::at(lhs, i) + gsl::at(rhs, i);
+<span class="lineNum">     376 </span>            :   }
+<span class="lineNum">     377 </span>            :   return result;
+<span class="lineNum">     378 </span>            : }
+<span class="lineNum">     379 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">     380 </span><span class="lineNoCov">          0 : std::array&lt;DataVector, Dim&gt;&amp; operator+=(</span>
+<span class="lineNum">     381 </span>            :     std::array&lt;DataVector, Dim&gt;&amp; lhs,
+<span class="lineNum">     382 </span>            :     const std::array&lt;DataVector, Dim&gt;&amp; rhs) noexcept {
+<span class="lineNum">     383 </span>            :   for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">     384 </span>            :     gsl::at(lhs, i) += gsl::at(rhs, i);
+<span class="lineNum">     385 </span>            :   }
+<span class="lineNum">     386 </span>            :   return lhs;
+<span class="lineNum">     387 </span>            : }
+<span class="lineNum">     388 </span>            : template &lt;typename T, size_t Dim&gt;
+<span class="lineNum">     389 </span><span class="lineNoCov">          0 : std::array&lt;DataVector, Dim&gt; operator-(</span>
+<span class="lineNum">     390 </span>            :     const std::array&lt;T, Dim&gt;&amp; lhs,
+<span class="lineNum">     391 </span>            :     const std::array&lt;DataVector, Dim&gt;&amp; rhs) noexcept {
+<span class="lineNum">     392 </span>            :   std::array&lt;DataVector, Dim&gt; result;
+<span class="lineNum">     393 </span>            :   for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">     394 </span>            :     gsl::at(result, i) = gsl::at(lhs, i) - gsl::at(rhs, i);
+<span class="lineNum">     395 </span>            :   }
+<span class="lineNum">     396 </span>            :   return result;
+<span class="lineNum">     397 </span>            : }
+<span class="lineNum">     398 </span>            : template &lt;typename U, size_t Dim&gt;
+<span class="lineNum">     399 </span><span class="lineNoCov">          0 : std::array&lt;DataVector, Dim&gt; operator-(const std::array&lt;DataVector, Dim&gt;&amp; lhs,</span>
+<span class="lineNum">     400 </span>            :                                       const std::array&lt;U, Dim&gt;&amp; rhs) noexcept {
+<span class="lineNum">     401 </span>            :   std::array&lt;DataVector, Dim&gt; result;
+<span class="lineNum">     402 </span>            :   for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">     403 </span>            :     gsl::at(result, i) = gsl::at(lhs, i) - gsl::at(rhs, i);
+<span class="lineNum">     404 </span>            :   }
+<span class="lineNum">     405 </span>            :   return result;
+<span class="lineNum">     406 </span>            : }
+<span class="lineNum">     407 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">     408 </span><span class="lineNoCov">          0 : std::array&lt;DataVector, Dim&gt; operator-(</span>
+<span class="lineNum">     409 </span>            :     const std::array&lt;DataVector, Dim&gt;&amp; lhs,
+<span class="lineNum">     410 </span>            :     const std::array&lt;DataVector, Dim&gt;&amp; rhs) noexcept {
+<span class="lineNum">     411 </span>            :   std::array&lt;DataVector, Dim&gt; result;
+<span class="lineNum">     412 </span>            :   for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">     413 </span>            :     gsl::at(result, i) = gsl::at(lhs, i) - gsl::at(rhs, i);
+<span class="lineNum">     414 </span>            :   }
+<span class="lineNum">     415 </span>            :   return result;
+<span class="lineNum">     416 </span>            : }
+<span class="lineNum">     417 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">     418 </span><span class="lineNoCov">          0 : std::array&lt;DataVector, Dim&gt;&amp; operator-=(</span>
+<span class="lineNum">     419 </span>            :     std::array&lt;DataVector, Dim&gt;&amp; lhs,
+<span class="lineNum">     420 </span>            :     const std::array&lt;DataVector, Dim&gt;&amp; rhs) noexcept {
+<span class="lineNum">     421 </span>            :   for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">     422 </span>            :     gsl::at(lhs, i) -= gsl::at(rhs, i);
+<span class="lineNum">     423 </span>            :   }
+<span class="lineNum">     424 </span>            :   return lhs;
+<span class="lineNum">     425 </span>            : }
+<span class="lineNum">     426 </span>            : 
+<span class="lineNum">     427 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     428 </span>            : template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     429 </span>            : DataVector::DataVector(const blaze::DenseVector&lt;VT, VF&gt;&amp; expression) noexcept
+<span class="lineNum">     430 </span>            :     : owned_data_((~expression).size()) {
+<span class="lineNum">     431 </span>            :   static_assert(cpp17::is_same_v&lt;typename VT::ResultType, DataVector&gt;,
+<span class="lineNum">     432 </span>            :                 &quot;You are attempting to assign the result of an expression that &quot;
+<span class="lineNum">     433 </span>            :                 &quot;is not a DataVector to a DataVector.&quot;);
+<span class="lineNum">     434 </span>            :   reset_pointer_vector();
+<span class="lineNum">     435 </span>            :   ~*this = expression;
+<span class="lineNum">     436 </span>            : }
+<span class="lineNum">     437 </span>            : 
+<span class="lineNum">     438 </span>            : template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     439 </span>            : DataVector&amp; DataVector::operator=(
+<span class="lineNum">     440 </span>            :     const blaze::DenseVector&lt;VT, VF&gt;&amp; expression) noexcept {
+<span class="lineNum">     441 </span>            :   static_assert(cpp17::is_same_v&lt;typename VT::ResultType, DataVector&gt;,
+<span class="lineNum">     442 </span>            :                 &quot;You are attempting to assign the result of an expression that &quot;
+<span class="lineNum">     443 </span>            :                 &quot;is not a DataVector to a DataVector.&quot;);
+<span class="lineNum">     444 </span>            :   if (owning_ and (~expression).size() != size()) {
+<span class="lineNum">     445 </span>            :     owned_data_.resize((~expression).size());
+<span class="lineNum">     446 </span>            :     reset_pointer_vector();
+<span class="lineNum">     447 </span>            :   } else if (not owning_) {
+<span class="lineNum">     448 </span>            :     ASSERT((~expression).size() == size(), &quot;Must copy into same size, not &quot;
+<span class="lineNum">     449 </span>            :                                                &lt;&lt; (~expression).size()
+<span class="lineNum">     450 </span>            :                                                &lt;&lt; &quot; into &quot; &lt;&lt; size());
+<span class="lineNum">     451 </span>            :   }
+<span class="lineNum">     452 </span>            :   ~*this = expression;
+<span class="lineNum">     453 </span>            :   return *this;
+<span class="lineNum">     454 </span>            : }
+<span class="lineNum">     455 </span>            : /// \endcond
+<span class="lineNum">     456 </span>            : 
+<span class="lineNum">     457 </span>            : namespace MakeWithValueImpls {
+<span class="lineNum">     458 </span>            : /// \brief Returns a DataVector the same size as `input`, with each element
+<span class="lineNum">     459 </span>            : /// equal to `value`.
+<span class="lineNum">     460 </span>            : template &lt;&gt;
+<span class="lineNum">     461 </span>            : SPECTRE_ALWAYS_INLINE DataVector
+<span class="lineNum">     462 </span><span class="lineCov">          1 : MakeWithValueImpl&lt;DataVector, DataVector&gt;::apply(const DataVector&amp; input,</span>
+<span class="lineNum">     463 </span>            :                                                  const double value) {
+<span class="lineNum">     464 </span>            :   return DataVector(input.size(), value);
+<span class="lineNum">     465 </span>            : }
+<span class="lineNum">     466 </span>            : }  // namespace MakeWithValueImpls
+<span class="lineNum">     467 </span>            : 
+<span class="lineNum">     468 </span>            : namespace ConstantExpressions_detail {
+<span class="lineNum">     469 </span>            : template &lt;&gt;
+<span class="lineNum">     470 </span>            : struct pow&lt;DataVector, 0, std::nullptr_t&gt; {
+<span class="lineNum">     471 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr double apply(const DataVector&amp; /*t*/) {
+<span class="lineNum">     472 </span>            :     return 1.0;
+<span class="lineNum">     473 </span>            :   }
+<span class="lineNum">     474 </span>            : };
+<span class="lineNum">     475 </span>            : template &lt;&gt;
+<span class="lineNum">     476 </span>            : struct pow&lt;std::reference_wrapper&lt;DataVector&gt;, 0, std::nullptr_t&gt; {
+<span class="lineNum">     477 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr double apply(
+<span class="lineNum">     478 </span>            :       const std::reference_wrapper&lt;DataVector&gt;&amp; /*t*/) {
+<span class="lineNum">     479 </span>            :     return 1.0;
+<span class="lineNum">     480 </span>            :   }
+<span class="lineNum">     481 </span>            : };
+<span class="lineNum">     482 </span>            : template &lt;&gt;
+<span class="lineNum">     483 </span>            : struct pow&lt;std::reference_wrapper&lt;const DataVector&gt;, 0, std::nullptr_t&gt; {
+<span class="lineNum">     484 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr double apply(
+<span class="lineNum">     485 </span>            :       const std::reference_wrapper&lt;const DataVector&gt;&amp; /*t*/) {
+<span class="lineNum">     486 </span>            :     return 1.0;
+<span class="lineNum">     487 </span>            :   }
+<span class="lineNum">     488 </span>            : };
+<span class="lineNum">     489 </span>            : template &lt;typename BlazeVector&gt;
+<span class="lineNum">     490 </span>            : struct pow&lt;BlazeVector, 0, Requires&lt;blaze::IsVector&lt;BlazeVector&gt;::value&gt;&gt; {
+<span class="lineNum">     491 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr double apply(
+<span class="lineNum">     492 </span>            :       const BlazeVector&amp; /*t*/) {
+<span class="lineNum">     493 </span>            :     return 1.0;
+<span class="lineNum">     494 </span>            :   }
+<span class="lineNum">     495 </span>            : };
+<span class="lineNum">     496 </span>            : 
+<span class="lineNum">     497 </span>            : template &lt;int N&gt;
+<span class="lineNum">     498 </span>            : struct pow&lt;DataVector, N, Requires&lt;(N &lt; 0)&gt;&gt; {
+<span class="lineNum">     499 </span>            :   static_assert(N &gt; 0,
+<span class="lineNum">     500 </span>            :                 &quot;Cannot use pow on DataVectorStructures with a negative &quot;
+<span class="lineNum">     501 </span>            :                 &quot;exponent. You must &quot;
+<span class="lineNum">     502 </span>            :                 &quot;divide by a positive exponent instead.&quot;);
+<span class="lineNum">     503 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr decltype(auto) apply(
+<span class="lineNum">     504 </span>            :       const DataVector&amp; t) {
+<span class="lineNum">     505 </span>            :     return DataVector(t.size(), 1.0) / (t * pow&lt;DataVector, -N - 1&gt;::apply(t));
+<span class="lineNum">     506 </span>            :   }
+<span class="lineNum">     507 </span>            : };
+<span class="lineNum">     508 </span>            : }  // namespace ConstantExpressions_detail
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

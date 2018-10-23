@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Domain/ElementLogicalCoordinates.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Domain</a> - ElementLogicalCoordinates.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;ElementLogicalCoordinates.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;memory&gt;
+<span class="lineNum">       8 </span>            : #include &lt;unordered_map&gt;
+<span class="lineNum">       9 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      10 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/IdPair.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      14 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Domain/BlockId.hpp&quot;    // IWYU pragma: keep
+<span class="lineNum">      16 </span>            : #include &quot;Domain/ElementId.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      17 </span>            : #include &quot;Domain/Side.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/GenerateInstantiations.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/MakeArray.hpp&quot;
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : namespace {
+<span class="lineNum">      23 </span>            : // Define this alias so we don't need to keep typing this monster.
+<span class="lineNum">      24 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      25 </span>            : using block_logical_coord_holder =
+<span class="lineNum">      26 </span>            :     IdPair&lt;domain::BlockId, tnsr::I&lt;double, Dim, typename ::Frame::Logical&gt;&gt;;
+<span class="lineNum">      27 </span>            : }  // namespace
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      30 </span>            : std::unordered_map&lt;ElementId&lt;Dim&gt;, ElementLogicalCoordHolder&lt;Dim&gt;&gt;
+<span class="lineNum">      31 </span><span class="lineNoCov">          0 : element_logical_coordinates(const std::vector&lt;ElementId&lt;Dim&gt;&gt;&amp; element_ids,</span>
+<span class="lineNum">      32 </span>            :                             const std::vector&lt;block_logical_coord_holder&lt;Dim&gt;&gt;&amp;
+<span class="lineNum">      33 </span>            :                                 block_coord_holders) noexcept {
+<span class="lineNum">      34 </span>            :   // Temporarily put results here in data structures that allow
+<span class="lineNum">      35 </span>            :   // push_back, because we don't know the sizes of the output
+<span class="lineNum">      36 </span>            :   // DataVectors ahead of time.
+<span class="lineNum">      37 </span>            :   std::vector&lt;std::array&lt;std::vector&lt;double&gt;, Dim&gt;&gt; x_element_logical(
+<span class="lineNum">      38 </span>            :       element_ids.size());
+<span class="lineNum">      39 </span>            :   std::vector&lt;std::vector&lt;size_t&gt;&gt; offsets(element_ids.size());
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            :   // Loop over points
+<span class="lineNum">      42 </span>            :   for (size_t offset = 0; offset &lt; block_coord_holders.size(); ++offset) {
+<span class="lineNum">      43 </span>            :     const auto&amp; block_id = block_coord_holders[offset].id;
+<span class="lineNum">      44 </span>            :     const auto&amp; x_block_logical = block_coord_holders[offset].data;
+<span class="lineNum">      45 </span>            :     // Need to loop over elements, because the block doesn't know
+<span class="lineNum">      46 </span>            :     // things like the refinement_level of each element.
+<span class="lineNum">      47 </span>            :     for (size_t index = 0; index &lt; element_ids.size(); ++index) {
+<span class="lineNum">      48 </span>            :       const auto&amp; element_id = element_ids[index];
+<span class="lineNum">      49 </span>            :       if (element_id.block_id() == block_id.get_index()) {
+<span class="lineNum">      50 </span>            :         // This element is in this block; now check if the point is in
+<span class="lineNum">      51 </span>            :         // this element.
+<span class="lineNum">      52 </span>            :         bool is_contained = true;
+<span class="lineNum">      53 </span>            :         auto x_elem = make_array&lt;Dim&gt;(0.0);
+<span class="lineNum">      54 </span>            :         for (size_t d = 0; d &lt; Dim; ++d) {
+<span class="lineNum">      55 </span>            :           const double up =
+<span class="lineNum">      56 </span>            :               gsl::at(element_id.segment_ids(), d).endpoint(Side::Upper);
+<span class="lineNum">      57 </span>            :           const double lo =
+<span class="lineNum">      58 </span>            :               gsl::at(element_id.segment_ids(), d).endpoint(Side::Lower);
+<span class="lineNum">      59 </span>            :           const double x_block_log = x_block_logical.get(d);
+<span class="lineNum">      60 </span>            :           if (x_block_log &lt; lo or x_block_log &gt; up) {
+<span class="lineNum">      61 </span>            :             is_contained = false;
+<span class="lineNum">      62 </span>            :             break;
+<span class="lineNum">      63 </span>            :           }
+<span class="lineNum">      64 </span>            :           // Map to element coords
+<span class="lineNum">      65 </span>            :           gsl::at(x_elem, d) = (2.0 * x_block_log - up - lo) / (up - lo);
+<span class="lineNum">      66 </span>            :         }
+<span class="lineNum">      67 </span>            :         if (is_contained) {
+<span class="lineNum">      68 </span>            :           for (size_t d = 0; d &lt; Dim; ++d) {
+<span class="lineNum">      69 </span>            :             gsl::at(x_element_logical[index], d).push_back(gsl::at(x_elem, d));
+<span class="lineNum">      70 </span>            :           }
+<span class="lineNum">      71 </span>            :           offsets[index].push_back(offset);
+<span class="lineNum">      72 </span>            :           // Found a matching element, so we don't need to check other
+<span class="lineNum">      73 </span>            :           // elements.
+<span class="lineNum">      74 </span>            :           break;
+<span class="lineNum">      75 </span>            :         }
+<span class="lineNum">      76 </span>            :       }
+<span class="lineNum">      77 </span>            :     }
+<span class="lineNum">      78 </span>            :   }
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            :   // Now we know how many points are in each element, so we can
+<span class="lineNum">      81 </span>            :   // put the intermediate results into the final data structure.
+<span class="lineNum">      82 </span>            :   std::unordered_map&lt;ElementId&lt;Dim&gt;, ElementLogicalCoordHolder&lt;Dim&gt;&gt; result;
+<span class="lineNum">      83 </span>            :   for (size_t index = 0; index &lt; element_ids.size(); ++index) {
+<span class="lineNum">      84 </span>            :     const size_t num_grid_pts = x_element_logical[index][0].size();
+<span class="lineNum">      85 </span>            :     if (num_grid_pts &gt; 0) {
+<span class="lineNum">      86 </span>            :       tnsr::I&lt;DataVector, Dim, Frame::Logical&gt; tmp(num_grid_pts);
+<span class="lineNum">      87 </span>            :       std::vector&lt;size_t&gt; off(num_grid_pts);
+<span class="lineNum">      88 </span>            :       for (size_t s = 0; s &lt; num_grid_pts; ++s) {
+<span class="lineNum">      89 </span>            :         for (size_t d = 0; d &lt; Dim; ++d) {
+<span class="lineNum">      90 </span>            :           tmp.get(d)[s] = gsl::at(x_element_logical[index], d)[s];
+<span class="lineNum">      91 </span>            :         }
+<span class="lineNum">      92 </span>            :         off[s] = offsets[index][s];
+<span class="lineNum">      93 </span>            :       }
+<span class="lineNum">      94 </span>            :       result.emplace(element_ids[index], ElementLogicalCoordHolder&lt;Dim&gt;{
+<span class="lineNum">      95 </span>            :                                              std::move(tmp), std::move(off)});
+<span class="lineNum">      96 </span>            :     }
+<span class="lineNum">      97 </span>            :   }
+<span class="lineNum">      98 </span>            :   return result;
+<span class="lineNum">      99 </span>            : }
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            : /// \cond
+<span class="lineNum">     102 </span>            : #define DIM(data) BOOST_PP_TUPLE_ELEM(0, data)
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span>            : #define INSTANTIATE(_, data)                                        \
+<span class="lineNum">     105 </span>            :   template std::unordered_map&lt;ElementId&lt;DIM(data)&gt;,                 \
+<span class="lineNum">     106 </span>            :                               ElementLogicalCoordHolder&lt;DIM(data)&gt;&gt; \
+<span class="lineNum">     107 </span>            :   element_logical_coordinates(                                      \
+<span class="lineNum">     108 </span>            :       const std::vector&lt;ElementId&lt;DIM(data)&gt;&gt;&amp; element_ids,         \
+<span class="lineNum">     109 </span>            :       const std::vector&lt;block_logical_coord_holder&lt;DIM(data)&gt;&gt;&amp;     \
+<span class="lineNum">     110 </span>            :           block_coord_holders) noexcept;
+<span class="lineNum">     111 </span>            : 
+<span class="lineNum">     112 </span>            : GENERATE_INSTANTIATIONS(INSTANTIATE, (1, 2, 3))
+<span class="lineNum">     113 </span>            : 
+<span class="lineNum">     114 </span>            : #undef DIM
+<span class="lineNum">     115 </span>            : #undef INSTANTIATE
+<span class="lineNum">     116 </span>            : /// \endcond
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

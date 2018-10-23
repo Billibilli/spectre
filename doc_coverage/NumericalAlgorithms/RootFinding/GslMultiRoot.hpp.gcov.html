@@ -1,0 +1,578 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/RootFinding/GslMultiRoot.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/RootFinding</a> - GslMultiRoot.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">       8 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       9 </span>            : #include &lt;gsl/gsl_errno.h&gt;
+<span class="lineNum">      10 </span>            : #include &lt;gsl/gsl_matrix_double.h&gt;
+<span class="lineNum">      11 </span>            : #include &lt;gsl/gsl_multiroots.h&gt;
+<span class="lineNum">      12 </span>            : #include &lt;gsl/gsl_vector_double.h&gt;
+<span class="lineNum">      13 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">      14 </span>            : #include &lt;string&gt;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;ErrorHandling/Exceptions.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Parallel/Printf.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/Requires.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : namespace RootFinder {
+<span class="lineNum">      24 </span>            : namespace gsl_multiroot_detail {
+<span class="lineNum">      25 </span>            : template &lt;size_t Dim, typename Solver&gt;
+<span class="lineNum">      26 </span>            : void print_state(const size_t iteration_number, const Solver* const solver,
+<span class="lineNum">      27 </span>            :                  const bool print_header = false) noexcept {
+<span class="lineNum">      28 </span>            :   if (print_header) {
+<span class="lineNum">      29 </span>            :     Parallel::printf(&quot;Iter\t&quot;);
+<span class="lineNum">      30 </span>            :     for (size_t i = 0; i &lt; Dim; ++i) {
+<span class="lineNum">      31 </span>            :       Parallel::printf(&quot; x[%u]\t&quot;, i);
+<span class="lineNum">      32 </span>            :     }
+<span class="lineNum">      33 </span>            :     for (size_t i = 0; i &lt; Dim; ++i) {
+<span class="lineNum">      34 </span>            :       Parallel::printf(&quot; f[%u]\t&quot;, i);
+<span class="lineNum">      35 </span>            :     }
+<span class="lineNum">      36 </span>            :     Parallel::printf(&quot;\n&quot;);
+<span class="lineNum">      37 </span>            :   }
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            :   Parallel::printf(&quot;%u\t&quot;, iteration_number);
+<span class="lineNum">      40 </span>            :   for (size_t i = 0; i &lt; Dim; ++i) {
+<span class="lineNum">      41 </span>            :     Parallel::printf(&quot;%3.4f  &quot;, gsl_vector_get(solver-&gt;x, i));
+<span class="lineNum">      42 </span>            :   }
+<span class="lineNum">      43 </span>            :   for (size_t i = 0; i &lt; Dim; ++i) {
+<span class="lineNum">      44 </span>            :     Parallel::printf(&quot;%1.3e  &quot;, gsl_vector_get(solver-&gt;f, i));
+<span class="lineNum">      45 </span>            :   }
+<span class="lineNum">      46 </span>            :   Parallel::printf(&quot;\n&quot;);
+<span class="lineNum">      47 </span>            : }
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      50 </span>            : std::array&lt;double, Dim&gt; gsl_to_std_array(const gsl_vector* const x) noexcept {
+<span class="lineNum">      51 </span>            :   std::array&lt;double, Dim&gt; input_as_std_array{};
+<span class="lineNum">      52 </span>            :   for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">      53 </span>            :     gsl::at(input_as_std_array, i) = gsl_vector_get(x, i);
+<span class="lineNum">      54 </span>            :   }
+<span class="lineNum">      55 </span>            :   return input_as_std_array;
+<span class="lineNum">      56 </span>            : }
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      59 </span>            : void gsl_vector_set_with_std_array(
+<span class="lineNum">      60 </span>            :     gsl_vector* const func,
+<span class="lineNum">      61 </span>            :     const std::array&lt;double, Dim&gt;&amp; result_as_std_array) noexcept {
+<span class="lineNum">      62 </span>            :   for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">      63 </span>            :     gsl_vector_set(func, i, gsl::at(result_as_std_array, i));
+<span class="lineNum">      64 </span>            :   }
+<span class="lineNum">      65 </span>            : }
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      68 </span>            : void gsl_matrix_set_with_std_array(
+<span class="lineNum">      69 </span>            :     gsl_matrix* const matrix,
+<span class="lineNum">      70 </span>            :     const std::array&lt;std::array&lt;double, Dim&gt;, Dim&gt;&amp; matrix_array) noexcept {
+<span class="lineNum">      71 </span>            :   for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">      72 </span>            :     for (size_t j = 0; j &lt; Dim; j++) {
+<span class="lineNum">      73 </span>            :       gsl_matrix_set(matrix, i, j, gsl::at(gsl::at(matrix_array, i), j));
+<span class="lineNum">      74 </span>            :     }
+<span class="lineNum">      75 </span>            :   }
+<span class="lineNum">      76 </span>            : }
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            : // The gsl_multiroot_function_fdf expects its functions to be of the form
+<span class="lineNum">      79 </span>            : // int (* f) (const gsl_vector * x, void * params, gsl_vector * f).
+<span class="lineNum">      80 </span>            : // However, we would like to be able to perform rootfinding on functions
+<span class="lineNum">      81 </span>            : // of the form std::array&lt;double, Dim&gt; f(const std::array&lt;double, Dim&gt;&amp; x).
+<span class="lineNum">      82 </span>            : // So, we pass the function wrapper below to gsl_multiroot_function_fdf.
+<span class="lineNum">      83 </span>            : // In the gsl documentation the third parameter is refered to as &quot;void* params&quot;,
+<span class="lineNum">      84 </span>            : // referring to the parameters that select out a particular function out of a
+<span class="lineNum">      85 </span>            : // family of possible functions described in a class, but we instead pass the
+<span class="lineNum">      86 </span>            : // pointer to the entire function object itself here. The type of the function
+<span class="lineNum">      87 </span>            : // object is passed through with the Function template parameter.
+<span class="lineNum">      88 </span>            : template &lt;size_t Dim, typename Function&gt;
+<span class="lineNum">      89 </span>            : int gsl_multirootfunctionfdf_wrapper_f(const gsl_vector* const x,
+<span class="lineNum">      90 </span>            :                                        void* const untyped_function_object,
+<span class="lineNum">      91 </span>            :                                        gsl_vector* const f_of_x) noexcept {
+<span class="lineNum">      92 </span>            :   const auto function_object =
+<span class="lineNum">      93 </span>            :       static_cast&lt;const Function*&gt;(untyped_function_object);
+<span class="lineNum">      94 </span>            :   gsl_vector_set_with_std_array(
+<span class="lineNum">      95 </span>            :       f_of_x, function_object-&gt;operator()(gsl_to_std_array&lt;Dim&gt;(x)));
+<span class="lineNum">      96 </span>            :   return GSL_SUCCESS;
+<span class="lineNum">      97 </span>            : }
+<span class="lineNum">      98 </span>            : 
+<span class="lineNum">      99 </span>            : template &lt;size_t Dim, typename Function&gt;
+<span class="lineNum">     100 </span>            : int gsl_multirootfunctionfdf_wrapper_df(const gsl_vector* const x,
+<span class="lineNum">     101 </span>            :                                         void* const untyped_function_object,
+<span class="lineNum">     102 </span>            :                                         gsl_matrix* const jacobian) noexcept {
+<span class="lineNum">     103 </span>            :   const auto function_object =
+<span class="lineNum">     104 </span>            :       static_cast&lt;const Function*&gt;(untyped_function_object);
+<span class="lineNum">     105 </span>            :   gsl_matrix_set_with_std_array(
+<span class="lineNum">     106 </span>            :       jacobian, function_object-&gt;jacobian(gsl_to_std_array&lt;Dim&gt;(x)));
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span>            :   return GSL_SUCCESS;
+<span class="lineNum">     109 </span>            : }
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            : template &lt;size_t Dim, typename Function&gt;
+<span class="lineNum">     112 </span>            : int gsl_multirootfunctionfdf_wrapper_fdf(const gsl_vector* const x,
+<span class="lineNum">     113 </span>            :                                          void* const untyped_function_object,
+<span class="lineNum">     114 </span>            :                                          gsl_vector* const f_of_x,
+<span class="lineNum">     115 </span>            :                                          gsl_matrix* const jacobian) noexcept {
+<span class="lineNum">     116 </span>            :   const auto function_object =
+<span class="lineNum">     117 </span>            :       static_cast&lt;const Function*&gt;(untyped_function_object);
+<span class="lineNum">     118 </span>            :   const std::array&lt;double, Dim&gt; x_as_std_array = gsl_to_std_array&lt;Dim&gt;(x);
+<span class="lineNum">     119 </span>            :   gsl_vector_set_with_std_array(f_of_x,
+<span class="lineNum">     120 </span>            :                                 function_object-&gt;operator()(x_as_std_array));
+<span class="lineNum">     121 </span>            :   gsl_matrix_set_with_std_array(jacobian,
+<span class="lineNum">     122 </span>            :                                 function_object-&gt;jacobian(x_as_std_array));
+<span class="lineNum">     123 </span>            :   return GSL_SUCCESS;
+<span class="lineNum">     124 </span>            : }
+<span class="lineNum">     125 </span>            : 
+<span class="lineNum">     126 </span>            : CREATE_IS_CALLABLE(jacobian)
+<span class="lineNum">     127 </span>            : }  // namespace gsl_multiroot_detail
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span>            : /*!
+<span class="lineNum">     130 </span>            :  *  \ingroup NumericalAlgorithmsGroup
+<span class="lineNum">     131 </span>            :  *  \brief The different options for the verbosity of gsl_multiroot.
+<span class="lineNum">     132 </span>            :  */
+<span class="lineNum">     133 </span><span class="lineCov">          2 : enum class Verbosity {</span>
+<span class="lineNum">     134 </span>            :   /// Do not print anything
+<span class="lineNum">     135 </span>            :   Silent,
+<span class="lineNum">     136 </span>            :   /// Print only &quot;success&quot; or &quot;failed&quot; on termination
+<span class="lineNum">     137 </span>            :   Quiet,
+<span class="lineNum">     138 </span>            :   /// Print final functions values on termination
+<span class="lineNum">     139 </span>            :   Verbose,
+<span class="lineNum">     140 </span>            :   /// Print function values on every iteration
+<span class="lineNum">     141 </span>            :   Debug
+<span class="lineNum">     142 </span>            : };
+<span class="lineNum">     143 </span>            : 
+<span class="lineNum">     144 </span>            : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; /*os*/,
+<span class="lineNum">     145 </span>            :                          const Verbosity&amp; /*verbosity*/) noexcept;
+<span class="lineNum">     146 </span>            : 
+<span class="lineNum">     147 </span>            : /*!
+<span class="lineNum">     148 </span>            :  *  \ingroup NumericalAlgorithmsGroup
+<span class="lineNum">     149 </span>            :  *  \brief The different options for the rootfinding method of gsl_multiroot.
+<span class="lineNum">     150 </span>            :  *
+<span class="lineNum">     151 </span>            :  *  This enum is for setting the method used the rootfinder.
+<span class="lineNum">     152 </span>            :  *  The precise method used by the gsl rootfinder depends on whether or not the
+<span class="lineNum">     153 </span>            :  *  function passed to it has a callable `jacobian` member function. In the
+<span class="lineNum">     154 </span>            :  *  case where it doesn't, the jacobian is approximated with a finite
+<span class="lineNum">     155 </span>            :  *  difference. For example, if the Method specified is Hybrid, gsl will use
+<span class="lineNum">     156 </span>            :  *  the gsl_multiroot_fdfsolver_hybridj method in the case where a `jacobian`
+<span class="lineNum">     157 </span>            :  *  is provided, and gsl_multiroot_fsolver_hybrid in the case where one isn't.
+<span class="lineNum">     158 </span>            :  *  See
+<span class="lineNum">     159 </span>            :  *  [GSL's documentation for multidimensional
+<span class="lineNum">     160 </span>            :  *  rootfinding](https://www.gnu.org/software/gsl/manual/html_node/Multidimensional-Root_002dFinding.html)
+<span class="lineNum">     161 </span>            :  *  for information on the different methods.
+<span class="lineNum">     162 </span>            :  *  \note gsl does not provide a finite difference version for the modified
+<span class="lineNum">     163 </span>            :  *  Newton method (gsl_multiroot_fdfsolver_gnewton). In the case where a
+<span class="lineNum">     164 </span>            :  *  jacobian is not provided the method used will be a non-modified Newton
+<span class="lineNum">     165 </span>            :  *  method.
+<span class="lineNum">     166 </span>            :  *
+<span class="lineNum">     167 </span>            :  */
+<span class="lineNum">     168 </span><span class="lineCov">          2 : enum class Method {</span>
+<span class="lineNum">     169 </span>            :   /// Hybrid of Newton's method along with following the gradient direction.
+<span class="lineNum">     170 </span>            :   /// \note Sometimes Hybrids works only with the Absolute stopping condition.
+<span class="lineNum">     171 </span>            :   Hybrids,
+<span class="lineNum">     172 </span>            :   /// &quot;Unscaled version of Hybrids that uses a spherical trust region,&quot; see
+<span class="lineNum">     173 </span>            :   /// GSL documentation for more details.
+<span class="lineNum">     174 </span>            :   Hybrid,
+<span class="lineNum">     175 </span>            :   /// If an analytic jacobian is provided, gsl uses a modification of Newton's
+<span class="lineNum">     176 </span>            :   /// method to improve global convergence. Uses vanilla Newton's method if no
+<span class="lineNum">     177 </span>            :   /// jacobian is provided.
+<span class="lineNum">     178 </span>            :   Newton
+<span class="lineNum">     179 </span>            : };
+<span class="lineNum">     180 </span>            : 
+<span class="lineNum">     181 </span>            : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; /*os*/,
+<span class="lineNum">     182 </span>            :                          const Method&amp; /*method*/) noexcept;
+<span class="lineNum">     183 </span>            : 
+<span class="lineNum">     184 </span>            : /*!
+<span class="lineNum">     185 </span>            :  *  \ingroup NumericalAlgorithmsGroup
+<span class="lineNum">     186 </span>            :  *  \brief The different options for the convergence criterion of gsl_multiroot.
+<span class="lineNum">     187 </span>            :  *
+<span class="lineNum">     188 </span>            :  *  See
+<span class="lineNum">     189 </span>            :  *  [GSL's documentation for multidimensional
+<span class="lineNum">     190 </span>            :  *  rootfinding](https://www.gnu.org/software/gsl/manual/html_node/Multidimensional-Root_002dFinding.html)
+<span class="lineNum">     191 </span>            :  *  for information on the different stopping conditions.
+<span class="lineNum">     192 </span>            :  */
+<span class="lineNum">     193 </span><span class="lineCov">          2 : enum class StoppingCondition {</span>
+<span class="lineNum">     194 </span>            :   /// See GSL documentation for gsl_multiroot_test_delta.
+<span class="lineNum">     195 </span>            :   AbsoluteAndRelative,
+<span class="lineNum">     196 </span>            :   /// See GSL documentation for gsl_multiroot_test_residual.
+<span class="lineNum">     197 </span>            :   Absolute
+<span class="lineNum">     198 </span>            : };
+<span class="lineNum">     199 </span>            : 
+<span class="lineNum">     200 </span>            : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; /*os*/,
+<span class="lineNum">     201 </span>            :                          const StoppingCondition&amp; /*condition*/) noexcept;
+<span class="lineNum">     202 </span>            : 
+<span class="lineNum">     203 </span>            : namespace gsl_multiroot_detail {
+<span class="lineNum">     204 </span>            : template &lt;typename SolverType, typename SolverAlloc, typename SolverSet,
+<span class="lineNum">     205 </span>            :           typename SolverIterate, typename SolverFree, size_t Dim,
+<span class="lineNum">     206 </span>            :           typename Function&gt;
+<span class="lineNum">     207 </span>            : std::array&lt;double, Dim&gt; gsl_multiroot_impl(
+<span class="lineNum">     208 </span>            :     Function&amp; f, const std::array&lt;double, Dim&gt;&amp; initial_guess,
+<span class="lineNum">     209 </span>            :     const double absolute_tolerance, const size_t maximum_iterations,
+<span class="lineNum">     210 </span>            :     const double relative_tolerance, const Verbosity verbosity,
+<span class="lineNum">     211 </span>            :     const double maximum_absolute_tolerance, const Method method,
+<span class="lineNum">     212 </span>            :     const SolverType solver_type, const StoppingCondition condition,
+<span class="lineNum">     213 </span>            :     const SolverAlloc solver_alloc, const SolverSet solver_set,
+<span class="lineNum">     214 </span>            :     const SolverIterate solver_iterate, const SolverFree solver_free) {
+<span class="lineNum">     215 </span>            :   // Check for valid stopping condition:
+<span class="lineNum">     216 </span>            :   if (UNLIKELY(condition != StoppingCondition::AbsoluteAndRelative and
+<span class="lineNum">     217 </span>            :                condition != StoppingCondition::Absolute)) {
+<span class="lineNum">     218 </span>            :     ERROR(
+<span class="lineNum">     219 </span>            :         &quot;Invalid stopping condition. Has to be either AbsoluteAndRelative&quot;
+<span class="lineNum">     220 </span>            :         &quot;or Absolute.&quot;);
+<span class="lineNum">     221 </span>            :   }
+<span class="lineNum">     222 </span>            : 
+<span class="lineNum">     223 </span>            :   // Supply gsl_root with the initial guess:
+<span class="lineNum">     224 </span>            :   gsl_vector* const gsl_root = gsl_vector_alloc(Dim);
+<span class="lineNum">     225 </span>            :   gsl_vector_set_with_std_array(gsl_root, initial_guess);
+<span class="lineNum">     226 </span>            :   auto* const solver = solver_alloc(solver_type, Dim);
+<span class="lineNum">     227 </span>            :   solver_set(solver, &amp;f, gsl_root);
+<span class="lineNum">     228 </span>            : 
+<span class="lineNum">     229 </span>            :   // Take iterations:
+<span class="lineNum">     230 </span>            :   int status;
+<span class="lineNum">     231 </span>            :   size_t iteration_number = 0;
+<span class="lineNum">     232 </span>            :   do {
+<span class="lineNum">     233 </span>            :     if (UNLIKELY(verbosity == Verbosity::Debug)) {
+<span class="lineNum">     234 </span>            :       print_state&lt;Dim&gt;(iteration_number, solver, iteration_number == 0);
+<span class="lineNum">     235 </span>            :     }
+<span class="lineNum">     236 </span>            :     iteration_number++;
+<span class="lineNum">     237 </span>            :     status = solver_iterate(solver);
+<span class="lineNum">     238 </span>            :     // Check if solver is stuck
+<span class="lineNum">     239 </span>            :     if (UNLIKELY(status == GSL_ENOPROG)) {
+<span class="lineNum">     240 </span>            :       if (UNLIKELY(verbosity == Verbosity::Debug)) {
+<span class="lineNum">     241 </span>            :         Parallel::printf(
+<span class="lineNum">     242 </span>            :             &quot;The iteration is not making any progress, preventing the &quot;
+<span class="lineNum">     243 </span>            :             &quot;algorithm from continuing.&quot;);
+<span class="lineNum">     244 </span>            :       }
+<span class="lineNum">     245 </span>            :       break;
+<span class="lineNum">     246 </span>            :     }
+<span class="lineNum">     247 </span>            :     if (condition == StoppingCondition::AbsoluteAndRelative) {
+<span class="lineNum">     248 </span>            :       status = gsl_multiroot_test_delta(solver-&gt;dx, solver-&gt;x,
+<span class="lineNum">     249 </span>            :                                         absolute_tolerance, relative_tolerance);
+<span class="lineNum">     250 </span>            :     } else {  // condition is StoppingCondition::Absolute
+<span class="lineNum">     251 </span>            :       // NOTE: Sometimes hybridsj works only with the test_residual condition
+<span class="lineNum">     252 </span>            :       status = gsl_multiroot_test_residual(solver-&gt;f, absolute_tolerance);
+<span class="lineNum">     253 </span>            :     }
+<span class="lineNum">     254 </span>            :   } while (status == GSL_CONTINUE and iteration_number &lt; maximum_iterations);
+<span class="lineNum">     255 </span>            :   if (UNLIKELY(verbosity == Verbosity::Verbose or
+<span class="lineNum">     256 </span>            :                verbosity == Verbosity::Debug)) {
+<span class="lineNum">     257 </span>            :     Parallel::printf(&quot;Finished iterating:\n&quot;);
+<span class="lineNum">     258 </span>            :     print_state&lt;Dim&gt;(iteration_number, solver, verbosity == Verbosity::Verbose);
+<span class="lineNum">     259 </span>            :   }
+<span class="lineNum">     260 </span>            :   bool success = (status == GSL_SUCCESS);
+<span class="lineNum">     261 </span>            :   if (UNLIKELY(verbosity != Verbosity::Silent)) {
+<span class="lineNum">     262 </span>            :     Parallel::printf(&quot;\n&quot;);
+<span class="lineNum">     263 </span>            :     if (not success) {
+<span class="lineNum">     264 </span>            :       const std::string ascii_divider = std::string(70, '#');
+<span class="lineNum">     265 </span>            :       const std::string failure_message =
+<span class="lineNum">     266 </span>            :           ascii_divider + &quot;\n\t\tWARNING: Root Finding FAILED\n&quot; +
+<span class="lineNum">     267 </span>            :           ascii_divider;
+<span class="lineNum">     268 </span>            :       Parallel::printf(&quot;%s\n&quot;, failure_message);
+<span class="lineNum">     269 </span>            :     } else {
+<span class="lineNum">     270 </span>            :       Parallel::printf(&quot;Root finder converged.\n&quot;);
+<span class="lineNum">     271 </span>            :     }
+<span class="lineNum">     272 </span>            :   }
+<span class="lineNum">     273 </span>            :   // If maximum_absolute_tolerance is given, return success = true
+<span class="lineNum">     274 </span>            :   // as long as maximum_absolute_tolerance is achieved even if the
+<span class="lineNum">     275 </span>            :   // root finder doesn't converge.
+<span class="lineNum">     276 </span>            :   bool success_with_tolerance = true;
+<span class="lineNum">     277 </span>            :   bool failed_root_is_forgiven = false;
+<span class="lineNum">     278 </span>            :   if (not success and maximum_absolute_tolerance &gt; 0.0) {
+<span class="lineNum">     279 </span>            :     for (size_t i = 0; i &lt; Dim; ++i) {
+<span class="lineNum">     280 </span>            :       if (fabs(gsl_vector_get(solver-&gt;f, i)) &gt; maximum_absolute_tolerance) {
+<span class="lineNum">     281 </span>            :         success_with_tolerance = false;
+<span class="lineNum">     282 </span>            :       }
+<span class="lineNum">     283 </span>            :     }
+<span class="lineNum">     284 </span>            :     failed_root_is_forgiven = success_with_tolerance;
+<span class="lineNum">     285 </span>            :   }
+<span class="lineNum">     286 </span>            :   if (success_with_tolerance and maximum_absolute_tolerance &gt; 0.0) {
+<span class="lineNum">     287 </span>            :     success = true;
+<span class="lineNum">     288 </span>            :   }
+<span class="lineNum">     289 </span>            :   if (UNLIKELY(failed_root_is_forgiven and (verbosity == Verbosity::Verbose or
+<span class="lineNum">     290 </span>            :                                             verbosity == Verbosity::Debug))) {
+<span class="lineNum">     291 </span>            :     Parallel::printf(
+<span class="lineNum">     292 </span>            :         &quot;The failed root was forgiven as each component was found to be under &quot;
+<span class="lineNum">     293 </span>            :         &quot;maximum_absolute_tolerance %f&quot;,
+<span class="lineNum">     294 </span>            :         maximum_absolute_tolerance);
+<span class="lineNum">     295 </span>            :   }
+<span class="lineNum">     296 </span>            : 
+<span class="lineNum">     297 </span>            :   if (UNLIKELY(not success)) {
+<span class="lineNum">     298 </span>            :     std::stringstream error_message;
+<span class="lineNum">     299 </span>            :     error_message &lt;&lt; &quot;The root find failed and was not forgiven. An exception &quot;
+<span class="lineNum">     300 </span>            :                      &quot;has been thrown.\n&quot;
+<span class="lineNum">     301 </span>            :                   &lt;&lt; &quot;The gsl error returned is: &quot; &lt;&lt; gsl_strerror(status)
+<span class="lineNum">     302 </span>            :                   &lt;&lt; &quot;\n&quot;
+<span class="lineNum">     303 </span>            :                   &lt;&lt; &quot;Verbosity: &quot; &lt;&lt; verbosity &lt;&lt; &quot;\n&quot;
+<span class="lineNum">     304 </span>            :                   &lt;&lt; &quot;Method: &quot; &lt;&lt; method &lt;&lt; &quot;\n&quot;
+<span class="lineNum">     305 </span>            :                   &lt;&lt; &quot;StoppingCondition: &quot; &lt;&lt; condition &lt;&lt; &quot;\n&quot;
+<span class="lineNum">     306 </span>            :                   &lt;&lt; &quot;Maximum absolute tolerance: &quot;
+<span class="lineNum">     307 </span>            :                   &lt;&lt; maximum_absolute_tolerance &lt;&lt; &quot;\n&quot;
+<span class="lineNum">     308 </span>            :                   &lt;&lt; &quot;Absolute tolerance: &quot; &lt;&lt; absolute_tolerance &lt;&lt; &quot;\n&quot;
+<span class="lineNum">     309 </span>            :                   &lt;&lt; &quot;Relative tolerance: &quot; &lt;&lt; relative_tolerance &lt;&lt; &quot;\n&quot;
+<span class="lineNum">     310 </span>            :                   &lt;&lt; &quot;Maximum number of iterations: &quot; &lt;&lt; maximum_iterations
+<span class="lineNum">     311 </span>            :                   &lt;&lt; &quot;\n&quot;
+<span class="lineNum">     312 </span>            :                   &lt;&lt; &quot;Number of iterations reached: &quot; &lt;&lt; iteration_number
+<span class="lineNum">     313 </span>            :                   &lt;&lt; &quot;\n&quot;
+<span class="lineNum">     314 </span>            :                   &lt;&lt; &quot;The last value of f in the root solver is:\n&quot;;
+<span class="lineNum">     315 </span>            :     for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">     316 </span>            :       error_message &lt;&lt; gsl_vector_get(solver-&gt;f, i) &lt;&lt; &quot;\n&quot;;
+<span class="lineNum">     317 </span>            :     }
+<span class="lineNum">     318 </span>            :     error_message &lt;&lt; &quot;The last value of x in the root solver is:\n&quot;;
+<span class="lineNum">     319 </span>            :     for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">     320 </span>            :       error_message &lt;&lt; gsl_vector_get(solver-&gt;x, i) &lt;&lt; &quot;\n&quot;;
+<span class="lineNum">     321 </span>            :     }
+<span class="lineNum">     322 </span>            :     error_message &lt;&lt; &quot;The last value of dx in the root solver is:\n&quot;;
+<span class="lineNum">     323 </span>            :     for (size_t i = 0; i &lt; Dim; i++) {
+<span class="lineNum">     324 </span>            :       error_message &lt;&lt; gsl_vector_get(solver-&gt;dx, i) &lt;&lt; &quot;\n&quot;;
+<span class="lineNum">     325 </span>            :     }
+<span class="lineNum">     326 </span>            : 
+<span class="lineNum">     327 </span>            :     if (UNLIKELY(verbosity == Verbosity::Debug)) {
+<span class="lineNum">     328 </span>            :       Parallel::printf(&quot;Error: %s\n&quot;, gsl_strerror(status));
+<span class="lineNum">     329 </span>            :     if (iteration_number &gt;= maximum_iterations) {
+<span class="lineNum">     330 </span>            :       Parallel::printf(
+<span class="lineNum">     331 </span>            :           &quot;The number of iterations (%d) has reached the maximum number of &quot;
+<span class="lineNum">     332 </span>            :           &quot;iterations (%d)\n&quot;,
+<span class="lineNum">     333 </span>            :           iteration_number, maximum_iterations);
+<span class="lineNum">     334 </span>            :     } else {
+<span class="lineNum">     335 </span>            :       Parallel::printf(
+<span class="lineNum">     336 </span>            :           &quot;The number of iterations (%d) failed to reach the maximum number of &quot;
+<span class="lineNum">     337 </span>            :           &quot;iterations (%d)\n&quot;,
+<span class="lineNum">     338 </span>            :           iteration_number, maximum_iterations);
+<span class="lineNum">     339 </span>            :     }
+<span class="lineNum">     340 </span>            :     }
+<span class="lineNum">     341 </span>            :     throw convergence_error(error_message.str());
+<span class="lineNum">     342 </span>            :   }
+<span class="lineNum">     343 </span>            : 
+<span class="lineNum">     344 </span>            :   // Store the converged root in result
+<span class="lineNum">     345 </span>            :   std::array&lt;double, Dim&gt; result = gsl_to_std_array&lt;Dim&gt;(solver-&gt;x);
+<span class="lineNum">     346 </span>            :   solver_free(solver);
+<span class="lineNum">     347 </span>            :   gsl_vector_free(gsl_root);
+<span class="lineNum">     348 </span>            : 
+<span class="lineNum">     349 </span>            :   return result;
+<span class="lineNum">     350 </span>            : }
+<span class="lineNum">     351 </span>            : 
+<span class="lineNum">     352 </span>            : void print_rootfinding_parameters(Method method, double absolute_tolerance,
+<span class="lineNum">     353 </span>            :                                   double relative_tolerance,
+<span class="lineNum">     354 </span>            :                                   double maximum_absolute_tolerance,
+<span class="lineNum">     355 </span>            :                                   StoppingCondition condition) noexcept;
+<span class="lineNum">     356 </span>            : }  // namespace gsl_multiroot_detail
+<span class="lineNum">     357 </span>            : 
+<span class="lineNum">     358 </span>            : // @{
+<span class="lineNum">     359 </span>            : /*!
+<span class="lineNum">     360 </span>            :  * \ingroup NumericalAlgorithmsGroup
+<span class="lineNum">     361 </span>            :  * \brief A multidimensional root finder supporting Newton and Hybrid
+<span class="lineNum">     362 </span>            :  * methods, as well as modified methods based on these.
+<span class="lineNum">     363 </span>            :  *
+<span class="lineNum">     364 </span>            :  * This root finder accepts function objects with and without a callable
+<span class="lineNum">     365 </span>            :  * `jacobian` member function. This member function both accepts and
+<span class="lineNum">     366 </span>            :  * returns a `std::array&lt;double, Dim&gt;`, the dimension of the domain and range
+<span class="lineNum">     367 </span>            :  * of the function the root find is being performed on. Whether the jacobian
+<span class="lineNum">     368 </span>            :  * is provided determines the details of the implementation of the
+<span class="lineNum">     369 </span>            :  * root-finding method that is selected by the user using the Method enum.
+<span class="lineNum">     370 </span>            :  * That is, whether the jacobian is computed analytically via the `jacobian`
+<span class="lineNum">     371 </span>            :  * member function, or whether the jacobian is computed numerically via a
+<span class="lineNum">     372 </span>            :  * finite difference approximation.
+<span class="lineNum">     373 </span>            :  * \note GSL does not provide a finite difference version of its modified
+<span class="lineNum">     374 </span>            :  * Newton method, so the unmodified one is used instead when the user
+<span class="lineNum">     375 </span>            :  * uses the Method::Newton method.
+<span class="lineNum">     376 </span>            :  *
+<span class="lineNum">     377 </span>            :  * The user can select one of two possible criteria for convergence,
+<span class="lineNum">     378 </span>            :  * StoppingCondition::Absolute, where the sum of the absolute values of the
+<span class="lineNum">     379 </span>            :  * components of the residual vector f are compared against the value
+<span class="lineNum">     380 </span>            :  * provided to `absolute_tolerance`, and
+<span class="lineNum">     381 </span>            :  * StoppingCondition::AbsoluteAndRelative, where the size of the most recent
+<span class="lineNum">     382 </span>            :  * step taken in the root-finding iteration is compared against
+<span class="lineNum">     383 </span>            :  * `absolute_tolerance` + `relative_tolerance` * |x_i|, for each component.
+<span class="lineNum">     384 </span>            :  * In either case, a `maximum_absolute_tolerance` may be specified if the user
+<span class="lineNum">     385 </span>            :  * anticipates that the convergence criterion specified with StoppingCondition
+<span class="lineNum">     386 </span>            :  * will be too strict for a few points out of a population of points found with
+<span class="lineNum">     387 </span>            :  * a sequence of root finds.
+<span class="lineNum">     388 </span>            :  *
+<span class="lineNum">     389 </span>            :  * See
+<span class="lineNum">     390 </span>            :  * [GSL's documentation for multidimensional
+<span class="lineNum">     391 </span>            :  * rootfinding](https://www.gnu.org/software/gsl/manual/html_node/Multidimensional-Root_002dFinding.html)
+<span class="lineNum">     392 </span>            :  * for reference.
+<span class="lineNum">     393 </span>            :  *
+<span class="lineNum">     394 </span>            :  * \param func Function whose root is to be found.
+<span class="lineNum">     395 </span>            :  * \param initial_guess Contains initial guess.
+<span class="lineNum">     396 </span>            :  * \param absolute_tolerance The absolute tolerance.
+<span class="lineNum">     397 </span>            :  * \param maximum_iterations The maximum number of iterations.
+<span class="lineNum">     398 </span>            :  * \param relative_tolerance The relative tolerance.
+<span class="lineNum">     399 </span>            :  * \param verbosity Whether to print diagnostic messages.
+<span class="lineNum">     400 </span>            :  * \param maximum_absolute_tolerance Acceptable absolute tolerance when
+<span class="lineNum">     401 </span>            :  *                                   root finder doesn't converge.
+<span class="lineNum">     402 </span>            :  *                                   You may wish to use this if there
+<span class="lineNum">     403 </span>            :  *                                   are only a few &quot;problematic&quot; points where
+<span class="lineNum">     404 </span>            :  *                                   it is difficult to do a precise root find.
+<span class="lineNum">     405 </span>            :  * \param method The method to use. See the documentation for the Method enum.
+<span class="lineNum">     406 </span>            :  * \param condition The convergence condition to use. See the documentation
+<span class="lineNum">     407 </span>            :  *                                   for the StoppingCondition enum.
+<span class="lineNum">     408 </span>            :  */
+<span class="lineNum">     409 </span>            : template &lt;size_t Dim, typename Function,
+<span class="lineNum">     410 </span>            :           Requires&lt;gsl_multiroot_detail::is_jacobian_callable_v&lt;
+<span class="lineNum">     411 </span>            :               Function, std::array&lt;double, Dim&gt;&gt;&gt; = nullptr&gt;
+<span class="lineNum">     412 </span><span class="lineCov">          2 : std::array&lt;double, Dim&gt; gsl_multiroot(</span>
+<span class="lineNum">     413 </span>            :     const Function&amp; func, const std::array&lt;double, Dim&gt;&amp; initial_guess,
+<span class="lineNum">     414 </span>            :     const double absolute_tolerance, const size_t maximum_iterations,
+<span class="lineNum">     415 </span>            :     const double relative_tolerance = 0.0,
+<span class="lineNum">     416 </span>            :     const Verbosity verbosity = Verbosity::Silent,
+<span class="lineNum">     417 </span>            :     const double maximum_absolute_tolerance = 0.0,
+<span class="lineNum">     418 </span>            :     const Method method = Method::Newton,
+<span class="lineNum">     419 </span>            :     const StoppingCondition condition = StoppingCondition::Absolute) {
+<span class="lineNum">     420 </span>            :   gsl_multiroot_function_fdf gsl_func = {
+<span class="lineNum">     421 </span>            :       &amp;gsl_multiroot_detail::gsl_multirootfunctionfdf_wrapper_f&lt;Dim, Function&gt;,
+<span class="lineNum">     422 </span>            :       &amp;gsl_multiroot_detail::gsl_multirootfunctionfdf_wrapper_df&lt;Dim, Function&gt;,
+<span class="lineNum">     423 </span>            :       &amp;gsl_multiroot_detail::gsl_multirootfunctionfdf_wrapper_fdf&lt;Dim,
+<span class="lineNum">     424 </span>            :                                                                   Function&gt;,
+<span class="lineNum">     425 </span>            :       Dim, const_cast&lt;Function*&gt;(&amp;func)};  //NOLINT
+<span class="lineNum">     426 </span>            : 
+<span class="lineNum">     427 </span>            :   // Set up method for solver:
+<span class="lineNum">     428 </span>            :   const gsl_multiroot_fdfsolver_type* solver_type;
+<span class="lineNum">     429 </span>            :   if (method == Method::Newton) {
+<span class="lineNum">     430 </span>            :     solver_type = gsl_multiroot_fdfsolver_gnewton;
+<span class="lineNum">     431 </span>            :   } else if (method == Method::Hybrids) {
+<span class="lineNum">     432 </span>            :     solver_type = gsl_multiroot_fdfsolver_hybridsj;
+<span class="lineNum">     433 </span>            :   } else if (method == Method::Hybrid) {
+<span class="lineNum">     434 </span>            :     solver_type = gsl_multiroot_fdfsolver_hybridj;
+<span class="lineNum">     435 </span>            :   } else {
+<span class="lineNum">     436 </span>            :     ERROR(
+<span class="lineNum">     437 </span>            :         &quot;Invalid method. Has to be one of Newton, Hybrids or &quot;
+<span class="lineNum">     438 </span>            :         &quot;Hybrid.&quot;);
+<span class="lineNum">     439 </span>            :   }
+<span class="lineNum">     440 </span>            :   // Print initial parameters
+<span class="lineNum">     441 </span>            :   if (UNLIKELY(verbosity == Verbosity::Verbose or
+<span class="lineNum">     442 </span>            :                verbosity == Verbosity::Debug)) {
+<span class="lineNum">     443 </span>            :     gsl_multiroot_detail::print_rootfinding_parameters(
+<span class="lineNum">     444 </span>            :         method, absolute_tolerance, relative_tolerance,
+<span class="lineNum">     445 </span>            :         maximum_absolute_tolerance, condition);
+<span class="lineNum">     446 </span>            :   }
+<span class="lineNum">     447 </span>            :   return gsl_multiroot_detail::gsl_multiroot_impl(
+<span class="lineNum">     448 </span>            :       gsl_func, initial_guess, absolute_tolerance, maximum_iterations,
+<span class="lineNum">     449 </span>            :       relative_tolerance, verbosity, maximum_absolute_tolerance, method,
+<span class="lineNum">     450 </span>            :       solver_type, condition, &amp;gsl_multiroot_fdfsolver_alloc,
+<span class="lineNum">     451 </span>            :       &amp;gsl_multiroot_fdfsolver_set, &amp;gsl_multiroot_fdfsolver_iterate,
+<span class="lineNum">     452 </span>            :       &amp;gsl_multiroot_fdfsolver_free);
+<span class="lineNum">     453 </span>            : }
+<span class="lineNum">     454 </span>            : 
+<span class="lineNum">     455 </span>            : template &lt;size_t Dim, typename Function,
+<span class="lineNum">     456 </span>            :           Requires&lt;not gsl_multiroot_detail::is_jacobian_callable_v&lt;
+<span class="lineNum">     457 </span>            :               Function, std::array&lt;double, Dim&gt;&gt;&gt; = nullptr&gt;
+<span class="lineNum">     458 </span>            : std::array&lt;double, Dim&gt; gsl_multiroot(
+<span class="lineNum">     459 </span>            :     const Function&amp; func, const std::array&lt;double, Dim&gt;&amp; initial_guess,
+<span class="lineNum">     460 </span>            :     const double absolute_tolerance, const size_t maximum_iterations,
+<span class="lineNum">     461 </span>            :     const double relative_tolerance = 0.0,
+<span class="lineNum">     462 </span>            :     const Verbosity verbosity = Verbosity::Silent,
+<span class="lineNum">     463 </span>            :     const double maximum_absolute_tolerance = 0.0,
+<span class="lineNum">     464 </span>            :     const Method method = Method::Newton,
+<span class="lineNum">     465 </span>            :     const StoppingCondition condition = StoppingCondition::Absolute) {
+<span class="lineNum">     466 </span>            :   gsl_multiroot_function gsl_func = {
+<span class="lineNum">     467 </span>            :       &amp;gsl_multiroot_detail::gsl_multirootfunctionfdf_wrapper_f&lt;Dim, Function&gt;,
+<span class="lineNum">     468 </span>            :       Dim, const_cast&lt;Function*&gt;(&amp;func)};  // NOLINT
+<span class="lineNum">     469 </span>            : 
+<span class="lineNum">     470 </span>            :   // Set up method for solver:
+<span class="lineNum">     471 </span>            :   const gsl_multiroot_fsolver_type* solver_type;
+<span class="lineNum">     472 </span>            :   if (method == Method::Newton) {
+<span class="lineNum">     473 </span>            :     solver_type = gsl_multiroot_fsolver_dnewton;
+<span class="lineNum">     474 </span>            :   } else if (method == Method::Hybrids) {
+<span class="lineNum">     475 </span>            :     solver_type = gsl_multiroot_fsolver_hybrids;
+<span class="lineNum">     476 </span>            :   } else if (method == Method::Hybrid) {
+<span class="lineNum">     477 </span>            :     solver_type = gsl_multiroot_fsolver_hybrid;
+<span class="lineNum">     478 </span>            :   } else {
+<span class="lineNum">     479 </span>            :     ERROR(
+<span class="lineNum">     480 </span>            :         &quot;Invalid method. Has to be one of Newton, Hybrids or &quot;
+<span class="lineNum">     481 </span>            :         &quot;Hybrid.&quot;);
+<span class="lineNum">     482 </span>            :   }
+<span class="lineNum">     483 </span>            :   // Print initial parameters
+<span class="lineNum">     484 </span>            :   if (UNLIKELY(verbosity == Verbosity::Verbose or
+<span class="lineNum">     485 </span>            :                verbosity == Verbosity::Debug)) {
+<span class="lineNum">     486 </span>            :     gsl_multiroot_detail::print_rootfinding_parameters(
+<span class="lineNum">     487 </span>            :         method, absolute_tolerance, relative_tolerance,
+<span class="lineNum">     488 </span>            :         maximum_absolute_tolerance, condition);
+<span class="lineNum">     489 </span>            :   }
+<span class="lineNum">     490 </span>            :   return gsl_multiroot_detail::gsl_multiroot_impl(
+<span class="lineNum">     491 </span>            :       gsl_func, initial_guess, absolute_tolerance, maximum_iterations,
+<span class="lineNum">     492 </span>            :       relative_tolerance, verbosity, maximum_absolute_tolerance, method,
+<span class="lineNum">     493 </span>            :       solver_type, condition, &amp;gsl_multiroot_fsolver_alloc,
+<span class="lineNum">     494 </span>            :       &amp;gsl_multiroot_fsolver_set, &amp;gsl_multiroot_fsolver_iterate,
+<span class="lineNum">     495 </span>            :       &amp;gsl_multiroot_fsolver_free);
+<span class="lineNum">     496 </span>            : }
+<span class="lineNum">     497 </span>            : // @}
+<span class="lineNum">     498 </span>            : }  // namespace RootFinder
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

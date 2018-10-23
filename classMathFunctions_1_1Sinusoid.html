@@ -1,0 +1,338 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: MathFunctions::Sinusoid Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceMathFunctions.html">MathFunctions</a></li><li class="navelem"><a class="el" href="classMathFunctions_1_1Sinusoid.html">Sinusoid</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classMathFunctions_1_1Sinusoid-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">MathFunctions::Sinusoid Class Reference<div class="ingroups"><a class="el" href="group__MathFunctionsGroup.html">Math Functions</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><a class="el" href="classMathFunctions_1_1Sinusoid.html" title="Sinusoid . ">Sinusoid</a> \(f = A \sin\left(k x + \delta \right)\).  
+ <a href="classMathFunctions_1_1Sinusoid.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Sinusoid_8hpp_source.html">Sinusoid.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMathFunctions_1_1Sinusoid_1_1Amplitude.html">Amplitude</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMathFunctions_1_1Sinusoid_1_1Phase.html">Phase</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMathFunctions_1_1Sinusoid_1_1Wavenumber.html">Wavenumber</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a06f89b38908fe6b6d8110fd35e3f6ab7"><td class="memItemLeft" align="right" valign="top"><a id="a06f89b38908fe6b6d8110fd35e3f6ab7"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>options</b> = tmpl::list&lt; <a class="el" href="structMathFunctions_1_1Sinusoid_1_1Amplitude.html">Amplitude</a>, <a class="el" href="structMathFunctions_1_1Sinusoid_1_1Wavenumber.html">Wavenumber</a>, <a class="el" href="structMathFunctions_1_1Sinusoid_1_1Phase.html">Phase</a> &gt;</td></tr>
+<tr class="separator:a06f89b38908fe6b6d8110fd35e3f6ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_classMathFunction_3_011_01_4"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMathFunction_3_011_01_4')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMathFunction_3_011_01_4.html">MathFunction&lt; 1 &gt;</a></td></tr>
+<tr class="memitem:a7e9d11052774cbb172a7e75ea8f67ff2 inherit pub_types_classMathFunction_3_011_01_4"><td class="memItemLeft" align="right" valign="top"><a id="a7e9d11052774cbb172a7e75ea8f67ff2"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>creatable_classes</b> = tmpl::list&lt; <a class="el" href="classMathFunctions_1_1Gaussian.html">MathFunctions::Gaussian</a>, <a class="el" href="classMathFunctions_1_1PowX.html">MathFunctions::PowX</a>, <a class="el" href="classMathFunctions_1_1Sinusoid.html">MathFunctions::Sinusoid</a> &gt;</td></tr>
+<tr class="separator:a7e9d11052774cbb172a7e75ea8f67ff2 inherit pub_types_classMathFunction_3_011_01_4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:acfc9b5f44b4f61c316d8ded42a98f3bd"><td class="memItemLeft" align="right" valign="top"><a id="acfc9b5f44b4f61c316d8ded42a98f3bd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Sinusoid</b> (double amplitude, double wavenumber, double phase) noexcept</td></tr>
+<tr class="separator:acfc9b5f44b4f61c316d8ded42a98f3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a3dded5f39ede72d5ba20b7d0b5ada5"><td class="memItemLeft" align="right" valign="top"><a id="a8a3dded5f39ede72d5ba20b7d0b5ada5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Sinusoid</b> (const <a class="el" href="classMathFunctions_1_1Sinusoid.html">Sinusoid</a> &amp;)=delete</td></tr>
+<tr class="separator:a8a3dded5f39ede72d5ba20b7d0b5ada5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71e022b4f558736b9c226c3164407fe1"><td class="memItemLeft" align="right" valign="top"><a id="a71e022b4f558736b9c226c3164407fe1"></a>
+<a class="el" href="classMathFunctions_1_1Sinusoid.html">Sinusoid</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classMathFunctions_1_1Sinusoid.html">Sinusoid</a> &amp;)=delete</td></tr>
+<tr class="separator:a71e022b4f558736b9c226c3164407fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f90f316bd73efd865ab4b588eb8ab71"><td class="memItemLeft" align="right" valign="top"><a id="a0f90f316bd73efd865ab4b588eb8ab71"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Sinusoid</b> (<a class="el" href="classMathFunctions_1_1Sinusoid.html">Sinusoid</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a0f90f316bd73efd865ab4b588eb8ab71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10fc2fad6ff47a91bad926f45155b1f1"><td class="memItemLeft" align="right" valign="top"><a id="a10fc2fad6ff47a91bad926f45155b1f1"></a>
+<a class="el" href="classMathFunctions_1_1Sinusoid.html">Sinusoid</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classMathFunctions_1_1Sinusoid.html">Sinusoid</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a10fc2fad6ff47a91bad926f45155b1f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd1580808b4067913b3d20a8e72cb38e"><td class="memItemLeft" align="right" valign="top"><a id="abd1580808b4067913b3d20a8e72cb38e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>WRAPPED_PUPable_decl_template</b> (<a class="el" href="classMathFunctions_1_1Sinusoid.html">Sinusoid</a>)</td></tr>
+<tr class="separator:abd1580808b4067913b3d20a8e72cb38e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfd8f79d8ca4e675c98580c40863078a"><td class="memItemLeft" align="right" valign="top"><a id="acfd8f79d8ca4e675c98580c40863078a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Sinusoid</b> (CkMigrateMessage *) noexcept</td></tr>
+<tr class="separator:acfd8f79d8ca4e675c98580c40863078a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab1865513ae220ca9a02b32e722f45ce"><td class="memItemLeft" align="right" valign="top"><a id="aab1865513ae220ca9a02b32e722f45ce"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunctions_1_1Sinusoid.html#aab1865513ae220ca9a02b32e722f45ce">operator()</a> (const double &amp;x) const noexcept override</td></tr>
+<tr class="memdesc:aab1865513ae220ca9a02b32e722f45ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the function value at the coordinate 'x'. <br /></td></tr>
+<tr class="separator:aab1865513ae220ca9a02b32e722f45ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6412873387a7887b545fe5d776739129"><td class="memItemLeft" align="right" valign="top"><a id="a6412873387a7887b545fe5d776739129"></a>
+<a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunctions_1_1Sinusoid.html#a6412873387a7887b545fe5d776739129">operator()</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;x) const noexcept override</td></tr>
+<tr class="memdesc:a6412873387a7887b545fe5d776739129"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the function value at the coordinate 'x'. <br /></td></tr>
+<tr class="separator:a6412873387a7887b545fe5d776739129"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9c787998d9e0b558ff643ddca349f9e"><td class="memItemLeft" align="right" valign="top"><a id="af9c787998d9e0b558ff643ddca349f9e"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunctions_1_1Sinusoid.html#af9c787998d9e0b558ff643ddca349f9e">first_deriv</a> (const double &amp;x) const noexcept override</td></tr>
+<tr class="memdesc:af9c787998d9e0b558ff643ddca349f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first derivative at 'x'. <br /></td></tr>
+<tr class="separator:af9c787998d9e0b558ff643ddca349f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bfea86e1b097879bae87fc1d940c0a1"><td class="memItemLeft" align="right" valign="top"><a id="a5bfea86e1b097879bae87fc1d940c0a1"></a>
+<a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunctions_1_1Sinusoid.html#a5bfea86e1b097879bae87fc1d940c0a1">first_deriv</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;x) const noexcept override</td></tr>
+<tr class="memdesc:a5bfea86e1b097879bae87fc1d940c0a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first derivative at 'x'. <br /></td></tr>
+<tr class="separator:a5bfea86e1b097879bae87fc1d940c0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25ddb0920cc3557ae47865ebec19fbe2"><td class="memItemLeft" align="right" valign="top"><a id="a25ddb0920cc3557ae47865ebec19fbe2"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunctions_1_1Sinusoid.html#a25ddb0920cc3557ae47865ebec19fbe2">second_deriv</a> (const double &amp;x) const noexcept override</td></tr>
+<tr class="memdesc:a25ddb0920cc3557ae47865ebec19fbe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the second derivative at 'x'. <br /></td></tr>
+<tr class="separator:a25ddb0920cc3557ae47865ebec19fbe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8270bb522060e9710e25261921e4425f"><td class="memItemLeft" align="right" valign="top"><a id="a8270bb522060e9710e25261921e4425f"></a>
+<a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunctions_1_1Sinusoid.html#a8270bb522060e9710e25261921e4425f">second_deriv</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;x) const noexcept override</td></tr>
+<tr class="memdesc:a8270bb522060e9710e25261921e4425f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the second derivative at 'x'. <br /></td></tr>
+<tr class="separator:a8270bb522060e9710e25261921e4425f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1966f438f9a10d664ca5d3edb7ea3e2"><td class="memItemLeft" align="right" valign="top"><a id="ab1966f438f9a10d664ca5d3edb7ea3e2"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunctions_1_1Sinusoid.html#ab1966f438f9a10d664ca5d3edb7ea3e2">third_deriv</a> (const double &amp;x) const noexcept override</td></tr>
+<tr class="memdesc:ab1966f438f9a10d664ca5d3edb7ea3e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the third derivative at 'x'. <br /></td></tr>
+<tr class="separator:ab1966f438f9a10d664ca5d3edb7ea3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adac2f8eecf200595b12dc6de3d8c0309"><td class="memItemLeft" align="right" valign="top"><a id="adac2f8eecf200595b12dc6de3d8c0309"></a>
+<a class="el" href="classDataVector.html">DataVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMathFunctions_1_1Sinusoid.html#adac2f8eecf200595b12dc6de3d8c0309">third_deriv</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;x) const noexcept override</td></tr>
+<tr class="memdesc:adac2f8eecf200595b12dc6de3d8c0309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the third derivative at 'x'. <br /></td></tr>
+<tr class="separator:adac2f8eecf200595b12dc6de3d8c0309"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d4d0ae65cfb568406fbb84449026087"><td class="memItemLeft" align="right" valign="top"><a id="a2d4d0ae65cfb568406fbb84449026087"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;p) override</td></tr>
+<tr class="separator:a2d4d0ae65cfb568406fbb84449026087"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classMathFunction_3_011_01_4"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMathFunction_3_011_01_4')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMathFunction_3_011_01_4.html">MathFunction&lt; 1 &gt;</a></td></tr>
+<tr class="memitem:a761371084c9a506b1562b62207249599 inherit pub_methods_classMathFunction_3_011_01_4"><td class="memItemLeft" align="right" valign="top"><a id="a761371084c9a506b1562b62207249599"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>WRAPPED_PUPable_abstract</b> (<a class="el" href="classMathFunction.html">MathFunction</a>)</td></tr>
+<tr class="separator:a761371084c9a506b1562b62207249599 inherit pub_methods_classMathFunction_3_011_01_4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad751845a8615381349c432971b331b70 inherit pub_methods_classMathFunction_3_011_01_4"><td class="memItemLeft" align="right" valign="top"><a id="ad751845a8615381349c432971b331b70"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MathFunction</b> (const <a class="el" href="classMathFunction.html">MathFunction</a> &amp;)=delete</td></tr>
+<tr class="separator:ad751845a8615381349c432971b331b70 inherit pub_methods_classMathFunction_3_011_01_4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f5f5e017543882045907d1dc7c8a04b inherit pub_methods_classMathFunction_3_011_01_4"><td class="memItemLeft" align="right" valign="top"><a id="a0f5f5e017543882045907d1dc7c8a04b"></a>
+<a class="el" href="classMathFunction.html">MathFunction</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classMathFunction.html">MathFunction</a> &amp;)=delete</td></tr>
+<tr class="separator:a0f5f5e017543882045907d1dc7c8a04b inherit pub_methods_classMathFunction_3_011_01_4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af151748c07002999ca75ccdf85eff234 inherit pub_methods_classMathFunction_3_011_01_4"><td class="memItemLeft" align="right" valign="top"><a id="af151748c07002999ca75ccdf85eff234"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MathFunction</b> (<a class="el" href="classMathFunction.html">MathFunction</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:af151748c07002999ca75ccdf85eff234 inherit pub_methods_classMathFunction_3_011_01_4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6d2cc78bd28979805a0e6f8f62efb9f inherit pub_methods_classMathFunction_3_011_01_4"><td class="memItemLeft" align="right" valign="top"><a id="ab6d2cc78bd28979805a0e6f8f62efb9f"></a>
+<a class="el" href="classMathFunction.html">MathFunction</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classMathFunction.html">MathFunction</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:ab6d2cc78bd28979805a0e6f8f62efb9f inherit pub_methods_classMathFunction_3_011_01_4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ad23f46c80488a1b6d1d8e80ac8b1d980"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a>&#160;</td><td class="memItemRight" valign="bottom"><b>help</b></td></tr>
+<tr class="separator:ad23f46c80488a1b6d1d8e80ac8b1d980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a737804e223ec5bbb75ef6cec38836a8e"><td class="memItemLeft" align="right" valign="top"><a id="a737804e223ec5bbb75ef6cec38836a8e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classMathFunctions_1_1Sinusoid.html">Sinusoid</a> &amp;lhs, const <a class="el" href="classMathFunctions_1_1Sinusoid.html">Sinusoid</a> &amp;rhs) noexcept</td></tr>
+<tr class="separator:a737804e223ec5bbb75ef6cec38836a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classMathFunctions_1_1Sinusoid.html" title="Sinusoid . ">Sinusoid</a> \(f = A \sin\left(k x + \delta \right)\). </p>
+<h3>Details</h3>
+<p>Input file options are: <a class="el" href="structMathFunctions_1_1Sinusoid_1_1Amplitude.html">Amplitude</a>, <a class="el" href="structMathFunctions_1_1Sinusoid_1_1Phase.html">Phase</a>, and <a class="el" href="structMathFunctions_1_1Sinusoid_1_1Wavenumber.html">Wavenumber</a> </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="ad23f46c80488a1b6d1d8e80ac8b1d980"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad23f46c80488a1b6d1d8e80ac8b1d980">&#9670;&nbsp;</a></span>help</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a> MathFunctions::Sinusoid::help</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">      <span class="stringliteral">&quot;Applies a Sinusoid function to the input value&quot;</span>}</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/PointwiseFunctions/MathFunctions/<a class="el" href="Sinusoid_8hpp_source.html">Sinusoid.hpp</a></li>
+<li>src/PointwiseFunctions/MathFunctions/Sinusoid.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Domain/SegmentId.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Domain</a> - SegmentId.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntry">26</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class SegmentId.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      10 </span>            : #include &lt;iosfwd&gt;
+<span class="lineNum">      11 </span>            : #include &lt;limits&gt;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : #include &quot;Domain/Side.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : namespace PUP {
+<span class="lineNum">      18 </span>            : class er;
+<span class="lineNum">      19 </span>            : }  // namespace PUP
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : /*!
+<span class="lineNum">      22 </span>            :  *  \ingroup ComputationalDomainGroup
+<span class="lineNum">      23 </span>            :  *  \brief A SegmentId labels a segment of the interval [-1,1] and is used to
+<span class="lineNum">      24 </span>            :  *  identify the bounds of an Element in a Block in each dimension.
+<span class="lineNum">      25 </span>            :  *
+<span class="lineNum">      26 </span>            :  *  In \f$d\f$ dimensions, \f$d\f$ SegmentId%s are used to identify an Element.
+<span class="lineNum">      27 </span>            :  * In each dimension, a segment spans the subinterval \f$[-1 + 2 \frac{i}{N}, -1
+<span class="lineNum">      28 </span>            :  * + 2 \frac{i+1}{N}]\f$ of the logical coordinates of a Block, where \f$i \f$=
+<span class="lineNum">      29 </span>            :  * `index` and \f$N = 2^L\f$ where \f$L\f$ = `refinement_level`.
+<span class="lineNum">      30 </span>            :  *
+<span class="lineNum">      31 </span>            :  *  \image html SegmentId.svg  &quot;SegmentIds&quot;
+<span class="lineNum">      32 </span>            :  *
+<span class="lineNum">      33 </span>            :  * In the figure, The `index` of segments increase from the `lower side` to the
+<span class="lineNum">      34 </span>            :  * `upper side` in each dimension of a Block, while the `refinement level`
+<span class="lineNum">      35 </span>            :  * increases as the segments are subdivided.  For example, let the segment
+<span class="lineNum">      36 </span>            :  * labeled `self` be on `refinement level` \f$L\f$, with `index` \f$i\f$.  Its
+<span class="lineNum">      37 </span>            :  * `parent` segment is on `refinement level` \f$L-1\f$ with  `index`
+<span class="lineNum">      38 </span>            :  * \f$\frac{i-1}{2}\f$. The `children` of `self` are on `refinement level`
+<span class="lineNum">      39 </span>            :  * \f$L+1\f$, and have `index` \f$2i\f$ and \f$2i+1\f$ for the lower and upper
+<span class="lineNum">      40 </span>            :  * child respectively.  Also labeled on the figure are the `sibling` and
+<span class="lineNum">      41 </span>            :  * `abutting nibling` (child of sibling) of `self`. These relationships between
+<span class="lineNum">      42 </span>            :  * segments are important for h-refinement, since in each dimension an Element
+<span class="lineNum">      43 </span>            :  * can be flagged to split into its two `children` segments, or join with its
+<span class="lineNum">      44 </span>            :  * `sibling` segment to form its `parent` segment.  As refinement levels of
+<span class="lineNum">      45 </span>            :  * neighboring elements are kept within one, in the direction of its `sibling`,
+<span class="lineNum">      46 </span>            :  * a segment can only abut its `sibling` or `abutting nibling`, while on the
+<span class="lineNum">      47 </span>            :  * opposite side, it can abut a segment on its level, the next-lower, or the
+<span class="lineNum">      48 </span>            :  * next-higher level.
+<span class="lineNum">      49 </span>            :  */
+<span class="lineNum">      50 </span><span class="lineCov">          1 : class SegmentId {</span>
+<span class="lineNum">      51 </span>            :  public:
+<span class="lineNum">      52 </span>            :   /// Default constructor needed for Charm++ serialization.
+<span class="lineNum">      53 </span><span class="lineCov">          1 :   constexpr SegmentId() noexcept = default;</span>
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :   constexpr SegmentId(const SegmentId&amp; segment_id) noexcept = default;</span>
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :   constexpr SegmentId(SegmentId&amp;&amp; segment_id) noexcept = default;</span>
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 :   ~SegmentId() noexcept = default;</span>
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :   SegmentId&amp; operator=(const SegmentId&amp; segment_id) noexcept = default;</span>
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 :   SegmentId&amp; operator=(SegmentId&amp;&amp; segment_id) noexcept = default;</span>
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :   SegmentId(size_t refinement_level, size_t index) noexcept;</span>
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :   constexpr size_t refinement_level() const noexcept {</span>
+<span class="lineNum">      63 </span>            :     return refinement_level_;
+<span class="lineNum">      64 </span>            :   }
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :   constexpr size_t index() const noexcept { return index_; }</span>
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :   SegmentId id_of_parent() const noexcept;</span>
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :   SegmentId id_of_child(Side side) const noexcept;</span>
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            :   /// The other child of the parent of this segment
+<span class="lineNum">      73 </span><span class="lineCov">          1 :   SegmentId id_of_sibling() const noexcept;</span>
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            :   /// The child of the sibling of this segment that shares an endpoint with it
+<span class="lineNum">      76 </span><span class="lineCov">          1 :   SegmentId id_of_abutting_nibling() const noexcept;</span>
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            :   /// The side on which this segment shares an endpoint with its sibling
+<span class="lineNum">      79 </span><span class="lineCov">          1 :   Side side_of_sibling() const noexcept;</span>
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            :   /// The id this segment would have if the coordinate axis were flipped.
+<span class="lineNum">      82 </span><span class="lineCov">          1 :   SegmentId id_if_flipped() const noexcept;</span>
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            :   /// The logical coordinate of the endpoint of the segment on the given Side.
+<span class="lineNum">      85 </span><span class="lineCov">          1 :   double endpoint(Side side) const noexcept;</span>
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span>            :   /// The logical coordinate of the midpoint of the segment
+<span class="lineNum">      88 </span><span class="lineCov">          1 :   double midpoint() const noexcept {</span>
+<span class="lineNum">      89 </span>            :     return -1.0 + (1.0 + 2.0 * index_) / two_to_the(refinement_level_);
+<span class="lineNum">      90 </span>            :   }
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            :   /// Does the segment overlap with another?
+<span class="lineNum">      93 </span><span class="lineCov">          1 :   bool overlaps(const SegmentId&amp; other) const noexcept;</span>
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span>            :   /// Serialization for Charm++
+<span class="lineNum">      96 </span><span class="lineCov">          1 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span>            :  private:
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 :   size_t refinement_level_ = std::numeric_limits&lt;size_t&gt;::max();</span>
+<span class="lineNum">     100 </span><span class="lineNoCov">          0 :   size_t index_ = std::numeric_limits&lt;size_t&gt;::max();</span>
+<span class="lineNum">     101 </span>            : };
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span>            : /// Output operator for SegmentId.
+<span class="lineNum">     104 </span><span class="lineCov">          1 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const SegmentId&amp; id) noexcept;</span>
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span>            : /// Equivalence operator for SegmentId.
+<span class="lineNum">     107 </span><span class="lineCov">          1 : bool operator==(const SegmentId&amp; lhs, const SegmentId&amp; rhs) noexcept;</span>
+<span class="lineNum">     108 </span>            : 
+<span class="lineNum">     109 </span>            : /// Inequivalence operator for SegmentId.
+<span class="lineNum">     110 </span><span class="lineCov">          1 : bool operator!=(const SegmentId&amp; lhs, const SegmentId&amp; rhs) noexcept;</span>
+<span class="lineNum">     111 </span>            : 
+<span class="lineNum">     112 </span>            : //##############################################################################
+<span class="lineNum">     113 </span>            : // INLINE DEFINITIONS
+<span class="lineNum">     114 </span>            : //##############################################################################
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            : inline SegmentId SegmentId::id_of_parent() const noexcept {
+<span class="lineNum">     117 </span>            :   ASSERT(0 != refinement_level_,
+<span class="lineNum">     118 </span>            :          &quot;Cannot call id_of_parent() on root refinement level!&quot;);
+<span class="lineNum">     119 </span>            :   // The parent has half as many segments as the child.
+<span class="lineNum">     120 </span>            :   return {refinement_level_ - 1, index_ / 2};
+<span class="lineNum">     121 </span>            : }
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            : inline SegmentId SegmentId::id_of_child(Side side) const noexcept {
+<span class="lineNum">     124 </span>            :   // We cannot ASSERT on the maximum level because it's only known at runtime
+<span class="lineNum">     125 </span>            :   // and only known elsewhere in the code, not by SegmentId. I.e. SegmentId is
+<span class="lineNum">     126 </span>            :   // too low-level to know about this.
+<span class="lineNum">     127 </span>            :   // The child has twice as many segments as the parent, so for a particular
+<span class="lineNum">     128 </span>            :   // parent segment, there is both an upper and lower child segment.
+<span class="lineNum">     129 </span>            :   if (Side::Lower == side) {
+<span class="lineNum">     130 </span>            :     return {refinement_level_ + 1, index_ * 2};
+<span class="lineNum">     131 </span>            :   }
+<span class="lineNum">     132 </span>            :   return {refinement_level_ + 1, 1 + index_ * 2};
+<span class="lineNum">     133 </span>            : }
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            : inline SegmentId SegmentId::id_of_sibling() const noexcept {
+<span class="lineNum">     136 </span>            :   ASSERT(0 != refinement_level_,
+<span class="lineNum">     137 </span>            :          &quot;The segment on the root refinement level has no sibling&quot;);
+<span class="lineNum">     138 </span>            :   return {refinement_level_, (0 == index_ % 2 ? index_ + 1 : index_ - 1)};
+<span class="lineNum">     139 </span>            : }
+<span class="lineNum">     140 </span>            : 
+<span class="lineNum">     141 </span>            : inline SegmentId SegmentId::id_of_abutting_nibling() const noexcept {
+<span class="lineNum">     142 </span>            :   ASSERT(0 != refinement_level_,
+<span class="lineNum">     143 </span>            :          &quot;The segment on the root refinement level has no abutting nibling&quot;);
+<span class="lineNum">     144 </span>            :   return {refinement_level_ + 1,
+<span class="lineNum">     145 </span>            :           (0 == index_ % 2 ? 2 * index_ + 2 : 2 * index_ - 1)};
+<span class="lineNum">     146 </span>            : }
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : inline Side SegmentId::side_of_sibling() const noexcept {
+<span class="lineNum">     149 </span>            :   ASSERT(0 != refinement_level_,
+<span class="lineNum">     150 </span>            :          &quot;The segment on the root refinement level has no sibling&quot;);
+<span class="lineNum">     151 </span>            :   return 0 == index_ % 2 ? Side::Upper : Side::Lower;
+<span class="lineNum">     152 </span>            : }
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            : inline SegmentId SegmentId::id_if_flipped() const noexcept {
+<span class="lineNum">     155 </span>            :   return {refinement_level_, two_to_the(refinement_level_) - 1 - index_};
+<span class="lineNum">     156 </span>            : }
+<span class="lineNum">     157 </span>            : 
+<span class="lineNum">     158 </span>            : inline double SegmentId::endpoint(Side side) const noexcept {
+<span class="lineNum">     159 </span>            :   if (Side::Lower == side) {
+<span class="lineNum">     160 </span>            :     return -1.0 + (2.0 * index_) / two_to_the(refinement_level_);
+<span class="lineNum">     161 </span>            :   }
+<span class="lineNum">     162 </span>            :   return -1.0 + (2.0 * index_ + 2.0) / two_to_the(refinement_level_);
+<span class="lineNum">     163 </span>            : }
+<span class="lineNum">     164 </span>            : 
+<span class="lineNum">     165 </span>            : inline bool SegmentId::overlaps(const SegmentId&amp; other) const noexcept {
+<span class="lineNum">     166 </span>            :   const size_t this_denom = two_to_the(refinement_level_);
+<span class="lineNum">     167 </span>            :   const size_t other_denom = two_to_the(other.refinement_level_);
+<span class="lineNum">     168 </span>            :   return index_ * other_denom &lt; (other.index_ + 1) * this_denom and
+<span class="lineNum">     169 </span>            :          other.index_ * this_denom &lt; (index_ + 1) * other_denom;
+<span class="lineNum">     170 </span>            : }
+<span class="lineNum">     171 </span>            : 
+<span class="lineNum">     172 </span>            : // These are defined so that a SegmentId can be used as part of a key of an
+<span class="lineNum">     173 </span>            : // unordered_set or unordered_map.
+<span class="lineNum">     174 </span>            : 
+<span class="lineNum">     175 </span>            : // hash_value is called by boost::hash and related functions.
+<span class="lineNum">     176 </span><span class="lineNoCov">          0 : size_t hash_value(const SegmentId&amp; s) noexcept;</span>
+<span class="lineNum">     177 </span>            : 
+<span class="lineNum">     178 </span>            : inline bool operator==(const SegmentId&amp; lhs, const SegmentId&amp; rhs) noexcept {
+<span class="lineNum">     179 </span>            :   return (lhs.refinement_level() == rhs.refinement_level() and
+<span class="lineNum">     180 </span>            :           lhs.index() == rhs.index());
+<span class="lineNum">     181 </span>            : }
+<span class="lineNum">     182 </span>            : 
+<span class="lineNum">     183 </span>            : inline bool operator!=(const SegmentId&amp; lhs, const SegmentId&amp; rhs) noexcept {
+<span class="lineNum">     184 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     185 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

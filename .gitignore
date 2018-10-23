@@ -1,0 +1,54 @@
+# Distributed under the MIT License.
+# See LICENSE.txt for details.
+
+# Build directories
+# Ignore build dirs named similarly to the example in the installation notes;
+# in general arbitrary names are possible and cannot all be ignored.
+/build*
+
+# Temporary editor files
+*~
+*.swp
+\#*\#
+.\#*
+.DS_Store
+.idea
+.dir-locals.el
+.vscode
+compile_commands.json
+.cquery_cached_index
+
+# TeX products
+*.aux
+*.log
+*.toc
+*.bbl
+*.bbg
+*.blg
+*.out
+*.bak
+
+# Python related files
+*.pyc
+.ipynb_checkpoints
+
+# charm++ runtime files
+charmrun.*
+
+# Observer output
+*.xmf
+*.h5
+
+# Ignore deploy SSH keys and other TravisCI related files
+.travis/deploy_key
+coverage.info
+
+# ClangFormat git hook file
+.clang_format_diff.patch
+
+# CTags, ETags and GNU Global Tags files
+GPATH
+GRTAGS
+GTAGS
+TAGS
+tags

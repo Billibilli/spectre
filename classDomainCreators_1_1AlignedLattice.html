@@ -1,0 +1,305 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: DomainCreators::AlignedLattice&lt; VolumeDim, TargetFrame &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceDomainCreators.html">DomainCreators</a></li><li class="navelem"><a class="el" href="classDomainCreators_1_1AlignedLattice.html">AlignedLattice</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="classDomainCreators_1_1AlignedLattice-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">DomainCreators::AlignedLattice&lt; VolumeDim, TargetFrame &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__DomainCreatorsGroup.html">Domain Creators</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Create a <a class="el" href="classDomain.html" title="A wrapper around a vector of Blocks that represent the computational domain. ">Domain</a> consisting of multiple aligned Blocks arrayed in a lattice.  
+ <a href="classDomainCreators_1_1AlignedLattice.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="AlignedLattice_8hpp_source.html">AlignedLattice.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1AlignedLattice_1_1BlockBounds.html">BlockBounds</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1AlignedLattice_1_1InitialGridPoints.html">InitialGridPoints</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1AlignedLattice_1_1InitialRefinement.html">InitialRefinement</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainCreators_1_1AlignedLattice_1_1IsPeriodicIn.html">IsPeriodicIn</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ab0a50ccc9ea068e9f518bcb1d895a757"><td class="memItemLeft" align="right" valign="top"><a id="ab0a50ccc9ea068e9f518bcb1d895a757"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>options</b> = tmpl::list&lt; <a class="el" href="structDomainCreators_1_1AlignedLattice_1_1BlockBounds.html">BlockBounds</a>, <a class="el" href="structDomainCreators_1_1AlignedLattice_1_1IsPeriodicIn.html">IsPeriodicIn</a>, <a class="el" href="structDomainCreators_1_1AlignedLattice_1_1InitialRefinement.html">InitialRefinement</a>, <a class="el" href="structDomainCreators_1_1AlignedLattice_1_1InitialGridPoints.html">InitialGridPoints</a> &gt;</td></tr>
+<tr class="separator:ab0a50ccc9ea068e9f518bcb1d895a757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_classDomainCreator"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classDomainCreator')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classDomainCreator.html">DomainCreator&lt; VolumeDim, TargetFrame &gt;</a></td></tr>
+<tr class="memitem:aac3a408794551d46c352ed3cff84f48d inherit pub_types_classDomainCreator"><td class="memItemLeft" align="right" valign="top"><a id="aac3a408794551d46c352ed3cff84f48d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>creatable_classes</b> = typename DomainCreators_detail::domain_creators&lt; VolumeDim &gt;::template creators&lt; TargetFrame &gt;</td></tr>
+<tr class="separator:aac3a408794551d46c352ed3cff84f48d inherit pub_types_classDomainCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aee8e409f400bdf36adab02e480cabecd"><td class="memItemLeft" align="right" valign="top"><a id="aee8e409f400bdf36adab02e480cabecd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>AlignedLattice</b> (typename <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">BlockBounds::type</a> block_bounds, typename <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">IsPeriodicIn::type</a> is_periodic_in, typename <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">InitialRefinement::type</a> <a class="el" href="classDomainCreators_1_1AlignedLattice.html#a6caad3c82a2b2affb6cc02c80c1af960">initial_refinement_levels</a>, typename <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">InitialGridPoints::type</a> initial_number_of_grid_points) noexcept</td></tr>
+<tr class="separator:aee8e409f400bdf36adab02e480cabecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af267688f932d177af5a2ddaaf36a7f3f"><td class="memItemLeft" align="right" valign="top"><a id="af267688f932d177af5a2ddaaf36a7f3f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>AlignedLattice</b> (const <a class="el" href="classDomainCreators_1_1AlignedLattice.html">AlignedLattice</a> &amp;)=delete</td></tr>
+<tr class="separator:af267688f932d177af5a2ddaaf36a7f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7817e6ad28b96043dbe19c1efed78e0e"><td class="memItemLeft" align="right" valign="top"><a id="a7817e6ad28b96043dbe19c1efed78e0e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>AlignedLattice</b> (<a class="el" href="classDomainCreators_1_1AlignedLattice.html">AlignedLattice</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a7817e6ad28b96043dbe19c1efed78e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b5f723f427a7643538a2a905c6761b"><td class="memItemLeft" align="right" valign="top"><a id="a45b5f723f427a7643538a2a905c6761b"></a>
+<a class="el" href="classDomainCreators_1_1AlignedLattice.html">AlignedLattice</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classDomainCreators_1_1AlignedLattice.html">AlignedLattice</a> &amp;)=delete</td></tr>
+<tr class="separator:a45b5f723f427a7643538a2a905c6761b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf30518285c6af88d2365bdc6bf82bea"><td class="memItemLeft" align="right" valign="top"><a id="aaf30518285c6af88d2365bdc6bf82bea"></a>
+<a class="el" href="classDomainCreators_1_1AlignedLattice.html">AlignedLattice</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classDomainCreators_1_1AlignedLattice.html">AlignedLattice</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:aaf30518285c6af88d2365bdc6bf82bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a798369be1a440df9a1cd4c07977a734b"><td class="memItemLeft" align="right" valign="top"><a id="a798369be1a440df9a1cd4c07977a734b"></a>
+<a class="el" href="classDomain.html">Domain</a>&lt; VolumeDim, TargetFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>create_domain</b> () const noexcept override</td></tr>
+<tr class="separator:a798369be1a440df9a1cd4c07977a734b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a140e11d70d68cb3f7e6825684b0d5488"><td class="memItemLeft" align="right" valign="top"><a id="a140e11d70d68cb3f7e6825684b0d5488"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, VolumeDim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDomainCreators_1_1AlignedLattice.html#a140e11d70d68cb3f7e6825684b0d5488">initial_extents</a> () const noexcept override</td></tr>
+<tr class="memdesc:a140e11d70d68cb3f7e6825684b0d5488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain the initial grid extents of the block with the given index. <br /></td></tr>
+<tr class="separator:a140e11d70d68cb3f7e6825684b0d5488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6caad3c82a2b2affb6cc02c80c1af960"><td class="memItemLeft" align="right" valign="top"><a id="a6caad3c82a2b2affb6cc02c80c1af960"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, VolumeDim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDomainCreators_1_1AlignedLattice.html#a6caad3c82a2b2affb6cc02c80c1af960">initial_refinement_levels</a> () const noexcept override</td></tr>
+<tr class="memdesc:a6caad3c82a2b2affb6cc02c80c1af960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain the initial refinement levels of the blocks. <br /></td></tr>
+<tr class="separator:a6caad3c82a2b2affb6cc02c80c1af960"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classDomainCreator"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classDomainCreator')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classDomainCreator.html">DomainCreator&lt; VolumeDim, TargetFrame &gt;</a></td></tr>
+<tr class="memitem:ae7a33f8d9db7354336014c17c9003270 inherit pub_methods_classDomainCreator"><td class="memItemLeft" align="right" valign="top"><a id="ae7a33f8d9db7354336014c17c9003270"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>DomainCreator</b> (const <a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;)=delete</td></tr>
+<tr class="separator:ae7a33f8d9db7354336014c17c9003270 inherit pub_methods_classDomainCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76a810e17327119f20e9ead4d1555bf4 inherit pub_methods_classDomainCreator"><td class="memItemLeft" align="right" valign="top"><a id="a76a810e17327119f20e9ead4d1555bf4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>DomainCreator</b> (<a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a76a810e17327119f20e9ead4d1555bf4 inherit pub_methods_classDomainCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c810803f65f3af363ec21ac11bd9afd inherit pub_methods_classDomainCreator"><td class="memItemLeft" align="right" valign="top"><a id="a2c810803f65f3af363ec21ac11bd9afd"></a>
+<a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;)=delete</td></tr>
+<tr class="separator:a2c810803f65f3af363ec21ac11bd9afd inherit pub_methods_classDomainCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bd4d9eb3172c78d49ccdb46fa703f58 inherit pub_methods_classDomainCreator"><td class="memItemLeft" align="right" valign="top"><a id="a5bd4d9eb3172c78d49ccdb46fa703f58"></a>
+<a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classDomainCreator.html">DomainCreator</a>&lt; VolumeDim, TargetFrame &gt; &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a5bd4d9eb3172c78d49ccdb46fa703f58 inherit pub_methods_classDomainCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a7931af82678f76979c88150d4655a3e5"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a>&#160;</td><td class="memItemRight" valign="bottom"><b>help</b></td></tr>
+<tr class="separator:a7931af82678f76979c88150d4655a3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;size_t VolumeDim, typename TargetFrame&gt;<br />
+class DomainCreators::AlignedLattice&lt; VolumeDim, TargetFrame &gt;</h3>
+
+<p>Create a <a class="el" href="classDomain.html" title="A wrapper around a vector of Blocks that represent the computational domain. ">Domain</a> consisting of multiple aligned Blocks arrayed in a lattice. </p>
+<p>This is useful for setting up problems with piecewise smooth initial data, problems that specify different boundary conditions on distinct parts of the boundary, or problems that need different length scales initially.</p>
+<dl class="section note"><dt>Note</dt><dd>Adaptive mesh refinement can never join <a class="el" href="classBlock.html" title="A Block&lt;VolumeDim&gt; is a region of a VolumeDim-dimensional computational domain that defines the root ...">Block</a>s, so use the fewest number of <a class="el" href="classBlock.html" title="A Block&lt;VolumeDim&gt; is a region of a VolumeDim-dimensional computational domain that defines the root ...">Block</a>s that your problem needs. More initial <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a>s can be created by specifying a larger <code><a class="el" href="structDomainCreators_1_1AlignedLattice_1_1InitialRefinement.html">InitialRefinement</a></code>. </dd></dl>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7931af82678f76979c88150d4655a3e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7931af82678f76979c88150d4655a3e5">&#9670;&nbsp;</a></span>help</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t VolumeDim, typename TargetFrame &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a> <a class="el" href="classDomainCreators_1_1AlignedLattice.html">DomainCreators::AlignedLattice</a>&lt; VolumeDim, TargetFrame &gt;::help</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">      <span class="stringliteral">&quot;AlignedLattice creates a regular lattice of blocks whose corners are\n&quot;</span></div><div class="line">      <span class="stringliteral">&quot;given by tensor products of the specified BlockBounds.&quot;</span>}</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Domain/DomainCreators/<a class="el" href="AlignedLattice_8hpp_source.html">AlignedLattice.hpp</a></li>
+<li>src/Domain/DomainCreators/AlignedLattice.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

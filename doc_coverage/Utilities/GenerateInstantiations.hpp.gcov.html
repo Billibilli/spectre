@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Utilities/GenerateInstantiations.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - GenerateInstantiations.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : // IWYU pragma: begin_exports
+<span class="lineNum">       7 </span>            : #include &lt;boost/parameter/name.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &lt;boost/preprocessor/arithmetic/inc.hpp&gt;
+<span class="lineNum">       9 </span>            : #include &lt;boost/preprocessor/control/expr_iif.hpp&gt;
+<span class="lineNum">      10 </span>            : #include &lt;boost/preprocessor/control/iif.hpp&gt;
+<span class="lineNum">      11 </span>            : #include &lt;boost/preprocessor/control/while.hpp&gt;
+<span class="lineNum">      12 </span>            : #include &lt;boost/preprocessor/list/adt.hpp&gt;
+<span class="lineNum">      13 </span>            : #include &lt;boost/preprocessor/list/fold_left.hpp&gt;
+<span class="lineNum">      14 </span>            : #include &lt;boost/preprocessor/list/fold_right.hpp&gt;
+<span class="lineNum">      15 </span>            : #include &lt;boost/preprocessor/list/for_each_product.hpp&gt;
+<span class="lineNum">      16 </span>            : #include &lt;boost/preprocessor/list/size.hpp&gt;
+<span class="lineNum">      17 </span>            : #include &lt;boost/preprocessor/list/to_tuple.hpp&gt;
+<span class="lineNum">      18 </span>            : #include &lt;boost/preprocessor/list/transform.hpp&gt;
+<span class="lineNum">      19 </span>            : #include &lt;boost/preprocessor/logical/bitand.hpp&gt;
+<span class="lineNum">      20 </span>            : #include &lt;boost/preprocessor/logical/bool.hpp&gt;
+<span class="lineNum">      21 </span>            : #include &lt;boost/preprocessor/logical/compl.hpp&gt;
+<span class="lineNum">      22 </span>            : #include &lt;boost/preprocessor/repetition/for.hpp&gt;
+<span class="lineNum">      23 </span>            : #include &lt;boost/preprocessor/tuple/elem.hpp&gt;
+<span class="lineNum">      24 </span>            : #include &lt;boost/preprocessor/tuple/reverse.hpp&gt;
+<span class="lineNum">      25 </span>            : #include &lt;boost/preprocessor/tuple/size.hpp&gt;
+<span class="lineNum">      26 </span>            : #include &lt;boost/preprocessor/tuple/to_list.hpp&gt;
+<span class="lineNum">      27 </span>            : #include &lt;boost/preprocessor/variadic/elem.hpp&gt;
+<span class="lineNum">      28 </span>            : #include &lt;boost/preprocessor/variadic/to_list.hpp&gt;
+<span class="lineNum">      29 </span>            : // IWYU pragma: end_exports
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : /// \cond
+<span class="lineNum">      32 </span>            : #define GENERATE_INSTANTIATIONS_DO_PRODUCT(INSTANTIATION_MACRO, LIST_OF_LISTS) \
+<span class="lineNum">      33 </span>            :   BOOST_PP_LIST_FOR_EACH_PRODUCT(INSTANTIATION_MACRO,                          \
+<span class="lineNum">      34 </span>            :                                  BOOST_PP_LIST_SIZE(LIST_OF_LISTS),            \
+<span class="lineNum">      35 </span>            :                                  BOOST_PP_LIST_TO_TUPLE(LIST_OF_LISTS))
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span>            : #define GENERATE_INSTANTIATION_TUPLES_TO_LISTS(d, _, elem) \
+<span class="lineNum">      38 </span>            :   BOOST_PP_TUPLE_TO_LIST(BOOST_PP_TUPLE_SIZE(elem), elem)
+<span class="lineNum">      39 </span>            : /// \endcond
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            : /*!
+<span class="lineNum">      42 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">      43 </span>            :  * \brief Macro useful for generating many explicit instantiations of function
+<span class="lineNum">      44 </span>            :  * or class templates
+<span class="lineNum">      45 </span>            :  *
+<span class="lineNum">      46 </span>            :  * It is often necessary to generate explicit instantiations of function or
+<span class="lineNum">      47 </span>            :  * class templates. Since the total number of explicit instantiations scales as
+<span class="lineNum">      48 </span>            :  * the product of the number of possible number of parameter values of each
+<span class="lineNum">      49 </span>            :  * template parameter, this quickly becomes tedious. This macro allows you to
+<span class="lineNum">      50 </span>            :  * easily generate hundreds of explicit instantiations.
+<span class="lineNum">      51 </span>            :  *
+<span class="lineNum">      52 </span>            :  * The first argument to the macro is a macro that takes two arguments and is
+<span class="lineNum">      53 </span>            :  * described below. The remaining arguments are macro-tuples, e.g. `(1, 2, 3)`.
+<span class="lineNum">      54 </span>            :  * The Cartesian product of the macro-tuples is then computed and each term is
+<span class="lineNum">      55 </span>            :  * passed as a tuple as the second argument to the `INSTANTIATION_MACRO`. The
+<span class="lineNum">      56 </span>            :  * first argument to the `INSTANTIATION_MACRO` is a Boost.Preprocessor internal
+<span class="lineNum">      57 </span>            :  * variable so just make it `_`. The `INSTANTIATION(_, data)` macro below serves
+<span class="lineNum">      58 </span>            :  * as an example. A concrete example is generating explicit instantiations of
+<span class="lineNum">      59 </span>            :  * the class `Index&lt;Dim&gt;` for `Dim = 0,1,2,3`, which you would do as follows:
+<span class="lineNum">      60 </span>            :  *
+<span class="lineNum">      61 </span>            :  * \code
+<span class="lineNum">      62 </span>            :  * #define GET_DIM(data) BOOST_PP_TUPLE_ELEM(0, data)
+<span class="lineNum">      63 </span>            :  *
+<span class="lineNum">      64 </span>            :  * #define INSTANTIATION(_, data)         \
+<span class="lineNum">      65 </span>            :  *   template class Index&lt;GET_DIM(data)&gt;;
+<span class="lineNum">      66 </span>            :  *
+<span class="lineNum">      67 </span>            :  * GENERATE_INSTANTIATIONS(INSTANTIATION, (0, 1, 2, 3))
+<span class="lineNum">      68 </span>            :  *
+<span class="lineNum">      69 </span>            :  * #undef GET_DIM
+<span class="lineNum">      70 </span>            :  * #undef INSTANTIATION
+<span class="lineNum">      71 </span>            :  * \endcode
+<span class="lineNum">      72 </span>            :  *
+<span class="lineNum">      73 </span>            :  * This will generate:
+<span class="lineNum">      74 </span>            :  *
+<span class="lineNum">      75 </span>            :  * \code
+<span class="lineNum">      76 </span>            :  * template class Index&lt;0&gt;;
+<span class="lineNum">      77 </span>            :  * template class Index&lt;1&gt;;
+<span class="lineNum">      78 </span>            :  * template class Index&lt;2&gt;;
+<span class="lineNum">      79 </span>            :  * template class Index&lt;3&gt;;
+<span class="lineNum">      80 </span>            :  * \endcode
+<span class="lineNum">      81 </span>            :  *
+<span class="lineNum">      82 </span>            :  * It is also possible to generate explicit instantiations for multiple classes
+<span class="lineNum">      83 </span>            :  * or functions in a single call to `GENERATE_INSTANTIATIONS`. For example, the
+<span class="lineNum">      84 </span>            :  * (in)equivalence operators can be generated using:
+<span class="lineNum">      85 </span>            :  *
+<span class="lineNum">      86 </span>            :  * \code
+<span class="lineNum">      87 </span>            :  * #define GET_DIM(data) BOOST_PP_TUPLE_ELEM(0, data)
+<span class="lineNum">      88 </span>            :  * #define GEN_OP(op, dim)                            \
+<span class="lineNum">      89 </span>            :  *   template bool operator op(const Index&lt;dim&gt;&amp; lhs, \
+<span class="lineNum">      90 </span>            :  *                             const Index&lt;dim&gt;&amp; rhs) noexcept;
+<span class="lineNum">      91 </span>            :  * #define INSTANTIATION(_, data)         \
+<span class="lineNum">      92 </span>            :  *   template class Index&lt;GET_DIM(data)&gt;; \
+<span class="lineNum">      93 </span>            :  *   GEN_OP(==, GET_DIM(data))            \
+<span class="lineNum">      94 </span>            :  *   GEN_OP(!=, GET_DIM(data))
+<span class="lineNum">      95 </span>            :  *
+<span class="lineNum">      96 </span>            :  * GENERATE_INSTANTIATIONS(INSTANTIATION, (0, 1, 2, 3))
+<span class="lineNum">      97 </span>            :  *
+<span class="lineNum">      98 </span>            :  * #undef GET_DIM
+<span class="lineNum">      99 </span>            :  * #undef GEN_OP
+<span class="lineNum">     100 </span>            :  * #undef INSTANTIATION
+<span class="lineNum">     101 </span>            :  * \endcode
+<span class="lineNum">     102 </span>            :  *
+<span class="lineNum">     103 </span>            :  * which will result in the instantiations:
+<span class="lineNum">     104 </span>            :  *
+<span class="lineNum">     105 </span>            :  * \code
+<span class="lineNum">     106 </span>            :  * template class Index&lt;0&gt;;
+<span class="lineNum">     107 </span>            :  * template bool operator==(const Index&lt;0&gt;&amp; lhs, const Index&lt;0&gt;&amp; rhs) noexcept;
+<span class="lineNum">     108 </span>            :  * template bool operator!=(const Index&lt;0&gt;&amp; lhs, const Index&lt;0&gt;&amp; rhs) noexcept;
+<span class="lineNum">     109 </span>            :  * template class Index&lt;1&gt;;
+<span class="lineNum">     110 </span>            :  * template bool operator==(const Index&lt;1&gt;&amp; lhs, const Index&lt;1&gt;&amp; rhs) noexcept;
+<span class="lineNum">     111 </span>            :  * template bool operator!=(const Index&lt;1&gt;&amp; lhs, const Index&lt;1&gt;&amp; rhs) noexcept;
+<span class="lineNum">     112 </span>            :  * template class Index&lt;2&gt;;
+<span class="lineNum">     113 </span>            :  * template bool operator==(const Index&lt;2&gt;&amp; lhs, const Index&lt;2&gt;&amp; rhs) noexcept;
+<span class="lineNum">     114 </span>            :  * template bool operator!=(const Index&lt;2&gt;&amp; lhs, const Index&lt;2&gt;&amp; rhs) noexcept;
+<span class="lineNum">     115 </span>            :  * template class Index&lt;3&gt;;
+<span class="lineNum">     116 </span>            :  * template bool operator==(const Index&lt;3&gt;&amp; lhs, const Index&lt;3&gt;&amp; rhs) noexcept;
+<span class="lineNum">     117 </span>            :  * template bool operator!=(const Index&lt;3&gt;&amp; lhs, const Index&lt;3&gt;&amp; rhs) noexcept;
+<span class="lineNum">     118 </span>            :  * \endcode
+<span class="lineNum">     119 </span>            :  *
+<span class="lineNum">     120 </span>            :  * Now let's look at generating instantiations of member function templates of
+<span class="lineNum">     121 </span>            :  * class templates, which will be a common use case. In this example we generate
+<span class="lineNum">     122 </span>            :  * explicit instantiations of all the member function templates of the class
+<span class="lineNum">     123 </span>            :  * `ScalarWave::Solutions::PlaneWave`. In total, for `Dim = 1,2,3` and types
+<span class="lineNum">     124 </span>            :  * `double` and `DataVector` this is about 42 explicit instantiations, which
+<span class="lineNum">     125 </span>            :  * would be extremely annoying to write by hand. The macro code is surprisingly
+<span class="lineNum">     126 </span>            :  * simple:
+<span class="lineNum">     127 </span>            :  *
+<span class="lineNum">     128 </span>            :  * \code
+<span class="lineNum">     129 </span>            :  * #define DIM(data) BOOST_PP_TUPLE_ELEM(0, data)
+<span class="lineNum">     130 </span>            :  * #define DTYPE(data) BOOST_PP_TUPLE_ELEM(1, data)
+<span class="lineNum">     131 </span>            :  *
+<span class="lineNum">     132 </span>            :  * #define INSTANTIATE(_, data)                                              \
+<span class="lineNum">     133 </span>            :  *   template Scalar&lt;DTYPE(data)&gt;                                            \
+<span class="lineNum">     134 </span>            :  *   ScalarWave::Solutions::PlaneWave&lt;DIM(data)&gt;::psi(                       \
+<span class="lineNum">     135 </span>            :  *       const tnsr::I&lt;DTYPE(data), DIM(data)&gt;&amp; x, double t) const noexcept; \
+<span class="lineNum">     136 </span>            :  *   template Scalar&lt;DTYPE(data)&gt;                                            \
+<span class="lineNum">     137 </span>            :  *   ScalarWave::Solutions::PlaneWave&lt;DIM(data)&gt;::dpsi_dt(                   \
+<span class="lineNum">     138 </span>            :  *       const tnsr::I&lt;DTYPE(data), DIM(data)&gt;&amp; x, double t) const noexcept;
+<span class="lineNum">     139 </span>            :  *
+<span class="lineNum">     140 </span>            :  * GENERATE_INSTANTIATIONS(INSTANTIATE, (1, 2, 3), (double, DataVector))
+<span class="lineNum">     141 </span>            :  *
+<span class="lineNum">     142 </span>            :  * #undef DIM
+<span class="lineNum">     143 </span>            :  * #undef DTYPE
+<span class="lineNum">     144 </span>            :  * #undef INSTANTIATE
+<span class="lineNum">     145 </span>            :  * \endcode
+<span class="lineNum">     146 </span>            :  *
+<span class="lineNum">     147 </span>            :  * We don't show the result from preprocessor since for all of the member
+<span class="lineNum">     148 </span>            :  * functions of `PlaneWave` the total output is approximately 150 lines, but you
+<span class="lineNum">     149 </span>            :  * can hopefully see the benefits of generating explicit instantiations using
+<span class="lineNum">     150 </span>            :  * the `GENERATE_INSTANTIATIONS` way.
+<span class="lineNum">     151 </span>            :  *
+<span class="lineNum">     152 </span>            :  * One thing that can be difficult is debugging metaprograms (be they template
+<span class="lineNum">     153 </span>            :  * or macro-based). To this end we provide a make target `DebugPreprocessor`
+<span class="lineNum">     154 </span>            :  * which prints the output of running the preprocessor on the file
+<span class="lineNum">     155 </span>            :  * `src/Executables/DebugPreprocessor/DebugPreprocessor.cpp`.
+<span class="lineNum">     156 </span>            :  * Note that the output of the `GENERATE_INSTANTIATIONS` macro will be on a
+<span class="lineNum">     157 </span>            :  * single line, so it often proves useful to copy-paste the output into an
+<span class="lineNum">     158 </span>            :  * editor and run clang-format over the code so it's easier to reason about.
+<span class="lineNum">     159 </span>            :  */
+<span class="lineNum">     160 </span><span class="lineCov">          2 : #define GENERATE_INSTANTIATIONS(INSTANTIATION_MACRO, ...)                \</span>
+<span class="lineNum">     161 </span>            :   GENERATE_INSTANTIATIONS_DO_PRODUCT(                                    \
+<span class="lineNum">     162 </span>            :       INSTANTIATION_MACRO,                                               \
+<span class="lineNum">     163 </span>            :       BOOST_PP_LIST_TRANSFORM(GENERATE_INSTANTIATION_TUPLES_TO_LISTS, _, \
+<span class="lineNum">     164 </span>            :                               BOOST_PP_VARIADIC_TO_LIST(__VA_ARGS__)))
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Time/StepControllers/BinaryFraction.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Time/StepControllers</a> - BinaryFraction.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryLo">25.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class StepControllers::BinaryFraction
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">      10 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">      11 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      12 </span>            : #include &lt;pup.h&gt;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Options/Options.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Parallel/CharmPupable.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Time/Slab.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Time/StepControllers/StepController.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      19 </span>            : #include &quot;Time/Time.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      21 </span>            : // IWYU pragma: no_include &quot;Utilities/Rational.hpp&quot;
+<span class="lineNum">      22 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : namespace StepControllers {
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : /// \ingroup TimeSteppersGroup
+<span class="lineNum">      27 </span>            : ///
+<span class="lineNum">      28 </span>            : /// A StepController that chooses steps to be 1/2^n of a slab.
+<span class="lineNum">      29 </span><span class="lineCov">          1 : class BinaryFraction : public StepController {</span>
+<span class="lineNum">      30 </span>            :  public:
+<span class="lineNum">      31 </span>            :   /// \cond
+<span class="lineNum">      32 </span>            :   BinaryFraction() = default;
+<span class="lineNum">      33 </span>            :   explicit BinaryFraction(CkMigrateMessage* /*unused*/) noexcept {}
+<span class="lineNum">      34 </span>            :   WRAPPED_PUPable_decl(BinaryFraction);  // NOLINT
+<span class="lineNum">      35 </span>            :   /// \endcond
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span><span class="lineNoCov">          0 :   using options = tmpl::list&lt;&gt;;</span>
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :   static constexpr OptionString help = {</span>
+<span class="lineNum">      39 </span>            :       &quot;Chooses steps to be binary fractions of a slab&quot;};
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span><span class="lineNoCov">          0 :   TimeDelta choose_step(const Time&amp; time,</span>
+<span class="lineNum">      42 </span>            :                         const double desired_step) const noexcept override {
+<span class="lineNum">      43 </span>            :     ASSERT((time.fraction().denominator() &amp;
+<span class="lineNum">      44 </span>            :             (time.fraction().denominator() - 1)) == 0,
+<span class="lineNum">      45 </span>            :            &quot;Not at a binary-fraction time within slab: &quot; &lt;&lt; time.fraction());
+<span class="lineNum">      46 </span>            :     const TimeDelta full_slab =
+<span class="lineNum">      47 </span>            :         desired_step &gt; 0 ? time.slab().duration() : -time.slab().duration();
+<span class="lineNum">      48 </span>            :     const double desired_step_count = full_slab.value() / desired_step;
+<span class="lineNum">      49 </span>            :     const size_t desired_step_power =
+<span class="lineNum">      50 </span>            :         desired_step_count &lt;= 1
+<span class="lineNum">      51 </span>            :             ? 0
+<span class="lineNum">      52 </span>            :             : static_cast&lt;size_t&gt;(std::ceil(std::log2(desired_step_count)));
+<span class="lineNum">      53 </span>            : 
+<span class="lineNum">      54 </span>            :     // Ensure we will hit the slab boundary if we continue taking
+<span class="lineNum">      55 </span>            :     // constant-sized steps.
+<span class="lineNum">      56 </span>            :     const auto step_count =
+<span class="lineNum">      57 </span>            :         std::max(static_cast&lt;decltype(time.fraction().denominator())&gt;(
+<span class="lineNum">      58 </span>            :                      two_to_the(desired_step_power)),
+<span class="lineNum">      59 </span>            :                  time.fraction().denominator());
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            :     return full_slab / step_count;
+<span class="lineNum">      62 </span>            :   }
+<span class="lineNum">      63 </span>            : };
+<span class="lineNum">      64 </span>            : }  // namespace StepControllers
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

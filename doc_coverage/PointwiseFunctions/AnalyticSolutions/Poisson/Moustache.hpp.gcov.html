@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - PointwiseFunctions/AnalyticSolutions/Poisson/Moustache.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">PointwiseFunctions/AnalyticSolutions/Poisson</a> - Moustache.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntryLo">7.1 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/DataBox/Prefixes.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;     // IWYU pragma: keep
+<span class="lineNum">      10 </span>            : #include &quot;Elliptic/Systems/Poisson/Tags.hpp&quot;    // IWYU pragma: keep
+<span class="lineNum">      11 </span>            : #include &quot;Options/Options.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/TaggedTuple.hpp&quot;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : /// \cond
+<span class="lineNum">      16 </span>            : class DataVector;
+<span class="lineNum">      17 </span>            : namespace PUP {
+<span class="lineNum">      18 </span>            : class er;
+<span class="lineNum">      19 </span>            : }  // namespace PUP
+<span class="lineNum">      20 </span>            : /// \endcond
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : namespace Poisson {
+<span class="lineNum">      23 </span>            : namespace Solutions {
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : /*!
+<span class="lineNum">      26 </span>            :  * \brief A solution to the Poisson equation with a discontinuous first
+<span class="lineNum">      27 </span>            :  * derivative.
+<span class="lineNum">      28 </span>            :  *
+<span class="lineNum">      29 </span>            :  * \details This implements the solution \f$u(x,y)=x\left(1-x\right)
+<span class="lineNum">      30 </span>            :  * y\left(1-y\right)\left(\left(x-\frac{1}{2}\right)^2+\left(y-
+<span class="lineNum">      31 </span>            :  * \frac{1}{2}\right)^2\right)^\frac{3}{2}\f$ to the Poisson equation
+<span class="lineNum">      32 </span>            :  * in two dimensions, and
+<span class="lineNum">      33 </span>            :  * \f$u(x)=x\left(1-x\right)\left|x-\frac{1}{2}\right|^3\f$ in one dimension.
+<span class="lineNum">      34 </span>            :  * Their boundary conditions vanish on the square \f$[0,1]^2\f$ or interval
+<span class="lineNum">      35 </span>            :  * \f$[0,1]\f$, respectively.
+<span class="lineNum">      36 </span>            :  *
+<span class="lineNum">      37 </span>            :  * The corresponding source \f$f=-\Delta u\f$ has a discontinuous first
+<span class="lineNum">      38 </span>            :  * derivative at \f$\frac{1}{2}\f$. This accomplishes two things:
+<span class="lineNum">      39 </span>            :  *
+<span class="lineNum">      40 </span>            :  * - It makes it useful to test the convergence behaviour of our elliptic DG
+<span class="lineNum">      41 </span>            :  * solver.
+<span class="lineNum">      42 </span>            :  * - It makes it look like a moustache (at least in 1D).
+<span class="lineNum">      43 </span>            :  *
+<span class="lineNum">      44 </span>            :  * This solution is taken from _B. Stamm and T. Wihler, Mathematics of
+<span class="lineNum">      45 </span>            :  * Computation 79, 2117 (2010)_. It is also investigated in _T. Vincent and H.P.
+<span class="lineNum">      46 </span>            :  * Pfeiffer, in preparation_.
+<span class="lineNum">      47 </span>            :  */
+<span class="lineNum">      48 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      49 </span><span class="lineCov">          1 : class Moustache {</span>
+<span class="lineNum">      50 </span>            :  public:
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 :   using options = tmpl::list&lt;&gt;;</span>
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :   static constexpr OptionString help{</span>
+<span class="lineNum">      53 </span>            :       &quot;A solution with a discontinuous first derivative of its source at 1/2 &quot;
+<span class="lineNum">      54 </span>            :       &quot;that also happens to look like a moustache. It vanishes at zero and one &quot;
+<span class="lineNum">      55 </span>            :       &quot;in each dimension&quot;};
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :   Moustache() = default;</span>
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 :   Moustache(const Moustache&amp;) noexcept = delete;</span>
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :   Moustache&amp; operator=(const Moustache&amp;) noexcept = delete;</span>
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :   Moustache(Moustache&amp;&amp;) noexcept = default;</span>
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 :   Moustache&amp; operator=(Moustache&amp;&amp;) noexcept = default;</span>
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :   ~Moustache() noexcept = default;</span>
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :   auto field_variables(const tnsr::I&lt;DataVector, Dim&gt;&amp; x) const noexcept</span>
+<span class="lineNum">      65 </span>            :       -&gt; tuples::TaggedTuple&lt;Field, AuxiliaryField&lt;Dim&gt;&gt;;
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :   auto source_variables(const tnsr::I&lt;DataVector, Dim&gt;&amp; x) const noexcept</span>
+<span class="lineNum">      68 </span>            :       -&gt; tuples::TaggedTuple&lt;::Tags::Source&lt;Field&gt;,
+<span class="lineNum">      69 </span>            :                              ::Tags::Source&lt;AuxiliaryField&lt;Dim&gt;&gt;&gt;;
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            :   // clang-tidy: no pass by reference
+<span class="lineNum">      72 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">      73 </span>            : };
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 : constexpr bool operator==(const Moustache&lt;Dim&gt;&amp; /*lhs*/,</span>
+<span class="lineNum">      77 </span>            :                           const Moustache&lt;Dim&gt;&amp; /*rhs*/) noexcept {
+<span class="lineNum">      78 </span>            :   return true;
+<span class="lineNum">      79 </span>            : }
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      82 </span><span class="lineNoCov">          0 : constexpr bool operator!=(const Moustache&lt;Dim&gt;&amp; lhs,</span>
+<span class="lineNum">      83 </span>            :                           const Moustache&lt;Dim&gt;&amp; rhs) noexcept {
+<span class="lineNum">      84 </span>            :   return not(lhs == rhs);
+<span class="lineNum">      85 </span>            : }
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span>            : }  // namespace Solutions
+<span class="lineNum">      88 </span>            : }  // namespace Poisson
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

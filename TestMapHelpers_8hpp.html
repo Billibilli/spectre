@@ -1,0 +1,273 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: tests/Unit/Domain/CoordinateMaps/TestMapHelpers.hpp File Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b497178cadb39805d133065ab0572e16.html">tests</a></li><li class="navelem"><a class="el" href="dir_ce50313da0d2c933363a59ba466c07e3.html">Unit</a></li><li class="navelem"><a class="el" href="dir_13215d7101b2022648e4fae73b0a2246.html">Domain</a></li><li class="navelem"><a class="el" href="dir_05915dd52a43cb7e71179e1624dca11f.html">CoordinateMaps</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">TestMapHelpers.hpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Helper functions for testing coordinate maps.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="TestingFramework_8hpp_source.html">tests/Unit/TestingFramework.hpp</a>&quot;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/array.html">array</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/functional.html">functional</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/numeric.html">numeric</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/random.html">random</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="DataVector_8hpp_source.html">DataStructures/DataVector.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Tensor_8hpp_source.html">DataStructures/Tensor/Tensor.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="CoordinateMap_8hpp_source.html">Domain/CoordinateMaps/CoordinateMap.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Direction_8hpp_source.html">Domain/Direction.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="DomainHelpers_8hpp_source.html">Domain/DomainHelpers.hpp</a>&quot;</code><br />
+<code>#include &quot;Domain/OrientationMap.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="Utilities_2TypeTraits_8hpp_source.html">Utilities/TypeTraits.hpp</a>&quot;</code><br />
+<code>#include &quot;tests/Unit/Domain/DomainTestHelpers.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="TestHelpers_8hpp_source.html">tests/Unit/TestHelpers.hpp</a>&quot;</code><br />
+</div>
+<p><a href="TestMapHelpers_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrientationMapIterator.html">OrientationMapIterator&lt; VolumeDim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An iterator for looping through all possible orientations of the n-dim cube.  <a href="classOrientationMapIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga9005fe71838426e92bf4afb2dcbf8ae2"><td class="memTemplParams" colspan="2">
+template&lt;typename Map &gt; </td></tr>
+<tr class="memitem:ga9005fe71838426e92bf4afb2dcbf8ae2"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga9005fe71838426e92bf4afb2dcbf8ae2">are_maps_equal</a> (const Map &amp;map, const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a>, <a class="el" href="structFrame_1_1Inertial.html">Frame::Inertial</a>, Map::dim &gt; &amp;map_base)</td></tr>
+<tr class="memdesc:ga9005fe71838426e92bf4afb2dcbf8ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map and a <a class="el" href="classCoordinateMapBase.html" title="Abstract base class for CoordinateMap. ">CoordinateMapBase</a>, checks that the maps are equal by downcasting <code>map_base</code> and then comparing to <code>map</code>. Returns false if the downcast fails. <br /></td></tr>
+<tr class="separator:ga9005fe71838426e92bf4afb2dcbf8ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga61df721602d682f4b8b58ff4fee8e218"><td class="memTemplParams" colspan="2">
+template&lt;typename SourceFrame , typename TargetFrame , size_t VolumeDim&gt; </td></tr>
+<tr class="memitem:ga61df721602d682f4b8b58ff4fee8e218"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga61df721602d682f4b8b58ff4fee8e218">check_if_maps_are_equal</a> (const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, VolumeDim &gt; &amp;map_one, const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, VolumeDim &gt; &amp;map_two)</td></tr>
+<tr class="memdesc:ga61df721602d682f4b8b58ff4fee8e218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given two coordinate maps (but not their types), check that the maps are equal by evaluating them at a random set of points. <br /></td></tr>
+<tr class="separator:ga61df721602d682f4b8b58ff4fee8e218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf02c223800e6dff5b7ef7e26cd9346d"><td class="memTemplParams" colspan="2">
+template&lt;typename Map &gt; </td></tr>
+<tr class="memitem:gabf02c223800e6dff5b7ef7e26cd9346d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gabf02c223800e6dff5b7ef7e26cd9346d">test_jacobian</a> (const Map &amp;map, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Map::dim &gt; &amp;test_point)</td></tr>
+<tr class="memdesc:gabf02c223800e6dff5b7ef7e26cd9346d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map <code>map</code>, checks that the jacobian gives expected results when compared to the numerical derivative in each direction. <br /></td></tr>
+<tr class="separator:gabf02c223800e6dff5b7ef7e26cd9346d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa520953bc8d464f7e10e8eb194d60f48"><td class="memTemplParams" colspan="2">
+template&lt;typename Map &gt; </td></tr>
+<tr class="memitem:gaa520953bc8d464f7e10e8eb194d60f48"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gaa520953bc8d464f7e10e8eb194d60f48">test_inv_jacobian</a> (const Map &amp;map, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Map::dim &gt; &amp;test_point)</td></tr>
+<tr class="memdesc:gaa520953bc8d464f7e10e8eb194d60f48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map <code>map</code>, checks that the inverse jacobian and jacobian multiply together to produce the identity matrix. <br /></td></tr>
+<tr class="separator:gaa520953bc8d464f7e10e8eb194d60f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78426b870bda77db6a8e6df8aac4db02"><td class="memTemplParams" colspan="2">
+template&lt;typename Map , typename... Args&gt; </td></tr>
+<tr class="memitem:ga78426b870bda77db6a8e6df8aac4db02"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga78426b870bda77db6a8e6df8aac4db02">test_coordinate_map_implementation</a> (const Map &amp;map)</td></tr>
+<tr class="memdesc:ga78426b870bda77db6a8e6df8aac4db02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks that the <a class="el" href="classCoordinateMap.html" title="A coordinate map or composition of coordinate maps. ">CoordinateMap</a> <code>map</code> functions as expected when used as the template parameter to the <code><a class="el" href="classCoordinateMap.html" title="A coordinate map or composition of coordinate maps. ">CoordinateMap</a></code> type. <br /></td></tr>
+<tr class="separator:ga78426b870bda77db6a8e6df8aac4db02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad2b86f2fe7f836fef3a95233ae9bde7c"><td class="memTemplParams" colspan="2">
+template&lt;typename Map , typename... Args&gt; </td></tr>
+<tr class="memitem:gad2b86f2fe7f836fef3a95233ae9bde7c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#gad2b86f2fe7f836fef3a95233ae9bde7c">test_coordinate_map_argument_types</a> (const Map &amp;map, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Map::dim &gt; &amp;test_point, const Args &amp;... args)</td></tr>
+<tr class="memdesc:gad2b86f2fe7f836fef3a95233ae9bde7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks that the <a class="el" href="classCoordinateMap.html" title="A coordinate map or composition of coordinate maps. ">CoordinateMap</a> <code>map</code> functions as expected when used with different argument types. <br /></td></tr>
+<tr class="separator:gad2b86f2fe7f836fef3a95233ae9bde7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39ae8490d3901771ac4387ee02128025"><td class="memTemplParams" colspan="2">
+template&lt;typename Map , typename T &gt; </td></tr>
+<tr class="memitem:ga39ae8490d3901771ac4387ee02128025"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga39ae8490d3901771ac4387ee02128025">test_inverse_map</a> (const Map &amp;map, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, Map::dim &gt; &amp;test_point)</td></tr>
+<tr class="memdesc:ga39ae8490d3901771ac4387ee02128025"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map <code>map</code>, checks that the inverse map gives expected results. <br /></td></tr>
+<tr class="separator:ga39ae8490d3901771ac4387ee02128025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga58438d363c5500b83f4f06a3a8db5910"><td class="memTemplParams" colspan="2">
+template&lt;typename Map &gt; </td></tr>
+<tr class="memitem:ga58438d363c5500b83f4f06a3a8db5910"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga58438d363c5500b83f4f06a3a8db5910">test_suite_for_map_on_unit_cube</a> (const Map &amp;map)</td></tr>
+<tr class="memdesc:ga58438d363c5500b83f4f06a3a8db5910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map <code>map</code>, tests the map functions, including map inverse, jacobian, and inverse jacobian, for a series of points. These points are chosen in a dim-dimensonal cube of side 2 centered at the origin. The map is expected to be valid on the boundaries of the cube. <br /></td></tr>
+<tr class="separator:ga58438d363c5500b83f4f06a3a8db5910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7baa6e16abbf3cb34691cde874db1dbc"><td class="memTemplParams" colspan="2">
+template&lt;typename Map &gt; </td></tr>
+<tr class="memitem:ga7baa6e16abbf3cb34691cde874db1dbc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga7baa6e16abbf3cb34691cde874db1dbc">test_suite_for_map_on_sphere</a> (const Map &amp;map, const bool include_origin=true, const double radius_of_sphere=1.0)</td></tr>
+<tr class="memdesc:ga7baa6e16abbf3cb34691cde874db1dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Map <code>map</code>, tests the map functions, including map inverse, jacobian, and inverse jacobian, for a series of points. These points are chosen in a sphere of radius <code>radius_of_sphere</code>, and the map is expected to be valid on the boundary of that sphere as well as in its interior. The flag <code>include_origin</code> indicates whether to test the map at the origin. This test works only in 3 dimensions. <br /></td></tr>
+<tr class="separator:ga7baa6e16abbf3cb34691cde874db1dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d52ab2b276eea1d2ee938d2c8db1470"><td class="memItemLeft" align="right" valign="top">
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; OrientationMap&lt; 3 &gt;, 6 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFrameworkGroup.html#ga6d52ab2b276eea1d2ee938d2c8db1470">all_wedge_directions</a> ()</td></tr>
+<tr class="memdesc:ga6d52ab2b276eea1d2ee938d2c8db1470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wedge OrientationMap in each of the six directions used in the Shell and Sphere domain creators. <br /></td></tr>
+<tr class="separator:ga6d52ab2b276eea1d2ee938d2c8db1470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Helper functions for testing coordinate maps. </p>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/LinearAlgebra/FindGeneralizedEigenvalues.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/LinearAlgebra</a> - FindGeneralizedEigenvalues.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;NumericalAlgorithms/LinearAlgebra/FindGeneralizedEigenvalues.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">       8 </span>            : #include &lt;vector&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/Matrix.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : // LAPACK routine to do the generalized eigenvalue problem
+<span class="lineNum">      17 </span>            : extern &quot;C&quot; {
+<span class="lineNum">      18 </span><span class="lineNoCov">          0 : extern void dggev_(char*, char*, int*, double*, int*, double*, int*, double*,</span>
+<span class="lineNum">      19 </span>            :                    double*, double*, double*, int*, double*, int*, double*,
+<span class="lineNum">      20 </span>            :                    int*, int*);
+<span class="lineNum">      21 </span>            : }
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span><span class="lineNoCov">          0 : void find_generalized_eigenvalues(</span>
+<span class="lineNum">      24 </span>            :     const gsl::not_null&lt;DataVector*&gt; eigenvalues_real_part,
+<span class="lineNum">      25 </span>            :     const gsl::not_null&lt;DataVector*&gt; eigenvalues_imaginary_part,
+<span class="lineNum">      26 </span>            :     const gsl::not_null&lt;Matrix*&gt; eigenvectors, Matrix matrix_a,
+<span class="lineNum">      27 </span>            :     Matrix matrix_b) noexcept {
+<span class="lineNum">      28 </span>            :   // Sanity checks on the sizes of the vectors and matrices
+<span class="lineNum">      29 </span>            :   const size_t number_of_rows = matrix_a.rows();
+<span class="lineNum">      30 </span>            :   ASSERT(number_of_rows == matrix_a.columns(),
+<span class="lineNum">      31 </span>            :          &quot;Matrix A should be square, but A has &quot;
+<span class="lineNum">      32 </span>            :              &lt;&lt; matrix_a.rows() &lt;&lt; &quot; rows and &quot; &lt;&lt; matrix_a.columns()
+<span class="lineNum">      33 </span>            :              &lt;&lt; &quot; columns.&quot;);
+<span class="lineNum">      34 </span>            :   ASSERT(number_of_rows == matrix_b.rows() and
+<span class="lineNum">      35 </span>            :              number_of_rows == matrix_b.columns(),
+<span class="lineNum">      36 </span>            :          &quot;Matrix A and matrix B should be the same size, but A has &quot;
+<span class="lineNum">      37 </span>            :              &lt;&lt; matrix_a.rows() &lt;&lt; &quot; rows and &quot; &lt;&lt; matrix_a.columns()
+<span class="lineNum">      38 </span>            :              &lt;&lt; &quot; columns, while B has &quot; &lt;&lt; matrix_b.rows() &lt;&lt; &quot; rows and &quot;
+<span class="lineNum">      39 </span>            :              &lt;&lt; matrix_b.columns() &lt;&lt; &quot; columns.&quot;);
+<span class="lineNum">      40 </span>            :   ASSERT(number_of_rows == eigenvectors-&gt;rows() and
+<span class="lineNum">      41 </span>            :              number_of_rows == eigenvectors-&gt;columns(),
+<span class="lineNum">      42 </span>            :          &quot;Matrix A and matrix eigenvectors should have the same size, &quot;
+<span class="lineNum">      43 </span>            :              &quot;but A has &quot; &lt;&lt; matrix_a.rows() &lt;&lt; &quot; rows and &quot;
+<span class="lineNum">      44 </span>            :              &lt;&lt; matrix_a.columns() &lt;&lt; &quot; columns, while the eigenvectors matrix &quot;
+<span class="lineNum">      45 </span>            :              &lt;&lt; &quot;has &quot; &lt;&lt; eigenvectors-&gt;rows() &lt;&lt; &quot; rows and &quot;
+<span class="lineNum">      46 </span>            :              &lt;&lt; eigenvectors-&gt;columns() &lt;&lt; &quot; columns.&quot;);
+<span class="lineNum">      47 </span>            :   ASSERT(number_of_rows == eigenvalues_real_part-&gt;size() and
+<span class="lineNum">      48 </span>            :              number_of_rows == eigenvalues_imaginary_part-&gt;size(),
+<span class="lineNum">      49 </span>            :          &quot;eigenvalues DataVector sizes should equal number of columns &quot;
+<span class="lineNum">      50 </span>            :          &quot;in Matrix A, but A has &quot;
+<span class="lineNum">      51 </span>            :              &lt;&lt; matrix_a.columns()
+<span class="lineNum">      52 </span>            :              &lt;&lt; &quot; columns, while the real eigenvalues DataVector size is &quot;
+<span class="lineNum">      53 </span>            :              &lt;&lt; eigenvalues_real_part-&gt;size()
+<span class="lineNum">      54 </span>            :              &lt;&lt; &quot; and the imaginary eigenvalues DataVector size is &quot;
+<span class="lineNum">      55 </span>            :              &lt;&lt; eigenvalues_imaginary_part-&gt;size() &lt;&lt; &quot;.&quot;);
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            :   // Set up parameters for the lapack call
+<span class="lineNum">      58 </span>            :   // Lapack uses chars to decide whether to compute the left eigenvectors,
+<span class="lineNum">      59 </span>            :   // the right eigenvectors, both, or neither. 'N' means do not compute,
+<span class="lineNum">      60 </span>            :   // 'V' means do compute. Note: not const because lapack does not want this
+<span class="lineNum">      61 </span>            :   // option const.
+<span class="lineNum">      62 </span>            :   char compute_left_eigenvectors = 'N';
+<span class="lineNum">      63 </span>            :   char compute_right_eigenvectors = 'V';
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            :   // Lapack expects the sizes to be ints, not size_t.
+<span class="lineNum">      66 </span>            :   // NOTE: not const because lapack function dggev_() arguments
+<span class="lineNum">      67 </span>            :   // are not const.
+<span class="lineNum">      68 </span>            :   auto matrix_and_vector_size = static_cast&lt;int&gt;(number_of_rows);
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            :   // Lapack splits the eigenvalues into unnormalized real and imaginary
+<span class="lineNum">      71 </span>            :   // parts, which it calls alphar and alphai, and a normalization,
+<span class="lineNum">      72 </span>            :   // which it calls beta. The real and imaginary parts of the eigenvalues are
+<span class="lineNum">      73 </span>            :   // found by dividing the unnormalized results by the normalization.
+<span class="lineNum">      74 </span>            :   DataVector eigenvalue_normalization(number_of_rows, 0.0);
+<span class="lineNum">      75 </span>            : 
+<span class="lineNum">      76 </span>            :   // Lapack uses a work vector, that should have a size 8N
+<span class="lineNum">      77 </span>            :   // for doing eigenvalue problems with NxN matrices
+<span class="lineNum">      78 </span>            :   // Note: a non-const int, not size_t, because lapack wants a non-const int
+<span class="lineNum">      79 </span>            :   int work_size = number_of_rows * 8;
+<span class="lineNum">      80 </span>            :   std::vector&lt;double&gt; lapack_work(static_cast&lt;size_t&gt;(work_size), 0.0);
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span>            :   //  Lapack uses an integer called info to return its status
+<span class="lineNum">      83 </span>            :   //  info = 0 : success
+<span class="lineNum">      84 </span>            :   //  info = -i: ith argument had bad value
+<span class="lineNum">      85 </span>            :   //  info &gt; 0: some other failure
+<span class="lineNum">      86 </span>            :   int info = 0;
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span>            :   dggev_(&amp;compute_left_eigenvectors, &amp;compute_right_eigenvectors,
+<span class="lineNum">      89 </span>            :          &amp;matrix_and_vector_size, matrix_a.data(), &amp;matrix_and_vector_size,
+<span class="lineNum">      90 </span>            :          matrix_b.data(), &amp;matrix_and_vector_size,
+<span class="lineNum">      91 </span>            :          eigenvalues_real_part-&gt;data(), eigenvalues_imaginary_part-&gt;data(),
+<span class="lineNum">      92 </span>            :          eigenvalue_normalization.data(), eigenvectors-&gt;data(),
+<span class="lineNum">      93 </span>            :          &amp;matrix_and_vector_size, eigenvectors-&gt;data(), &amp;matrix_and_vector_size,
+<span class="lineNum">      94 </span>            :          lapack_work.data(), &amp;work_size, &amp;info);
+<span class="lineNum">      95 </span>            : 
+<span class="lineNum">      96 </span>            :   if (UNLIKELY(info != 0)) {
+<span class="lineNum">      97 </span>            :     ERROR(
+<span class="lineNum">      98 </span>            :         &quot;Lapack failed to compute generalized eigenvectors. Lapack's dggev &quot;
+<span class="lineNum">      99 </span>            :         &quot;INFO = &quot;
+<span class="lineNum">     100 </span>            :         &lt;&lt; info);
+<span class="lineNum">     101 </span>            :   }
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span>            :   *eigenvalues_real_part /= eigenvalue_normalization;
+<span class="lineNum">     104 </span>            :   *eigenvalues_imaginary_part /= eigenvalue_normalization;
+<span class="lineNum">     105 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

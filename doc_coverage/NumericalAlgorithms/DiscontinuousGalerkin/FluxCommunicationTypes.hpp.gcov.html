@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/DiscontinuousGalerkin/FluxCommunicationTypes.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/DiscontinuousGalerkin</a> - FluxCommunicationTypes.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntryLo">62.5 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;boost/functional/hash.hpp&gt;  // IWYU pragma: keep
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : #include &lt;map&gt;
+<span class="lineNum">       9 </span>            : #include &lt;unordered_map&gt;
+<span class="lineNum">      10 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/DataBox/DataBoxTag.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;DataStructures/DataBox/Prefixes.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      15 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;DataStructures/Variables.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      17 </span>            : #include &quot;DataStructures/VariablesHelpers.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Domain/Direction.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      19 </span>            : #include &quot;Domain/ElementId.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      20 </span>            : #include &quot;Domain/Tags.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      21 </span>            : #include &quot;NumericalAlgorithms/DiscontinuousGalerkin/Tags.hpp&quot;
+<span class="lineNum">      22 </span>            : #include &quot;Time/Tags.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      23 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : /// \cond
+<span class="lineNum">      26 </span>            : namespace PUP {
+<span class="lineNum">      27 </span>            : class er;
+<span class="lineNum">      28 </span>            : }  // namespace PUP
+<span class="lineNum">      29 </span>            : /// \endcond
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : namespace dg {
+<span class="lineNum">      32 </span>            : /// \ingroup DiscontinuousGalerkinGroup
+<span class="lineNum">      33 </span>            : /// \brief Types related to flux communication.
+<span class="lineNum">      34 </span>            : template &lt;typename Metavariables&gt;
+<span class="lineNum">      35 </span><span class="lineCov">          1 : struct FluxCommunicationTypes {</span>
+<span class="lineNum">      36 </span>            :  private:
+<span class="lineNum">      37 </span><span class="lineNoCov">          0 :   using system = typename Metavariables::system;</span>
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :   static constexpr size_t volume_dim = system::volume_dim;</span>
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            :  public:
+<span class="lineNum">      41 </span>            :   /// The type of the Variables sent to neighboring elements.
+<span class="lineNum">      42 </span><span class="lineCov">          1 :   using PackagedData = Variables&lt;</span>
+<span class="lineNum">      43 </span>            :       typename Metavariables::normal_dot_numerical_flux::type::package_tags&gt;;
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            :   /// The DataBox tag for the normal fluxes of the evolved variables.
+<span class="lineNum">      46 </span><span class="lineCov">          1 :   using normal_dot_fluxes_tag =</span>
+<span class="lineNum">      47 </span>            :       db::add_tag_prefix&lt;Tags::NormalDotFlux, typename system::variables_tag&gt;;
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            :   /// The type of the local data stored on the mortar.  Contains the
+<span class="lineNum">      50 </span>            :   /// packaged data and the local flux.
+<span class="lineNum">      51 </span><span class="lineCov">          1 :   using LocalMortarData = Variables&lt;tmpl::remove_duplicates&lt;tmpl::append&lt;</span>
+<span class="lineNum">      52 </span>            :       typename db::item_type&lt;normal_dot_fluxes_tag&gt;::tags_list,
+<span class="lineNum">      53 </span>            :       typename PackagedData::tags_list&gt;&gt;&gt;;
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            :   /// The type of the data needed for the local part of the flux
+<span class="lineNum">      56 </span>            :   /// numerical flux computations.  Contains the PackagedData, the
+<span class="lineNum">      57 </span>            :   /// normal fluxes, and MagnitudeOfFaceNormal.
+<span class="lineNum">      58 </span><span class="lineCov">          1 :   struct LocalData {</span>
+<span class="lineNum">      59 </span>            :     /// Data on the mortar mesh
+<span class="lineNum">      60 </span><span class="lineCov">          1 :     LocalMortarData mortar_data;</span>
+<span class="lineNum">      61 </span>            :     /// Magnitude of the face normal on the face mesh
+<span class="lineNum">      62 </span><span class="lineCov">          1 :     Scalar&lt;DataVector&gt; magnitude_of_face_normal;</span>
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            :     // NOLINTNEXTLINE(google-runtime-references)
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :     void pup(PUP::er&amp; p) noexcept {</span>
+<span class="lineNum">      66 </span>            :       p | mortar_data;
+<span class="lineNum">      67 </span>            :       p | magnitude_of_face_normal;
+<span class="lineNum">      68 </span>            :     }
+<span class="lineNum">      69 </span>            :   };
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            :  private:
+<span class="lineNum">      72 </span>            :   template &lt;typename Base, typename Tag, size_t VolumeDim&gt;
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 :   struct BasedMortars : Base, Tags::Mortars&lt;Tag, VolumeDim&gt; {};</span>
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            :  public:
+<span class="lineNum">      76 </span>            :   /// The DataBox tag for the data stored on the mortars for global
+<span class="lineNum">      77 </span>            :   /// stepping.
+<span class="lineNum">      78 </span><span class="lineCov">          1 :   using simple_mortar_data_tag =</span>
+<span class="lineNum">      79 </span>            :       BasedMortars&lt;Tags::VariablesBoundaryData,
+<span class="lineNum">      80 </span>            :                    Tags::SimpleBoundaryData&lt;
+<span class="lineNum">      81 </span>            :                        db::item_type&lt;typename Metavariables::temporal_id&gt;,
+<span class="lineNum">      82 </span>            :                        LocalData, PackagedData&gt;,
+<span class="lineNum">      83 </span>            :                    volume_dim&gt;;
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span>            :   /// The DataBox tag for the data stored on the mortars for local
+<span class="lineNum">      86 </span>            :   /// stepping.
+<span class="lineNum">      87 </span><span class="lineCov">          1 :   using local_time_stepping_mortar_data_tag = BasedMortars&lt;</span>
+<span class="lineNum">      88 </span>            :       Tags::VariablesBoundaryData,
+<span class="lineNum">      89 </span>            :       Tags::BoundaryHistory&lt;LocalData, PackagedData,
+<span class="lineNum">      90 </span>            :                             db::item_type&lt;typename system::variables_tag&gt;&gt;,
+<span class="lineNum">      91 </span>            :       volume_dim&gt;;
+<span class="lineNum">      92 </span>            : 
+<span class="lineNum">      93 </span>            :   /// The inbox tag for flux communication.
+<span class="lineNum">      94 </span><span class="lineCov">          1 :   struct FluxesTag {</span>
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :     using temporal_id = db::item_type&lt;typename Metavariables::temporal_id&gt;;</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :     using type = std::map&lt;</span>
+<span class="lineNum">      97 </span>            :         temporal_id,
+<span class="lineNum">      98 </span>            :         std::unordered_map&lt;
+<span class="lineNum">      99 </span>            :             std::pair&lt;Direction&lt;volume_dim&gt;, ElementId&lt;volume_dim&gt;&gt;,
+<span class="lineNum">     100 </span>            :             std::pair&lt;temporal_id, PackagedData&gt;,
+<span class="lineNum">     101 </span>            :             boost::hash&lt;
+<span class="lineNum">     102 </span>            :                 std::pair&lt;Direction&lt;volume_dim&gt;, ElementId&lt;volume_dim&gt;&gt;&gt;&gt;&gt;;
+<span class="lineNum">     103 </span>            :   };
+<span class="lineNum">     104 </span>            : };
+<span class="lineNum">     105 </span>            : }  // namespace dg
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

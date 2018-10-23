@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - IO/Observer/ObservationId.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">IO/Observer</a> - ObservationId.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntryLo">25.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;boost/functional/hash.hpp&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : #include &lt;functional&gt;
+<span class="lineNum">       9 </span>            : #include &lt;iosfwd&gt;
+<span class="lineNum">      10 </span>            : #include &lt;string&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/PrettyType.hpp&quot;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : /// \cond
+<span class="lineNum">      15 </span>            : namespace PUP {
+<span class="lineNum">      16 </span>            : class er;
+<span class="lineNum">      17 </span>            : }  // namespace PUP
+<span class="lineNum">      18 </span>            : /// \endcond
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : namespace observers {
+<span class="lineNum">      21 </span>            : /*!
+<span class="lineNum">      22 </span>            :  * \ingroup ObserversGroup
+<span class="lineNum">      23 </span>            :  * \brief A type-erased identifier that combines the identifier's type
+<span class="lineNum">      24 </span>            :  * and hash used to uniquely identify an observation inside of a
+<span class="lineNum">      25 </span>            :  * `h5::File::SUB_FILE`.
+<span class="lineNum">      26 </span>            :  *
+<span class="lineNum">      27 </span>            :  * The ObservationId is used to uniquely identify an observation inside our H5
+<span class="lineNum">      28 </span>            :  * subfiles that can be agreed upon across the system. That is, it does not
+<span class="lineNum">      29 </span>            :  * depend on hardware rounding of floating points because it is an integral. One
+<span class="lineNum">      30 </span>            :  * example would be a `Time` for output observed every `N` steps in a global
+<span class="lineNum">      31 </span>            :  * time stepping evolution. Another example could be having a counter class for
+<span class="lineNum">      32 </span>            :  * dense output observations that increments the counter for each observation
+<span class="lineNum">      33 </span>            :  * but has a value equal to the physical time.
+<span class="lineNum">      34 </span>            :  *
+<span class="lineNum">      35 </span>            :  * The identifier must have a `value()` method that returns a double
+<span class="lineNum">      36 </span>            :  * representing the current &quot;time&quot; at which we are observing. For an evolution
+<span class="lineNum">      37 </span>            :  * this could be the physical time, while for an elliptic solve this could be a
+<span class="lineNum">      38 </span>            :  * combination of nonlinear and linear iteration.
+<span class="lineNum">      39 </span>            :  *
+<span class="lineNum">      40 </span>            :  * A specialization of `std::hash` is provided to allow using `ObservationId`
+<span class="lineNum">      41 </span>            :  * as a key in associative containers.
+<span class="lineNum">      42 </span>            :  */
+<span class="lineNum">      43 </span><span class="lineCov">          1 : class ObservationId {</span>
+<span class="lineNum">      44 </span>            :  public:
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :   ObservationId() = default;</span>
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            :   /*!
+<span class="lineNum">      48 </span>            :    * \brief Construct from an ID of type `Id`
+<span class="lineNum">      49 </span>            :    */
+<span class="lineNum">      50 </span>            :   template &lt;typename Id&gt;
+<span class="lineNum">      51 </span><span class="lineCov">          1 :   explicit ObservationId(const Id&amp; t) noexcept;</span>
+<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :   size_t hash() const noexcept { return combined_hash_; }</span>
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :   double value() const noexcept { return value_; }</span>
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            :   // NOLINTNEXTLINE(google-runtime-references)
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p) noexcept;</span>
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            :  private:
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 :   size_t combined_hash_;</span>
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :   double value_;</span>
+<span class="lineNum">      63 </span>            : };
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            : template &lt;typename Id&gt;
+<span class="lineNum">      66 </span>            : ObservationId::ObservationId(const Id&amp; t) noexcept
+<span class="lineNum">      67 </span>            :     : combined_hash_([&amp;t]() {
+<span class="lineNum">      68 </span>            :         size_t combined = std::hash&lt;std::string&gt;{}(pretty_type::get_name&lt;Id&gt;());
+<span class="lineNum">      69 </span>            :         boost::hash_combine(combined, t);
+<span class="lineNum">      70 </span>            :         return combined;
+<span class="lineNum">      71 </span>            :       }()),
+<span class="lineNum">      72 </span>            :       value_(t.value()) {}
+<span class="lineNum">      73 </span>            : 
+<span class="lineNum">      74 </span>            : bool operator==(const ObservationId&amp; lhs, const ObservationId&amp; rhs) noexcept;
+<span class="lineNum">      75 </span>            : bool operator!=(const ObservationId&amp; lhs, const ObservationId&amp; rhs) noexcept;
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span>            : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const ObservationId&amp; t) noexcept;
+<span class="lineNum">      78 </span>            : }  // namespace observers
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            : namespace std {
+<span class="lineNum">      81 </span>            : template &lt;&gt;
+<span class="lineNum">      82 </span>            : struct hash&lt;observers::ObservationId&gt; {
+<span class="lineNum">      83 </span>            :   size_t operator()(const observers::ObservationId&amp; t) const noexcept {
+<span class="lineNum">      84 </span>            :     return t.hash();
+<span class="lineNum">      85 </span>            :   }
+<span class="lineNum">      86 </span>            : };
+<span class="lineNum">      87 </span>            : }  // namespace std
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

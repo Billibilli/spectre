@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - ControlSystem/Controller.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">ControlSystem</a> - Controller.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : /// \ingroup ControlSystemGroup
+<span class="lineNum">      12 </span>            : /// A PND (proportional to Q and N derivatives of Q) controller that computes
+<span class="lineNum">      13 </span>            : /// the control signal:
+<span class="lineNum">      14 </span>            : /// \f[ U(t) = \sum_{k=0}^{N} a_{k} \frac{d^kQ}{dt^k} \f]
+<span class="lineNum">      15 </span>            : /// where N is specified by the template parameter `DerivOrder`.
+<span class="lineNum">      16 </span>            : ///
+<span class="lineNum">      17 </span>            : /// If an averager is used for `q_and_derivs` (as we typically do), there is an
+<span class="lineNum">      18 </span>            : /// induced time offset, \f$\Delta t\f$, due to the time-weighted averaging.
+<span class="lineNum">      19 </span>            : /// Therefore, the `q_and_derivs` that we have in hand are at some time
+<span class="lineNum">      20 </span>            : /// \f$t_{0}\f$. However, we desire `q_and_derivs` at the current time
+<span class="lineNum">      21 </span>            : /// \f$t = t_{0} + \Delta t\f$ to determine the appropriate control
+<span class="lineNum">      22 </span>            : /// signal. We accomplish this by Taylor expanding
+<span class="lineNum">      23 </span>            : /// \f$Q(t_{0} + \Delta t)\f$. The averager allows for averaging of
+<span class="lineNum">      24 </span>            : /// \f$Q\f$ and its derivatives OR to not average \f$Q\f$ while still averaging
+<span class="lineNum">      25 </span>            : /// the derivatives (the derivatives are always averaged in order to reduce
+<span class="lineNum">      26 </span>            : /// noise due to numerical differentiation). When they are both averaged, the
+<span class="lineNum">      27 </span>            : /// time offset will be identical for \f$Q\f$ and the derivatives,
+<span class="lineNum">      28 </span>            : /// i.e. `q_time_offset` = `deriv_time_offset`. If an unaveraged \f$Q\f$ is
+<span class="lineNum">      29 </span>            : /// used, then the time offset associated with \f$Q\f$ is zero,
+<span class="lineNum">      30 </span>            : /// i.e. `q_time_offset`=0. and the derivative time offset, `deriv_time_offset`,
+<span class="lineNum">      31 </span>            : /// remains non-zero.
+<span class="lineNum">      32 </span>            : template &lt;size_t DerivOrder&gt;
+<span class="lineNum">      33 </span><span class="lineCov">          1 : class Controller {</span>
+<span class="lineNum">      34 </span>            :  public:
+<span class="lineNum">      35 </span><span class="lineNoCov">          0 :   DataVector operator()(</span>
+<span class="lineNum">      36 </span>            :       const DataVector&amp; timescales,
+<span class="lineNum">      37 </span>            :       const std::array&lt;DataVector, DerivOrder + 1&gt;&amp; q_and_derivs,
+<span class="lineNum">      38 </span>            :       double q_time_offset, double deriv_time_offset) const noexcept;
+<span class="lineNum">      39 </span>            : };
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

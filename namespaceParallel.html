@@ -1,0 +1,491 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Parallel Namespace Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Parallel Namespace Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Contains functions that forward to Charm++ parallel functions.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html">AlgorithmImpl&lt; ParallelComponent, tmpl::list&lt; ActionsPack... &gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A distributed object (Charm++ Chare) that executes a series of Actions and is capable of sending and receiving data. Acts as an interface to Charm++.  <a href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1ArrayIndex.html">ArrayIndex</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The array index used for indexing Chare Arrays, mostly an implementation detail.  <a href="structParallel_1_1ArrayIndex.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1ConstGlobalCache.html">ConstGlobalCache</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Charm++ chare that caches constant data once per Charm++ node.  <a href="classParallel_1_1ConstGlobalCache.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1has__pup__member.html">has_pup_member</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> has a <code>pup</code> member function.  <a href="structParallel_1_1has__pup__member.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__array__proxy.html">is_array_proxy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> is a Charm++ proxy for an array chare.  <a href="structParallel_1_1is__array__proxy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__bound__array.html">is_bound_array</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> is a ParallelComponent for a Charm++ bound array.  <a href="structParallel_1_1is__bound__array.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__bound__array_3_01T_00_01cpp17_1_1void__t_3_01typename_01T_1_1bind__to_01_4_01_4.html">is_bound_array&lt; T, cpp17::void_t&lt; typename T::bind_to &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__chare__proxy.html">is_chare_proxy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> is a Charm++ proxy for a chare.  <a href="structParallel_1_1is__chare__proxy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__group__proxy.html">is_group_proxy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> is a Charm++ proxy for a group chare.  <a href="structParallel_1_1is__group__proxy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__node__group__proxy.html">is_node_group_proxy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> is a Charm++ proxy for a node group chare.  <a href="structParallel_1_1is__node__group__proxy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1is__pupable.html">is_pupable</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> has operator| defined for Charm++ serialization.  <a href="structParallel_1_1is__pupable.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1Main.html">Main</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main function of a Charm++ executable. See <a href="group__ParallelGroup.html#details">the Parallelization documentation</a> for an overview of Metavariables, Phases, and parallel components.  <a href="classParallel_1_1Main.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1ReductionData_3_01ReductionDatum_3_01Ts_00_01InvokeCombines_00_01InvokeFinals_92b572618a1ebe21ccf137654ec822ac.html">ReductionData&lt; ReductionDatum&lt; Ts, InvokeCombines, InvokeFinals, InvokeFinalExtraArgsIndices &gt;... &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for reducing a possibly heterogeneous collection of types in a single reduction call.  <a href="structParallel_1_1ReductionData_3_01ReductionDatum_3_01Ts_00_01InvokeCombines_00_01InvokeFinals_92b572618a1ebe21ccf137654ec822ac.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structParallel_1_1ReductionDatum.html">ReductionDatum</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The data to be reduced, and invokables to be called whenever two reduction messages are combined and after the reduction has been completed.  <a href="structParallel_1_1ReductionDatum.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a5af00caa6f5b7401a8e0235898224263"><td class="memItemLeft" align="right" valign="top"><a id="a5af00caa6f5b7401a8e0235898224263"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayIndex1D</b> = <a class="el" href="structParallel_1_1ArrayIndex.html">ArrayIndex</a>&lt; CkIndex1D &gt;</td></tr>
+<tr class="separator:a5af00caa6f5b7401a8e0235898224263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a708856568c7f6b3cf04998b8d3b313b5"><td class="memItemLeft" align="right" valign="top"><a id="a708856568c7f6b3cf04998b8d3b313b5"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayIndex2D</b> = <a class="el" href="structParallel_1_1ArrayIndex.html">ArrayIndex</a>&lt; CkIndex2D &gt;</td></tr>
+<tr class="separator:a708856568c7f6b3cf04998b8d3b313b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51e74268e437cfcbd24c65c9f483bd7b"><td class="memItemLeft" align="right" valign="top"><a id="a51e74268e437cfcbd24c65c9f483bd7b"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayIndex3D</b> = <a class="el" href="structParallel_1_1ArrayIndex.html">ArrayIndex</a>&lt; CkIndex3D &gt;</td></tr>
+<tr class="separator:a51e74268e437cfcbd24c65c9f483bd7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2716038682076ad43ca77c3e516db722"><td class="memItemLeft" align="right" valign="top"><a id="a2716038682076ad43ca77c3e516db722"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayIndex4D</b> = <a class="el" href="structParallel_1_1ArrayIndex.html">ArrayIndex</a>&lt; CkIndex4D &gt;</td></tr>
+<tr class="separator:a2716038682076ad43ca77c3e516db722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ec254431cf1a28459a5baea688877fc"><td class="memItemLeft" align="right" valign="top"><a id="a5ec254431cf1a28459a5baea688877fc"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayIndex5D</b> = <a class="el" href="structParallel_1_1ArrayIndex.html">ArrayIndex</a>&lt; CkIndex5D &gt;</td></tr>
+<tr class="separator:a5ec254431cf1a28459a5baea688877fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2d628261f946a0f57d2e9cb90efe3d"><td class="memItemLeft" align="right" valign="top"><a id="a0b2d628261f946a0f57d2e9cb90efe3d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayIndex6D</b> = <a class="el" href="structParallel_1_1ArrayIndex.html">ArrayIndex</a>&lt; CkIndex6D &gt;</td></tr>
+<tr class="separator:a0b2d628261f946a0f57d2e9cb90efe3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad7e6795b004146d4e17884a684ea186d"><td class="memTemplParams" colspan="2">
+template&lt;class Action &gt; </td></tr>
+<tr class="memitem:gad7e6795b004146d4e17884a684ea186d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gad7e6795b004146d4e17884a684ea186d">get_inbox_tags_from_action</a> = typename Parallel_detail::get_inbox_tags_from_action&lt; Action &gt;::type</td></tr>
+<tr class="memdesc:gad7e6795b004146d4e17884a684ea186d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an Action returns the list of inbox tags for that action. <br /></td></tr>
+<tr class="separator:gad7e6795b004146d4e17884a684ea186d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga38356d0b7aa1951e586ba2acce9eab8f"><td class="memTemplParams" colspan="2">
+template&lt;class ActionsList &gt; </td></tr>
+<tr class="memitem:ga38356d0b7aa1951e586ba2acce9eab8f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga38356d0b7aa1951e586ba2acce9eab8f">get_inbox_tags</a> = tmpl::remove_duplicates&lt; tmpl::join&lt; tmpl::transform&lt; ActionsList, Parallel_detail::get_inbox_tags_from_action&lt; tmpl::_1 &gt; &gt;&gt; &gt;</td></tr>
+<tr class="memdesc:ga38356d0b7aa1951e586ba2acce9eab8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a list of Actions, get a list of the unique inbox tags. <br /></td></tr>
+<tr class="separator:ga38356d0b7aa1951e586ba2acce9eab8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga825db080773f9528e2628fc4a0048725"><td class="memTemplParams" colspan="2">
+template&lt;class Action &gt; </td></tr>
+<tr class="memitem:ga825db080773f9528e2628fc4a0048725"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga825db080773f9528e2628fc4a0048725">get_const_global_cache_tags_from_action</a> = typename Parallel_detail::get_const_global_cache_tags_from_action&lt; Action &gt;::type</td></tr>
+<tr class="memdesc:ga825db080773f9528e2628fc4a0048725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an Action returns the contents of the <code>const_global_cache_tags</code> alias for that action, or an empty list if no such alias exists. <br /></td></tr>
+<tr class="separator:ga825db080773f9528e2628fc4a0048725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga095a18db8905ca8e5c3af70735ee6462"><td class="memTemplParams" colspan="2">
+template&lt;class ActionsList &gt; </td></tr>
+<tr class="memitem:ga095a18db8905ca8e5c3af70735ee6462"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga095a18db8905ca8e5c3af70735ee6462">get_const_global_cache_tags</a> = tmpl::remove_duplicates&lt; tmpl::join&lt; tmpl::transform&lt; ActionsList, Parallel_detail::get_const_global_cache_tags_from_action&lt; tmpl::_1 &gt; &gt;&gt; &gt;</td></tr>
+<tr class="memdesc:ga095a18db8905ca8e5c3af70735ee6462"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a list of Actions, get a list of the unique tags specified in the actions' <code>const_global_cache_tags</code> aliases. <br /></td></tr>
+<tr class="separator:ga095a18db8905ca8e5c3af70735ee6462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaccc68e564135958d18110d2847dcc1b3"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaccc68e564135958d18110d2847dcc1b3">abort</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;message)</td></tr>
+<tr class="memdesc:gaccc68e564135958d18110d2847dcc1b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort the program with an error message. <br /></td></tr>
+<tr class="separator:gaccc68e564135958d18110d2847dcc1b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8ca2773484152df4d8897024a244b3c0"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga8ca2773484152df4d8897024a244b3c0">exit</a> ()</td></tr>
+<tr class="memdesc:ga8ca2773484152df4d8897024a244b3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit the program normally. This should only be called once over all processors. <br /></td></tr>
+<tr class="separator:ga8ca2773484152df4d8897024a244b3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga537d2cc78336566826c93c49f82746a8"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga537d2cc78336566826c93c49f82746a8">number_of_procs</a> ()</td></tr>
+<tr class="memdesc:ga537d2cc78336566826c93c49f82746a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of processing elements. <br /></td></tr>
+<tr class="separator:ga537d2cc78336566826c93c49f82746a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9537d2f88bafe61b07e0ceda735243ca"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga9537d2f88bafe61b07e0ceda735243ca">my_proc</a> ()</td></tr>
+<tr class="memdesc:ga9537d2f88bafe61b07e0ceda735243ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of my processing element. <br /></td></tr>
+<tr class="separator:ga9537d2f88bafe61b07e0ceda735243ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf999b9700ece84fca6cb82bb1ee9f3f2"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaf999b9700ece84fca6cb82bb1ee9f3f2">number_of_nodes</a> ()</td></tr>
+<tr class="memdesc:gaf999b9700ece84fca6cb82bb1ee9f3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of nodes. <br /></td></tr>
+<tr class="separator:gaf999b9700ece84fca6cb82bb1ee9f3f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f24e1c6dfcfa4e9250a165973b1a524"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga9f24e1c6dfcfa4e9250a165973b1a524">my_node</a> ()</td></tr>
+<tr class="memdesc:ga9f24e1c6dfcfa4e9250a165973b1a524"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of my node. <br /></td></tr>
+<tr class="separator:ga9f24e1c6dfcfa4e9250a165973b1a524"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab9459395dbb2a65f0d0b0439387067a1"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gab9459395dbb2a65f0d0b0439387067a1">procs_on_node</a> (const int node_index)</td></tr>
+<tr class="memdesc:gab9459395dbb2a65f0d0b0439387067a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of processing elements on the given node. <br /></td></tr>
+<tr class="separator:gab9459395dbb2a65f0d0b0439387067a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0899b00614f1c47c6b32d1f83976a23b"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga0899b00614f1c47c6b32d1f83976a23b">my_local_rank</a> ()</td></tr>
+<tr class="memdesc:ga0899b00614f1c47c6b32d1f83976a23b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The local index of my processing element on my node. This is in the interval 0, ..., procs_on_node(my_node()) - 1. <br /></td></tr>
+<tr class="separator:ga0899b00614f1c47c6b32d1f83976a23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f2f2d9db4aca7b4f11370e1556b43a5"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga6f2f2d9db4aca7b4f11370e1556b43a5">first_proc_on_node</a> (const int node_index)</td></tr>
+<tr class="memdesc:ga6f2f2d9db4aca7b4f11370e1556b43a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of first processing element on the given node. <br /></td></tr>
+<tr class="separator:ga6f2f2d9db4aca7b4f11370e1556b43a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga042f8935c6008898b980065058d0d8e2"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga042f8935c6008898b980065058d0d8e2">node_of</a> (const int proc_index)</td></tr>
+<tr class="memdesc:ga042f8935c6008898b980065058d0d8e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of the node for the given processing element. <br /></td></tr>
+<tr class="separator:ga042f8935c6008898b980065058d0d8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab13a71393339d7f35a3f802df360429b"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gab13a71393339d7f35a3f802df360429b">local_rank_of</a> (const int proc_index)</td></tr>
+<tr class="memdesc:gab13a71393339d7f35a3f802df360429b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The local index for the given processing element on its node. <br /></td></tr>
+<tr class="separator:gab13a71393339d7f35a3f802df360429b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga62feba0b73433140761dad9a3127b998"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga62feba0b73433140761dad9a3127b998">wall_time</a> ()</td></tr>
+<tr class="memdesc:ga62feba0b73433140761dad9a3127b998"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current wall time in seconds. <br /></td></tr>
+<tr class="separator:ga62feba0b73433140761dad9a3127b998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga88e5396473adcaffed3465a9333f72f4"><td class="memItemLeft" align="right" valign="top">
+CmiNodeLock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga88e5396473adcaffed3465a9333f72f4">create_lock</a> () noexcept</td></tr>
+<tr class="memdesc:ga88e5396473adcaffed3465a9333f72f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a converse CmiNodeLock. <br /></td></tr>
+<tr class="separator:ga88e5396473adcaffed3465a9333f72f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaac77c46b622bbe8ff936adc7bf7bd178"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaac77c46b622bbe8ff936adc7bf7bd178">free_lock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:gaac77c46b622bbe8ff936adc7bf7bd178"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a converse CmiNodeLock. Using the lock after free is undefined behavior. <br /></td></tr>
+<tr class="separator:gaac77c46b622bbe8ff936adc7bf7bd178"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad0397ccb72cb4205f5dc83d6f60d47d0"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gad0397ccb72cb4205f5dc83d6f60d47d0">lock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:gad0397ccb72cb4205f5dc83d6f60d47d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock a converse CmiNodeLock. <br /></td></tr>
+<tr class="separator:gad0397ccb72cb4205f5dc83d6f60d47d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b5b8d712c472935e5c817e9ed723c25"><td class="memItemLeft" align="right" valign="top">
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga8b5b8d712c472935e5c817e9ed723c25">try_lock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:ga8b5b8d712c472935e5c817e9ed723c25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the lock was successfully acquired and false if the lock is already acquired by another processor. <br /></td></tr>
+<tr class="separator:ga8b5b8d712c472935e5c817e9ed723c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga26e5eb4933e796cd454b67ac773836f9"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga26e5eb4933e796cd454b67ac773836f9">unlock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:ga26e5eb4933e796cd454b67ac773836f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock a converse CmiNodeLock. <br /></td></tr>
+<tr class="separator:ga26e5eb4933e796cd454b67ac773836f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae21964b5d28608afd21ae090c1c4c073"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:gae21964b5d28608afd21ae090c1c4c073"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gae21964b5d28608afd21ae090c1c4c073">printf</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;format, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:gae21964b5d28608afd21ae090c1c4c073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print an atomic message to stdout with C printf usage.  <a href="group__ParallelGroup.html#gae21964b5d28608afd21ae090c1c4c073">More...</a><br /></td></tr>
+<tr class="separator:gae21964b5d28608afd21ae090c1c4c073"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga54a41b362281ea1321a50c609f59cf7b"><td class="memTemplParams" colspan="2">
+template&lt;class Action , class SenderProxy , class TargetProxy , class... Ts&gt; </td></tr>
+<tr class="memitem:ga54a41b362281ea1321a50c609f59cf7b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga54a41b362281ea1321a50c609f59cf7b">contribute_to_reduction</a> (ReductionData&lt; Ts... &gt; reduction_data, const SenderProxy &amp;sender_component, const TargetProxy &amp;target_component) noexcept</td></tr>
+<tr class="memdesc:ga54a41b362281ea1321a50c609f59cf7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a reduction from the <code>sender_component</code> (typically your own parallel component) to the <code>target_component</code>, performing the <code>Action</code> upon receiving the reduction. <br /></td></tr>
+<tr class="separator:ga54a41b362281ea1321a50c609f59cf7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61571416f61cc9de70c8e6e2b1508fc6"><td class="memTemplParams" colspan="2"><a id="a61571416f61cc9de70c8e6e2b1508fc6"></a>
+template&lt;typename Base &gt; </td></tr>
+<tr class="memitem:a61571416f61cc9de70c8e6e2b1508fc6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>register_derived_classes_with_charm</b> () noexcept</td></tr>
+<tr class="separator:a61571416f61cc9de70c8e6e2b1508fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ga267c8d6d5f2313bd05ed69f91485776f"><td class="memTemplParams" colspan="2">template&lt;typename ParallelComponentTag , typename Metavariables &gt; </td></tr>
+<tr class="memitem:ga267c8d6d5f2313bd05ed69f91485776f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f">get_parallel_component</a> (<a class="el" href="classParallel_1_1ConstGlobalCache.html">ConstGlobalCache</a>&lt; Metavariables &gt; &amp;cache) noexcept -&gt; Parallel::proxy_from_parallel_component&lt; ConstGlobalCache_detail::get_component_if_mocked&lt; typename Metavariables::component_list, ParallelComponentTag &gt;&gt; &amp;</td></tr>
+<tr class="memdesc:ga267c8d6d5f2313bd05ed69f91485776f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the Charm++ proxy associated with a ParallelComponent.  <a href="group__ParallelGroup.html#ga267c8d6d5f2313bd05ed69f91485776f">More...</a><br /></td></tr>
+<tr class="separator:ga267c8d6d5f2313bd05ed69f91485776f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga992eab06d03182bf63eeeea8880fcf1f"><td class="memTemplParams" colspan="2">template&lt;typename ParallelComponentTag , typename Metavariables &gt; </td></tr>
+<tr class="memitem:ga992eab06d03182bf63eeeea8880fcf1f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga992eab06d03182bf63eeeea8880fcf1f">get_parallel_component</a> (const <a class="el" href="classParallel_1_1ConstGlobalCache.html">ConstGlobalCache</a>&lt; Metavariables &gt; &amp;cache) noexcept -&gt; const Parallel::proxy_from_parallel_component&lt; ConstGlobalCache_detail::get_component_if_mocked&lt; typename Metavariables::component_list, ParallelComponentTag &gt;&gt; &amp;</td></tr>
+<tr class="memdesc:ga992eab06d03182bf63eeeea8880fcf1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the Charm++ proxy associated with a ParallelComponent.  <a href="group__ParallelGroup.html#ga992eab06d03182bf63eeeea8880fcf1f">More...</a><br /></td></tr>
+<tr class="separator:ga992eab06d03182bf63eeeea8880fcf1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ga5650367ede7ee5b92720ed3636df24e2"><td class="memTemplParams" colspan="2">template&lt;typename ConstGlobalCacheTag , typename Metavariables &gt; </td></tr>
+<tr class="memitem:ga5650367ede7ee5b92720ed3636df24e2"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga5650367ede7ee5b92720ed3636df24e2">get</a> (const <a class="el" href="classParallel_1_1ConstGlobalCache.html">ConstGlobalCache</a>&lt; Metavariables &gt; &amp;cache) noexcept -&gt; const ConstGlobalCache_detail::type_for_get&lt; ConstGlobalCacheTag, Metavariables &gt; &amp;</td></tr>
+<tr class="memdesc:ga5650367ede7ee5b92720ed3636df24e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access data in the cache.  <a href="group__ParallelGroup.html#ga5650367ede7ee5b92720ed3636df24e2">More...</a><br /></td></tr>
+<tr class="separator:ga5650367ede7ee5b92720ed3636df24e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:gaa0ef30b3787d2bc66c81b2e1350a6684"><td class="memTemplParams" colspan="2">template&lt;typename ReceiveTag , typename Proxy , typename ReceiveDataType &gt; </td></tr>
+<tr class="memitem:gaa0ef30b3787d2bc66c81b2e1350a6684"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaa0ef30b3787d2bc66c81b2e1350a6684">receive_data</a> (Proxy &amp;&amp;proxy, typename ReceiveTag::temporal_id temporal_id, ReceiveDataType &amp;&amp;receive_data, const bool enable_if_disabled) noexcept</td></tr>
+<tr class="memdesc:gaa0ef30b3787d2bc66c81b2e1350a6684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the data <code>args...</code> to the algorithm running on <code>proxy</code>, and tag the message with the identifier <code>temporal_id</code>.  <a href="group__ParallelGroup.html#gaa0ef30b3787d2bc66c81b2e1350a6684">More...</a><br /></td></tr>
+<tr class="separator:gaa0ef30b3787d2bc66c81b2e1350a6684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga55cab4598f5003581f83f0abfcb90982"><td class="memTemplParams" colspan="2">template&lt;typename ReceiveTag , typename Proxy , typename ReceiveDataType &gt; </td></tr>
+<tr class="memitem:ga55cab4598f5003581f83f0abfcb90982"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga55cab4598f5003581f83f0abfcb90982">receive_data</a> (Proxy &amp;&amp;proxy, typename ReceiveTag::temporal_id temporal_id, ReceiveDataType &amp;&amp;receive_data) noexcept</td></tr>
+<tr class="memdesc:ga55cab4598f5003581f83f0abfcb90982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the data <code>args...</code> to the algorithm running on <code>proxy</code>, and tag the message with the identifier <code>temporal_id</code>.  <a href="group__ParallelGroup.html#ga55cab4598f5003581f83f0abfcb90982">More...</a><br /></td></tr>
+<tr class="separator:ga55cab4598f5003581f83f0abfcb90982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:gaa17acf0ac876ac8cf36dfb939d7aea11"><td class="memTemplParams" colspan="2">
+template&lt;typename Action , typename Proxy &gt; </td></tr>
+<tr class="memitem:gaa17acf0ac876ac8cf36dfb939d7aea11"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaa17acf0ac876ac8cf36dfb939d7aea11">simple_action</a> (Proxy &amp;&amp;proxy) noexcept</td></tr>
+<tr class="memdesc:gaa17acf0ac876ac8cf36dfb939d7aea11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a simple action on <code>proxy</code> <br /></td></tr>
+<tr class="separator:gaa17acf0ac876ac8cf36dfb939d7aea11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa8624f46f3a77806a85190891437ee67"><td class="memTemplParams" colspan="2">
+template&lt;typename Action , typename Proxy , typename Arg0 , typename... Args&gt; </td></tr>
+<tr class="memitem:gaa8624f46f3a77806a85190891437ee67"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gaa8624f46f3a77806a85190891437ee67">simple_action</a> (Proxy &amp;&amp;proxy, Arg0 &amp;&amp;arg0, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="memdesc:gaa8624f46f3a77806a85190891437ee67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a simple action on <code>proxy</code> <br /></td></tr>
+<tr class="separator:gaa8624f46f3a77806a85190891437ee67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ga9400abf9bfed73781d813df2c1a9f162"><td class="memTemplParams" colspan="2">
+template&lt;typename Action , typename Proxy &gt; </td></tr>
+<tr class="memitem:ga9400abf9bfed73781d813df2c1a9f162"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#ga9400abf9bfed73781d813df2c1a9f162">threaded_action</a> (Proxy &amp;&amp;proxy) noexcept</td></tr>
+<tr class="memdesc:ga9400abf9bfed73781d813df2c1a9f162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a threaded action on <code>proxy</code>, where the proxy must be a nodegroup. <br /></td></tr>
+<tr class="separator:ga9400abf9bfed73781d813df2c1a9f162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac875d2accf84d68a10b5a9c8b450cb5d"><td class="memTemplParams" colspan="2">
+template&lt;typename Action , typename Proxy , typename Arg0 , typename... Args&gt; </td></tr>
+<tr class="memitem:gac875d2accf84d68a10b5a9c8b450cb5d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ParallelGroup.html#gac875d2accf84d68a10b5a9c8b450cb5d">threaded_action</a> (Proxy &amp;&amp;proxy, Arg0 &amp;&amp;arg0, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="memdesc:gac875d2accf84d68a10b5a9c8b450cb5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a threaded action on <code>proxy</code>, where the proxy must be a nodegroup. <br /></td></tr>
+<tr class="separator:gac875d2accf84d68a10b5a9c8b450cb5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27907852d1e51848fc42c073f824554c"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a27907852d1e51848fc42c073f824554c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceParallel.html#a27907852d1e51848fc42c073f824554c">has_pup_member_t</a> = typename <a class="el" href="structParallel_1_1has__pup__member.html">has_pup_member</a>&lt; T &gt;::type</td></tr>
+<tr class="separator:a27907852d1e51848fc42c073f824554c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9bb92f00c4aa3fb15b1888332bc5462"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ae9bb92f00c4aa3fb15b1888332bc5462"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceParallel.html#ae9bb92f00c4aa3fb15b1888332bc5462">has_pup_member_v</a> = <a class="el" href="structParallel_1_1has__pup__member.html">has_pup_member</a>&lt;T&gt;::value</td></tr>
+<tr class="separator:ae9bb92f00c4aa3fb15b1888332bc5462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9f8a5f10d370ff570bb623bf858b6ed"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af9f8a5f10d370ff570bb623bf858b6ed"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceParallel.html#af9f8a5f10d370ff570bb623bf858b6ed">is_pupable_t</a> = typename <a class="el" href="structParallel_1_1is__pupable.html">is_pupable</a>&lt; T &gt;::type</td></tr>
+<tr class="separator:af9f8a5f10d370ff570bb623bf858b6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99e5e039d67f87cc794544f3eb871029"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a99e5e039d67f87cc794544f3eb871029"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceParallel.html#a99e5e039d67f87cc794544f3eb871029">is_pupable_v</a> = <a class="el" href="structParallel_1_1is__pupable.html">is_pupable</a>&lt;T&gt;::value</td></tr>
+<tr class="separator:a99e5e039d67f87cc794544f3eb871029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Contains functions that forward to Charm++ parallel functions. </p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a27907852d1e51848fc42c073f824554c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27907852d1e51848fc42c073f824554c">&#9670;&nbsp;</a></span>has_pup_member_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceParallel.html#a27907852d1e51848fc42c073f824554c">Parallel::has_pup_member_t</a> = typedef typename <a class="el" href="structParallel_1_1has__pup__member.html">has_pup_member</a>&lt;T&gt;::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structParallel_1_1has__pup__member.html" title="Check if T has a pup member function. ">has_pup_member</a> </dd></dl>
+
+</div>
+</div>
+<a id="af9f8a5f10d370ff570bb623bf858b6ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9f8a5f10d370ff570bb623bf858b6ed">&#9670;&nbsp;</a></span>is_pupable_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceParallel.html#af9f8a5f10d370ff570bb623bf858b6ed">Parallel::is_pupable_t</a> = typedef typename <a class="el" href="structParallel_1_1is__pupable.html">is_pupable</a>&lt;T&gt;::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structParallel_1_1is__pupable.html" title="Check if type T has operator| defined for Charm++ serialization. ">is_pupable</a> </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ae9bb92f00c4aa3fb15b1888332bc5462"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9bb92f00c4aa3fb15b1888332bc5462">&#9670;&nbsp;</a></span>has_pup_member_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool Parallel::has_pup_member_v = <a class="el" href="structParallel_1_1has__pup__member.html">has_pup_member</a>&lt;T&gt;::value</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structParallel_1_1has__pup__member.html" title="Check if T has a pup member function. ">has_pup_member</a> </dd></dl>
+
+</div>
+</div>
+<a id="a99e5e039d67f87cc794544f3eb871029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99e5e039d67f87cc794544f3eb871029">&#9670;&nbsp;</a></span>is_pupable_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool Parallel::is_pupable_v = <a class="el" href="structParallel_1_1is__pupable.html">is_pupable</a>&lt;T&gt;::value</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structParallel_1_1is__pupable.html" title="Check if type T has operator| defined for Charm++ serialization. ">is_pupable</a> </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

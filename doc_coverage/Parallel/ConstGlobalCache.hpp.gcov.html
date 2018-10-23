@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Parallel/ConstGlobalCache.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Parallel</a> - ConstGlobalCache.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">24</td>
+            <td class="headerCovTableEntryLo">41.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class template ConstGlobalCache.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;string&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/DataBox/DataBoxTag.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Parallel/CharmRegistration.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Parallel/ConstGlobalCacheHelper.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Parallel/ParallelComponentHelpers.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/PrettyType.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/Requires.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Utilities/TaggedTuple.hpp&quot;
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : #include &quot;Parallel/ConstGlobalCache.decl.h&quot;
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : namespace Parallel {
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : namespace ConstGlobalCache_detail {
+<span class="lineNum">      26 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      27 </span>            : struct type_for_get_helper {
+<span class="lineNum">      28 </span>            :   using type = T;
+<span class="lineNum">      29 </span>            : };
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : template &lt;typename T, typename D&gt;
+<span class="lineNum">      32 </span>            : struct type_for_get_helper&lt;std::unique_ptr&lt;T, D&gt;&gt; {
+<span class="lineNum">      33 </span>            :   using type = T;
+<span class="lineNum">      34 </span>            : };
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : // Note: Returned list does not need to be size 1
+<span class="lineNum">      37 </span>            : template &lt;class ConstGlobalCacheTag, class Metavariables&gt;
+<span class="lineNum">      38 </span>            : using get_list_of_matching_tags =
+<span class="lineNum">      39 </span>            :     tmpl::filter&lt;typename ConstGlobalCache&lt;Metavariables&gt;::tag_list,
+<span class="lineNum">      40 </span>            :                  std::is_base_of&lt;tmpl::pin&lt;ConstGlobalCacheTag&gt;, tmpl::_1&gt;&gt;;
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            : template &lt;class ConstGlobalCacheTag, class Metavariables&gt;
+<span class="lineNum">      43 </span>            : using type_for_get = typename type_for_get_helper&lt;
+<span class="lineNum">      44 </span>            :     typename tmpl::front&lt;ConstGlobalCache_detail::get_list_of_matching_tags&lt;
+<span class="lineNum">      45 </span>            :         ConstGlobalCacheTag, Metavariables&gt;&gt;::type&gt;::type;
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            : template &lt;typename ComponentFromList, typename ComponentToFind&gt;
+<span class="lineNum">      48 </span>            : struct get_component_if_mocked_helper
+<span class="lineNum">      49 </span>            :     : std::is_same&lt;typename ComponentFromList::component_being_mocked,
+<span class="lineNum">      50 </span>            :                    ComponentToFind&gt; {};
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            : /// In order to be able to use a mock action testing framework we need to be
+<span class="lineNum">      53 </span>            : /// able to get the correct parallel component from the global cache even when
+<span class="lineNum">      54 </span>            : /// the correct component is a mock. We do this by having the mocked components
+<span class="lineNum">      55 </span>            : /// have a member type alias `component_being_mocked`, and having
+<span class="lineNum">      56 </span>            : /// `Parallel::get_component` check if the component to be retrieved is in the
+<span class="lineNum">      57 </span>            : /// `metavariables::component_list`. If it is not in the `component_list` then
+<span class="lineNum">      58 </span>            : /// we search for a mock component that is mocking the component we are trying
+<span class="lineNum">      59 </span>            : /// to retrieve.
+<span class="lineNum">      60 </span>            : template &lt;typename ComponentList, typename ParallelComponent&gt;
+<span class="lineNum">      61 </span>            : using get_component_if_mocked = tmpl::front&lt;tmpl::type_from&lt;tmpl::conditional_t&lt;
+<span class="lineNum">      62 </span>            :     tmpl::list_contains_v&lt;ComponentList, ParallelComponent&gt;,
+<span class="lineNum">      63 </span>            :     tmpl::type_&lt;tmpl::list&lt;ParallelComponent&gt;&gt;,
+<span class="lineNum">      64 </span>            :     tmpl::lazy::find&lt;ComponentList,
+<span class="lineNum">      65 </span>            :                      get_component_if_mocked_helper&lt;
+<span class="lineNum">      66 </span>            :                          tmpl::_1, tmpl::pin&lt;ParallelComponent&gt;&gt;&gt;&gt;&gt;&gt;;
+<span class="lineNum">      67 </span>            : }  // namespace ConstGlobalCache_detail
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            : /// \ingroup ParallelGroup
+<span class="lineNum">      70 </span>            : /// A Charm++ chare that caches constant data once per Charm++ node.
+<span class="lineNum">      71 </span>            : ///
+<span class="lineNum">      72 </span>            : /// Metavariables must define the following metavariables:
+<span class="lineNum">      73 </span>            : ///   - const_global_cache_tag_list   typelist of tags of constant data
+<span class="lineNum">      74 </span>            : ///   - component_list   typelist of ParallelComponents
+<span class="lineNum">      75 </span>            : template &lt;typename Metavariables&gt;
+<span class="lineNum">      76 </span><span class="lineCov">          1 : class ConstGlobalCache : public CBase_ConstGlobalCache&lt;Metavariables&gt; {</span>
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 :   using parallel_component_tag_list = tmpl::transform&lt;</span>
+<span class="lineNum">      78 </span>            :       typename Metavariables::component_list,
+<span class="lineNum">      79 </span>            :       tmpl::bind&lt;
+<span class="lineNum">      80 </span>            :           tmpl::type_,
+<span class="lineNum">      81 </span>            :           tmpl::bind&lt;Parallel::proxy_from_parallel_component, tmpl::_1&gt;&gt;&gt;;
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span>            :  public:
+<span class="lineNum">      84 </span>            :   /// Access to the Metavariables template parameter
+<span class="lineNum">      85 </span><span class="lineCov">          1 :   using metavariables = Metavariables;</span>
+<span class="lineNum">      86 </span>            :   /// Typelist of the tags of constant data stored in the ConstGlobalCache
+<span class="lineNum">      87 </span><span class="lineCov">          1 :   using tag_list = ConstGlobalCache_detail::make_tag_list&lt;Metavariables&gt;;</span>
+<span class="lineNum">      88 </span>            :   /// Typelist of the ParallelComponents stored in the ConstGlobalCache
+<span class="lineNum">      89 </span><span class="lineCov">          1 :   using component_list = typename Metavariables::component_list;</span>
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   explicit ConstGlobalCache(</span>
+<span class="lineNum">      92 </span>            :       tuples::tagged_tuple_from_typelist&lt;tag_list&gt; const_global_cache) noexcept
+<span class="lineNum">      93 </span>            :       : const_global_cache_(std::move(const_global_cache)) {}
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :   explicit ConstGlobalCache(CkMigrateMessage* /*msg*/) {}</span>
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :   ~ConstGlobalCache() noexcept override {</span>
+<span class="lineNum">      96 </span>            :     (void)Parallel::charmxx::RegisterChare&lt;
+<span class="lineNum">      97 </span>            :         ConstGlobalCache&lt;Metavariables&gt;,
+<span class="lineNum">      98 </span>            :         CkIndex_ConstGlobalCache&lt;Metavariables&gt;&gt;::registrar;
+<span class="lineNum">      99 </span>            :   }
+<span class="lineNum">     100 </span>            :   /// \cond
+<span class="lineNum">     101 </span>            :   ConstGlobalCache(const ConstGlobalCache&amp;) = default;
+<span class="lineNum">     102 </span>            :   ConstGlobalCache&amp; operator=(const ConstGlobalCache&amp;) = default;
+<span class="lineNum">     103 </span>            :   ConstGlobalCache(ConstGlobalCache&amp;&amp;) = default;
+<span class="lineNum">     104 </span>            :   ConstGlobalCache&amp; operator=(ConstGlobalCache&amp;&amp;) = default;
+<span class="lineNum">     105 </span>            :   /// \endcond
+<span class="lineNum">     106 </span>            : 
+<span class="lineNum">     107 </span>            :   /// Entry method to set the ParallelComponents (should only be called once)
+<span class="lineNum">     108 </span><span class="lineCov">          1 :   void set_parallel_components(</span>
+<span class="lineNum">     109 </span>            :       tuples::tagged_tuple_from_typelist&lt;parallel_component_tag_list&gt;&amp;
+<span class="lineNum">     110 </span>            :           parallel_components,
+<span class="lineNum">     111 </span>            :       const CkCallback&amp; callback) noexcept;
+<span class="lineNum">     112 </span>            : 
+<span class="lineNum">     113 </span>            :  private:
+<span class="lineNum">     114 </span>            :   // clang-tidy: false positive, redundant declaration
+<span class="lineNum">     115 </span>            :   template &lt;typename ConstGlobalCacheTag, typename MV&gt;
+<span class="lineNum">     116 </span>            :   friend auto get(const ConstGlobalCache&lt;MV&gt;&amp; cache) noexcept  // NOLINT
+<span class="lineNum">     117 </span>            :       -&gt; const ConstGlobalCache_detail::type_for_get&lt;ConstGlobalCacheTag, MV&gt;&amp;;
+<span class="lineNum">     118 </span>            : 
+<span class="lineNum">     119 </span>            :   // clang-tidy: false positive, redundant declaration
+<span class="lineNum">     120 </span>            :   template &lt;typename ParallelComponentTag, typename MV&gt;
+<span class="lineNum">     121 </span>            :   friend auto get_parallel_component(  // NOLINT
+<span class="lineNum">     122 </span>            :       ConstGlobalCache&lt;MV&gt;&amp; cache) noexcept
+<span class="lineNum">     123 </span>            :       -&gt; Parallel::proxy_from_parallel_component&lt;
+<span class="lineNum">     124 </span>            :           ConstGlobalCache_detail::get_component_if_mocked&lt;
+<span class="lineNum">     125 </span>            :               typename MV::component_list, ParallelComponentTag&gt;&gt;&amp;;
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            :   // clang-tidy: false positive, redundant declaration
+<span class="lineNum">     128 </span>            :   template &lt;typename ParallelComponentTag, typename MV&gt;
+<span class="lineNum">     129 </span>            :   friend auto get_parallel_component(  // NOLINT
+<span class="lineNum">     130 </span>            :       const ConstGlobalCache&lt;MV&gt;&amp; cache) noexcept
+<span class="lineNum">     131 </span>            :       -&gt; const Parallel::proxy_from_parallel_component&lt;
+<span class="lineNum">     132 </span>            :           ConstGlobalCache_detail::get_component_if_mocked&lt;
+<span class="lineNum">     133 </span>            :               typename MV::component_list,
+<span class="lineNum">     134 </span>            :               ParallelComponentTag&gt;&gt;&amp;;  // NOLINT
+<span class="lineNum">     135 </span>            : 
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :   tuples::tagged_tuple_from_typelist&lt;tag_list&gt; const_global_cache_;</span>
+<span class="lineNum">     137 </span>            :   tuples::tagged_tuple_from_typelist&lt;parallel_component_tag_list&gt;
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 :       parallel_components_;</span>
+<span class="lineNum">     139 </span><span class="lineNoCov">          0 :   bool parallel_components_have_been_set_{false};</span>
+<span class="lineNum">     140 </span>            : };
+<span class="lineNum">     141 </span>            : 
+<span class="lineNum">     142 </span>            : template &lt;typename Metavariables&gt;
+<span class="lineNum">     143 </span>            : void ConstGlobalCache&lt;Metavariables&gt;::set_parallel_components(
+<span class="lineNum">     144 </span>            :     tuples::tagged_tuple_from_typelist&lt;parallel_component_tag_list&gt;&amp;
+<span class="lineNum">     145 </span>            :         parallel_components,
+<span class="lineNum">     146 </span>            :     const CkCallback&amp; callback) noexcept {
+<span class="lineNum">     147 </span>            :   ASSERT(!parallel_components_have_been_set_,
+<span class="lineNum">     148 </span>            :          &quot;Can only set the parallel_components once&quot;);
+<span class="lineNum">     149 </span>            :   parallel_components_ = std::move(parallel_components);
+<span class="lineNum">     150 </span>            :   parallel_components_have_been_set_ = true;
+<span class="lineNum">     151 </span>            :   this-&gt;contribute(callback);
+<span class="lineNum">     152 </span>            : }
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            : // @{
+<span class="lineNum">     155 </span>            : /// \ingroup ParallelGroup
+<span class="lineNum">     156 </span>            : /// \brief Access the Charm++ proxy associated with a ParallelComponent
+<span class="lineNum">     157 </span>            : ///
+<span class="lineNum">     158 </span>            : /// \requires ParallelComponentTag is a tag in component_list
+<span class="lineNum">     159 </span>            : ///
+<span class="lineNum">     160 </span>            : /// \returns a Charm++ proxy that can be used to call an entry method on the
+<span class="lineNum">     161 </span>            : /// chare(s)
+<span class="lineNum">     162 </span>            : template &lt;typename ParallelComponentTag, typename Metavariables&gt;
+<span class="lineNum">     163 </span><span class="lineCov">          2 : auto get_parallel_component(ConstGlobalCache&lt;Metavariables&gt;&amp; cache) noexcept</span>
+<span class="lineNum">     164 </span>            :     -&gt; Parallel::proxy_from_parallel_component&lt;
+<span class="lineNum">     165 </span>            :         ConstGlobalCache_detail::get_component_if_mocked&lt;
+<span class="lineNum">     166 </span>            :             typename Metavariables::component_list, ParallelComponentTag&gt;&gt;&amp; {
+<span class="lineNum">     167 </span>            :   return tuples::get&lt;tmpl::type_&lt;Parallel::proxy_from_parallel_component&lt;
+<span class="lineNum">     168 </span>            :       ConstGlobalCache_detail::get_component_if_mocked&lt;
+<span class="lineNum">     169 </span>            :           typename Metavariables::component_list, ParallelComponentTag&gt;&gt;&gt;&gt;(
+<span class="lineNum">     170 </span>            :       cache.parallel_components_);
+<span class="lineNum">     171 </span>            : }
+<span class="lineNum">     172 </span>            : 
+<span class="lineNum">     173 </span>            : template &lt;typename ParallelComponentTag, typename Metavariables&gt;
+<span class="lineNum">     174 </span><span class="lineCov">          2 : auto get_parallel_component(</span>
+<span class="lineNum">     175 </span>            :     const ConstGlobalCache&lt;Metavariables&gt;&amp; cache) noexcept
+<span class="lineNum">     176 </span>            :     -&gt; const Parallel::proxy_from_parallel_component&lt;
+<span class="lineNum">     177 </span>            :         ConstGlobalCache_detail::get_component_if_mocked&lt;
+<span class="lineNum">     178 </span>            :             typename Metavariables::component_list, ParallelComponentTag&gt;&gt;&amp; {
+<span class="lineNum">     179 </span>            :   return tuples::get&lt;tmpl::type_&lt;Parallel::proxy_from_parallel_component&lt;
+<span class="lineNum">     180 </span>            :       ConstGlobalCache_detail::get_component_if_mocked&lt;
+<span class="lineNum">     181 </span>            :           typename Metavariables::component_list, ParallelComponentTag&gt;&gt;&gt;&gt;(
+<span class="lineNum">     182 </span>            :       cache.parallel_components_);
+<span class="lineNum">     183 </span>            : }
+<span class="lineNum">     184 </span>            : // @}
+<span class="lineNum">     185 </span>            : 
+<span class="lineNum">     186 </span>            : // @{
+<span class="lineNum">     187 </span>            : /// \ingroup ParallelGroup
+<span class="lineNum">     188 </span>            : /// \brief Access data in the cache
+<span class="lineNum">     189 </span>            : ///
+<span class="lineNum">     190 </span>            : /// \requires ConstGlobalCacheTag is a tag in tag_list
+<span class="lineNum">     191 </span>            : ///
+<span class="lineNum">     192 </span>            : /// \returns a constant reference to an object in the cache
+<span class="lineNum">     193 </span>            : template &lt;typename ConstGlobalCacheTag, typename Metavariables&gt;
+<span class="lineNum">     194 </span><span class="lineCov">          2 : auto get(const ConstGlobalCache&lt;Metavariables&gt;&amp; cache) noexcept -&gt; const</span>
+<span class="lineNum">     195 </span>            :     ConstGlobalCache_detail::type_for_get&lt;ConstGlobalCacheTag, Metavariables&gt;&amp; {
+<span class="lineNum">     196 </span>            :   // We check if the tag is to be retrieved directly or via a base class
+<span class="lineNum">     197 </span>            :   using tag = tmpl::front&lt;ConstGlobalCache_detail::get_list_of_matching_tags&lt;
+<span class="lineNum">     198 </span>            :       ConstGlobalCacheTag, Metavariables&gt;&gt;;
+<span class="lineNum">     199 </span>            :   static_assert(tmpl::size&lt;ConstGlobalCache_detail::get_list_of_matching_tags&lt;
+<span class="lineNum">     200 </span>            :                         ConstGlobalCacheTag, Metavariables&gt;&gt;::value == 1,
+<span class="lineNum">     201 </span>            :                 &quot;Found more than one tag matching the ConstGlobalCacheTag &quot;
+<span class="lineNum">     202 </span>            :                 &quot;requesting to be retrieved.&quot;);
+<span class="lineNum">     203 </span>            :   return make_overloader(
+<span class="lineNum">     204 </span>            :       [](std::true_type /*is_unique_ptr*/, auto&amp;&amp; local_cache)
+<span class="lineNum">     205 </span>            :           -&gt; decltype(
+<span class="lineNum">     206 </span>            :               *(tuples::get&lt;tag&gt;(local_cache.const_global_cache_).get())) {
+<span class="lineNum">     207 </span>            :         return *(
+<span class="lineNum">     208 </span>            :             tuples::get&lt;tag&gt;(local_cache.const_global_cache_)
+<span class="lineNum">     209 </span>            :                 .get());
+<span class="lineNum">     210 </span>            :       },
+<span class="lineNum">     211 </span>            :       [](std::false_type /*is_unique_ptr*/, auto&amp;&amp; local_cache)
+<span class="lineNum">     212 </span>            :           -&gt; decltype(tuples::get&lt;tag&gt;(local_cache.const_global_cache_)) {
+<span class="lineNum">     213 </span>            :         return tuples::get&lt;tag&gt;(
+<span class="lineNum">     214 </span>            :             local_cache.const_global_cache_);
+<span class="lineNum">     215 </span>            :       })(typename tt::is_a&lt;std::unique_ptr, typename tag::type&gt;::type{}, cache);
+<span class="lineNum">     216 </span>            : }
+<span class="lineNum">     217 </span>            : 
+<span class="lineNum">     218 </span>            : namespace Tags {
+<span class="lineNum">     219 </span>            : /// \ingroup DataBoxTagsGroup
+<span class="lineNum">     220 </span>            : /// \ingroup ParallelGroup
+<span class="lineNum">     221 </span>            : /// Tag to retrieve the `Parallel::ConstGlobalCache` from the DataBox.
+<span class="lineNum">     222 </span><span class="lineCov">          1 : struct ConstGlobalCache : db::BaseTag {};</span>
+<span class="lineNum">     223 </span>            : 
+<span class="lineNum">     224 </span>            : template &lt;class Metavariables&gt;
+<span class="lineNum">     225 </span><span class="lineNoCov">          0 : struct ConstGlobalCacheImpl : ConstGlobalCache, db::SimpleTag {</span>
+<span class="lineNum">     226 </span><span class="lineNoCov">          0 :   using type = const Parallel::ConstGlobalCache&lt;Metavariables&gt;*;</span>
+<span class="lineNum">     227 </span><span class="lineNoCov">          0 :   static std::string name() noexcept { return &quot;ConstGlobalCache&quot;; }</span>
+<span class="lineNum">     228 </span>            : };
+<span class="lineNum">     229 </span>            : 
+<span class="lineNum">     230 </span>            : /// \ingroup DataBoxTagsGroup
+<span class="lineNum">     231 </span>            : /// \ingroup ParallelGroup
+<span class="lineNum">     232 </span>            : /// Tag used to retrieve data from the `Parallel::ConstGlobalCache`. This is the
+<span class="lineNum">     233 </span>            : /// recommended way for compute tags to retrieve data out of the global cache.
+<span class="lineNum">     234 </span>            : template &lt;class CacheTag&gt;
+<span class="lineNum">     235 </span><span class="lineCov">          1 : struct FromConstGlobalCache : CacheTag, db::ComputeTag {</span>
+<span class="lineNum">     236 </span><span class="lineNoCov">          0 :   static std::string name() noexcept {</span>
+<span class="lineNum">     237 </span>            :     return &quot;FromConstGlobalCache(&quot; + pretty_type::short_name&lt;CacheTag&gt;() + &quot;)&quot;;
+<span class="lineNum">     238 </span>            :   }
+<span class="lineNum">     239 </span>            :   template &lt;class Metavariables&gt;
+<span class="lineNum">     240 </span><span class="lineNoCov">          0 :   static const auto&amp; function(</span>
+<span class="lineNum">     241 </span>            :       const Parallel::ConstGlobalCache&lt;Metavariables&gt;* const&amp; cache) noexcept {
+<span class="lineNum">     242 </span>            :     return Parallel::get&lt;CacheTag&gt;(*cache);
+<span class="lineNum">     243 </span>            :   }
+<span class="lineNum">     244 </span><span class="lineNoCov">          0 :   using argument_tags = tmpl::list&lt;ConstGlobalCache&gt;;</span>
+<span class="lineNum">     245 </span>            : };
+<span class="lineNum">     246 </span>            : }  // namespace Tags
+<span class="lineNum">     247 </span>            : }  // namespace Parallel
+<span class="lineNum">     248 </span>            : 
+<span class="lineNum">     249 </span><span class="lineNoCov">          0 : #define CK_TEMPLATES_ONLY</span>
+<span class="lineNum">     250 </span>            : #include &quot;Parallel/ConstGlobalCache.def.h&quot;
+<span class="lineNum">     251 </span>            : #undef CK_TEMPLATES_ONLY
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

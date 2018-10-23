@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - ApparentHorizons/Strahlkorper.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">ApparentHorizons</a> - Strahlkorper.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntry">39</td>
+            <td class="headerCovTableEntryLo">43.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;ApparentHorizons/YlmSpherepack.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Options/Options.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : namespace PUP {
+<span class="lineNum">      15 </span>            : class er;
+<span class="lineNum">      16 </span>            : }  // namespace PUP
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : /// \ingroup SurfacesGroup
+<span class="lineNum">      19 </span>            : /// \brief A star-shaped surface expanded in spherical harmonics.
+<span class="lineNum">      20 </span>            : template &lt;typename Frame&gt;
+<span class="lineNum">      21 </span><span class="lineCov">          1 : class Strahlkorper {</span>
+<span class="lineNum">      22 </span>            :  public:
+<span class="lineNum">      23 </span><span class="lineNoCov">          0 :   struct Lmax {</span>
+<span class="lineNum">      24 </span><span class="lineNoCov">          0 :     using type = size_t;</span>
+<span class="lineNum">      25 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {</span>
+<span class="lineNum">      26 </span>            :         &quot;Strahlkorper is expanded in Ylms up to l=Lmax&quot;};
+<span class="lineNum">      27 </span>            :   };
+<span class="lineNum">      28 </span><span class="lineNoCov">          0 :   struct Radius {</span>
+<span class="lineNum">      29 </span><span class="lineNoCov">          0 :     using type = double;</span>
+<span class="lineNum">      30 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {&quot;Radius of spherical Strahlkorper&quot;};</span>
+<span class="lineNum">      31 </span>            :   };
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 :   struct Center {</span>
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 :     using type = std::array&lt;double, 3&gt;;</span>
+<span class="lineNum">      34 </span><span class="lineNoCov">          0 :     static constexpr OptionString help = {&quot;Center of spherical Strahlkorper&quot;};</span>
+<span class="lineNum">      35 </span>            :   };
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 :   using options = tmpl::list&lt;Lmax, Radius, Center&gt;;</span>
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :   static constexpr OptionString help{</span>
+<span class="lineNum">      39 </span>            :       &quot;A star-shaped surface expressed as an expansion in spherical &quot;
+<span class="lineNum">      40 </span>            :       &quot;harmonics.\n&quot;
+<span class="lineNum">      41 </span>            :       &quot;Currently only a spherical Strahlkorper can be constructed from\n&quot;
+<span class="lineNum">      42 </span>            :       &quot;Options.  To do this, specify parameters Center, Radius, and Lmax.&quot;};
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            :   // Pup needs default constructor
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :   Strahlkorper() = default;</span>
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            :   /// Construct a sphere of radius `radius` with a given center.
+<span class="lineNum">      48 </span><span class="lineCov">          1 :   Strahlkorper(size_t l_max, size_t m_max, double radius,</span>
+<span class="lineNum">      49 </span>            :                std::array&lt;double, 3&gt; center) noexcept;
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            :   /// Construct a sphere of radius `radius`, setting `m_max`=`l_max`.
+<span class="lineNum">      52 </span><span class="lineCov">          1 :   Strahlkorper(size_t l_max, double radius,</span>
+<span class="lineNum">      53 </span>            :                std::array&lt;double, 3&gt; center) noexcept
+<span class="lineNum">      54 </span>            :       : Strahlkorper(l_max, l_max, radius, center) {}
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span>            :   /// Construct a Strahlkorper from a DataVector containing the radius
+<span class="lineNum">      57 </span>            :   /// at the collocation points.
+<span class="lineNum">      58 </span><span class="lineCov">          1 :   Strahlkorper(size_t l_max, size_t m_max,</span>
+<span class="lineNum">      59 </span>            :                const DataVector&amp; radius_at_collocation_points,
+<span class="lineNum">      60 </span>            :                std::array&lt;double, 3&gt; center) noexcept;
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span>            :   /// Prolong or restrict another surface to the given `l_max` and `m_max`.
+<span class="lineNum">      63 </span><span class="lineCov">          1 :   Strahlkorper(size_t l_max, size_t m_max,</span>
+<span class="lineNum">      64 </span>            :                const Strahlkorper&amp; another_strahlkorper) noexcept;
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span>            :   /// Construct a Strahlkorper from another Strahlkorper,
+<span class="lineNum">      67 </span>            :   /// but explicitly specifying the coefficients.
+<span class="lineNum">      68 </span>            :   /// Here coefficients are in the same storage scheme
+<span class="lineNum">      69 </span>            :   /// as the `coefficients()` member function returns.
+<span class="lineNum">      70 </span><span class="lineCov">          1 :   Strahlkorper(DataVector coefs,</span>
+<span class="lineNum">      71 </span>            :                const Strahlkorper&amp; another_strahlkorper) noexcept;
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span>            :   /// Move-construct a Strahlkorper from another Strahlkorper,
+<span class="lineNum">      74 </span>            :   /// explicitly specifying the coefficients.
+<span class="lineNum">      75 </span><span class="lineCov">          1 :   Strahlkorper(DataVector coefs, Strahlkorper&amp;&amp; another_strahlkorper) noexcept;</span>
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span>            :   // clang-tidy: no runtime references
+<span class="lineNum">      78 </span>            :   /// Serialization for Charm++
+<span class="lineNum">      79 </span><span class="lineCov">          1 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            :   /*!
+<span class="lineNum">      82 </span>            :    *  These coefficients are stored as SPHEREPACK coefficients.
+<span class="lineNum">      83 </span>            :    *  Suppose you represent a set of coefficients \f$F^{lm}\f$ in the expansion
+<span class="lineNum">      84 </span>            :    *  \f[
+<span class="lineNum">      85 </span>            :    *  f(\theta,\phi) =
+<span class="lineNum">      86 </span>            :    *  \sum_{l=0}^{l_{max}} \sum_{m=-l}^{l} F^{lm} Y^{lm}(\theta,\phi)
+<span class="lineNum">      87 </span>            :    *  \f]
+<span class="lineNum">      88 </span>            :    *  Here the \f$Y^{lm}(\theta,\phi)\f$ are the usual complex-valued scalar
+<span class="lineNum">      89 </span>            :    *  spherical harmonics, so \f$F^{lm}\f$ are also complex-valued.
+<span class="lineNum">      90 </span>            :    *  But here we assume that \f$f(\theta,\phi)\f$ is real, so therefore
+<span class="lineNum">      91 </span>            :    *  the \f$F^{lm}\f$ obey \f$F^{l-m} = (-1)^m (F^{lm})^\star\f$. So one
+<span class="lineNum">      92 </span>            :    *  does not need to store both real and imaginary parts for both positive
+<span class="lineNum">      93 </span>            :    *  and negative \f$m\f$, and the stored coefficients can all be real.
+<span class="lineNum">      94 </span>            :    *
+<span class="lineNum">      95 </span>            :    *  So the stored coefficients are:
+<span class="lineNum">      96 </span>            :    * \f{align}
+<span class="lineNum">      97 </span>            :    *  \text{coefficients()(l,m)} &amp;= (-1)^m \sqrt{\frac{2}{\pi}}
+<span class="lineNum">      98 </span>            :    *     \Re(F^{lm}) \quad \text{for} \quad m\ge 0, \\
+<span class="lineNum">      99 </span>            :    *  \text{coefficients()(l,m)} &amp;= (-1)^m \sqrt{\frac{2}{\pi}}
+<span class="lineNum">     100 </span>            :    *     \Im(F^{lm}) \quad \text{for} \quad m&lt;0
+<span class="lineNum">     101 </span>            :    * \f}
+<span class="lineNum">     102 </span>            :    */
+<span class="lineNum">     103 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE const DataVector&amp; coefficients() const noexcept {</span>
+<span class="lineNum">     104 </span>            :     return strahlkorper_coefs_;
+<span class="lineNum">     105 </span>            :   }
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE DataVector&amp; coefficients() noexcept {</span>
+<span class="lineNum">     107 </span>            :     return strahlkorper_coefs_;
+<span class="lineNum">     108 </span>            :   }
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            :   /// Point about which the spectral basis of the Strahlkorper is expanded.
+<span class="lineNum">     111 </span>            :   /// The center is given in the frame in which the Strahlkorper is defined.
+<span class="lineNum">     112 </span>            :   /// This center must be somewhere inside the Strahlkorper, but in principle
+<span class="lineNum">     113 </span>            :   /// it can be anywhere.  See `physical_center()` for a different measure.
+<span class="lineNum">     114 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE const std::array&lt;double, 3&gt;&amp; center() const noexcept {</span>
+<span class="lineNum">     115 </span>            :     return center_;
+<span class="lineNum">     116 </span>            :   }
+<span class="lineNum">     117 </span>            : 
+<span class="lineNum">     118 </span>            :   /// Approximate physical center (determined by \f$l=1\f$ coefficients)
+<span class="lineNum">     119 </span>            :   /// Implementation of Eqs. (38)-(40) in Hemberger et al,
+<span class="lineNum">     120 </span>            :   /// [arXiv:1211.6079] (https://arxiv.org/abs/1211.6079)
+<span class="lineNum">     121 </span><span class="lineCov">          1 :   std::array&lt;double, 3&gt; physical_center() const noexcept;</span>
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            :   /// Average radius of the surface (determined by \f$Y_{00}\f$ coefficient)
+<span class="lineNum">     124 </span><span class="lineCov">          1 :   double average_radius() const noexcept;</span>
+<span class="lineNum">     125 </span>            : 
+<span class="lineNum">     126 </span>            :   /// Maximum \f$l\f$ in \f$Y_{lm}\f$ decomposition.
+<span class="lineNum">     127 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE size_t l_max() const noexcept { return l_max_; }</span>
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span>            :   /// Maximum \f$m\f$ in \f$Y_{lm}\f$ decomposition.
+<span class="lineNum">     130 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE size_t m_max() const noexcept { return m_max_; }</span>
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span>            :   /// Radius at a particular angle \f$(\theta,\phi)\f$.
+<span class="lineNum">     133 </span>            :   /// This is inefficient if done at multiple points many times.
+<span class="lineNum">     134 </span>            :   /// See YlmSpherepack for alternative ways of computing this.
+<span class="lineNum">     135 </span><span class="lineCov">          1 :   double radius(double theta, double phi) const noexcept;</span>
+<span class="lineNum">     136 </span>            : 
+<span class="lineNum">     137 </span>            :   /// Determine if a point `x` is contained inside the surface.
+<span class="lineNum">     138 </span>            :   /// The point must be given in Cartesian coordinates in the frame in
+<span class="lineNum">     139 </span>            :   /// which the Strahlkorper is defined.
+<span class="lineNum">     140 </span>            :   /// This is inefficient if done at multiple points many times.
+<span class="lineNum">     141 </span><span class="lineCov">          1 :   bool point_is_contained(const std::array&lt;double, 3&gt;&amp; x) const noexcept;</span>
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE const YlmSpherepack&amp; ylm_spherepack() const noexcept {</span>
+<span class="lineNum">     144 </span>            :     return ylm_;
+<span class="lineNum">     145 </span>            :   }
+<span class="lineNum">     146 </span>            : 
+<span class="lineNum">     147 </span>            :  private:
+<span class="lineNum">     148 </span><span class="lineNoCov">          0 :   size_t l_max_{2}, m_max_{2};</span>
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :   YlmSpherepack ylm_{2, 2};</span>
+<span class="lineNum">     150 </span><span class="lineNoCov">          0 :   std::array&lt;double, 3&gt; center_{{0.0, 0.0, 0.0}};</span>
+<span class="lineNum">     151 </span><span class="lineNoCov">          0 :   DataVector strahlkorper_coefs_ = DataVector(ylm_.spectral_size(), 0.0);</span>
+<span class="lineNum">     152 </span>            : };
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            : namespace OptionTags {
+<span class="lineNum">     155 </span>            : /// \ingroup OptionTagsGroup
+<span class="lineNum">     156 </span>            : /// \ingroup SurfacesGroup
+<span class="lineNum">     157 </span>            : /// The input file tag for a Strahlkorper.
+<span class="lineNum">     158 </span>            : template &lt;typename Frame&gt;
+<span class="lineNum">     159 </span><span class="lineCov">          1 : struct Strahlkorper {</span>
+<span class="lineNum">     160 </span><span class="lineNoCov">          0 :   using type = ::Strahlkorper&lt;Frame&gt;;</span>
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :   static constexpr OptionString help{&quot;A star-shaped surface&quot;};</span>
+<span class="lineNum">     162 </span>            : };
+<span class="lineNum">     163 </span>            : } // namespace OptionTags
+<span class="lineNum">     164 </span>            : 
+<span class="lineNum">     165 </span>            : template &lt;typename Frame&gt;
+<span class="lineNum">     166 </span><span class="lineNoCov">          0 : bool operator==(const Strahlkorper&lt;Frame&gt;&amp; lhs,</span>
+<span class="lineNum">     167 </span>            :                 const Strahlkorper&lt;Frame&gt;&amp; rhs) noexcept {
+<span class="lineNum">     168 </span>            :   return lhs.l_max() == rhs.l_max() and lhs.m_max() == rhs.m_max() and
+<span class="lineNum">     169 </span>            :          lhs.center() == rhs.center() and
+<span class="lineNum">     170 </span>            :          lhs.coefficients() == rhs.coefficients();
+<span class="lineNum">     171 </span>            : }
+<span class="lineNum">     172 </span>            : 
+<span class="lineNum">     173 </span>            : template &lt;typename Frame&gt;
+<span class="lineNum">     174 </span><span class="lineNoCov">          0 : bool operator!=(const Strahlkorper&lt;Frame&gt;&amp; lhs,</span>
+<span class="lineNum">     175 </span>            :                 const Strahlkorper&lt;Frame&gt;&amp; rhs) noexcept {
+<span class="lineNum">     176 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     177 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

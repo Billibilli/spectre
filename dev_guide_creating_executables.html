@@ -1,0 +1,227 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Creating Executables</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Creating Executables </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>There are several different types of executables that can be built:</p><ul>
+<li>An executable that uses Charm++ to run in parallel, e.g. <code>Executables/ParallelInfo</code></li>
+<li>An executable that does not use Charm++, does not run in parallel, and supplies its own <code>main</code>, e.g. <code>Executables/Benchmark</code></li>
+<li>An executable that uses Charm++ to run in parallel but supplies its own <code>main</code></li>
+<li>An executable that uses custom compilation or linking flags, e.g. <code>DebugPreprocessor</code></li>
+<li>Executables used for evolutions or elliptic solves</li>
+</ul>
+<h3>Executable Using Charm++ for Parallelization</h3>
+<p>A simple example of an executable using Charm++ for parallelization is in <code>src/Executables/Examples/HelloWorld</code>. To add an executable as a target, use the CMake function <code>add_spectre_executable</code> which takes as its four arguments</p><ul>
+<li>the name of the executable</li>
+<li>the name of the path relative to src that contains the header file (which is the name of the executable with extension <code>.hpp</code>) that will define structs and functions to be described below</li>
+<li>the name of the metavariables struct described below</li>
+<li>the list of SpECTRE libraries needed for the executable to link</li>
+</ul>
+<p>For example,</p>
+<div class="fragment"><div class="line">set(LIBS_TO_LINK</div><div class="line">  Informer</div><div class="line">  Utilities</div><div class="line">  )</div><div class="line"></div><div class="line">add_spectre_executable(</div><div class="line">  SingletonHelloWorld</div><div class="line">  Executables/Examples/HelloWorld</div><div class="line">  Metavars</div><div class="line">  &quot;${LIBS_TO_LINK}&quot;</div><div class="line">  )</div></div><!-- fragment --><p> will create the executable <code>SingletonHelloWorld</code> from <a class="el" href="SingletonHelloWorld_8hpp_source.html">SingletonHelloWorld.hpp</a> which is found in the directory <code>src/Executables/Examples/HelloWorld</code>. <code>Metavars</code> will be used as the metavariables struct, and <code>SingletonHelloWorld</code> will link against the <code>Informer</code> and <code>Utilities</code> SpECTRE libraries.</p>
+<p>The header file from which an executable is generated must define a metavariables struct that can be thought of as a compile-time input file that defines what the executable will do. The <code>Metavars</code> struct for <code>SingletonHelloWorld</code> is a minimal example of a metavariables struct.</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>Metavars {</div><div class="line">  <span class="keyword">using</span> const_global_cache_tag_list = tmpl::list&lt;&gt;;</div><div class="line"></div><div class="line">  <span class="keyword">using</span> component_list = tmpl::list&lt;HelloWorld&lt;Metavars&gt;&gt;;</div><div class="line"></div><div class="line">  <span class="keyword">static</span> constexpr <a class="code" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a> help{</div><div class="line">      <span class="stringliteral">&quot;Say hello from a singleton parallel component.&quot;</span>};</div><div class="line"></div><div class="line">  <span class="keyword">enum class</span> Phase { <a class="code" href="namespaceInitialization.html">Initialization</a>, Execute, Exit };</div><div class="line"></div><div class="line">  <span class="keyword">static</span> Phase determine_next_phase(<span class="keyword">const</span> Phase&amp; current_phase,</div><div class="line">                                    <span class="keyword">const</span> Parallel::CProxy_ConstGlobalCache&lt;</div><div class="line">                                        Metavars&gt;&amp; <span class="comment">/*cache_proxy*/</span>) noexcept {</div><div class="line">    <span class="keywordflow">return</span> current_phase == Phase::Initialization ? Phase::Execute</div><div class="line">                                                  : Phase::Exit;</div><div class="line">  }</div><div class="line">};</div></div><!-- fragment --><p> Each metavariables must define an enum class <code>Phase</code> with the phases of the executable (which must include <code><a class="el" href="namespaceInitialization.html" title="Items for initializing the DataBoxes of parallel components. ">Initialization</a></code> and <code>Exit</code>), and a static function <code>determine_next_phase</code>. In the example, the only additional phase is <code>Execute</code>, and the phases are executed in order. Charm++ will execute each phase until it detects that nothing is happening (quiescence detection). As this represents a global synchronization point, the number of phases should be minimized in order to exploit the power of SpECTRE.</p>
+<p>Each metavariables must define a type alias <code>component_list</code> that is a <code>tmpl::list</code> of the parallel components used by the executable. <code>SingletonHelloWorld</code> defines a single component <code>HelloWorld</code></p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> Metavariables&gt;</div><div class="line"><span class="keyword">struct </span>HelloWorld {</div><div class="line">  <span class="keyword">using</span> const_global_cache_tag_list = tmpl::list&lt;OptionTags::Name&gt;;</div><div class="line">  <span class="keyword">using</span> chare_type = Parallel::Algorithms::Singleton;</div><div class="line">  <span class="keyword">using</span> metavariables = Metavariables;</div><div class="line">  <span class="keyword">using</span> action_list = tmpl::list&lt;&gt;;</div><div class="line">  <span class="keyword">using</span> initial_databox = db::DataBox&lt;tmpl::list&lt;&gt;&gt;;</div><div class="line">  <span class="keyword">using</span> options = tmpl::list&lt;&gt;;</div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> initialize(Parallel::CProxy_ConstGlobalCache&lt;</div><div class="line">                         Metavariables&gt;&amp; <span class="comment">/* global_cache */</span>) noexcept {}</div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> execute_next_phase(</div><div class="line">      <span class="keyword">const</span> <span class="keyword">typename</span> Metavariables::Phase next_phase,</div><div class="line">      Parallel::CProxy_ConstGlobalCache&lt;Metavariables&gt;&amp; global_cache) noexcept;</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> Metavariables&gt;</div><div class="line"><span class="keywordtype">void</span> HelloWorld&lt;Metavariables&gt;::execute_next_phase(</div><div class="line">    <span class="keyword">const</span> <span class="keyword">typename</span> Metavariables::Phase <span class="comment">/* next_phase */</span>,</div><div class="line">    Parallel::CProxy_ConstGlobalCache&lt;Metavariables&gt;&amp; global_cache) noexcept {</div><div class="line">  Parallel::simple_action&lt;Actions::PrintMessage&gt;(</div><div class="line">      Parallel::get_parallel_component&lt;HelloWorld&gt;(</div><div class="line">          *(global_cache.ckLocalBranch())));</div><div class="line">}</div></div><!-- fragment --><p> which specifies via the <code>chare_type</code> type alias that it is a singleton parallel component which means that only one such object will exist across all processors used by the executable. Each component must define the static functions <code>initialize</code>, which is executed during the <code><a class="el" href="namespaceInitialization.html" title="Items for initializing the DataBoxes of parallel components. ">Initialization</a></code> phase, and <code>execute_next_phase</code> which is executed during the phases (other than <code><a class="el" href="namespaceInitialization.html" title="Items for initializing the DataBoxes of parallel components. ">Initialization</a></code> and <code>Exit</code>) defined in the metavariables struct. In <code>SingletonHelloWorld</code>, nothing is done during the initialization phase, while the <code>PrintMessage</code> action is called during the <code>Execute</code> phase.</p>
+<div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code" href="namespaceActions.html">Actions</a> {</div><div class="line"><span class="keyword">struct </span>PrintMessage {</div><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> DbTags, <span class="keyword">typename</span>... InboxTags, <span class="keyword">typename</span> Metavariables,</div><div class="line">            <span class="keyword">typename</span> ArrayIndex, <span class="keyword">typename</span> ActionList,</div><div class="line">            <span class="keyword">typename</span> ParallelComponent&gt;</div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">apply</a>(db::DataBox&lt;DbTags&gt;&amp; <span class="comment">/*box*/</span>,</div><div class="line">                    <a class="code" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple&lt;InboxTags...&gt;</a>&amp; <span class="comment">/*inboxes*/</span>,</div><div class="line">                    <span class="keyword">const</span> <a class="code" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache&lt;Metavariables&gt;</a>&amp; cache,</div><div class="line">                    <span class="keyword">const</span> ArrayIndex&amp; <span class="comment">/*array_index*/</span>,</div><div class="line">                    <span class="keyword">const</span> ActionList <span class="comment">/*meta*/</span>,</div><div class="line">                    <span class="keyword">const</span> ParallelComponent* <span class="keyword">const</span> <span class="comment">/*meta*/</span>) {</div><div class="line">    <a class="code" href="group__ParallelGroup.html#gae21964b5d28608afd21ae090c1c4c073">Parallel::printf</a>(<span class="stringliteral">&quot;Hello %s from process %d on node %d!\n&quot;</span>,</div><div class="line">                     Parallel::get&lt;OptionTags::Name&gt;(cache),</div><div class="line">                     <a class="code" href="group__ParallelGroup.html#ga9537d2f88bafe61b07e0ceda735243ca">Parallel::my_proc</a>(), <a class="code" href="group__ParallelGroup.html#ga9f24e1c6dfcfa4e9250a165973b1a524">Parallel::my_node</a>());</div><div class="line">  }</div><div class="line">};</div><div class="line">}  <span class="comment">// namespace Actions</span></div></div><!-- fragment --><p> The <code>PrintMessage</code> action is executed on whatever process the singleton component is created upon, and prints a message.</p>
+<p>Executables can read in an input file (specified by the <code>--input-file</code> argument) that will be parsed when the executable begins. Options specified in the input file can be used to either place items in a constant global cache (by specifying options in the <code>const_global_cache_tag_list</code> of the metavariables or component structs) or be passed to the <code>initialize</code> function of a component (by specifying options in the <code>options</code> type alias of the component). <code>SingletonHelloWorld</code> specifies a single option</p>
+<div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code" href="namespaceOptionTags.html">OptionTags</a> {</div><div class="line"><span class="keyword">struct </span>Name {</div><div class="line">  <span class="keyword">using</span> type = <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>;</div><div class="line">  <span class="keyword">static</span> constexpr <a class="code" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a> help{<span class="stringliteral">&quot;A name&quot;</span>};</div><div class="line">};</div><div class="line">}  <span class="comment">// namespace OptionTags</span></div></div><!-- fragment --><p> which a string specifying a name that will be placed into the constant global cache. The string is fetched when performing the <code>PrintMessage</code> action. Items in the constant global cache are stored once per node that the executable runs on. An example input file for <code>SingletonHelloWorld</code> can be found in <code>tests/InputFiles/ExampleExecutables/SingletonHelloWorld.yaml</code> and shows how to specify the options (lines beginning with a <code>#</code> are comments and can be ignored).</p>
+<p>In addition to defining the metavaribles and component structs, the header for an executable must define two lists of functions</p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;void (*)()&gt;</a> charm_init_node_funcs{</div><div class="line">    &amp;setup_error_handling};</div><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;void (*)()&gt;</a> charm_init_proc_funcs{</div><div class="line">    &amp;<a class="code" href="group__ErrorHandlingGroup.html#gac5fde843ca62e1d4288f4a4e6d480aa0">enable_floating_point_exceptions</a>};</div></div><!-- fragment --><p> that are executed at startup by Charm++ on each node and processor the executable runs on.</p>
+<p>Furthermore among the included header files</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;AlgorithmSingleton.hpp&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="DataBox_8hpp.html">DataStructures/DataBox/DataBox.hpp</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="FloatingPointExceptions_8hpp.html">ErrorHandling/FloatingPointExceptions.hpp</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="Options_8hpp.html">Options/Options.hpp</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="ConstGlobalCache_8hpp.html">Parallel/ConstGlobalCache.hpp</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="Info_8hpp.html">Parallel/Info.hpp</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;Parallel/InitializationFunctions.hpp&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;Parallel/Invoke.hpp&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="Printf_8hpp.html">Parallel/Printf.hpp</a>&quot;</span></div></div><!-- fragment --><p> must be the appropriate header for each parallel component type, which in the <code>SingletonHelloWorld</code> example is <code>AlgorithmSingleton.hpp</code>. Note that these headers are not in the source tree, but are generated automatically when the code is compiled.</p>
+<p>See <a href="group__ParallelGroup.html#details">the Parallelization documentation</a> for more details.</p>
+<h3>Executable Using Charm++ with Custom main()</h3>
+<p>While this is technically possible, it has not been tested. We recommend using the Charm++ supplied main chare mechanism for the time being.</p>
+<h3>Executable Not Using Charm++</h3>
+<p>An example of an executable that does not use Charm++ for parallelization but still can use all other infrastructure in SpECTRE is in <code>src/Executables/Examples/HelloWorldNoCharm</code>. Adding a non-Charm++ executable to SpECTRE mostly follows the standard way of adding an executable using CMake. The only deviation is that the <code>CMakeLists.txt</code> file must tell Charm++ not to add a <code>main()</code> by passing the link flags <code>-nomain-module -nomain</code>. This is done using CMake's <code>set_target_properties</code>:</p>
+<div class="fragment"><div class="line">set_target_properties(</div><div class="line">  ${EXECUTABLE}</div><div class="line">  PROPERTIES LINK_FLAGS &quot;-nomain-module -nomain&quot;</div><div class="line">  )</div></div><!-- fragment --><p>To add the executable as a target you must use CMake's <code>add_executable</code> function directly, not any of the SpECTRE-provided wrappers that add Charm++ parallelized executables. For example,</p>
+<div class="fragment"><div class="line">add_executable(</div><div class="line">  ${EXECUTABLE}</div><div class="line">  EXCLUDE_FROM_ALL # Exclude from calls to `make` without a specified target</div><div class="line">  HelloWorld.cpp</div><div class="line">  )</div></div><!-- fragment --><p>You can link in any of the SpECTRE libraries by adding them to the <code>target_link_libraries</code>, for example:</p>
+<div class="fragment"><div class="line">target_link_libraries(</div><div class="line">  ${EXECUTABLE}</div><div class="line">  DataStructures</div><div class="line">  )</div></div><!-- fragment --><p>We recommend that you add a test that the executable properly runs by adding an input file to <code>tests/InputFiles</code> in an appropriate subdirectory. See <a href="https://github.com/sxs-collaboration/spectre/tree/develop/tests/InputFiles/
+ExampleExecutables/HelloWorldNoCharm.yaml"><code>tests/InputFiles/ExampleExecutables/HelloWorldNoCharm.yaml</code></a> for an example. The input file is passed to the executable using <code>--input-file path/to/Input.yaml</code>. In the case of the executable not taking any input file this is just used to generate a test that runs the executable.</p>
+<p>For these types of executables <code>main</code> can take the usual <code>(int argc, char *argv[])</code> and parse command line options. Executables not using Charm++ are just standard executables that can link in any of the libraries in SpECTRE.</p>
+<dl class="section warning"><dt>Warning</dt><dd>Currently calling <code><a class="el" href="group__ParallelGroup.html#gaccc68e564135958d18110d2847dcc1b3" title="Abort the program with an error message. ">Parallel::abort</a></code> results in a segfault deep inside Charm++ code. However, the error messages from <code>ASSERT</code> and <code>ERROR</code> are still printed.</dd></dl>
+<h3>Executable With Custom Compilation or Linking Flags</h3>
+<p>Use the CMake function <code>set_target_properties</code> to add flags to an executable. To call a completely custom compiler invocation you should use the <code>add_custom_target</code> CMake function. The need for the <code>custom_target</code> level of control is rare and should generally be avoided since it adds quite a bit of technical debt to the code base. Thus, it is not explained here. If you are certain you need it you can see the <code>DebugPreprocessor</code> executable's <code>CMakeLists.txt</code> file for an example.</p>
+<h3>Executable Used for Evolution or Elliptic Solve</h3>
+<p>Once they are written, see the tutorials specific to evolution and elliptic solves. </p>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Parallel::AlgorithmImpl&lt; ParallelComponent, tmpl::list&lt; ActionsPack... &gt; &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceParallel.html">Parallel</a></li><li class="navelem"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html">AlgorithmImpl&lt; ParallelComponent, tmpl::list&lt; ActionsPack... &gt; &gt;</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">Parallel::AlgorithmImpl&lt; ParallelComponent, tmpl::list&lt; ActionsPack... &gt; &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__ParallelGroup.html">Parallelization</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>A distributed object (Charm++ Chare) that executes a series of Actions and is capable of sending and receiving data. Acts as an interface to Charm++.  
+ <a href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Parallel_2Algorithm_8hpp_source.html">Algorithm.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a6d47f9dd23f005582198f05d8ba3e5bf"><td class="memItemLeft" align="right" valign="top"><a id="a6d47f9dd23f005582198f05d8ba3e5bf"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>initial_databox</b> = typename ParallelComponent::initial_databox</td></tr>
+<tr class="separator:a6d47f9dd23f005582198f05d8ba3e5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a553bfe44309fc3cc1b6839f070e4278d"><td class="memItemLeft" align="right" valign="top"><a id="a553bfe44309fc3cc1b6839f070e4278d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a553bfe44309fc3cc1b6839f070e4278d">metavariables</a> = typename ParallelComponent::metavariables</td></tr>
+<tr class="memdesc:a553bfe44309fc3cc1b6839f070e4278d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The metavariables class passed to the Algorithm. <br /></td></tr>
+<tr class="separator:a553bfe44309fc3cc1b6839f070e4278d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab77376db3a198d1f04ebc793f00fcc9a"><td class="memItemLeft" align="right" valign="top"><a id="ab77376db3a198d1f04ebc793f00fcc9a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#ab77376db3a198d1f04ebc793f00fcc9a">actions_list</a> = tmpl::list&lt; ActionsPack... &gt;</td></tr>
+<tr class="memdesc:ab77376db3a198d1f04ebc793f00fcc9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of Actions in the order they will be executed. <br /></td></tr>
+<tr class="separator:ab77376db3a198d1f04ebc793f00fcc9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f3c2a8e3cd02d791d9b410386671192"><td class="memItemLeft" align="right" valign="top"><a id="a0f3c2a8e3cd02d791d9b410386671192"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a0f3c2a8e3cd02d791d9b410386671192">inbox_tags_list</a> = <a class="el" href="group__ParallelGroup.html#ga38356d0b7aa1951e586ba2acce9eab8f">Parallel::get_inbox_tags</a>&lt; <a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#ab77376db3a198d1f04ebc793f00fcc9a">actions_list</a> &gt;</td></tr>
+<tr class="memdesc:a0f3c2a8e3cd02d791d9b410386671192"><td class="mdescLeft">&#160;</td><td class="mdescRight">List off all the Tags that can be received into the Inbox. <br /></td></tr>
+<tr class="separator:a0f3c2a8e3cd02d791d9b410386671192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31a08b143e7c61b1b5cada0a228c22ed"><td class="memItemLeft" align="right" valign="top"><a id="a31a08b143e7c61b1b5cada0a228c22ed"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a31a08b143e7c61b1b5cada0a228c22ed">array_index</a> = typename get_array_index&lt; typename ParallelComponent::chare_type &gt;::template f&lt; ParallelComponent &gt;</td></tr>
+<tr class="memdesc:a31a08b143e7c61b1b5cada0a228c22ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the object used to identify the element of the array, group or nodegroup spatially. The default should be an <code>int</code>. <br /></td></tr>
+<tr class="separator:a31a08b143e7c61b1b5cada0a228c22ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf59fc5fbce6c012a66225b8de3ddbc0"><td class="memItemLeft" align="right" valign="top"><a id="abf59fc5fbce6c012a66225b8de3ddbc0"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>parallel_component</b> = ParallelComponent</td></tr>
+<tr class="separator:abf59fc5fbce6c012a66225b8de3ddbc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa410dc60f76e0d52db78e1e1f5effcb1"><td class="memItemLeft" align="right" valign="top"><a id="aa410dc60f76e0d52db78e1e1f5effcb1"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#aa410dc60f76e0d52db78e1e1f5effcb1">chare_type</a> = typename ParallelComponent::chare_type</td></tr>
+<tr class="memdesc:aa410dc60f76e0d52db78e1e1f5effcb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the Chare. <br /></td></tr>
+<tr class="separator:aa410dc60f76e0d52db78e1e1f5effcb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35ed4af1b6737e6500f98aca82886c72"><td class="memItemLeft" align="right" valign="top"><a id="a35ed4af1b6737e6500f98aca82886c72"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a35ed4af1b6737e6500f98aca82886c72">cproxy_type</a> = typename chare_type::template cproxy&lt; ParallelComponent, <a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a31a08b143e7c61b1b5cada0a228c22ed">array_index</a> &gt;</td></tr>
+<tr class="memdesc:a35ed4af1b6737e6500f98aca82886c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Charm++ proxy object type. <br /></td></tr>
+<tr class="separator:a35ed4af1b6737e6500f98aca82886c72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a124fcc82e7d190736a230f08a05d9bc3"><td class="memItemLeft" align="right" valign="top"><a id="a124fcc82e7d190736a230f08a05d9bc3"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a124fcc82e7d190736a230f08a05d9bc3">cbase_type</a> = typename chare_type::template cbase&lt; ParallelComponent, <a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a31a08b143e7c61b1b5cada0a228c22ed">array_index</a> &gt;</td></tr>
+<tr class="memdesc:a124fcc82e7d190736a230f08a05d9bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Charm++ base object type. <br /></td></tr>
+<tr class="separator:a124fcc82e7d190736a230f08a05d9bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a5c98a232bc3365516368222459d51a7b"><td class="memItemLeft" align="right" valign="top"><a id="a5c98a232bc3365516368222459d51a7b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a5c98a232bc3365516368222459d51a7b">AlgorithmImpl</a> (const Parallel::CProxy_ConstGlobalCache&lt; <a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a553bfe44309fc3cc1b6839f070e4278d">metavariables</a> &gt; &amp;global_cache_proxy) noexcept</td></tr>
+<tr class="memdesc:a5c98a232bc3365516368222459d51a7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor used by <a class="el" href="classParallel_1_1Main.html" title="The main function of a Charm++ executable. See the Parallelization documentation for an overview of M...">Main</a> to initialize the algorithm. <br /></td></tr>
+<tr class="separator:a5c98a232bc3365516368222459d51a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d64de5cbb160279dd6009e8dfd03aae"><td class="memItemLeft" align="right" valign="top"><a id="a5d64de5cbb160279dd6009e8dfd03aae"></a>
+constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a5d64de5cbb160279dd6009e8dfd03aae">AlgorithmImpl</a> (CkMigrateMessage *) noexcept</td></tr>
+<tr class="memdesc:a5d64de5cbb160279dd6009e8dfd03aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Charm++ migration constructor, used after a chare is migrated. <br /></td></tr>
+<tr class="separator:a5d64de5cbb160279dd6009e8dfd03aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9255c52f950de0a471e7fe3b2ad1ad0"><td class="memTemplParams" colspan="2">template&lt;typename Action , typename Arg &gt; </td></tr>
+<tr class="memitem:af9255c52f950de0a471e7fe3b2ad1ad0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#af9255c52f950de0a471e7fe3b2ad1ad0">reduction_action</a> (Arg arg) noexcept</td></tr>
+<tr class="memdesc:af9255c52f950de0a471e7fe3b2ad1ad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the <code>apply</code> function <code>Action</code> after a reduction has been completed.  <a href="#af9255c52f950de0a471e7fe3b2ad1ad0">More...</a><br /></td></tr>
+<tr class="separator:af9255c52f950de0a471e7fe3b2ad1ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4edfc251f8fee84de4933eb5b973a8db"><td class="memTemplParams" colspan="2"><a id="a4edfc251f8fee84de4933eb5b973a8db"></a>
+template&lt;typename Action , typename... Args&gt; </td></tr>
+<tr class="memitem:a4edfc251f8fee84de4933eb5b973a8db"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a4edfc251f8fee84de4933eb5b973a8db">simple_action</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; Args... &gt; args) noexcept</td></tr>
+<tr class="memdesc:a4edfc251f8fee84de4933eb5b973a8db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly call the action <code>Action</code>. If the returned DataBox type is not one of the types of the algorithm then a compilation error occurs. <br /></td></tr>
+<tr class="separator:a4edfc251f8fee84de4933eb5b973a8db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275e8b2fee6aae6e5530d6a8e8ef693f"><td class="memTemplParams" colspan="2"><a id="a275e8b2fee6aae6e5530d6a8e8ef693f"></a>
+template&lt;typename Action &gt; </td></tr>
+<tr class="memitem:a275e8b2fee6aae6e5530d6a8e8ef693f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>simple_action</b> () noexcept</td></tr>
+<tr class="separator:a275e8b2fee6aae6e5530d6a8e8ef693f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fb4be8b7d1174d9b01d320be884d820"><td class="memTemplParams" colspan="2">template&lt;typename ReceiveTag , typename ReceiveDataType &gt; </td></tr>
+<tr class="memitem:a9fb4be8b7d1174d9b01d320be884d820"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a9fb4be8b7d1174d9b01d320be884d820">receive_data</a> (typename ReceiveTag::temporal_id instance, ReceiveDataType &amp;&amp;t, bool enable_if_disabled=false) noexcept</td></tr>
+<tr class="memdesc:a9fb4be8b7d1174d9b01d320be884d820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive data and store it in the Inbox, and try to continue executing the algorithm.  <a href="#a9fb4be8b7d1174d9b01d320be884d820">More...</a><br /></td></tr>
+<tr class="separator:a9fb4be8b7d1174d9b01d320be884d820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a743da66dbd434f556f08a9a094fc37d2"><td class="memItemLeft" align="right" valign="top"><a id="a743da66dbd434f556f08a9a094fc37d2"></a>
+constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a743da66dbd434f556f08a9a094fc37d2">perform_algorithm</a> () noexcept</td></tr>
+<tr class="memdesc:a743da66dbd434f556f08a9a094fc37d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start evaluating the algorithm until the is_ready function of an Action returns false, or an Action returns with <code>terminate</code> set to <code>true</code> <br /></td></tr>
+<tr class="separator:a743da66dbd434f556f08a9a094fc37d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a066884f8b2753c2be48e616cfea22492"><td class="memItemLeft" align="right" valign="top"><a id="a066884f8b2753c2be48e616cfea22492"></a>
+constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a066884f8b2753c2be48e616cfea22492">set_terminate</a> (bool t) noexcept</td></tr>
+<tr class="memdesc:a066884f8b2753c2be48e616cfea22492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the Algorithm it should no longer execute the algorithm. This does not mean that the execution of the program is terminated, but only that the algorithm has terminated. An algorithm can be restarted by pass <code>true</code> as the second argument to the <code>receive_data</code> method. <br /></td></tr>
+<tr class="separator:a066884f8b2753c2be48e616cfea22492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e5b755a5339e62e975350b4220269de"><td class="memItemLeft" align="right" valign="top"><a id="a6e5b755a5339e62e975350b4220269de"></a>
+constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a6e5b755a5339e62e975350b4220269de">get_terminate</a> () const noexcept</td></tr>
+<tr class="memdesc:a6e5b755a5339e62e975350b4220269de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if an algorithm should continue being evaluated. <br /></td></tr>
+<tr class="separator:a6e5b755a5339e62e975350b4220269de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ae3b21d4ff33d083567fe765f3448ae8e"><td class="memTemplParams" colspan="2">template&lt;typename Action , typename... Args, Requires&lt;(sizeof...(Args), cpp17::is_same_v&lt; Parallel::Algorithms::Nodegroup, chare_type &gt;)&gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ae3b21d4ff33d083567fe765f3448ae8e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#ae3b21d4ff33d083567fe765f3448ae8e">threaded_action</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; Args... &gt; args) noexcept</td></tr>
+<tr class="memdesc:ae3b21d4ff33d083567fe765f3448ae8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call an Action on a local nodegroup requiring the Action to handle thread safety.  <a href="#ae3b21d4ff33d083567fe765f3448ae8e">More...</a><br /></td></tr>
+<tr class="separator:ae3b21d4ff33d083567fe765f3448ae8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a658da0893c6bc35053f0f72f5bcd3a84"><td class="memTemplParams" colspan="2">template&lt;typename Action &gt; </td></tr>
+<tr class="memitem:a658da0893c6bc35053f0f72f5bcd3a84"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a658da0893c6bc35053f0f72f5bcd3a84">threaded_action</a> () noexcept</td></tr>
+<tr class="memdesc:a658da0893c6bc35053f0f72f5bcd3a84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call an Action on a local nodegroup requiring the Action to handle thread safety.  <a href="#a658da0893c6bc35053f0f72f5bcd3a84">More...</a><br /></td></tr>
+<tr class="separator:a658da0893c6bc35053f0f72f5bcd3a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename ParallelComponent, typename... ActionsPack&gt;<br />
+class Parallel::AlgorithmImpl&lt; ParallelComponent, tmpl::list&lt; ActionsPack... &gt; &gt;</h3>
+
+<p>A distributed object (Charm++ Chare) that executes a series of Actions and is capable of sending and receiving data. Acts as an interface to Charm++. </p>
+<h3>Different Types of Algorithms</h3>
+<p>Charm++ chares can be one of four types, which is specified by the type alias <code>chare_type</code> inside the <code>ParallelComponent</code>. The four available types of Algorithms are:</p><ol type="1">
+<li>A Parallel::Algorithms::Singleton where there is only one in the entire execution of the program.</li>
+<li>A Parallel::Algorithms::Array which holds zero or more elements each of which is a distributed object on some core. An array can grow and shrink in size dynamically if need be and can also be bound to another array. That is, the bound array has the same number of elements as the array it is bound to, and elements with the same ID are on the same core.</li>
+<li>A Parallel::Algorithms::Group, which is an array but there is one element per core and they are not able to be moved around between cores. These are typically useful for gathering data from array elements on their core, and then processing or reducing it.</li>
+<li>A Parallel::Algorithms::Nodegroup, which is similar to a group except that there is one element per node. For Charm++ SMP (shared memory parallelism) builds a node corresponds to the usual definition of a node on a supercomputer. However, for non-SMP builds nodes and cores are equivalent. An important difference between groups and nodegroups is that entry methods (remote calls to functions) are not threadsafe on nodegroups. It is up to the person writing the Actions that will be executed on the Nodegroup Algorithm to ensure they are threadsafe.</li>
+</ol>
+<h3>What is an Algorithm?</h3>
+<p>An Algorithm is a distributed object, a Charm++ chare, that repeatedly executes a series of Actions. An Action is a struct that has a <code>static</code> apply function with signature:</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... DbTags, <span class="keyword">typename</span>... InboxTags, <span class="keyword">typename</span> Metavariables,</div><div class="line"><span class="keyword">typename</span> ArrayIndex,  <span class="keyword">typename</span> ActionList&gt;</div><div class="line"><span class="keyword">static</span> <span class="keyword">auto</span>  <a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">apply</a>(db::DataBox&lt;tmpl::list&lt;DbTags...&gt;&gt;&amp; box,</div><div class="line">                   <a class="code" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple&lt;InboxTags...&gt;</a>&amp; inboxes,</div><div class="line">                   <span class="keyword">const</span> ConstGlobalCache&lt;Metavariables&gt;&amp; cache,</div><div class="line">                   <span class="keyword">const</span> ArrayIndex&amp; <a class="code" href="classParallel_1_1AlgorithmImpl_3_01ParallelComponent_00_01tmpl_1_1list_3_01ActionsPack_8_8_8_01_4_01_4.html#a31a08b143e7c61b1b5cada0a228c22ed">array_index</a>,</div><div class="line">                   <span class="keyword">const</span> TemporalId&amp; temporal_id, <span class="keyword">const</span> ActionList meta);</div></div><!-- fragment --><p>Note that any of the arguments can be const or non-const references except <code>array_index</code>, which must be a <code>const&amp;</code>.</p>
+<h3>Explicit instantiations of entry methods</h3>
+<p>The code in <a class="el" href="CharmMain_8cpp.html" title="Defines functions used by Charm++ to register classes/chares and entry methods. ">src/Parallel/CharmMain.cpp</a> registers all entry methods, and if one is not properly registered then a static_assert explains how to have it be registered. If there is a bug in the implementation and an entry method isn't being registered or hitting a static_assert then Charm++ will give an error of the following form:</p>
+<pre class="fragment">* registration happened after init Entry point: simple_action(), addr:
+* 0x555a3d0e2090
+* ------------- Processor 0 Exiting: Called CmiAbort ------------
+* Reason: Did you forget to instantiate a templated entry method in a .ci file?
+* </pre><p>If you encounter this issue please file a bug report supplying everything necessary to reproduce the issue. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9fb4be8b7d1174d9b01d320be884d820"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fb4be8b7d1174d9b01d320be884d820">&#9670;&nbsp;</a></span>receive_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ParallelComponent , typename... ActionsPack&gt; </div>
+<div class="memtemplate">
+template&lt;typename ReceiveTag , typename ReceiveDataType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parallel::AlgorithmImpl&lt; ParallelComponent, tmpl::list&lt; ActionsPack... &gt; &gt;::receive_data </td>
+          <td>(</td>
+          <td class="paramtype">typename ReceiveTag::temporal_id&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ReceiveDataType &amp;&amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable_if_disabled</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Receive data and store it in the Inbox, and try to continue executing the algorithm. </p>
+<p>When an algorithm has terminated it can be restarted by passing <code>enable_if_disabled = true</code>. This allows long-term disabling and re-enabling of algorithms </p>
+
+</div>
+</div>
+<a id="af9255c52f950de0a471e7fe3b2ad1ad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9255c52f950de0a471e7fe3b2ad1ad0">&#9670;&nbsp;</a></span>reduction_action()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ParallelComponent , typename... ActionsPack&gt; </div>
+<div class="memtemplate">
+template&lt;typename Action , typename Arg &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parallel::AlgorithmImpl&lt; ParallelComponent, tmpl::list&lt; ActionsPack... &gt; &gt;::reduction_action </td>
+          <td>(</td>
+          <td class="paramtype">Arg&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calls the <code>apply</code> function <code>Action</code> after a reduction has been completed. </p>
+<p>The <code>apply</code> function must take <code>arg</code> as its last argument. </p>
+
+</div>
+</div>
+<a id="ae3b21d4ff33d083567fe765f3448ae8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3b21d4ff33d083567fe765f3448ae8e">&#9670;&nbsp;</a></span>threaded_action() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ParallelComponent , typename... ActionsPack&gt; </div>
+<div class="memtemplate">
+template&lt;typename Action , typename... Args, Requires&lt;(sizeof...(Args), cpp17::is_same_v&lt; Parallel::Algorithms::Nodegroup, chare_type &gt;)&gt;  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parallel::AlgorithmImpl&lt; ParallelComponent, tmpl::list&lt; ActionsPack... &gt; &gt;::threaded_action </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; Args... &gt;&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Call an Action on a local nodegroup requiring the Action to handle thread safety. </p>
+<p>The <code>CmiNodelock</code> of the nodegroup is passed to the Action instead of the <code>action_list</code> as a <code>const <a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a>&lt;CmiNodelock*&gt;&amp;</code>. The node lock can be locked with the <code><a class="el" href="group__ParallelGroup.html#gad0397ccb72cb4205f5dc83d6f60d47d0" title="Lock a converse CmiNodeLock. ">Parallel::lock()</a></code> function, and unlocked with <code><a class="el" href="group__ParallelGroup.html#ga26e5eb4933e796cd454b67ac773836f9" title="Unlock a converse CmiNodeLock. ">Parallel::unlock()</a></code>. <code><a class="el" href="group__ParallelGroup.html#ga8b5b8d712c472935e5c817e9ed723c25" title="Returns true if the lock was successfully acquired and false if the lock is already acquired by anoth...">Parallel::try_lock()</a></code> is also provided in case something useful can be done if the lock couldn't be acquired. </p>
+
+</div>
+</div>
+<a id="a658da0893c6bc35053f0f72f5bcd3a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a658da0893c6bc35053f0f72f5bcd3a84">&#9670;&nbsp;</a></span>threaded_action() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ParallelComponent , typename... ActionsPack&gt; </div>
+<div class="memtemplate">
+template&lt;typename Action &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parallel::AlgorithmImpl&lt; ParallelComponent, tmpl::list&lt; ActionsPack... &gt; &gt;::threaded_action </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Call an Action on a local nodegroup requiring the Action to handle thread safety. </p>
+<p>The <code>CmiNodelock</code> of the nodegroup is passed to the Action instead of the <code>action_list</code> as a <code>const <a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a>&lt;CmiNodelock*&gt;&amp;</code>. The node lock can be locked with the <code><a class="el" href="group__ParallelGroup.html#gad0397ccb72cb4205f5dc83d6f60d47d0" title="Lock a converse CmiNodeLock. ">Parallel::lock()</a></code> function, and unlocked with <code><a class="el" href="group__ParallelGroup.html#ga26e5eb4933e796cd454b67ac773836f9" title="Unlock a converse CmiNodeLock. ">Parallel::unlock()</a></code>. <code><a class="el" href="group__ParallelGroup.html#ga8b5b8d712c472935e5c817e9ed723c25" title="Returns true if the lock was successfully acquired and false if the lock is already acquired by anoth...">Parallel::try_lock()</a></code> is also provided in case something useful can be done if the lock couldn't be acquired. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/Parallel/<a class="el" href="Parallel_2Algorithm_8hpp_source.html">Algorithm.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

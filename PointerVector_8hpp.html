@@ -1,0 +1,318 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Utilities/PointerVector.hpp File Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_9aa73582304dae90a1100b0a33d608e3.html">Utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">PointerVector.hpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Defines class <a class="el" href="structPointerVector.html" title="A raw pointer endowed with expression template support via the Blaze library. ">PointerVector</a>.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/cmath.html">cmath</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/functional.html">functional</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="Assert_8hpp_source.html">ErrorHandling/Assert.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Blaze_8hpp_source.html">Utilities/Blaze.hpp</a>&quot;</code><br />
+<code>#include &lt;blaze/math/CustomVector.h&gt;</code><br />
+<code>#include &lt;blaze/system/Version.h&gt;</code><br />
+<code>#include &lt;blaze/util/typetraits/RemoveConst.h&gt;</code><br />
+</div>
+<p><a href="PointerVector_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1StepFunction.html">blaze::StepFunction</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1DivideScalarByVector.html">blaze::DivideScalarByVector&lt; ST &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1AddScalar.html">blaze::AddScalar&lt; ST &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1SubScalarRhs.html">blaze::SubScalarRhs&lt; ST &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1SubScalarLhs.html">blaze::SubScalarLhs&lt; ST &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPointerVector.html">PointerVector&lt; Type, AF, PF, TF, ExprResultType &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A raw pointer endowed with expression template support via the Blaze library.  <a href="structPointerVector.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ac86d4f82ee5912a6b2106e2ddf3fc190"><td class="memItemLeft" align="right" valign="top"><a id="ac86d4f82ee5912a6b2106e2ddf3fc190"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SPECTRE_BLAZE_ALLOCATOR</b>(_TYPE_T,  _SIZE_V)&#160;&#160;&#160;new _TYPE_T[_SIZE_V]</td></tr>
+<tr class="separator:ac86d4f82ee5912a6b2106e2ddf3fc190"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d842ea405c9686813bf179f5c3b68c0"><td class="memItemLeft" align="right" valign="top"><a id="a2d842ea405c9686813bf179f5c3b68c0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SPECTRE_BLAZE_DEALLOCATOR</b>&#160;&#160;&#160;blaze::ArrayDelete()</td></tr>
+<tr class="separator:a2d842ea405c9686813bf179f5c3b68c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad3f3f96299b20dafe1b2e062565c0e5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PointerVector_8hpp.html#aad3f3f96299b20dafe1b2e062565c0e5">MAKE_EXPRESSION_MATH_ASSIGN_PV</a>(OP,  TYPE)</td></tr>
+<tr class="memdesc:aad3f3f96299b20dafe1b2e062565c0e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates the <code>OP</code> assignment operator for the type <code>TYPE</code>  <a href="#aad3f3f96299b20dafe1b2e062565c0e5">More...</a><br /></td></tr>
+<tr class="separator:aad3f3f96299b20dafe1b2e062565c0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a664b93939dd4f999cbebfa3c91724e9b"><td class="memTemplParams" colspan="2"><a id="a664b93939dd4f999cbebfa3c91724e9b"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a664b93939dd4f999cbebfa3c91724e9b"><td class="memTemplItemLeft" align="right" valign="top">BLAZE_ALWAYS_INLINE SIMDdouble&#160;</td><td class="memTemplItemRight" valign="bottom"><b>blaze::step_function</b> (const SIMDf64&lt; T &gt; &amp;v) noexcept</td></tr>
+<tr class="separator:a664b93939dd4f999cbebfa3c91724e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6905929efcc16ebed2f2985a4178023c"><td class="memItemLeft" align="right" valign="top"><a id="a6905929efcc16ebed2f2985a4178023c"></a>
+BLAZE_ALWAYS_INLINE double&#160;</td><td class="memItemRight" valign="bottom"><b>blaze::step_function</b> (const double &amp;v) noexcept</td></tr>
+<tr class="separator:a6905929efcc16ebed2f2985a4178023c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa300124fd62c0236ec166f0c6abb71de"><td class="memTemplParams" colspan="2"><a id="aa300124fd62c0236ec166f0c6abb71de"></a>
+template&lt;typename VT , bool TF&gt; </td></tr>
+<tr class="memitem:aa300124fd62c0236ec166f0c6abb71de"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) BLAZE_ALWAYS_INLINE&#160;</td><td class="memTemplItemRight" valign="bottom"><b>step_function</b> (const blaze::DenseVector&lt; VT, TF &gt; &amp;vec) noexcept</td></tr>
+<tr class="separator:aa300124fd62c0236ec166f0c6abb71de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50a7306d7247b2759283b20ba049906e"><td class="memTemplParams" colspan="2"><a id="a50a7306d7247b2759283b20ba049906e"></a>
+template&lt;typename VT , bool TF&gt; </td></tr>
+<tr class="memitem:a50a7306d7247b2759283b20ba049906e"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) BLAZE_ALWAYS_INLINE&#160;</td><td class="memTemplItemRight" valign="bottom"><b>StepFunction</b> (const blaze::DenseVector&lt; VT, TF &gt; &amp;vec) noexcept</td></tr>
+<tr class="separator:a50a7306d7247b2759283b20ba049906e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52dfe2b8f7081cdcd0b7e7200f10dbc7"><td class="memTemplParams" colspan="2"><a id="a52dfe2b8f7081cdcd0b7e7200f10dbc7"></a>
+template&lt;typename Scalar , typename VT , bool TF, typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a52dfe2b8f7081cdcd0b7e7200f10dbc7"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) BLAZE_ALWAYS_INLINE&#160;</td><td class="memTemplItemRight" valign="bottom"><b>blaze::operator/</b> (<a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar, const blaze::DenseVector&lt; VT, TF &gt; &amp;vec)</td></tr>
+<tr class="separator:a52dfe2b8f7081cdcd0b7e7200f10dbc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dc32d0bc75c836f39c3f5bfa7ea793a"><td class="memTemplParams" colspan="2"><a id="a5dc32d0bc75c836f39c3f5bfa7ea793a"></a>
+template&lt;typename VT , bool TF, typename Scalar , typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a5dc32d0bc75c836f39c3f5bfa7ea793a"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><b>blaze::operator+</b> (const blaze::DenseVector&lt; VT, TF &gt; &amp;vec, <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar)</td></tr>
+<tr class="separator:a5dc32d0bc75c836f39c3f5bfa7ea793a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed5b314a103a4f8ee4b240811cc512ea"><td class="memTemplParams" colspan="2"><a id="aed5b314a103a4f8ee4b240811cc512ea"></a>
+template&lt;typename Scalar , typename VT , bool TF, typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:aed5b314a103a4f8ee4b240811cc512ea"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><b>blaze::operator+</b> (<a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar, const blaze::DenseVector&lt; VT, TF &gt; &amp;vec)</td></tr>
+<tr class="separator:aed5b314a103a4f8ee4b240811cc512ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d9980b7d75b7c1f790f42874aaebb33"><td class="memTemplParams" colspan="2"><a id="a0d9980b7d75b7c1f790f42874aaebb33"></a>
+template&lt;typename VT , bool TF, typename Scalar , typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a0d9980b7d75b7c1f790f42874aaebb33"><td class="memTemplItemLeft" align="right" valign="top">VT &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>blaze::operator+=</b> (blaze::DenseVector&lt; VT, TF &gt; &amp;vec, <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar)</td></tr>
+<tr class="separator:a0d9980b7d75b7c1f790f42874aaebb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d52a1b3ac83b58cb2b5059c86d6f954"><td class="memTemplParams" colspan="2"><a id="a8d52a1b3ac83b58cb2b5059c86d6f954"></a>
+template&lt;typename VT , bool TF, typename Scalar , typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a8d52a1b3ac83b58cb2b5059c86d6f954"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><b>blaze::operator-</b> (const blaze::DenseVector&lt; VT, TF &gt; &amp;vec, <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar)</td></tr>
+<tr class="separator:a8d52a1b3ac83b58cb2b5059c86d6f954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af158ec73e2f90afb0afdb25b4b7c21e0"><td class="memTemplParams" colspan="2"><a id="af158ec73e2f90afb0afdb25b4b7c21e0"></a>
+template&lt;typename VT , bool TF, typename Scalar , typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:af158ec73e2f90afb0afdb25b4b7c21e0"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><b>blaze::operator-</b> (<a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar, const blaze::DenseVector&lt; VT, TF &gt; &amp;vec)</td></tr>
+<tr class="separator:af158ec73e2f90afb0afdb25b4b7c21e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a458d8fd8ed8c94a74af9d44e8ecac344"><td class="memTemplParams" colspan="2"><a id="a458d8fd8ed8c94a74af9d44e8ecac344"></a>
+template&lt;typename VT , bool TF, typename Scalar , typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a458d8fd8ed8c94a74af9d44e8ecac344"><td class="memTemplItemLeft" align="right" valign="top">VT &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>blaze::operator-=</b> (blaze::DenseVector&lt; VT, TF &gt; &amp;vec, <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar)</td></tr>
+<tr class="separator:a458d8fd8ed8c94a74af9d44e8ecac344"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b3dacca437fe73281435451a8130aa"><td class="memTemplParams" colspan="2"><a id="ad6b3dacca437fe73281435451a8130aa"></a>
+template&lt;typename Type , bool AF, bool PF, bool TF, typename ExprResultType , typename T , typename  = std::enable_if_t&lt;std::is_fundamental&lt;std::decay_t&lt;T&gt;&gt;::value&gt;&gt; </td></tr>
+<tr class="memitem:ad6b3dacca437fe73281435451a8130aa"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><b>pow</b> (const <a class="el" href="structPointerVector.html">PointerVector</a>&lt; Type, AF, PF, TF, ExprResultType &gt; &amp;t, T &amp;&amp;exponent) noexcept</td></tr>
+<tr class="separator:ad6b3dacca437fe73281435451a8130aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines class <a class="el" href="structPointerVector.html" title="A raw pointer endowed with expression template support via the Blaze library. ">PointerVector</a>. </p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="aad3f3f96299b20dafe1b2e062565c0e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad3f3f96299b20dafe1b2e062565c0e5">&#9670;&nbsp;</a></span>MAKE_EXPRESSION_MATH_ASSIGN_PV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAKE_EXPRESSION_MATH_ASSIGN_PV</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">OP, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">TYPE&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">TYPE&amp; <span class="keyword">operator</span> OP(<span class="keyword">const</span> TYPE&amp; rhs) noexcept {                         \</div><div class="line">    <span class="comment">/* clang-tidy: parens around OP */</span>                                  \</div><div class="line">    ~*<span class="keyword">this</span> OP ~rhs; <span class="comment">/* NOLINT */</span>                                        \</div><div class="line">    return *<span class="keyword">this</span>;                                                       \</div><div class="line">  }                                                                     \</div><div class="line">  <span class="comment">/* clang-tidy: parens around TYPE */</span>                                  \</div><div class="line">  template &lt;typename VT, bool VF&gt;                                       \</div><div class="line">  TYPE&amp; <span class="keyword">operator</span> OP(<span class="keyword">const</span> blaze::DenseVector&lt;VT, VF&gt;&amp; rhs) <span class="comment">/* NOLINT */</span> \</div><div class="line">      noexcept {                                                        \</div><div class="line">    ~*<span class="keyword">this</span> OP rhs;                                                      \</div><div class="line">    return *<span class="keyword">this</span>;                                                       \</div><div class="line">  }                                                                     \</div><div class="line">  <span class="comment">/* clang-tidy: parens around TYPE */</span>                                  \</div><div class="line">  TYPE&amp; <span class="keyword">operator</span> OP(<span class="keyword">const</span> ElementType&amp; rhs) noexcept { <span class="comment">/* NOLINT */</span>     \</div><div class="line">    ~*<span class="keyword">this</span> OP rhs;                                                      \</div><div class="line">    return *<span class="keyword">this</span>;                                                       \</div><div class="line">  }</div></div><!-- fragment -->
+<p>Generates the <code>OP</code> assignment operator for the type <code>TYPE</code> </p>
+<p>For example, if <code>OP</code> is <code>+=</code> and <code>TYPE</code> is <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code> then this will add <code>+=</code> for <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code> on the RHS, <code>blaze::DenseVector</code> on the RHS, and <code>ElementType</code> (<code>double</code> for <code><a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a></code>) on the RHS. This macro is used in the cases where the new vector type inherits from <code><a class="el" href="structPointerVector.html" title="A raw pointer endowed with expression template support via the Blaze library. ">PointerVector</a></code> with a custom <code>ExprResultType</code>. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,998 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - ApparentHorizons/YlmSpherepack.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">ApparentHorizons</a> - YlmSpherepack.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;ApparentHorizons/YlmSpherepack.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">       8 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">       9 </span>            : #include &lt;tuple&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;ApparentHorizons/SpherepackIterator.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      13 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/MakeArray.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Utilities/Spherepack.hpp&quot;
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : //============================================================================
+<span class="lineNum">      22 </span>            : // Note that SPHEREPACK (which is wrapped by YlmSpherepack) takes
+<span class="lineNum">      23 </span>            : // n_theta and n_phi as input, and is ok with arbitrary values of
+<span class="lineNum">      24 </span>            : // n_theta and n_phi.  SPHEREPACK computes the maximum Ylm l and m
+<span class="lineNum">      25 </span>            : // using the formulas l_max=n_theta-1 and m_max=min(l_max,n_phi/2).
+<span class="lineNum">      26 </span>            : //
+<span class="lineNum">      27 </span>            : // However, some combinations of n_theta and n_phi have strange properties:
+<span class="lineNum">      28 </span>            : // - The maximum m that is AT LEAST PARTIALLY represented by (n_theta,n_phi)
+<span class="lineNum">      29 </span>            : //   is std::min(n_theta-1,n_phi/2). This is called m_max here. But an arbitrary
+<span class="lineNum">      30 </span>            : //   (n_theta,n_phi) does not necessarily fully represent all m's up to m_max,
+<span class="lineNum">      31 </span>            : //   because sin(m_max phi) might be zero at all collocation points, and
+<span class="lineNum">      32 </span>            : //   therefore sin(m_max phi) might not be representable on the grid.
+<span class="lineNum">      33 </span>            : // - The largest m that is fully represented by (n_theta,n_phi) is
+<span class="lineNum">      34 </span>            : //   m_max_represented = std::min(n_theta-1,(n_phi-1)/2).
+<span class="lineNum">      35 </span>            : // - Therefore, if n_phi is odd,  m_max = m_max_represented,
+<span class="lineNum">      36 </span>            : //              if n_phi is even, m_max = m_max_represented+1.
+<span class="lineNum">      37 </span>            : // - To remedy this situation, we choose YlmSpherepack to take as arguments
+<span class="lineNum">      38 </span>            : //   l_max and m_max, instead of n_theta and n_phi.
+<span class="lineNum">      39 </span>            : //   We then choose
+<span class="lineNum">      40 </span>            : //      n_theta = l_max+1
+<span class="lineNum">      41 </span>            : //      n_phi   = 2*m_max+1
+<span class="lineNum">      42 </span>            : //   This ensures that m_max = m_max_represented
+<span class="lineNum">      43 </span>            : //   (as opposed to m_max = m_max_represented+1)
+<span class="lineNum">      44 </span>            : //============================================================================
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span>            : YlmSpherepack::YlmSpherepack(const size_t l_max, const size_t m_max) noexcept
+<span class="lineNum">      47 </span>            :     : l_max_{l_max},
+<span class="lineNum">      48 </span>            :       m_max_{m_max},
+<span class="lineNum">      49 </span>            :       n_theta_{l_max_ + 1},
+<span class="lineNum">      50 </span>            :       n_phi_{2 * m_max_ + 1},
+<span class="lineNum">      51 </span>            :       spectral_size_{2 * (l_max_ + 1) * (m_max_ + 1)} {
+<span class="lineNum">      52 </span>            :   if (l_max_ &lt; 2) {
+<span class="lineNum">      53 </span>            :     ERROR(&quot;Must use l_max&gt;=2, not l_max=&quot; &lt;&lt; l_max_);
+<span class="lineNum">      54 </span>            :   }
+<span class="lineNum">      55 </span>            :   if (m_max_ &lt; 2) {
+<span class="lineNum">      56 </span>            :     ERROR(&quot;Must use m_max&gt;=2, not m_max=&quot; &lt;&lt; m_max_);
+<span class="lineNum">      57 </span>            :   }
+<span class="lineNum">      58 </span>            :   fill_scalar_work_arrays();
+<span class="lineNum">      59 </span>            : }
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            : void YlmSpherepack::phys_to_spec_impl(
+<span class="lineNum">      62 </span>            :     const gsl::not_null&lt;double*&gt; spectral_coefs,
+<span class="lineNum">      63 </span>            :     const gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">      64 </span>            :     const size_t physical_stride, const size_t physical_offset,
+<span class="lineNum">      65 </span>            :     const size_t spectral_stride, const size_t spectral_offset,
+<span class="lineNum">      66 </span>            :     const bool loop_over_offset) const noexcept {
+<span class="lineNum">      67 </span>            :   size_t work_size = 2 * n_theta_ * n_phi_;
+<span class="lineNum">      68 </span>            :   if (loop_over_offset) {
+<span class="lineNum">      69 </span>            :     ASSERT(physical_stride == spectral_stride, &quot;invalid call&quot;);
+<span class="lineNum">      70 </span>            :     work_size *= spectral_stride;
+<span class="lineNum">      71 </span>            :   }
+<span class="lineNum">      72 </span>            :   auto&amp; work = memory_pool_.get(work_size);
+<span class="lineNum">      73 </span>            :   double* const a = spectral_coefs;
+<span class="lineNum">      74 </span>            :   // clang-tidy: 'do not use pointer arithmetic'.
+<span class="lineNum">      75 </span>            :   double* const b =
+<span class="lineNum">      76 </span>            :       a + (m_max_ + 1) * (l_max_ + 1) * spectral_stride;  // NOLINT
+<span class="lineNum">      77 </span>            :   int err = 0;
+<span class="lineNum">      78 </span>            :   const int effective_physical_offset =
+<span class="lineNum">      79 </span>            :       loop_over_offset ? -1 : int(physical_offset);
+<span class="lineNum">      80 </span>            :   const int effective_spectral_offset =
+<span class="lineNum">      81 </span>            :       loop_over_offset ? -1 : int(spectral_offset);
+<span class="lineNum">      82 </span>            :   auto&amp; work_phys_to_spec = storage_.work_phys_to_spec;
+<span class="lineNum">      83 </span>            :   shags_(static_cast&lt;int&gt;(physical_stride), static_cast&lt;int&gt;(spectral_stride),
+<span class="lineNum">      84 </span>            :          effective_physical_offset, effective_spectral_offset,
+<span class="lineNum">      85 </span>            :          static_cast&lt;int&gt;(n_theta_), static_cast&lt;int&gt;(n_phi_), 0, 1,
+<span class="lineNum">      86 </span>            :          collocation_values, static_cast&lt;int&gt;(n_theta_),
+<span class="lineNum">      87 </span>            :          static_cast&lt;int&gt;(n_phi_), a, b, static_cast&lt;int&gt;(m_max_ + 1),
+<span class="lineNum">      88 </span>            :          static_cast&lt;int&gt;(l_max_ + 1), static_cast&lt;int&gt;(m_max_ + 1),
+<span class="lineNum">      89 </span>            :          static_cast&lt;int&gt;(l_max_ + 1), work_phys_to_spec.data(),
+<span class="lineNum">      90 </span>            :          static_cast&lt;int&gt;(work_phys_to_spec.size()), work.data(),
+<span class="lineNum">      91 </span>            :          static_cast&lt;int&gt;(work_size), &amp;err);
+<span class="lineNum">      92 </span>            :   if (UNLIKELY(err != 0)) {
+<span class="lineNum">      93 </span>            :     ERROR(&quot;shags error &quot; &lt;&lt; err &lt;&lt; &quot; in YlmSpherepack&quot;);
+<span class="lineNum">      94 </span>            :   }
+<span class="lineNum">      95 </span>            :   memory_pool_.free(work);
+<span class="lineNum">      96 </span>            : }
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span>            : void YlmSpherepack::spec_to_phys_impl(
+<span class="lineNum">      99 </span>            :     const gsl::not_null&lt;double*&gt; collocation_values,
+<span class="lineNum">     100 </span>            :     const gsl::not_null&lt;const double*&gt; spectral_coefs,
+<span class="lineNum">     101 </span>            :     const size_t spectral_stride, const size_t spectral_offset,
+<span class="lineNum">     102 </span>            :     const size_t physical_stride, const size_t physical_offset,
+<span class="lineNum">     103 </span>            :     const bool loop_over_offset) const noexcept {
+<span class="lineNum">     104 </span>            :   size_t work_size = 2 * n_theta_ * n_phi_;
+<span class="lineNum">     105 </span>            :   if (loop_over_offset) {
+<span class="lineNum">     106 </span>            :     ASSERT(physical_stride == spectral_stride, &quot;invalid call&quot;);
+<span class="lineNum">     107 </span>            :     work_size *= spectral_stride;
+<span class="lineNum">     108 </span>            :   }
+<span class="lineNum">     109 </span>            :   auto&amp; work = memory_pool_.get(work_size);
+<span class="lineNum">     110 </span>            :   // 'a' and 'b' are Spherepack's coefficient arrays.
+<span class="lineNum">     111 </span>            :   const double* const a = spectral_coefs;
+<span class="lineNum">     112 </span>            :   // clang-tidy: 'do not use pointer arithmetic'.
+<span class="lineNum">     113 </span>            :   const double* const b =
+<span class="lineNum">     114 </span>            :       a + (m_max_ + 1) * (l_max_ + 1) * spectral_stride;  // NOLINT
+<span class="lineNum">     115 </span>            :   int err = 0;
+<span class="lineNum">     116 </span>            :   const int effective_physical_offset =
+<span class="lineNum">     117 </span>            :       loop_over_offset ? -1 : int(physical_offset);
+<span class="lineNum">     118 </span>            :   const int effective_spectral_offset =
+<span class="lineNum">     119 </span>            :       loop_over_offset ? -1 : int(spectral_offset);
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            :   auto&amp; work_scalar_spec_to_phys = storage_.work_scalar_spec_to_phys;
+<span class="lineNum">     122 </span>            :   shsgs_(static_cast&lt;int&gt;(physical_stride), static_cast&lt;int&gt;(spectral_stride),
+<span class="lineNum">     123 </span>            :          effective_physical_offset, effective_spectral_offset,
+<span class="lineNum">     124 </span>            :          static_cast&lt;int&gt;(n_theta_), static_cast&lt;int&gt;(n_phi_), 0, 1,
+<span class="lineNum">     125 </span>            :          collocation_values, static_cast&lt;int&gt;(n_theta_),
+<span class="lineNum">     126 </span>            :          static_cast&lt;int&gt;(n_phi_), a, b, static_cast&lt;int&gt;(m_max_ + 1),
+<span class="lineNum">     127 </span>            :          static_cast&lt;int&gt;(l_max_ + 1), static_cast&lt;int&gt;(m_max_ + 1),
+<span class="lineNum">     128 </span>            :          static_cast&lt;int&gt;(l_max_ + 1), work_scalar_spec_to_phys.data(),
+<span class="lineNum">     129 </span>            :          static_cast&lt;int&gt;(work_scalar_spec_to_phys.size()), work.data(),
+<span class="lineNum">     130 </span>            :          static_cast&lt;int&gt;(work_size), &amp;err);
+<span class="lineNum">     131 </span>            :   if (UNLIKELY(err != 0)) {
+<span class="lineNum">     132 </span>            :     ERROR(&quot;shsgs error &quot; &lt;&lt; err &lt;&lt; &quot; in YlmSpherepack&quot;);
+<span class="lineNum">     133 </span>            :   }
+<span class="lineNum">     134 </span>            :   memory_pool_.free(work);
+<span class="lineNum">     135 </span>            : }
+<span class="lineNum">     136 </span>            : 
+<span class="lineNum">     137 </span>            : DataVector YlmSpherepack::phys_to_spec(const DataVector&amp; collocation_values,
+<span class="lineNum">     138 </span>            :                                        const size_t physical_stride,
+<span class="lineNum">     139 </span>            :                                        const size_t physical_offset) const
+<span class="lineNum">     140 </span>            :     noexcept {
+<span class="lineNum">     141 </span>            :   ASSERT(collocation_values.size() == physical_size() * physical_stride,
+<span class="lineNum">     142 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; collocation_values.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     143 </span>            :                                &lt;&lt; physical_size() * physical_stride);
+<span class="lineNum">     144 </span>            :   DataVector result(spectral_size());
+<span class="lineNum">     145 </span>            :   phys_to_spec_impl(result.data(), collocation_values.data(), physical_stride,
+<span class="lineNum">     146 </span>            :                     physical_offset, 1, 0, false);
+<span class="lineNum">     147 </span>            :   return result;
+<span class="lineNum">     148 </span>            : }
+<span class="lineNum">     149 </span>            : 
+<span class="lineNum">     150 </span>            : DataVector YlmSpherepack::spec_to_phys(const DataVector&amp; spectral_coefs,
+<span class="lineNum">     151 </span>            :                                        const size_t spectral_stride,
+<span class="lineNum">     152 </span>            :                                        const size_t spectral_offset) const
+<span class="lineNum">     153 </span>            :     noexcept {
+<span class="lineNum">     154 </span>            :   ASSERT(spectral_coefs.size() == spectral_size() * spectral_stride,
+<span class="lineNum">     155 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; spectral_coefs.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     156 </span>            :                                &lt;&lt; spectral_size() * spectral_stride);
+<span class="lineNum">     157 </span>            :   DataVector result(physical_size());
+<span class="lineNum">     158 </span>            :   spec_to_phys_impl(result.data(), spectral_coefs.data(), spectral_stride,
+<span class="lineNum">     159 </span>            :                     spectral_offset, 1, 0, false);
+<span class="lineNum">     160 </span>            :   return result;
+<span class="lineNum">     161 </span>            : }
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            : DataVector YlmSpherepack::phys_to_spec_all_offsets(
+<span class="lineNum">     164 </span>            :     const DataVector&amp; collocation_values, const size_t stride) const noexcept {
+<span class="lineNum">     165 </span>            :   ASSERT(collocation_values.size() == physical_size() * stride,
+<span class="lineNum">     166 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; collocation_values.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     167 </span>            :                                &lt;&lt; physical_size() * stride);
+<span class="lineNum">     168 </span>            :   DataVector result(spectral_size() * stride);
+<span class="lineNum">     169 </span>            :   phys_to_spec_impl(result.data(), collocation_values.data(), stride, 0, stride,
+<span class="lineNum">     170 </span>            :                     0, true);
+<span class="lineNum">     171 </span>            :   return result;
+<span class="lineNum">     172 </span>            : }
+<span class="lineNum">     173 </span>            : 
+<span class="lineNum">     174 </span>            : DataVector YlmSpherepack::spec_to_phys_all_offsets(
+<span class="lineNum">     175 </span>            :     const DataVector&amp; spectral_coefs, const size_t stride) const noexcept {
+<span class="lineNum">     176 </span>            :   ASSERT(spectral_coefs.size() == spectral_size() * stride,
+<span class="lineNum">     177 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; spectral_coefs.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     178 </span>            :                                &lt;&lt; spectral_size() * stride);
+<span class="lineNum">     179 </span>            :   DataVector result(physical_size() * stride);
+<span class="lineNum">     180 </span>            :   spec_to_phys_impl(result.data(), spectral_coefs.data(), stride, 0, stride, 0,
+<span class="lineNum">     181 </span>            :                     true);
+<span class="lineNum">     182 </span>            :   return result;
+<span class="lineNum">     183 </span>            : }
+<span class="lineNum">     184 </span>            : 
+<span class="lineNum">     185 </span>            : /// \cond DOXYGEN_FAILS_TO_PARSE_THIS
+<span class="lineNum">     186 </span>            : void YlmSpherepack::gradient(
+<span class="lineNum">     187 </span>            :     const std::array&lt;double*, 2&gt;&amp; df,
+<span class="lineNum">     188 </span>            :     const gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     189 </span>            :     const size_t physical_stride, const size_t physical_offset) const noexcept {
+<span class="lineNum">     190 </span>            :   auto&amp; f_k = memory_pool_.get(spectral_size());
+<span class="lineNum">     191 </span>            :   phys_to_spec_impl(f_k.data(), collocation_values, physical_stride,
+<span class="lineNum">     192 </span>            :                     physical_offset, 1, 0, false);
+<span class="lineNum">     193 </span>            :   gradient_from_coefs_impl(df, f_k.data(), 1, 0, physical_stride,
+<span class="lineNum">     194 </span>            :                            physical_offset, false);
+<span class="lineNum">     195 </span>            :   memory_pool_.free(f_k);
+<span class="lineNum">     196 </span>            : }
+<span class="lineNum">     197 </span>            : /// \endcond
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            : /// \cond DOXYGEN_FAILS_TO_PARSE_THIS
+<span class="lineNum">     200 </span>            : void YlmSpherepack::gradient_all_offsets(
+<span class="lineNum">     201 </span>            :     const std::array&lt;double*, 2&gt;&amp; df,
+<span class="lineNum">     202 </span>            :     const gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     203 </span>            :     const size_t stride) const noexcept {
+<span class="lineNum">     204 </span>            :   const size_t spectral_stride = stride;
+<span class="lineNum">     205 </span>            :   auto&amp; f_k = memory_pool_.get(spectral_stride * spectral_size());
+<span class="lineNum">     206 </span>            :   phys_to_spec_impl(f_k.data(), collocation_values, stride, 0, spectral_stride,
+<span class="lineNum">     207 </span>            :                     0, true);
+<span class="lineNum">     208 </span>            :   gradient_from_coefs_impl(df, f_k.data(), spectral_stride, 0, stride, 0, true);
+<span class="lineNum">     209 </span>            :   memory_pool_.free(f_k);
+<span class="lineNum">     210 </span>            : }
+<span class="lineNum">     211 </span>            : /// \endcond
+<span class="lineNum">     212 </span>            : 
+<span class="lineNum">     213 </span>            : void YlmSpherepack::gradient_from_coefs_impl(
+<span class="lineNum">     214 </span>            :     const std::array&lt;double*, 2&gt;&amp; df,
+<span class="lineNum">     215 </span>            :     const gsl::not_null&lt;const double*&gt; spectral_coefs,
+<span class="lineNum">     216 </span>            :     const size_t spectral_stride, const size_t spectral_offset,
+<span class="lineNum">     217 </span>            :     const size_t physical_stride, const size_t physical_offset,
+<span class="lineNum">     218 </span>            :     bool loop_over_offset) const noexcept {
+<span class="lineNum">     219 </span>            :   ASSERT((not loop_over_offset) or spectral_stride == physical_stride,
+<span class="lineNum">     220 </span>            :          &quot;physical and spectral strides must be equal &quot;
+<span class="lineNum">     221 </span>            :          &quot;for loop_over_offset=true&quot;);
+<span class="lineNum">     222 </span>            : 
+<span class="lineNum">     223 </span>            :   if (storage_.work_vector_spec_to_phys.empty()) {
+<span class="lineNum">     224 </span>            :     fill_vector_work_arrays();
+<span class="lineNum">     225 </span>            :   }
+<span class="lineNum">     226 </span>            :   const size_t l1 = m_max_ + 1;
+<span class="lineNum">     227 </span>            :   const double* const f_k = spectral_coefs;
+<span class="lineNum">     228 </span>            :   const double* const a = f_k;
+<span class="lineNum">     229 </span>            :   // clang-tidy: 'do not use pointer arithmetic'.
+<span class="lineNum">     230 </span>            :   const double* const b = f_k + l1 * n_theta_ * spectral_stride;  // NOLINT
+<span class="lineNum">     231 </span>            : 
+<span class="lineNum">     232 </span>            :   size_t work_size = n_theta_ * (3 * n_phi_ + 2 * l1 + 1);
+<span class="lineNum">     233 </span>            :   if (loop_over_offset) {
+<span class="lineNum">     234 </span>            :     work_size *= spectral_stride;
+<span class="lineNum">     235 </span>            :   }
+<span class="lineNum">     236 </span>            :   auto&amp; work = memory_pool_.get(work_size);
+<span class="lineNum">     237 </span>            :   int err = 0;
+<span class="lineNum">     238 </span>            :   const int effective_physical_offset =
+<span class="lineNum">     239 </span>            :       loop_over_offset ? -1 : int(physical_offset);
+<span class="lineNum">     240 </span>            :   const int effective_spectral_offset =
+<span class="lineNum">     241 </span>            :       loop_over_offset ? -1 : int(spectral_offset);
+<span class="lineNum">     242 </span>            :   auto&amp; work_vector_spec_to_phys = storage_.work_vector_spec_to_phys;
+<span class="lineNum">     243 </span>            :   gradgs_(static_cast&lt;int&gt;(physical_stride), static_cast&lt;int&gt;(spectral_stride),
+<span class="lineNum">     244 </span>            :           effective_physical_offset, effective_spectral_offset,
+<span class="lineNum">     245 </span>            :           static_cast&lt;int&gt;(n_theta_), static_cast&lt;int&gt;(n_phi_), 0, 1, df[0],
+<span class="lineNum">     246 </span>            :           df[1], static_cast&lt;int&gt;(n_theta_), static_cast&lt;int&gt;(n_phi_), a, b,
+<span class="lineNum">     247 </span>            :           static_cast&lt;int&gt;(l1), static_cast&lt;int&gt;(n_theta_),
+<span class="lineNum">     248 </span>            :           work_vector_spec_to_phys.data(),
+<span class="lineNum">     249 </span>            :           static_cast&lt;int&gt;(work_vector_spec_to_phys.size()), work.data(),
+<span class="lineNum">     250 </span>            :           static_cast&lt;int&gt;(work_size), &amp;err);
+<span class="lineNum">     251 </span>            :   if (UNLIKELY(err != 0)) {
+<span class="lineNum">     252 </span>            :     ERROR(&quot;gradgs error &quot; &lt;&lt; err &lt;&lt; &quot; in YlmSpherepack&quot;);
+<span class="lineNum">     253 </span>            :   }
+<span class="lineNum">     254 </span>            :   memory_pool_.free(work);
+<span class="lineNum">     255 </span>            : }
+<span class="lineNum">     256 </span>            : 
+<span class="lineNum">     257 </span>            : YlmSpherepack::FirstDeriv YlmSpherepack::gradient(
+<span class="lineNum">     258 </span>            :     const DataVector&amp; collocation_values, const size_t physical_stride,
+<span class="lineNum">     259 </span>            :     const size_t physical_offset) const noexcept {
+<span class="lineNum">     260 </span>            :   ASSERT(collocation_values.size() == physical_size() * physical_stride,
+<span class="lineNum">     261 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; collocation_values.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     262 </span>            :                                &lt;&lt; physical_size() * physical_stride);
+<span class="lineNum">     263 </span>            :   auto&amp; f_k = memory_pool_.get(spectral_size());
+<span class="lineNum">     264 </span>            :   phys_to_spec_impl(f_k.data(), collocation_values.data(), physical_stride,
+<span class="lineNum">     265 </span>            :                     physical_offset, 1, 0, false);
+<span class="lineNum">     266 </span>            :   FirstDeriv result(physical_size());
+<span class="lineNum">     267 </span>            :   std::array&lt;double*, 2&gt; temp = {{result.get(0).data(), result.get(1).data()}};
+<span class="lineNum">     268 </span>            :   gradient_from_coefs_impl(temp, f_k.data(), 1, 0, 1, 0, false);
+<span class="lineNum">     269 </span>            :   memory_pool_.free(f_k);
+<span class="lineNum">     270 </span>            :   return result;
+<span class="lineNum">     271 </span>            : }
+<span class="lineNum">     272 </span>            : 
+<span class="lineNum">     273 </span>            : YlmSpherepack::FirstDeriv YlmSpherepack::gradient_all_offsets(
+<span class="lineNum">     274 </span>            :     const DataVector&amp; collocation_values, const size_t stride) const noexcept {
+<span class="lineNum">     275 </span>            :   ASSERT(collocation_values.size() == physical_size() * stride,
+<span class="lineNum">     276 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; collocation_values.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     277 </span>            :                                &lt;&lt; physical_size() * stride);
+<span class="lineNum">     278 </span>            :   FirstDeriv result(physical_size() * stride);
+<span class="lineNum">     279 </span>            :   std::array&lt;double*, 2&gt; temp = {{result.get(0).data(), result.get(1).data()}};
+<span class="lineNum">     280 </span>            :   gradient_all_offsets(temp, collocation_values.data(), stride);
+<span class="lineNum">     281 </span>            :   return result;
+<span class="lineNum">     282 </span>            : }
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span>            : YlmSpherepack::FirstDeriv YlmSpherepack::gradient_from_coefs(
+<span class="lineNum">     285 </span>            :     const DataVector&amp; spectral_coefs, const size_t spectral_stride,
+<span class="lineNum">     286 </span>            :     const size_t spectral_offset) const noexcept {
+<span class="lineNum">     287 </span>            :   ASSERT(spectral_coefs.size() == spectral_size() * spectral_stride,
+<span class="lineNum">     288 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; spectral_coefs.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     289 </span>            :                                &lt;&lt; spectral_size() * spectral_stride);
+<span class="lineNum">     290 </span>            :   FirstDeriv result(physical_size());
+<span class="lineNum">     291 </span>            :   std::array&lt;double*, 2&gt; temp = {{result.get(0).data(), result.get(1).data()}};
+<span class="lineNum">     292 </span>            :   gradient_from_coefs_impl(temp, spectral_coefs.data(), spectral_stride,
+<span class="lineNum">     293 </span>            :                            spectral_offset, 1, 0, false);
+<span class="lineNum">     294 </span>            :   return result;
+<span class="lineNum">     295 </span>            : }
+<span class="lineNum">     296 </span>            : 
+<span class="lineNum">     297 </span>            : YlmSpherepack::FirstDeriv YlmSpherepack::gradient_from_coefs_all_offsets(
+<span class="lineNum">     298 </span>            :     const DataVector&amp; spectral_coefs, const size_t stride) const noexcept {
+<span class="lineNum">     299 </span>            :   ASSERT(spectral_coefs.size() == spectral_size() * stride,
+<span class="lineNum">     300 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; spectral_coefs.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     301 </span>            :                                &lt;&lt; spectral_size() * stride);
+<span class="lineNum">     302 </span>            :   FirstDeriv result(physical_size() * stride);
+<span class="lineNum">     303 </span>            :   std::array&lt;double*, 2&gt; temp = {{result.get(0).data(), result.get(1).data()}};
+<span class="lineNum">     304 </span>            :   gradient_from_coefs_impl(temp, spectral_coefs.data(), stride, 0, stride, 0,
+<span class="lineNum">     305 </span>            :                            true);
+<span class="lineNum">     306 </span>            :   return result;
+<span class="lineNum">     307 </span>            : }
+<span class="lineNum">     308 </span>            : 
+<span class="lineNum">     309 </span>            : /// \cond DOXYGEN_FAILS_TO_PARSE_THIS
+<span class="lineNum">     310 </span>            : void YlmSpherepack::scalar_laplacian(
+<span class="lineNum">     311 </span>            :     const gsl::not_null&lt;double*&gt; scalar_laplacian,
+<span class="lineNum">     312 </span>            :     const gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     313 </span>            :     const size_t physical_stride, const size_t physical_offset) const noexcept {
+<span class="lineNum">     314 </span>            :   auto&amp; f_k = memory_pool_.get(spectral_size());
+<span class="lineNum">     315 </span>            :   phys_to_spec(f_k.data(), collocation_values, physical_stride, physical_offset,
+<span class="lineNum">     316 </span>            :                1, 0);
+<span class="lineNum">     317 </span>            :   scalar_laplacian_from_coefs(scalar_laplacian, f_k.data(), 1, 0,
+<span class="lineNum">     318 </span>            :                               physical_stride, physical_offset);
+<span class="lineNum">     319 </span>            :   memory_pool_.free(f_k);
+<span class="lineNum">     320 </span>            : }
+<span class="lineNum">     321 </span>            : /// \endcond
+<span class="lineNum">     322 </span>            : 
+<span class="lineNum">     323 </span>            : /// \cond DOXYGEN_FAILS_TO_PARSE_THIS
+<span class="lineNum">     324 </span>            : void YlmSpherepack::scalar_laplacian_from_coefs(
+<span class="lineNum">     325 </span>            :     const gsl::not_null&lt;double*&gt; scalar_laplacian,
+<span class="lineNum">     326 </span>            :     const gsl::not_null&lt;const double*&gt; spectral_coefs,
+<span class="lineNum">     327 </span>            :     const size_t spectral_stride, const size_t spectral_offset,
+<span class="lineNum">     328 </span>            :     const size_t physical_stride, const size_t physical_offset) const noexcept {
+<span class="lineNum">     329 </span>            :   const size_t l1 = m_max_ + 1;
+<span class="lineNum">     330 </span>            :   const double* const a = spectral_coefs;
+<span class="lineNum">     331 </span>            :   // clang-tidy: 'do not use pointer arithmetic'.
+<span class="lineNum">     332 </span>            :   const double* const b = a + l1 * n_theta_ * spectral_stride;  // NOLINT
+<span class="lineNum">     333 </span>            :   const size_t work_size = n_theta_ * (3 * n_phi_ + 2 * l1 + 1);
+<span class="lineNum">     334 </span>            :   auto&amp; work = memory_pool_.get(work_size);
+<span class="lineNum">     335 </span>            :   int err = 0;
+<span class="lineNum">     336 </span>            :   auto&amp; work_scalar_spec_to_phys = storage_.work_scalar_spec_to_phys;
+<span class="lineNum">     337 </span>            :   slapgs_(static_cast&lt;int&gt;(physical_stride), static_cast&lt;int&gt;(spectral_stride),
+<span class="lineNum">     338 </span>            :           static_cast&lt;int&gt;(physical_offset), static_cast&lt;int&gt;(spectral_offset),
+<span class="lineNum">     339 </span>            :           static_cast&lt;int&gt;(n_theta_), static_cast&lt;int&gt;(n_phi_), 0, 1,
+<span class="lineNum">     340 </span>            :           scalar_laplacian, static_cast&lt;int&gt;(n_theta_),
+<span class="lineNum">     341 </span>            :           static_cast&lt;int&gt;(n_phi_), a, b, static_cast&lt;int&gt;(l1),
+<span class="lineNum">     342 </span>            :           static_cast&lt;int&gt;(n_theta_), work_scalar_spec_to_phys.data(),
+<span class="lineNum">     343 </span>            :           static_cast&lt;int&gt;(work_scalar_spec_to_phys.size()), work.data(),
+<span class="lineNum">     344 </span>            :           static_cast&lt;int&gt;(work_size), &amp;err);
+<span class="lineNum">     345 </span>            :   if (UNLIKELY(err != 0)) {
+<span class="lineNum">     346 </span>            :     ERROR(&quot;slapgs error &quot; &lt;&lt; err &lt;&lt; &quot; in YlmSpherepack&quot;);
+<span class="lineNum">     347 </span>            :   }
+<span class="lineNum">     348 </span>            :   memory_pool_.free(work);
+<span class="lineNum">     349 </span>            : }
+<span class="lineNum">     350 </span>            : /// \endcond
+<span class="lineNum">     351 </span>            : 
+<span class="lineNum">     352 </span>            : DataVector YlmSpherepack::scalar_laplacian(const DataVector&amp; collocation_values,
+<span class="lineNum">     353 </span>            :                                            const size_t physical_stride,
+<span class="lineNum">     354 </span>            :                                            const size_t physical_offset) const
+<span class="lineNum">     355 </span>            :     noexcept {
+<span class="lineNum">     356 </span>            :   ASSERT(collocation_values.size() == physical_size() * physical_stride,
+<span class="lineNum">     357 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; collocation_values.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     358 </span>            :                                &lt;&lt; physical_size() * physical_stride);
+<span class="lineNum">     359 </span>            :   DataVector result(physical_size());
+<span class="lineNum">     360 </span>            :   scalar_laplacian(result.data(), collocation_values.data(), physical_stride,
+<span class="lineNum">     361 </span>            :                    physical_offset);
+<span class="lineNum">     362 </span>            :   return result;
+<span class="lineNum">     363 </span>            : }
+<span class="lineNum">     364 </span>            : 
+<span class="lineNum">     365 </span>            : DataVector YlmSpherepack::scalar_laplacian_from_coefs(
+<span class="lineNum">     366 </span>            :     const DataVector&amp; spectral_coefs, const size_t spectral_stride,
+<span class="lineNum">     367 </span>            :     const size_t spectral_offset) const noexcept {
+<span class="lineNum">     368 </span>            :   ASSERT(spectral_coefs.size() == spectral_size() * spectral_stride,
+<span class="lineNum">     369 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; spectral_coefs.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     370 </span>            :                                &lt;&lt; spectral_size() * spectral_stride);
+<span class="lineNum">     371 </span>            :   DataVector result(physical_size());
+<span class="lineNum">     372 </span>            :   scalar_laplacian_from_coefs(result.data(), spectral_coefs.data(),
+<span class="lineNum">     373 </span>            :                               spectral_stride, spectral_offset);
+<span class="lineNum">     374 </span>            :   return result;
+<span class="lineNum">     375 </span>            : }
+<span class="lineNum">     376 </span>            : 
+<span class="lineNum">     377 </span>            : std::array&lt;DataVector, 2&gt; YlmSpherepack::theta_phi_points() const noexcept {
+<span class="lineNum">     378 </span>            :   std::array&lt;DataVector, 2&gt; result = make_array&lt;2&gt;(DataVector(physical_size()));
+<span class="lineNum">     379 </span>            :   const auto&amp; theta = theta_points();
+<span class="lineNum">     380 </span>            :   const auto&amp; phi = phi_points();
+<span class="lineNum">     381 </span>            :   // Storage in SPHEREPACK: theta varies fastest (i.e. fortran ordering).
+<span class="lineNum">     382 </span>            :   for (size_t i_phi = 0, s = 0; i_phi &lt; n_phi_; ++i_phi) {
+<span class="lineNum">     383 </span>            :     for (size_t i_theta = 0; i_theta &lt; n_theta_; ++i_theta, ++s) {
+<span class="lineNum">     384 </span>            :       result[0][s] = theta[i_theta];
+<span class="lineNum">     385 </span>            :       result[1][s] = phi[i_phi];
+<span class="lineNum">     386 </span>            :     }
+<span class="lineNum">     387 </span>            :   }
+<span class="lineNum">     388 </span>            :   return result;
+<span class="lineNum">     389 </span>            : }
+<span class="lineNum">     390 </span>            : 
+<span class="lineNum">     391 </span>            : const std::vector&lt;double&gt;&amp; YlmSpherepack::theta_points() const noexcept {
+<span class="lineNum">     392 </span>            :   auto&amp; theta = storage_.theta;
+<span class="lineNum">     393 </span>            :   if (theta.empty()) {
+<span class="lineNum">     394 </span>            :     theta.resize(n_theta_);
+<span class="lineNum">     395 </span>            :     auto&amp; work = memory_pool_.get(n_theta_ + 1);
+<span class="lineNum">     396 </span>            :     auto&amp; unused_weights = memory_pool_.get(n_theta_);
+<span class="lineNum">     397 </span>            :     int err = 0;
+<span class="lineNum">     398 </span>            :     gaqd_(static_cast&lt;int&gt;(n_theta_), theta.data(), unused_weights.data(),
+<span class="lineNum">     399 </span>            :           work.data(), static_cast&lt;int&gt;(n_theta_ + 1), &amp;err);
+<span class="lineNum">     400 </span>            :     memory_pool_.free(unused_weights);
+<span class="lineNum">     401 </span>            :     memory_pool_.free(work);
+<span class="lineNum">     402 </span>            :     if (UNLIKELY(err != 0)) {
+<span class="lineNum">     403 </span>            :       ERROR(&quot;gaqd error &quot; &lt;&lt; err &lt;&lt; &quot; in YlmSpherepack&quot;);
+<span class="lineNum">     404 </span>            :     }
+<span class="lineNum">     405 </span>            :   }
+<span class="lineNum">     406 </span>            :   return theta;
+<span class="lineNum">     407 </span>            : }
+<span class="lineNum">     408 </span>            : 
+<span class="lineNum">     409 </span>            : const std::vector&lt;double&gt;&amp; YlmSpherepack::phi_points() const noexcept {
+<span class="lineNum">     410 </span>            :   // The following is not static or constexpr because n_phi_ depends
+<span class="lineNum">     411 </span>            :   // on *this.
+<span class="lineNum">     412 </span>            :   const double two_pi_over_n_phi = 2.0 * M_PI / n_phi_;
+<span class="lineNum">     413 </span>            :   auto&amp; phi = storage_.phi;
+<span class="lineNum">     414 </span>            :   if (phi.empty()) {
+<span class="lineNum">     415 </span>            :     phi.resize(n_phi_);
+<span class="lineNum">     416 </span>            :     for (size_t i = 0; i &lt; n_phi_; ++i) {
+<span class="lineNum">     417 </span>            :       phi[i] = two_pi_over_n_phi * i;
+<span class="lineNum">     418 </span>            :     }
+<span class="lineNum">     419 </span>            :   }
+<span class="lineNum">     420 </span>            :   return phi;
+<span class="lineNum">     421 </span>            : }
+<span class="lineNum">     422 </span>            : 
+<span class="lineNum">     423 </span>            : void YlmSpherepack::second_derivative(
+<span class="lineNum">     424 </span>            :     const std::array&lt;double*, 2&gt;&amp; df, gsl::not_null&lt;SecondDeriv*&gt; ddf,
+<span class="lineNum">     425 </span>            :     const gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     426 </span>            :     const size_t physical_stride, const size_t physical_offset) const noexcept {
+<span class="lineNum">     427 </span>            :   // Initialize trig functions at collocation points
+<span class="lineNum">     428 </span>            :   auto&amp; cos_theta = storage_.cos_theta;
+<span class="lineNum">     429 </span>            :   auto&amp; sin_theta = storage_.sin_theta;
+<span class="lineNum">     430 </span>            :   auto&amp; sin_phi = storage_.sin_phi;
+<span class="lineNum">     431 </span>            :   auto&amp; cos_phi = storage_.cos_phi;
+<span class="lineNum">     432 </span>            :   auto&amp; cot_theta = storage_.cot_theta;
+<span class="lineNum">     433 </span>            :   auto&amp; cosec_theta = storage_.cosec_theta;
+<span class="lineNum">     434 </span>            :   if (cos_theta.empty()) {
+<span class="lineNum">     435 </span>            :     cos_theta.resize(n_theta_);
+<span class="lineNum">     436 </span>            :     sin_theta.resize(n_theta_);
+<span class="lineNum">     437 </span>            :     cosec_theta.resize(n_theta_);
+<span class="lineNum">     438 </span>            :     cot_theta.resize(n_theta_);
+<span class="lineNum">     439 </span>            :     cos_phi.resize(n_phi_);
+<span class="lineNum">     440 </span>            :     sin_phi.resize(n_phi_);
+<span class="lineNum">     441 </span>            : 
+<span class="lineNum">     442 </span>            :     const std::vector&lt;double&gt;&amp; theta = theta_points();
+<span class="lineNum">     443 </span>            :     for (size_t i = 0; i &lt; n_theta_; ++i) {
+<span class="lineNum">     444 </span>            :       cos_theta[i] = cos(theta[i]);
+<span class="lineNum">     445 </span>            :       sin_theta[i] = sin(theta[i]);
+<span class="lineNum">     446 </span>            :       cosec_theta[i] = 1.0 / sin_theta[i];
+<span class="lineNum">     447 </span>            :       cot_theta[i] = cos_theta[i] * cosec_theta[i];
+<span class="lineNum">     448 </span>            :     }
+<span class="lineNum">     449 </span>            :     const std::vector&lt;double&gt;&amp; phi = phi_points();
+<span class="lineNum">     450 </span>            :     for (size_t i = 0; i &lt; n_phi_; ++i) {
+<span class="lineNum">     451 </span>            :       cos_phi[i] = cos(phi[i]);
+<span class="lineNum">     452 </span>            :       sin_phi[i] = sin(phi[i]);
+<span class="lineNum">     453 </span>            :     }
+<span class="lineNum">     454 </span>            :   }
+<span class="lineNum">     455 </span>            :   // Get first derivatives
+<span class="lineNum">     456 </span>            :   gradient(df, collocation_values, physical_stride, physical_offset);
+<span class="lineNum">     457 </span>            : 
+<span class="lineNum">     458 </span>            :   // Now get Cartesian derivatives.
+<span class="lineNum">     459 </span>            : 
+<span class="lineNum">     460 </span>            :   // First derivative
+<span class="lineNum">     461 </span>            :   std::vector&lt;double*&gt; dfc(3, nullptr);
+<span class="lineNum">     462 </span>            :   for (size_t i = 0; i &lt; 3; ++i) {
+<span class="lineNum">     463 </span>            :     dfc[i] = memory_pool_.get(physical_size()).data();
+<span class="lineNum">     464 </span>            :   }
+<span class="lineNum">     465 </span>            :   for (size_t j = 0, s = 0; j &lt; n_phi_; ++j) {
+<span class="lineNum">     466 </span>            :     for (size_t i = 0; i &lt; n_theta_; ++i, ++s) {
+<span class="lineNum">     467 </span>            :       dfc[0][s] = cos_theta[i] * cos_phi[j] *
+<span class="lineNum">     468 </span>            :                       df[0][s * physical_stride + physical_offset] -
+<span class="lineNum">     469 </span>            :                   sin_phi[j] * df[1][s * physical_stride + physical_offset];
+<span class="lineNum">     470 </span>            :       dfc[1][s] = cos_theta[i] * sin_phi[j] *
+<span class="lineNum">     471 </span>            :                       df[0][s * physical_stride + physical_offset] +
+<span class="lineNum">     472 </span>            :                   cos_phi[j] * df[1][s * physical_stride + physical_offset];
+<span class="lineNum">     473 </span>            :       dfc[2][s] = -sin_theta[i] * df[0][s * physical_stride + physical_offset];
+<span class="lineNum">     474 </span>            :     }
+<span class="lineNum">     475 </span>            :   }
+<span class="lineNum">     476 </span>            : 
+<span class="lineNum">     477 </span>            :   // Take derivatives of Cartesian derivatives to get second derivatives.
+<span class="lineNum">     478 </span>            :   std::vector&lt;std::array&lt;double*, 2&gt;&gt; ddfc(3, {{nullptr, nullptr}});
+<span class="lineNum">     479 </span>            :   for (size_t i = 0; i &lt; 3; ++i) {
+<span class="lineNum">     480 </span>            :     for (size_t j = 0; j &lt; 2; ++j) {
+<span class="lineNum">     481 </span>            :       gsl::at(ddfc[i], j) = memory_pool_.get(physical_size()).data();
+<span class="lineNum">     482 </span>            :     }
+<span class="lineNum">     483 </span>            :     gradient(ddfc[i], dfc[i], 1, 0);
+<span class="lineNum">     484 </span>            :     // Here we free the storage for dfc[i], so we can reuse it in ddfc.
+<span class="lineNum">     485 </span>            :     memory_pool_.free(dfc[i]);
+<span class="lineNum">     486 </span>            :   }
+<span class="lineNum">     487 </span>            : 
+<span class="lineNum">     488 </span>            :   // Combine into Pfaffian second derivatives
+<span class="lineNum">     489 </span>            :   for (size_t j = 0, s = 0; j &lt; n_phi_; ++j) {
+<span class="lineNum">     490 </span>            :     for (size_t i = 0; i &lt; n_theta_; ++i, ++s) {
+<span class="lineNum">     491 </span>            :       ddf-&gt;get(1, 0)[s * physical_stride + physical_offset] =
+<span class="lineNum">     492 </span>            :           -ddfc[2][1][s] * cosec_theta[i];
+<span class="lineNum">     493 </span>            :       ddf-&gt;get(0, 1)[s * physical_stride + physical_offset] =
+<span class="lineNum">     494 </span>            :           ddf-&gt;get(1, 0)[s * physical_stride + physical_offset] -
+<span class="lineNum">     495 </span>            :           cot_theta[i] * df[1][s * physical_stride + physical_offset];
+<span class="lineNum">     496 </span>            :       ddf-&gt;get(1, 1)[s * physical_stride + physical_offset] =
+<span class="lineNum">     497 </span>            :           cos_phi[j] * ddfc[1][1][s] - sin_phi[j] * ddfc[0][1][s] -
+<span class="lineNum">     498 </span>            :           cot_theta[i] * df[0][s * physical_stride + physical_offset];
+<span class="lineNum">     499 </span>            :       ddf-&gt;get(0, 0)[s * physical_stride + physical_offset] =
+<span class="lineNum">     500 </span>            :           cos_theta[i] *
+<span class="lineNum">     501 </span>            :               (cos_phi[j] * ddfc[0][0][s] + sin_phi[j] * ddfc[1][0][s]) -
+<span class="lineNum">     502 </span>            :           sin_theta[i] * ddfc[2][0][s];
+<span class="lineNum">     503 </span>            :     }
+<span class="lineNum">     504 </span>            :   }
+<span class="lineNum">     505 </span>            : 
+<span class="lineNum">     506 </span>            :   for (size_t i = 0; i &lt; 3; ++i) {
+<span class="lineNum">     507 </span>            :     for (size_t j = 0; j &lt; 2; ++j) {
+<span class="lineNum">     508 </span>            :       memory_pool_.free(gsl::at(ddfc[i], j));
+<span class="lineNum">     509 </span>            :     }
+<span class="lineNum">     510 </span>            :   }
+<span class="lineNum">     511 </span>            : }
+<span class="lineNum">     512 </span>            : 
+<span class="lineNum">     513 </span>            : std::pair&lt;YlmSpherepack::FirstDeriv, YlmSpherepack::SecondDeriv&gt;
+<span class="lineNum">     514 </span>            : YlmSpherepack::first_and_second_derivative(
+<span class="lineNum">     515 </span>            :     const DataVector&amp; collocation_values) const noexcept {
+<span class="lineNum">     516 </span>            :   ASSERT(collocation_values.size() == physical_size(),
+<span class="lineNum">     517 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; collocation_values.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     518 </span>            :                                &lt;&lt; physical_size());
+<span class="lineNum">     519 </span>            :   std::pair&lt;FirstDeriv, SecondDeriv&gt; result(
+<span class="lineNum">     520 </span>            :       std::piecewise_construct, std::forward_as_tuple(physical_size()),
+<span class="lineNum">     521 </span>            :       std::forward_as_tuple(physical_size()));
+<span class="lineNum">     522 </span>            :   std::array&lt;double*, 2&gt; temp = {
+<span class="lineNum">     523 </span>            :       {std::get&lt;0&gt;(result).get(0).data(), std::get&lt;0&gt;(result).get(1).data()}};
+<span class="lineNum">     524 </span>            :   second_derivative(temp, &amp;std::get&lt;1&gt;(result), collocation_values.data());
+<span class="lineNum">     525 </span>            :   return result;
+<span class="lineNum">     526 </span>            : }
+<span class="lineNum">     527 </span>            : 
+<span class="lineNum">     528 </span>            : YlmSpherepack::InterpolationInfoPerPoint::InterpolationInfoPerPoint(
+<span class="lineNum">     529 </span>            :     const size_t m_max, const std::vector&lt;double&gt;&amp; pmm,
+<span class="lineNum">     530 </span>            :     const std::array&lt;double, 2&gt;&amp; target)
+<span class="lineNum">     531 </span>            :     : cos_theta(cos(target[0])),
+<span class="lineNum">     532 </span>            :       cos_m_phi(m_max + 1),
+<span class="lineNum">     533 </span>            :       sin_m_phi(m_max + 1),
+<span class="lineNum">     534 </span>            :       pbar_factor(m_max + 1) {
+<span class="lineNum">     535 </span>            :   const double sin_theta = sin(target[0]);
+<span class="lineNum">     536 </span>            :   const double phi = target[1];
+<span class="lineNum">     537 </span>            : 
+<span class="lineNum">     538 </span>            :   // Evaluate cos(m*phi) and sin(m*phi) by numerical recipes eq. 5.5.6
+<span class="lineNum">     539 </span>            :   {
+<span class="lineNum">     540 </span>            :     cos_m_phi[0] = 1.0;
+<span class="lineNum">     541 </span>            :     sin_m_phi[0] = 0.0;
+<span class="lineNum">     542 </span>            :     const double beta = sin(phi);
+<span class="lineNum">     543 </span>            :     const double alpha = 2.0 * square(sin(0.5 * phi));
+<span class="lineNum">     544 </span>            :     double sinmphi = 0.0;
+<span class="lineNum">     545 </span>            :     double cosmphi = 1.0;
+<span class="lineNum">     546 </span>            :     for (size_t m = 1; m &lt; m_max + 1; ++m) {
+<span class="lineNum">     547 </span>            :       const double deltacosmphi = alpha * cosmphi + beta * sinmphi;
+<span class="lineNum">     548 </span>            :       const double deltasinmphi = alpha * sinmphi - beta * cosmphi;
+<span class="lineNum">     549 </span>            :       cosmphi -= deltacosmphi;
+<span class="lineNum">     550 </span>            :       sinmphi -= deltasinmphi;
+<span class="lineNum">     551 </span>            :       cos_m_phi[m] = cosmphi;
+<span class="lineNum">     552 </span>            :       sin_m_phi[m] = sinmphi;
+<span class="lineNum">     553 </span>            :     }
+<span class="lineNum">     554 </span>            :   }
+<span class="lineNum">     555 </span>            : 
+<span class="lineNum">     556 </span>            :   // Fill pbar_factor[m] = Pbar(m,m)*sin(theta)^m  (m&lt;l1)
+<span class="lineNum">     557 </span>            :   double sinmtheta = 1.0;
+<span class="lineNum">     558 </span>            :   for (size_t m = 0; m &lt; m_max + 1; ++m) {
+<span class="lineNum">     559 </span>            :     pbar_factor[m] = pmm[m] * sinmtheta;
+<span class="lineNum">     560 </span>            :     sinmtheta *= sin_theta;
+<span class="lineNum">     561 </span>            :   }
+<span class="lineNum">     562 </span>            : }
+<span class="lineNum">     563 </span>            : 
+<span class="lineNum">     564 </span>            : YlmSpherepack::InterpolationInfo YlmSpherepack::set_up_interpolation_info(
+<span class="lineNum">     565 </span>            :     const std::vector&lt;std::array&lt;double, 2&gt;&gt;&amp; target_points) const noexcept {
+<span class="lineNum">     566 </span>            :   // SPHEREPACK expands f(theta,phi) as
+<span class="lineNum">     567 </span>            :   //
+<span class="lineNum">     568 </span>            :   // f(theta,phi) =
+<span class="lineNum">     569 </span>            :   // 1/2 Sum_{l=0}^{l_max} Pbar(l,0) a(0,l)
+<span class="lineNum">     570 </span>            :   //   + Sum_{m=1}^{m_max} Sum_{l=m}^{l_max} Pbar(l,m)(  a(m,l) cos(m phi)
+<span class="lineNum">     571 </span>            :   //                                                   - b(m,l) sin(m phi))
+<span class="lineNum">     572 </span>            :   //
+<span class="lineNum">     573 </span>            :   // where Pbar(l,m) are unit-orthonormal Associated Legendre
+<span class="lineNum">     574 </span>            :   // polynomials (which are functions of x = cos(theta)), and a(m,l)
+<span class="lineNum">     575 </span>            :   // and b(m,l) are the SPHEREPACK spectral coefficients.
+<span class="lineNum">     576 </span>            :   //
+<span class="lineNum">     577 </span>            :   // Note that Pbar(l,m) = sqrt((2l+1)(l-m)!/(2(l+m)!)) P_l^m.
+<span class="lineNum">     578 </span>            :   // and that Integral_{-1}^{+1} Pbar(k,m)(x) Pbar(l,m)(x) = delta_kl
+<span class="lineNum">     579 </span>            :   //
+<span class="lineNum">     580 </span>            :   // We will interpolate via Clenshaw's recurrence formula in l, for fixed m.
+<span class="lineNum">     581 </span>            :   //
+<span class="lineNum">     582 </span>            :   // The recursion relation between Associated Legendre polynomials is
+<span class="lineNum">     583 </span>            :   // Pbar(l+1)(m) = alpha(l,x) Pbar(l)(m) + beta(l,x) Pbar(l-1)(m)
+<span class="lineNum">     584 </span>            :   // where alpha(l,x) = x sqrt((2l+3)(2l+1)/((l+1-m)(l+1+m)))
+<span class="lineNum">     585 </span>            :   // where beta(l,x)  = - sqrt((2l+3)(l-m)(l+m)/((l+1-m)(l+1+m)(2l-1)))
+<span class="lineNum">     586 </span>            :   //
+<span class="lineNum">     587 </span>            :   // The Clenshaw recurrence formula for
+<span class="lineNum">     588 </span>            :   // f(x) = Sum_{l=m}^{l_max} c_(l)(m) Pbar(l)(m) is
+<span class="lineNum">     589 </span>            :   // y_{l_max+1} = y_{l_max+2} = 0
+<span class="lineNum">     590 </span>            :   // y_k  = alpha(k,x) y_{k+1} + beta(k+1,x) y_{k+2} + c_(k)(m)  (m&lt;k&lt;=l_max)
+<span class="lineNum">     591 </span>            :   // f(x) = beta(m+1,x) Pbar(m,m) y_{m+2} + Pbar(m+1,m) y_{m+1}
+<span class="lineNum">     592 </span>            :   //      + Pbar(m,m) c_(m)(m).
+<span class="lineNum">     593 </span>            :   //
+<span class="lineNum">     594 </span>            :   // So we will compute and store alpha(l,x)/x in 'alpha' and
+<span class="lineNum">     595 </span>            :   // beta(l+1,x) [NOT beta(l,x)] in 'beta'.  We will also compute and
+<span class="lineNum">     596 </span>            :   // store the x-independent piece of Pbar(m)(m) in 'pmm' and we
+<span class="lineNum">     597 </span>            :   // will compute and store the x-independent piece of Pbar(m+1)(m)/Pbar(m)(m)
+<span class="lineNum">     598 </span>            :   // in a component of 'alpha'. See below for storage.
+<span class="lineNum">     599 </span>            :   // Note Pbar(m)(m)   is (2m-1)!! (1-x^2)^(n/2) sqrt((2m+1)/(2 (2m)!))
+<span class="lineNum">     600 </span>            :   // and  Pbar(m+1)(m) is (2m+1)!! x(1-x^2)^(n/2)sqrt((2m+3)/(2(2m+1)!))
+<span class="lineNum">     601 </span>            :   //  Ratio Pbar(m+1)(m)/Pbar(m)(m)   = x sqrt(2m+3)
+<span class="lineNum">     602 </span>            :   //  Ratio Pbar(m+1)(m+1)/Pbar(m)(m) = sqrt(1-x^2) sqrt((2m+3)/(2m+2))
+<span class="lineNum">     603 </span>            : 
+<span class="lineNum">     604 </span>            :   const size_t l1 = m_max_ + 1;
+<span class="lineNum">     605 </span>            : 
+<span class="lineNum">     606 </span>            :   auto&amp; alpha = storage_.work_interp_alpha;
+<span class="lineNum">     607 </span>            :   auto&amp; beta = storage_.work_interp_beta;
+<span class="lineNum">     608 </span>            :   auto&amp; pmm = storage_.work_interp_pmm;
+<span class="lineNum">     609 </span>            :   auto&amp; index = storage_.work_interp_index;
+<span class="lineNum">     610 </span>            :   if (alpha.empty()) {
+<span class="lineNum">     611 </span>            :     // We need to compute alpha, beta, index, and pmm only once.
+<span class="lineNum">     612 </span>            :     const size_t array_size = n_theta_ * l1 - l1 * (l1 - 1) / 2;
+<span class="lineNum">     613 </span>            :     index.resize(array_size);
+<span class="lineNum">     614 </span>            :     alpha.resize(array_size);
+<span class="lineNum">     615 </span>            :     beta.resize(array_size);
+<span class="lineNum">     616 </span>            :     pmm.resize(l1);
+<span class="lineNum">     617 </span>            : 
+<span class="lineNum">     618 </span>            :     // Fill alpha,beta,index arrays in the same order as the Clenshaw
+<span class="lineNum">     619 </span>            :     // recurrence, so that we can index them easier during the recurrence.
+<span class="lineNum">     620 </span>            :     // First do m=0.
+<span class="lineNum">     621 </span>            :     size_t idx = 0;
+<span class="lineNum">     622 </span>            :     for (size_t n = n_theta_ - 1; n &gt; 0; --n, ++idx) {
+<span class="lineNum">     623 </span>            :       const double tnp1 = 2.0 * n + 1;
+<span class="lineNum">     624 </span>            :       const double np1sq = n * n + 2.0 * n + 1.0;
+<span class="lineNum">     625 </span>            :       alpha[idx] = sqrt(tnp1 * (tnp1 + 2.0) / np1sq);
+<span class="lineNum">     626 </span>            :       beta[idx] = -sqrt((tnp1 + 4.0) / tnp1 * np1sq / (np1sq + 2 * n + 3));
+<span class="lineNum">     627 </span>            :       index[idx] = n * l1;
+<span class="lineNum">     628 </span>            :     }
+<span class="lineNum">     629 </span>            :     // The next value of beta stores beta(n=1,m=0).
+<span class="lineNum">     630 </span>            :     // The next value of alpha stores Pbar(n=1,m=0)/(x*Pbar(n=0,m=0)).
+<span class="lineNum">     631 </span>            :     // These two values are needed for the final Clenshaw recurrence formula.
+<span class="lineNum">     632 </span>            :     beta[idx] = -0.5 * sqrt(5.0);
+<span class="lineNum">     633 </span>            :     alpha[idx] = sqrt(3.0);
+<span class="lineNum">     634 </span>            :     index[idx] = 0;  // Index of coef in the final recurrence formula
+<span class="lineNum">     635 </span>            :     ++idx;
+<span class="lineNum">     636 </span>            : 
+<span class="lineNum">     637 </span>            :     // Now do other m.
+<span class="lineNum">     638 </span>            :     for (size_t m = 1; m &lt; l1; ++m) {
+<span class="lineNum">     639 </span>            :       for (size_t n = n_theta_ - 1; n &gt; m; --n, ++idx) {
+<span class="lineNum">     640 </span>            :         const double tnp1 = 2.0 * n + 1;
+<span class="lineNum">     641 </span>            :         const double np1sqmmsq = (n + 1.0 + m) * (n + 1.0 - m);
+<span class="lineNum">     642 </span>            :         alpha[idx] = sqrt(tnp1 * (tnp1 + 2.0) / np1sqmmsq);
+<span class="lineNum">     643 </span>            :         beta[idx] =
+<span class="lineNum">     644 </span>            :             -sqrt((tnp1 + 4.0) / tnp1 * np1sqmmsq / (np1sqmmsq + 2. * n + 3.));
+<span class="lineNum">     645 </span>            :         index[idx] = m + n * l1;
+<span class="lineNum">     646 </span>            :       }
+<span class="lineNum">     647 </span>            :       // The next value of beta stores beta(n=m+1,m).
+<span class="lineNum">     648 </span>            :       // The next value of alpha stores Pbar(n=m+1,m)/(x*Pbar(n=m,m)).
+<span class="lineNum">     649 </span>            :       // These two values are needed for the final Clenshaw recurrence formula.
+<span class="lineNum">     650 </span>            :       beta[idx] = -0.5 * sqrt((2.0 * m + 5) / (m + 1.0));
+<span class="lineNum">     651 </span>            :       alpha[idx] = sqrt(2.0 * m + 3);
+<span class="lineNum">     652 </span>            :       index[idx] =
+<span class="lineNum">     653 </span>            :           m + m * l1;  // Index of coef in the final recurrence formula.
+<span class="lineNum">     654 </span>            :       ++idx;
+<span class="lineNum">     655 </span>            :     }
+<span class="lineNum">     656 </span>            :     ASSERT(idx == index.size(), &quot;Wrong size &quot; &lt;&lt; idx &lt;&lt; &quot;, expected &quot;
+<span class="lineNum">     657 </span>            :                                               &lt;&lt; index.size());
+<span class="lineNum">     658 </span>            : 
+<span class="lineNum">     659 </span>            :     // Now do pmm, which stores Pbar(m,m).
+<span class="lineNum">     660 </span>            :     pmm[0] = M_SQRT1_2;  // 1/sqrt(2) = Pbar(0)(0)
+<span class="lineNum">     661 </span>            :     for (size_t m = 1; m &lt; l1; ++m) {
+<span class="lineNum">     662 </span>            :       pmm[m] = pmm[m - 1] * sqrt((2.0 * m + 1.0) / (2.0 * m));
+<span class="lineNum">     663 </span>            :     }
+<span class="lineNum">     664 </span>            :   }
+<span class="lineNum">     665 </span>            : 
+<span class="lineNum">     666 </span>            :   // Now fill interpolation_info.
+<span class="lineNum">     667 </span>            :   InterpolationInfo interpolation_info;
+<span class="lineNum">     668 </span>            :   interpolation_info.reserve(target_points.size());
+<span class="lineNum">     669 </span>            :   for (const auto&amp; pt : target_points) {
+<span class="lineNum">     670 </span>            :     interpolation_info.emplace_back(m_max_, pmm, pt);
+<span class="lineNum">     671 </span>            :   }
+<span class="lineNum">     672 </span>            :   return interpolation_info;
+<span class="lineNum">     673 </span>            : }
+<span class="lineNum">     674 </span>            : 
+<span class="lineNum">     675 </span>            : /// \cond DOXYGEN_FAILS_TO_PARSE_THIS
+<span class="lineNum">     676 </span>            : void YlmSpherepack::interpolate(
+<span class="lineNum">     677 </span>            :     const gsl::not_null&lt;std::vector&lt;double&gt;*&gt; result,
+<span class="lineNum">     678 </span>            :     const gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     679 </span>            :     const InterpolationInfo&amp; interpolation_info, const size_t physical_stride,
+<span class="lineNum">     680 </span>            :     const size_t physical_offset) const noexcept {
+<span class="lineNum">     681 </span>            :   ASSERT(result-&gt;size() == interpolation_info.size(),
+<span class="lineNum">     682 </span>            :          &quot;Size mismatch: &quot; &lt;&lt; result-&gt;size() &lt;&lt; &quot;,&quot;
+<span class="lineNum">     683 </span>            :                            &lt;&lt; interpolation_info.size());
+<span class="lineNum">     684 </span>            :   auto&amp; f_k = memory_pool_.get(spectral_size());
+<span class="lineNum">     685 </span>            :   phys_to_spec(f_k.data(), collocation_values, physical_stride, physical_offset,
+<span class="lineNum">     686 </span>            :                1, 0);
+<span class="lineNum">     687 </span>            :   interpolate_from_coefs(result, f_k, interpolation_info);
+<span class="lineNum">     688 </span>            :   memory_pool_.free(f_k);
+<span class="lineNum">     689 </span>            : }
+<span class="lineNum">     690 </span>            : /// \endcond
+<span class="lineNum">     691 </span>            : 
+<span class="lineNum">     692 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     693 </span><span class="lineNoCov">          0 : void YlmSpherepack::interpolate_from_coefs(</span>
+<span class="lineNum">     694 </span>            :     const gsl::not_null&lt;std::vector&lt;double&gt;*&gt; result, const T&amp; spectral_coefs,
+<span class="lineNum">     695 </span>            :     const InterpolationInfo&amp; interpolation_info, const size_t spectral_stride,
+<span class="lineNum">     696 </span>            :     const size_t spectral_offset) const noexcept {
+<span class="lineNum">     697 </span>            :   const auto&amp; alpha = storage_.work_interp_alpha;
+<span class="lineNum">     698 </span>            :   const auto&amp; beta = storage_.work_interp_beta;
+<span class="lineNum">     699 </span>            :   const auto&amp; index = storage_.work_interp_index;
+<span class="lineNum">     700 </span>            :   // alpha holds alpha(n,m,x)/x, beta holds beta(n+1,m).
+<span class="lineNum">     701 </span>            :   // index holds the index into the coefficient array.
+<span class="lineNum">     702 </span>            :   // All are indexed together.
+<span class="lineNum">     703 </span>            : 
+<span class="lineNum">     704 </span>            :   ASSERT(result-&gt;size() == interpolation_info.size(),
+<span class="lineNum">     705 </span>            :          &quot;Size mismatch: &quot; &lt;&lt; result-&gt;size() &lt;&lt; &quot;,&quot;
+<span class="lineNum">     706 </span>            :                            &lt;&lt; interpolation_info.size());
+<span class="lineNum">     707 </span>            : 
+<span class="lineNum">     708 </span>            :   const size_t l1 = m_max_ + 1;
+<span class="lineNum">     709 </span>            : 
+<span class="lineNum">     710 </span>            :   // Offsets of 'a' and 'b' in spectral_coefs.
+<span class="lineNum">     711 </span>            :   const size_t a_offset = spectral_offset;
+<span class="lineNum">     712 </span>            :   const size_t b_offset = spectral_offset + (l1 * n_theta_) * spectral_stride;
+<span class="lineNum">     713 </span>            : 
+<span class="lineNum">     714 </span>            :   std::fill(result-&gt;begin(), result-&gt;end(), 0.0);
+<span class="lineNum">     715 </span>            : 
+<span class="lineNum">     716 </span>            :   for (size_t i = 0; i &lt; result-&gt;size(); ++i) {
+<span class="lineNum">     717 </span>            :     const auto&amp; intrp_info = interpolation_info[i];
+<span class="lineNum">     718 </span>            :     const auto&amp; cos_theta = intrp_info.cos_theta;
+<span class="lineNum">     719 </span>            : 
+<span class="lineNum">     720 </span>            :     // Clenshaw recurrence for m=0.  Separate because there is no phi
+<span class="lineNum">     721 </span>            :     // dependence, and there is a factor of 1/2.
+<span class="lineNum">     722 </span>            :     size_t idx = 0;
+<span class="lineNum">     723 </span>            :     {
+<span class="lineNum">     724 </span>            :       double ycn = 0.0;
+<span class="lineNum">     725 </span>            :       double ycnp1 = 0.0;
+<span class="lineNum">     726 </span>            :       for (size_t n = n_theta_ - 1; n &gt; 0;
+<span class="lineNum">     727 </span>            :            --n, ++idx) {  // Loops from n_theta_-1 to 1.
+<span class="lineNum">     728 </span>            :         double ycnp2 = ycnp1;
+<span class="lineNum">     729 </span>            :         ycnp1 = ycn;
+<span class="lineNum">     730 </span>            :         ycn = cos_theta * alpha[idx] * ycnp1 + beta[idx] * ycnp2 +
+<span class="lineNum">     731 </span>            :               spectral_coefs[a_offset + spectral_stride * index[idx]];
+<span class="lineNum">     732 </span>            :       }
+<span class="lineNum">     733 </span>            :       (*result)[i] += 0.5 * intrp_info.pbar_factor[0] *
+<span class="lineNum">     734 </span>            :                       (beta[idx] * ycnp1 + cos_theta * alpha[idx] * ycn +
+<span class="lineNum">     735 </span>            :                        spectral_coefs[a_offset + spectral_stride * index[idx]]);
+<span class="lineNum">     736 </span>            :       ++idx;
+<span class="lineNum">     737 </span>            :     }
+<span class="lineNum">     738 </span>            :     // Now do recurrence for other m.
+<span class="lineNum">     739 </span>            :     for (size_t m = 1; m &lt; l1; ++m) {
+<span class="lineNum">     740 </span>            :       double ycn = 0.0;
+<span class="lineNum">     741 </span>            :       double ycnp1 = 0.0;
+<span class="lineNum">     742 </span>            :       double ysn = 0.0;
+<span class="lineNum">     743 </span>            :       double ysnp1 = 0.0;
+<span class="lineNum">     744 </span>            :       for (size_t n = n_theta_ - 1; n &gt; m; --n, ++idx) {
+<span class="lineNum">     745 </span>            :         double ycnp2 = ycnp1;
+<span class="lineNum">     746 </span>            :         double ysnp2 = ysnp1;
+<span class="lineNum">     747 </span>            :         ycnp1 = ycn;
+<span class="lineNum">     748 </span>            :         ysnp1 = ysn;
+<span class="lineNum">     749 </span>            :         ycn = cos_theta * alpha[idx] * ycnp1 + beta[idx] * ycnp2 +
+<span class="lineNum">     750 </span>            :               spectral_coefs[a_offset + spectral_stride * index[idx]];
+<span class="lineNum">     751 </span>            :         ysn = cos_theta * alpha[idx] * ysnp1 + beta[idx] * ysnp2 +
+<span class="lineNum">     752 </span>            :               spectral_coefs[b_offset + spectral_stride * index[idx]];
+<span class="lineNum">     753 </span>            :       }
+<span class="lineNum">     754 </span>            :       const double fc =
+<span class="lineNum">     755 </span>            :           intrp_info.pbar_factor[m] *
+<span class="lineNum">     756 </span>            :           (beta[idx] * ycnp1 + cos_theta * alpha[idx] * ycn +
+<span class="lineNum">     757 </span>            :            spectral_coefs[a_offset + spectral_stride * index[idx]]);
+<span class="lineNum">     758 </span>            :       const double fs =
+<span class="lineNum">     759 </span>            :           intrp_info.pbar_factor[m] *
+<span class="lineNum">     760 </span>            :           (beta[idx] * ysnp1 + cos_theta * alpha[idx] * ysn +
+<span class="lineNum">     761 </span>            :            spectral_coefs[b_offset + spectral_stride * index[idx]]);
+<span class="lineNum">     762 </span>            :       (*result)[i] +=
+<span class="lineNum">     763 </span>            :           fc * intrp_info.cos_m_phi[m] - fs * intrp_info.sin_m_phi[m];
+<span class="lineNum">     764 </span>            :       ++idx;
+<span class="lineNum">     765 </span>            :     }
+<span class="lineNum">     766 </span>            :     ASSERT(idx == index.size(), &quot;Wrong size &quot; &lt;&lt; idx &lt;&lt; &quot;, expected &quot;
+<span class="lineNum">     767 </span>            :                                               &lt;&lt; index.size());
+<span class="lineNum">     768 </span>            :   }
+<span class="lineNum">     769 </span>            : }
+<span class="lineNum">     770 </span>            : 
+<span class="lineNum">     771 </span>            : std::vector&lt;double&gt; YlmSpherepack::interpolate(
+<span class="lineNum">     772 </span>            :     const DataVector&amp; collocation_values,
+<span class="lineNum">     773 </span>            :     const std::vector&lt;std::array&lt;double, 2&gt;&gt;&amp; target_points) const noexcept {
+<span class="lineNum">     774 </span>            :   ASSERT(collocation_values.size() == physical_size(),
+<span class="lineNum">     775 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; collocation_values.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     776 </span>            :                                &lt;&lt; physical_size());
+<span class="lineNum">     777 </span>            :   std::vector&lt;double&gt; result(target_points.size());
+<span class="lineNum">     778 </span>            :   interpolate(&amp;result, collocation_values.data(),
+<span class="lineNum">     779 </span>            :               set_up_interpolation_info(target_points));
+<span class="lineNum">     780 </span>            :   return result;
+<span class="lineNum">     781 </span>            : }
+<span class="lineNum">     782 </span>            : 
+<span class="lineNum">     783 </span>            : std::vector&lt;double&gt; YlmSpherepack::interpolate_from_coefs(
+<span class="lineNum">     784 </span>            :     const DataVector&amp; spectral_coefs,
+<span class="lineNum">     785 </span>            :     const std::vector&lt;std::array&lt;double, 2&gt;&gt;&amp; target_points) const noexcept {
+<span class="lineNum">     786 </span>            :   ASSERT(spectral_coefs.size() == spectral_size(),
+<span class="lineNum">     787 </span>            :          &quot;Sizes don't match: &quot; &lt;&lt; spectral_coefs.size() &lt;&lt; &quot; vs &quot;
+<span class="lineNum">     788 </span>            :                                &lt;&lt; spectral_size());
+<span class="lineNum">     789 </span>            :   std::vector&lt;double&gt; result(target_points.size());
+<span class="lineNum">     790 </span>            :   interpolate_from_coefs(&amp;result, spectral_coefs,
+<span class="lineNum">     791 </span>            :                          set_up_interpolation_info(target_points));
+<span class="lineNum">     792 </span>            :   return result;
+<span class="lineNum">     793 </span>            : }
+<span class="lineNum">     794 </span>            : 
+<span class="lineNum">     795 </span>            : void YlmSpherepack::fill_vector_work_arrays() const noexcept {
+<span class="lineNum">     796 </span>            :   const size_t l2 = (n_theta_ + 1) / 2;
+<span class="lineNum">     797 </span>            :   auto&amp; work_vector_spec_to_phys = storage_.work_vector_spec_to_phys;
+<span class="lineNum">     798 </span>            : 
+<span class="lineNum">     799 </span>            :   // Allocate memory for vector work arrays
+<span class="lineNum">     800 </span>            :   // Throughout this file, the l1, mdb, mdc values
+<span class="lineNum">     801 </span>            :   // are set to min(n_theta_, (n_phi_+2)/2)), which is consistent
+<span class="lineNum">     802 </span>            :   // with l1 and mdab for scalars.  This is generally
+<span class="lineNum">     803 </span>            :   // larger than what is required by Spherepack
+<span class="lineNum">     804 </span>            :   // for vectors: min(n_theta_, (n_phi_+1)/2)).
+<span class="lineNum">     805 </span>            :   const size_t l_vhsgs =
+<span class="lineNum">     806 </span>            :       n_theta_ * l2 * (n_theta_ + 1) + n_phi_ + 15 + 2 * n_theta_;
+<span class="lineNum">     807 </span>            :   work_vector_spec_to_phys.assign(l_vhsgs, 0.0);
+<span class="lineNum">     808 </span>            : 
+<span class="lineNum">     809 </span>            :   // Initialize vector work arrays
+<span class="lineNum">     810 </span>            :   const size_t ldwg = (3 * n_theta_ * (n_theta_ + 3) + 2) / 2;
+<span class="lineNum">     811 </span>            :   auto&amp; dworkg = memory_pool_.get(ldwg);
+<span class="lineNum">     812 </span>            :   int err = 0;
+<span class="lineNum">     813 </span>            :   vhsgsi_(static_cast&lt;int&gt;(n_theta_), static_cast&lt;int&gt;(n_phi_),
+<span class="lineNum">     814 </span>            :           work_vector_spec_to_phys.data(), static_cast&lt;int&gt;(l_vhsgs),
+<span class="lineNum">     815 </span>            :           dworkg.data(), static_cast&lt;int&gt;(ldwg), &amp;err);
+<span class="lineNum">     816 </span>            :   if (UNLIKELY(err != 0)) {
+<span class="lineNum">     817 </span>            :     ERROR(&quot;vhsgsi error &quot; &lt;&lt; err &lt;&lt; &quot; in YlmSpherepack&quot;);
+<span class="lineNum">     818 </span>            :   }
+<span class="lineNum">     819 </span>            :   memory_pool_.free(dworkg);
+<span class="lineNum">     820 </span>            : }
+<span class="lineNum">     821 </span>            : 
+<span class="lineNum">     822 </span>            : void YlmSpherepack::fill_scalar_work_arrays() const noexcept {
+<span class="lineNum">     823 </span>            :   auto&amp; work_phys_to_spec = storage_.work_phys_to_spec;
+<span class="lineNum">     824 </span>            :   auto&amp; work_scalar_spec_to_phys = storage_.work_scalar_spec_to_phys;
+<span class="lineNum">     825 </span>            :   auto&amp; quadrature_weights = storage_.quadrature_weights;
+<span class="lineNum">     826 </span>            : 
+<span class="lineNum">     827 </span>            :   {
+<span class="lineNum">     828 </span>            :     auto&amp; weights = memory_pool_.get(n_theta_);
+<span class="lineNum">     829 </span>            :     auto&amp; work0 = memory_pool_.get(n_theta_);
+<span class="lineNum">     830 </span>            :     auto&amp; work1 = memory_pool_.get(n_theta_ + 1);
+<span class="lineNum">     831 </span>            :     int err = 0;
+<span class="lineNum">     832 </span>            :     gaqd_(static_cast&lt;int&gt;(n_theta_), work0.data(), weights.data(),
+<span class="lineNum">     833 </span>            :           work1.data(), static_cast&lt;int&gt;(n_theta_ + 1), &amp;err);
+<span class="lineNum">     834 </span>            :     memory_pool_.free(work0);
+<span class="lineNum">     835 </span>            :     memory_pool_.free(work1);
+<span class="lineNum">     836 </span>            :     if (UNLIKELY(err != 0)) {
+<span class="lineNum">     837 </span>            :       ERROR(&quot;gaqd error &quot; &lt;&lt; err &lt;&lt; &quot; in YlmSpherepack&quot;);
+<span class="lineNum">     838 </span>            :     }
+<span class="lineNum">     839 </span>            : 
+<span class="lineNum">     840 </span>            :     quadrature_weights.assign(n_theta_ * n_phi_, 2 * M_PI / n_phi_);
+<span class="lineNum">     841 </span>            :     for (size_t i = 0; i &lt; n_theta_; ++i) {
+<span class="lineNum">     842 </span>            :       for (size_t j = 0; j &lt; n_phi_; ++j) {
+<span class="lineNum">     843 </span>            :         quadrature_weights[i + j * n_theta_] *= weights[i];
+<span class="lineNum">     844 </span>            :       }
+<span class="lineNum">     845 </span>            :     }
+<span class="lineNum">     846 </span>            :     memory_pool_.free(weights);
+<span class="lineNum">     847 </span>            :   }
+<span class="lineNum">     848 </span>            : 
+<span class="lineNum">     849 </span>            :   // Allocate memory for scalar work arrays.
+<span class="lineNum">     850 </span>            : 
+<span class="lineNum">     851 </span>            :   // Below note that l1, l2, and ylm_work_size are ints, not size_ts, and
+<span class="lineNum">     852 </span>            :   // note the use of n_phi and n_theta.  The reason for this: The last
+<span class="lineNum">     853 </span>            :   // term in the expression for ylm_work_size can sometimes be negative.  If
+<span class="lineNum">     854 </span>            :   // evaluated using unsigned ints instead of ints, then this will
+<span class="lineNum">     855 </span>            :   // underflow and give a huge number.
+<span class="lineNum">     856 </span>            :   const auto l1 = static_cast&lt;int&gt;(m_max_ + 1);
+<span class="lineNum">     857 </span>            :   const auto l2 = static_cast&lt;int&gt;(n_theta_ + 1) / 2;
+<span class="lineNum">     858 </span>            :   const auto n_phi = static_cast&lt;int&gt;(n_phi_);
+<span class="lineNum">     859 </span>            :   const auto n_theta = static_cast&lt;int&gt;(n_theta_);
+<span class="lineNum">     860 </span>            :   const int ylm_work_size = n_phi + 15 + n_theta * (3 * (l1 + l2) - 2) +
+<span class="lineNum">     861 </span>            :                             (l1 - 1) * (l2 * (2 * n_theta - l1) - 3 * l1) / 2;
+<span class="lineNum">     862 </span>            :   ASSERT(ylm_work_size &gt;= 0, &quot;Bad size &quot; &lt;&lt; ylm_work_size);
+<span class="lineNum">     863 </span>            :   const auto l_ylm = static_cast&lt;size_t&gt;(ylm_work_size);
+<span class="lineNum">     864 </span>            : 
+<span class="lineNum">     865 </span>            :   work_phys_to_spec.assign(l_ylm, 0.0);
+<span class="lineNum">     866 </span>            :   work_scalar_spec_to_phys.assign(l_ylm, 0.0);
+<span class="lineNum">     867 </span>            : 
+<span class="lineNum">     868 </span>            :   // Initialize scalar work arrays
+<span class="lineNum">     869 </span>            :   const size_t work_size = 4 * n_theta_ * (n_theta_ + 2) + 2;
+<span class="lineNum">     870 </span>            :   auto&amp; work = memory_pool_.get(work_size);
+<span class="lineNum">     871 </span>            :   const size_t deriv_work_size = n_theta_ * (n_theta_ + 4);
+<span class="lineNum">     872 </span>            :   auto&amp; deriv_work = memory_pool_.get(deriv_work_size);
+<span class="lineNum">     873 </span>            :   int err = 0;
+<span class="lineNum">     874 </span>            :   shagsi_(n_theta, n_phi, work_phys_to_spec.data(), ylm_work_size, work.data(),
+<span class="lineNum">     875 </span>            :           static_cast&lt;int&gt;(work_size), deriv_work.data(),
+<span class="lineNum">     876 </span>            :           static_cast&lt;int&gt;(deriv_work_size), &amp;err);
+<span class="lineNum">     877 </span>            :   if (UNLIKELY(err != 0)) {
+<span class="lineNum">     878 </span>            :     ERROR(&quot;shagsi error &quot; &lt;&lt; err &lt;&lt; &quot; in YlmSpherepack&quot;);
+<span class="lineNum">     879 </span>            :   }
+<span class="lineNum">     880 </span>            :   shsgsi_(n_theta, n_phi, work_scalar_spec_to_phys.data(), ylm_work_size,
+<span class="lineNum">     881 </span>            :           work.data(), static_cast&lt;int&gt;(work_size), deriv_work.data(),
+<span class="lineNum">     882 </span>            :           static_cast&lt;int&gt;(deriv_work_size), &amp;err);
+<span class="lineNum">     883 </span>            :   if (UNLIKELY(err != 0)) {
+<span class="lineNum">     884 </span>            :     ERROR(&quot;shsgsi error &quot; &lt;&lt; err &lt;&lt; &quot; in YlmSpherepack&quot;);
+<span class="lineNum">     885 </span>            :   }
+<span class="lineNum">     886 </span>            :   memory_pool_.free(deriv_work);
+<span class="lineNum">     887 </span>            :   memory_pool_.free(work);
+<span class="lineNum">     888 </span>            : }
+<span class="lineNum">     889 </span>            : 
+<span class="lineNum">     890 </span>            : DataVector YlmSpherepack::prolong_or_restrict(const DataVector&amp; spectral_coefs,
+<span class="lineNum">     891 </span>            :                                               const YlmSpherepack&amp; target) const
+<span class="lineNum">     892 </span>            :     noexcept {
+<span class="lineNum">     893 </span>            :   ASSERT(spectral_coefs.size() == spectral_size(),
+<span class="lineNum">     894 </span>            :          &quot;Expecting &quot; &lt;&lt; spectral_size() &lt;&lt; &quot;, got &quot; &lt;&lt; spectral_coefs.size());
+<span class="lineNum">     895 </span>            :   DataVector result(target.spectral_size(), 0.0);
+<span class="lineNum">     896 </span>            :   SpherepackIterator src_it(l_max_, m_max_),
+<span class="lineNum">     897 </span>            :       dest_it(target.l_max_, target.m_max_);
+<span class="lineNum">     898 </span>            :   for (; dest_it; ++dest_it) {
+<span class="lineNum">     899 </span>            :     if (dest_it.l() &lt;= src_it.l_max() and dest_it.m() &lt;= src_it.m_max()) {
+<span class="lineNum">     900 </span>            :       src_it.set(dest_it.l(), dest_it.m(), dest_it.coefficient_array());
+<span class="lineNum">     901 </span>            :       result[dest_it()] = spectral_coefs[src_it()];
+<span class="lineNum">     902 </span>            :     }
+<span class="lineNum">     903 </span>            :   }
+<span class="lineNum">     904 </span>            :   return result;
+<span class="lineNum">     905 </span>            : }
+<span class="lineNum">     906 </span>            : 
+<span class="lineNum">     907 </span><span class="lineNoCov">          0 : bool operator==(const YlmSpherepack&amp; lhs, const YlmSpherepack&amp; rhs) noexcept {</span>
+<span class="lineNum">     908 </span>            :   return lhs.l_max() == rhs.l_max() and lhs.m_max() == rhs.m_max();
+<span class="lineNum">     909 </span>            : }
+<span class="lineNum">     910 </span>            : 
+<span class="lineNum">     911 </span><span class="lineNoCov">          0 : bool operator!=(const YlmSpherepack&amp; lhs, const YlmSpherepack&amp; rhs) noexcept {</span>
+<span class="lineNum">     912 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     913 </span>            : }
+<span class="lineNum">     914 </span>            : 
+<span class="lineNum">     915 </span>            : // Explicit instantiations
+<span class="lineNum">     916 </span>            : template void YlmSpherepack::interpolate_from_coefs&lt;std::vector&lt;double&gt;&gt;(
+<span class="lineNum">     917 </span>            :     const gsl::not_null&lt;std::vector&lt;double&gt;*&gt;, const std::vector&lt;double&gt;&amp;,
+<span class="lineNum">     918 </span>            :     const InterpolationInfo&amp;, size_t, size_t) const noexcept;
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

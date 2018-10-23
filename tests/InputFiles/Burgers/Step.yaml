@@ -1,0 +1,31 @@
+# Distributed under the MIT License.
+# See LICENSE.txt for details.
+
+# Executable: EvolveBurgers
+# Check: execute
+
+AnalyticSolution:
+  LeftValue: 2.
+  RightValue: 1.
+  InitialPosition: -0.5
+
+InitialTime: 0.0
+FinalTime: 0.1
+InitialTimeStep: 0.001
+
+DomainCreator:
+  Interval:
+    LowerBound: [-1.0]
+    UpperBound: [1.0]
+    IsPeriodicIn: [false]
+    InitialRefinement: [2]
+    InitialGridPoints: [7]
+
+TimeStepper:
+  AdamsBashforthN:
+    Order: 3
+
+NumericalFluxParams:
+
+SlopeLimiterParams:
+  Type: LambdaPi1

@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/Initialization/Domain.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Evolution/Initialization</a> - Domain.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryLo">25.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : #include &lt;utility&gt;
+<span class="lineNum">       9 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/DataBox/DataBox.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/DataBox/DataBoxTag.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Domain/CreateInitialElement.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Domain/Domain.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Domain/Element.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Domain/ElementId.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Domain/ElementMap.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Domain/LogicalCoordinates.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Domain/Mesh.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Domain/MinimumGridSpacing.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Domain/Tags.hpp&quot;
+<span class="lineNum">      22 </span>            : #include &quot;Evolution/Initialization/Helpers.hpp&quot;
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : /// \cond
+<span class="lineNum">      25 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      26 </span>            : class ElementIndex;
+<span class="lineNum">      27 </span>            : namespace Frame {
+<span class="lineNum">      28 </span>            : struct Inertial;
+<span class="lineNum">      29 </span>            : }  // namespace Frame
+<span class="lineNum">      30 </span>            : /// \endcond
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : namespace Initialization {
+<span class="lineNum">      33 </span>            : 
+<span class="lineNum">      34 </span>            : /// \brief Initialize items related to the basic structure of the Domain
+<span class="lineNum">      35 </span>            : ///
+<span class="lineNum">      36 </span>            : /// DataBox changes:
+<span class="lineNum">      37 </span>            : /// - Adds:
+<span class="lineNum">      38 </span>            : ///   * `Tags::Mesh&lt;Dim&gt;`
+<span class="lineNum">      39 </span>            : ///   * `Tags::Element&lt;Dim&gt;`
+<span class="lineNum">      40 </span>            : ///   * `Tags::ElementMap&lt;Dim&gt;`
+<span class="lineNum">      41 </span>            : ///   * `Tags::LogicalCoordinates&lt;Dim&gt;`
+<span class="lineNum">      42 </span>            : ///   * `Tags::MappedCoordinates`
+<span class="lineNum">      43 </span>            : ///   * `Tags::InverseJacobian`
+<span class="lineNum">      44 </span>            : ///   * `Tags::MinimumGridSpacing&lt;Dim, Frame::Inertial&gt;&gt;`
+<span class="lineNum">      45 </span>            : /// - Removes: nothing
+<span class="lineNum">      46 </span>            : /// - Modifies: nothing
+<span class="lineNum">      47 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      48 </span><span class="lineCov">          1 : struct Domain {</span>
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 :   using simple_tags = db::AddSimpleTags&lt;Tags::Mesh&lt;Dim&gt;, Tags::Element&lt;Dim&gt;,</span>
+<span class="lineNum">      50 </span>            :                                         Tags::ElementMap&lt;Dim&gt;&gt;;
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :   using compute_tags =</span>
+<span class="lineNum">      53 </span>            :       db::AddComputeTags&lt;Tags::LogicalCoordinates&lt;Dim&gt;,
+<span class="lineNum">      54 </span>            :                          Tags::MappedCoordinates&lt;Tags::ElementMap&lt;Dim&gt;,
+<span class="lineNum">      55 </span>            :                                                  Tags::LogicalCoordinates&lt;Dim&gt;&gt;,
+<span class="lineNum">      56 </span>            :                          Tags::InverseJacobian&lt;Tags::ElementMap&lt;Dim&gt;,
+<span class="lineNum">      57 </span>            :                                                Tags::LogicalCoordinates&lt;Dim&gt;&gt;,
+<span class="lineNum">      58 </span>            :                          Tags::MinimumGridSpacing&lt;Dim, Frame::Inertial&gt;&gt;;
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            :   template &lt;typename TagsList&gt;
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 :   static auto initialize(</span>
+<span class="lineNum">      62 </span>            :       db::DataBox&lt;TagsList&gt;&amp;&amp; box, const ElementIndex&lt;Dim&gt;&amp; array_index,
+<span class="lineNum">      63 </span>            :       const std::vector&lt;std::array&lt;size_t, Dim&gt;&gt;&amp; initial_extents,
+<span class="lineNum">      64 </span>            :       const ::Domain&lt;Dim, Frame::Inertial&gt;&amp; domain) noexcept {
+<span class="lineNum">      65 </span>            :     const ElementId&lt;Dim&gt; element_id{array_index};
+<span class="lineNum">      66 </span>            :     const auto&amp; my_block = domain.blocks()[element_id.block_id()];
+<span class="lineNum">      67 </span>            :     Mesh&lt;Dim&gt; mesh = element_mesh(initial_extents, element_id);
+<span class="lineNum">      68 </span>            :     Element&lt;Dim&gt; element = create_initial_element(element_id, my_block);
+<span class="lineNum">      69 </span>            :     ElementMap&lt;Dim, Frame::Inertial&gt; map{element_id,
+<span class="lineNum">      70 </span>            :                                          my_block.coordinate_map().get_clone()};
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            :     return db::create_from&lt;db::RemoveTags&lt;&gt;, simple_tags, compute_tags&gt;(
+<span class="lineNum">      73 </span>            :         std::move(box), std::move(mesh), std::move(element), std::move(map));
+<span class="lineNum">      74 </span>            :   }
+<span class="lineNum">      75 </span>            : };
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span>            : }  // namespace Initialization
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Domain/LogicalCoordinates.cpp File Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_7afaef6ae7a94ddf3cc0ef59b99b3f6c.html">Domain</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">LogicalCoordinates.cpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Defines functions logical_coordinates and interface_logical_coordinates.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="LogicalCoordinates_8hpp_source.html">Domain/LogicalCoordinates.hpp</a>&quot;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/array.html">array</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="DataVector_8hpp_source.html">DataStructures/DataVector.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IndexIterator_8hpp_source.html">DataStructures/IndexIterator.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Tensor_8hpp_source.html">DataStructures/Tensor/Tensor.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Direction_8hpp_source.html">Domain/Direction.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Mesh_8hpp_source.html">Domain/Mesh.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Side_8hpp_source.html">Domain/Side.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Spectral_8hpp_source.html">NumericalAlgorithms/Spectral/Spectral.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Gsl_8hpp_source.html">Utilities/Gsl.hpp</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gae78010c7660148ca595b42d17b38936a"><td class="memTemplParams" colspan="2">template&lt;size_t VolumeDim&gt; </td></tr>
+<tr class="memitem:gae78010c7660148ca595b42d17b38936a"><td class="memTemplItemLeft" align="right" valign="top">tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, VolumeDim, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ComputationalDomainGroup.html#gae78010c7660148ca595b42d17b38936a">logical_coordinates</a> (const <a class="el" href="classMesh.html">Mesh</a>&lt; VolumeDim &gt; &amp;mesh) noexcept</td></tr>
+<tr class="memdesc:gae78010c7660148ca595b42d17b38936a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the logical coordinates in an <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a>.  <a href="group__ComputationalDomainGroup.html#gae78010c7660148ca595b42d17b38936a">More...</a><br /></td></tr>
+<tr class="separator:gae78010c7660148ca595b42d17b38936a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac857ec0446d088d1d17cf96376ba8e3c"><td class="memTemplParams" colspan="2">template&lt;size_t VolumeDim&gt; </td></tr>
+<tr class="memitem:gac857ec0446d088d1d17cf96376ba8e3c"><td class="memTemplItemLeft" align="right" valign="top">tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, VolumeDim, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ComputationalDomainGroup.html#gac857ec0446d088d1d17cf96376ba8e3c">interface_logical_coordinates</a> (const <a class="el" href="classMesh.html">Mesh</a>&lt; VolumeDim - 1 &gt; &amp;mesh, const <a class="el" href="classDirection.html">Direction</a>&lt; VolumeDim &gt; &amp;direction) noexcept</td></tr>
+<tr class="memdesc:gac857ec0446d088d1d17cf96376ba8e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the logical coordinates on a face of an <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a>.  <a href="group__ComputationalDomainGroup.html#gac857ec0446d088d1d17cf96376ba8e3c">More...</a><br /></td></tr>
+<tr class="separator:gac857ec0446d088d1d17cf96376ba8e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c0fed0ab123ce710f1bfaba5842a85c"><td class="memTemplParams" colspan="2"><a id="a2c0fed0ab123ce710f1bfaba5842a85c"></a>
+template&lt;&gt; </td></tr>
+<tr class="memitem:a2c0fed0ab123ce710f1bfaba5842a85c"><td class="memTemplItemLeft" align="right" valign="top">tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 1, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>interface_logical_coordinates&lt; 1 &gt;</b> (const <a class="el" href="classMesh.html">Mesh</a>&lt; 0 &gt; &amp;mesh, const <a class="el" href="classDirection.html">Direction</a>&lt; 1 &gt; &amp;direction) noexcept</td></tr>
+<tr class="separator:a2c0fed0ab123ce710f1bfaba5842a85c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ef48ced1a6620710cbf26783a700e48"><td class="memItemLeft" align="right" valign="top"><a id="a0ef48ced1a6620710cbf26783a700e48"></a>
+template tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 1, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>logical_coordinates</b> (const <a class="el" href="classMesh.html">Mesh</a>&lt; 1 &gt; &amp;) noexcept</td></tr>
+<tr class="separator:a0ef48ced1a6620710cbf26783a700e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5541876ea5b9239f83d19c5b066df97e"><td class="memItemLeft" align="right" valign="top"><a id="a5541876ea5b9239f83d19c5b066df97e"></a>
+template tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 2, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>logical_coordinates</b> (const <a class="el" href="classMesh.html">Mesh</a>&lt; 2 &gt; &amp;) noexcept</td></tr>
+<tr class="separator:a5541876ea5b9239f83d19c5b066df97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3d824817e4f8ca34d4c416224c76f7d"><td class="memItemLeft" align="right" valign="top"><a id="ac3d824817e4f8ca34d4c416224c76f7d"></a>
+template tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>logical_coordinates</b> (const <a class="el" href="classMesh.html">Mesh</a>&lt; 3 &gt; &amp;) noexcept</td></tr>
+<tr class="separator:ac3d824817e4f8ca34d4c416224c76f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a488fc0e4c0a2f8e778cc7d83e5dfe3dd"><td class="memItemLeft" align="right" valign="top"><a id="a488fc0e4c0a2f8e778cc7d83e5dfe3dd"></a>
+template tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 2, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>interface_logical_coordinates</b> (const <a class="el" href="classMesh.html">Mesh</a>&lt; 1 &gt; &amp;, const <a class="el" href="classDirection.html">Direction</a>&lt; 2 &gt; &amp;) noexcept</td></tr>
+<tr class="separator:a488fc0e4c0a2f8e778cc7d83e5dfe3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae73464d22be2d103e321104a742ed614"><td class="memItemLeft" align="right" valign="top"><a id="ae73464d22be2d103e321104a742ed614"></a>
+template tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, 3, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>interface_logical_coordinates</b> (const <a class="el" href="classMesh.html">Mesh</a>&lt; 2 &gt; &amp;, const <a class="el" href="classDirection.html">Direction</a>&lt; 3 &gt; &amp;) noexcept</td></tr>
+<tr class="separator:ae73464d22be2d103e321104a742ed614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines functions logical_coordinates and interface_logical_coordinates. </p>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

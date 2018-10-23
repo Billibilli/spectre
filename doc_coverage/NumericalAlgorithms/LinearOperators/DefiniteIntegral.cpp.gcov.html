@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/LinearOperators/DefiniteIntegral.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/LinearOperators</a> - DefiniteIntegral.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;NumericalAlgorithms/LinearOperators/DefiniteIntegral.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;Domain/Mesh.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;NumericalAlgorithms/Spectral/Spectral.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/Blas.hpp&quot;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : namespace {
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      17 </span>            : DataVector integrate_over_last_dimension(const DataVector&amp; integrand,
+<span class="lineNum">      18 </span>            :                                          const Mesh&lt;Dim&gt;&amp; mesh) noexcept {
+<span class="lineNum">      19 </span>            :   static_assert(Dim &gt; 1, &quot;Expect dimension to be at least 2.&quot;);
+<span class="lineNum">      20 </span>            :   const DataVector&amp; weights =
+<span class="lineNum">      21 </span>            :       Spectral::quadrature_weights(mesh.slice_through(Dim - 1));
+<span class="lineNum">      22 </span>            :   const size_t reduced_size = mesh.slice_away(Dim - 1).number_of_grid_points();
+<span class="lineNum">      23 </span>            :   DataVector integrated_data(reduced_size, 0.);
+<span class="lineNum">      24 </span>            :   dgemv_('N', reduced_size, mesh.extents(Dim - 1), 1., integrand.data(),
+<span class="lineNum">      25 </span>            :          reduced_size, weights.data(), 1, 0., integrated_data.data(), 1);
+<span class="lineNum">      26 </span>            :   return integrated_data;
+<span class="lineNum">      27 </span>            : }
+<span class="lineNum">      28 </span>            : }  // namespace
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      31 </span><span class="lineCov">          1 : double definite_integral(const DataVector&amp; integrand,</span>
+<span class="lineNum">      32 </span>            :                          const Mesh&lt;Dim&gt;&amp; mesh) noexcept {
+<span class="lineNum">      33 </span>            :   const size_t num_grid_points = mesh.number_of_grid_points();
+<span class="lineNum">      34 </span>            :   ASSERT(integrand.size() == num_grid_points,
+<span class="lineNum">      35 </span>            :          &quot;num_grid_points = &quot; &lt;&lt; num_grid_points
+<span class="lineNum">      36 </span>            :                               &lt;&lt; &quot;, integrand size = &quot; &lt;&lt; integrand.size());
+<span class="lineNum">      37 </span>            :   return definite_integral(integrate_over_last_dimension(integrand, mesh),
+<span class="lineNum">      38 </span>            :                            mesh.slice_away(Dim - 1));
+<span class="lineNum">      39 </span>            : }
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            : template &lt;&gt;
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 : double definite_integral&lt;1&gt;(const DataVector&amp; integrand,</span>
+<span class="lineNum">      43 </span>            :                             const Mesh&lt;1&gt;&amp; mesh) noexcept {
+<span class="lineNum">      44 </span>            :   const size_t num_grid_points = mesh.number_of_grid_points();
+<span class="lineNum">      45 </span>            :   ASSERT(integrand.size() == num_grid_points,
+<span class="lineNum">      46 </span>            :          &quot;num_grid_points = &quot; &lt;&lt; num_grid_points
+<span class="lineNum">      47 </span>            :                               &lt;&lt; &quot;, integrand size = &quot; &lt;&lt; integrand.size());
+<span class="lineNum">      48 </span>            :   const DataVector&amp; weights = Spectral::quadrature_weights(mesh);
+<span class="lineNum">      49 </span>            :   return ddot_(num_grid_points, weights.data(), 1, integrand.data(), 1);
+<span class="lineNum">      50 </span>            : }
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            : /// \cond
+<span class="lineNum">      53 </span>            : template double definite_integral&lt;2&gt;(const DataVector&amp;,
+<span class="lineNum">      54 </span>            :                                      const Mesh&lt;2&gt;&amp;) noexcept;
+<span class="lineNum">      55 </span>            : template double definite_integral&lt;3&gt;(const DataVector&amp;,
+<span class="lineNum">      56 </span>            :                                      const Mesh&lt;3&gt;&amp;) noexcept;
+<span class="lineNum">      57 </span>            : /// \endcond
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

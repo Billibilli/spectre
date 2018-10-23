@@ -1,0 +1,261 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: dg::NumericalFluxes::Hll&lt; System &gt; Struct Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>dg</b></li><li class="navelem"><b>NumericalFluxes</b></li><li class="navelem"><a class="el" href="structdg_1_1NumericalFluxes_1_1Hll.html">Hll</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="structdg_1_1NumericalFluxes_1_1Hll-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">dg::NumericalFluxes::Hll&lt; System &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__DiscontinuousGalerkinGroup.html">Discontinuous Galerkin</a> &#124; <a class="el" href="group__NumericalFluxesGroup.html">Numerical Fluxes</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Compute the HLL numerical flux.  
+ <a href="structdg_1_1NumericalFluxes_1_1Hll.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Hll_8hpp_source.html">Hll.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1NumericalFluxes_1_1Hll_1_1MaxSignalSpeed.html">MaxSignalSpeed</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum signal velocity bounding the wavespeeds on one side of the interface.  <a href="structdg_1_1NumericalFluxes_1_1Hll_1_1MaxSignalSpeed.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdg_1_1NumericalFluxes_1_1Hll_1_1MinSignalSpeed.html">MinSignalSpeed</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The minimum signal velocity bounding the wavespeeds on one side of the interface.  <a href="structdg_1_1NumericalFluxes_1_1Hll_1_1MinSignalSpeed.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a356d4fbca1c94773717230a1decee4e7"><td class="memItemLeft" align="right" valign="top"><a id="a356d4fbca1c94773717230a1decee4e7"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>package_tags</b> = tmpl::append&lt; <a class="el" href="group__DataBoxGroup.html#ga97296c560675e55606cd3ebd7dd95b39">db::split_tag</a>&lt; <a class="el" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix</a>&lt;::<a class="el" href="structTags_1_1NormalDotFlux.html">Tags::NormalDotFlux</a>, variables_tag &gt; &gt;, <a class="el" href="group__DataBoxGroup.html#ga97296c560675e55606cd3ebd7dd95b39">db::split_tag</a>&lt; variables_tag &gt;, tmpl::list&lt; <a class="el" href="structdg_1_1NumericalFluxes_1_1Hll_1_1MinSignalSpeed.html">MinSignalSpeed</a>, <a class="el" href="structdg_1_1NumericalFluxes_1_1Hll_1_1MaxSignalSpeed.html">MaxSignalSpeed</a> &gt; &gt;</td></tr>
+<tr class="separator:a356d4fbca1c94773717230a1decee4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9a3cb78e65d0fc275ce15350455e690"><td class="memItemLeft" align="right" valign="top"><a id="ab9a3cb78e65d0fc275ce15350455e690"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>argument_tags</b> = tmpl::push_back&lt; tmpl::append&lt; <a class="el" href="group__DataBoxGroup.html#ga97296c560675e55606cd3ebd7dd95b39">db::split_tag</a>&lt; <a class="el" href="group__DataBoxTagsGroup.html#gab3e7a8857504fa5070c052bacba656cd">db::add_tag_prefix</a>&lt; ::<a class="el" href="structTags_1_1NormalDotFlux.html">Tags::NormalDotFlux</a>, variables_tag &gt; &gt;, <a class="el" href="group__DataBoxGroup.html#ga97296c560675e55606cd3ebd7dd95b39">db::split_tag</a>&lt; variables_tag &gt; &gt;, char_speeds_tag &gt;</td></tr>
+<tr class="separator:ab9a3cb78e65d0fc275ce15350455e690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ddfcd88b1a428d1835512dcae0bf7a2"><td class="memItemLeft" align="right" valign="top"><a id="a1ddfcd88b1a428d1835512dcae0bf7a2"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>options</b> = tmpl::list&lt;&gt;</td></tr>
+<tr class="separator:a1ddfcd88b1a428d1835512dcae0bf7a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a08a92628affea417af5bb9c2eab95c76"><td class="memItemLeft" align="right" valign="top"><a id="a08a92628affea417af5bb9c2eab95c76"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;) noexcept</td></tr>
+<tr class="separator:a08a92628affea417af5bb9c2eab95c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a369be4eb015172db38903e57d7edaed5"><td class="memTemplParams" colspan="2"><a id="a369be4eb015172db38903e57d7edaed5"></a>
+template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a369be4eb015172db38903e57d7edaed5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>package_data</b> (const Args &amp;... args) const noexcept</td></tr>
+<tr class="separator:a369be4eb015172db38903e57d7edaed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97bd8d9e18bb504086155795e65cbf57"><td class="memTemplParams" colspan="2"><a id="a97bd8d9e18bb504086155795e65cbf57"></a>
+template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a97bd8d9e18bb504086155795e65cbf57"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const Args &amp;... args) const noexcept</td></tr>
+<tr class="separator:a97bd8d9e18bb504086155795e65cbf57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a1ecf3ca328da650ef886013321ce3f60"><td class="memItemLeft" align="right" valign="top"><a id="a1ecf3ca328da650ef886013321ce3f60"></a>
+static constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a>&#160;</td><td class="memItemRight" valign="bottom"><b>help</b> = {&quot;Computes the HLL numerical flux.&quot;}</td></tr>
+<tr class="separator:a1ecf3ca328da650ef886013321ce3f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename System&gt;<br />
+struct dg::NumericalFluxes::Hll&lt; System &gt;</h3>
+
+<p>Compute the HLL numerical flux. </p>
+<p>Let \(U\) and \(F^i(U)\) be the state vector of the system and its corresponding volume flux, respectively. Let \(n_i\) be the unit normal to the interface. Defining \(F_n(U) := n_i F^i(U)\), and denoting the corresponding projections of the numerical fluxes as \({F_n}^*(U)\), the HLL flux <a class="el" href="structdg_1_1NumericalFluxes_1_1Hll.html#hll_ref">[1]</a> for each variable is</p>
+<p class="formulaDsp">
+\begin{align*} {F_n}^*(U) = \frac{c_\text{max} F_n(U_\text{int}) - c_\text{min} F_n(U_\text{ext})}{c_\text{max} - c_\text{min}} - \frac{c_\text{min}c_\text{max}}{c_\text{max} - c_\text{min}} \left(U_\text{int} - U_\text{ext}\right) \end{align*}
+</p>
+<p>where "int" and "ext" stand for interior and exterior, respectively. \(c_\text{min}\) and \(c_\text{max}\) are estimates on the minimum and maximum signal velocities bounding the interior-moving and exterior-moving wavespeeds that arise when solving the Riemann problem. Here we use the simple estimates <a class="el" href="structdg_1_1NumericalFluxes_1_1Hll.html#estimates_ref">[2]</a></p>
+<p class="formulaDsp">
+\begin{align*} c_\text{min} &amp;= \text{min}\left( \lambda_1(U_\text{int}; n_\text{int}), \lambda_1(U_\text{ext}; n_\text{ext}), 0\right),\\ c_\text{max} &amp;= \text{max}\left( \lambda_N(U_\text{int}; n_\text{int}), \lambda_N(U_\text{ext}; n_\text{ext}), 0\right), \end{align*}
+</p>
+<p>where \(\lambda_1(U; n) \leq \lambda_2(U; n) \leq ... \leq \lambda_N(U; n)\) are the (ordered) characteristic speeds of the system. Note that the definitions above ensure that \(c_\text{min} \leq 0\) and \(c_\text{max} \geq 0\). Also, for either \(c_\text{min} = 0\) or \(c_\text{max} = 0\) (i.e. all characteristics move in the same direction) the HLL flux reduces to pure upwinding.</p>
+<p><a class="anchor" id="hll_ref"></a>[1] A. Harten, P. D. Lax, B. van Leer, On Upstream Differencing and Godunov-Type Schemes for Hyperbolic Conservation Laws, SIAM Rev. <a href="https://doi.org/10.1137/1025002">25 (1983) 35</a></p>
+<p><a class="anchor" id="estimates_ref"></a>[2] S. F. Davis, Simplified Second-Order Godunov-Type Methods, SIAM J. Sci. Stat. Comput. <a href="https://doi.org/10.1137/0909030">9 (1988) 445</a> </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/NumericalAlgorithms/DiscontinuousGalerkin/NumericalFluxes/<a class="el" href="Hll_8hpp_source.html">Hll.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

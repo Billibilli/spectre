@@ -1,0 +1,244 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: LinearSolver Namespace Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">LinearSolver Namespace Reference<div class="ingroups"><a class="el" href="group__LinearSolverGroup.html">Linear Solver</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Functionality for solving linear systems of equations.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceLinearSolver_1_1InnerProductImpls"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceLinearSolver_1_1InnerProductImpls.html">InnerProductImpls</a></td></tr>
+<tr class="memdesc:namespaceLinearSolver_1_1InnerProductImpls"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementations of <a class="el" href="group__LinearSolverGroup.html#ga9f4f80fb21f848e2fac02bebe6c1d1e0" title="The local part of the Euclidean inner product on the vector space w.r.t. which the addition and scala...">LinearSolver::inner_product</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceLinearSolver_1_1Tags"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceLinearSolver_1_1Tags.html">Tags</a></td></tr>
+<tr class="memdesc:namespaceLinearSolver_1_1Tags"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="group__DataBoxGroup.html">DataBox</a> tags associated with the linear solver. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLinearSolver_1_1ConjugateGradient.html">ConjugateGradient</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A conjugate gradient solver for linear systems of equations \(Ax=b\) where the operator \(A\) is symmetric.  <a href="structLinearSolver_1_1ConjugateGradient.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies a step in the linear solver algorithm.  <a href="structLinearSolver_1_1IterationId.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga9f4f80fb21f848e2fac02bebe6c1d1e0"><td class="memTemplParams" colspan="2">template&lt;typename Lhs , typename Rhs &gt; </td></tr>
+<tr class="memitem:ga9f4f80fb21f848e2fac02bebe6c1d1e0"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__LinearSolverGroup.html#ga9f4f80fb21f848e2fac02bebe6c1d1e0">inner_product</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) noexcept</td></tr>
+<tr class="memdesc:ga9f4f80fb21f848e2fac02bebe6c1d1e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The local part of the Euclidean inner product on the vector space w.r.t. which the addition and scalar multiplication of both <code>Lhs</code> and <code>Rhs</code> is defined.  <a href="group__LinearSolverGroup.html#ga9f4f80fb21f848e2fac02bebe6c1d1e0">More...</a><br /></td></tr>
+<tr class="separator:ga9f4f80fb21f848e2fac02bebe6c1d1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaec6c27cc2f064a3d194974c7e7c882d"><td class="memItemLeft" align="right" valign="top"><a id="aaec6c27cc2f064a3d194974c7e7c882d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;a, const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;b) noexcept</td></tr>
+<tr class="separator:aaec6c27cc2f064a3d194974c7e7c882d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6f1e0702600e9f39e17900b1871d44b"><td class="memItemLeft" align="right" valign="top"><a id="af6f1e0702600e9f39e17900b1871d44b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;a, const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;b) noexcept</td></tr>
+<tr class="separator:af6f1e0702600e9f39e17900b1871d44b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fc34c0b4c941a0ef10777c1d5d02cad"><td class="memItemLeft" align="right" valign="top"><a id="a8fc34c0b4c941a0ef10777c1d5d02cad"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;a, const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;b) noexcept</td></tr>
+<tr class="separator:a8fc34c0b4c941a0ef10777c1d5d02cad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a16c86388bfeceba228e31d901b1a38"><td class="memItemLeft" align="right" valign="top"><a id="a4a16c86388bfeceba228e31d901b1a38"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;=</b> (const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;a, const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;b) noexcept</td></tr>
+<tr class="separator:a4a16c86388bfeceba228e31d901b1a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41ad471b2e261d749891508338c05cee"><td class="memItemLeft" align="right" valign="top"><a id="a41ad471b2e261d749891508338c05cee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;</b> (const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;a, const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;b) noexcept</td></tr>
+<tr class="separator:a41ad471b2e261d749891508338c05cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d2a4267ee2832e84d08b2f8ba6e3b49"><td class="memItemLeft" align="right" valign="top"><a id="a8d2a4267ee2832e84d08b2f8ba6e3b49"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;=</b> (const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;a, const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;b) noexcept</td></tr>
+<tr class="separator:a8d2a4267ee2832e84d08b2f8ba6e3b49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5ff45e84e6b71f5bf242a1b3d8080be"><td class="memItemLeft" align="right" valign="top"><a id="ab5ff45e84e6b71f5bf242a1b3d8080be"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;s, const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;id) noexcept</td></tr>
+<tr class="separator:ab5ff45e84e6b71f5bf242a1b3d8080be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3863a29c6381006391599e2a677ae57"><td class="memItemLeft" align="right" valign="top"><a id="ae3863a29c6381006391599e2a677ae57"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>hash_value</b> (const <a class="el" href="structLinearSolver_1_1IterationId.html">IterationId</a> &amp;id) noexcept</td></tr>
+<tr class="separator:ae3863a29c6381006391599e2a677ae57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Functionality for solving linear systems of equations. </p>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

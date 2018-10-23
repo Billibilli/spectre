@@ -1,0 +1,1028 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: DataBox</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">DataBox</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Documentation, functions, metafunctions, and classes necessary for using DataBox.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacedb"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb.html">db</a></td></tr>
+<tr class="memdesc:namespacedb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace for DataBox related things. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html">db::DataBox&lt; tmpl::list&lt; Tags... &gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A DataBox stores objects that can be retrieved by using Tags.  <a href="classdb_1_1DataBox_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1SimpleTag.html">db::SimpleTag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tags for the DataBox inherit from this type.  <a href="structdb_1_1SimpleTag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1BaseTag.html">db::BaseTag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tags that are base tags, i.e. a simple or compute tag must derive off them for them to be useful.  <a href="structdb_1_1BaseTag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1PrefixTag.html">db::PrefixTag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks an item as being a prefix to another tag.  <a href="structdb_1_1PrefixTag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1ComputeTag.html">db::ComputeTag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a DataBoxTag as being a compute item that executes a function.  <a href="structdb_1_1ComputeTag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1is__compute__item.html">db::is_compute_item&lt; Tag, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>Tag</code> derives off of <a class="el" href="structdb_1_1ComputeTag.html" title="Marks a DataBoxTag as being a compute item that executes a function. ">db::ComputeTag</a>.  <a href="structdb_1_1is__compute__item.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1is__non__base__tag.html">db::is_non_base_tag&lt; Tag, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>Tag</code> is a non-base DataBox tag. I.e. a <a class="el" href="structdb_1_1SimpleTag.html" title="Tags for the DataBox inherit from this type. ">SimpleTag</a> or a <a class="el" href="structdb_1_1ComputeTag.html" title="Marks a DataBoxTag as being a compute item that executes a function. ">ComputeTag</a>.  <a href="structdb_1_1is__non__base__tag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1is__tag.html">db::is_tag&lt; Tag, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>Tag</code> is a <a class="el" href="structdb_1_1BaseTag.html" title="Tags that are base tags, i.e. a simple or compute tag must derive off them for them to be useful...">BaseTag</a>, <a class="el" href="structdb_1_1SimpleTag.html" title="Tags for the DataBox inherit from this type. ">SimpleTag</a>, or <a class="el" href="structdb_1_1ComputeTag.html" title="Marks a DataBoxTag as being a compute item that executes a function. ">ComputeTag</a>.  <a href="structdb_1_1is__tag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1is__base__tag.html">db::is_base_tag&lt; Tag, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>Tag</code> is a base DataBox tag.  <a href="structdb_1_1is__base__tag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdb_1_1Subitems.html">db::Subitems&lt; TagList, Tag, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct that can be specialized to allow DataBox items to have subitems. Specializations must define:  <a href="structdb_1_1Subitems.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeferred.html">Deferred&lt; Rt, MakeConstReference &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides deferred or lazy evaluation of a function or function object, as well as efficient storage of an object that is mutable.  <a href="classDeferred.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gabd63e443e3b9a35ef6307d0ded3890ca"><td class="memTemplParams" colspan="2"><a id="gabd63e443e3b9a35ef6307d0ded3890ca"></a>
+template&lt;typename... Tags&gt; </td></tr>
+<tr class="memitem:gabd63e443e3b9a35ef6307d0ded3890ca"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#gabd63e443e3b9a35ef6307d0ded3890ca">db::RemoveTags</a> = tmpl::flatten&lt; tmpl::list&lt; Tags... &gt; &gt;</td></tr>
+<tr class="memdesc:gabd63e443e3b9a35ef6307d0ded3890ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of Tags to remove from the DataBox. <br /></td></tr>
+<tr class="separator:gabd63e443e3b9a35ef6307d0ded3890ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3dc674ba575ece4a8be1c23fa6c2cdcb"><td class="memTemplParams" colspan="2"><a id="ga3dc674ba575ece4a8be1c23fa6c2cdcb"></a>
+template&lt;typename... Tags&gt; </td></tr>
+<tr class="memitem:ga3dc674ba575ece4a8be1c23fa6c2cdcb"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags</a> = tmpl::flatten&lt; tmpl::list&lt; Tags... &gt; &gt;</td></tr>
+<tr class="memdesc:ga3dc674ba575ece4a8be1c23fa6c2cdcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of Tags to add to the DataBox. <br /></td></tr>
+<tr class="separator:ga3dc674ba575ece4a8be1c23fa6c2cdcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga64597eb7f5df0dc4d99698289265b1a7"><td class="memTemplParams" colspan="2"><a id="ga64597eb7f5df0dc4d99698289265b1a7"></a>
+template&lt;typename... Tags&gt; </td></tr>
+<tr class="memitem:ga64597eb7f5df0dc4d99698289265b1a7"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags</a> = tmpl::flatten&lt; tmpl::list&lt; Tags... &gt; &gt;</td></tr>
+<tr class="memdesc:ga64597eb7f5df0dc4d99698289265b1a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of Compute Item Tags to add to the DataBox. <br /></td></tr>
+<tr class="separator:ga64597eb7f5df0dc4d99698289265b1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3958ab1ffd31ad1423420db3542f8f3e"><td class="memTemplParams" colspan="2"><a id="ga3958ab1ffd31ad1423420db3542f8f3e"></a>
+template&lt;class TagList &gt; </td></tr>
+<tr class="memitem:ga3958ab1ffd31ad1423420db3542f8f3e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga3958ab1ffd31ad1423420db3542f8f3e">db::get_compute_items</a> = tmpl::filter&lt; TagList, <a class="el" href="structdb_1_1is__compute__item.html">db::is_compute_item</a>&lt; tmpl::_1 &gt; &gt;</td></tr>
+<tr class="memdesc:ga3958ab1ffd31ad1423420db3542f8f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the Tags that are compute items from the <code>TagList</code> <br /></td></tr>
+<tr class="separator:ga3958ab1ffd31ad1423420db3542f8f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga64a4fd18b684b6b5a9f161f8d59780f7"><td class="memTemplParams" colspan="2"><a id="ga64a4fd18b684b6b5a9f161f8d59780f7"></a>
+template&lt;class TagList &gt; </td></tr>
+<tr class="memitem:ga64a4fd18b684b6b5a9f161f8d59780f7"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga64a4fd18b684b6b5a9f161f8d59780f7">db::get_items</a> = tmpl::filter&lt; TagList, tmpl::not_&lt; tmpl::bind&lt; <a class="el" href="structdb_1_1is__compute__item.html">db::is_compute_item</a>, tmpl::_1 &gt; &gt;&gt;</td></tr>
+<tr class="memdesc:ga64a4fd18b684b6b5a9f161f8d59780f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the Tags that are items from the <code>TagList</code> <br /></td></tr>
+<tr class="separator:ga64a4fd18b684b6b5a9f161f8d59780f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b1b1d429f0faf5e11d06015467312d2"><td class="memTemplParams" colspan="2"><a id="ga8b1b1d429f0faf5e11d06015467312d2"></a>
+template&lt;class TagList &gt; </td></tr>
+<tr class="memitem:ga8b1b1d429f0faf5e11d06015467312d2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga8b1b1d429f0faf5e11d06015467312d2">db::compute_databox_type</a> = typename DataBox_detail::compute_dbox_type&lt; <a class="el" href="group__DataBoxGroup.html#ga64a4fd18b684b6b5a9f161f8d59780f7">get_items</a>&lt; TagList &gt;, <a class="el" href="group__DataBoxGroup.html#ga3958ab1ffd31ad1423420db3542f8f3e">get_compute_items</a>&lt; TagList &gt; &gt;::type</td></tr>
+<tr class="memdesc:ga8b1b1d429f0faf5e11d06015467312d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of the DataBox that would be constructed from the <code>TagList</code> of tags. <br /></td></tr>
+<tr class="separator:ga8b1b1d429f0faf5e11d06015467312d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6da12f8bf23ee87c99472b0f33b2b155"><td class="memTemplParams" colspan="2"><a id="ga6da12f8bf23ee87c99472b0f33b2b155"></a>
+template&lt;typename Tag , typename TagList  = NoSuchType&gt; </td></tr>
+<tr class="memitem:ga6da12f8bf23ee87c99472b0f33b2b155"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type</a> = typename DataBox_detail::item_type_impl&lt; TagList, Tag &gt;::type</td></tr>
+<tr class="memdesc:ga6da12f8bf23ee87c99472b0f33b2b155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the type that is returned by the <code>Tag</code>. If it is a base tag then a <code>TagList</code> must be passed as a second argument. <br /></td></tr>
+<tr class="separator:ga6da12f8bf23ee87c99472b0f33b2b155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8a90dc9c5e88f4012ea958ed55c4e61b"><td class="memTemplParams" colspan="2"><a id="ga8a90dc9c5e88f4012ea958ed55c4e61b"></a>
+template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:ga8a90dc9c5e88f4012ea958ed55c4e61b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga8a90dc9c5e88f4012ea958ed55c4e61b">db::remove_all_prefixes</a> = typename DataBox_detail::remove_all_prefixes_impl&lt; Tag, cpp17::is_base_of_v&lt; <a class="el" href="structdb_1_1PrefixTag.html">db::PrefixTag</a>, Tag &gt; &gt;::type</td></tr>
+<tr class="memdesc:ga8a90dc9c5e88f4012ea958ed55c4e61b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completely remove all prefix tags from a Tag. <br /></td></tr>
+<tr class="separator:ga8a90dc9c5e88f4012ea958ed55c4e61b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21b057acce1cfc78446228323300bb8e"><td class="memTemplParams" colspan="2">template&lt;typename Tag , typename NewTagsList &gt; </td></tr>
+<tr class="memitem:ga21b057acce1cfc78446228323300bb8e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga21b057acce1cfc78446228323300bb8e">db::variables_tag_with_tags_list</a> = typename DataBox_detail::variables_tag_with_tags_list_impl&lt; DataBox_detail::tag_type&lt; Tag &gt; &gt;::template f&lt; Tag, NewTagsList &gt;</td></tr>
+<tr class="memdesc:ga21b057acce1cfc78446228323300bb8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the tags contained in a possibly prefixed Variables tag.  <a href="group__DataBoxGroup.html#ga21b057acce1cfc78446228323300bb8e">More...</a><br /></td></tr>
+<tr class="separator:ga21b057acce1cfc78446228323300bb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga97296c560675e55606cd3ebd7dd95b39"><td class="memTemplParams" colspan="2"><a id="ga97296c560675e55606cd3ebd7dd95b39"></a>
+template&lt;typename Tag , typename TagList  = NoSuchType&gt; </td></tr>
+<tr class="memitem:ga97296c560675e55606cd3ebd7dd95b39"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga97296c560675e55606cd3ebd7dd95b39">db::split_tag</a> = tmpl::conditional_t&lt; tmpl::size&lt; typename <a class="el" href="structdb_1_1Subitems.html">Subitems</a>&lt; TagList, Tag &gt;::type &gt;::value==0, tmpl::list&lt; Tag &gt;, typename <a class="el" href="structdb_1_1Subitems.html">Subitems</a>&lt; TagList, Tag &gt;::type &gt;</td></tr>
+<tr class="memdesc:ga97296c560675e55606cd3ebd7dd95b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split a tag into its subitems. <code>Tag</code> cannot be a base tag. <br /></td></tr>
+<tr class="separator:ga97296c560675e55606cd3ebd7dd95b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga7f507859b93a8bd60c6f9f05077ab2bc"><td class="memTemplParams" colspan="2">template&lt;typename... MutateTags, typename TagList , typename Invokable , typename... Args&gt; </td></tr>
+<tr class="memitem:ga7f507859b93a8bd60c6f9f05077ab2bc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc">db::mutate</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; DataBox&lt; TagList &gt; *&gt; box, Invokable &amp;&amp;invokable, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="memdesc:ga7f507859b93a8bd60c6f9f05077ab2bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows changing the state of one or more non-computed elements in the DataBox.  <a href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc">More...</a><br /></td></tr>
+<tr class="separator:ga7f507859b93a8bd60c6f9f05077ab2bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae08744824ea7df89224f128b2080c5b1"><td class="memTemplParams" colspan="2">template&lt;typename Tag , typename TagList &gt; </td></tr>
+<tr class="memitem:gae08744824ea7df89224f128b2080c5b1"><td class="memTemplItemLeft" align="right" valign="top">const auto &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1">db::get</a> (const DataBox&lt; TagList &gt; &amp;box) noexcept</td></tr>
+<tr class="memdesc:gae08744824ea7df89224f128b2080c5b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the item with tag <code>Tag</code> from the DataBox.  <a href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1">More...</a><br /></td></tr>
+<tr class="separator:gae08744824ea7df89224f128b2080c5b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga190fd7a31cd2424701e03faea2d03247"><td class="memTemplParams" colspan="2">template&lt;typename AddSimpleTags , typename AddComputeTags  = tmpl::list&lt;&gt;, typename... Args&gt; </td></tr>
+<tr class="memitem:ga190fd7a31cd2424701e03faea2d03247"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247">db::create</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:ga190fd7a31cd2424701e03faea2d03247"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new DataBox.  <a href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247">More...</a><br /></td></tr>
+<tr class="separator:ga190fd7a31cd2424701e03faea2d03247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga72d46d18bafb1c746e6c7249576e6428"><td class="memTemplParams" colspan="2">template&lt;typename TagsList &gt; </td></tr>
+<tr class="memitem:ga72d46d18bafb1c746e6c7249576e6428"><td class="memTemplItemLeft" align="right" valign="top">constexpr DataBox&lt; TagsList &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga72d46d18bafb1c746e6c7249576e6428">db::create_copy</a> (const DataBox&lt; TagsList &gt; &amp;box) noexcept</td></tr>
+<tr class="memdesc:ga72d46d18bafb1c746e6c7249576e6428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a non-aliasing copy of the DataBox. That is, the new DataBox will not share items with the old one.  <a href="group__DataBoxGroup.html#ga72d46d18bafb1c746e6c7249576e6428">More...</a><br /></td></tr>
+<tr class="separator:ga72d46d18bafb1c746e6c7249576e6428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf8f521b3840fcbe17a85fb394ebf2b0"><td class="memTemplParams" colspan="2">template&lt;typename Type , typename TagList &gt; </td></tr>
+<tr class="memitem:gabf8f521b3840fcbe17a85fb394ebf2b0"><td class="memTemplItemLeft" align="right" valign="top">constexpr const Type &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#gabf8f521b3840fcbe17a85fb394ebf2b0">db::get_item_from_box</a> (const DataBox&lt; TagList &gt; &amp;box, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;tag_name) noexcept</td></tr>
+<tr class="memdesc:gabf8f521b3840fcbe17a85fb394ebf2b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve an item from the DataBox that has a tag with label <code>tag_name</code> and type <code>Type</code>  <a href="group__DataBoxGroup.html#gabf8f521b3840fcbe17a85fb394ebf2b0">More...</a><br /></td></tr>
+<tr class="separator:gabf8f521b3840fcbe17a85fb394ebf2b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga657b0ab1e181835d5f22d20dbe8f8e70"><td class="memTemplParams" colspan="2">template&lt;typename TagsList , typename F , typename BoxTags , typename... Args&gt; </td></tr>
+<tr class="memitem:ga657b0ab1e181835d5f22d20dbe8f8e70"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">db::apply</a> (F &amp;&amp;f, const DataBox&lt; BoxTags &gt; &amp;box, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:ga657b0ab1e181835d5f22d20dbe8f8e70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the function <code>f</code> with argument Tags <code>TagsList</code> from DataBox <code>box</code>  <a href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">More...</a><br /></td></tr>
+<tr class="separator:ga657b0ab1e181835d5f22d20dbe8f8e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4f2eba8e937c3d2639730f79ad6885ba"><td class="memTemplParams" colspan="2">template&lt;typename MutateTags , typename ArgumentTags , typename F , typename BoxTags , typename... Args&gt; </td></tr>
+<tr class="memitem:ga4f2eba8e937c3d2639730f79ad6885ba"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga4f2eba8e937c3d2639730f79ad6885ba">db::mutate_apply</a> (F f, const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; DataBox&lt; BoxTags &gt; *&gt; box, Args &amp;&amp;... args) noexcept(DataBox_detail::check_mutate_apply_mutate_tags(BoxTags{}, MutateTags{}) and DataBox_detail::check_mutate_apply_argument_tags(BoxTags{}, ArgumentTags{}) and noexcept(DataBox_detail::mutate_apply(f, box, MutateTags{}, ArgumentTags{}, std::forward&lt; Args &gt;(args)...)))</td></tr>
+<tr class="memdesc:ga4f2eba8e937c3d2639730f79ad6885ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the function <code>f</code> mutating items <code>MutateTags</code> and taking as additional arguments <code>ArgumentTags</code> and <code>args</code>.  <a href="group__DataBoxGroup.html#ga4f2eba8e937c3d2639730f79ad6885ba">More...</a><br /></td></tr>
+<tr class="separator:ga4f2eba8e937c3d2639730f79ad6885ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1c6873b102358c68b28e3d35486994fd"><td class="memTemplParams" colspan="2">template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:ga1c6873b102358c68b28e3d35486994fd"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga1c6873b102358c68b28e3d35486994fd">db::get_tag_name</a> ()</td></tr>
+<tr class="memdesc:ga1c6873b102358c68b28e3d35486994fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of a DataBoxTag, including prefixes.  <a href="group__DataBoxGroup.html#ga1c6873b102358c68b28e3d35486994fd">More...</a><br /></td></tr>
+<tr class="separator:ga1c6873b102358c68b28e3d35486994fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab0a56543f1f309293c4c8cbe4749d252"><td class="memTemplParams" colspan="2">template&lt;size_t VolumeDim, typename TagsList , typename... TagsToSlice&gt; </td></tr>
+<tr class="memitem:gab0a56543f1f309293c4c8cbe4749d252"><td class="memTemplItemLeft" align="right" valign="top">Variables&lt; tmpl::list&lt; TagsToSlice... &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#gab0a56543f1f309293c4c8cbe4749d252">db::data_on_slice</a> (const db::DataBox&lt; TagsList &gt; &amp;box, const <a class="el" href="classIndex.html">Index</a>&lt; VolumeDim &gt; &amp;element_extents, const size_t sliced_dim, const size_t fixed_index, tmpl::list&lt; TagsToSlice... &gt;) noexcept</td></tr>
+<tr class="memdesc:gab0a56543f1f309293c4c8cbe4749d252"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slices volume <code>Tensor</code>s from a <code>DataBox</code> into a <code>Variables</code>  <a href="group__DataBoxGroup.html#gab0a56543f1f309293c4c8cbe4749d252">More...</a><br /></td></tr>
+<tr class="separator:gab0a56543f1f309293c4c8cbe4749d252"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab16ffafee767da670cf8af4b26da919e"><td class="memTemplParams" colspan="2">template&lt;typename Rt , typename Fp , typename... Args&gt; </td></tr>
+<tr class="memitem:gab16ffafee767da670cf8af4b26da919e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDeferred.html">Deferred</a>&lt; Rt &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#gab16ffafee767da670cf8af4b26da919e">make_deferred</a> (Fp f, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="memdesc:gab16ffafee767da670cf8af4b26da919e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a deferred function call object.  <a href="#gab16ffafee767da670cf8af4b26da919e">More...</a><br /></td></tr>
+<tr class="separator:gab16ffafee767da670cf8af4b26da919e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa58e24d7ed3a46c5d6a1dadd96b939a2"><td class="memTemplParams" colspan="2">template&lt;typename RemoveTags , typename AddTags  = tmpl::list&lt;&gt;, typename AddComputeTags  = tmpl::list&lt;&gt;, typename TagsList , typename... Args&gt; </td></tr>
+<tr class="memitem:gaa58e24d7ed3a46c5d6a1dadd96b939a2"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2">db::create_from</a> (db::DataBox&lt; TagsList &gt; &amp;&amp;box, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="memdesc:gaa58e24d7ed3a46c5d6a1dadd96b939a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new DataBox from an existing one adding or removing items and compute items.  <a href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2">More...</a><br /></td></tr>
+<tr class="separator:gaa58e24d7ed3a46c5d6a1dadd96b939a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2be14f3c50866ef99b9d14e235308d6c"><td class="memTemplParams" colspan="2">template&lt;typename Rt , typename Fp , typename... Args&gt; </td></tr>
+<tr class="memitem:ga2be14f3c50866ef99b9d14e235308d6c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga2be14f3c50866ef99b9d14e235308d6c">update_deferred_args</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDeferred.html">Deferred</a>&lt; Rt &gt; *&gt; deferred, Fp, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="memdesc:ga2be14f3c50866ef99b9d14e235308d6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the arguments to the <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> function.  <a href="#ga2be14f3c50866ef99b9d14e235308d6c">More...</a><br /></td></tr>
+<tr class="separator:ga2be14f3c50866ef99b9d14e235308d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1d29855f59c57cd70780f623316951e6"><td class="memTemplParams" colspan="2">template&lt;typename Rt , typename Fp , typename... Args&gt; </td></tr>
+<tr class="memitem:ga1d29855f59c57cd70780f623316951e6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataBoxGroup.html#ga1d29855f59c57cd70780f623316951e6">update_deferred_args</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDeferred.html">Deferred</a>&lt; Rt &gt; *&gt; deferred, Args &amp;&amp;... args) noexcept</td></tr>
+<tr class="memdesc:ga1d29855f59c57cd70780f623316951e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the arguments to the <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> function.  <a href="#ga1d29855f59c57cd70780f623316951e6">More...</a><br /></td></tr>
+<tr class="separator:ga1d29855f59c57cd70780f623316951e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Documentation, functions, metafunctions, and classes necessary for using DataBox. </p>
+<p>DataBox is a heterogeneous compile-time associative container with lazy evaluation of functions. DataBox can not only store data, but can also store functions that depend on other data inside the DataBox. The functions will be evaluated when the data they return is requested. The result is cached, and if a dependency of the function is modified the cache is invalidated.</p>
+<h4>Simple and Compute Tags and Their Items</h4>
+<p>The compile-time keys are <code>struct</code>s called tags, while the values are called items. Tags are quite minimal, containing only the information necessary to store the data and evaluate functions. There are two different types of tags that a DataBox can hold: simple tags and compute tags. Simple tags are for data that is inserted into the DataBox at the time of creation, while compute tags are for data that will be computed from a function when the compute item is retrieved. If a compute item is never retrieved from the DataBox then it is never evaluated.</p>
+<p>Simple tags must have a member type alias <code>type</code> that is the type of the data to be stored and a <code>static <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name()</code> method that returns the name of the tag. Simple tags must inherit from <code><a class="el" href="structdb_1_1SimpleTag.html" title="Tags for the DataBox inherit from this type. ">db::SimpleTag</a></code>.</p>
+<p>Compute tags must also have a <code>static <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name()</code> method that returns the name of the tag, but they cannot have a <code>type</code> type alias. Instead, compute tags must have a static member function or static member function pointer named <code>function</code>. <code>function</code> can be a function template if necessary. The <code>function</code> must take all its arguments by <code>const</code> reference. The arguments to the function are retrieved using tags from the DataBox that the compute tag is in. The tags for the arguments are set in the member type alias <code>argument_tags</code>, which must be a <code>tmpl::list</code> of the tags corresponding to each argument. Note that the order of the tags in the <code>argument_list</code> is the order that they will be passed to the function. Compute tags must inherit from <code><a class="el" href="structdb_1_1ComputeTag.html" title="Marks a DataBoxTag as being a compute item that executes a function. ">db::ComputeTag</a></code>.</p>
+<p>Here is an example of a simple tag:</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>Tag0 : <a class="code" href="structdb_1_1SimpleTag.html">db::SimpleTag</a> {</div><div class="line">  <span class="keyword">using</span> type = double;</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Tag0&quot;</span>; }</div><div class="line">};</div></div><!-- fragment --><p> and an example of a compute tag with a function pointer:</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>ComputeTag0 : <a class="code" href="structdb_1_1ComputeTag.html">db::ComputeTag</a> {</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ComputeTag0&quot;</span>; }</div><div class="line">  <span class="keyword">static</span> constexpr <span class="keyword">auto</span> <span class="keyword">function</span> = multiply_by_two;</div><div class="line">  <span class="keyword">using</span> argument_tags = tmpl::list&lt;Tag0&gt;;</div><div class="line">};</div><div class="line"></div></div><!-- fragment --><p> If the compute item's tag is inline then the compute item is of the form:</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>ComputeLambda0 : <a class="code" href="structdb_1_1ComputeTag.html">db::ComputeTag</a> {</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ComputeLambda0&quot;</span>; }</div><div class="line">  <span class="keyword">static</span> constexpr <span class="keywordtype">double</span> <span class="keyword">function</span>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a) { <span class="keywordflow">return</span> 3.0 * a; }</div><div class="line">  <span class="keyword">using</span> argument_tags = tmpl::list&lt;Tag0&gt;;</div><div class="line">};</div></div><!-- fragment --><p> Compute tags can also have their functions be overloaded on the type of its arguments:</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ArgumentTag&gt;</div><div class="line"><span class="keyword">struct </span>OverloadType : <a class="code" href="structdb_1_1ComputeTag.html">db::ComputeTag</a> {</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;OverloadType&quot;</span>; }</div><div class="line"></div><div class="line">  <span class="keyword">static</span> constexpr <span class="keywordtype">double</span> <span class="keyword">function</span>(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; a) noexcept { <span class="keywordflow">return</span> 5 * a; }</div><div class="line"></div><div class="line">  <span class="keyword">static</span> constexpr <span class="keywordtype">double</span> <span class="keyword">function</span>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a) noexcept { <span class="keywordflow">return</span> 3.2 * a; }</div><div class="line">  <span class="keyword">using</span> argument_tags = tmpl::list&lt;ArgumentTag&gt;;</div><div class="line">};</div></div><!-- fragment --><p> or be overloaded on the number of arguments:</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ArgumentTag0, <span class="keyword">typename</span> ArgumentTag1 = <span class="keywordtype">void</span>&gt;</div><div class="line"><span class="keyword">struct </span>OverloadNumberOfArgs : <a class="code" href="structdb_1_1ComputeTag.html">db::ComputeTag</a> {</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;OverloadNumberOfArgs&quot;</span>; }</div><div class="line"></div><div class="line">  <span class="keyword">static</span> constexpr <span class="keywordtype">double</span> <span class="keyword">function</span>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a) noexcept { <span class="keywordflow">return</span> 3.2 * a; }</div><div class="line"></div><div class="line">  <span class="keyword">static</span> constexpr <span class="keywordtype">double</span> <span class="keyword">function</span>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; b) noexcept {</div><div class="line">    <span class="keywordflow">return</span> a * b;</div><div class="line">  }</div><div class="line"></div><div class="line">  <span class="keyword">using</span> argument_tags =</div><div class="line">      tmpl::conditional_t&lt;cpp17::is_same_v&lt;void, ArgumentTag1&gt;,</div><div class="line">                          tmpl::list&lt;ArgumentTag0&gt;,</div><div class="line">                          tmpl::list&lt;ArgumentTag0, ArgumentTag1&gt;&gt;;</div><div class="line">};</div></div><!-- fragment --><p> Compute tag function templates are implemented as follows:</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ArgumentTag&gt;</div><div class="line"><span class="keyword">struct </span>ComputeTemplate : <a class="code" href="structdb_1_1ComputeTag.html">db::ComputeTag</a> {</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ComputeTemplate&quot;</span>; }</div><div class="line"></div><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line">  <span class="keyword">static</span> constexpr T <span class="keyword">function</span>(<span class="keyword">const</span> T&amp; a) noexcept {</div><div class="line">    <span class="keywordflow">return</span> 5 * a;</div><div class="line">  }</div><div class="line"></div><div class="line">  <span class="keyword">using</span> argument_tags = tmpl::list&lt;ArgumentTag&gt;;</div><div class="line">};</div></div><!-- fragment --><p> Finally, overloading, function templates, and variadic functions can be combined to produce extremely generic compute tags. The below compute tag takes as template parameters a parameter pack of integers, which is used to specify several of the arguments. The function is overloaded for the single argument case, and a variadic function template is provided for the multiple arguments case. Note that in practice few compute tags will be this complex.</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keywordtype">int</span> I, <span class="keywordtype">int</span> VectorBaseIndex = 0, <span class="keywordtype">int</span>... VectorBaseExtraIndices&gt;</div><div class="line"><span class="keyword">struct </span>ArrayComputeBase : Array&lt;I&gt;, <a class="code" href="structdb_1_1ComputeTag.html">db::ComputeTag</a> {</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ArrayComputeBase&quot;</span>; }</div><div class="line"></div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;int, 3&gt;</a> <span class="keyword">function</span>(<span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>&amp; t) noexcept {</div><div class="line">    <span class="keywordflow">return</span> {{<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(t.size()), static_cast&lt;int&gt;(t[0]), -8}};</div><div class="line">  }</div><div class="line"></div><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;int, 2 + <span class="keyword">sizeof</span>...(Args)&gt; <span class="keyword">function</span>(</div><div class="line">      <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>&amp; t, <span class="keyword">const</span> Args&amp;... args) noexcept {</div><div class="line">    <span class="keywordflow">return</span> {{<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(t.size()), static_cast&lt;int&gt;(t[0]),</div><div class="line">             <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(args[0])...}};</div><div class="line">  }</div><div class="line"></div><div class="line">  <span class="keyword">using</span> argument_tags = tmpl::list&lt;VectorBase&lt;VectorBaseIndex&gt;,</div><div class="line">                                   VectorBase&lt;VectorBaseExtraIndices&gt;...&gt;;</div><div class="line">};</div></div><!-- fragment --> <h4>Subitems and Prefix Tags</h4>
+<p>A simple or compute tag might also hold a collection of data, such as a container of <code>Tensor</code>s. In many cases you will want to be able to retrieve individual elements of the collection from the DataBox without having to first retrieve the collection. The infrastructure that allows for this is called <em>Subitems</em>. The subitems of the parent tag must refer to a subset of the data inside the parent tag, e.g. one <code>Tensor</code> in the collection. If the parent tag is <code>Parent</code> and the subitems tags are <code>Sub&lt;0&gt;, Sub&lt;1&gt;</code>, then when <code>Parent</code> is added to the DataBox, so are <code>Sub&lt;0&gt;</code> and <code>Sub&lt;1&gt;</code>. This means the retrieval mechanisms described below will work on <code>Parent</code>, <code>Sub&lt;0&gt;</code>, and <code>Sub&lt;1&gt;</code>.</p>
+<p>Subitems specify requirements on the tags they act on. For example, there could be a requirement that all tags with a certain type are to be treated as a Subitms. Let's say that the <code>Parent</code> tag holds a <code>Variables</code>, and <code>Variables</code> can be used with the Subitems infrastructure to add the nested <code>Tensor</code>s. Then all tags that hold a <code>Variables</code> will have their subitems added into the DataBox. To add a new type as a subitem the <code><a class="el" href="structdb_1_1Subitems.html" title="Struct that can be specialized to allow DataBox items to have subitems. Specializations must define: ...">db::Subitems</a></code> struct must be specialized. See the documentation of <code><a class="el" href="structdb_1_1Subitems.html" title="Struct that can be specialized to allow DataBox items to have subitems. Specializations must define: ...">db::Subitems</a></code> for more details.</p>
+<p>The DataBox also supports <em>prefix tags</em>, which are commonly used for items that are related to a different item by some operation. Specifically, say you have a tag <code>MyTensor</code> and you want to also have the time derivative of <code>MyTensor</code>, then you can use the prefix tag <code>dt</code> to get <code>dt&lt;MyTensor&gt;</code>. The benefit of a prefix tag over, say, a separate tag <code>dtMyTensor</code> is that prefix tags can be added and removed by the compute tags acting on the original tag. Prefix tags can also be composed, so a second time derivative would be <code>dt&lt;dt&lt;MyTensor&gt;&gt;</code>. The net result of the prefix tags infrastructure is that the compute tag that returns <code>dt&lt;MyTensor&gt;</code> only needs to know its input tags, it knows how to name its output based off that. In addition to the normal things a simple or a compute tag must hold, prefix tags must have a nested type alias <code>tag</code>, which is the tag being prefixed. Prefix tags must also inherit from <code><a class="el" href="structdb_1_1PrefixTag.html" title="Marks an item as being a prefix to another tag. ">db::PrefixTag</a></code> in addition to inheriting from <code><a class="el" href="structdb_1_1SimpleTag.html" title="Tags for the DataBox inherit from this type. ">db::SimpleTag</a></code> or <code><a class="el" href="structdb_1_1ComputeTag.html" title="Marks a DataBoxTag as being a compute item that executes a function. ">db::ComputeTag</a></code>.</p>
+<h4>Creating a DataBox</h4>
+<p>You should never call the constructor of a DataBox directly. DataBox construction is quite complicated and the helper functions <code><a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247" title="Create a new DataBox. ">db::create</a></code> and <code><a class="el" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2" title="Create a new DataBox from an existing one adding or removing items and compute items. ">db::create_from</a></code> should be used instead. <code><a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247" title="Create a new DataBox. ">db::create</a></code> is used to construct a new DataBox. It takes two typelists as explicit template parameters, the first being a list of the simple tags to add and the second being a list of compute tags to add. If no compute tags are being added then only the simple tags list must be specified. The tags lists should be passed as <code><a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247" title="Create a new DataBox. ">db::create</a>&lt;<a class="el" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb" title="List of Tags to add to the DataBox. ">db::AddSimpleTags</a>&lt;simple_tags...&gt;, <a class="el" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7" title="List of Compute Item Tags to add to the DataBox. ">db::AddComputeTags</a>&lt;compute_tags...&gt;&gt;</code>. The arguments to <code><a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247" title="Create a new DataBox. ">db::create</a></code> are the initial values of the simple tags and must be passed in the same order as the tags in the <code><a class="el" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb" title="List of Tags to add to the DataBox. ">db::AddSimpleTags</a></code> list. If the type of an argument passed to <code><a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247" title="Create a new DataBox. ">db::create</a></code> does not match the type of the corresponding simple tag a static assertion will trigger. Here is an example of how to use <code><a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247" title="Create a new DataBox. ">db::create</a></code>:</p>
+<div class="fragment"><div class="line">  <span class="keyword">auto</span> original_box = <a class="code" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247">db::create</a>&lt;</div><div class="line">      <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags</a>&lt;test_databox_tags::Tag0, test_databox_tags::Tag1,</div><div class="line">                        test_databox_tags::Tag2&gt;,</div><div class="line">      <a class="code" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags</a>&lt;test_databox_tags::ComputeTag0,</div><div class="line">                         test_databox_tags::ComputeTag1,</div><div class="line">                         test_databox_tags::ComputeLambda0,</div><div class="line">                         test_databox_tags::ComputeLambda1&gt;&gt;(</div><div class="line">      3.14, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{8.7, 93.2, 84.7}, <span class="stringliteral">&quot;My Sample String&quot;</span>s);</div></div><!-- fragment --><p> To create a new DataBox from an existing one use the <code><a class="el" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2" title="Create a new DataBox from an existing one adding or removing items and compute items. ">db::create_from</a></code> function. The only time a new DataBox needs to be created is when tags need to be removed or added. Like <code><a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247" title="Create a new DataBox. ">db::create</a></code>, <code><a class="el" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2" title="Create a new DataBox from an existing one adding or removing items and compute items. ">db::create_from</a></code> also takes typelists as explicit template parameter. The first template parameter is the list of tags to be removed, which is passed using <code><a class="el" href="group__DataBoxGroup.html#gabd63e443e3b9a35ef6307d0ded3890ca" title="List of Tags to remove from the DataBox. ">db::RemoveTags</a></code>, second is the list of simple tags to add, and the third is the list of compute tags to add. If tags are only removed then only the first template parameter needs to be specified. If tags are being removed and only simple tags are being added then only the first two template parameters need to be specified. Here is an example of removing a tag or compute tag:</p>
+<div class="fragment"><div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; box =</div><div class="line">        db::create_from&lt;db::RemoveTags&lt;test_databox_tags::Tag1&gt;&gt;(original_box);</div></div><!-- fragment --><p> Adding a simple tag is done using:</p>
+<div class="fragment"><div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; box =</div><div class="line">        db::create_from&lt;db::RemoveTags&lt;&gt;,</div><div class="line">                        <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags&lt;test_databox_tags::Tag3&gt;</a>&gt;(</div><div class="line">            original_box, <span class="stringliteral">&quot;Yet another test string&quot;</span>s);</div></div><!-- fragment --><p> Adding a compute tag is done using:</p>
+<div class="fragment"><div class="line">    <span class="keyword">auto</span> simple_box = <a class="code" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247">db::create</a>&lt;</div><div class="line">        <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags</a>&lt;test_databox_tags::Tag0, test_databox_tags::Tag1,</div><div class="line">                          test_databox_tags::Tag2&gt;&gt;(</div><div class="line">        3.14, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{8.7, 93.2, 84.7}, <span class="stringliteral">&quot;My Sample String&quot;</span>s);</div><div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; box =</div><div class="line">        db::create_from&lt;db::RemoveTags&lt;&gt;, <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags&lt;&gt;</a>,</div><div class="line">                        <a class="code" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags&lt;test_databox_tags::ComputeTag0&gt;</a>&gt;(</div><div class="line">            simple_box);</div></div><!-- fragment --> <h4>Accessing and Mutating Items</h4>
+<p>To retrieve an item from a DataBox use the <code><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a></code> function. <code><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a></code> will always return a <code>const</code> reference to the object stored in the DataBox and will also have full type information available. This means you are able to use <code>const auto&amp;</code> when retrieving tags from the DataBox. For example, </p><div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span>&amp; tag0 = db::get&lt;test_databox_tags::Tag0&gt;(original_box);</div></div><!-- fragment --><p> If you want to mutate the value of a simple item in the DataBox use <code><a class="el" href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc" title="Allows changing the state of one or more non-computed elements in the DataBox. ">db::mutate</a></code>. Any compute item that depends on the mutated item will have its cached value invalidated and be recomputed the next time it is retrieved from the DataBox. <code><a class="el" href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc" title="Allows changing the state of one or more non-computed elements in the DataBox. ">db::mutate</a></code> takes a parameter pack of tags to mutate as explicit template parameters, a <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> of the DataBox whose items will be mutated, an invokable, and extra arguments to forward to the invokable. The invokable takes the arguments passed from the DataBox by <code>const <a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a></code> while the extra arguments are forwarded to the invokable. The invokable is not allowed to retrieve anything from the DataBox, so any items must be passed as extra arguments using <code><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a></code> to retrieve them. For example,</p>
+<div class="fragment"><div class="line">  db::mutate&lt;test_databox_tags::Tag0, test_databox_tags::Tag1&gt;(</div><div class="line">      <a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;original_box),</div><div class="line">      [](<span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null&lt;double*&gt;</a> tag0,</div><div class="line">         <span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null&lt;std::vector&lt;double&gt;</a>*&gt; tag1,</div><div class="line">         <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; compute_tag0) {</div><div class="line">        CHECK(6.28 == compute_tag0);</div><div class="line">        *tag0 = 10.32;</div><div class="line">        (*tag1)[0] = 837.2;</div><div class="line">      },</div><div class="line">      db::get&lt;test_databox_tags::ComputeTag0&gt;(original_box));</div><div class="line">  CHECK(10.32 == db::get&lt;test_databox_tags::Tag0&gt;(original_box));</div><div class="line">  CHECK(837.2 == db::get&lt;test_databox_tags::Tag1&gt;(original_box)[0]);</div></div><!-- fragment --><p> In addition to retrieving items using <code><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a></code> and mutating them using <code><a class="el" href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc" title="Allows changing the state of one or more non-computed elements in the DataBox. ">db::mutate</a></code>, there is a facility to invoke an invokable with tags from the DataBox. <code><a class="el" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70" title="Apply the function f with argument Tags TagsList from DataBox box ">db::apply</a></code> takes a <code>tmpl::list</code> of tags as an explicit template parameter, will retrieve all the tags from the DataBox passed in and then invoke the invokable with the items in the tag list. Similarly, <code><a class="el" href="group__DataBoxGroup.html#ga4f2eba8e937c3d2639730f79ad6885ba" title="Apply the function f mutating items MutateTags and taking as additional arguments ArgumentTags and ar...">db::mutate_apply</a></code> invokes the invokable but allows for mutating some of the tags. See the documentation of <code><a class="el" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70" title="Apply the function f with argument Tags TagsList from DataBox box ">db::apply</a></code> and <code><a class="el" href="group__DataBoxGroup.html#ga4f2eba8e937c3d2639730f79ad6885ba" title="Apply the function f mutating items MutateTags and taking as additional arguments ArgumentTags and ar...">db::mutate_apply</a></code> for examples of how to use them.</p>
+<h4>The Base Tags Mechanism</h4>
+<p>Retrieving items by tags should not require knowing whether the item being retrieved was computed using a compute tag or simply added using a simple tag. The framework that handles this falls under the umbrella term <em>base tags</em>. The reason is that a compute tag can inherit from a simple tag with the same item type, and then calls to <code><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a></code> with the simple tag can be used to retrieve the compute item as well. That is, say you have a compute tag <code>ArrayCompute</code> that derives off of the simple tag <code>Array</code>, then you can retrieve the compute tag <code>ArrayCompute</code> and <code>Array</code> by calling <code><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a>&lt;Array&gt;(box)</code>. The base tags mechanism requires that only one <code>Array</code> tag be present in the DataBox, otherwise a static assertion is triggered.</p>
+<p>The inheritance idea can be generalized further with what are called base tags. A base tag is an empty <code>struct</code> that inherits from <code><a class="el" href="structdb_1_1BaseTag.html" title="Tags that are base tags, i.e. a simple or compute tag must derive off them for them to be useful...">db::BaseTag</a></code>. Any simple or compute item that derives off of the base tag can be retrieved using <code><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a></code>. Consider the following <code>VectorBase</code> and <code>Vector</code> tag:</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keywordtype">int</span> I&gt;</div><div class="line"><span class="keyword">struct </span>VectorBase : <a class="code" href="structdb_1_1BaseTag.html">db::BaseTag</a> {};</div><div class="line"></div><div class="line"><span class="keyword">template</span> &lt;<span class="keywordtype">int</span> I&gt;</div><div class="line"><span class="keyword">struct </span>Vector : <a class="code" href="structdb_1_1SimpleTag.html">db::SimpleTag</a>, VectorBase&lt;I&gt; {</div><div class="line">  <span class="keyword">using</span> type = <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>;</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Vector&quot;</span>; }</div><div class="line">};</div></div><!-- fragment --><p> It is possible to retrieve <code>Vector&lt;1&gt;</code> from the DataBox using <code>VectorBase&lt;1&gt;</code>. Most importantly, base tags can also be used in compute tag arguments, as follows:</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keywordtype">int</span> I, <span class="keywordtype">int</span> VectorBaseIndex = 0, <span class="keywordtype">int</span>... VectorBaseExtraIndices&gt;</div><div class="line"><span class="keyword">struct </span>ArrayComputeBase : Array&lt;I&gt;, <a class="code" href="structdb_1_1ComputeTag.html">db::ComputeTag</a> {</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ArrayComputeBase&quot;</span>; }</div><div class="line"></div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;int, 3&gt;</a> <span class="keyword">function</span>(<span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>&amp; t) noexcept {</div><div class="line">    <span class="keywordflow">return</span> {{<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(t.size()), static_cast&lt;int&gt;(t[0]), -8}};</div><div class="line">  }</div><div class="line"></div><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;int, 2 + <span class="keyword">sizeof</span>...(Args)&gt; <span class="keyword">function</span>(</div><div class="line">      <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>&amp; t, <span class="keyword">const</span> Args&amp;... args) noexcept {</div><div class="line">    <span class="keywordflow">return</span> {{<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(t.size()), static_cast&lt;int&gt;(t[0]),</div><div class="line">             <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(args[0])...}};</div><div class="line">  }</div><div class="line"></div><div class="line">  <span class="keyword">using</span> argument_tags = tmpl::list&lt;VectorBase&lt;VectorBaseIndex&gt;,</div><div class="line">                                   VectorBase&lt;VectorBaseExtraIndices&gt;...&gt;;</div><div class="line">};</div></div><!-- fragment --><p> As shown in the code example, the base tag mechanism works with function template compute tags, enabling generic programming to be combined with the lazy evaluation and automatic dependency analysis offered by the DataBox. To really demonstrate the power of base tags, let's also have <code>ArrayComputeBase</code> inherit from a simple tag <code>Array</code>, which inherits from a base tag <code>ArrayBase</code> as follows:</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keywordtype">int</span> I&gt;</div><div class="line"><span class="keyword">struct </span>ArrayBase : <a class="code" href="structdb_1_1BaseTag.html">db::BaseTag</a> {};</div><div class="line"></div><div class="line"><span class="keyword">template</span> &lt;<span class="keywordtype">int</span> I&gt;</div><div class="line"><span class="keyword">struct </span>Array : <span class="keyword">virtual</span> <a class="code" href="structdb_1_1SimpleTag.html">db::SimpleTag</a>, ArrayBase&lt;I&gt; {</div><div class="line">  <span class="keyword">using</span> type = <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;int, 3&gt;</a>;</div><div class="line">  <span class="keyword">static</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> name() noexcept { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Array&quot;</span>; }</div><div class="line">};</div></div><!-- fragment --><p> To start, let's create a DataBox that holds a <code>Vector&lt;0&gt;</code> and an <code>ArrayComputeBase&lt;0&gt;</code> (the concrete tag must be used when creating the DataBox, not the base tags), retrieve the tags using the base tag mechanism, including mutating <code>Vector&lt;0&gt;</code>, and then verifying that the dependencies are handled correctly.</p>
+<div class="fragment"><div class="line">  <span class="keyword">auto</span> box = db::create&lt;db::AddSimpleTags&lt;TestTags::Vector&lt;0&gt;&gt;,</div><div class="line">                        <a class="code" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags&lt;TestTags::ArrayComputeBase&lt;0&gt;</a>&gt;&gt;(</div><div class="line">      <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{-10.0, 10.0});</div><div class="line"></div><div class="line">  <span class="comment">// Check retrieving simple tag Vector&lt;0&gt; using base tag VectorBase&lt;0&gt;</span></div><div class="line">  CHECK(<a class="code" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1">db::get</a>&lt;TestTags::VectorBase&lt;0&gt;&gt;(box) ==</div><div class="line">        <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{-10.0, 10.0});</div><div class="line"></div><div class="line">  <span class="comment">// Check retrieving compute tag ArrayComputeBase&lt;0&gt; using simple tag Array&lt;0&gt;</span></div><div class="line">  CHECK(<a class="code" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1">db::get</a>&lt;TestTags::Array&lt;0&gt;&gt;(box) == <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;int, 3&gt;</a>{{2, -10, -8}});</div><div class="line"></div><div class="line">  <span class="comment">// Check mutating Vector&lt;0&gt; using VectorBase&lt;0&gt;</span></div><div class="line">  db::mutate&lt;TestTags::VectorBase&lt;0&gt;&gt;(</div><div class="line">      <a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;box), [](<span class="keyword">const</span> <span class="keyword">auto</span> vector) { (*vector)[0] = 101.8; });</div><div class="line"></div><div class="line">  CHECK(<a class="code" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1">db::get</a>&lt;TestTags::VectorBase&lt;0&gt;&gt;(box) ==</div><div class="line">        <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{101.8, 10.0});</div><div class="line"></div><div class="line">  <span class="comment">// Check retrieving ArrayComputeBase&lt;0&gt; using base tag ArrayBase&lt;0&gt;.</span></div><div class="line">  <span class="comment">// ArrayComputeBase was reset after mutating Vector&lt;0&gt;</span></div><div class="line">  CHECK(<a class="code" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1">db::get</a>&lt;TestTags::ArrayBase&lt;0&gt;&gt;(box) ==</div><div class="line">        <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;int, 3&gt;</a>{{2, 101, -8}});</div><div class="line"></div><div class="line">  <span class="comment">// Check retrieving ArrayComputeBase&lt;0&gt; using simple tag Array&lt;0&gt;.</span></div><div class="line">  CHECK(<a class="code" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1">db::get</a>&lt;TestTags::Array&lt;0&gt;&gt;(box) == <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;int, 3&gt;</a>{{2, 101, -8}});</div><div class="line">  CHECK(<a class="code" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1">db::get</a>&lt;TestTags::ArrayComputeBase&lt;0&gt;&gt;(box) ==</div><div class="line">        <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;int, 3&gt;</a>{{2, 101, -8}});</div></div><!-- fragment --><p> Notice that we are able to retrieve <code>ArrayComputeBase&lt;0&gt;</code> with <code>ArrayBase&lt;0&gt;</code> and <code>Array&lt;0&gt;</code>. We were also able to mutate <code>Vector&lt;0&gt;</code> using <code>VectorBase&lt;0&gt;</code>.</p>
+<p>We can even remove tags using their base tags with <code><a class="el" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2" title="Create a new DataBox from an existing one adding or removing items and compute items. ">db::create_from</a></code>:</p>
+<div class="fragment"><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span>&amp; box6 = <a class="code" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2">db::create_from</a>&lt;</div><div class="line">      <a class="code" href="group__DataBoxGroup.html#gabd63e443e3b9a35ef6307d0ded3890ca">db::RemoveTags&lt;TestTags::VectorBase&lt;1&gt;</a>, TestTags::VectorBase&lt;2&gt;,</div><div class="line">                     TestTags::ArrayBase&lt;1&gt;&gt;&gt;(box4);</div></div><!-- fragment --><p> The base tags infrastructure even works with Subitems. Even if you mutate the subitem of a parent using a base tag, the appropriate compute item caches will be invalidated.</p>
+<dl class="section note"><dt>Note</dt><dd>All of the base tags infrastructure works for <code><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a></code>, <code><a class="el" href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc" title="Allows changing the state of one or more non-computed elements in the DataBox. ">db::mutate</a></code>, <code><a class="el" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70" title="Apply the function f with argument Tags TagsList from DataBox box ">db::apply</a></code> and <code><a class="el" href="group__DataBoxGroup.html#ga4f2eba8e937c3d2639730f79ad6885ba" title="Apply the function f mutating items MutateTags and taking as additional arguments ArgumentTags and ar...">db::mutate_apply</a></code>. </dd></dl>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ga21b057acce1cfc78446228323300bb8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga21b057acce1cfc78446228323300bb8e">&#9670;&nbsp;</a></span>variables_tag_with_tags_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Tag , typename NewTagsList &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__DataBoxGroup.html#ga21b057acce1cfc78446228323300bb8e">db::variables_tag_with_tags_list</a> = typedef typename DataBox_detail::variables_tag_with_tags_list_impl&lt; DataBox_detail::tag_type&lt;Tag&gt; &gt;::template f&lt;Tag, NewTagsList&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change the tags contained in a possibly prefixed Variables tag. </p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">static_assert(</div><div class="line">    <a class="code" href="group__TypeTraitsGroup.html#ga173105b805ff5fa637edb005f704feca">cpp17::is_same_v</a>&lt;<a class="code" href="group__DataBoxGroup.html#ga21b057acce1cfc78446228323300bb8e">db::variables_tag_with_tags_list</a>&lt;</div><div class="line">                         Prefix&lt;<a class="code" href="structTags_1_1Variables.html">Tags::Variables</a>&lt;tmpl::list&lt;Prefix&lt;Var&gt;&gt;&gt;&gt;,</div><div class="line">                         tmpl::list&lt;Prefix&lt;Var2&gt;&gt;&gt;,</div><div class="line">                     Prefix&lt;<a class="code" href="structTags_1_1Variables.html">Tags::Variables</a>&lt;tmpl::list&lt;Prefix&lt;Var2&gt;&gt;&gt;&gt;&gt;,</div><div class="line">    <span class="stringliteral">&quot;Failed testing variables_tag_with_tags_list&quot;</span>);</div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga657b0ab1e181835d5f22d20dbe8f8e70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga657b0ab1e181835d5f22d20dbe8f8e70">&#9670;&nbsp;</a></span>apply()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TagsList , typename F , typename BoxTags , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto db::apply </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const DataBox&lt; BoxTags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Apply the function <code>f</code> with argument Tags <code>TagsList</code> from DataBox <code>box</code> </p>
+<h3>Details</h3>
+<p><code>f</code> must either be invokable with the arguments of type <code><a class="el" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155" title="Get the type that is returned by the Tag. If it is a base tag then a TagList must be passed as a seco...">db::item_type</a>&lt;TagsList&gt;..., Args...</code> where the first pack expansion is over the elements in the type list <code>TagsList</code>, or have a static <code>apply</code> function that is callable with the same types.</p>
+<h3>Usage</h3>
+<p>Given a function <code>func</code> that takes arguments of types <code>T1</code>, <code>T2</code>, <code>A1</code> and <code>A2</code>. Let the Tags for the quantities of types <code>T1</code> and <code>T2</code> in the DataBox <code>box</code> be <code>Tag1</code> and <code>Tag2</code>, and objects <code>a1</code> of type <code>A1</code> and <code>a2</code> of type <code>A2</code>, then </p><div class="fragment"><div class="line"><span class="keyword">auto</span> result = db::apply&lt;tmpl::list&lt;Tag1, Tag2&gt;&gt;(func, box, a1, a2);</div></div><!-- fragment --> <p><em>Returns:</em> <code>decltype(func(<a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a>&lt;Tag1&gt;(box), <a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a>&lt;Tag2&gt;(box), a1, a2))</code></p>
+<p><em>Semantics:</em> For tags <code>Tags...</code> in a DataBox <code>box</code>, and a function <code>func</code> that takes <code>sizeof...(Tags)</code> arguments of types <code><a class="el" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155" title="Get the type that is returned by the Tag. If it is a base tag then a TagList must be passed as a seco...">db::item_type</a>&lt;Tags&gt;...</code>, and <code>sizeof...(Args)</code> arguments of types <code>Args...</code>, </p><div class="fragment"><div class="line">result = func(box, db::get&lt;Tags&gt;(box)..., args...);</div></div><!-- fragment --><h3>Example</h3>
+<div class="fragment"><div class="line">  <span class="keyword">auto</span> check_result_args = [](<span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&amp; sample_string,</div><div class="line">                              <span class="keyword">const</span> <span class="keyword">auto</span>&amp; computed_string, <span class="keyword">const</span> <span class="keyword">auto</span>&amp; vector) {</div><div class="line">    CHECK(sample_string == <span class="stringliteral">&quot;My Sample String&quot;</span>s);</div><div class="line">    CHECK(computed_string == <span class="stringliteral">&quot;My Sample String6.28&quot;</span>s);</div><div class="line">    CHECK(vector == (<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{8.7, 93.2, 84.7}));</div><div class="line">  };</div><div class="line">  <a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">db::apply</a>&lt;</div><div class="line">      tmpl::list&lt;test_databox_tags::Tag2, test_databox_tags::ComputeTag1&gt;&gt;(</div><div class="line">      check_result_args, original_box,</div><div class="line">      db::get&lt;test_databox_tags::Tag1&gt;(original_box));</div></div><!-- fragment --><p>Using a struct with an <code>apply</code> method: </p><div class="fragment"><div class="line">  <span class="keyword">struct </span>ApplyCallable {</div><div class="line">    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">apply</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&amp; sample_string,</div><div class="line">                      <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&amp; computed_string,</div><div class="line">                      <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>&amp; vector) noexcept {</div><div class="line">      CHECK(sample_string == <span class="stringliteral">&quot;My Sample String&quot;</span>s);</div><div class="line">      CHECK(computed_string == <span class="stringliteral">&quot;My Sample String6.28&quot;</span>s);</div><div class="line">      CHECK(vector == (<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{8.7, 93.2, 84.7}));</div><div class="line">    }</div><div class="line">  };</div><div class="line">  <a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">db::apply</a>&lt;</div><div class="line">      tmpl::list&lt;test_databox_tags::Tag2, test_databox_tags::ComputeTag1&gt;&gt;(</div><div class="line">      ApplyCallable{}, original_box,</div><div class="line">      db::get&lt;test_databox_tags::Tag1&gt;(original_box));</div></div><!-- fragment --> <dl class="section see"><dt>See also</dt><dd>DataBox </dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TagsList</td><td>typelist of Tags in the order that they are to be passed to <code>f</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>the function to apply </td></tr>
+    <tr><td class="paramname">box</td><td>the DataBox out of which to retrieve the Tags and to pass to <code>f</code> </td></tr>
+    <tr><td class="paramname">args</td><td>the arguments to pass to the function that are not in the DataBox, <code>box</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga190fd7a31cd2424701e03faea2d03247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga190fd7a31cd2424701e03faea2d03247">&#9670;&nbsp;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename AddSimpleTags , typename AddComputeTags  = tmpl::list&lt;&gt;, typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto db::create </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a new DataBox. </p>
+<h3>Details</h3>
+<p>Creates a new DataBox holding types Tags::type filled with the arguments passed to the function. Compute items must be added so that the dependencies of a compute item are added before the compute item. For example, say you have compute items <code>A</code> and <code>B</code> where <code>B</code> depends on <code>A</code>, then you must add them using <code><a class="el" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7" title="List of Compute Item Tags to add to the DataBox. ">db::AddComputeTags</a>&lt;A, B&gt;</code>.</p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  <span class="keyword">auto</span> original_box = <a class="code" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247">db::create</a>&lt;</div><div class="line">      <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags</a>&lt;test_databox_tags::Tag0, test_databox_tags::Tag1,</div><div class="line">                        test_databox_tags::Tag2&gt;,</div><div class="line">      <a class="code" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags</a>&lt;test_databox_tags::ComputeTag0,</div><div class="line">                         test_databox_tags::ComputeTag1,</div><div class="line">                         test_databox_tags::ComputeLambda0,</div><div class="line">                         test_databox_tags::ComputeLambda1&gt;&gt;(</div><div class="line">      3.14, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{8.7, 93.2, 84.7}, <span class="stringliteral">&quot;My Sample String&quot;</span>s);</div></div><!-- fragment --> <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2" title="Create a new DataBox from an existing one adding or removing items and compute items. ">create_from</a></dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">AddSimpleTags</td><td>the tags of the args being added </td></tr>
+    <tr><td class="paramname">AddComputeTags</td><td>list of <a class="el" href="structdb_1_1ComputeTag.html">compute item tags</a> to add to the DataBox </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>the data to be added to the DataBox </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga72d46d18bafb1c746e6c7249576e6428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga72d46d18bafb1c746e6c7249576e6428">&#9670;&nbsp;</a></span>create_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TagsList &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr DataBox&lt;TagsList&gt; db::create_copy </td>
+          <td>(</td>
+          <td class="paramtype">const DataBox&lt; TagsList &gt; &amp;&#160;</td>
+          <td class="paramname"><em>box</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a non-aliasing copy of the DataBox. That is, the new DataBox will not share items with the old one. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Currently all compute items will be reset in the new DataBox because copying of DataBoxes shouldn't be done in general. This does not lead to incorrect behavior, but is less efficient.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__DataBoxGroup.html#gaa58e24d7ed3a46c5d6a1dadd96b939a2" title="Create a new DataBox from an existing one adding or removing items and compute items. ">db::create_from</a> </dd></dl>
+
+</div>
+</div>
+<a id="gaa58e24d7ed3a46c5d6a1dadd96b939a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa58e24d7ed3a46c5d6a1dadd96b939a2">&#9670;&nbsp;</a></span>create_from()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RemoveTags , typename AddTags  = tmpl::list&lt;&gt;, typename AddComputeTags  = tmpl::list&lt;&gt;, typename TagsList , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto db::create_from </td>
+          <td>(</td>
+          <td class="paramtype">db::DataBox&lt; TagsList &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a new DataBox from an existing one adding or removing items and compute items. </p>
+<p>When passed an lvalue this function will return a const DataBox whose members cannot be modified. When passed a (mutable) rvalue this function will return a mutable DataBox.</p>
+<p>Note that in the const lvalue case the output DataBox shares all items that were not removed with the input DataBox. This means if an item is mutated in the input DataBox it is also mutated in the output DataBox. Similarly, if a compute item is evaluated in either the returned DataBox or the input DataBox it is evaluated in both (at the cost of only evaluating it once).</p>
+<h3>Example</h3>
+<p>Removing an item or compute item is done using: </p><div class="fragment"><div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; box =</div><div class="line">        db::create_from&lt;db::RemoveTags&lt;test_databox_tags::Tag1&gt;&gt;(original_box);</div></div><!-- fragment --><p> Adding an item is done using: </p><div class="fragment"><div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; box =</div><div class="line">        db::create_from&lt;db::RemoveTags&lt;&gt;,</div><div class="line">                        <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags&lt;test_databox_tags::Tag3&gt;</a>&gt;(</div><div class="line">            original_box, <span class="stringliteral">&quot;Yet another test string&quot;</span>s);</div></div><!-- fragment --><p> Adding a compute item is done using: </p><div class="fragment"><div class="line">    <span class="keyword">auto</span> simple_box = <a class="code" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247">db::create</a>&lt;</div><div class="line">        <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags</a>&lt;test_databox_tags::Tag0, test_databox_tags::Tag1,</div><div class="line">                          test_databox_tags::Tag2&gt;&gt;(</div><div class="line">        3.14, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{8.7, 93.2, 84.7}, <span class="stringliteral">&quot;My Sample String&quot;</span>s);</div><div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; box =</div><div class="line">        db::create_from&lt;db::RemoveTags&lt;&gt;, <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags&lt;&gt;</a>,</div><div class="line">                        <a class="code" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags&lt;test_databox_tags::ComputeTag0&gt;</a>&gt;(</div><div class="line">            simple_box);</div></div><!-- fragment --> <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247" title="Create a new DataBox. ">create</a> DataBox</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RemoveTags</td><td>typelist of Tags to remove </td></tr>
+    <tr><td class="paramname">AddTags</td><td>typelist of Tags corresponding to the arguments to be added </td></tr>
+    <tr><td class="paramname">AddComputeTags</td><td>list of <a class="el" href="structdb_1_1ComputeTag.html">compute item tags</a> to add to the DataBox </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">box</td><td>the DataBox the new box should be based off </td></tr>
+    <tr><td class="paramname">args</td><td>the values for the items to add to the DataBox </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> DataBox like <code>box</code> but altered by RemoveTags and AddTags </p>
+
+</div>
+</div>
+<a id="gab0a56543f1f309293c4c8cbe4749d252"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab0a56543f1f309293c4c8cbe4749d252">&#9670;&nbsp;</a></span>data_on_slice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t VolumeDim, typename TagsList , typename... TagsToSlice&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Variables&lt;tmpl::list&lt;TagsToSlice...&gt; &gt; db::data_on_slice </td>
+          <td>(</td>
+          <td class="paramtype">const db::DataBox&lt; TagsList &gt; &amp;&#160;</td>
+          <td class="paramname"><em>box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIndex.html">Index</a>&lt; VolumeDim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>element_extents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>sliced_dim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>fixed_index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tmpl::list&lt; TagsToSlice... &gt;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Slices volume <code>Tensor</code>s from a <code>DataBox</code> into a <code>Variables</code> </p>
+<p>The slice has a constant logical coordinate in direction <code>sliced_dim</code>, slicing the volume at <code>fixed_index</code> in that dimension. For example, to get the lower boundary of <code>sliced_dim</code>, pass <code>0</code> for <code>fixed_index</code>; to get the upper boundary, pass <code>extents[sliced_dim] - 1</code>. The last argument to the function is the typelist holding the tags to slice.</p>
+<div class="fragment"><div class="line">      <a class="code" href="group__DataBoxGroup.html#gab0a56543f1f309293c4c8cbe4749d252">db::data_on_slice</a>(box, extents, 0, x_offset,</div><div class="line">                        tmpl::list&lt;DataBoxTest_detail::vector&gt;{})</div></div><!-- fragment -->
+</div>
+</div>
+<a id="gae08744824ea7df89224f128b2080c5b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae08744824ea7df89224f128b2080c5b1">&#9670;&nbsp;</a></span>get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Tag , typename TagList &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const auto&amp; db::get </td>
+          <td>(</td>
+          <td class="paramtype">const DataBox&lt; TagList &gt; &amp;&#160;</td>
+          <td class="paramname"><em>box</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve the item with tag <code>Tag</code> from the DataBox. </p>
+<p><em>Requires:</em> Type <code>Tag</code> is one of the Tags corresponding to an object stored in the DataBox</p>
+<p><em>Returns:</em> The object corresponding to the tag <code>Tag</code> </p>
+
+</div>
+</div>
+<a id="gabf8f521b3840fcbe17a85fb394ebf2b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabf8f521b3840fcbe17a85fb394ebf2b0">&#9670;&nbsp;</a></span>get_item_from_box()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename TagList &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const Type&amp; db::get_item_from_box </td>
+          <td>(</td>
+          <td class="paramtype">const DataBox&lt; TagList &gt; &amp;&#160;</td>
+          <td class="paramname"><em>box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>tag_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve an item from the DataBox that has a tag with label <code>tag_name</code> and type <code>Type</code> </p>
+<h3>Details</h3>
+<p>The type that the tag represents must be of the type <code>Type</code>, and the tag must have the label <code>tag_name</code>. The function iterates over all tags in the DataBox <code>box</code> that have the type <code>Type</code> searching linearly for one whose <code>label</code> matches <code>tag_name</code>.</p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  <span class="keyword">auto</span> original_box = <a class="code" href="group__DataBoxGroup.html#ga190fd7a31cd2424701e03faea2d03247">db::create</a>&lt;</div><div class="line">      <a class="code" href="group__DataBoxGroup.html#ga3dc674ba575ece4a8be1c23fa6c2cdcb">db::AddSimpleTags</a>&lt;test_databox_tags::Tag0, test_databox_tags::Tag1,</div><div class="line">                        test_databox_tags::Tag2,</div><div class="line">                        test_databox_tags::TagPrefix&lt;test_databox_tags::Tag0&gt;&gt;,</div><div class="line">      <a class="code" href="group__DataBoxGroup.html#ga64597eb7f5df0dc4d99698289265b1a7">db::AddComputeTags</a>&lt;test_databox_tags::ComputeTag0,</div><div class="line">                         test_databox_tags::ComputeTag1&gt;&gt;(</div><div class="line">      3.14, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{8.7, 93.2, 84.7}, <span class="stringliteral">&quot;My Sample String&quot;</span>s, 8.7);</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span>&amp; compute_string =</div><div class="line">      db::get_item_from_box&lt;std::string&gt;(original_box, <span class="stringliteral">&quot;ComputeTag1&quot;</span>);</div></div><!-- fragment --> <dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Type</td><td>the type of the tag with the <code>label</code> <code>tag_name</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">box</td><td>the DataBox through which to search </td></tr>
+    <tr><td class="paramname">tag_name</td><td>the <code>label</code> of the tag to retrieve </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1c6873b102358c68b28e3d35486994fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1c6873b102358c68b28e3d35486994fd">&#9670;&nbsp;</a></span>get_tag_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Tag &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> db::get_tag_name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the name of a DataBoxTag, including prefixes. </p>
+<h3>Details</h3>
+<p>Given a DataBoxTag returns the name of the DataBoxTag as a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>. If the DataBoxTag is also a <a class="el" href="structdb_1_1PrefixTag.html" title="Marks an item as being a prefix to another tag. ">PrefixTag</a> then the prefix is added.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Tag</td><td>the DataBoxTag whose name to get </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> string holding the DataBoxTag's name </p>
+
+</div>
+</div>
+<a id="gab16ffafee767da670cf8af4b26da919e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab16ffafee767da670cf8af4b26da919e">&#9670;&nbsp;</a></span>make_deferred()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Rt , typename Fp , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDeferred.html">Deferred</a>&lt;Rt&gt; make_deferred </td>
+          <td>(</td>
+          <td class="paramtype">Fp&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a deferred function call object. </p>
+<p>If creating a <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> with a function object the call operator of the function object must be marked <code>const</code> currently. Since the function object will only be evaluated once there currently seems to be no reason to allow mutating call operators.</p>
+<h3>Example</h3>
+<p>The examples below use the following functions: </p><div class="fragment"><div class="line"><span class="keyword">struct </span>func {</div><div class="line">  <span class="keywordtype">double</span> operator()()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> 8.2; }</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keywordtype">double</span> dummy() { <span class="keywordflow">return</span> 6.7; }</div><div class="line"></div><div class="line"><span class="keyword">struct </span>func2 {</div><div class="line">  <span class="keywordtype">double</span> operator()(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; t)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> t; }</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keywordtype">double</span> lazy_function(<span class="keyword">const</span> <span class="keywordtype">double</span> t) { <span class="keywordflow">return</span> 10.0 * t; }</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> mutate_function(<span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null&lt;double*&gt;</a> t, <span class="keyword">const</span> <span class="keywordtype">double</span> t0) {</div><div class="line">  *t = t0;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> mutate_function_vector(<span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>*&gt; t,</div><div class="line">                            <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>&amp; t0) {</div><div class="line">  <span class="keywordflow">if</span> (t-&gt;size() != t0.size()) {</div><div class="line">    t-&gt;resize(t0.size(), 0.0);</div><div class="line">  }</div><div class="line">  <span class="comment">// Check the size again just to be sure the resize above happened.</span></div><div class="line">  CHECK(t-&gt;size() == t0.size());</div><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; t-&gt;size(); ++i) {</div><div class="line">    t-&gt;operator[](i) = 10.0 * t0[i];</div><div class="line">  }</div><div class="line">}</div></div><!-- fragment --><p>To create a <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> using a function object use: </p><div class="fragment"><div class="line">  <span class="keyword">auto</span> def = make_deferred&lt;double&gt;(func{});</div><div class="line">  CHECK_FALSE(def.evaluated());</div><div class="line">  CHECK(8.2 == def.get());</div></div><!-- fragment --><p>or using a regular function: </p><div class="fragment"><div class="line">  <span class="keyword">auto</span> def2 = make_deferred&lt;double&gt;(dummy);</div><div class="line">  CHECK(6.7 == def2.get());</div></div><!-- fragment --><p> It is also possible to pass <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> objects to a deferred function call: </p><div class="fragment"><div class="line">  <span class="keyword">auto</span> def2 = make_deferred&lt;double&gt;(func2{}, 6.82);</div><div class="line">  <span class="keyword">auto</span> def3 = make_deferred&lt;double&gt;(lazy_function, def2);</div><div class="line">  CHECK(68.2 == def3.get());</div><div class="line">  CHECK(6.82 == def2.get());</div></div><!-- fragment --><p>in which case the first function will be evaluated just before the second function is evaluated.</p>
+<p>In addition to functions that return by value, it is also possible to use functions that return by reference. The first argument of the function must then be a <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a>&lt;Rt*&gt;</code>, and can be mutated inside the function. The mutating functions are primarily useful if <code>Rt</code> performs heap allocations and is frequently recomputed in a manner where the heap allocation could be avoided.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Rt</td><td>the type of the object returned by the function </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> object that will lazily evaluate the function </p>
+
+</div>
+</div>
+<a id="ga7f507859b93a8bd60c6f9f05077ab2bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7f507859b93a8bd60c6f9f05077ab2bc">&#9670;&nbsp;</a></span>mutate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... MutateTags, typename TagList , typename Invokable , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void db::mutate </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; DataBox&lt; TagList &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Invokable &amp;&amp;&#160;</td>
+          <td class="paramname"><em>invokable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allows changing the state of one or more non-computed elements in the DataBox. </p>
+<p><code><a class="el" href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc" title="Allows changing the state of one or more non-computed elements in the DataBox. ">mutate()</a></code>'s first argument is the DataBox from which to retrieve the tags <code>MutateTags</code>. The objects corresponding to the <code>MutateTags</code> are then passed to <code>invokable</code>, which is a lambda or a function object taking as many arguments as there are <code>MutateTags</code> and with the arguments being of types <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a>&lt;<a class="el" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155" title="Get the type that is returned by the Tag. If it is a base tag then a TagList must be passed as a seco...">db::item_type</a>&lt;MutateTags&gt;*&gt;...</code>. Inside the <code>invokable</code> no items can be retrieved from the DataBox <code>box</code>. This is to avoid confusing subtleties with order of evaluation of compute items, as well as dangling references. If an <code>invokable</code> needs read access to items in <code>box</code> they should be passed as additional arguments to <code>mutate</code>. Capturing them by reference in a lambda does not work because of a bug in GCC 6.3 and earlier. For a function object the read-only items can also be stored as const references inside the object by passing <code><a class="el" href="group__DataBoxGroup.html#gae08744824ea7df89224f128b2080c5b1" title="Retrieve the item with tag Tag from the DataBox. ">db::get</a>&lt;TAG&gt;(t)</code> to the constructor.</p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  db::mutate&lt;test_databox_tags::Tag0, test_databox_tags::Tag1&gt;(</div><div class="line">      <a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;original_box),</div><div class="line">      [](<span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null&lt;double*&gt;</a> tag0,</div><div class="line">         <span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null&lt;std::vector&lt;double&gt;</a>*&gt; tag1,</div><div class="line">         <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; compute_tag0) {</div><div class="line">        CHECK(6.28 == compute_tag0);</div><div class="line">        *tag0 = 10.32;</div><div class="line">        (*tag1)[0] = 837.2;</div><div class="line">      },</div><div class="line">      db::get&lt;test_databox_tags::ComputeTag0&gt;(original_box));</div><div class="line">  CHECK(10.32 == db::get&lt;test_databox_tags::Tag0&gt;(original_box));</div><div class="line">  CHECK(837.2 == db::get&lt;test_databox_tags::Tag1&gt;(original_box)[0]);</div></div><!-- fragment -->
+</div>
+</div>
+<a id="ga4f2eba8e937c3d2639730f79ad6885ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4f2eba8e937c3d2639730f79ad6885ba">&#9670;&nbsp;</a></span>mutate_apply()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MutateTags , typename ArgumentTags , typename F , typename BoxTags , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto db::mutate_apply </td>
+          <td>(</td>
+          <td class="paramtype">F&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; DataBox&lt; BoxTags &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Apply the function <code>f</code> mutating items <code>MutateTags</code> and taking as additional arguments <code>ArgumentTags</code> and <code>args</code>. </p>
+<h3>Details</h3>
+<p><code>f</code> must either be invokable with the arguments of type <code><a class="el" href="classgsl_1_1not__null.html" title="Require a pointer to not be a nullptr ">gsl::not_null</a>&lt;<a class="el" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155" title="Get the type that is returned by the Tag. If it is a base tag then a TagList must be passed as a seco...">db::item_type</a>&lt;MutateTags&gt;*&gt;..., <a class="el" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155" title="Get the type that is returned by the Tag. If it is a base tag then a TagList must be passed as a seco...">db::item_type</a>&lt;ArgumentTags&gt;..., Args...</code> where the first two pack expansions are over the elements in the type lists <code>MutateTags</code> and <code>ArgumentTags</code>, or have a static <code>apply</code> function that is callable with the same types.</p>
+<h3>Example</h3>
+<p>An example of using <code>mutate_apply</code> with a lambda: </p><div class="fragment"><div class="line">  <a class="code" href="group__DataBoxGroup.html#ga4f2eba8e937c3d2639730f79ad6885ba">db::mutate_apply</a>&lt;</div><div class="line">      tmpl::list&lt;test_databox_tags::ScalarTag, test_databox_tags::VectorTag&gt;,</div><div class="line">      tmpl::list&lt;test_databox_tags::Tag2&gt;&gt;(</div><div class="line">      [](<span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null&lt;Scalar&lt;DataVector&gt;</a>*&gt; scalar,</div><div class="line">         <span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null&lt;tnsr::I&lt;DataVector, 3&gt;</a>*&gt; vector,</div><div class="line">         <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&amp; tag2) {</div><div class="line">        scalar-&gt;get() *= 2.0;</div><div class="line">        get&lt;0&gt;(*vector) *= 3.0;</div><div class="line">        get&lt;1&gt;(*vector) *= 4.0;</div><div class="line">        get&lt;2&gt;(*vector) *= 5.0;</div><div class="line">        CHECK(tag2 == <span class="stringliteral">&quot;My Sample String&quot;</span>s);</div><div class="line">      },</div><div class="line">      <a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;box));</div></div><!-- fragment --><p> An example of a class with a static <code>apply</code> function </p><div class="fragment"><div class="line"><span class="keyword">struct </span>test_databox_mutate_apply {</div><div class="line">  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="group__DataBoxGroup.html#ga657b0ab1e181835d5f22d20dbe8f8e70">apply</a>(<span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt;<a class="code" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar&lt;DataVector&gt;</a>*&gt; scalar,</div><div class="line">                    <span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt;tnsr::I&lt;DataVector, 3&gt;*&gt; vector,</div><div class="line">                    <span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&amp; tag2) {</div><div class="line">    scalar-&gt;get() *= 2.0;</div><div class="line">    get&lt;0&gt;(*vector) *= 3.0;</div><div class="line">    get&lt;1&gt;(*vector) *= 4.0;</div><div class="line">    get&lt;2&gt;(*vector) *= 5.0;</div><div class="line">    CHECK(tag2 == <span class="stringliteral">&quot;My Sample String&quot;</span>s);</div><div class="line">  }</div><div class="line">};</div></div><!-- fragment --><p>and how to use <code>mutate_apply</code> with the above class </p><div class="fragment"><div class="line">  <a class="code" href="group__DataBoxGroup.html#ga4f2eba8e937c3d2639730f79ad6885ba">db::mutate_apply</a>&lt;</div><div class="line">      tmpl::list&lt;test_databox_tags::ScalarTag, test_databox_tags::VectorTag&gt;,</div><div class="line">      tmpl::list&lt;&gt;&gt;(test_databox_mutate_apply{}, <a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;box),</div><div class="line">                    db::get&lt;test_databox_tags::Tag2&gt;(box));</div></div><!-- fragment --> <dl class="section see"><dt>See also</dt><dd>box </dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">MutateTags</td><td>typelist of Tags to mutate </td></tr>
+    <tr><td class="paramname">ArgumentTags</td><td>typelist of additional items to retrieve from the DataBox </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>the function to apply </td></tr>
+    <tr><td class="paramname">box</td><td>the DataBox out of which to retrieve the Tags and to pass to <code>f</code> </td></tr>
+    <tr><td class="paramname">args</td><td>the arguments to pass to the function that are not in the DataBox, <code>box</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga2be14f3c50866ef99b9d14e235308d6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2be14f3c50866ef99b9d14e235308d6c">&#9670;&nbsp;</a></span>update_deferred_args() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Rt , typename Fp , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void update_deferred_args </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDeferred.html">Deferred</a>&lt; Rt &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>deferred</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Fp&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Change the arguments to the <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> function. </p>
+<p>In order to make mutating <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> functions really powerful, the <code>args</code> to them must be updated without destructing the held <code>Rt</code> object. The type of <code>Fp</code> (the invokable being lazily evaluated) as well as the types of the <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t</a>&lt;Args&gt;...</code> must match their respective types at the time of creation of the <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> object.</p>
+<h3>Example</h3>
+<p>You can avoid specifying the type of the function held by the <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> class by passing the function as a second argument: </p><div class="fragment"><div class="line">  <span class="keyword">auto</span> mutate_deferred = make_deferred&lt;std::vector&lt;double&gt;&gt;(</div><div class="line">      mutate_function_vector, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{1.3, 7.8, 9.8});</div><div class="line">  CHECK(mutate_deferred.get() == (<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{13., 78., 98.}));</div><div class="line">  <a class="code" href="group__DataBoxGroup.html#ga2be14f3c50866ef99b9d14e235308d6c">update_deferred_args</a>(<a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;mutate_deferred), mutate_function_vector,</div><div class="line">                       <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{10., 70., 90.});</div><div class="line">  CHECK(mutate_deferred.get() == (<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{100., 700., 900.}));</div></div><!-- fragment --><p> You can also specify the type of the function held by the <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> explicitly as follows: </p><div class="fragment"><div class="line">  update_deferred_args&lt;std::vector&lt;double&gt;, decltype(mutate_function_vector)&gt;(</div><div class="line">      &amp;mutate_deferred, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{20., 8., 9.});</div><div class="line">  CHECK(mutate_deferred.get() == (<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{200., 80., 90.}));</div></div><!-- fragment -->
+</div>
+</div>
+<a id="ga1d29855f59c57cd70780f623316951e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1d29855f59c57cd70780f623316951e6">&#9670;&nbsp;</a></span>update_deferred_args() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Rt , typename Fp , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void update_deferred_args </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="classDeferred.html">Deferred</a>&lt; Rt &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>deferred</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Change the arguments to the <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> function. </p>
+<p>In order to make mutating <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> functions really powerful, the <code>args</code> to them must be updated without destructing the held <code>Rt</code> object. The type of <code>Fp</code> (the invokable being lazily evaluated) as well as the types of the <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t</a>&lt;Args&gt;...</code> must match their respective types at the time of creation of the <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> object.</p>
+<h3>Example</h3>
+<p>You can avoid specifying the type of the function held by the <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> class by passing the function as a second argument: </p><div class="fragment"><div class="line">  <span class="keyword">auto</span> mutate_deferred = make_deferred&lt;std::vector&lt;double&gt;&gt;(</div><div class="line">      mutate_function_vector, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{1.3, 7.8, 9.8});</div><div class="line">  CHECK(mutate_deferred.get() == (<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{13., 78., 98.}));</div><div class="line">  <a class="code" href="group__DataBoxGroup.html#ga2be14f3c50866ef99b9d14e235308d6c">update_deferred_args</a>(<a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;mutate_deferred), mutate_function_vector,</div><div class="line">                       <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{10., 70., 90.});</div><div class="line">  CHECK(mutate_deferred.get() == (<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{100., 700., 900.}));</div></div><!-- fragment --><p> You can also specify the type of the function held by the <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> explicitly as follows: </p><div class="fragment"><div class="line">  update_deferred_args&lt;std::vector&lt;double&gt;, decltype(mutate_function_vector)&gt;(</div><div class="line">      &amp;mutate_deferred, <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{20., 8., 9.});</div><div class="line">  CHECK(mutate_deferred.get() == (<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a>{200., 80., 90.}));</div></div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

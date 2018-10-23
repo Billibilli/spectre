@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - NumericalAlgorithms/LinearOperators/Divergence.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">NumericalAlgorithms/LinearOperators</a> - Divergence.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntryLo">42.9 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines functions and tags for taking a divergence.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      10 </span>            : #include &lt;string&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/DataBox/DataBoxTag.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/Requires.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : /// \cond
+<span class="lineNum">      19 </span>            : class DataVector;
+<span class="lineNum">      20 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      21 </span>            : class Mesh;
+<span class="lineNum">      22 </span>            : template &lt;typename TagsList&gt;
+<span class="lineNum">      23 </span>            : class Variables;
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : namespace Tags {
+<span class="lineNum">      26 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      27 </span>            : struct Mesh;
+<span class="lineNum">      28 </span>            : /// \endcond
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span>            : /// \ingroup DataBoxTagsGroup
+<span class="lineNum">      31 </span>            : /// \brief Prefix indicating the divergence
+<span class="lineNum">      32 </span>            : ///
+<span class="lineNum">      33 </span>            : /// Prefix indicating the divergence of a Tensor or that a Variables
+<span class="lineNum">      34 </span>            : /// contains divergences of Tensors.
+<span class="lineNum">      35 </span>            : ///
+<span class="lineNum">      36 </span>            : /// \snippet Test_Divergence.cpp divergence_name
+<span class="lineNum">      37 </span>            : ///
+<span class="lineNum">      38 </span>            : /// \see Tags::DivCompute
+<span class="lineNum">      39 </span>            : template &lt;typename Tag, typename = std::nullptr_t&gt;
+<span class="lineNum">      40 </span><span class="lineCov">          1 : struct div;</span>
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            : /// \cond
+<span class="lineNum">      43 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">      44 </span>            : struct div&lt;Tag, Requires&lt;tt::is_a_v&lt;Tensor, db::item_type&lt;Tag&gt;&gt;&gt;&gt;
+<span class="lineNum">      45 </span>            :     : db::PrefixTag, db::SimpleTag {
+<span class="lineNum">      46 </span>            :   static std::string name() noexcept { return &quot;div(&quot; + Tag::name() + &quot;)&quot;; }
+<span class="lineNum">      47 </span>            :   using tag = Tag;
+<span class="lineNum">      48 </span>            :   using type = TensorMetafunctions::remove_first_index&lt;db::item_type&lt;Tag&gt;&gt;;
+<span class="lineNum">      49 </span>            : };
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">      52 </span>            : struct div&lt;Tag, Requires&lt;tt::is_a_v&lt;::Variables, db::item_type&lt;Tag&gt;&gt;&gt;&gt;
+<span class="lineNum">      53 </span>            :     : db::PrefixTag, db::SimpleTag {
+<span class="lineNum">      54 </span>            :   static std::string name() noexcept { return &quot;div(&quot; + Tag::name() + &quot;)&quot;; }
+<span class="lineNum">      55 </span>            :   using tag = Tag;
+<span class="lineNum">      56 </span>            :   using type = db::item_type&lt;Tag&gt;;
+<span class="lineNum">      57 </span>            : };
+<span class="lineNum">      58 </span>            : /// \endcond
+<span class="lineNum">      59 </span>            : }  // namespace Tags
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            : /// \ingroup NumericalAlgorithmsGroup
+<span class="lineNum">      62 </span>            : /// \brief Compute the (Euclidean) divergence of fluxes
+<span class="lineNum">      63 </span>            : template &lt;typename FluxTags, size_t Dim, typename DerivativeFrame&gt;
+<span class="lineNum">      64 </span><span class="lineCov">          2 : auto divergence(</span>
+<span class="lineNum">      65 </span>            :     const Variables&lt;FluxTags&gt;&amp; F, const Mesh&lt;Dim&gt;&amp; mesh,
+<span class="lineNum">      66 </span>            :     const InverseJacobian&lt;DataVector, Dim, Frame::Logical, DerivativeFrame&gt;&amp;
+<span class="lineNum">      67 </span>            :         inverse_jacobian) noexcept
+<span class="lineNum">      68 </span>            :     -&gt; Variables&lt;db::wrap_tags_in&lt;Tags::div, FluxTags&gt;&gt;;
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            : namespace Tags {
+<span class="lineNum">      71 </span>            : /// \ingroup DataBoxTagsGroup
+<span class="lineNum">      72 </span>            : /// \brief Compute the divergence of a Variables
+<span class="lineNum">      73 </span>            : ///
+<span class="lineNum">      74 </span>            : /// Computes the divergence of the Tensors in the Variables
+<span class="lineNum">      75 </span>            : /// represented by `Tag` in the frame mapped to by
+<span class="lineNum">      76 </span>            : /// `InverseJacobianTag`.  The map must map from the logical frame.
+<span class="lineNum">      77 </span>            : ///
+<span class="lineNum">      78 </span>            : /// This tag inherits from `db::add_prefix_tag&lt;Tags::div, Tag&gt;`.
+<span class="lineNum">      79 </span>            : template &lt;typename Tag, typename InverseJacobianTag&gt;
+<span class="lineNum">      80 </span><span class="lineCov">          1 : struct DivCompute : db::add_tag_prefix&lt;div, Tag&gt;, db::ComputeTag {</span>
+<span class="lineNum">      81 </span>            :  private:
+<span class="lineNum">      82 </span><span class="lineNoCov">          0 :   using inv_jac_indices =</span>
+<span class="lineNum">      83 </span>            :       typename db::item_type&lt;InverseJacobianTag&gt;::index_list;
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :   static constexpr auto dim = tmpl::back&lt;inv_jac_indices&gt;::dim;</span>
+<span class="lineNum">      85 </span>            :   static_assert(cpp17::is_same_v&lt;typename tmpl::front&lt;inv_jac_indices&gt;::Frame,
+<span class="lineNum">      86 </span>            :                                  Frame::Logical&gt;,
+<span class="lineNum">      87 </span>            :                 &quot;Must map from the logical frame.&quot;);
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span>            :  public:
+<span class="lineNum">      90 </span><span class="lineNoCov">          0 :   static constexpr auto function =</span>
+<span class="lineNum">      91 </span>            :       divergence&lt;typename db::item_type&lt;Tag&gt;::tags_list, dim,
+<span class="lineNum">      92 </span>            :                  typename tmpl::back&lt;inv_jac_indices&gt;::Frame&gt;;
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :   using argument_tags = tmpl::list&lt;Tag, Tags::Mesh&lt;dim&gt;, InverseJacobianTag&gt;;</span>
+<span class="lineNum">      94 </span>            : };
+<span class="lineNum">      95 </span>            : }  // namespace Tags
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

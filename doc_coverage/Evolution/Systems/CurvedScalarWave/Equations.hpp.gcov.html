@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/Systems/CurvedScalarWave/Equations.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">Evolution/Systems/CurvedScalarWave</a> - Equations.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryLo">33.3 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;NumericalAlgorithms/LinearOperators/PartialDerivatives.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;PointwiseFunctions/GeneralRelativity/Tags.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : /// \cond
+<span class="lineNum">      15 </span>            : class DataVector;
+<span class="lineNum">      16 </span>            : template &lt;typename X, typename Symm, typename IndexList&gt;
+<span class="lineNum">      17 </span>            : class Tensor;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : namespace CurvedScalarWave {
+<span class="lineNum">      20 </span>            : struct Psi;
+<span class="lineNum">      21 </span>            : struct Pi;
+<span class="lineNum">      22 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      23 </span>            : struct Phi;
+<span class="lineNum">      24 </span>            : struct ConstraintGamma1;
+<span class="lineNum">      25 </span>            : struct ConstraintGamma2;
+<span class="lineNum">      26 </span>            : }  // namespace CurvedScalarWave
+<span class="lineNum">      27 </span>            : /// \endcond
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : namespace CurvedScalarWave {
+<span class="lineNum">      30 </span>            : /*!
+<span class="lineNum">      31 </span>            :  * \brief Compute the time derivative of the evolved variables of the
+<span class="lineNum">      32 </span>            :  * first-order scalar wave system on a curved background.
+<span class="lineNum">      33 </span>            :  *
+<span class="lineNum">      34 </span>            :  * The evolution equations for the first-order scalar wave system are given by
+<span class="lineNum">      35 </span>            :   * &lt;a href=&quot;https://arxiv.org/abs/gr-qc/0407011&quot;&gt;
+<span class="lineNum">      36 </span>            :  * gr-qc/0407011 &lt;/a&gt;:
+<span class="lineNum">      37 </span>            :  *
+<span class="lineNum">      38 </span>            :  * \f{align}
+<span class="lineNum">      39 </span>            :  * \partial_t\psi = &amp; (1 + \gamma_1) N^k \partial_k \psi - N \Pi - \gamma_1 N^k
+<span class="lineNum">      40 </span>            :  * \Phi_k \\
+<span class="lineNum">      41 </span>            :  *
+<span class="lineNum">      42 </span>            :  * \partial_t\Pi = &amp; - N g^{ij}\partial_i\Phi_j + N^k \partial_k \Pi + \gamma_1
+<span class="lineNum">      43 </span>            :  * \gamma_2 N^k \partial_k \psi  + N \Gamma^i - g^{ij} \Phi_i \partial_j N
+<span class="lineNum">      44 </span>            :  *  + N K \Pi - \gamma_1  \gamma_2 N^k \Phi_k\\
+<span class="lineNum">      45 </span>            :  *
+<span class="lineNum">      46 </span>            :  * \partial_t\Phi_i = &amp; - N \partial_i \Pi  + N^k \partial_k \Phi + \gamma_2
+<span class="lineNum">      47 </span>            :  * N \partial_i \psi - \Pi
+<span class="lineNum">      48 </span>            :  * \partial_i N + \Phi_k \partial_i N^j - \gamma_2 N \Phi_i\\
+<span class="lineNum">      49 </span>            :  * \f}
+<span class="lineNum">      50 </span>            :  *
+<span class="lineNum">      51 </span>            :  * where \f$\psi\f$ is the scalar field, \f$\Pi\f$ is the
+<span class="lineNum">      52 </span>            :  * conjugate momentum to \f$\psi\f$, \f$\Phi_i=\partial_i\psi\f$ is an
+<span class="lineNum">      53 </span>            :  * auxiliary variable, \f$N\f$ is the lapse, \f$N^k\f$ is the shift, \f$ g_{ij}
+<span class="lineNum">      54 </span>            :  * \f$ is the spatial metric, \f$ K \f$ is the trace of the extrinsic curvature,
+<span class="lineNum">      55 </span>            :  * and \f$ \Gamma^i \f$ is the trace of the Christoffel symbol of the second
+<span class="lineNum">      56 </span>            :  * kind.
+<span class="lineNum">      57 </span>            :  * \f$\gamma_1, \gamma_2\f$ are constraint damping parameters.
+<span class="lineNum">      58 </span>            :  */
+<span class="lineNum">      59 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      60 </span><span class="lineCov">          1 : struct ComputeDuDt {</span>
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 :   using argument_tags = tmpl::list&lt;</span>
+<span class="lineNum">      62 </span>            :       Pi, Phi&lt;Dim&gt;, Tags::deriv&lt;Psi, tmpl::size_t&lt;Dim&gt;, Frame::Inertial&gt;,
+<span class="lineNum">      63 </span>            :       Tags::deriv&lt;Pi, tmpl::size_t&lt;Dim&gt;, Frame::Inertial&gt;,
+<span class="lineNum">      64 </span>            :       Tags::deriv&lt;Phi&lt;Dim&gt;, tmpl::size_t&lt;Dim&gt;, Frame::Inertial&gt;,
+<span class="lineNum">      65 </span>            :       gr::Tags::Lapse&lt;DataVector&gt;,
+<span class="lineNum">      66 </span>            :       gr::Tags::Shift&lt;Dim, Frame::Inertial, DataVector&gt;,
+<span class="lineNum">      67 </span>            :       Tags::deriv&lt;gr::Tags::Lapse&lt;DataVector&gt;, tmpl::size_t&lt;Dim&gt;,
+<span class="lineNum">      68 </span>            :                   Frame::Inertial&gt;,
+<span class="lineNum">      69 </span>            :       Tags::deriv&lt;gr::Tags::Shift&lt;Dim, Frame::Inertial, DataVector&gt;,
+<span class="lineNum">      70 </span>            :                   tmpl::size_t&lt;Dim&gt;, Frame::Inertial&gt;,
+<span class="lineNum">      71 </span>            :       gr::Tags::InverseSpatialMetric&lt;Dim, Frame::Inertial, DataVector&gt;,
+<span class="lineNum">      72 </span>            :       gr::Tags::TraceSpatialChristoffelSecondKind&lt;Dim, Frame::Inertial,
+<span class="lineNum">      73 </span>            :                                                   DataVector&gt;,
+<span class="lineNum">      74 </span>            :       gr::Tags::TraceExtrinsicCurvature&lt;DataVector&gt;, ConstraintGamma1,
+<span class="lineNum">      75 </span>            :       ConstraintGamma2&gt;;
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 :   static void apply(</span>
+<span class="lineNum">      78 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; dt_pi,
+<span class="lineNum">      79 </span>            :       gsl::not_null&lt;tnsr::i&lt;DataVector, Dim, Frame::Inertial&gt;*&gt; dt_phi,
+<span class="lineNum">      80 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; dt_psi, const Scalar&lt;DataVector&gt;&amp; pi,
+<span class="lineNum">      81 </span>            :       const tnsr::i&lt;DataVector, Dim&gt;&amp; phi,
+<span class="lineNum">      82 </span>            :       const tnsr::i&lt;DataVector, Dim&gt;&amp; d_psi,
+<span class="lineNum">      83 </span>            :       const tnsr::i&lt;DataVector, Dim&gt;&amp; d_pi,
+<span class="lineNum">      84 </span>            :       const tnsr::ij&lt;DataVector, Dim&gt;&amp; d_phi, const Scalar&lt;DataVector&gt;&amp; lapse,
+<span class="lineNum">      85 </span>            :       const tnsr::I&lt;DataVector, Dim&gt;&amp; shift,
+<span class="lineNum">      86 </span>            :       const tnsr::i&lt;DataVector, Dim&gt;&amp; deriv_lapse,
+<span class="lineNum">      87 </span>            :       const tnsr::iJ&lt;DataVector, Dim&gt;&amp; deriv_shift,
+<span class="lineNum">      88 </span>            :       const tnsr::II&lt;DataVector, Dim&gt;&amp; upper_spatial_metric,
+<span class="lineNum">      89 </span>            :       const tnsr::I&lt;DataVector, Dim&gt;&amp; trace_spatial_christoffel,
+<span class="lineNum">      90 </span>            :       const Scalar&lt;DataVector&gt;&amp; trace_extrinsic_curvature,
+<span class="lineNum">      91 </span>            :       const Scalar&lt;DataVector&gt;&amp; gamma1,
+<span class="lineNum">      92 </span>            :       const Scalar&lt;DataVector&gt;&amp; gamma2) noexcept;
+<span class="lineNum">      93 </span>            : };
+<span class="lineNum">      94 </span>            : }  // namespace CurvedScalarWave
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

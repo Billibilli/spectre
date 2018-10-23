@@ -1,0 +1,250 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: ElementId&lt; VolumeDim &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classElementId-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">ElementId&lt; VolumeDim &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__ComputationalDomainGroup.html">Computational Domain</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>An <a class="el" href="classElementId.html" title="An ElementId uniquely labels an Element. It is constructed from the BlockId of the Block to which the...">ElementId</a> uniquely labels an <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a>. It is constructed from the BlockId of the <a class="el" href="classBlock.html" title="A Block&lt;VolumeDim&gt; is a region of a VolumeDim-dimensional computational domain that defines the root ...">Block</a> to which the <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a> belongs and the VolumeDim SegmentIds that label the segments of the <a class="el" href="classBlock.html" title="A Block&lt;VolumeDim&gt; is a region of a VolumeDim-dimensional computational domain that defines the root ...">Block</a> that the <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a> covers.  
+ <a href="classElementId.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ElementId_8hpp_source.html">ElementId.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a121c40d9502701eb29341e1f3eeb576d"><td class="memItemLeft" align="right" valign="top"><a id="a121c40d9502701eb29341e1f3eeb576d"></a>
+constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElementId.html#a121c40d9502701eb29341e1f3eeb576d">ElementId</a> ()=default</td></tr>
+<tr class="memdesc:a121c40d9502701eb29341e1f3eeb576d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor needed for Charm++ serialization. <br /></td></tr>
+<tr class="separator:a121c40d9502701eb29341e1f3eeb576d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20e4148ae2ff4cb254c3d04775969e04"><td class="memItemLeft" align="right" valign="top"><a id="a20e4148ae2ff4cb254c3d04775969e04"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElementId.html#a20e4148ae2ff4cb254c3d04775969e04">ElementId</a> (size_t block_id) noexcept</td></tr>
+<tr class="memdesc:a20e4148ae2ff4cb254c3d04775969e04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the <a class="el" href="classElementId.html" title="An ElementId uniquely labels an Element. It is constructed from the BlockId of the Block to which the...">ElementId</a> of the root <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a> of a <a class="el" href="classBlock.html" title="A Block&lt;VolumeDim&gt; is a region of a VolumeDim-dimensional computational domain that defines the root ...">Block</a>. <br /></td></tr>
+<tr class="separator:a20e4148ae2ff4cb254c3d04775969e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad862e3ce85a8aea236cef6ebcdd4cfc7"><td class="memItemLeft" align="right" valign="top"><a id="ad862e3ce85a8aea236cef6ebcdd4cfc7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElementId.html#ad862e3ce85a8aea236cef6ebcdd4cfc7">ElementId</a> (const <a class="el" href="classElementIndex.html">ElementIndex</a>&lt; VolumeDim &gt; &amp;index) noexcept</td></tr>
+<tr class="memdesc:ad862e3ce85a8aea236cef6ebcdd4cfc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert an <a class="el" href="classElementIndex.html" title="A class for indexing a Charm array by Element. ">ElementIndex</a> to an <a class="el" href="classElementId.html" title="An ElementId uniquely labels an Element. It is constructed from the BlockId of the Block to which the...">ElementId</a>. <br /></td></tr>
+<tr class="separator:ad862e3ce85a8aea236cef6ebcdd4cfc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c8b0d2a958830ec76c6b895a7afe9e9"><td class="memItemLeft" align="right" valign="top"><a id="a1c8b0d2a958830ec76c6b895a7afe9e9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElementId.html#a1c8b0d2a958830ec76c6b895a7afe9e9">operator Parallel::ArrayIndex&lt; ElementIndex&lt; VolumeDim &gt;&gt;</a> () const noexcept</td></tr>
+<tr class="memdesc:a1c8b0d2a958830ec76c6b895a7afe9e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversion operator needed to index <code>proxy</code>s using <code><a class="el" href="classElementId.html" title="An ElementId uniquely labels an Element. It is constructed from the BlockId of the Block to which the...">ElementId</a></code> <br /></td></tr>
+<tr class="separator:a1c8b0d2a958830ec76c6b895a7afe9e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fb02188745760aa0544dd653ab3ea14"><td class="memItemLeft" align="right" valign="top"><a id="a4fb02188745760aa0544dd653ab3ea14"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElementId.html#a4fb02188745760aa0544dd653ab3ea14">ElementId</a> (size_t block_id, <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classSegmentId.html">SegmentId</a>, VolumeDim &gt; segment_ids) noexcept</td></tr>
+<tr class="memdesc:a4fb02188745760aa0544dd653ab3ea14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an arbitrary <a class="el" href="classElementId.html" title="An ElementId uniquely labels an Element. It is constructed from the BlockId of the Block to which the...">ElementId</a>. <br /></td></tr>
+<tr class="separator:a4fb02188745760aa0544dd653ab3ea14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dbc15dfc4bb3060e76c2215ad73d8a6"><td class="memItemLeft" align="right" valign="top"><a id="a8dbc15dfc4bb3060e76c2215ad73d8a6"></a>
+<a class="el" href="classElementId.html">ElementId</a>&lt; VolumeDim &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>id_of_child</b> (size_t dim, <a class="el" href="group__ComputationalDomainGroup.html#ga8c0137d7160ad71b6ed265c53c99ed00">Side</a> side) const noexcept</td></tr>
+<tr class="separator:a8dbc15dfc4bb3060e76c2215ad73d8a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89fb2c413dd83c54350fc9d81167f1f1"><td class="memItemLeft" align="right" valign="top"><a id="a89fb2c413dd83c54350fc9d81167f1f1"></a>
+<a class="el" href="classElementId.html">ElementId</a>&lt; VolumeDim &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>id_of_parent</b> (size_t dim) const noexcept</td></tr>
+<tr class="separator:a89fb2c413dd83c54350fc9d81167f1f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b6c5e9244697453108c5d6907ba9c2d"><td class="memItemLeft" align="right" valign="top"><a id="a7b6c5e9244697453108c5d6907ba9c2d"></a>
+constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><b>block_id</b> () const noexcept</td></tr>
+<tr class="separator:a7b6c5e9244697453108c5d6907ba9c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad85cc9620b9d3dd34be478baae24c497"><td class="memItemLeft" align="right" valign="top"><a id="ad85cc9620b9d3dd34be478baae24c497"></a>
+const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classSegmentId.html">SegmentId</a>, VolumeDim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>segment_ids</b> () const noexcept</td></tr>
+<tr class="separator:ad85cc9620b9d3dd34be478baae24c497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a210a9fb9be7057c02a8677d5bcf0870a"><td class="memItemLeft" align="right" valign="top"><a id="a210a9fb9be7057c02a8677d5bcf0870a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElementId.html#a210a9fb9be7057c02a8677d5bcf0870a">pup</a> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="memdesc:a210a9fb9be7057c02a8677d5bcf0870a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialization for Charm++. <br /></td></tr>
+<tr class="separator:a210a9fb9be7057c02a8677d5bcf0870a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a278a12fcd21f0976dee2cd386736a813"><td class="memItemLeft" align="right" valign="top"><a id="a278a12fcd21f0976dee2cd386736a813"></a>
+static <a class="el" href="classElementId.html">ElementId</a>&lt; VolumeDim &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElementId.html#a278a12fcd21f0976dee2cd386736a813">external_boundary_id</a> () noexcept</td></tr>
+<tr class="memdesc:a278a12fcd21f0976dee2cd386736a813"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an <a class="el" href="classElementId.html" title="An ElementId uniquely labels an Element. It is constructed from the BlockId of the Block to which the...">ElementId</a> meant for identifying data on external boundaries, which should never correspond to the Id of an actual element. <br /></td></tr>
+<tr class="separator:a278a12fcd21f0976dee2cd386736a813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;size_t VolumeDim&gt;<br />
+class ElementId&lt; VolumeDim &gt;</h3>
+
+<p>An <a class="el" href="classElementId.html" title="An ElementId uniquely labels an Element. It is constructed from the BlockId of the Block to which the...">ElementId</a> uniquely labels an <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a>. It is constructed from the BlockId of the <a class="el" href="classBlock.html" title="A Block&lt;VolumeDim&gt; is a region of a VolumeDim-dimensional computational domain that defines the root ...">Block</a> to which the <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a> belongs and the VolumeDim SegmentIds that label the segments of the <a class="el" href="classBlock.html" title="A Block&lt;VolumeDim&gt; is a region of a VolumeDim-dimensional computational domain that defines the root ...">Block</a> that the <a class="el" href="classElement.html" title="A spectral element with knowledge of its neighbors. ">Element</a> covers. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Domain/<a class="el" href="ElementId_8hpp_source.html">ElementId.hpp</a></li>
+<li>src/Domain/ElementId.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

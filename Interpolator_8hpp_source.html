@@ -1,0 +1,196 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/NumericalAlgorithms/Interpolation/Interpolator.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_a7268f5afc6b190325b6ae3281812809.html">NumericalAlgorithms</a></li><li class="navelem"><a class="el" href="dir_b5be3fef78335bf3b7869cd601bebc3c.html">Interpolation</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Interpolator.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DataBox_8hpp.html">DataStructures/DataBox/DataBox.hpp</a>&quot;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;NumericalAlgorithms/Interpolation/InitializeInterpolator.hpp&quot;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConstGlobalCache_8hpp.html">Parallel/ConstGlobalCache.hpp</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;Parallel/Invoke.hpp&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TMPL_8hpp.html">Utilities/TMPL.hpp</a>&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceintrp.html">intrp</a> {</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/// \brief ParallelComponent responsible for collecting data from</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/// `Element`s and interpolating it onto `InterpolationTarget`s.</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">///</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/// For requirements on Metavariables, see InterpolationTarget</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keyword">class</span> Metavariables, <span class="keywordtype">size_t</span> VolumeDim&gt;</div><div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structintrp_1_1Interpolator.html">   19</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structintrp_1_1Interpolator.html">Interpolator</a> {</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  <span class="keyword">using</span> chare_type = Parallel::Algorithms::Group;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keyword">using</span> const_global_cache_tag_list = tmpl::list&lt;&gt;;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="keyword">using</span> metavariables = Metavariables;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keyword">using</span> action_list = tmpl::list&lt;&gt;;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <span class="keyword">using</span> initial_databox =</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;      <a class="code" href="group__DataBoxGroup.html#ga8b1b1d429f0faf5e11d06015467312d2">db::compute_databox_type</a>&lt;<span class="keyword">typename</span> <a class="code" href="structintrp_1_1Actions_1_1InitializeInterpolator.html">Actions::InitializeInterpolator</a>&lt;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;          VolumeDim&gt;:: template return_tag_list&lt;Metavariables&gt;&gt;;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keyword">using</span> options = tmpl::list&lt;&gt;;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">void</span> initialize(</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;      Parallel::CProxy_ConstGlobalCache&lt;Metavariables&gt;&amp; global_cache);</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">void</span> execute_next_phase(<span class="keyword">typename</span> Metavariables::Phase <span class="comment">/*next_phase*/</span>,</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                                 <span class="keyword">const</span> Parallel::CProxy_ConstGlobalCache&lt;</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                                     Metavariables&gt;&amp; <span class="comment">/*global_cache*/</span>){};</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> Metavariables, <span class="keywordtype">size_t</span> VolumeDim&gt;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> <a class="code" href="structintrp_1_1Interpolator.html">Interpolator&lt;Metavariables, VolumeDim&gt;::initialize</a>(</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    Parallel::CProxy_ConstGlobalCache&lt;Metavariables&gt;&amp; global_cache) {</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keyword">auto</span>&amp; my_proxy = Parallel::get_parallel_component&lt;Interpolator&gt;(</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;      *(global_cache.ckLocalBranch()));</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  Parallel::simple_action&lt;Actions::InitializeInterpolator&gt;(my_proxy);</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}  <span class="comment">// namespace intrp</span></div><div class="ttc" id="structintrp_1_1Actions_1_1InitializeInterpolator_html"><div class="ttname"><a href="structintrp_1_1Actions_1_1InitializeInterpolator.html">intrp::Actions::InitializeInterpolator</a></div><div class="ttdoc">Initializes an Interpolator. </div><div class="ttdef"><b>Definition:</b> InitializeInterpolator.hpp:30</div></div>
+<div class="ttc" id="namespaceintrp_html"><div class="ttname"><a href="namespaceintrp.html">intrp</a></div><div class="ttdoc">Contains classes and functions for interpolation. </div><div class="ttdef"><b>Definition:</b> AddTemporalIdsToInterpolationTarget.hpp:17</div></div>
+<div class="ttc" id="structintrp_1_1Interpolator_html"><div class="ttname"><a href="structintrp_1_1Interpolator.html">intrp::Interpolator</a></div><div class="ttdoc">ParallelComponent responsible for collecting data from Elements and interpolating it onto Interpolati...</div><div class="ttdef"><b>Definition:</b> Interpolator.hpp:19</div></div>
+<div class="ttc" id="DataBox_8hpp_html"><div class="ttname"><a href="DataBox_8hpp.html">DataBox.hpp</a></div><div class="ttdoc">Defines classes and functions used for manipulating DataBox&amp;#39;s. </div></div>
+<div class="ttc" id="TMPL_8hpp_html"><div class="ttname"><a href="TMPL_8hpp.html">TMPL.hpp</a></div><div class="ttdoc">Wraps the template metaprogramming library used (brigand) </div></div>
+<div class="ttc" id="group__DataBoxGroup_html_ga8b1b1d429f0faf5e11d06015467312d2"><div class="ttname"><a href="group__DataBoxGroup.html#ga8b1b1d429f0faf5e11d06015467312d2">db::compute_databox_type</a></div><div class="ttdeci">typename DataBox_detail::compute_dbox_type&lt; get_items&lt; TagList &gt;, get_compute_items&lt; TagList &gt; &gt;::type compute_databox_type</div><div class="ttdoc">Returns the type of the DataBox that would be constructed from the TagList of tags. </div><div class="ttdef"><b>Definition:</b> DataBox.hpp:1795</div></div>
+<div class="ttc" id="ConstGlobalCache_8hpp_html"><div class="ttname"><a href="ConstGlobalCache_8hpp.html">ConstGlobalCache.hpp</a></div><div class="ttdoc">Defines class template ConstGlobalCache. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - ApparentHorizons/YlmSpherepack.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">ApparentHorizons</a> - YlmSpherepack.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">46</td>
+            <td class="headerCovTableEntry">63</td>
+            <td class="headerCovTableEntryLo">73.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">       8 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       9 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      10 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : #include &quot;ApparentHorizons/YlmSpherepackHelper.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/Blas.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : /// \ingroup SpectralGroup
+<span class="lineNum">      20 </span>            : /// \brief C++ interface to SPHEREPACK.
+<span class="lineNum">      21 </span><span class="lineCov">          1 : class YlmSpherepack {</span>
+<span class="lineNum">      22 </span>            :  public:
+<span class="lineNum">      23 </span>            :   /// Type returned by gradient function.
+<span class="lineNum">      24 </span><span class="lineCov">          1 :   using FirstDeriv = tnsr::i&lt;DataVector, 2, Frame::Logical&gt;;</span>
+<span class="lineNum">      25 </span>            :   /// Type returned by second derivative function.
+<span class="lineNum">      26 </span><span class="lineCov">          1 :   using SecondDeriv = tnsr::ij&lt;DataVector, 2, Frame::Logical&gt;;</span>
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            :   /// Cached information to interpolate to the `target` point.
+<span class="lineNum">      29 </span><span class="lineCov">          1 :   struct InterpolationInfoPerPoint {</span>
+<span class="lineNum">      30 </span><span class="lineNoCov">          0 :     InterpolationInfoPerPoint(size_t m_max, const std::vector&lt;double&gt;&amp; pmm,</span>
+<span class="lineNum">      31 </span>            :                               const std::array&lt;double, 2&gt;&amp; target);
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 :     double cos_theta;</span>
+<span class="lineNum">      33 </span>            :     // cos(m*phi) and sin(m*phi)
+<span class="lineNum">      34 </span><span class="lineNoCov">          0 :     std::vector&lt;double&gt; cos_m_phi, sin_m_phi;</span>
+<span class="lineNum">      35 </span>            :     // pbar_factor[m] = Pbar(m,m)*sin(theta)^m
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 :     std::vector&lt;double&gt; pbar_factor;</span>
+<span class="lineNum">      37 </span>            :   };
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            :   /// Type to hold cached information at a set of target interpolation
+<span class="lineNum">      40 </span>            :   /// points.
+<span class="lineNum">      41 </span><span class="lineCov">          1 :   using InterpolationInfo = std::vector&lt;InterpolationInfoPerPoint&gt;;</span>
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span>            :   /// Here l_max and m_max are the largest fully-represented l and m in
+<span class="lineNum">      44 </span>            :   /// the Ylm expansion.
+<span class="lineNum">      45 </span><span class="lineCov">          1 :   YlmSpherepack(size_t l_max, size_t m_max) noexcept;</span>
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            :   ///@{
+<span class="lineNum">      48 </span>            :   /// Static functions to return the correct sizes of vectors of
+<span class="lineNum">      49 </span>            :   /// collocation points and spectral coefficients for a given l_max
+<span class="lineNum">      50 </span>            :   /// and m_max.  Useful for allocating space without having to create
+<span class="lineNum">      51 </span>            :   /// a YlmSpherepack.
+<span class="lineNum">      52 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE static constexpr size_t physical_size(</span>
+<span class="lineNum">      53 </span>            :       const size_t l_max, const size_t m_max) noexcept {
+<span class="lineNum">      54 </span>            :     return (l_max + 1) * (2 * m_max + 1);
+<span class="lineNum">      55 </span>            :   }
+<span class="lineNum">      56 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE static constexpr size_t spectral_size(</span>
+<span class="lineNum">      57 </span>            :       const size_t l_max, const size_t m_max) noexcept {
+<span class="lineNum">      58 </span>            :     return 2 * (l_max + 1) * (m_max + 1);
+<span class="lineNum">      59 </span>            :   }
+<span class="lineNum">      60 </span>            :   ///@}
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span>            :   ///@{
+<span class="lineNum">      63 </span>            :   /// Sizes in physical and spectral space for this instance.
+<span class="lineNum">      64 </span><span class="lineCov">          1 :   size_t l_max() const noexcept { return l_max_; }</span>
+<span class="lineNum">      65 </span><span class="lineCov">          1 :   size_t m_max() const noexcept { return m_max_; }</span>
+<span class="lineNum">      66 </span><span class="lineCov">          1 :   size_t physical_size() const noexcept { return n_theta_ * n_phi_; }</span>
+<span class="lineNum">      67 </span><span class="lineCov">          1 :   size_t spectral_size() const noexcept { return spectral_size_; }</span>
+<span class="lineNum">      68 </span>            :   ///@}
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :   std::array&lt;size_t, 2&gt; physical_extents() const noexcept {</span>
+<span class="lineNum">      71 </span>            :     return {{n_theta_, n_phi_}};
+<span class="lineNum">      72 </span>            :   }
+<span class="lineNum">      73 </span>            : 
+<span class="lineNum">      74 </span>            :   ///@{
+<span class="lineNum">      75 </span>            :   /// Collocation points theta and phi.
+<span class="lineNum">      76 </span><span class="lineCov">          1 :   const std::vector&lt;double&gt;&amp; theta_points() const noexcept;</span>
+<span class="lineNum">      77 </span><span class="lineCov">          1 :   const std::vector&lt;double&gt;&amp; phi_points() const noexcept;</span>
+<span class="lineNum">      78 </span><span class="lineCov">          1 :   std::array&lt;DataVector, 2&gt; theta_phi_points() const noexcept;</span>
+<span class="lineNum">      79 </span>            :   ///@}
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            :   ///@{
+<span class="lineNum">      82 </span>            :   /// Spectral transformations.
+<span class="lineNum">      83 </span>            :   /// To act on a slice of the input and output arrays, specify strides
+<span class="lineNum">      84 </span>            :   /// and offsets.
+<span class="lineNum">      85 </span><span class="lineCov">          1 :   void phys_to_spec(gsl::not_null&lt;double*&gt; spectral_coefs,</span>
+<span class="lineNum">      86 </span>            :                     gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">      87 </span>            :                     size_t physical_stride = 1, size_t physical_offset = 0,
+<span class="lineNum">      88 </span>            :                     size_t spectral_stride = 1,
+<span class="lineNum">      89 </span>            :                     size_t spectral_offset = 0) const noexcept {
+<span class="lineNum">      90 </span>            :     phys_to_spec_impl(spectral_coefs, collocation_values, physical_stride,
+<span class="lineNum">      91 </span>            :                       physical_offset, spectral_stride, spectral_offset, false);
+<span class="lineNum">      92 </span>            :   }
+<span class="lineNum">      93 </span><span class="lineCov">          1 :   void spec_to_phys(gsl::not_null&lt;double*&gt; collocation_values,</span>
+<span class="lineNum">      94 </span>            :                     gsl::not_null&lt;const double*&gt; spectral_coefs,
+<span class="lineNum">      95 </span>            :                     size_t spectral_stride = 1, size_t spectral_offset = 0,
+<span class="lineNum">      96 </span>            :                     size_t physical_stride = 1,
+<span class="lineNum">      97 </span>            :                     size_t physical_offset = 0) const noexcept {
+<span class="lineNum">      98 </span>            :     spec_to_phys_impl(collocation_values, spectral_coefs, spectral_stride,
+<span class="lineNum">      99 </span>            :                       spectral_offset, physical_stride, physical_offset, false);
+<span class="lineNum">     100 </span>            :   };
+<span class="lineNum">     101 </span>            :   ///@}
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span>            :   ///@{
+<span class="lineNum">     104 </span>            :   /// Spectral transformations where `collocation_values` and
+<span class="lineNum">     105 </span>            :   /// `spectral_coefs` are assumed to point to 3-dimensional arrays
+<span class="lineNum">     106 </span>            :   /// (I1 x S2 topology), and the transformations are done for all
+<span class="lineNum">     107 </span>            :   /// 'radial' points at once by internally looping over all values of
+<span class="lineNum">     108 </span>            :   /// the offset from zero to `stride`-1 (the physical and spectral
+<span class="lineNum">     109 </span>            :   /// strides are equal and are called `stride`).
+<span class="lineNum">     110 </span><span class="lineCov">          1 :   void phys_to_spec_all_offsets(gsl::not_null&lt;double*&gt; spectral_coefs,</span>
+<span class="lineNum">     111 </span>            :                                 gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     112 </span>            :                                 size_t stride) const noexcept {
+<span class="lineNum">     113 </span>            :     phys_to_spec_impl(spectral_coefs, collocation_values, stride, 0, stride, 0,
+<span class="lineNum">     114 </span>            :                       true);
+<span class="lineNum">     115 </span>            :   }
+<span class="lineNum">     116 </span><span class="lineCov">          1 :   void spec_to_phys_all_offsets(gsl::not_null&lt;double*&gt; collocation_values,</span>
+<span class="lineNum">     117 </span>            :                                 gsl::not_null&lt;const double*&gt; spectral_coefs,
+<span class="lineNum">     118 </span>            :                                 size_t stride) const noexcept {
+<span class="lineNum">     119 </span>            :     spec_to_phys_impl(collocation_values, spectral_coefs, stride, 0, stride, 0,
+<span class="lineNum">     120 </span>            :                       true);
+<span class="lineNum">     121 </span>            :   };
+<span class="lineNum">     122 </span>            :   ///@}
+<span class="lineNum">     123 </span>            : 
+<span class="lineNum">     124 </span>            :   ///@{
+<span class="lineNum">     125 </span>            :   /// Simpler, less general interfaces to `phys_to_spec` and `spec_to_phys`.
+<span class="lineNum">     126 </span>            :   /// Acts on a slice of the input and returns a unit-stride result.
+<span class="lineNum">     127 </span><span class="lineCov">          1 :   DataVector phys_to_spec(const DataVector&amp; collocation_values,</span>
+<span class="lineNum">     128 </span>            :                           size_t physical_stride = 1,
+<span class="lineNum">     129 </span>            :                           size_t physical_offset = 0) const noexcept;
+<span class="lineNum">     130 </span><span class="lineCov">          1 :   DataVector spec_to_phys(const DataVector&amp; spectral_coefs,</span>
+<span class="lineNum">     131 </span>            :                           size_t spectral_stride = 1,
+<span class="lineNum">     132 </span>            :                           size_t spectral_offset = 0) const noexcept;
+<span class="lineNum">     133 </span>            :   ///@}
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            :   ///@{
+<span class="lineNum">     136 </span>            :   /// Simpler, less general interfaces to `phys_to_spec_all_offsets`
+<span class="lineNum">     137 </span>            :   /// and `spec_to_phys_all_offsets`.  Result has the same stride as
+<span class="lineNum">     138 </span>            :   /// the input.
+<span class="lineNum">     139 </span><span class="lineCov">          1 :   DataVector phys_to_spec_all_offsets(const DataVector&amp; collocation_values,</span>
+<span class="lineNum">     140 </span>            :                                       size_t stride) const noexcept;
+<span class="lineNum">     141 </span><span class="lineCov">          1 :   DataVector spec_to_phys_all_offsets(const DataVector&amp; spectral_coefs,</span>
+<span class="lineNum">     142 </span>            :                                       size_t stride) const noexcept;
+<span class="lineNum">     143 </span>            :   ///@}
+<span class="lineNum">     144 </span>            : 
+<span class="lineNum">     145 </span>            :   /// Computes Pfaffian derivative (df/dtheta, csc(theta) df/dphi) at
+<span class="lineNum">     146 </span>            :   /// the collocation values.
+<span class="lineNum">     147 </span>            :   /// To act on a slice of the input and output arrays, specify stride
+<span class="lineNum">     148 </span>            :   /// and offset (assumed to be the same for input and output).
+<span class="lineNum">     149 </span><span class="lineCov">          1 :   void gradient(const std::array&lt;double*, 2&gt;&amp; df,</span>
+<span class="lineNum">     150 </span>            :                 gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     151 </span>            :                 size_t physical_stride = 1, size_t physical_offset = 0) const
+<span class="lineNum">     152 </span>            :       noexcept;
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            :   /// Same as `gradient`, but takes the spectral coefficients (rather
+<span class="lineNum">     155 </span>            :   /// than collocation values) of the function.  This is more
+<span class="lineNum">     156 </span>            :   /// efficient if one happens to already have the spectral
+<span class="lineNum">     157 </span>            :   /// coefficients.
+<span class="lineNum">     158 </span>            :   /// To act on a slice of the input and output arrays, specify strides
+<span class="lineNum">     159 </span>            :   /// and offsets.
+<span class="lineNum">     160 </span><span class="lineCov">          1 :   void gradient_from_coefs(const std::array&lt;double*, 2&gt;&amp; df,</span>
+<span class="lineNum">     161 </span>            :                            gsl::not_null&lt;const double*&gt; spectral_coefs,
+<span class="lineNum">     162 </span>            :                            size_t spectral_stride = 1,
+<span class="lineNum">     163 </span>            :                            size_t spectral_offset = 0,
+<span class="lineNum">     164 </span>            :                            size_t physical_stride = 1,
+<span class="lineNum">     165 </span>            :                            size_t physical_offset = 0) const noexcept {
+<span class="lineNum">     166 </span>            :     gradient_from_coefs_impl(df, spectral_coefs, spectral_stride,
+<span class="lineNum">     167 </span>            :                              spectral_offset, physical_stride, physical_offset,
+<span class="lineNum">     168 </span>            :                              false);
+<span class="lineNum">     169 </span>            :   }
+<span class="lineNum">     170 </span>            : 
+<span class="lineNum">     171 </span>            :   ///@{
+<span class="lineNum">     172 </span>            :   /// Same as `gradient` but pointers are assumed to point to
+<span class="lineNum">     173 </span>            :   /// 3-dimensional arrays (I1 x S2 topology), and the gradient is
+<span class="lineNum">     174 </span>            :   /// done for all 'radial' points at once by internally looping
+<span class="lineNum">     175 </span>            :   /// over all values of the offset from zero to `stride`-1.
+<span class="lineNum">     176 </span><span class="lineCov">          1 :   void gradient_all_offsets(const std::array&lt;double*, 2&gt;&amp; df,</span>
+<span class="lineNum">     177 </span>            :                             gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     178 </span>            :                             size_t stride = 1) const noexcept;
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE void gradient_from_coefs_all_offsets(</span>
+<span class="lineNum">     181 </span>            :       const std::array&lt;double*, 2&gt;&amp; df,
+<span class="lineNum">     182 </span>            :       gsl::not_null&lt;const double*&gt; spectral_coefs, size_t stride = 1) const
+<span class="lineNum">     183 </span>            :       noexcept {
+<span class="lineNum">     184 </span>            :     gradient_from_coefs_impl(df, spectral_coefs, stride, 0, stride, 0, true);
+<span class="lineNum">     185 </span>            :   }
+<span class="lineNum">     186 </span>            :   ///@}
+<span class="lineNum">     187 </span>            : 
+<span class="lineNum">     188 </span>            :   ///@{
+<span class="lineNum">     189 </span>            :   /// Simpler, less general interfaces to `gradient`.
+<span class="lineNum">     190 </span>            :   /// Acts on a slice of the input and returns a unit-stride result.
+<span class="lineNum">     191 </span><span class="lineCov">          1 :   FirstDeriv gradient(const DataVector&amp; collocation_values,</span>
+<span class="lineNum">     192 </span>            :                       size_t physical_stride = 1,
+<span class="lineNum">     193 </span>            :                       size_t physical_offset = 0) const noexcept;
+<span class="lineNum">     194 </span><span class="lineCov">          1 :   FirstDeriv gradient_from_coefs(const DataVector&amp; spectral_coefs,</span>
+<span class="lineNum">     195 </span>            :                                  size_t spectral_stride = 1,
+<span class="lineNum">     196 </span>            :                                  size_t spectral_offset = 0) const noexcept;
+<span class="lineNum">     197 </span>            :   ///@}
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            :   ///@{
+<span class="lineNum">     200 </span>            :   /// Simpler, less general interfaces to `gradient_all_offsets`.
+<span class="lineNum">     201 </span>            :   /// Result has the same stride as the input.
+<span class="lineNum">     202 </span><span class="lineCov">          1 :   FirstDeriv gradient_all_offsets(const DataVector&amp; collocation_values,</span>
+<span class="lineNum">     203 </span>            :                                   size_t stride = 1) const noexcept;
+<span class="lineNum">     204 </span><span class="lineCov">          1 :   FirstDeriv gradient_from_coefs_all_offsets(const DataVector&amp; spectral_coefs,</span>
+<span class="lineNum">     205 </span>            :                                              size_t stride = 1) const noexcept;
+<span class="lineNum">     206 </span>            :   ///@}
+<span class="lineNum">     207 </span>            : 
+<span class="lineNum">     208 </span>            :   /// Computes Laplacian in physical space.
+<span class="lineNum">     209 </span>            :   /// To act on a slice of the input and output arrays, specify stride
+<span class="lineNum">     210 </span>            :   /// and offset (assumed to be the same for input and output).
+<span class="lineNum">     211 </span><span class="lineCov">          1 :   void scalar_laplacian(gsl::not_null&lt;double*&gt; scalar_laplacian,</span>
+<span class="lineNum">     212 </span>            :                         gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     213 </span>            :                         size_t physical_stride = 1,
+<span class="lineNum">     214 </span>            :                         size_t physical_offset = 0) const noexcept;
+<span class="lineNum">     215 </span>            : 
+<span class="lineNum">     216 </span>            :   /// Same as `scalar_laplacian` above, but the input is the spectral
+<span class="lineNum">     217 </span>            :   /// coefficients (rather than collocation values) of the function.
+<span class="lineNum">     218 </span>            :   /// This is more efficient if one happens to already have the
+<span class="lineNum">     219 </span>            :   /// spectral coefficients.
+<span class="lineNum">     220 </span>            :   /// To act on a slice of the input and output arrays, specify strides
+<span class="lineNum">     221 </span>            :   /// and offsets.
+<span class="lineNum">     222 </span><span class="lineCov">          1 :   void scalar_laplacian_from_coefs(gsl::not_null&lt;double*&gt; scalar_laplacian,</span>
+<span class="lineNum">     223 </span>            :                                    gsl::not_null&lt;const double*&gt; spectral_coefs,
+<span class="lineNum">     224 </span>            :                                    size_t spectral_stride = 1,
+<span class="lineNum">     225 </span>            :                                    size_t spectral_offset = 0,
+<span class="lineNum">     226 </span>            :                                    size_t physical_stride = 1,
+<span class="lineNum">     227 </span>            :                                    size_t physical_offset = 0) const noexcept;
+<span class="lineNum">     228 </span>            : 
+<span class="lineNum">     229 </span>            :   ///@{
+<span class="lineNum">     230 </span>            :   /// Simpler, less general interfaces to `scalar_laplacian`.
+<span class="lineNum">     231 </span>            :   /// Acts on a slice of the input and returns a unit-stride result.
+<span class="lineNum">     232 </span><span class="lineCov">          1 :   DataVector scalar_laplacian(const DataVector&amp; collocation_values,</span>
+<span class="lineNum">     233 </span>            :                               size_t physical_stride = 1,
+<span class="lineNum">     234 </span>            :                               size_t physical_offset = 0) const noexcept;
+<span class="lineNum">     235 </span><span class="lineCov">          1 :   DataVector scalar_laplacian_from_coefs(const DataVector&amp; spectral_coefs,</span>
+<span class="lineNum">     236 </span>            :                                          size_t spectral_stride = 1,
+<span class="lineNum">     237 </span>            :                                          size_t spectral_offset = 0) const
+<span class="lineNum">     238 </span>            :       noexcept;
+<span class="lineNum">     239 </span>            :   ///@}
+<span class="lineNum">     240 </span>            : 
+<span class="lineNum">     241 </span>            :   /// Computes Pfaffian first and second derivative in physical space.
+<span class="lineNum">     242 </span>            :   /// The first derivative is \f$df(i) = d_i f\f$, and the
+<span class="lineNum">     243 </span>            :   /// second derivative is \f$ddf(i,j) = d_i (d_j f)\f$,
+<span class="lineNum">     244 </span>            :   /// where \f$d_0 = d/d\theta\f$ and \f$d_1 = csc(\theta) d/d\phi\f$.
+<span class="lineNum">     245 </span>            :   /// ddf is not symmetric.
+<span class="lineNum">     246 </span>            :   /// To act on a slice of the input and output arrays, specify stride
+<span class="lineNum">     247 </span>            :   /// and offset (assumed to be the same for input and output).
+<span class="lineNum">     248 </span><span class="lineCov">          1 :   void second_derivative(const std::array&lt;double*, 2&gt;&amp; df,</span>
+<span class="lineNum">     249 </span>            :                          gsl::not_null&lt;SecondDeriv*&gt; ddf,
+<span class="lineNum">     250 </span>            :                          gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     251 </span>            :                          size_t physical_stride = 1,
+<span class="lineNum">     252 </span>            :                          size_t physical_offset = 0) const noexcept;
+<span class="lineNum">     253 </span>            : 
+<span class="lineNum">     254 </span>            :   /// Simpler, less general interface to second_derivative
+<span class="lineNum">     255 </span><span class="lineCov">          1 :   std::pair&lt;FirstDeriv, SecondDeriv&gt; first_and_second_derivative(</span>
+<span class="lineNum">     256 </span>            :       const DataVector&amp; collocation_values) const noexcept;
+<span class="lineNum">     257 </span>            : 
+<span class="lineNum">     258 </span>            :   /// Computes the integral over the sphere.
+<span class="lineNum">     259 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE double definite_integral(</span>
+<span class="lineNum">     260 </span>            :       gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     261 </span>            :       size_t physical_stride = 1, size_t physical_offset = 0) const noexcept {
+<span class="lineNum">     262 </span>            :     // clang-tidy: 'do not use pointer arithmetic'
+<span class="lineNum">     263 </span>            :     return ddot_(n_theta_ * n_phi_, storage_.quadrature_weights.data(), 1,
+<span class="lineNum">     264 </span>            :                  collocation_values.get() + physical_offset,  // NOLINT
+<span class="lineNum">     265 </span>            :                  physical_stride);
+<span class="lineNum">     266 </span>            :   }
+<span class="lineNum">     267 </span>            : 
+<span class="lineNum">     268 </span>            :   /// Returns weights \f$w_i\f$ such that \f$sum_i (c_i w_i)\f$
+<span class="lineNum">     269 </span>            :   /// is the definite integral, where \f$c_i\f$ are collocation values
+<span class="lineNum">     270 </span>            :   /// at point i.
+<span class="lineNum">     271 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE const std::vector&lt;double&gt;&amp; integration_weights() const</span>
+<span class="lineNum">     272 </span>            :       noexcept {
+<span class="lineNum">     273 </span>            :     return storage_.quadrature_weights;
+<span class="lineNum">     274 </span>            :   }
+<span class="lineNum">     275 </span>            : 
+<span class="lineNum">     276 </span>            :   /// Adds a constant (i.e. \f$f(\theta,\phi)\f$ += \f$c\f$) to the function
+<span class="lineNum">     277 </span>            :   /// given by the spectral coefficients, by modifying the coefficients.
+<span class="lineNum">     278 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE void add_constant(</span>
+<span class="lineNum">     279 </span>            :       const gsl::not_null&lt;DataVector*&gt; spectral_coefs, const double c) const
+<span class="lineNum">     280 </span>            :       noexcept {
+<span class="lineNum">     281 </span>            :     // The factor of sqrt(8) is because of the normalization of
+<span class="lineNum">     282 </span>            :     // SPHEREPACK's coefficients.
+<span class="lineNum">     283 </span>            :     (*spectral_coefs)[0] += sqrt(8.0) * c;
+<span class="lineNum">     284 </span>            :   }
+<span class="lineNum">     285 </span>            : 
+<span class="lineNum">     286 </span>            :   /// Returns the average of \f$f(\theta,\phi)\f$ over \f$(\theta,\phi)\f$.
+<span class="lineNum">     287 </span><span class="lineCov">          1 :   SPECTRE_ALWAYS_INLINE double average(const DataVector&amp; spectral_coefs) const</span>
+<span class="lineNum">     288 </span>            :       noexcept {
+<span class="lineNum">     289 </span>            :     // The factor of sqrt(8) is because of the normalization of
+<span class="lineNum">     290 </span>            :     // SPHEREPACK's coefficients.  All other coefficients average to zero.
+<span class="lineNum">     291 </span>            :     return spectral_coefs[0] / sqrt(8.0);
+<span class="lineNum">     292 </span>            :   }
+<span class="lineNum">     293 </span>            : 
+<span class="lineNum">     294 </span>            :   /// Sets up the `InterpolationInfo` structure for interpolating onto
+<span class="lineNum">     295 </span>            :   /// a set of target \f$(\theta,\phi)\f$ points.  Does not depend on
+<span class="lineNum">     296 </span>            :   /// the function being interpolated.
+<span class="lineNum">     297 </span><span class="lineCov">          1 :   InterpolationInfo set_up_interpolation_info(</span>
+<span class="lineNum">     298 </span>            :       const std::vector&lt;std::array&lt;double, 2&gt;&gt;&amp; target_points) const noexcept;
+<span class="lineNum">     299 </span>            : 
+<span class="lineNum">     300 </span>            :   /// Interpolates from `collocation_values` onto the points that have
+<span class="lineNum">     301 </span>            :   /// been passed into the `set_up_interpolation_info` function.
+<span class="lineNum">     302 </span>            :   /// To interpolate a different function on the same spectral grid, there
+<span class="lineNum">     303 </span>            :   /// is no need to recompute `interpolation_info`.
+<span class="lineNum">     304 </span>            :   /// If you specify stride and offset, acts on a slice of the input values.
+<span class="lineNum">     305 </span>            :   /// The output has unit stride.
+<span class="lineNum">     306 </span><span class="lineCov">          1 :   void interpolate(gsl::not_null&lt;std::vector&lt;double&gt;*&gt; result,</span>
+<span class="lineNum">     307 </span>            :                    gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     308 </span>            :                    const InterpolationInfo&amp; interpolation_info,
+<span class="lineNum">     309 </span>            :                    size_t physical_stride = 1, size_t physical_offset = 0) const
+<span class="lineNum">     310 </span>            :       noexcept;
+<span class="lineNum">     311 </span>            : 
+<span class="lineNum">     312 </span>            :   /// Same as `interpolate`, but assumes you have spectral coefficients.
+<span class="lineNum">     313 </span>            :   /// This is more efficient if you already have the spectral coefficients
+<span class="lineNum">     314 </span>            :   /// available.
+<span class="lineNum">     315 </span>            :   /// If you specify stride and offset, acts on a slice of the input coefs.
+<span class="lineNum">     316 </span>            :   /// The output has unit stride.
+<span class="lineNum">     317 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     318 </span><span class="lineCov">          1 :   void interpolate_from_coefs(gsl::not_null&lt;std::vector&lt;double&gt;*&gt; result,</span>
+<span class="lineNum">     319 </span>            :                               const T&amp; spectral_coefs,
+<span class="lineNum">     320 </span>            :                               const InterpolationInfo&amp; interpolation_info,
+<span class="lineNum">     321 </span>            :                               size_t spectral_stride = 1,
+<span class="lineNum">     322 </span>            :                               size_t spectral_offset = 0) const noexcept;
+<span class="lineNum">     323 </span>            : 
+<span class="lineNum">     324 </span>            :   /// Simpler interface to `interpolate`.  If you need to call this
+<span class="lineNum">     325 </span>            :   /// repeatedly on different `spectral_coefs` or `collocation_values`
+<span class="lineNum">     326 </span>            :   /// for the same target points, this is inefficient; instead use
+<span class="lineNum">     327 </span>            :   /// `set_up_interpolation_info` and the functions that use
+<span class="lineNum">     328 </span>            :   /// `InterpolationInfo`.
+<span class="lineNum">     329 </span><span class="lineCov">          1 :   std::vector&lt;double&gt; interpolate(</span>
+<span class="lineNum">     330 </span>            :       const DataVector&amp; collocation_values,
+<span class="lineNum">     331 </span>            :       const std::vector&lt;std::array&lt;double, 2&gt;&gt;&amp; target_points) const noexcept;
+<span class="lineNum">     332 </span><span class="lineNoCov">          0 :   std::vector&lt;double&gt; interpolate_from_coefs(</span>
+<span class="lineNum">     333 </span>            :       const DataVector&amp; spectral_coefs,
+<span class="lineNum">     334 </span>            :       const std::vector&lt;std::array&lt;double, 2&gt;&gt;&amp; target_points) const noexcept;
+<span class="lineNum">     335 </span>            : 
+<span class="lineNum">     336 </span>            :   /// Takes spectral coefficients compatible with `*this`, and either
+<span class="lineNum">     337 </span>            :   /// prolongs them or restricts them to be compatible with `target`.
+<span class="lineNum">     338 </span>            :   /// This is done by truncation (restriction) or padding with zeros
+<span class="lineNum">     339 </span>            :   /// (prolongation).
+<span class="lineNum">     340 </span><span class="lineCov">          1 :   DataVector prolong_or_restrict(const DataVector&amp; spectral_coefs,</span>
+<span class="lineNum">     341 </span>            :                                  const YlmSpherepack&amp; target) const noexcept;
+<span class="lineNum">     342 </span>            : 
+<span class="lineNum">     343 </span>            :  private:
+<span class="lineNum">     344 </span>            :   // Spectral transformations and gradient.
+<span class="lineNum">     345 </span>            :   // If `loop_over_offset` is true, then `collocation_values` and
+<span class="lineNum">     346 </span>            :   // `spectral_coefs` are assumed to point to 3-dimensional
+<span class="lineNum">     347 </span>            :   // arrays (I1 x S2 topology), and the transformations are done for
+<span class="lineNum">     348 </span>            :   // all 'radial' points at once by looping over all values of the
+<span class="lineNum">     349 </span>            :   // offset from zero to stride-1.  If `loop_over_offset` is true,
+<span class="lineNum">     350 </span>            :   // `physical_stride` must equal `spectral_stride`.
+<span class="lineNum">     351 </span><span class="lineNoCov">          0 :   void phys_to_spec_impl(gsl::not_null&lt;double*&gt; spectral_coefs,</span>
+<span class="lineNum">     352 </span>            :                          gsl::not_null&lt;const double*&gt; collocation_values,
+<span class="lineNum">     353 </span>            :                          size_t physical_stride = 1, size_t physical_offset = 0,
+<span class="lineNum">     354 </span>            :                          size_t spectral_stride = 1, size_t spectral_offset = 0,
+<span class="lineNum">     355 </span>            :                          bool loop_over_offset = false) const noexcept;
+<span class="lineNum">     356 </span><span class="lineNoCov">          0 :   void spec_to_phys_impl(gsl::not_null&lt;double*&gt; collocation_values,</span>
+<span class="lineNum">     357 </span>            :                          gsl::not_null&lt;const double*&gt; spectral_coefs,
+<span class="lineNum">     358 </span>            :                          size_t spectral_stride = 1, size_t spectral_offset = 0,
+<span class="lineNum">     359 </span>            :                          size_t physical_stride = 1, size_t physical_offset = 0,
+<span class="lineNum">     360 </span>            :                          bool loop_over_offset = false) const noexcept;
+<span class="lineNum">     361 </span><span class="lineNoCov">          0 :   void gradient_from_coefs_impl(const std::array&lt;double*, 2&gt;&amp; df,</span>
+<span class="lineNum">     362 </span>            :                                 gsl::not_null&lt;const double*&gt; spectral_coefs,
+<span class="lineNum">     363 </span>            :                                 size_t spectral_stride = 1,
+<span class="lineNum">     364 </span>            :                                 size_t spectral_offset = 0,
+<span class="lineNum">     365 </span>            :                                 size_t physical_stride = 1,
+<span class="lineNum">     366 </span>            :                                 size_t physical_offset = 0,
+<span class="lineNum">     367 </span>            :                                 bool loop_over_offset = false) const noexcept;
+<span class="lineNum">     368 </span><span class="lineNoCov">          0 :   void fill_scalar_work_arrays() const noexcept;</span>
+<span class="lineNum">     369 </span><span class="lineNoCov">          0 :   void fill_vector_work_arrays() const noexcept;</span>
+<span class="lineNum">     370 </span><span class="lineNoCov">          0 :   size_t l_max_, m_max_, n_theta_, n_phi_;</span>
+<span class="lineNum">     371 </span><span class="lineNoCov">          0 :   size_t spectral_size_;</span>
+<span class="lineNum">     372 </span><span class="lineNoCov">          0 :   mutable YlmSpherepack_detail::MemoryPool memory_pool_;</span>
+<span class="lineNum">     373 </span><span class="lineNoCov">          0 :   mutable YlmSpherepack_detail::Storage storage_;</span>
+<span class="lineNum">     374 </span>            : };  // class YlmSpherepack
+<span class="lineNum">     375 </span>            : 
+<span class="lineNum">     376 </span><span class="lineNoCov">          0 : bool operator==(const YlmSpherepack&amp; lhs, const YlmSpherepack&amp; rhs) noexcept;</span>
+<span class="lineNum">     377 </span><span class="lineNoCov">          0 : bool operator!=(const YlmSpherepack&amp; lhs, const YlmSpherepack&amp; rhs) noexcept;</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

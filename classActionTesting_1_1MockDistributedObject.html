@@ -1,0 +1,274 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: ActionTesting::MockDistributedObject&lt; Component &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceActionTesting.html">ActionTesting</a></li><li class="navelem"><a class="el" href="classActionTesting_1_1MockDistributedObject.html">MockDistributedObject</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classActionTesting_1_1MockDistributedObject-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">ActionTesting::MockDistributedObject&lt; Component &gt; Class Template Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ae960fe83bfcd0a1401ad8cafd4f4aee2"><td class="memItemLeft" align="right" valign="top"><a id="ae960fe83bfcd0a1401ad8cafd4f4aee2"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>actions_list</b> = typename Component::action_list</td></tr>
+<tr class="separator:ae960fe83bfcd0a1401ad8cafd4f4aee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8a6b840811a2430c3a9c6a5f69b9a1c"><td class="memItemLeft" align="right" valign="top"><a id="ad8a6b840811a2430c3a9c6a5f69b9a1c"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>inbox_tags_list</b> = <a class="el" href="group__ParallelGroup.html#ga38356d0b7aa1951e586ba2acce9eab8f">Parallel::get_inbox_tags</a>&lt; actions_list &gt;</td></tr>
+<tr class="separator:ad8a6b840811a2430c3a9c6a5f69b9a1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a444998227ebdd37d607ebe1ad23785da"><td class="memItemLeft" align="right" valign="top"><a id="a444998227ebdd37d607ebe1ad23785da"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>metavariables</b> = typename Component::metavariables</td></tr>
+<tr class="separator:a444998227ebdd37d607ebe1ad23785da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2462b20188daa4afd185bebc0f7ba366"><td class="memItemLeft" align="right" valign="top"><a id="a2462b20188daa4afd185bebc0f7ba366"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>databox_types</b> = typename compute_databox_type&lt; actions_list &gt;::type</td></tr>
+<tr class="separator:a2462b20188daa4afd185bebc0f7ba366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a45c1535a5300cc601bc56f53a0a3a1fa"><td class="memItemLeft" align="right" valign="top"><a id="a45c1535a5300cc601bc56f53a0a3a1fa"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MockDistributedObject</b> (typename Component::initial_databox initial_box)</td></tr>
+<tr class="separator:a45c1535a5300cc601bc56f53a0a3a1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89b1938bba2a53fe4f27f44f0cfe92e7"><td class="memItemLeft" align="right" valign="top"><a id="a89b1938bba2a53fe4f27f44f0cfe92e7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_index</b> (typename Component::array_index index) noexcept</td></tr>
+<tr class="separator:a89b1938bba2a53fe4f27f44f0cfe92e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ce957d6ba32d40fdd88122f10013f56"><td class="memItemLeft" align="right" valign="top"><a id="a7ce957d6ba32d40fdd88122f10013f56"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_cache</b> (<a class="el" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache</a>&lt; typename Component::metavariables &gt; *cache_ptr) noexcept</td></tr>
+<tr class="separator:a7ce957d6ba32d40fdd88122f10013f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03b365ceae3f3144bcea43e610a344d"><td class="memItemLeft" align="right" valign="top"><a id="ad03b365ceae3f3144bcea43e610a344d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_inboxes</b> (tuples::tagged_tuple_from_typelist&lt; <a class="el" href="group__ParallelGroup.html#ga38356d0b7aa1951e586ba2acce9eab8f">Parallel::get_inbox_tags</a>&lt; typename Component::action_list &gt;&gt; *inboxes_ptr) noexcept</td></tr>
+<tr class="separator:ad03b365ceae3f3144bcea43e610a344d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0192ef7fece072ce6a77a4512f03702c"><td class="memItemLeft" align="right" valign="top"><a id="a0192ef7fece072ce6a77a4512f03702c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_terminate</b> (bool t)</td></tr>
+<tr class="separator:a0192ef7fece072ce6a77a4512f03702c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac548fa60483e8648a08ba9e17a06517a"><td class="memItemLeft" align="right" valign="top"><a id="ac548fa60483e8648a08ba9e17a06517a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>get_terminate</b> ()</td></tr>
+<tr class="separator:ac548fa60483e8648a08ba9e17a06517a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab02117964b041da8e5dc85d4edb1d851"><td class="memItemLeft" align="right" valign="top"><a id="ab02117964b041da8e5dc85d4edb1d851"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>perform_algorithm</b> () noexcept</td></tr>
+<tr class="separator:ab02117964b041da8e5dc85d4edb1d851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90d41abdadfa1137903fae11b971c405"><td class="memTemplParams" colspan="2"><a id="a90d41abdadfa1137903fae11b971c405"></a>
+template&lt;typename BoxType &gt; </td></tr>
+<tr class="memitem:a90d41abdadfa1137903fae11b971c405"><td class="memTemplItemLeft" align="right" valign="top">BoxType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get_databox</b> () noexcept</td></tr>
+<tr class="separator:a90d41abdadfa1137903fae11b971c405"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31841f90888cc80053c32eb18f78315f"><td class="memTemplParams" colspan="2"><a id="a31841f90888cc80053c32eb18f78315f"></a>
+template&lt;typename BoxType &gt; </td></tr>
+<tr class="memitem:a31841f90888cc80053c32eb18f78315f"><td class="memTemplItemLeft" align="right" valign="top">const BoxType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get_databox</b> () const noexcept</td></tr>
+<tr class="separator:a31841f90888cc80053c32eb18f78315f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaadb4d1944a53e1a9e02fb07295c1e98"><td class="memItemLeft" align="right" valign="top"><a id="aaadb4d1944a53e1a9e02fb07295c1e98"></a>
+auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get_variant_box</b> () noexcept</td></tr>
+<tr class="separator:aaadb4d1944a53e1a9e02fb07295c1e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08d4dc8589014783f1a637cb8497b7b8"><td class="memItemLeft" align="right" valign="top"><a id="a08d4dc8589014783f1a637cb8497b7b8"></a>
+const auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get_variant_box</b> () const noexcept</td></tr>
+<tr class="separator:a08d4dc8589014783f1a637cb8497b7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2de6200d6261dd42e123814f92ecead1"><td class="memItemLeft" align="right" valign="top"><a id="a2de6200d6261dd42e123814f92ecead1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>force_next_action_to_be</b> (const size_t next_action_id) noexcept</td></tr>
+<tr class="separator:a2de6200d6261dd42e123814f92ecead1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a968a1971658ec6ceda5d12e1c98bc570"><td class="memItemLeft" align="right" valign="top"><a id="a968a1971658ec6ceda5d12e1c98bc570"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>get_next_action_index</b> () const noexcept</td></tr>
+<tr class="separator:a968a1971658ec6ceda5d12e1c98bc570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6ce510875de6385b8e1fbff7d4b8b50"><td class="memTemplParams" colspan="2"><a id="ad6ce510875de6385b8e1fbff7d4b8b50"></a>
+template&lt;size_t... Is&gt; </td></tr>
+<tr class="memitem:ad6ce510875de6385b8e1fbff7d4b8b50"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>next_action</b> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/integer_sequence.html">std::index_sequence</a>&lt; Is... &gt;) noexcept</td></tr>
+<tr class="separator:ad6ce510875de6385b8e1fbff7d4b8b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af52d24d52361dd943f0231af3d7624f3"><td class="memTemplParams" colspan="2"><a id="af52d24d52361dd943f0231af3d7624f3"></a>
+template&lt;size_t... Is&gt; </td></tr>
+<tr class="memitem:af52d24d52361dd943f0231af3d7624f3"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>is_ready</b> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/integer_sequence.html">std::index_sequence</a>&lt; Is... &gt;) noexcept</td></tr>
+<tr class="separator:af52d24d52361dd943f0231af3d7624f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cdd546cc8359251fc0b8e018127360e"><td class="memItemLeft" align="right" valign="top"><a id="a5cdd546cc8359251fc0b8e018127360e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_simple_action_queue_empty</b> () noexcept</td></tr>
+<tr class="separator:a5cdd546cc8359251fc0b8e018127360e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0d4bac22bfa6701ccccec8201008b25"><td class="memItemLeft" align="right" valign="top"><a id="ae0d4bac22bfa6701ccccec8201008b25"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>invoke_queued_simple_action</b> () noexcept</td></tr>
+<tr class="separator:ae0d4bac22bfa6701ccccec8201008b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3700bda21fae5be91f0cbaf867c43596"><td class="memItemLeft" align="right" valign="top"><a id="a3700bda21fae5be91f0cbaf867c43596"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>invoke_queued_threaded_action</b> () noexcept</td></tr>
+<tr class="separator:a3700bda21fae5be91f0cbaf867c43596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>tests/Unit/<a class="el" href="ActionTesting_8hpp_source.html">ActionTesting.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: NewtonianEuler Namespace Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">NewtonianEuler Namespace Reference<div class="ingroups"><a class="el" href="group__EvolutionSystemsGroup.html">Evolution Systems</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Items related to evolving the Newtonian Euler system.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceNewtonianEuler_1_1Solutions"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceNewtonianEuler_1_1Solutions.html">Solutions</a></td></tr>
+<tr class="memdesc:namespaceNewtonianEuler_1_1Solutions"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds classes implementing a solution to the Newtonian Euler system. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceNewtonianEuler_1_1Sources"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceNewtonianEuler_1_1Sources.html">Sources</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNewtonianEuler_1_1ComputeFluxes.html">ComputeFluxes</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the fluxes of the conservative variables of the Newtonian Euler system.  <a href="structNewtonianEuler_1_1ComputeFluxes.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNewtonianEuler_1_1System.html">System</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a739e0c8e8e6db156b70750e473849a23"><td class="memTemplParams" colspan="2">template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:a739e0c8e8e6db156b70750e473849a23"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim+2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceNewtonianEuler.html#a739e0c8e8e6db156b70750e473849a23">characteristic_speeds</a> (const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;<a class="el" href="namespaceNewtonianEuler.html#a50c2df2cb04c9d8cc10157022324e126">velocity</a>, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;sound_speed_squared, const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;normal) noexcept</td></tr>
+<tr class="memdesc:a739e0c8e8e6db156b70750e473849a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the characteristic speeds of <a class="el" href="namespaceNewtonianEuler.html" title="Items related to evolving the Newtonian Euler system. ">NewtonianEuler</a> system.  <a href="#a739e0c8e8e6db156b70750e473849a23">More...</a><br /></td></tr>
+<tr class="separator:a739e0c8e8e6db156b70750e473849a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1947dcc37ec300671910e2c40b781ead"><td class="memTemplParams" colspan="2">template&lt;size_t Dim, typename DataType &gt; </td></tr>
+<tr class="memitem:a1947dcc37ec300671910e2c40b781ead"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceNewtonianEuler.html#a1947dcc37ec300671910e2c40b781ead">conservative_from_primitive</a> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; tnsr::I&lt; DataType, Dim &gt; *&gt; momentum_density, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; *&gt; energy_density, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;mass_density, const tnsr::I&lt; DataType, Dim &gt; &amp;<a class="el" href="namespaceNewtonianEuler.html#a50c2df2cb04c9d8cc10157022324e126">velocity</a>, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;specific_internal_energy) noexcept</td></tr>
+<tr class="memdesc:a1947dcc37ec300671910e2c40b781ead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the conservative variables from the primitive variables.  <a href="#a1947dcc37ec300671910e2c40b781ead">More...</a><br /></td></tr>
+<tr class="separator:a1947dcc37ec300671910e2c40b781ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cf5c0cb72fd0a7e8d299c4d68cedf5c"><td class="memTemplParams" colspan="2">template&lt;size_t Dim, typename DataType &gt; </td></tr>
+<tr class="memitem:a3cf5c0cb72fd0a7e8d299c4d68cedf5c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceNewtonianEuler.html#a3cf5c0cb72fd0a7e8d299c4d68cedf5c">primitive_from_conservative</a> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; tnsr::I&lt; DataType, Dim &gt; *&gt; <a class="el" href="namespaceNewtonianEuler.html#a50c2df2cb04c9d8cc10157022324e126">velocity</a>, <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; *&gt; specific_internal_energy, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;mass_density, const tnsr::I&lt; DataType, Dim &gt; &amp;momentum_density, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;energy_density) noexcept</td></tr>
+<tr class="memdesc:a3cf5c0cb72fd0a7e8d299c4d68cedf5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the primitive variables from the conservative variables.  <a href="#a3cf5c0cb72fd0a7e8d299c4d68cedf5c">More...</a><br /></td></tr>
+<tr class="separator:a3cf5c0cb72fd0a7e8d299c4d68cedf5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a50c2df2cb04c9d8cc10157022324e126"><td class="memTemplParams" colspan="2"><a id="a50c2df2cb04c9d8cc10157022324e126"></a>
+template&lt;size_t Dim, typename DataType &gt; </td></tr>
+<tr class="memitem:a50c2df2cb04c9d8cc10157022324e126"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceNewtonianEuler.html#a50c2df2cb04c9d8cc10157022324e126">velocity</a> (<a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; tnsr::I&lt; DataType, Dim &gt; *&gt; velocity, const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;mass_density, const tnsr::I&lt; DataType, Dim &gt; &amp;momentum_density) noexcept</td></tr>
+<tr class="memdesc:a50c2df2cb04c9d8cc10157022324e126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the velocity from the conservative variables. <br /></td></tr>
+<tr class="separator:a50c2df2cb04c9d8cc10157022324e126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd9f0015ee35bdb603c1791ae7a99ba7"><td class="memTemplParams" colspan="2"><a id="acd9f0015ee35bdb603c1791ae7a99ba7"></a>
+template&lt;size_t Dim, typename DataType &gt; </td></tr>
+<tr class="memitem:acd9f0015ee35bdb603c1791ae7a99ba7"><td class="memTemplItemLeft" align="right" valign="top">tnsr::I&lt; DataType, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceNewtonianEuler.html#acd9f0015ee35bdb603c1791ae7a99ba7">velocity</a> (const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;mass_density, const tnsr::I&lt; DataType, Dim &gt; &amp;momentum_density) noexcept</td></tr>
+<tr class="memdesc:acd9f0015ee35bdb603c1791ae7a99ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the velocity from the conservative variables. <br /></td></tr>
+<tr class="separator:acd9f0015ee35bdb603c1791ae7a99ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Items related to evolving the Newtonian Euler system. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a739e0c8e8e6db156b70750e473849a23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a739e0c8e8e6db156b70750e473849a23">&#9670;&nbsp;</a></span>characteristic_speeds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;<a class="el" href="classDataVector.html">DataVector</a>, Dim + 2&gt; NewtonianEuler::characteristic_speeds </td>
+          <td>(</td>
+          <td class="paramtype">const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>velocity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>sound_speed_squared</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::i&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the characteristic speeds of <a class="el" href="namespaceNewtonianEuler.html" title="Items related to evolving the Newtonian Euler system. ">NewtonianEuler</a> system. </p>
+<p>The principal symbol of the system is diagonalized so that the elements of the diagonal matrix are the characteristic speeds</p>
+<p class="formulaDsp">
+\begin{align*} \lambda_1 &amp;= v_n - c_s,\\ \lambda_{i + 1} &amp;= v_n,\\ \lambda_{\text{Dim} + 2} &amp;= v_n + c_s, \end{align*}
+</p>
+<p>where \(i = 1,...,\text{Dim}\), \(v_n = n_i v^i\) is the velocity projected onto the normal, and \(c_s\) is the sound speed. </p>
+
+</div>
+</div>
+<a id="a1947dcc37ec300671910e2c40b781ead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1947dcc37ec300671910e2c40b781ead">&#9670;&nbsp;</a></span>conservative_from_primitive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim, typename DataType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NewtonianEuler::conservative_from_primitive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; tnsr::I&lt; DataType, Dim &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>momentum_density</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>energy_density</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mass_density</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::I&lt; DataType, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>velocity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>specific_internal_energy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the conservative variables from the primitive variables. </p>
+<p class="formulaDsp">
+\begin{align*} S^i &amp;= \rho v^i \\ e &amp;= \dfrac{1}{2}\rho v^2 + \rho\epsilon \end{align*}
+</p>
+<p>where \(S^i\) is the momentum density, \(e\) is the energy density, \(\rho\) is the mass density, \(v^i\) is the velocity, \(v^2\) is its magnitude squared, and \(\epsilon\) is the specific internal energy. </p>
+
+</div>
+</div>
+<a id="a3cf5c0cb72fd0a7e8d299c4d68cedf5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cf5c0cb72fd0a7e8d299c4d68cedf5c">&#9670;&nbsp;</a></span>primitive_from_conservative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim, typename DataType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NewtonianEuler::primitive_from_conservative </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; tnsr::I&lt; DataType, Dim &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>velocity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; *&gt;&#160;</td>
+          <td class="paramname"><em>specific_internal_energy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mass_density</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tnsr::I&lt; DataType, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>momentum_density</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; DataType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>energy_density</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the primitive variables from the conservative variables. </p>
+<p class="formulaDsp">
+\begin{align*} v^i &amp;= \frac{S^i}{\rho} \\ \epsilon &amp;= \frac{e}{\rho} - \frac{1}{2}\frac{S^2}{\rho^2} \end{align*}
+</p>
+<p>where \(v^i\) is the velocity, \(\epsilon\) is the specific internal energy, \(e\) is the energy density, \(\rho\) is the mass density, \(S^i\) is the momentum density, and \(S^2\) is the momentum density squared. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

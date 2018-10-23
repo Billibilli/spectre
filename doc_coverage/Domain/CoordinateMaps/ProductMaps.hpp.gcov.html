@@ -1,0 +1,422 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Domain/CoordinateMaps/ProductMaps.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Domain/CoordinateMaps</a> - ProductMaps.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">33</td>
+            <td class="headerCovTableEntryLo">6.1 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines the class templates ProductOf2Maps and ProductOf3Maps.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;array&gt;
+<span class="lineNum">      10 </span>            : #include &lt;boost/none.hpp&gt;
+<span class="lineNum">      11 </span>            : #include &lt;boost/optional.hpp&gt;
+<span class="lineNum">      12 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      13 </span>            : #include &lt;functional&gt;
+<span class="lineNum">      14 </span>            : #include &lt;utility&gt;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/DereferenceWrapper.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/MakeWithValue.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : /// \cond
+<span class="lineNum">      23 </span>            : namespace PUP {
+<span class="lineNum">      24 </span>            : class er;
+<span class="lineNum">      25 </span>            : }  // namespace PUP
+<span class="lineNum">      26 </span>            : /// \endcond
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : namespace CoordinateMaps {
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span>            : namespace product_detail {
+<span class="lineNum">      31 </span>            : template &lt;typename T, size_t Size, typename Map1, typename Map2,
+<span class="lineNum">      32 </span>            :           typename Function, size_t... Is, size_t... Js&gt;
+<span class="lineNum">      33 </span>            : std::array&lt;tt::remove_cvref_wrap_t&lt;T&gt;, Size&gt; apply_call(
+<span class="lineNum">      34 </span>            :     const std::array&lt;T, Size&gt;&amp; coords, const Map1&amp; map1, const Map2&amp; map2,
+<span class="lineNum">      35 </span>            :     const Function func, std::integer_sequence&lt;size_t, Is...&gt; /*meta*/,
+<span class="lineNum">      36 </span>            :     std::integer_sequence&lt;size_t, Js...&gt; /*meta*/) noexcept {
+<span class="lineNum">      37 </span>            :   using UnwrappedT = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">      38 </span>            :   return {
+<span class="lineNum">      39 </span>            :       {func(
+<span class="lineNum">      40 </span>            :            std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, sizeof...(Is)&gt;{
+<span class="lineNum">      41 </span>            :                {coords[Is]...}},
+<span class="lineNum">      42 </span>            :            map1)[Is]...,
+<span class="lineNum">      43 </span>            :        func(
+<span class="lineNum">      44 </span>            :            std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, sizeof...(Js)&gt;{
+<span class="lineNum">      45 </span>            :                {coords[Map1::dim + Js]...}},
+<span class="lineNum">      46 </span>            :            map2)[Js]...}};
+<span class="lineNum">      47 </span>            : }
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            : template &lt;size_t Size, typename Map1, typename Map2, typename Function,
+<span class="lineNum">      50 </span>            :           size_t... Is, size_t... Js&gt;
+<span class="lineNum">      51 </span>            : boost::optional&lt;std::array&lt;double, Size&gt;&gt; apply_inverse(
+<span class="lineNum">      52 </span>            :     const std::array&lt;double, Size&gt;&amp; coords, const Map1&amp; map1, const Map2&amp; map2,
+<span class="lineNum">      53 </span>            :     const Function func, std::integer_sequence&lt;size_t, Is...&gt; /*meta*/,
+<span class="lineNum">      54 </span>            :     std::integer_sequence&lt;size_t, Js...&gt; /*meta*/) noexcept {
+<span class="lineNum">      55 </span>            :   auto map1_func =
+<span class="lineNum">      56 </span>            :       func(std::array&lt;double, sizeof...(Is)&gt;{{coords[Is]...}}, map1);
+<span class="lineNum">      57 </span>            :   auto map2_func = func(
+<span class="lineNum">      58 </span>            :       std::array&lt;double, sizeof...(Js)&gt;{{coords[Map1::dim + Js]...}}, map2);
+<span class="lineNum">      59 </span>            :   if (map1_func and map2_func) {
+<span class="lineNum">      60 </span>            :     return {{{map1_func.get()[Is]..., map2_func.get()[Js]...}}};
+<span class="lineNum">      61 </span>            :   } else {
+<span class="lineNum">      62 </span>            :     return boost::none;
+<span class="lineNum">      63 </span>            :   }
+<span class="lineNum">      64 </span>            : }
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span>            : template &lt;typename T, size_t Size, typename Map1, typename Map2,
+<span class="lineNum">      67 </span>            :           typename Function, size_t... Is, size_t... Js&gt;
+<span class="lineNum">      68 </span>            : tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, Size, Frame::NoFrame&gt; apply_jac(
+<span class="lineNum">      69 </span>            :     const std::array&lt;T, Size&gt;&amp; source_coords, const Map1&amp; map1,
+<span class="lineNum">      70 </span>            :     const Map2&amp; map2, const Function func,
+<span class="lineNum">      71 </span>            :     std::integer_sequence&lt;size_t, Is...&gt; /*meta*/,
+<span class="lineNum">      72 </span>            :     std::integer_sequence&lt;size_t, Js...&gt; /*meta*/) noexcept {
+<span class="lineNum">      73 </span>            :   using UnwrappedT = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">      74 </span>            :   auto map1_jac = func(
+<span class="lineNum">      75 </span>            :       std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, sizeof...(Is)&gt;{
+<span class="lineNum">      76 </span>            :           {source_coords[Is]...}},
+<span class="lineNum">      77 </span>            :       map1);
+<span class="lineNum">      78 </span>            :   auto map2_jac = func(
+<span class="lineNum">      79 </span>            :       std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, sizeof...(Js)&gt;{
+<span class="lineNum">      80 </span>            :           {source_coords[Map1::dim + Js]...}},
+<span class="lineNum">      81 </span>            :       map2);
+<span class="lineNum">      82 </span>            :   tnsr::Ij&lt;UnwrappedT, Size, Frame::NoFrame&gt; jac{
+<span class="lineNum">      83 </span>            :       make_with_value&lt;UnwrappedT&gt;(dereference_wrapper(source_coords[0]), 0.0)};
+<span class="lineNum">      84 </span>            :   for (size_t i = 0; i &lt; Map1::dim; ++i) {
+<span class="lineNum">      85 </span>            :     for (size_t j = 0; j &lt; Map1::dim; ++j) {
+<span class="lineNum">      86 </span>            :       jac.get(i, j) = std::move(map1_jac.get(i, j));
+<span class="lineNum">      87 </span>            :     }
+<span class="lineNum">      88 </span>            :   }
+<span class="lineNum">      89 </span>            :   for (size_t i = 0; i &lt; Map2::dim; ++i) {
+<span class="lineNum">      90 </span>            :     for (size_t j = 0; j &lt; Map2::dim; ++j) {
+<span class="lineNum">      91 </span>            :       jac.get(Map1::dim + i, Map1::dim + j) = std::move(map2_jac.get(i, j));
+<span class="lineNum">      92 </span>            :     }
+<span class="lineNum">      93 </span>            :   }
+<span class="lineNum">      94 </span>            :   return jac;
+<span class="lineNum">      95 </span>            : }
+<span class="lineNum">      96 </span>            : }  // namespace product_detail
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span>            : /// \ingroup CoordinateMapsGroup
+<span class="lineNum">      99 </span>            : /// \brief Product of two codimension=0 CoordinateMaps.
+<span class="lineNum">     100 </span>            : ///
+<span class="lineNum">     101 </span>            : /// \tparam Map1 the map for the first coordinate(s)
+<span class="lineNum">     102 </span>            : /// \tparam Map2 the map for the second coordinate(s)
+<span class="lineNum">     103 </span>            : template &lt;typename Map1, typename Map2&gt;
+<span class="lineNum">     104 </span><span class="lineCov">          1 : class ProductOf2Maps {</span>
+<span class="lineNum">     105 </span>            :  public:
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 :   static constexpr size_t dim = Map1::dim + Map2::dim;</span>
+<span class="lineNum">     107 </span><span class="lineNoCov">          0 :   using map_list = tmpl::list&lt;Map1, Map2&gt;;</span>
+<span class="lineNum">     108 </span>            :   static_assert(dim == 2 or dim == 3,
+<span class="lineNum">     109 </span>            :                 &quot;Only 2D and 3D maps are supported by ProductOf2Maps&quot;);
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            :   // Needed for Charm++ serialization
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 :   ProductOf2Maps() = default;</span>
+<span class="lineNum">     113 </span>            : 
+<span class="lineNum">     114 </span><span class="lineNoCov">          0 :   ProductOf2Maps(Map1 map1, Map2 map2) noexcept;</span>
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     117 </span><span class="lineNoCov">          0 :   std::array&lt;tt::remove_cvref_wrap_t&lt;T&gt;, dim&gt; operator()(</span>
+<span class="lineNum">     118 </span>            :       const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept;
+<span class="lineNum">     119 </span>            : 
+<span class="lineNum">     120 </span><span class="lineNoCov">          0 :   boost::optional&lt;std::array&lt;double, dim&gt;&gt; inverse(</span>
+<span class="lineNum">     121 </span>            :       const std::array&lt;double, dim&gt;&amp; target_coords) const noexcept;
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     124 </span><span class="lineNoCov">          0 :   tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, dim, Frame::NoFrame&gt; inv_jacobian(</span>
+<span class="lineNum">     125 </span>            :       const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept;
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     128 </span><span class="lineNoCov">          0 :   tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, dim, Frame::NoFrame&gt; jacobian(</span>
+<span class="lineNum">     129 </span>            :       const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept;
+<span class="lineNum">     130 </span>            : 
+<span class="lineNum">     131 </span>            :   // clang-tidy: google-runtime-references
+<span class="lineNum">     132 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p);  // NOLINT</span>
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span>            :  private:
+<span class="lineNum">     135 </span>            :   friend bool operator==(const ProductOf2Maps&amp; lhs,
+<span class="lineNum">     136 </span>            :                          const ProductOf2Maps&amp; rhs) noexcept {
+<span class="lineNum">     137 </span>            :     return lhs.map1_ == rhs.map1_ and lhs.map2_ == rhs.map2_;
+<span class="lineNum">     138 </span>            :   }
+<span class="lineNum">     139 </span>            : 
+<span class="lineNum">     140 </span><span class="lineNoCov">          0 :   Map1 map1_;</span>
+<span class="lineNum">     141 </span><span class="lineNoCov">          0 :   Map2 map2_;</span>
+<span class="lineNum">     142 </span>            : };
+<span class="lineNum">     143 </span>            : 
+<span class="lineNum">     144 </span>            : template &lt;typename Map1, typename Map2&gt;
+<span class="lineNum">     145 </span>            : ProductOf2Maps&lt;Map1, Map2&gt;::ProductOf2Maps(Map1 map1, Map2 map2) noexcept
+<span class="lineNum">     146 </span>            :     : map1_(std::move(map1)), map2_(std::move(map2)) {}
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : template &lt;typename Map1, typename Map2&gt;
+<span class="lineNum">     149 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     150 </span>            : std::array&lt;tt::remove_cvref_wrap_t&lt;T&gt;, ProductOf2Maps&lt;Map1, Map2&gt;::dim&gt;
+<span class="lineNum">     151 </span><span class="lineNoCov">          0 : ProductOf2Maps&lt;Map1, Map2&gt;::operator()(</span>
+<span class="lineNum">     152 </span>            :     const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept {
+<span class="lineNum">     153 </span>            :   return product_detail::apply_call(
+<span class="lineNum">     154 </span>            :       source_coords, map1_,
+<span class="lineNum">     155 </span>            :       map2_, [](const auto&amp; point,
+<span class="lineNum">     156 </span>            :                 const auto&amp; map) noexcept { return map(point); },
+<span class="lineNum">     157 </span>            :       std::make_index_sequence&lt;Map1::dim&gt;{},
+<span class="lineNum">     158 </span>            :       std::make_index_sequence&lt;Map2::dim&gt;{});
+<span class="lineNum">     159 </span>            : }
+<span class="lineNum">     160 </span>            : 
+<span class="lineNum">     161 </span>            : template &lt;typename Map1, typename Map2&gt;
+<span class="lineNum">     162 </span>            : boost::optional&lt;std::array&lt;double, ProductOf2Maps&lt;Map1, Map2&gt;::dim&gt;&gt;
+<span class="lineNum">     163 </span>            : ProductOf2Maps&lt;Map1, Map2&gt;::inverse(
+<span class="lineNum">     164 </span>            :     const std::array&lt;double, dim&gt;&amp; target_coords) const noexcept {
+<span class="lineNum">     165 </span>            :   return product_detail::apply_inverse(
+<span class="lineNum">     166 </span>            :       target_coords, map1_,
+<span class="lineNum">     167 </span>            :       map2_, [](const auto&amp; point,
+<span class="lineNum">     168 </span>            :                 const auto&amp; map) noexcept { return map.inverse(point); },
+<span class="lineNum">     169 </span>            :       std::make_index_sequence&lt;Map1::dim&gt;{},
+<span class="lineNum">     170 </span>            :       std::make_index_sequence&lt;Map2::dim&gt;{});
+<span class="lineNum">     171 </span>            : }
+<span class="lineNum">     172 </span>            : 
+<span class="lineNum">     173 </span>            : template &lt;typename Map1, typename Map2&gt;
+<span class="lineNum">     174 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     175 </span>            : tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, ProductOf2Maps&lt;Map1, Map2&gt;::dim,
+<span class="lineNum">     176 </span>            :          Frame::NoFrame&gt;
+<span class="lineNum">     177 </span><span class="lineNoCov">          0 : ProductOf2Maps&lt;Map1, Map2&gt;::inv_jacobian(</span>
+<span class="lineNum">     178 </span>            :     const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept {
+<span class="lineNum">     179 </span>            :   return product_detail::apply_jac(
+<span class="lineNum">     180 </span>            :       source_coords, map1_,
+<span class="lineNum">     181 </span>            :       map2_, [](const auto&amp; point,
+<span class="lineNum">     182 </span>            :                 const auto&amp; map) noexcept { return map.inv_jacobian(point); },
+<span class="lineNum">     183 </span>            :       std::make_index_sequence&lt;Map1::dim&gt;{},
+<span class="lineNum">     184 </span>            :       std::make_index_sequence&lt;Map2::dim&gt;{});
+<span class="lineNum">     185 </span>            : }
+<span class="lineNum">     186 </span>            : 
+<span class="lineNum">     187 </span>            : template &lt;typename Map1, typename Map2&gt;
+<span class="lineNum">     188 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     189 </span>            : tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, ProductOf2Maps&lt;Map1, Map2&gt;::dim,
+<span class="lineNum">     190 </span>            :          Frame::NoFrame&gt;
+<span class="lineNum">     191 </span><span class="lineNoCov">          0 : ProductOf2Maps&lt;Map1, Map2&gt;::jacobian(</span>
+<span class="lineNum">     192 </span>            :     const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept {
+<span class="lineNum">     193 </span>            :   return product_detail::apply_jac(
+<span class="lineNum">     194 </span>            :       source_coords, map1_,
+<span class="lineNum">     195 </span>            :       map2_, [](const auto&amp; point,
+<span class="lineNum">     196 </span>            :                 const auto&amp; map) noexcept { return map.jacobian(point); },
+<span class="lineNum">     197 </span>            :       std::make_index_sequence&lt;Map1::dim&gt;{},
+<span class="lineNum">     198 </span>            :       std::make_index_sequence&lt;Map2::dim&gt;{});
+<span class="lineNum">     199 </span>            : }
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span>            : template &lt;typename Map1, typename Map2&gt;
+<span class="lineNum">     202 </span>            : void ProductOf2Maps&lt;Map1, Map2&gt;::pup(PUP::er&amp; p) {
+<span class="lineNum">     203 </span>            :   p | map1_;
+<span class="lineNum">     204 </span>            :   p | map2_;
+<span class="lineNum">     205 </span>            : }
+<span class="lineNum">     206 </span>            : 
+<span class="lineNum">     207 </span>            : template &lt;typename Map1, typename Map2&gt;
+<span class="lineNum">     208 </span><span class="lineNoCov">          0 : bool operator!=(const ProductOf2Maps&lt;Map1, Map2&gt;&amp; lhs,</span>
+<span class="lineNum">     209 </span>            :                 const ProductOf2Maps&lt;Map1, Map2&gt;&amp; rhs) noexcept {
+<span class="lineNum">     210 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     211 </span>            : }
+<span class="lineNum">     212 </span>            : 
+<span class="lineNum">     213 </span>            : /// \ingroup CoordinateMaps
+<span class="lineNum">     214 </span>            : /// \brief Product of three one-dimensional CoordinateMaps.
+<span class="lineNum">     215 </span>            : template &lt;typename Map1, typename Map2, typename Map3&gt;
+<span class="lineNum">     216 </span><span class="lineCov">          1 : class ProductOf3Maps {</span>
+<span class="lineNum">     217 </span>            :  public:
+<span class="lineNum">     218 </span><span class="lineNoCov">          0 :   static constexpr size_t dim = Map1::dim + Map2::dim + Map3::dim;</span>
+<span class="lineNum">     219 </span><span class="lineNoCov">          0 :   using map_list = tmpl::list&lt;Map1, Map2, Map3&gt;;</span>
+<span class="lineNum">     220 </span>            :   static_assert(dim == 3, &quot;Only 3D maps are implemented for ProductOf3Maps&quot;);
+<span class="lineNum">     221 </span>            : 
+<span class="lineNum">     222 </span>            :   // Needed for Charm++ serialization
+<span class="lineNum">     223 </span><span class="lineNoCov">          0 :   ProductOf3Maps() = default;</span>
+<span class="lineNum">     224 </span>            : 
+<span class="lineNum">     225 </span><span class="lineNoCov">          0 :   ProductOf3Maps(Map1 map1, Map2 map2, Map3 map3) noexcept;</span>
+<span class="lineNum">     226 </span>            : 
+<span class="lineNum">     227 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     228 </span><span class="lineNoCov">          0 :   std::array&lt;tt::remove_cvref_wrap_t&lt;T&gt;, dim&gt; operator()(</span>
+<span class="lineNum">     229 </span>            :       const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept;
+<span class="lineNum">     230 </span>            : 
+<span class="lineNum">     231 </span><span class="lineNoCov">          0 :   boost::optional&lt;std::array&lt;double, dim&gt;&gt; inverse(</span>
+<span class="lineNum">     232 </span>            :       const std::array&lt;double, dim&gt;&amp; target_coords) const noexcept;
+<span class="lineNum">     233 </span>            : 
+<span class="lineNum">     234 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     235 </span><span class="lineNoCov">          0 :   tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, dim, Frame::NoFrame&gt; inv_jacobian(</span>
+<span class="lineNum">     236 </span>            :       const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept;
+<span class="lineNum">     237 </span>            : 
+<span class="lineNum">     238 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     239 </span><span class="lineNoCov">          0 :   tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, dim, Frame::NoFrame&gt; jacobian(</span>
+<span class="lineNum">     240 </span>            :       const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept;
+<span class="lineNum">     241 </span>            : 
+<span class="lineNum">     242 </span>            :   // clang-tidy: google-runtime-references
+<span class="lineNum">     243 </span><span class="lineNoCov">          0 :   void pup(PUP::er&amp; p) noexcept;  // NOLINT</span>
+<span class="lineNum">     244 </span>            : 
+<span class="lineNum">     245 </span>            :  private:
+<span class="lineNum">     246 </span>            :   friend bool operator==(const ProductOf3Maps&amp; lhs,
+<span class="lineNum">     247 </span>            :                          const ProductOf3Maps&amp; rhs) noexcept {
+<span class="lineNum">     248 </span>            :     return lhs.map1_ == rhs.map1_ and lhs.map2_ == rhs.map2_ and
+<span class="lineNum">     249 </span>            :            lhs.map3_ == rhs.map3_;
+<span class="lineNum">     250 </span>            :   }
+<span class="lineNum">     251 </span>            : 
+<span class="lineNum">     252 </span><span class="lineNoCov">          0 :   Map1 map1_;</span>
+<span class="lineNum">     253 </span><span class="lineNoCov">          0 :   Map2 map2_;</span>
+<span class="lineNum">     254 </span><span class="lineNoCov">          0 :   Map3 map3_;</span>
+<span class="lineNum">     255 </span>            : };
+<span class="lineNum">     256 </span>            : 
+<span class="lineNum">     257 </span>            : template &lt;typename Map1, typename Map2, typename Map3&gt;
+<span class="lineNum">     258 </span>            : ProductOf3Maps&lt;Map1, Map2, Map3&gt;::ProductOf3Maps(Map1 map1, Map2 map2,
+<span class="lineNum">     259 </span>            :                                                  Map3 map3) noexcept
+<span class="lineNum">     260 </span>            :     : map1_(std::move(map1)), map2_(std::move(map2)), map3_(std::move(map3)) {}
+<span class="lineNum">     261 </span>            : 
+<span class="lineNum">     262 </span>            : template &lt;typename Map1, typename Map2, typename Map3&gt;
+<span class="lineNum">     263 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     264 </span>            : std::array&lt;tt::remove_cvref_wrap_t&lt;T&gt;, ProductOf3Maps&lt;Map1, Map2, Map3&gt;::dim&gt;
+<span class="lineNum">     265 </span><span class="lineNoCov">          0 : ProductOf3Maps&lt;Map1, Map2, Map3&gt;::operator()(</span>
+<span class="lineNum">     266 </span>            :     const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept {
+<span class="lineNum">     267 </span>            :   using UnwrappedT = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">     268 </span>            :   return {{map1_(std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, 1&gt;{
+<span class="lineNum">     269 </span>            :                {source_coords[0]}})[0],
+<span class="lineNum">     270 </span>            :            map2_(std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, 1&gt;{
+<span class="lineNum">     271 </span>            :                {source_coords[1]}})[0],
+<span class="lineNum">     272 </span>            :            map3_(std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, 1&gt;{
+<span class="lineNum">     273 </span>            :                {source_coords[2]}})[0]}};
+<span class="lineNum">     274 </span>            : }
+<span class="lineNum">     275 </span>            : 
+<span class="lineNum">     276 </span>            : template &lt;typename Map1, typename Map2, typename Map3&gt;
+<span class="lineNum">     277 </span>            : boost::optional&lt;std::array&lt;double, ProductOf3Maps&lt;Map1, Map2, Map3&gt;::dim&gt;&gt;
+<span class="lineNum">     278 </span>            : ProductOf3Maps&lt;Map1, Map2, Map3&gt;::inverse(
+<span class="lineNum">     279 </span>            :     const std::array&lt;double, dim&gt;&amp; target_coords) const noexcept {
+<span class="lineNum">     280 </span>            :   auto c1 = map1_.inverse(std::array&lt;double, 1&gt;{{target_coords[0]}});
+<span class="lineNum">     281 </span>            :   auto c2 = map2_.inverse(std::array&lt;double, 1&gt;{{target_coords[1]}});
+<span class="lineNum">     282 </span>            :   auto c3 = map3_.inverse(std::array&lt;double, 1&gt;{{target_coords[2]}});
+<span class="lineNum">     283 </span>            :   if (c1 and c2 and c3) {
+<span class="lineNum">     284 </span>            :     return {{{c1.get()[0], c2.get()[0], c3.get()[0]}}};
+<span class="lineNum">     285 </span>            :   } else {
+<span class="lineNum">     286 </span>            :     return boost::none;
+<span class="lineNum">     287 </span>            :   }
+<span class="lineNum">     288 </span>            : }
+<span class="lineNum">     289 </span>            : 
+<span class="lineNum">     290 </span>            : template &lt;typename Map1, typename Map2, typename Map3&gt;
+<span class="lineNum">     291 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     292 </span>            : tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, ProductOf3Maps&lt;Map1, Map2, Map3&gt;::dim,
+<span class="lineNum">     293 </span>            :          Frame::NoFrame&gt;
+<span class="lineNum">     294 </span><span class="lineNoCov">          0 : ProductOf3Maps&lt;Map1, Map2, Map3&gt;::inv_jacobian(</span>
+<span class="lineNum">     295 </span>            :     const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept {
+<span class="lineNum">     296 </span>            :   using UnwrappedT = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">     297 </span>            :   tnsr::Ij&lt;UnwrappedT, dim, Frame::NoFrame&gt; inv_jacobian_matrix{
+<span class="lineNum">     298 </span>            :       make_with_value&lt;UnwrappedT&gt;(dereference_wrapper(source_coords[0]), 0.0)};
+<span class="lineNum">     299 </span>            :   get&lt;0, 0&gt;(inv_jacobian_matrix) = get&lt;0, 0&gt;(map1_.inv_jacobian(
+<span class="lineNum">     300 </span>            :       std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, 1&gt;{
+<span class="lineNum">     301 </span>            :           {source_coords[0]}}));
+<span class="lineNum">     302 </span>            :   get&lt;1, 1&gt;(inv_jacobian_matrix) = get&lt;0, 0&gt;(map2_.inv_jacobian(
+<span class="lineNum">     303 </span>            :       std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, 1&gt;{
+<span class="lineNum">     304 </span>            :           {source_coords[1]}}));
+<span class="lineNum">     305 </span>            :   get&lt;2, 2&gt;(inv_jacobian_matrix) = get&lt;0, 0&gt;(map3_.inv_jacobian(
+<span class="lineNum">     306 </span>            :       std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, 1&gt;{
+<span class="lineNum">     307 </span>            :           {source_coords[2]}}));
+<span class="lineNum">     308 </span>            :   return inv_jacobian_matrix;
+<span class="lineNum">     309 </span>            : }
+<span class="lineNum">     310 </span>            : template &lt;typename Map1, typename Map2, typename Map3&gt;
+<span class="lineNum">     311 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     312 </span>            : tnsr::Ij&lt;tt::remove_cvref_wrap_t&lt;T&gt;, ProductOf3Maps&lt;Map1, Map2, Map3&gt;::dim,
+<span class="lineNum">     313 </span>            :          Frame::NoFrame&gt;
+<span class="lineNum">     314 </span><span class="lineNoCov">          0 : ProductOf3Maps&lt;Map1, Map2, Map3&gt;::jacobian(</span>
+<span class="lineNum">     315 </span>            :     const std::array&lt;T, dim&gt;&amp; source_coords) const noexcept {
+<span class="lineNum">     316 </span>            :   using UnwrappedT = tt::remove_cvref_wrap_t&lt;T&gt;;
+<span class="lineNum">     317 </span>            :   tnsr::Ij&lt;UnwrappedT, dim, Frame::NoFrame&gt; jacobian_matrix{
+<span class="lineNum">     318 </span>            :       make_with_value&lt;UnwrappedT&gt;(dereference_wrapper(source_coords[0]), 0.0)};
+<span class="lineNum">     319 </span>            :   get&lt;0, 0&gt;(jacobian_matrix) = get&lt;0, 0&gt;(
+<span class="lineNum">     320 </span>            :       map1_.jacobian(std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, 1&gt;{
+<span class="lineNum">     321 </span>            :           {source_coords[0]}}));
+<span class="lineNum">     322 </span>            :   get&lt;1, 1&gt;(jacobian_matrix) = get&lt;0, 0&gt;(
+<span class="lineNum">     323 </span>            :       map2_.jacobian(std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, 1&gt;{
+<span class="lineNum">     324 </span>            :           {source_coords[1]}}));
+<span class="lineNum">     325 </span>            :   get&lt;2, 2&gt;(jacobian_matrix) = get&lt;0, 0&gt;(
+<span class="lineNum">     326 </span>            :       map3_.jacobian(std::array&lt;std::reference_wrapper&lt;const UnwrappedT&gt;, 1&gt;{
+<span class="lineNum">     327 </span>            :           {source_coords[2]}}));
+<span class="lineNum">     328 </span>            :   return jacobian_matrix;
+<span class="lineNum">     329 </span>            : }
+<span class="lineNum">     330 </span>            : template &lt;typename Map1, typename Map2, typename Map3&gt;
+<span class="lineNum">     331 </span>            : void ProductOf3Maps&lt;Map1, Map2, Map3&gt;::pup(PUP::er&amp; p) noexcept {
+<span class="lineNum">     332 </span>            :   p | map1_;
+<span class="lineNum">     333 </span>            :   p | map2_;
+<span class="lineNum">     334 </span>            :   p | map3_;
+<span class="lineNum">     335 </span>            : }
+<span class="lineNum">     336 </span>            : 
+<span class="lineNum">     337 </span>            : template &lt;typename Map1, typename Map2, typename Map3&gt;
+<span class="lineNum">     338 </span><span class="lineNoCov">          0 : bool operator!=(const ProductOf3Maps&lt;Map1, Map2, Map3&gt;&amp; lhs,</span>
+<span class="lineNum">     339 </span>            :                 const ProductOf3Maps&lt;Map1, Map2, Map3&gt;&amp; rhs) noexcept {
+<span class="lineNum">     340 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     341 </span>            : }
+<span class="lineNum">     342 </span>            : }  // namespace CoordinateMaps
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

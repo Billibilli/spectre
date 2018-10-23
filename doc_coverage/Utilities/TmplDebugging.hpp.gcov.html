@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Utilities/TmplDebugging.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - TmplDebugging.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryLo">66.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class TypeDisplayer
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : /*!
+<span class="lineNum">      12 </span>            :  * \ingroup UtilitiesGroup TypeTraits
+<span class="lineNum">      13 </span>            :  * \brief Get compiler error with type of template parameter
+<span class="lineNum">      14 </span>            :  *
+<span class="lineNum">      15 </span>            :  * The compiler error generated when using an object of type
+<span class="lineNum">      16 </span>            :  * `TypeDisplayer&lt;...&gt;` contains the types of the template parameters. This
+<span class="lineNum">      17 </span>            :  * effectively provides printf-debugging for metaprogramming. For example,
+<span class="lineNum">      18 </span>            :  * \code
+<span class="lineNum">      19 </span>            :  * TypeDisplayer&lt;std::vector&lt;double&gt;&gt; some_random_name;
+<span class="lineNum">      20 </span>            :  * \endcode
+<span class="lineNum">      21 </span>            :  * will produce a compiler error that contains the type `std::vector&lt;double,
+<span class="lineNum">      22 </span>            :  * std::allocator...&gt;`. TypeDisplayer is extremely useful when debugging
+<span class="lineNum">      23 </span>            :  * template metaprograms.
+<span class="lineNum">      24 </span>            :  *
+<span class="lineNum">      25 </span>            :  * \note The TypeDisplayer header should only be included during testing
+<span class="lineNum">      26 </span>            :  * and debugging.
+<span class="lineNum">      27 </span>            :  *
+<span class="lineNum">      28 </span>            :  * \see make_list
+<span class="lineNum">      29 </span>            :  */
+<span class="lineNum">      30 </span>            : template &lt;typename...&gt;
+<span class="lineNum">      31 </span><span class="lineCov">          1 : struct TypeDisplayer;</span>
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : /*!
+<span class="lineNum">      34 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">      35 </span>            :  * \brief Metafunction to turn a parameter pack into a typelist
+<span class="lineNum">      36 </span>            :  *
+<span class="lineNum">      37 </span>            :  * This metafunction is really only useful for debugging metaprograms. For
+<span class="lineNum">      38 </span>            :  * example, the desired algorithm might be:
+<span class="lineNum">      39 </span>            :  *
+<span class="lineNum">      40 </span>            :  * \code
+<span class="lineNum">      41 </span>            :  * using variables_tags_from_single_tags = tmpl::filter&lt;
+<span class="lineNum">      42 </span>            :  *     extracted_from_variables,
+<span class="lineNum">      43 </span>            :  *     tmpl::bind&lt;tmpl::found, tmpl::pin&lt;mutated_tags_list&gt;,
+<span class="lineNum">      44 </span>            :  *                tmpl::bind&lt;std::is_same, tmpl::_1, tmpl::parent&lt;tmpl::_1&gt;&gt;&gt;&gt;;
+<span class="lineNum">      45 </span>            :  * \endcode
+<span class="lineNum">      46 </span>            :  *
+<span class="lineNum">      47 </span>            :  * However, getting the `tmpl::pin`, `tmpl::parent`, and `tmpl::bind` calls
+<span class="lineNum">      48 </span>            :  * right can be extremely frustrating with little help as to what is going on.
+<span class="lineNum">      49 </span>            :  * Let's introduce an error by pinning `tmpl::_1`:
+<span class="lineNum">      50 </span>            :  *
+<span class="lineNum">      51 </span>            :  * \code
+<span class="lineNum">      52 </span>            :  * using variables_tags_from_single_tags = tmpl::filter&lt;
+<span class="lineNum">      53 </span>            :  *     extracted_from_variables,
+<span class="lineNum">      54 </span>            :  *     tmpl::bind&lt;tmpl::found, tmpl::pin&lt;mutated_tags_list&gt;,
+<span class="lineNum">      55 </span>            :  *                tmpl::bind&lt;std::is_same, tmpl::pin&lt;tmpl::_1&gt;,
+<span class="lineNum">      56 </span>            :  *                tmpl::parent&lt;tmpl::_1&gt;&gt;&gt;&gt;;
+<span class="lineNum">      57 </span>            :  * \endcode
+<span class="lineNum">      58 </span>            :  *
+<span class="lineNum">      59 </span>            :  * The result is comparing all values in `extracted_from_variables` to
+<span class="lineNum">      60 </span>            :  * themselves. To find this out, replace `tmpl::filter` and `tmpl::found` with
+<span class="lineNum">      61 </span>            :  * `tmpl::transform`, and the metafunction `std::is_same` to `make_list`.
+<span class="lineNum">      62 </span>            :  * You will then get back a &quot;backtrace&quot; of what the algorithm did, which is
+<span class="lineNum">      63 </span>            :  * invaluable for getting the `tmpl::pin` and `tmpl::parent` right. That is,
+<span class="lineNum">      64 </span>            :  *
+<span class="lineNum">      65 </span>            :  * \code
+<span class="lineNum">      66 </span>            :  * using variables_tags_from_single_tags2 = tmpl::transform&lt;
+<span class="lineNum">      67 </span>            :  *     extracted_from_variables,
+<span class="lineNum">      68 </span>            :  *     tmpl::bind&lt;tmpl::transform, tmpl::pin&lt;mutated_tags_list&gt;,
+<span class="lineNum">      69 </span>            :  *                tmpl::bind&lt;make_list, tmpl::_1, tmpl::parent&lt;tmpl::_1&gt;&gt;&gt;&gt;;
+<span class="lineNum">      70 </span>            :  *
+<span class="lineNum">      71 </span>            :  * TypeDisplayer&lt;variables_tags_from_single_tags2&gt; aeou;
+<span class="lineNum">      72 </span>            :  * \endcode
+<span class="lineNum">      73 </span>            :  *
+<span class="lineNum">      74 </span>            :  * You will get an output along the lines of:
+<span class="lineNum">      75 </span>            :  *
+<span class="lineNum">      76 </span>            :  * \code
+<span class="lineNum">      77 </span>            :  * src/DataStructures/DataBox.hpp:1181:40: error: implicit instantiation of
+<span class="lineNum">      78 </span>            :  * undefined template
+<span class="lineNum">      79 </span>            :  * 'TypeDisplayer&lt;brigand::list&lt;brigand::list&lt;
+<span class="lineNum">      80 </span>            :  *     brigand::list&lt;test_databox_tags::ScalarTag,
+<span class="lineNum">      81 </span>            :  *     test_databox_tags::Tag0&gt;, brigand::list&lt;test_databox_tags::ScalarTag,
+<span class="lineNum">      82 </span>            :  *     Tags::Variables&lt;brigand::list&lt;test_databox_tags::ScalarTag,
+<span class="lineNum">      83 </span>            :  *                     test_databox_tags::VectorTag&gt; &gt; &gt; &gt;,
+<span class="lineNum">      84 </span>            :  *     brigand::list&lt;brigand::list&lt;test_databox_tags::VectorTag,
+<span class="lineNum">      85 </span>            :  *                   test_databox_tags::Tag0&gt;,
+<span class="lineNum">      86 </span>            :  *     brigand::list&lt;test_databox_tags::VectorTag,
+<span class="lineNum">      87 </span>            :  *                   Tags::Variables&lt;
+<span class="lineNum">      88 </span>            :  *                   brigand::list&lt;test_databox_tags::ScalarTag,
+<span class="lineNum">      89 </span>            :  *                   test_databox_tags::VectorTag&gt; &gt; &gt; &gt; &gt; &gt;'
+<span class="lineNum">      90 </span>            :  * \endcode
+<span class="lineNum">      91 </span>            :  *
+<span class="lineNum">      92 </span>            :  * \see TypeDisplayer
+<span class="lineNum">      93 </span>            :  */
+<span class="lineNum">      94 </span>            : template &lt;class... Ts&gt;
+<span class="lineNum">      95 </span><span class="lineCov">          1 : struct make_list {</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :   using type = tmpl::list&lt;Ts...&gt;;</span>
+<span class="lineNum">      97 </span>            : };
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

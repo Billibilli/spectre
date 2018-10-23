@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - IO/H5/Version.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">IO/H5</a> - Version.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class h5::Version for storing version history of files
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;cstdint&gt;
+<span class="lineNum">      10 </span>            : #include &lt;hdf5.h&gt;
+<span class="lineNum">      11 </span>            : #include &lt;string&gt;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : #include &quot;IO/H5/Object.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;IO/H5/OpenGroup.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : namespace h5 {
+<span class="lineNum">      17 </span>            : /*!
+<span class="lineNum">      18 </span>            :  * \ingroup HDF5Group
+<span class="lineNum">      19 </span>            :  * \brief Used to store the version of the file
+<span class="lineNum">      20 </span>            :  *
+<span class="lineNum">      21 </span>            :  * A Version object should be stored inside each H5 object that is to represent
+<span class="lineNum">      22 </span>            :  * a file, e.g. Dat, or Text.
+<span class="lineNum">      23 </span>            :  *
+<span class="lineNum">      24 </span>            :  * \example
+<span class="lineNum">      25 </span>            :  * To write the version use:
+<span class="lineNum">      26 </span>            :  * \snippet Test_H5.cpp h5file_write_version
+<span class="lineNum">      27 </span>            :  * To read the version use:
+<span class="lineNum">      28 </span>            :  * \snippet Test_H5.cpp h5file_read_version
+<span class="lineNum">      29 </span>            :  *
+<span class="lineNum">      30 </span>            :  */
+<span class="lineNum">      31 </span><span class="lineCov">          1 : class Version : public h5::Object {</span>
+<span class="lineNum">      32 </span>            :  public:
+<span class="lineNum">      33 </span>            :   /// \cond HIDDEN_SYMOLS
+<span class="lineNum">      34 </span>            :   static std::string extension() { return &quot;.ver&quot;; }
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            :   Version(bool exists, detail::OpenGroup&amp;&amp; group, hid_t location,
+<span class="lineNum">      37 </span>            :           std::string name, uint32_t version = 1);
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            :   Version(const Version&amp; /*rhs*/) = delete;
+<span class="lineNum">      40 </span>            :   Version&amp; operator=(const Version&amp; /*rhs*/) = delete;
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            :   Version(Version&amp;&amp; /*rhs*/) noexcept = default;             // NOLINT
+<span class="lineNum">      43 </span>            :   Version&amp; operator=(Version&amp;&amp; /*rhs*/) noexcept = default;  // NOLINT
+<span class="lineNum">      44 </span>            :   ~Version() override = default;
+<span class="lineNum">      45 </span>            :   /// \endcond
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :   uint32_t get_version() const noexcept { return version_; }</span>
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            :  private:
+<span class="lineNum">      50 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      51 </span>            :   uint32_t version_;
+<span class="lineNum">      52 </span>            :   // group_ is necessary since the when the h5::Object is destroyed it closes
+<span class="lineNum">      53 </span>            :   // all groups that were opened to get to it.
+<span class="lineNum">      54 </span>            :   detail::OpenGroup group_;
+<span class="lineNum">      55 </span>            :   /// \endcond
+<span class="lineNum">      56 </span>            : };
+<span class="lineNum">      57 </span>            : }  // namespace h5
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

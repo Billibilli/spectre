@@ -1,0 +1,209 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/NumericalAlgorithms/Interpolation/SendPointsToInterpolator.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_a7268f5afc6b190325b6ae3281812809.html">NumericalAlgorithms</a></li><li class="navelem"><a class="el" href="dir_b5be3fef78335bf3b7869cd601bebc3c.html">Interpolation</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">SendPointsToInterpolator.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DataBox_8hpp.html">DataStructures/DataBox/DataBox.hpp</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DataBoxTag_8hpp.html">DataStructures/DataBox/DataBoxTag.hpp</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Variables_8hpp.html">DataStructures/Variables.hpp</a>&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;Domain/BlockLogicalCoordinates.hpp&quot;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Domain_2Tags_8hpp.html">Domain/Tags.hpp</a>&quot;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;NumericalAlgorithms/Interpolation/Tags.hpp&quot;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConstGlobalCache_8hpp.html">Parallel/ConstGlobalCache.hpp</a>&quot;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;Parallel/Invoke.hpp&quot;</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/// \cond</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"></span><span class="keyword">namespace </span><a class="code" href="namespaceintrp.html">intrp</a> {</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Metavariables, <span class="keywordtype">size_t</span> VolumeDim&gt;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">struct </span>Interpolator;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceActions.html">Actions</a> {</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> InterpolationTargetTag&gt;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">struct </span>ReceiveInterpolationPoints;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}  <span class="comment">// namespace Actions</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}  <span class="comment">// namespace intrp</span><span class="comment"></span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">/// \endcond</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceintrp.html">intrp</a> {</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/// Sends to all the Interpolators a list of all the points that need</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">/// to be interpolated onto.  Also clears information about data that</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/// has already been interpolated, since calling this function triggers</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/// a new interpolation.</span></div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">///</span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">/// Called by InterpolationTargetTag::compute_target_points.  This is not an</span></div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/// Action, but rather a helper function that is called by every</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">/// Action (LineSegment, Strahlkorper, etc.) that specifies a</span></div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">/// particular set of points.</span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> InterpolationTargetTag, <span class="keyword">typename</span> DbTags,</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;          <span class="keyword">typename</span> Metavariables, <span class="keywordtype">size_t</span> VolumeDim, <span class="keyword">typename</span> <a class="code" href="namespaceFrame.html">Frame</a>&gt;</div><div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespaceintrp.html#a9a5281ee752b71e38bcdb2a8ec1b24fa">   41</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceintrp.html#a9a5281ee752b71e38bcdb2a8ec1b24fa">send_points_to_interpolator</a>(</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    db::DataBox&lt;DbTags&gt;&amp; box, <a class="code" href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache&lt;Metavariables&gt;</a>&amp; cache,</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">const</span> tnsr::I&lt;DataVector, VolumeDim, Frame&gt;&amp; target_points,</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">const</span> <span class="keyword">typename</span> Metavariables::temporal_id&amp; temporal_id) noexcept {</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code" href="namespacedomain.html">domain</a> = db::get&lt;::Tags::Domain&lt;VolumeDim, Frame&gt;&gt;(box);</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keyword">auto</span> coords = <a class="code" href="group__ComputationalDomainGroup.html#ga2ac96bde5dbd27c35577ee673820c142">block_logical_coordinates</a>(<a class="code" href="namespacedomain.html">domain</a>, target_points);</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <a class="code" href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc">db::mutate</a>&lt;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <a class="code" href="structintrp_1_1Tags_1_1IndicesOfFilledInterpPoints.html">Tags::IndicesOfFilledInterpPoints</a>,</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      <a class="code" href="structTags_1_1Variables.html">::Tags::Variables</a>&lt;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;          <span class="keyword">typename</span> InterpolationTargetTag::vars_to_interpolate_to_target&gt;&gt;(</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      <a class="code" href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a>(&amp;box),</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      [&amp;coords](</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;          <span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null&lt;db::item_type&lt;Tags::IndicesOfFilledInterpPoints&gt;</a>*&gt;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;              indices_of_filled,</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;          <span class="keyword">const</span> <a class="code" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt;<a class="code" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type</a>&lt;<a class="code" href="structTags_1_1Variables.html">::Tags::Variables</a>&lt;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;              <span class="keyword">typename</span> InterpolationTargetTag::vars_to_interpolate_to_target&gt;&gt;*&gt;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;              vars_dest) noexcept {</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">// Because we are sending new points to the interpolator,</span></div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="comment">// we know that none of these points have been interpolated to,</span></div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// so clear the list.</span></div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        indices_of_filled-&gt;clear();</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// We will be filling vars_dest with interpolated data.</span></div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="comment">// Here we make sure it is allocated to the correct size.</span></div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">if</span> (vars_dest-&gt;number_of_grid_points() != coords.size()) {</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;          *vars_dest = <a class="code" href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type</a>&lt;<a class="code" href="structTags_1_1Variables.html">::Tags::Variables</a>&lt;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;              <span class="keyword">typename</span> InterpolationTargetTag::vars_to_interpolate_to_target&gt;&gt;(</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;              coords.size());</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      });</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keyword">auto</span>&amp; receiver_proxy =</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      Parallel::get_parallel_component&lt;Interpolator&lt;Metavariables, VolumeDim&gt;&gt;(</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;          cache);</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <a class="code" href="group__ParallelGroup.html#gaa17acf0ac876ac8cf36dfb939d7aea11">Parallel::simple_action</a>&lt;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      Actions::ReceiveInterpolationPoints&lt;InterpolationTargetTag&gt;&gt;(</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      receiver_proxy, temporal_id, std::move(coords));</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}  <span class="comment">// namespace intrp</span></div><div class="ttc" id="structTags_1_1Variables_html"><div class="ttname"><a href="structTags_1_1Variables.html">Tags::Variables</a></div><div class="ttdef"><b>Definition:</b> Variables.hpp:33</div></div>
+<div class="ttc" id="group__DataBoxGroup_html_ga7f507859b93a8bd60c6f9f05077ab2bc"><div class="ttname"><a href="group__DataBoxGroup.html#ga7f507859b93a8bd60c6f9f05077ab2bc">db::mutate</a></div><div class="ttdeci">void mutate(const gsl::not_null&lt; DataBox&lt; TagList &gt; *&gt; box, Invokable &amp;&amp;invokable, Args &amp;&amp;... args) noexcept</div><div class="ttdoc">Allows changing the state of one or more non-computed elements in the DataBox. </div><div class="ttdef"><b>Definition:</b> DataBox.hpp:1064</div></div>
+<div class="ttc" id="namespacedomain_html"><div class="ttname"><a href="namespacedomain.html">domain</a></div><div class="ttdef"><b>Definition:</b> BlockId.hpp:16</div></div>
+<div class="ttc" id="namespaceintrp_html"><div class="ttname"><a href="namespaceintrp.html">intrp</a></div><div class="ttdoc">Contains classes and functions for interpolation. </div><div class="ttdef"><b>Definition:</b> AddTemporalIdsToInterpolationTarget.hpp:17</div></div>
+<div class="ttc" id="structintrp_1_1Tags_1_1IndicesOfFilledInterpPoints_html"><div class="ttname"><a href="structintrp_1_1Tags_1_1IndicesOfFilledInterpPoints.html">intrp::Tags::IndicesOfFilledInterpPoints</a></div><div class="ttdoc">Keeps track of which points have been filled with interpolated data. </div><div class="ttdef"><b>Definition:</b> Tags.hpp:31</div></div>
+<div class="ttc" id="DataBox_8hpp_html"><div class="ttname"><a href="DataBox_8hpp.html">DataBox.hpp</a></div><div class="ttdoc">Defines classes and functions used for manipulating DataBox&amp;#39;s. </div></div>
+<div class="ttc" id="namespaceFrame_html"><div class="ttname"><a href="namespaceFrame.html">Frame</a></div><div class="ttdoc">Indicates the Frame that a TensorIndexType is in. </div><div class="ttdef"><b>Definition:</b> IndexType.hpp:36</div></div>
+<div class="ttc" id="Variables_8hpp_html"><div class="ttname"><a href="Variables_8hpp.html">Variables.hpp</a></div><div class="ttdoc">Defines class Variables. </div></div>
+<div class="ttc" id="classParallel_1_1ConstGlobalCache_html"><div class="ttname"><a href="classParallel_1_1ConstGlobalCache.html">Parallel::ConstGlobalCache</a></div><div class="ttdoc">A Charm++ chare that caches constant data once per Charm++ node. </div><div class="ttdef"><b>Definition:</b> ConstGlobalCache.hpp:76</div></div>
+<div class="ttc" id="namespaceintrp_html_a9a5281ee752b71e38bcdb2a8ec1b24fa"><div class="ttname"><a href="namespaceintrp.html#a9a5281ee752b71e38bcdb2a8ec1b24fa">intrp::send_points_to_interpolator</a></div><div class="ttdeci">void send_points_to_interpolator(db::DataBox&lt; DbTags &gt; &amp;box, Parallel::ConstGlobalCache&lt; Metavariables &gt; &amp;cache, const tnsr::I&lt; DataVector, VolumeDim, Frame &gt; &amp;target_points, const typename Metavariables::temporal_id &amp;temporal_id) noexcept</div><div class="ttdoc">Sends to all the Interpolators a list of all the points that need to be interpolated onto...</div><div class="ttdef"><b>Definition:</b> SendPointsToInterpolator.hpp:41</div></div>
+<div class="ttc" id="group__ComputationalDomainGroup_html_ga2ac96bde5dbd27c35577ee673820c142"><div class="ttname"><a href="group__ComputationalDomainGroup.html#ga2ac96bde5dbd27c35577ee673820c142">block_logical_coordinates</a></div><div class="ttdeci">std::vector&lt; block_logical_coord_holder&lt; Dim &gt; &gt; block_logical_coordinates(const Domain&lt; Dim, Frame &gt; &amp;domain, const tnsr::I&lt; DataVector, Dim, Frame &gt; &amp;x) noexcept</div><div class="ttdoc">Computes the block logical coordinates and the containing BlockId of a set of points, given coordinates in the Frame frame. </div><div class="ttdef"><b>Definition:</b> BlockLogicalCoordinates.cpp:25</div></div>
+<div class="ttc" id="algorithm_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a></div></div>
+<div class="ttc" id="group__DataBoxGroup_html_ga6da12f8bf23ee87c99472b0f33b2b155"><div class="ttname"><a href="group__DataBoxGroup.html#ga6da12f8bf23ee87c99472b0f33b2b155">db::item_type</a></div><div class="ttdeci">typename DataBox_detail::item_type_impl&lt; TagList, Tag &gt;::type item_type</div><div class="ttdoc">Get the type that is returned by the Tag. If it is a base tag then a TagList must be passed as a seco...</div><div class="ttdef"><b>Definition:</b> DataBoxTag.hpp:410</div></div>
+<div class="ttc" id="Gsl_8hpp_html_a649c6961f9146205c203e45d58fd0c4c"><div class="ttname"><a href="Gsl_8hpp.html#a649c6961f9146205c203e45d58fd0c4c">make_not_null</a></div><div class="ttdeci">gsl::not_null&lt; T * &gt; make_not_null(T *ptr) noexcept</div><div class="ttdoc">Construct a not_null from a pointer. Often this will be done as an implicit conversion, but it may be necessary to perform the conversion explicitly when type deduction is desired. </div><div class="ttdef"><b>Definition:</b> Gsl.hpp:282</div></div>
+<div class="ttc" id="Domain_2Tags_8hpp_html"><div class="ttname"><a href="Domain_2Tags_8hpp.html">Tags.hpp</a></div><div class="ttdoc">Defines tags related to domain quantities. </div></div>
+<div class="ttc" id="group__ParallelGroup_html_gaa17acf0ac876ac8cf36dfb939d7aea11"><div class="ttname"><a href="group__ParallelGroup.html#gaa17acf0ac876ac8cf36dfb939d7aea11">Parallel::simple_action</a></div><div class="ttdeci">void simple_action(Proxy &amp;&amp;proxy) noexcept</div><div class="ttdoc">Invoke a simple action on proxy </div><div class="ttdef"><b>Definition:</b> Invoke.hpp:44</div></div>
+<div class="ttc" id="DataBoxTag_8hpp_html"><div class="ttname"><a href="DataBoxTag_8hpp.html">DataBoxTag.hpp</a></div><div class="ttdoc">Defines classes SimpleTag, PrefixTag, ComputeTag and several functions for retrieving tag info...</div></div>
+<div class="ttc" id="ConstGlobalCache_8hpp_html"><div class="ttname"><a href="ConstGlobalCache_8hpp.html">ConstGlobalCache.hpp</a></div><div class="ttdoc">Defines class template ConstGlobalCache. </div></div>
+<div class="ttc" id="namespaceActions_html"><div class="ttname"><a href="namespaceActions.html">Actions</a></div><div class="ttdef"><b>Definition:</b> ComputeVolumeDuDt.hpp:28</div></div>
+<div class="ttc" id="classgsl_1_1not__null_html"><div class="ttname"><a href="classgsl_1_1not__null.html">gsl::not_null</a></div><div class="ttdoc">Require a pointer to not be a nullptr </div><div class="ttdef"><b>Definition:</b> ConservativeFromPrimitive.hpp:12</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

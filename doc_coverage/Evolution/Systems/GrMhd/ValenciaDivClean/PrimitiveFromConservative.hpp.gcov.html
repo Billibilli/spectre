@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Evolution/Systems/GrMhd/ValenciaDivClean/PrimitiveFromConservative.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">Evolution/Systems/GrMhd/ValenciaDivClean</a> - PrimitiveFromConservative.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryLo">25.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;DataStructures/Tensor/TypeAliases.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;Evolution/Systems/GrMhd/ValenciaDivClean/TagsDeclarations.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      10 </span>            : #include &quot;PointwiseFunctions/GeneralRelativity/TagsDeclarations.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      11 </span>            : #include &quot;PointwiseFunctions/Hydro/EquationsOfState/EquationOfState.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;PointwiseFunctions/Hydro/TagsDeclarations.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : // IWYU pragma: no_include &quot;Evolution/Systems/GrMhd/ValenciaDivClean/Tags.hpp&quot;
+<span class="lineNum">      16 </span>            : // IWYU pragma: no_include &quot;PointwiseFunctions/GeneralRelativity/Tags.hpp&quot;
+<span class="lineNum">      17 </span>            : // IWYU pragma: no_include &quot;PointwiseFunctions/Hydro/Tags.hpp&quot;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : /// \cond
+<span class="lineNum">      20 </span>            : namespace gsl {
+<span class="lineNum">      21 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      22 </span>            : class not_null;
+<span class="lineNum">      23 </span>            : }  // namespace gsl
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : class DataVector;
+<span class="lineNum">      26 </span>            : /// \endcond
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : // IWYU pragma: no_forward_declare EquationsOfState::EquationOfState
+<span class="lineNum">      29 </span>            : // IWYU pragma: no_forward_declare Tensor
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : namespace grmhd {
+<span class="lineNum">      32 </span>            : namespace ValenciaDivClean {
+<span class="lineNum">      33 </span>            : /*!
+<span class="lineNum">      34 </span>            :  * \brief Compute the primitive variables from the conservative variables
+<span class="lineNum">      35 </span>            :  *
+<span class="lineNum">      36 </span>            :  * For the Valencia formulation of the GRMHD system with divergence cleaning,
+<span class="lineNum">      37 </span>            :  * the conversion of the evolved conserved variables to the primitive variables
+<span class="lineNum">      38 </span>            :  * cannot be expressed in closed analytic form and requires a root find.
+<span class="lineNum">      39 </span>            :  *
+<span class="lineNum">      40 </span>            :  * [Siegel {\em et al}, The Astrophysical Journal 859:71(2018)]
+<span class="lineNum">      41 </span>            :  * (http://iopscience.iop.org/article/10.3847/1538-4357/aabcc5/meta)
+<span class="lineNum">      42 </span>            :  * compares several inversion methods.
+<span class="lineNum">      43 </span>            :  */
+<span class="lineNum">      44 </span>            : template &lt;typename PrimitiveRecoveryScheme, size_t ThermodynamicDim&gt;
+<span class="lineNum">      45 </span><span class="lineCov">          1 : struct PrimitiveFromConservative {</span>
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :   using return_tags =</span>
+<span class="lineNum">      47 </span>            :       tmpl::list&lt;hydro::Tags::RestMassDensity&lt;DataVector&gt;,
+<span class="lineNum">      48 </span>            :                  hydro::Tags::SpecificInternalEnergy&lt;DataVector&gt;,
+<span class="lineNum">      49 </span>            :                  hydro::Tags::SpatialVelocity&lt;DataVector, 3&gt;,
+<span class="lineNum">      50 </span>            :                  hydro::Tags::MagneticField&lt;DataVector, 3&gt;,
+<span class="lineNum">      51 </span>            :                  hydro::Tags::DivergenceCleaningField&lt;DataVector&gt;,
+<span class="lineNum">      52 </span>            :                  hydro::Tags::LorentzFactor&lt;DataVector&gt;,
+<span class="lineNum">      53 </span>            :                  hydro::Tags::Pressure&lt;DataVector&gt;,
+<span class="lineNum">      54 </span>            :                  hydro::Tags::SpecificEnthalpy&lt;DataVector&gt;&gt;;
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 :   using argument_tags = tmpl::list&lt;</span>
+<span class="lineNum">      57 </span>            :       grmhd::ValenciaDivClean::Tags::TildeD,
+<span class="lineNum">      58 </span>            :       grmhd::ValenciaDivClean::Tags::TildeTau,
+<span class="lineNum">      59 </span>            :       grmhd::ValenciaDivClean::Tags::TildeS&lt;&gt;,
+<span class="lineNum">      60 </span>            :       grmhd::ValenciaDivClean::Tags::TildeB&lt;&gt;,
+<span class="lineNum">      61 </span>            :       grmhd::ValenciaDivClean::Tags::TildePhi, gr::Tags::SpatialMetric&lt;3&gt;,
+<span class="lineNum">      62 </span>            :       gr::Tags::InverseSpatialMetric&lt;3&gt;, gr::Tags::SqrtDetSpatialMetric&lt;&gt;,
+<span class="lineNum">      63 </span>            :       hydro::Tags::EquationOfState&lt;EquationsOfState::IdealFluid&lt;true&gt;&gt;&gt;;
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   static void apply(</span>
+<span class="lineNum">      66 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; rest_mass_density,
+<span class="lineNum">      67 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; specific_internal_energy,
+<span class="lineNum">      68 </span>            :       gsl::not_null&lt;tnsr::I&lt;DataVector, 3, Frame::Inertial&gt;*&gt; spatial_velocity,
+<span class="lineNum">      69 </span>            :       gsl::not_null&lt;tnsr::I&lt;DataVector, 3, Frame::Inertial&gt;*&gt; magnetic_field,
+<span class="lineNum">      70 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; divergence_cleaning_field,
+<span class="lineNum">      71 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; lorentz_factor,
+<span class="lineNum">      72 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; pressure,
+<span class="lineNum">      73 </span>            :       gsl::not_null&lt;Scalar&lt;DataVector&gt;*&gt; specific_enthalpy,
+<span class="lineNum">      74 </span>            :       const Scalar&lt;DataVector&gt;&amp; tilde_d, const Scalar&lt;DataVector&gt;&amp; tilde_tau,
+<span class="lineNum">      75 </span>            :       const tnsr::i&lt;DataVector, 3, Frame::Inertial&gt;&amp; tilde_s,
+<span class="lineNum">      76 </span>            :       const tnsr::I&lt;DataVector, 3, Frame::Inertial&gt;&amp; tilde_b,
+<span class="lineNum">      77 </span>            :       const Scalar&lt;DataVector&gt;&amp; tilde_phi,
+<span class="lineNum">      78 </span>            :       const tnsr::ii&lt;DataVector, 3, Frame::Inertial&gt;&amp; spatial_metric,
+<span class="lineNum">      79 </span>            :       const tnsr::II&lt;DataVector, 3, Frame::Inertial&gt;&amp; inv_spatial_metric,
+<span class="lineNum">      80 </span>            :       const Scalar&lt;DataVector&gt;&amp; sqrt_det_spatial_metric,
+<span class="lineNum">      81 </span>            :       const EquationsOfState::EquationOfState&lt;true, ThermodynamicDim&gt;&amp;
+<span class="lineNum">      82 </span>            :           equation_of_state) noexcept;
+<span class="lineNum">      83 </span>            : };
+<span class="lineNum">      84 </span>            : }  // namespace ValenciaDivClean
+<span class="lineNum">      85 </span>            : }  // namespace grmhd
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: ScalarWave::Solutions::PlaneWave&lt; Dim &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceScalarWave.html">ScalarWave</a></li><li class="navelem"><a class="el" href="namespaceScalarWave_1_1Solutions.html">Solutions</a></li><li class="navelem"><a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html">PlaneWave</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="classScalarWave_1_1Solutions_1_1PlaneWave-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">ScalarWave::Solutions::PlaneWave&lt; Dim &gt; Class Template Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>A plane wave solution to the Euclidean wave equation.  
+ <a href="classScalarWave_1_1Solutions_1_1PlaneWave.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="PlaneWave_8hpp_source.html">PlaneWave.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScalarWave_1_1Solutions_1_1PlaneWave_1_1Center.html">Center</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScalarWave_1_1Solutions_1_1PlaneWave_1_1Profile.html">Profile</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScalarWave_1_1Solutions_1_1PlaneWave_1_1WaveVector.html">WaveVector</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a17471996b50114414d888c023a239724"><td class="memItemLeft" align="right" valign="top"><a id="a17471996b50114414d888c023a239724"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>options</b> = tmpl::list&lt; <a class="el" href="structScalarWave_1_1Solutions_1_1PlaneWave_1_1WaveVector.html">WaveVector</a>, <a class="el" href="structScalarWave_1_1Solutions_1_1PlaneWave_1_1Center.html">Center</a>, <a class="el" href="structScalarWave_1_1Solutions_1_1PlaneWave_1_1Profile.html">Profile</a> &gt;</td></tr>
+<tr class="separator:a17471996b50114414d888c023a239724"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:adefb7492272f6115206447c4b1a058bd"><td class="memItemLeft" align="right" valign="top"><a id="adefb7492272f6115206447c4b1a058bd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PlaneWave</b> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Dim &gt; wave_vector, <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; double, Dim &gt; center, <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; <a class="el" href="classMathFunction.html">MathFunction</a>&lt; 1 &gt;&gt; profile) noexcept</td></tr>
+<tr class="separator:adefb7492272f6115206447c4b1a058bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00bc7950cd690e32a11ca97d9ccf52d3"><td class="memItemLeft" align="right" valign="top"><a id="a00bc7950cd690e32a11ca97d9ccf52d3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PlaneWave</b> (const <a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html">PlaneWave</a> &amp;) noexcept=delete</td></tr>
+<tr class="separator:a00bc7950cd690e32a11ca97d9ccf52d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a428b0303c2518e2bd82ab258968b3408"><td class="memItemLeft" align="right" valign="top"><a id="a428b0303c2518e2bd82ab258968b3408"></a>
+<a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html">PlaneWave</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html">PlaneWave</a> &amp;) noexcept=delete</td></tr>
+<tr class="separator:a428b0303c2518e2bd82ab258968b3408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c35452eef4840dba8dab8f91a75b778"><td class="memItemLeft" align="right" valign="top"><a id="a2c35452eef4840dba8dab8f91a75b778"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PlaneWave</b> (<a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html">PlaneWave</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a2c35452eef4840dba8dab8f91a75b778"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa8db1619a80c636caa7e324cb87b5f7"><td class="memItemLeft" align="right" valign="top"><a id="aaa8db1619a80c636caa7e324cb87b5f7"></a>
+<a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html">PlaneWave</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html">PlaneWave</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:aaa8db1619a80c636caa7e324cb87b5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2992ba04ef409e44e312af9986f455b"><td class="memTemplParams" colspan="2"><a id="ae2992ba04ef409e44e312af9986f455b"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ae2992ba04ef409e44e312af9986f455b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html#ae2992ba04ef409e44e312af9986f455b">psi</a> (const tnsr::I&lt; T, Dim &gt; &amp;x, double t) const noexcept</td></tr>
+<tr class="memdesc:ae2992ba04ef409e44e312af9986f455b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of the scalar field. <br /></td></tr>
+<tr class="separator:ae2992ba04ef409e44e312af9986f455b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73f3d268c9b88137fd5b3dae71f543c1"><td class="memTemplParams" colspan="2"><a id="a73f3d268c9b88137fd5b3dae71f543c1"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a73f3d268c9b88137fd5b3dae71f543c1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html#a73f3d268c9b88137fd5b3dae71f543c1">dpsi_dt</a> (const tnsr::I&lt; T, Dim &gt; &amp;x, double t) const noexcept</td></tr>
+<tr class="memdesc:a73f3d268c9b88137fd5b3dae71f543c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time derivative of the scalar field. <br /></td></tr>
+<tr class="separator:a73f3d268c9b88137fd5b3dae71f543c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a3c053b6dc02c22de8d819ff779490a"><td class="memTemplParams" colspan="2"><a id="a3a3c053b6dc02c22de8d819ff779490a"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a3a3c053b6dc02c22de8d819ff779490a"><td class="memTemplItemLeft" align="right" valign="top">tnsr::i&lt; T, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html#a3a3c053b6dc02c22de8d819ff779490a">dpsi_dx</a> (const tnsr::I&lt; T, Dim &gt; &amp;x, double t) const noexcept</td></tr>
+<tr class="memdesc:a3a3c053b6dc02c22de8d819ff779490a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The spatial derivatives of the scalar field. <br /></td></tr>
+<tr class="separator:a3a3c053b6dc02c22de8d819ff779490a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b1cd665acf92aca977fc8afe8ba8be0"><td class="memTemplParams" colspan="2"><a id="a3b1cd665acf92aca977fc8afe8ba8be0"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a3b1cd665acf92aca977fc8afe8ba8be0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__TensorGroup.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html#a3b1cd665acf92aca977fc8afe8ba8be0">d2psi_dt2</a> (const tnsr::I&lt; T, Dim &gt; &amp;x, double t) const noexcept</td></tr>
+<tr class="memdesc:a3b1cd665acf92aca977fc8afe8ba8be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The second time derivative of the scalar field. <br /></td></tr>
+<tr class="separator:a3b1cd665acf92aca977fc8afe8ba8be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07593e6355b2e0676769e881ca39731a"><td class="memTemplParams" colspan="2"><a id="a07593e6355b2e0676769e881ca39731a"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a07593e6355b2e0676769e881ca39731a"><td class="memTemplItemLeft" align="right" valign="top">tnsr::i&lt; T, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html#a07593e6355b2e0676769e881ca39731a">d2psi_dtdx</a> (const tnsr::I&lt; T, Dim &gt; &amp;x, double t) const noexcept</td></tr>
+<tr class="memdesc:a07593e6355b2e0676769e881ca39731a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The second mixed derivatives of the scalar field. <br /></td></tr>
+<tr class="separator:a07593e6355b2e0676769e881ca39731a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b6409925a733ea4cb629c4aec0d21af"><td class="memTemplParams" colspan="2"><a id="a0b6409925a733ea4cb629c4aec0d21af"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a0b6409925a733ea4cb629c4aec0d21af"><td class="memTemplItemLeft" align="right" valign="top">tnsr::ii&lt; T, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html#a0b6409925a733ea4cb629c4aec0d21af">d2psi_dxdx</a> (const tnsr::I&lt; T, Dim &gt; &amp;x, double t) const noexcept</td></tr>
+<tr class="memdesc:a0b6409925a733ea4cb629c4aec0d21af"><td class="mdescLeft">&#160;</td><td class="mdescRight">The second spatial derivatives of the scalar field. <br /></td></tr>
+<tr class="separator:a0b6409925a733ea4cb629c4aec0d21af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e0cf50aa10bdd8f41cfd9f7e65fba13"><td class="memItemLeft" align="right" valign="top"><a id="a2e0cf50aa10bdd8f41cfd9f7e65fba13"></a>
+<a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structScalarWave_1_1Pi.html">ScalarWave::Pi</a>, <a class="el" href="structScalarWave_1_1Phi.html">ScalarWave::Phi</a>&lt; Dim &gt;, <a class="el" href="structScalarWave_1_1Psi.html">ScalarWave::Psi</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html#a2e0cf50aa10bdd8f41cfd9f7e65fba13">variables</a> (const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;x, double t, tmpl::list&lt; <a class="el" href="structScalarWave_1_1Pi.html">ScalarWave::Pi</a>, <a class="el" href="structScalarWave_1_1Phi.html">ScalarWave::Phi</a>&lt; Dim &gt;, <a class="el" href="structScalarWave_1_1Psi.html">ScalarWave::Psi</a> &gt;) const noexcept</td></tr>
+<tr class="memdesc:a2e0cf50aa10bdd8f41cfd9f7e65fba13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the evolution variables at time <code>t</code> and spatial coordinates <code>x</code> <br /></td></tr>
+<tr class="separator:a2e0cf50aa10bdd8f41cfd9f7e65fba13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0456d388c3f80995d9200b570cce4ccb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Pi.html">ScalarWave::Pi</a> &gt;, <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Phi.html">ScalarWave::Phi</a>&lt; Dim &gt; &gt;, <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Psi.html">ScalarWave::Psi</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html#a0456d388c3f80995d9200b570cce4ccb">variables</a> (const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;x, double t, tmpl::list&lt; <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Pi.html">ScalarWave::Pi</a> &gt;, <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Phi.html">ScalarWave::Phi</a>&lt; Dim &gt;&gt;, <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Psi.html">ScalarWave::Psi</a> &gt;&gt;) const noexcept</td></tr>
+<tr class="memdesc:a0456d388c3f80995d9200b570cce4ccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the time derivative of the evolution variables at time <code>t</code> and spatial coordinates <code>x</code>  <a href="#a0456d388c3f80995d9200b570cce4ccb">More...</a><br /></td></tr>
+<tr class="separator:a0456d388c3f80995d9200b570cce4ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32dbad44e48caf05abad7648967325e3"><td class="memItemLeft" align="right" valign="top"><a id="a32dbad44e48caf05abad7648967325e3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pup</b> (PUP::er &amp;p) noexcept</td></tr>
+<tr class="separator:a32dbad44e48caf05abad7648967325e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:aa17faa93a3b27c7b248ee713bfe82495"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a>&#160;</td><td class="memItemRight" valign="bottom"><b>help</b></td></tr>
+<tr class="separator:aa17faa93a3b27c7b248ee713bfe82495"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;size_t Dim&gt;<br />
+class ScalarWave::Solutions::PlaneWave&lt; Dim &gt;</h3>
+
+<p>A plane wave solution to the Euclidean wave equation. </p>
+<p>The solution is given by \(\Psi(\vec{x},t) = F(u(\vec{x},t))\) where the profile \(F\) of the plane wave is an arbitrary one-dimensional function of \(u = \vec{k} \cdot (\vec{x} - \vec{x_o}) - \omega t\) with the wave vector \(\vec{k}\), the frequency \(\omega = ||\vec{k}||\) and initial center of the profile \(\vec{x_o}\).</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Dim</td><td>the spatial dimension of the solution </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0456d388c3f80995d9200b570cce4ccb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0456d388c3f80995d9200b570cce4ccb">&#9670;&nbsp;</a></span>variables()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classtuples_1_1TaggedTuple.html">tuples::TaggedTuple</a>&lt; <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Pi.html">ScalarWave::Pi</a> &gt;, <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Phi.html">ScalarWave::Phi</a>&lt; Dim &gt; &gt;, <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Psi.html">ScalarWave::Psi</a> &gt; &gt; <a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html">ScalarWave::Solutions::PlaneWave</a>&lt; Dim &gt;::variables </td>
+          <td>(</td>
+          <td class="paramtype">const tnsr::I&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tmpl::list&lt; <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Pi.html">ScalarWave::Pi</a> &gt;, <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Phi.html">ScalarWave::Phi</a>&lt; Dim &gt;&gt;, <a class="el" href="structTags_1_1dt.html">Tags::dt</a>&lt; <a class="el" href="structScalarWave_1_1Psi.html">ScalarWave::Psi</a> &gt;&gt;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve the time derivative of the evolution variables at time <code>t</code> and spatial coordinates <code>x</code> </p>
+<dl class="section note"><dt>Note</dt><dd>This function's expected use case is setting the past time derivative values for Adams-Bashforth-like steppers. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aa17faa93a3b27c7b248ee713bfe82495"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa17faa93a3b27c7b248ee713bfe82495">&#9670;&nbsp;</a></span>help</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="Options_8hpp.html#ac6df7d1b74fbddedd85b06a0087d93f6">OptionString</a> <a class="el" href="classScalarWave_1_1Solutions_1_1PlaneWave.html">ScalarWave::Solutions::PlaneWave</a>&lt; Dim &gt;::help</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">      <span class="stringliteral">&quot;A plane wave solution of the Euclidean wave equation&quot;</span>}</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/PointwiseFunctions/AnalyticSolutions/WaveEquation/<a class="el" href="PlaneWave_8hpp_source.html">PlaneWave.hpp</a></li>
+<li>src/PointwiseFunctions/AnalyticSolutions/WaveEquation/PlaneWave.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

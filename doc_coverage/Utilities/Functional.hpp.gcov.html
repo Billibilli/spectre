@@ -1,0 +1,368 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Utilities/Functional.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - Functional.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">44</td>
+            <td class="headerCovTableEntry">57</td>
+            <td class="headerCovTableEntryMed">77.2 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cmath&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : #include &lt;tuple&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;ErrorHandling/StaticAssert.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/Math.hpp&quot;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : /*!
+<span class="lineNum">      16 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">      17 </span>            :  * \brief Higher order function objects similar to `std::plus`, etc.
+<span class="lineNum">      18 </span>            :  *
+<span class="lineNum">      19 </span>            :  * \details
+<span class="lineNum">      20 </span>            :  * These chaining function objects can be used to represent highly general
+<span class="lineNum">      21 </span>            :  * mathematical operations
+<span class="lineNum">      22 </span>            :  * 1. as types, which can be passed around in template arguments, and
+<span class="lineNum">      23 </span>            :  * 2. such that any time they can be evaluated at compile time, they will be.
+<span class="lineNum">      24 </span>            :  *
+<span class="lineNum">      25 </span>            :  * As an illustrative example, consider the definition of a general sinusoid
+<span class="lineNum">      26 </span>            :  * function object type :
+<span class="lineNum">      27 </span>            :  * \snippet Utilities/Test_Functional.cpp using_sinusoid
+<span class="lineNum">      28 </span>            :  * which then gives a type which when instantiated and evaluated will give the
+<span class="lineNum">      29 </span>            :  * answer \f$ a\times\sin(b + c \times d)\f$ from calling `Sinusoid{}(a,b,c,d)`
+<span class="lineNum">      30 </span>            :  *
+<span class="lineNum">      31 </span>            :  * As a more creative example, we can take advantage of literals to make, for
+<span class="lineNum">      32 </span>            :  * instance, distributions. Let's make a Gaussian with mean at 5.0 and unity
+<span class="lineNum">      33 </span>            :  * variance
+<span class="lineNum">      34 </span>            :  * \snippet Utilities/Test_Functional.cpp using_gaussian
+<span class="lineNum">      35 </span>            :  *
+<span class="lineNum">      36 </span>            :  * This gives us a function object whose call operator takes one argument that
+<span class="lineNum">      37 </span>            :  * gives the value of the desired Gaussian distribution \f$ e^{-(x - 5.0)^2}
+<span class="lineNum">      38 </span>            :  * \f$
+<span class="lineNum">      39 </span>            :  */
+<span class="lineNum">      40 </span>            : namespace funcl {
+<span class="lineNum">      41 </span>            : // using for overload resolution with blaze
+<span class="lineNum">      42 </span>            : using std::conj;
+<span class="lineNum">      43 </span>            : using std::imag;
+<span class="lineNum">      44 </span>            : using std::real;
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span>            : /// \cond
+<span class="lineNum">      47 </span>            : template &lt;size_t Arity&gt;
+<span class="lineNum">      48 </span>            : struct Functional {
+<span class="lineNum">      49 </span>            :   static constexpr size_t arity = Arity;
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            :  protected:
+<span class="lineNum">      52 </span>            :   template &lt;class C, size_t Offset, class... Ts, size_t... Is&gt;
+<span class="lineNum">      53 </span>            :   static constexpr decltype(auto) helper(
+<span class="lineNum">      54 </span>            :       const std::tuple&lt;Ts...&gt;&amp; t,
+<span class="lineNum">      55 </span>            :       std::index_sequence&lt;Is...&gt; /*meta*/) noexcept {
+<span class="lineNum">      56 </span>            :     return C{}(std::get&lt;Offset + Is&gt;(t)...);
+<span class="lineNum">      57 </span>            :   }
+<span class="lineNum">      58 </span>            : };
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            : struct Identity;
+<span class="lineNum">      61 </span>            : /// \endcond
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span>            : /// Functional that asserts that the function object `C` applied to the first
+<span class="lineNum">      64 </span>            : /// and second arguments are equal and returns the function object C applied to
+<span class="lineNum">      65 </span>            : /// the first argument
+<span class="lineNum">      66 </span>            : template &lt;class C = Identity&gt;
+<span class="lineNum">      67 </span><span class="lineCov">          1 : struct AssertEqual : Functional&lt;2&gt; {</span>
+<span class="lineNum">      68 </span>            :   template &lt;class T&gt;
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   const T&amp; operator()(const T&amp; t0, const T&amp; t1) noexcept {</span>
+<span class="lineNum">      70 </span>            :     DEBUG_STATIC_ASSERT(
+<span class="lineNum">      71 </span>            :         C::arity == 1,
+<span class="lineNum">      72 </span>            :         &quot;The arity of the functional passed to AssertEqual must be 1&quot;);
+<span class="lineNum">      73 </span>            :     ASSERT(C{}(t0) == C{}(t1), &quot;Values are not equal in funcl::AssertEqual &quot;
+<span class="lineNum">      74 </span>            :            &lt;&lt; C{}(t0) &lt;&lt; &quot; and &quot; &lt;&lt; C{}(t1));
+<span class="lineNum">      75 </span>            :     return C{}(t0);
+<span class="lineNum">      76 </span>            :   }
+<span class="lineNum">      77 </span>            : };
+<span class="lineNum">      78 </span>            : 
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 : #define MAKE_BINARY_FUNCTIONAL(NAME, OPERATOR)                                 \</span>
+<span class="lineNum">      80 </span>            :   /** Functional for computing `OPERATOR` from two objects */                  \
+<span class="lineNum">      81 </span>            :   template &lt;class C0 = Identity, class C1 = C0&gt;                                \
+<span class="lineNum">      82 </span>            :   struct NAME : Functional&lt;C0::arity + C1::arity&gt; {                            \
+<span class="lineNum">      83 </span>            :     using base = Functional&lt;C0::arity + C1::arity&gt;;                            \
+<span class="lineNum">      84 </span>            :     template &lt;class... Ts&gt;                                                     \
+<span class="lineNum">      85 </span>            :     constexpr auto operator()(const Ts&amp;... ts) noexcept {                      \
+<span class="lineNum">      86 </span>            :       return OPERATOR(                                                         \
+<span class="lineNum">      87 </span>            :           base::template helper&lt;C0, 0&gt;(std::tuple&lt;const Ts&amp;...&gt;(ts...),        \
+<span class="lineNum">      88 </span>            :                                        std::make_index_sequence&lt;C0::arity&gt;{}), \
+<span class="lineNum">      89 </span>            :           base::template helper&lt;C1, C0::arity&gt;(                                \
+<span class="lineNum">      90 </span>            :               std::tuple&lt;const Ts&amp;...&gt;(ts...),                                 \
+<span class="lineNum">      91 </span>            :               std::make_index_sequence&lt;C1::arity&gt;{}));                         \
+<span class="lineNum">      92 </span>            :     }                                                                          \
+<span class="lineNum">      93 </span>            :   };                                                                           \
+<span class="lineNum">      94 </span>            :   /** \cond */                                                                 \
+<span class="lineNum">      95 </span>            :   template &lt;class C1&gt;                                                          \
+<span class="lineNum">      96 </span>            :   struct NAME&lt;Identity, C1&gt; : Functional&lt;1 + C1::arity&gt; {                      \
+<span class="lineNum">      97 </span>            :     template &lt;class T0, class... Ts&gt;                                           \
+<span class="lineNum">      98 </span>            :     constexpr auto operator()(const T0&amp; t0, const Ts&amp;... ts) noexcept {        \
+<span class="lineNum">      99 </span>            :       return OPERATOR(t0, C1{}(ts...));                                        \
+<span class="lineNum">     100 </span>            :     }                                                                          \
+<span class="lineNum">     101 </span>            :   };                                                                           \
+<span class="lineNum">     102 </span>            :   template &lt;&gt;                                                                  \
+<span class="lineNum">     103 </span>            :   struct NAME&lt;Identity, Identity&gt; : Functional&lt;2&gt; {                            \
+<span class="lineNum">     104 </span>            :     template &lt;class T0, class T1&gt;                                              \
+<span class="lineNum">     105 </span>            :     constexpr auto operator()(const T0&amp; t0, const T1&amp; t1) noexcept {           \
+<span class="lineNum">     106 </span>            :       return OPERATOR(t0, t1);                                                 \
+<span class="lineNum">     107 </span>            :     }                                                                          \
+<span class="lineNum">     108 </span>            :   } /** \endcond */
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span><span class="lineNoCov">          0 : #define MAKE_BINARY_INPLACE_OPERATOR(NAME, OPERATOR)                        \</span>
+<span class="lineNum">     111 </span>            :   /** Functional for computing `OPERATOR` of two objects */                 \
+<span class="lineNum">     112 </span>            :   template &lt;class C0 = Identity, class C1 = C0&gt;                             \
+<span class="lineNum">     113 </span>            :   struct NAME : Functional&lt;C0::arity + C1::arity&gt; {                         \
+<span class="lineNum">     114 </span>            :     using base = Functional&lt;C0::arity + C1::arity&gt;;                         \
+<span class="lineNum">     115 </span>            :     template &lt;class... Ts&gt;                                                  \
+<span class="lineNum">     116 </span>            :     constexpr decltype(auto) operator()(Ts&amp;... ts) noexcept {               \
+<span class="lineNum">     117 </span>            :       return base::template helper&lt;C0, 0&gt;(                                  \
+<span class="lineNum">     118 </span>            :           std::tuple&lt;const Ts&amp;...&gt;(ts...),                                  \
+<span class="lineNum">     119 </span>            :           std::make_index_sequence&lt;C0::arity&gt;{})                            \
+<span class="lineNum">     120 </span>            :           OPERATOR base::template helper&lt;C1, C0::arity&gt;(                    \
+<span class="lineNum">     121 </span>            :               std::tuple&lt;const Ts&amp;...&gt;(ts...),                              \
+<span class="lineNum">     122 </span>            :               std::make_index_sequence&lt;C1::arity&gt;{});                       \
+<span class="lineNum">     123 </span>            :     }                                                                       \
+<span class="lineNum">     124 </span>            :   };                                                                        \
+<span class="lineNum">     125 </span>            :   /** \cond */                                                              \
+<span class="lineNum">     126 </span>            :   template &lt;class C1&gt;                                                       \
+<span class="lineNum">     127 </span>            :   struct NAME&lt;Identity, C1&gt; : Functional&lt;1 + C1::arity&gt; {                   \
+<span class="lineNum">     128 </span>            :     template &lt;class T0, class... Ts&gt;                                        \
+<span class="lineNum">     129 </span>            :     constexpr decltype(auto) operator()(T0&amp; t0, const Ts&amp;... ts) noexcept { \
+<span class="lineNum">     130 </span>            :       return t0 OPERATOR C1{}(ts...);                                       \
+<span class="lineNum">     131 </span>            :     }                                                                       \
+<span class="lineNum">     132 </span>            :   };                                                                        \
+<span class="lineNum">     133 </span>            :   template &lt;&gt;                                                               \
+<span class="lineNum">     134 </span>            :   struct NAME&lt;Identity, Identity&gt; : Functional&lt;2&gt; {                         \
+<span class="lineNum">     135 </span>            :     static constexpr size_t arity = 2;                                      \
+<span class="lineNum">     136 </span>            :     template &lt;class T0, class T1&gt;                                           \
+<span class="lineNum">     137 </span>            :     constexpr decltype(auto) operator()(T0&amp; t0, const T1&amp; t1) noexcept {    \
+<span class="lineNum">     138 </span>            :       return t0 OPERATOR t1;                                                \
+<span class="lineNum">     139 </span>            :     }                                                                       \
+<span class="lineNum">     140 </span>            :   } /** \endcond */
+<span class="lineNum">     141 </span>            : 
+<span class="lineNum">     142 </span><span class="lineNoCov">          0 : #define MAKE_BINARY_OPERATOR(NAME, OPERATOR)                            \</span>
+<span class="lineNum">     143 </span>            :   /** Functional for computing `OPERATOR` of two objects */             \
+<span class="lineNum">     144 </span>            :   template &lt;class C0 = Identity, class C1 = C0&gt;                         \
+<span class="lineNum">     145 </span>            :   struct NAME : Functional&lt;C0::arity + C1::arity&gt; {                     \
+<span class="lineNum">     146 </span>            :     using base = Functional&lt;C0::arity + C1::arity&gt;;                     \
+<span class="lineNum">     147 </span>            :     template &lt;class... Ts&gt;                                              \
+<span class="lineNum">     148 </span>            :     constexpr auto operator()(const Ts&amp;... ts) noexcept {               \
+<span class="lineNum">     149 </span>            :       return base::template helper&lt;C0, 0&gt;(                              \
+<span class="lineNum">     150 </span>            :           std::tuple&lt;const Ts&amp;...&gt;(ts...),                              \
+<span class="lineNum">     151 </span>            :           std::make_index_sequence&lt;C0::arity&gt;{})                        \
+<span class="lineNum">     152 </span>            :           OPERATOR base::template helper&lt;C1, C0::arity&gt;(                \
+<span class="lineNum">     153 </span>            :               std::tuple&lt;const Ts&amp;...&gt;(ts...),                          \
+<span class="lineNum">     154 </span>            :               std::make_index_sequence&lt;C1::arity&gt;{});                   \
+<span class="lineNum">     155 </span>            :     }                                                                   \
+<span class="lineNum">     156 </span>            :   };                                                                    \
+<span class="lineNum">     157 </span>            :   /** \cond */                                                          \
+<span class="lineNum">     158 </span>            :   template &lt;class C1&gt;                                                   \
+<span class="lineNum">     159 </span>            :   struct NAME&lt;Identity, C1&gt; : Functional&lt;1 + C1::arity&gt; {               \
+<span class="lineNum">     160 </span>            :     template &lt;class T0, class... Ts&gt;                                    \
+<span class="lineNum">     161 </span>            :     constexpr auto operator()(const T0&amp; t0, const Ts&amp;... ts) noexcept { \
+<span class="lineNum">     162 </span>            :       return t0 OPERATOR C1{}(ts...);                                   \
+<span class="lineNum">     163 </span>            :     }                                                                   \
+<span class="lineNum">     164 </span>            :   };                                                                    \
+<span class="lineNum">     165 </span>            :   template &lt;&gt;                                                           \
+<span class="lineNum">     166 </span>            :   struct NAME&lt;Identity, Identity&gt; : Functional&lt;2&gt; {                     \
+<span class="lineNum">     167 </span>            :     static constexpr size_t arity = 2;                                  \
+<span class="lineNum">     168 </span>            :     template &lt;class T0, class T1&gt;                                       \
+<span class="lineNum">     169 </span>            :     constexpr auto operator()(const T0&amp; t0, const T1&amp; t1) noexcept {    \
+<span class="lineNum">     170 </span>            :       return t0 OPERATOR t1;                                            \
+<span class="lineNum">     171 </span>            :     }                                                                   \
+<span class="lineNum">     172 </span>            :   } /** \endcond */
+<span class="lineNum">     173 </span>            : 
+<span class="lineNum">     174 </span><span class="lineNoCov">          0 : #define MAKE_LITERAL_VAL(NAME, VAL)          \</span>
+<span class="lineNum">     175 </span>            :   /** Functional literal for `VAL` */        \
+<span class="lineNum">     176 </span>            :   struct Literal##NAME : Functional&lt;0&gt; {     \
+<span class="lineNum">     177 </span>            :     constexpr double operator()() noexcept { \
+<span class="lineNum">     178 </span>            :       return static_cast&lt;double&gt;(VAL);       \
+<span class="lineNum">     179 </span>            :     }                                        \
+<span class="lineNum">     180 </span>            :   }
+<span class="lineNum">     181 </span>            : 
+<span class="lineNum">     182 </span><span class="lineNoCov">          0 : #define MAKE_UNARY_FUNCTIONAL(NAME, OPERATOR)             \</span>
+<span class="lineNum">     183 </span>            :   /** Functional for computing `OPERATOR` on an object */ \
+<span class="lineNum">     184 </span>            :   template &lt;typename C0 = Identity&gt;                       \
+<span class="lineNum">     185 </span>            :   struct NAME;                                            \
+<span class="lineNum">     186 </span>            :   /** \cond */                                            \
+<span class="lineNum">     187 </span>            :   template &lt;typename C0&gt;                                  \
+<span class="lineNum">     188 </span>            :   struct NAME : Functional&lt;C0::arity&gt; {                   \
+<span class="lineNum">     189 </span>            :     template &lt;class... Ts&gt;                                \
+<span class="lineNum">     190 </span>            :     constexpr auto operator()(const Ts&amp;... ts) noexcept { \
+<span class="lineNum">     191 </span>            :       return OPERATOR(C0{}(ts...));                       \
+<span class="lineNum">     192 </span>            :     }                                                     \
+<span class="lineNum">     193 </span>            :   };                                                      \
+<span class="lineNum">     194 </span>            :   template &lt;&gt;                                             \
+<span class="lineNum">     195 </span>            :   struct NAME&lt;Identity&gt; : Functional&lt;1&gt; {                 \
+<span class="lineNum">     196 </span>            :     template &lt;class T0&gt;                                   \
+<span class="lineNum">     197 </span>            :     constexpr auto operator()(const T0&amp; t0) noexcept {    \
+<span class="lineNum">     198 </span>            :       return OPERATOR(t0);                                \
+<span class="lineNum">     199 </span>            :     }                                                     \
+<span class="lineNum">     200 </span>            :   } /** \endcond */
+<span class="lineNum">     201 </span>            : 
+<span class="lineNum">     202 </span>            : /// Functional to retrieve the `ArgumentIndex`th argument
+<span class="lineNum">     203 </span>            : template &lt;size_t Arity, size_t ArgumentIndex = 0, class C = Identity&gt;
+<span class="lineNum">     204 </span><span class="lineCov">          1 : struct GetArgument : Functional&lt;Arity&gt; {</span>
+<span class="lineNum">     205 </span>            :   template &lt;class... Ts&gt;
+<span class="lineNum">     206 </span><span class="lineNoCov">          0 :   constexpr decltype(auto) operator()(const Ts&amp;... ts) noexcept {</span>
+<span class="lineNum">     207 </span>            :     static_assert(Arity == sizeof...(Ts),
+<span class="lineNum">     208 </span>            :                   &quot;The arity passed to GetArgument must be the same as the &quot;
+<span class="lineNum">     209 </span>            :                   &quot;actually arity of the function.&quot;);
+<span class="lineNum">     210 </span>            :     return C{}(std::get&lt;ArgumentIndex&gt;(std::tuple&lt;const Ts&amp;...&gt;(ts...)));
+<span class="lineNum">     211 </span>            :   }
+<span class="lineNum">     212 </span>            : };
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span>            : /// The identity higher order function object
+<span class="lineNum">     215 </span><span class="lineCov">          1 : struct Identity : Functional&lt;1&gt; {</span>
+<span class="lineNum">     216 </span>            :   template &lt;class T&gt;
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE constexpr const T&amp; operator()(const T&amp; t) noexcept {</span>
+<span class="lineNum">     218 </span>            :     return t;
+<span class="lineNum">     219 </span>            :   }
+<span class="lineNum">     220 </span>            : };
+<span class="lineNum">     221 </span>            : 
+<span class="lineNum">     222 </span>            : template &lt;int val, typename Type = double&gt;
+<span class="lineNum">     223 </span><span class="lineNoCov">          0 : struct Literal : Functional&lt;0&gt; {</span>
+<span class="lineNum">     224 </span><span class="lineNoCov">          0 :   constexpr Type operator()() noexcept { return static_cast&lt;Type&gt;(val); }</span>
+<span class="lineNum">     225 </span>            : };
+<span class="lineNum">     226 </span>            : 
+<span class="lineNum">     227 </span><span class="lineCov">          1 : MAKE_BINARY_INPLACE_OPERATOR(DivAssign, /=);</span>
+<span class="lineNum">     228 </span><span class="lineCov">          1 : MAKE_BINARY_INPLACE_OPERATOR(MinusAssign, -=);</span>
+<span class="lineNum">     229 </span><span class="lineCov">          1 : MAKE_BINARY_INPLACE_OPERATOR(MultAssign, *=);</span>
+<span class="lineNum">     230 </span><span class="lineCov">          1 : MAKE_BINARY_INPLACE_OPERATOR(PlusAssign, +=);</span>
+<span class="lineNum">     231 </span>            : 
+<span class="lineNum">     232 </span><span class="lineCov">          1 : MAKE_BINARY_OPERATOR(Divides, /);</span>
+<span class="lineNum">     233 </span><span class="lineCov">          1 : MAKE_BINARY_OPERATOR(Minus, -);</span>
+<span class="lineNum">     234 </span><span class="lineCov">          1 : MAKE_BINARY_OPERATOR(Multiplies, *);</span>
+<span class="lineNum">     235 </span><span class="lineCov">          1 : MAKE_BINARY_OPERATOR(Plus, +);</span>
+<span class="lineNum">     236 </span>            : 
+<span class="lineNum">     237 </span><span class="lineCov">          1 : MAKE_BINARY_FUNCTIONAL(Atan2, atan2);</span>
+<span class="lineNum">     238 </span><span class="lineCov">          1 : MAKE_BINARY_FUNCTIONAL(Hypot, hypot);</span>
+<span class="lineNum">     239 </span><span class="lineCov">          1 : MAKE_BINARY_FUNCTIONAL(Pow, pow);</span>
+<span class="lineNum">     240 </span>            : 
+<span class="lineNum">     241 </span><span class="lineNoCov">          0 : MAKE_LITERAL_VAL(Pi, M_PI);</span>
+<span class="lineNum">     242 </span><span class="lineNoCov">          0 : MAKE_LITERAL_VAL(E, M_E);</span>
+<span class="lineNum">     243 </span>            : 
+<span class="lineNum">     244 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Abs, abs);</span>
+<span class="lineNum">     245 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Acos, acos);</span>
+<span class="lineNum">     246 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Acosh, acosh);</span>
+<span class="lineNum">     247 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Asin, asin);</span>
+<span class="lineNum">     248 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Asinh, asinh);</span>
+<span class="lineNum">     249 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Atan, atan);</span>
+<span class="lineNum">     250 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Atanh, atanh);</span>
+<span class="lineNum">     251 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Cbrt, cbrt);</span>
+<span class="lineNum">     252 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Conj, conj);</span>
+<span class="lineNum">     253 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Cos, cos);</span>
+<span class="lineNum">     254 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Cosh, cosh);</span>
+<span class="lineNum">     255 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Erf, erf);</span>
+<span class="lineNum">     256 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Exp, exp);</span>
+<span class="lineNum">     257 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Exp2, exp2);</span>
+<span class="lineNum">     258 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Fabs, fabs);</span>
+<span class="lineNum">     259 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Imag, imag);</span>
+<span class="lineNum">     260 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(InvCbrt, invcbrt);</span>
+<span class="lineNum">     261 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(InvSqrt, invsqrt);</span>
+<span class="lineNum">     262 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Log, log);</span>
+<span class="lineNum">     263 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Log10, log10);</span>
+<span class="lineNum">     264 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Log2, log2);</span>
+<span class="lineNum">     265 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Real, real);</span>
+<span class="lineNum">     266 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Sin, sin);</span>
+<span class="lineNum">     267 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Sinh, sinh);</span>
+<span class="lineNum">     268 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Sqrt, sqrt);</span>
+<span class="lineNum">     269 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(StepFunction, step_function);</span>
+<span class="lineNum">     270 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Tan, tan);</span>
+<span class="lineNum">     271 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Tanh, tanh);</span>
+<span class="lineNum">     272 </span><span class="lineCov">          1 : MAKE_UNARY_FUNCTIONAL(Negate, -);</span>
+<span class="lineNum">     273 </span>            : 
+<span class="lineNum">     274 </span>            : /// Function for squaring a quantity
+<span class="lineNum">     275 </span>            : template &lt;class C = Identity&gt;
+<span class="lineNum">     276 </span><span class="lineCov">          1 : struct Square : Functional&lt;C::arity&gt; {</span>
+<span class="lineNum">     277 </span>            :   template &lt;class... Ts&gt;
+<span class="lineNum">     278 </span><span class="lineNoCov">          0 :   constexpr auto operator()(const Ts&amp;... ts) noexcept {</span>
+<span class="lineNum">     279 </span>            :     decltype(auto) result = C{}(ts...);
+<span class="lineNum">     280 </span>            :     return result * result;
+<span class="lineNum">     281 </span>            :   }
+<span class="lineNum">     282 </span>            : };
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span>            : #undef MAKE_BINARY_FUNCTIONAL
+<span class="lineNum">     285 </span>            : #undef MAKE_BINARY_INPLACE_OPERATOR
+<span class="lineNum">     286 </span>            : #undef MAKE_BINARY_OPERATOR
+<span class="lineNum">     287 </span>            : #undef MAKE_UNARY_FUNCTIONAL
+<span class="lineNum">     288 </span>            : }  // namespace funcl
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

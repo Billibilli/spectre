@@ -1,0 +1,309 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/DataStructures/DataVector.hpp File Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="index.html">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Introduction</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="installation.html">
+              <i class="octicon octicon-desktop-download"></i><span>Installation</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>User Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Topics</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+          <i class="octicon octicon-mark-github"></i><span>View on GitHub</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div>
+<!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_82345eea92ca6199b790b57d5dab4505.html">DataStructures</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">DataVector.hpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Defines class Data.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/array.html">array</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/cmath.html">cmath</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/functional.html">functional</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/initializer_list.html">initializer_list</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/limits.html">limits</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="Assert_8hpp_source.html">ErrorHandling/Assert.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ConstantExpressions_8hpp_source.html">Utilities/ConstantExpressions.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ForceInline_8hpp_source.html">Utilities/ForceInline.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Gsl_8hpp_source.html">Utilities/Gsl.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="MakeWithValue_8hpp_source.html">Utilities/MakeWithValue.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="PointerVector_8hpp_source.html">Utilities/PointerVector.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Requires_8hpp_source.html">Utilities/Requires.hpp</a>&quot;</code><br />
+</div>
+<p><a href="DataVector_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html">DataVector</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores a collection of function values.  <a href="classDataVector.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1IsVector_3_01DataVector_01_4.html">blaze::IsVector&lt; DataVector &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1TransposeFlag_3_01DataVector_01_4.html">blaze::TransposeFlag&lt; DataVector &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1AddTrait_3_01DataVector_00_01DataVector_01_4.html">blaze::AddTrait&lt; DataVector, DataVector &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1AddTrait_3_01DataVector_00_01double_01_4.html">blaze::AddTrait&lt; DataVector, double &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1AddTrait_3_01double_00_01DataVector_01_4.html">blaze::AddTrait&lt; double, DataVector &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1SubTrait_3_01DataVector_00_01DataVector_01_4.html">blaze::SubTrait&lt; DataVector, DataVector &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1SubTrait_3_01DataVector_00_01double_01_4.html">blaze::SubTrait&lt; DataVector, double &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1SubTrait_3_01double_00_01DataVector_01_4.html">blaze::SubTrait&lt; double, DataVector &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1MultTrait_3_01DataVector_00_01DataVector_01_4.html">blaze::MultTrait&lt; DataVector, DataVector &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1MultTrait_3_01DataVector_00_01double_01_4.html">blaze::MultTrait&lt; DataVector, double &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1MultTrait_3_01double_00_01DataVector_01_4.html">blaze::MultTrait&lt; double, DataVector &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1DivTrait_3_01DataVector_00_01DataVector_01_4.html">blaze::DivTrait&lt; DataVector, DataVector &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1DivTrait_3_01DataVector_00_01double_01_4.html">blaze::DivTrait&lt; DataVector, double &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1UnaryMapTrait_3_01DataVector_00_01Operator_01_4.html">blaze::UnaryMapTrait&lt; DataVector, Operator &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1BinaryMapTrait_3_01DataVector_00_01DataVector_00_01Operator_01_4.html">blaze::BinaryMapTrait&lt; DataVector, DataVector, Operator &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceMakeWithValueImpls"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMakeWithValueImpls.html">MakeWithValueImpls</a></td></tr>
+<tr class="memdesc:namespaceMakeWithValueImpls"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementations of make_with_value. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab56cbde3e22a293db2289db0a92a9764"><td class="memItemLeft" align="right" valign="top"><a id="ab56cbde3e22a293db2289db0a92a9764"></a>
+<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DataVector_8hpp.html#ab56cbde3e22a293db2289db0a92a9764">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="el" href="classDataVector.html">DataVector</a> &amp;d)</td></tr>
+<tr class="memdesc:ab56cbde3e22a293db2289db0a92a9764"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output operator for <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a>. <br /></td></tr>
+<tr class="separator:ab56cbde3e22a293db2289db0a92a9764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaed01ea23cbe5e6ff7562a3e2937a9a"><td class="memItemLeft" align="right" valign="top"><a id="adaed01ea23cbe5e6ff7562a3e2937a9a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DataVector_8hpp.html#adaed01ea23cbe5e6ff7562a3e2937a9a">operator==</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs) noexcept</td></tr>
+<tr class="memdesc:adaed01ea23cbe5e6ff7562a3e2937a9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalence operator for <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a>. <br /></td></tr>
+<tr class="separator:adaed01ea23cbe5e6ff7562a3e2937a9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e996681ebb6c4b25309bb31153cebc0"><td class="memItemLeft" align="right" valign="top"><a id="a3e996681ebb6c4b25309bb31153cebc0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DataVector_8hpp.html#a3e996681ebb6c4b25309bb31153cebc0">operator!=</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs) noexcept</td></tr>
+<tr class="memdesc:a3e996681ebb6c4b25309bb31153cebc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inequivalence operator for <a class="el" href="classDataVector.html" title="Stores a collection of function values. ">DataVector</a>. <br /></td></tr>
+<tr class="separator:a3e996681ebb6c4b25309bb31153cebc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab75f4b854090b4201197bfc2898f10d9"><td class="memItemLeft" align="right" valign="top"><a id="ab75f4b854090b4201197bfc2898f10d9"></a>
+decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><b>fabs</b> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t) noexcept</td></tr>
+<tr class="separator:ab75f4b854090b4201197bfc2898f10d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe27244d4a3343424869b8e7986f12ba"><td class="memTemplParams" colspan="2"><a id="abe27244d4a3343424869b8e7986f12ba"></a>
+template&lt;typename T , size_t Dim&gt; </td></tr>
+<tr class="memitem:abe27244d4a3343424869b8e7986f12ba"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, Dim &gt; &amp;lhs, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:abe27244d4a3343424869b8e7986f12ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2f96fe0e23ee98cf5a78bd870a8ce57"><td class="memTemplParams" colspan="2"><a id="ac2f96fe0e23ee98cf5a78bd870a8ce57"></a>
+template&lt;typename U , size_t Dim&gt; </td></tr>
+<tr class="memitem:ac2f96fe0e23ee98cf5a78bd870a8ce57"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;lhs, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; U, Dim &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:ac2f96fe0e23ee98cf5a78bd870a8ce57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99bf6201343c29e2db83906530cd0604"><td class="memTemplParams" colspan="2"><a id="a99bf6201343c29e2db83906530cd0604"></a>
+template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:a99bf6201343c29e2db83906530cd0604"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;lhs, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:a99bf6201343c29e2db83906530cd0604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66636726420e4d50b0d6eb6c05992693"><td class="memTemplParams" colspan="2"><a id="a66636726420e4d50b0d6eb6c05992693"></a>
+template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:a66636726420e4d50b0d6eb6c05992693"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+=</b> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;lhs, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:a66636726420e4d50b0d6eb6c05992693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60f7a135fa16ac0440c35ff178a1b92e"><td class="memTemplParams" colspan="2"><a id="a60f7a135fa16ac0440c35ff178a1b92e"></a>
+template&lt;typename T , size_t Dim&gt; </td></tr>
+<tr class="memitem:a60f7a135fa16ac0440c35ff178a1b92e"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, Dim &gt; &amp;lhs, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:a60f7a135fa16ac0440c35ff178a1b92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c92eab5dd155c6eff7d0893c50d61c9"><td class="memTemplParams" colspan="2"><a id="a9c92eab5dd155c6eff7d0893c50d61c9"></a>
+template&lt;typename U , size_t Dim&gt; </td></tr>
+<tr class="memitem:a9c92eab5dd155c6eff7d0893c50d61c9"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;lhs, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; U, Dim &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:a9c92eab5dd155c6eff7d0893c50d61c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4e5674cad077b24a60e141ec38a27a5"><td class="memTemplParams" colspan="2"><a id="ac4e5674cad077b24a60e141ec38a27a5"></a>
+template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:ac4e5674cad077b24a60e141ec38a27a5"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;lhs, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:ac4e5674cad077b24a60e141ec38a27a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a937f0371abe78051588b0aeb43aed230"><td class="memTemplParams" colspan="2"><a id="a937f0371abe78051588b0aeb43aed230"></a>
+template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:a937f0371abe78051588b0aeb43aed230"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-=</b> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;lhs, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim &gt; &amp;rhs) noexcept</td></tr>
+<tr class="separator:a937f0371abe78051588b0aeb43aed230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines class Data. </p>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017 - 2018
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - Utilities/Algorithm.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - Algorithm.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : #pragma once
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">       6 </span>            : #include &lt;functional&gt;
+<span class="lineNum">       7 </span>            : #include &lt;iterator&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : namespace cpp20 {
+<span class="lineNum">      12 </span>            : /*!
+<span class="lineNum">      13 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">      14 </span>            :  * Reimplementation of std::swap that is constexpr;
+<span class="lineNum">      15 </span>            :  * taken from the LLVM source at
+<span class="lineNum">      16 </span>            :  * https://github.com/llvm-mirror/libcxx/blob/master/include/type_traits
+<span class="lineNum">      17 </span>            :  */
+<span class="lineNum">      18 </span>            : template &lt;class T&gt;
+<span class="lineNum">      19 </span><span class="lineCov">          2 : constexpr void swap(T&amp; a, T&amp; b) noexcept {</span>
+<span class="lineNum">      20 </span>            :   T c(std::move(a));
+<span class="lineNum">      21 </span>            :   a = std::move(b);
+<span class="lineNum">      22 </span>            :   b = std::move(c);
+<span class="lineNum">      23 </span>            : }
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : /*!
+<span class="lineNum">      26 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">      27 </span>            :  * Reimplementation of std::iter_swap that is constexpr;
+<span class="lineNum">      28 </span>            :  * taken from the LLVM source at
+<span class="lineNum">      29 </span>            :  * https://github.com/llvm-mirror/libcxx/blob/master/include/type_traits
+<span class="lineNum">      30 </span>            :  */
+<span class="lineNum">      31 </span>            : template &lt;class ForwardIt1, class ForwardIt2&gt;
+<span class="lineNum">      32 </span><span class="lineCov">          2 : constexpr void iter_swap(ForwardIt1 a, ForwardIt2 b) {</span>
+<span class="lineNum">      33 </span>            :   swap(*a, *b);
+<span class="lineNum">      34 </span>            : }
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : namespace detail {
+<span class="lineNum">      37 </span>            : /*!
+<span class="lineNum">      38 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">      39 </span>            :  * Reimplementation of std::reverse that is constexpr, for bidirectional
+<span class="lineNum">      40 </span>            :  * iterators; taken from the LLVM source at
+<span class="lineNum">      41 </span>            :  * https://github.com/llvm-mirror/libcxx/blob/master/include/algorithm
+<span class="lineNum">      42 </span>            :  */
+<span class="lineNum">      43 </span>            : template &lt;class BidirIt&gt;
+<span class="lineNum">      44 </span>            : constexpr void reverse(BidirIt first, BidirIt last,
+<span class="lineNum">      45 </span>            :                        std::bidirectional_iterator_tag /* unused */) {
+<span class="lineNum">      46 </span>            :   while (first != last) {
+<span class="lineNum">      47 </span>            :     if (first == --last) {
+<span class="lineNum">      48 </span>            :       break;
+<span class="lineNum">      49 </span>            :     }
+<span class="lineNum">      50 </span>            :     cpp20::iter_swap(first, last);
+<span class="lineNum">      51 </span>            :     ++first;
+<span class="lineNum">      52 </span>            :   }
+<span class="lineNum">      53 </span>            : }
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : /*!
+<span class="lineNum">      56 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">      57 </span>            :  * Reimplementation of std::reverse that is constexpr, for random access
+<span class="lineNum">      58 </span>            :  * iterators; taken from the LLVM source at
+<span class="lineNum">      59 </span>            :  * https://github.com/llvm-mirror/libcxx/blob/master/include/algorithm
+<span class="lineNum">      60 </span>            :  */
+<span class="lineNum">      61 </span>            : template &lt;class RandomAccessIterator&gt;
+<span class="lineNum">      62 </span>            : constexpr void reverse(RandomAccessIterator first, RandomAccessIterator last,
+<span class="lineNum">      63 </span>            :                        std::random_access_iterator_tag /* unused */) {
+<span class="lineNum">      64 </span>            :   if (first != last) {
+<span class="lineNum">      65 </span>            :     for (; first &lt; --last; ++first) {
+<span class="lineNum">      66 </span>            :       cpp20::iter_swap(first, last);
+<span class="lineNum">      67 </span>            :     }
+<span class="lineNum">      68 </span>            :   }
+<span class="lineNum">      69 </span>            : }
+<span class="lineNum">      70 </span>            : }  // namespace detail
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            : /*!
+<span class="lineNum">      73 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">      74 </span>            :  * Reimplementation of std::reverse that is constexpr;
+<span class="lineNum">      75 </span>            :  * taken from the LLVM source at
+<span class="lineNum">      76 </span>            :  * https://github.com/llvm-mirror/libcxx/blob/master/include/algorithm
+<span class="lineNum">      77 </span>            :  */
+<span class="lineNum">      78 </span>            : template &lt;class BidirectionalIterator&gt;
+<span class="lineNum">      79 </span><span class="lineCov">          2 : constexpr void reverse(BidirectionalIterator first,</span>
+<span class="lineNum">      80 </span>            :                        BidirectionalIterator last) {
+<span class="lineNum">      81 </span>            :   cpp20::detail::reverse(first, last,
+<span class="lineNum">      82 </span>            :                          typename std::iterator_traits&lt;
+<span class="lineNum">      83 </span>            :                              BidirectionalIterator&gt;::iterator_category());
+<span class="lineNum">      84 </span>            : }
+<span class="lineNum">      85 </span>            : 
+<span class="lineNum">      86 </span>            : /*!
+<span class="lineNum">      87 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">      88 </span>            :  * Reimplementation of std::next_permutation that is constexpr,
+<span class="lineNum">      89 </span>            :  * for a generic comparator; taken from the LLVM source at
+<span class="lineNum">      90 </span>            :  * https://github.com/llvm-mirror/libcxx/blob/master/include/algorithm
+<span class="lineNum">      91 </span>            :  */
+<span class="lineNum">      92 </span>            : template &lt;class Compare, class BidirectionalIterator&gt;
+<span class="lineNum">      93 </span><span class="lineCov">          2 : constexpr bool next_permutation(BidirectionalIterator first,</span>
+<span class="lineNum">      94 </span>            :                                 BidirectionalIterator last, Compare comp) {
+<span class="lineNum">      95 </span>            :   BidirectionalIterator i = last;
+<span class="lineNum">      96 </span>            :   if (first == last || first == --i) {
+<span class="lineNum">      97 </span>            :     return false;
+<span class="lineNum">      98 </span>            :   }
+<span class="lineNum">      99 </span>            :   while (true) {
+<span class="lineNum">     100 </span>            :     BidirectionalIterator ip1 = i;
+<span class="lineNum">     101 </span>            :     if (comp(*--i, *ip1)) {
+<span class="lineNum">     102 </span>            :       BidirectionalIterator j = last;
+<span class="lineNum">     103 </span>            :       while (!comp(*i, *--j)) {
+<span class="lineNum">     104 </span>            :       }
+<span class="lineNum">     105 </span>            :       cpp20::swap(*i, *j);
+<span class="lineNum">     106 </span>            :       cpp20::reverse(ip1, last);
+<span class="lineNum">     107 </span>            :       return true;
+<span class="lineNum">     108 </span>            :     }
+<span class="lineNum">     109 </span>            :     if (i == first) {
+<span class="lineNum">     110 </span>            :       cpp20::reverse(first, last);
+<span class="lineNum">     111 </span>            :       return false;
+<span class="lineNum">     112 </span>            :     }
+<span class="lineNum">     113 </span>            :   }
+<span class="lineNum">     114 </span>            : }
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            : /*!
+<span class="lineNum">     117 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">     118 </span>            :  * Reimplementation of std::next_permutation that is constexpr,
+<span class="lineNum">     119 </span>            :  * with less as the comparator; taken from the LLVM source at
+<span class="lineNum">     120 </span>            :  * https://github.com/llvm-mirror/libcxx/blob/master/include/algorithm
+<span class="lineNum">     121 </span>            :  */
+<span class="lineNum">     122 </span>            : template &lt;class BidirectionalIterator&gt;
+<span class="lineNum">     123 </span><span class="lineCov">          2 : constexpr bool next_permutation(BidirectionalIterator first,</span>
+<span class="lineNum">     124 </span>            :                                 BidirectionalIterator last) {
+<span class="lineNum">     125 </span>            :   return cpp20::next_permutation(
+<span class="lineNum">     126 </span>            :       first, last,
+<span class="lineNum">     127 </span>            :       std::less&lt;
+<span class="lineNum">     128 </span>            :           typename std::iterator_traits&lt;BidirectionalIterator&gt;::value_type&gt;());
+<span class="lineNum">     129 </span>            : }
+<span class="lineNum">     130 </span>            : }  // namespace cpp20
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span>            : /*!
+<span class="lineNum">     133 </span>            :  * \ingroup UtilitiesGroup
+<span class="lineNum">     134 </span>            :  * \brief Utility functions wrapping STL algorithms and additional algorithms.
+<span class="lineNum">     135 </span>            :  */
+<span class="lineNum">     136 </span>            : namespace alg {
+<span class="lineNum">     137 </span>            : /// Convenience wrapper around std::all_of
+<span class="lineNum">     138 </span>            : template &lt;class Container, class UnaryPredicate&gt;
+<span class="lineNum">     139 </span><span class="lineCov">          1 : decltype(auto) all_of(const Container&amp; c, UnaryPredicate&amp;&amp; unary_predicate) {</span>
+<span class="lineNum">     140 </span>            :   using std::begin;
+<span class="lineNum">     141 </span>            :   using std::end;
+<span class="lineNum">     142 </span>            :   return std::all_of(begin(c), end(c),
+<span class="lineNum">     143 </span>            :                      std::forward&lt;UnaryPredicate&gt;(unary_predicate));
+<span class="lineNum">     144 </span>            : }
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span>            : /// Convenience wrapper around std::any_of
+<span class="lineNum">     147 </span>            : template &lt;class Container, class UnaryPredicate&gt;
+<span class="lineNum">     148 </span><span class="lineCov">          1 : decltype(auto) any_of(const Container&amp; c, UnaryPredicate&amp;&amp; unary_predicate) {</span>
+<span class="lineNum">     149 </span>            :   using std::begin;
+<span class="lineNum">     150 </span>            :   using std::end;
+<span class="lineNum">     151 </span>            :   return std::any_of(begin(c), end(c),
+<span class="lineNum">     152 </span>            :                      std::forward&lt;UnaryPredicate&gt;(unary_predicate));
+<span class="lineNum">     153 </span>            : }
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span>            : /// Convenience wrapper around std::none_of
+<span class="lineNum">     156 </span>            : template &lt;class Container, class UnaryPredicate&gt;
+<span class="lineNum">     157 </span><span class="lineCov">          1 : decltype(auto) none_of(const Container&amp; c, UnaryPredicate&amp;&amp; unary_predicate) {</span>
+<span class="lineNum">     158 </span>            :   using std::begin;
+<span class="lineNum">     159 </span>            :   using std::end;
+<span class="lineNum">     160 </span>            :   return std::none_of(begin(c), end(c),
+<span class="lineNum">     161 </span>            :                       std::forward&lt;UnaryPredicate&gt;(unary_predicate));
+<span class="lineNum">     162 </span>            : }
+<span class="lineNum">     163 </span>            : 
+<span class="lineNum">     164 </span>            : /// Convenience wrapper around std::find
+<span class="lineNum">     165 </span>            : template &lt;class Container, class T&gt;
+<span class="lineNum">     166 </span><span class="lineCov">          1 : decltype(auto) find(const Container&amp; c, const T&amp; value) {</span>
+<span class="lineNum">     167 </span>            :   using std::begin;
+<span class="lineNum">     168 </span>            :   using std::end;
+<span class="lineNum">     169 </span>            :   return std::find(begin(c), end(c), value);
+<span class="lineNum">     170 </span>            : }
+<span class="lineNum">     171 </span>            : 
+<span class="lineNum">     172 </span>            : /// Convenience wrapper around std::find_if
+<span class="lineNum">     173 </span>            : template &lt;class Container, class UnaryPredicate&gt;
+<span class="lineNum">     174 </span><span class="lineCov">          1 : decltype(auto) find_if(const Container&amp; c, UnaryPredicate&amp;&amp; unary_predicate) {</span>
+<span class="lineNum">     175 </span>            :   using std::begin;
+<span class="lineNum">     176 </span>            :   using std::end;
+<span class="lineNum">     177 </span>            :   return std::find_if(begin(c), end(c),
+<span class="lineNum">     178 </span>            :                       std::forward&lt;UnaryPredicate&gt;(unary_predicate));
+<span class="lineNum">     179 </span>            : }
+<span class="lineNum">     180 </span>            : 
+<span class="lineNum">     181 </span>            : /// Convenience wrapper around std::find_if_not
+<span class="lineNum">     182 </span>            : template &lt;class Container, class UnaryPredicate&gt;
+<span class="lineNum">     183 </span><span class="lineCov">          1 : decltype(auto) find_if_not(const Container&amp; c,</span>
+<span class="lineNum">     184 </span>            :                            UnaryPredicate&amp;&amp; unary_predicate) {
+<span class="lineNum">     185 </span>            :   using std::begin;
+<span class="lineNum">     186 </span>            :   using std::end;
+<span class="lineNum">     187 </span>            :   return std::find_if_not(begin(c), end(c),
+<span class="lineNum">     188 </span>            :                           std::forward&lt;UnaryPredicate&gt;(unary_predicate));
+<span class="lineNum">     189 </span>            : }
+<span class="lineNum">     190 </span>            : 
+<span class="lineNum">     191 </span>            : /// Convenience wrapper around std::find, returns `true` if `value` is in `c`.
+<span class="lineNum">     192 </span>            : template &lt;class Container, class T&gt;
+<span class="lineNum">     193 </span><span class="lineCov">          1 : bool found(const Container&amp; c, const T&amp; value) {</span>
+<span class="lineNum">     194 </span>            :   using std::begin;
+<span class="lineNum">     195 </span>            :   using std::end;
+<span class="lineNum">     196 </span>            :   return std::find(begin(c), end(c), value) != end(c);
+<span class="lineNum">     197 </span>            : }
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            : /// Convenience wrapper around std::find_if, returns `true` if the result of
+<span class="lineNum">     200 </span>            : /// `std::find_if` is not equal to `end(c)`.
+<span class="lineNum">     201 </span>            : template &lt;class Container, class UnaryPredicate&gt;
+<span class="lineNum">     202 </span><span class="lineCov">          1 : bool found_if(const Container&amp; c, UnaryPredicate&amp;&amp; unary_predicate) {</span>
+<span class="lineNum">     203 </span>            :   using std::begin;
+<span class="lineNum">     204 </span>            :   using std::end;
+<span class="lineNum">     205 </span>            :   return std::find_if(begin(c), end(c),
+<span class="lineNum">     206 </span>            :                       std::forward&lt;UnaryPredicate&gt;(unary_predicate)) != end(c);
+<span class="lineNum">     207 </span>            : }
+<span class="lineNum">     208 </span>            : 
+<span class="lineNum">     209 </span>            : /// Convenience wrapper around std::find_if_not, returns `true` if the result of
+<span class="lineNum">     210 </span>            : /// `std::find_if_not` is not equal to `end(c)`.
+<span class="lineNum">     211 </span>            : template &lt;class Container, class UnaryPredicate&gt;
+<span class="lineNum">     212 </span><span class="lineCov">          1 : bool found_if_not(const Container&amp; c, UnaryPredicate&amp;&amp; unary_predicate) {</span>
+<span class="lineNum">     213 </span>            :   using std::begin;
+<span class="lineNum">     214 </span>            :   using std::end;
+<span class="lineNum">     215 </span>            :   return std::find_if_not(begin(c), end(c),
+<span class="lineNum">     216 </span>            :                           std::forward&lt;UnaryPredicate&gt;(unary_predicate)) !=
+<span class="lineNum">     217 </span>            :          end(c);
+<span class="lineNum">     218 </span>            : }
+<span class="lineNum">     219 </span>            : 
+<span class="lineNum">     220 </span>            : /// Convenience wrapper around std::for_each, returns the result of
+<span class="lineNum">     221 </span>            : /// `std::for_each(begin(c), end(c), f)`.
+<span class="lineNum">     222 </span>            : template &lt;class Container, class UnaryFunction&gt;
+<span class="lineNum">     223 </span><span class="lineCov">          1 : decltype(auto) for_each(const Container&amp; c, UnaryFunction&amp;&amp; f) {</span>
+<span class="lineNum">     224 </span>            :   using std::begin;
+<span class="lineNum">     225 </span>            :   using std::end;
+<span class="lineNum">     226 </span>            :   return std::for_each(begin(c), end(c), std::forward&lt;UnaryFunction&gt;(f));
+<span class="lineNum">     227 </span>            : }
+<span class="lineNum">     228 </span>            : 
+<span class="lineNum">     229 </span>            : /// Convenience wrapper around std::equal, assumes containers `lhs` has at least
+<span class="lineNum">     230 </span>            : /// as many elements as `rhs`.
+<span class="lineNum">     231 </span>            : template &lt;class Container, class Container2&gt;
+<span class="lineNum">     232 </span><span class="lineCov">          1 : decltype(auto) equal(const Container&amp; lhs, const Container2&amp; rhs) {</span>
+<span class="lineNum">     233 </span>            :   using std::begin;
+<span class="lineNum">     234 </span>            :   using std::end;
+<span class="lineNum">     235 </span>            :   return std::equal(begin(lhs), end(lhs), begin(rhs));
+<span class="lineNum">     236 </span>            : }
+<span class="lineNum">     237 </span>            : 
+<span class="lineNum">     238 </span>            : /// Convenience wrapper around std::equal, assumes containers `lhs` has at least
+<span class="lineNum">     239 </span>            : /// as many elements as `rhs`.
+<span class="lineNum">     240 </span>            : template &lt;class Container, class Container2, class BinaryPredicate&gt;
+<span class="lineNum">     241 </span><span class="lineCov">          1 : decltype(auto) equal(const Container&amp; lhs, const Container2&amp; rhs,</span>
+<span class="lineNum">     242 </span>            :                      BinaryPredicate&amp;&amp; p) {
+<span class="lineNum">     243 </span>            :   using std::begin;
+<span class="lineNum">     244 </span>            :   using std::end;
+<span class="lineNum">     245 </span>            :   return std::equal(begin(lhs), end(lhs), begin(rhs),
+<span class="lineNum">     246 </span>            :                     std::forward&lt;BinaryPredicate&gt;(p));
+<span class="lineNum">     247 </span>            : }
+<span class="lineNum">     248 </span>            : }  // namespace alg
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

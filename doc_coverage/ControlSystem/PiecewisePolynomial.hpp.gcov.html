@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - ControlSystem/PiecewisePolynomial.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">ControlSystem</a> - PiecewisePolynomial.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryLo">40.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;array&gt;
+<span class="lineNum">       7 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       8 </span>            : #include &lt;vector&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;ControlSystem/FunctionOfTime.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : /// \ingroup ControlSystemGroup
+<span class="lineNum">      14 </span>            : /// Contains functions of time to support the dual frame system.
+<span class="lineNum">      15 </span>            : namespace FunctionsOfTime {
+<span class="lineNum">      16 </span>            : /// \ingroup ControlSystemGroup
+<span class="lineNum">      17 </span>            : /// A function that has a piecewise-constant `MaxDeriv`th derivative.
+<span class="lineNum">      18 </span>            : template &lt;size_t MaxDeriv&gt;
+<span class="lineNum">      19 </span><span class="lineCov">          1 : class PiecewisePolynomial : public FunctionOfTime {</span>
+<span class="lineNum">      20 </span>            :  public:
+<span class="lineNum">      21 </span><span class="lineNoCov">          0 :   PiecewisePolynomial(</span>
+<span class="lineNum">      22 </span>            :       double t,
+<span class="lineNum">      23 </span>            :       std::array&lt;DataVector, MaxDeriv + 1&gt; initial_func_and_derivs) noexcept;
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span><span class="lineNoCov">          0 :   ~PiecewisePolynomial() override = default;</span>
+<span class="lineNum">      26 </span><span class="lineNoCov">          0 :   PiecewisePolynomial(PiecewisePolynomial&amp;&amp;) noexcept = default;</span>
+<span class="lineNum">      27 </span><span class="lineNoCov">          0 :   PiecewisePolynomial&amp; operator=(PiecewisePolynomial&amp;&amp;) noexcept = default;</span>
+<span class="lineNum">      28 </span><span class="lineNoCov">          0 :   PiecewisePolynomial(const PiecewisePolynomial&amp;) = delete;</span>
+<span class="lineNum">      29 </span><span class="lineNoCov">          0 :   PiecewisePolynomial&amp; operator=(const PiecewisePolynomial&amp;) = delete;</span>
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            :   /// Returns the function at an arbitrary time `t`.
+<span class="lineNum">      32 </span><span class="lineCov">          1 :   std::array&lt;DataVector, 1&gt; func(double t) const noexcept override {</span>
+<span class="lineNum">      33 </span>            :     return func_and_derivs&lt;0&gt;(t);
+<span class="lineNum">      34 </span>            :   }
+<span class="lineNum">      35 </span>            :   /// Returns the function and its first derivative at an arbitrary time `t`.
+<span class="lineNum">      36 </span><span class="lineCov">          1 :   std::array&lt;DataVector, 2&gt; func_and_deriv(double t) const noexcept override {</span>
+<span class="lineNum">      37 </span>            :     return func_and_derivs&lt;1&gt;(t);
+<span class="lineNum">      38 </span>            :   }
+<span class="lineNum">      39 </span>            :   /// Returns the function and the first two derivatives at an arbitrary time
+<span class="lineNum">      40 </span>            :   /// `t`.
+<span class="lineNum">      41 </span><span class="lineCov">          1 :   std::array&lt;DataVector, 3&gt; func_and_2_derivs(double t) const</span>
+<span class="lineNum">      42 </span>            :       noexcept override {
+<span class="lineNum">      43 </span>            :     return func_and_derivs&lt;2&gt;(t);
+<span class="lineNum">      44 </span>            :   }
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span>            :   /// Updates the `MaxDeriv`th derivative of the function at the given time.
+<span class="lineNum">      47 </span>            :   /// `updated_max_deriv` is a vector of the `MaxDeriv`ths for each component
+<span class="lineNum">      48 </span><span class="lineCov">          1 :   void update(double time_of_update, DataVector updated_max_deriv) noexcept;</span>
+<span class="lineNum">      49 </span>            :   /// Returns the domain of validity of the function.
+<span class="lineNum">      50 </span><span class="lineCov">          1 :   std::array&lt;double, 2&gt; time_bounds() const noexcept override {</span>
+<span class="lineNum">      51 </span>            :     return {{deriv_info_at_update_times_.front().time,
+<span class="lineNum">      52 </span>            :              deriv_info_at_update_times_.back().time}};
+<span class="lineNum">      53 </span>            :   }
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            :  private:
+<span class="lineNum">      56 </span>            :   /// Returns the function and `MaxDerivReturned` derivatives at
+<span class="lineNum">      57 </span>            :   /// an arbitrary time `t`.
+<span class="lineNum">      58 </span>            :   /// The function has multiple components.
+<span class="lineNum">      59 </span>            :   template &lt;size_t MaxDerivReturned = MaxDeriv&gt;
+<span class="lineNum">      60 </span><span class="lineCov">          1 :   std::array&lt;DataVector, MaxDerivReturned + 1&gt; func_and_derivs(double t) const</span>
+<span class="lineNum">      61 </span>            :       noexcept;
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span>            :   // There exists a DataVector for each deriv order that contains
+<span class="lineNum">      64 </span>            :   // the values of that deriv order for all components.
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   using value_type = std::array&lt;DataVector, MaxDeriv + 1&gt;;</span>
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            :   // Holds information at single time at which the `MaxDeriv`th
+<span class="lineNum">      68 </span>            :   // derivative has been updated.
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   struct DerivInfo {</span>
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :     double time;</span>
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :     value_type derivs_coefs;</span>
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span>            :     // Constructor is needed for use of emplace_back of a vector
+<span class="lineNum">      74 </span>            :     // (additionally, the constructor converts the supplied derivs to
+<span class="lineNum">      75 </span>            :     // coefficients for simplified polynomial evaluation.)
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 :     DerivInfo(double t, value_type deriv) noexcept;</span>
+<span class="lineNum">      77 </span>            :   };
+<span class="lineNum">      78 </span>            : 
+<span class="lineNum">      79 </span>            :   /// Returns a DerivInfo corresponding to the closest element in the range of
+<span class="lineNum">      80 </span>            :   /// DerivInfos with an update time that is less than or equal to `t`.
+<span class="lineNum">      81 </span>            :   /// The function throws an error if `t` is less than all DerivInfo update
+<span class="lineNum">      82 </span>            :   /// times. (unless `t` is just less than the earliest update time by roundoff,
+<span class="lineNum">      83 </span>            :   /// in which case it returns the DerivInfo at the earliest update time.)
+<span class="lineNum">      84 </span><span class="lineCov">          1 :   const DerivInfo&amp; deriv_info_from_upper_bound(double t) const noexcept;</span>
+<span class="lineNum">      85 </span>            : 
+<span class="lineNum">      86 </span><span class="lineNoCov">          0 :   std::vector&lt;DerivInfo&gt; deriv_info_at_update_times_;</span>
+<span class="lineNum">      87 </span>            : };
+<span class="lineNum">      88 </span>            : }  // namespace FunctionsOfTime
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

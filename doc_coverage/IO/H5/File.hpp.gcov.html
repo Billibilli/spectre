@@ -1,0 +1,408 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 8ab75ab86f5fe2e5a202d7abc37aef121d6b7549 - IO/H5/File.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">IO/H5</a> - File.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/8ab75ab86f5fe2e5a202d7abc37aef121d6b7549">8ab75ab86f5fe2e5a202d7abc37aef121d6b7549</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-10-23 06:33:02</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class h5::H5File
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">      10 </span>            : #include &lt;exception&gt;
+<span class="lineNum">      11 </span>            : #include &lt;hdf5.h&gt;
+<span class="lineNum">      12 </span>            : #include &lt;memory&gt;
+<span class="lineNum">      13 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">      14 </span>            : #include &lt;string&gt;
+<span class="lineNum">      15 </span>            : #include &lt;tuple&gt;
+<span class="lineNum">      16 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">      17 </span>            : #include &lt;typeinfo&gt;
+<span class="lineNum">      18 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;IO/H5/AccessType.hpp&quot;
+<span class="lineNum">      22 </span>            : #include &quot;IO/H5/CheckH5.hpp&quot;
+<span class="lineNum">      23 </span>            : #include &quot;IO/H5/Header.hpp&quot;  // IWYU pragma: keep
+<span class="lineNum">      24 </span>            : #include &quot;IO/H5/Object.hpp&quot;
+<span class="lineNum">      25 </span>            : #include &quot;IO/H5/OpenGroup.hpp&quot;
+<span class="lineNum">      26 </span>            : #include &quot;Utilities/FileSystem.hpp&quot;
+<span class="lineNum">      27 </span>            : #include &quot;Utilities/PrettyType.hpp&quot;
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : namespace h5 {
+<span class="lineNum">      30 </span>            : /*!
+<span class="lineNum">      31 </span>            :  * \ingroup HDF5Group
+<span class="lineNum">      32 </span>            :  * \brief Opens an HDF5 file for access and allows manipulation of data
+<span class="lineNum">      33 </span>            :  *
+<span class="lineNum">      34 </span>            :  * Opens an HDF5 file either in ReadOnly or ReadWrite mode depending on the
+<span class="lineNum">      35 </span>            :  * template parameter `Access_t`. In ReadWrite mode h5::Object's can be inserted
+<span class="lineNum">      36 </span>            :  * into the file, and objects can be retrieved to have their data manipulated.
+<span class="lineNum">      37 </span>            :  * Example objects are dat files, text files, and volume data files. A single
+<span class="lineNum">      38 </span>            :  * H5File can contain many different objects so that the number of files stored
+<span class="lineNum">      39 </span>            :  * during a simulation is reduced.
+<span class="lineNum">      40 </span>            :  *
+<span class="lineNum">      41 </span>            :  * When an h5::object inside an H5File is opened or created the H5File object
+<span class="lineNum">      42 </span>            :  * holds a copy of the h5::object. Only one object can be open at a time, which
+<span class="lineNum">      43 </span>            :  * means if a reference to the object is kept around after the H5File's current
+<span class="lineNum">      44 </span>            :  * object is closed there is a dangling reference.
+<span class="lineNum">      45 </span>            :  *
+<span class="lineNum">      46 </span>            :  * \example
+<span class="lineNum">      47 </span>            :  * To open a file for read-write access:
+<span class="lineNum">      48 </span>            :  * \snippet Test_H5.cpp h5file_readwrite_file
+<span class="lineNum">      49 </span>            :  *
+<span class="lineNum">      50 </span>            :  * \note The dangling reference issue could be fixed by having a function in
+<span class="lineNum">      51 </span>            :  * addition to `get` that takes a lambda. The lambda takes exactly one parameter
+<span class="lineNum">      52 </span>            :  * of the type of the h5::Object it will be operating on. While this approach is
+<span class="lineNum">      53 </span>            :  * likely to be syntactically strange for many users it will most likely be more
+<span class="lineNum">      54 </span>            :  * performant than the `shared_ptr` solution.
+<span class="lineNum">      55 </span>            :  *
+<span class="lineNum">      56 </span>            :  * @tparam Access_t either h5::AccessType::ReadWrite or h5::AccessType::ReadOnly
+<span class="lineNum">      57 </span>            :  */
+<span class="lineNum">      58 </span>            : template &lt;AccessType Access_t&gt;
+<span class="lineNum">      59 </span><span class="lineCov">          1 : class H5File {</span>
+<span class="lineNum">      60 </span>            :  public:
+<span class="lineNum">      61 </span>            :   /*!
+<span class="lineNum">      62 </span>            :    * \requires `file_name` is a valid path and ends in `.h5`.
+<span class="lineNum">      63 </span>            :    * \effects On object creation opens the HDF5 file at `file_name`
+<span class="lineNum">      64 </span>            :    *
+<span class="lineNum">      65 </span>            :    * @param file_name the path to the file to open or create
+<span class="lineNum">      66 </span>            :    * @param append_to_file if true allow appending to the file, otherwise abort
+<span class="lineNum">      67 </span>            :    * the simulation if the file exists
+<span class="lineNum">      68 </span>            :    */
+<span class="lineNum">      69 </span><span class="lineCov">          1 :   explicit H5File(std::string file_name, bool append_to_file = false);</span>
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      72 </span>            :   ~H5File();
+<span class="lineNum">      73 </span>            :   /// \endcond
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            :   // @{
+<span class="lineNum">      76 </span>            :   /*!
+<span class="lineNum">      77 </span>            :    * \brief It does not make sense to copy an object referring to a file, only
+<span class="lineNum">      78 </span>            :    * to move it.
+<span class="lineNum">      79 </span>            :    */
+<span class="lineNum">      80 </span><span class="lineCov">          1 :   H5File(const H5File&amp; /*rhs*/) = delete;</span>
+<span class="lineNum">      81 </span><span class="lineCov">          1 :   H5File&amp; operator=(const H5File&amp; /*rhs*/) = delete;</span>
+<span class="lineNum">      82 </span>            :   // @}
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      85 </span>            :   H5File(H5File&amp;&amp; rhs) noexcept;             // NOLINT
+<span class="lineNum">      86 </span>            :   H5File&amp; operator=(H5File&amp;&amp; rhs) noexcept;  // NOLINT
+<span class="lineNum">      87 </span>            :   /// \endcond
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span>            :   /// Get name of the H5 file
+<span class="lineNum">      90 </span><span class="lineCov">          1 :   const std::string&amp; name() const noexcept { return file_name_; }</span>
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            :   // @{
+<span class="lineNum">      93 </span>            :   /*!
+<span class="lineNum">      94 </span>            :    * \requires `ObjectType` is a valid h5::Object derived class, `path`
+<span class="lineNum">      95 </span>            :    * is a valid path in the HDF5 file
+<span class="lineNum">      96 </span>            :    * \return a reference to the object inside the HDF5 file.
+<span class="lineNum">      97 </span>            :    *
+<span class="lineNum">      98 </span>            :    * @tparam ObjectType the type of the h5::Object to be retrieved, e.g. Dat
+<span class="lineNum">      99 </span>            :    * @param path the path of the retrieved object
+<span class="lineNum">     100 </span>            :    * @param args arguments forwarded to the ObjectType constructor
+<span class="lineNum">     101 </span>            :    */
+<span class="lineNum">     102 </span>            :   template &lt;
+<span class="lineNum">     103 </span>            :       typename ObjectType, typename... Args,
+<span class="lineNum">     104 </span>            :       typename std::enable_if_t&lt;((void)sizeof(ObjectType),
+<span class="lineNum">     105 </span>            :                                  Access_t == AccessType::ReadWrite)&gt;* = nullptr&gt;
+<span class="lineNum">     106 </span><span class="lineCov">          1 :   ObjectType&amp; get(const std::string&amp; path, Args&amp;&amp;... args);</span>
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span>            :   template &lt;typename ObjectType, typename... Args&gt;
+<span class="lineNum">     109 </span><span class="lineCov">          1 :   const ObjectType&amp; get(const std::string&amp; path, Args&amp;&amp;... args) const;</span>
+<span class="lineNum">     110 </span>            :   // @}
+<span class="lineNum">     111 </span>            : 
+<span class="lineNum">     112 </span>            :   /*!
+<span class="lineNum">     113 </span>            :    * \brief Insert an object into an H5 file.
+<span class="lineNum">     114 </span>            :    *
+<span class="lineNum">     115 </span>            :    * \requires `ObjectType` is a valid h5::Object derived class, `path` is a
+<span class="lineNum">     116 </span>            :    * valid path in the HDF5 file, and `args` are valid arguments to be forwarded
+<span class="lineNum">     117 </span>            :    * to the constructor of `ObjectType`.
+<span class="lineNum">     118 </span>            :    * \effects Creates a new H5 object of type `ObjectType` at the location
+<span class="lineNum">     119 </span>            :    * `path` in the HDF5 file.
+<span class="lineNum">     120 </span>            :    *
+<span class="lineNum">     121 </span>            :    * \return a reference the created object.
+<span class="lineNum">     122 </span>            :    *
+<span class="lineNum">     123 </span>            :    * @tparam ObjectType the type of the h5::Object to be inserted, e.g. Dat
+<span class="lineNum">     124 </span>            :    * @param path the path of the inserted object
+<span class="lineNum">     125 </span>            :    * @param args additional arguments to be passed to the constructor of the
+<span class="lineNum">     126 </span>            :    * object
+<span class="lineNum">     127 </span>            :    */
+<span class="lineNum">     128 </span>            :   template &lt;typename ObjectType, typename... Args&gt;
+<span class="lineNum">     129 </span><span class="lineCov">          1 :   ObjectType&amp; insert(const std::string&amp; path, Args&amp;&amp;... args);</span>
+<span class="lineNum">     130 </span>            : 
+<span class="lineNum">     131 </span>            :   /*!
+<span class="lineNum">     132 </span>            :    * \brief Inserts an object like `insert` if it does not exist, returns the
+<span class="lineNum">     133 </span>            :    * object if it does.
+<span class="lineNum">     134 </span>            :    */
+<span class="lineNum">     135 </span>            :   template &lt;typename ObjectType, typename... Args&gt;
+<span class="lineNum">     136 </span><span class="lineCov">          1 :   ObjectType&amp; try_insert(const std::string&amp; path, Args&amp;&amp;... args) noexcept;</span>
+<span class="lineNum">     137 </span>            : 
+<span class="lineNum">     138 </span>            :   /*!
+<span class="lineNum">     139 </span>            :    * \effects Closes the current object, if there is none then has no effect
+<span class="lineNum">     140 </span>            :    */
+<span class="lineNum">     141 </span><span class="lineCov">          1 :   void close_current_object() const noexcept { current_object_ = nullptr; }</span>
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span>            :  private:
+<span class="lineNum">     144 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     145 </span>            :   template &lt;typename ObjectType,
+<span class="lineNum">     146 </span>            :             std::enable_if_t&lt;((void)sizeof(ObjectType),
+<span class="lineNum">     147 </span>            :                               Access_t == AccessType::ReadWrite)&gt;* = nullptr&gt;
+<span class="lineNum">     148 </span>            :   ObjectType&amp; convert_to_derived(
+<span class="lineNum">     149 </span>            :       std::unique_ptr&lt;h5::Object&gt;&amp; current_object);  // NOLINT
+<span class="lineNum">     150 </span>            :   template &lt;typename ObjectType&gt;
+<span class="lineNum">     151 </span>            :   const ObjectType&amp; convert_to_derived(
+<span class="lineNum">     152 </span>            :       const std::unique_ptr&lt;h5::Object&gt;&amp; current_object) const;
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            :   void insert_header();
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span>            :   template &lt;typename ObjectType&gt;
+<span class="lineNum">     157 </span>            :   std::tuple&lt;bool, detail::OpenGroup, std::string&gt; check_if_object_exists(
+<span class="lineNum">     158 </span>            :       const std::string&amp; path) const;
+<span class="lineNum">     159 </span>            : 
+<span class="lineNum">     160 </span>            :   std::string file_name_;
+<span class="lineNum">     161 </span>            :   hid_t file_id_{-1};
+<span class="lineNum">     162 </span>            :   mutable std::unique_ptr&lt;h5::Object&gt; current_object_{nullptr};
+<span class="lineNum">     163 </span>            :   std::vector&lt;std::string&gt; h5_groups_;
+<span class="lineNum">     164 </span>            :   /// \endcond HIDDEN_SYMBOLS
+<span class="lineNum">     165 </span>            : };
+<span class="lineNum">     166 </span>            : 
+<span class="lineNum">     167 </span>            : // ======================================================================
+<span class="lineNum">     168 </span>            : // H5File Definitions
+<span class="lineNum">     169 </span>            : // ======================================================================
+<span class="lineNum">     170 </span>            : 
+<span class="lineNum">     171 </span>            : template &lt;AccessType Access_t&gt;
+<span class="lineNum">     172 </span>            : template &lt;typename ObjectType, typename... Args,
+<span class="lineNum">     173 </span>            :           typename std::enable_if_t&lt;((void)sizeof(ObjectType),
+<span class="lineNum">     174 </span>            :                                      Access_t == AccessType::ReadWrite)&gt;*&gt;
+<span class="lineNum">     175 </span>            : ObjectType&amp; H5File&lt;Access_t&gt;::get(const std::string&amp; path, Args&amp;&amp;... args) {
+<span class="lineNum">     176 </span>            :   // Ensure we call the const version of the get function to avoid infinite
+<span class="lineNum">     177 </span>            :   // recursion. The reason this is implemented in this manner is to avoid code
+<span class="lineNum">     178 </span>            :   // duplication.
+<span class="lineNum">     179 </span>            :   // clang-tidy: do not use const_cast
+<span class="lineNum">     180 </span>            :   return const_cast&lt;ObjectType&amp;&gt;(  // NOLINT
+<span class="lineNum">     181 </span>            :       static_cast&lt;H5File&lt;Access_t&gt; const*&gt;(this)-&gt;get&lt;ObjectType&gt;(
+<span class="lineNum">     182 </span>            :           path, std::forward&lt;Args&gt;(args)...));
+<span class="lineNum">     183 </span>            : }
+<span class="lineNum">     184 </span>            : 
+<span class="lineNum">     185 </span>            : template &lt;AccessType Access_t&gt;
+<span class="lineNum">     186 </span>            : template &lt;typename ObjectType, typename... Args&gt;
+<span class="lineNum">     187 </span>            : const ObjectType&amp; H5File&lt;Access_t&gt;::get(const std::string&amp; path,
+<span class="lineNum">     188 </span>            :                                         Args&amp;&amp;... args) const {
+<span class="lineNum">     189 </span>            :   try {
+<span class="lineNum">     190 </span>            :     current_object_ = nullptr;
+<span class="lineNum">     191 </span>            :     // C++17: structured bindings
+<span class="lineNum">     192 </span>            :     auto exists_group_name = check_if_object_exists&lt;ObjectType&gt;(path);
+<span class="lineNum">     193 </span>            :     hid_t group_id = std::get&lt;1&gt;(exists_group_name).id();
+<span class="lineNum">     194 </span>            :     if (not std::get&lt;0&gt;(exists_group_name)) {
+<span class="lineNum">     195 </span>            :       current_object_ = nullptr;
+<span class="lineNum">     196 </span>            :       CHECK_H5(H5Fclose(file_id_),
+<span class="lineNum">     197 </span>            :                &quot;Failed to close file: '&quot; &lt;&lt; file_name_ &lt;&lt; &quot;'&quot;);
+<span class="lineNum">     198 </span>            :       ERROR(&quot;Cannot open the object '&quot; &lt;&lt; path + ObjectType::extension()
+<span class="lineNum">     199 </span>            :                                        &lt;&lt; &quot;' because it does not exist.&quot;);
+<span class="lineNum">     200 </span>            :     }
+<span class="lineNum">     201 </span>            :     current_object_ = std::make_unique&lt;ObjectType&gt;(
+<span class="lineNum">     202 </span>            :         std::get&lt;0&gt;(exists_group_name),
+<span class="lineNum">     203 </span>            :         std::move(std::get&lt;1&gt;(exists_group_name)), group_id,
+<span class="lineNum">     204 </span>            :         std::move(std::get&lt;2&gt;(exists_group_name)), std::forward&lt;Args&gt;(args)...);
+<span class="lineNum">     205 </span>            :     return dynamic_cast&lt;const ObjectType&amp;&gt;(*current_object_);
+<span class="lineNum">     206 </span>            :     // LCOV_EXCL_START
+<span class="lineNum">     207 </span>            :   } catch (const std::bad_cast&amp; e) {
+<span class="lineNum">     208 </span>            :     current_object_ = nullptr;
+<span class="lineNum">     209 </span>            :     CHECK_H5(H5Fclose(file_id_),
+<span class="lineNum">     210 </span>            :              &quot;Failed to close file: '&quot; &lt;&lt; file_name_ &lt;&lt; &quot;'&quot;);
+<span class="lineNum">     211 </span>            :     ERROR(&quot;Failed to cast &quot; &lt;&lt; path &lt;&lt; &quot; to &quot;
+<span class="lineNum">     212 </span>            :                             &lt;&lt; pretty_type::get_name&lt;ObjectType&gt;()
+<span class="lineNum">     213 </span>            :                             &lt;&lt; &quot;.\nCast error: &quot; &lt;&lt; e.what());
+<span class="lineNum">     214 </span>            :   } catch (const std::exception&amp; e) {
+<span class="lineNum">     215 </span>            :     current_object_ = nullptr;
+<span class="lineNum">     216 </span>            :     CHECK_H5(H5Fclose(file_id_),
+<span class="lineNum">     217 </span>            :              &quot;Failed to close file: '&quot; &lt;&lt; file_name_ &lt;&lt; &quot;'&quot;);
+<span class="lineNum">     218 </span>            :     ERROR(&quot;Unknown exception caught: &quot; &lt;&lt; e.what());
+<span class="lineNum">     219 </span>            :     // LCOV_EXCL_STOP
+<span class="lineNum">     220 </span>            :   }
+<span class="lineNum">     221 </span>            : }
+<span class="lineNum">     222 </span>            : 
+<span class="lineNum">     223 </span>            : template &lt;AccessType Access_t&gt;
+<span class="lineNum">     224 </span>            : template &lt;typename ObjectType, typename... Args&gt;
+<span class="lineNum">     225 </span>            : ObjectType&amp; H5File&lt;Access_t&gt;::insert(const std::string&amp; path,
+<span class="lineNum">     226 </span>            :                                      Args&amp;&amp;... args) {
+<span class="lineNum">     227 </span>            :   static_assert(AccessType::ReadWrite == Access_t,
+<span class="lineNum">     228 </span>            :                 &quot;Can only insert into ReadWrite access H5 files.&quot;);
+<span class="lineNum">     229 </span>            :   current_object_ = nullptr;
+<span class="lineNum">     230 </span>            :   // C++17: structured bindings
+<span class="lineNum">     231 </span>            :   auto exists_group_name = check_if_object_exists&lt;ObjectType&gt;(path);
+<span class="lineNum">     232 </span>            :   if (std::get&lt;0&gt;(exists_group_name)) {
+<span class="lineNum">     233 </span>            :     current_object_ = nullptr;
+<span class="lineNum">     234 </span>            :     CHECK_H5(H5Fclose(file_id_),
+<span class="lineNum">     235 </span>            :              &quot;Failed to close file: '&quot; &lt;&lt; file_name_ &lt;&lt; &quot;'&quot;);
+<span class="lineNum">     236 </span>            :     ERROR(
+<span class="lineNum">     237 </span>            :         &quot;Cannot insert an Object that already exists. Failed to add Object &quot;
+<span class="lineNum">     238 </span>            :         &quot;named: &quot;
+<span class="lineNum">     239 </span>            :         &lt;&lt; path);
+<span class="lineNum">     240 </span>            :   }
+<span class="lineNum">     241 </span>            : 
+<span class="lineNum">     242 </span>            :   hid_t group_id = std::get&lt;1&gt;(exists_group_name).id();
+<span class="lineNum">     243 </span>            :   return convert_to_derived&lt;ObjectType&gt;(
+<span class="lineNum">     244 </span>            :       current_object_ = std::make_unique&lt;ObjectType&gt;(
+<span class="lineNum">     245 </span>            :           std::get&lt;0&gt;(exists_group_name),
+<span class="lineNum">     246 </span>            :           std::move(std::get&lt;1&gt;(exists_group_name)), group_id,
+<span class="lineNum">     247 </span>            :           std::move(std::get&lt;2&gt;(exists_group_name)),
+<span class="lineNum">     248 </span>            :           std::forward&lt;Args&gt;(args)...));
+<span class="lineNum">     249 </span>            : }
+<span class="lineNum">     250 </span>            : 
+<span class="lineNum">     251 </span>            : template &lt;AccessType Access_t&gt;
+<span class="lineNum">     252 </span>            : template &lt;typename ObjectType, typename... Args&gt;
+<span class="lineNum">     253 </span>            : ObjectType&amp; H5File&lt;Access_t&gt;::try_insert(const std::string&amp; path,
+<span class="lineNum">     254 </span>            :                                          Args&amp;&amp;... args) noexcept {
+<span class="lineNum">     255 </span>            :   static_assert(AccessType::ReadWrite == Access_t,
+<span class="lineNum">     256 </span>            :                 &quot;Can only insert into ReadWrite access H5 files.&quot;);
+<span class="lineNum">     257 </span>            :   current_object_ = nullptr;
+<span class="lineNum">     258 </span>            :   // C++17: structured bindings
+<span class="lineNum">     259 </span>            :   auto exists_group_name = check_if_object_exists&lt;ObjectType&gt;(path);
+<span class="lineNum">     260 </span>            :   hid_t group_id = std::get&lt;1&gt;(exists_group_name).id();
+<span class="lineNum">     261 </span>            :   return convert_to_derived&lt;ObjectType&gt;(
+<span class="lineNum">     262 </span>            :       current_object_ = std::make_unique&lt;ObjectType&gt;(
+<span class="lineNum">     263 </span>            :           std::get&lt;0&gt;(exists_group_name),
+<span class="lineNum">     264 </span>            :           std::move(std::get&lt;1&gt;(exists_group_name)), group_id,
+<span class="lineNum">     265 </span>            :           std::move(std::get&lt;2&gt;(exists_group_name)),
+<span class="lineNum">     266 </span>            :           std::forward&lt;Args&gt;(args)...));
+<span class="lineNum">     267 </span>            : }
+<span class="lineNum">     268 </span>            : 
+<span class="lineNum">     269 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     270 </span>            : template &lt;AccessType Access_t&gt;
+<span class="lineNum">     271 </span>            : template &lt;typename ObjectType,
+<span class="lineNum">     272 </span>            :           typename std::enable_if_t&lt;((void)sizeof(ObjectType),
+<span class="lineNum">     273 </span>            :                                      Access_t == AccessType::ReadWrite)&gt;*&gt;
+<span class="lineNum">     274 </span>            : ObjectType&amp; H5File&lt;Access_t&gt;::convert_to_derived(
+<span class="lineNum">     275 </span>            :     std::unique_ptr&lt;h5::Object&gt;&amp; current_object) {
+<span class="lineNum">     276 </span>            :   if (nullptr == current_object) {
+<span class="lineNum">     277 </span>            :     ERROR(&quot;No object to convert.&quot;);  // LCOV_EXCL_LINE
+<span class="lineNum">     278 </span>            :   }
+<span class="lineNum">     279 </span>            :   try {
+<span class="lineNum">     280 </span>            :     return dynamic_cast&lt;ObjectType&amp;&gt;(*current_object);
+<span class="lineNum">     281 </span>            :     // LCOV_EXCL_START
+<span class="lineNum">     282 </span>            :   } catch (const std::bad_cast&amp; e) {
+<span class="lineNum">     283 </span>            :     ERROR(&quot;Failed to cast to object.\nCast error: &quot; &lt;&lt; e.what());
+<span class="lineNum">     284 </span>            :     // LCOV_EXCL_STOP
+<span class="lineNum">     285 </span>            :   }
+<span class="lineNum">     286 </span>            : }
+<span class="lineNum">     287 </span>            : template &lt;AccessType Access_t&gt;
+<span class="lineNum">     288 </span>            : template &lt;typename ObjectType&gt;
+<span class="lineNum">     289 </span>            : const ObjectType&amp; H5File&lt;Access_t&gt;::convert_to_derived(
+<span class="lineNum">     290 </span>            :     const std::unique_ptr&lt;h5::Object&gt;&amp; current_object) const {
+<span class="lineNum">     291 </span>            :   if (nullptr == current_object) {
+<span class="lineNum">     292 </span>            :     ERROR(&quot;No object to convert.&quot;);
+<span class="lineNum">     293 </span>            :   }
+<span class="lineNum">     294 </span>            :   try {
+<span class="lineNum">     295 </span>            :     return dynamic_cast&lt;const ObjectType&amp;&gt;(*current_object);
+<span class="lineNum">     296 </span>            :   } catch (const std::bad_cast&amp; e) {
+<span class="lineNum">     297 </span>            :     ERROR(&quot;Failed to cast to object.\nCast error: &quot; &lt;&lt; e.what());
+<span class="lineNum">     298 </span>            :   }
+<span class="lineNum">     299 </span>            : }
+<span class="lineNum">     300 </span>            : 
+<span class="lineNum">     301 </span>            : template &lt;AccessType Access_t&gt;
+<span class="lineNum">     302 </span>            : template &lt;typename ObjectType&gt;
+<span class="lineNum">     303 </span>            : std::tuple&lt;bool, detail::OpenGroup, std::string&gt;
+<span class="lineNum">     304 </span>            : H5File&lt;Access_t&gt;::check_if_object_exists(const std::string&amp; path) const {
+<span class="lineNum">     305 </span>            :   std::string name_only = file_system::get_file_name(path);
+<span class="lineNum">     306 </span>            :   const std::string name_with_extension = name_only + ObjectType::extension();
+<span class="lineNum">     307 </span>            :   detail::OpenGroup group(file_id_, file_system::get_parent_path(path),
+<span class="lineNum">     308 </span>            :                           Access_t);
+<span class="lineNum">     309 </span>            : #pragma GCC diagnostic push
+<span class="lineNum">     310 </span>            : #pragma GCC diagnostic ignored &quot;-Wold-style-cast&quot;
+<span class="lineNum">     311 </span>            :   const bool exists =
+<span class="lineNum">     312 </span>            :       H5Lexists(group.id(), name_with_extension.c_str(), H5P_DEFAULT) or
+<span class="lineNum">     313 </span>            :       H5Aexists(group.id(), name_with_extension.c_str());
+<span class="lineNum">     314 </span>            : #pragma GCC diagnostic pop
+<span class="lineNum">     315 </span>            :   return std::make_tuple(exists, std::move(group), std::move(name_only));
+<span class="lineNum">     316 </span>            : }
+<span class="lineNum">     317 </span>            : 
+<span class="lineNum">     318 </span>            : template &lt;&gt;
+<span class="lineNum">     319 </span>            : inline void H5File&lt;AccessType::ReadWrite&gt;::insert_header() {
+<span class="lineNum">     320 </span>            :   insert&lt;h5::Header&gt;(&quot;/header&quot;);
+<span class="lineNum">     321 </span>            : }
+<span class="lineNum">     322 </span>            : // Not tested because it is only required to get code to compile, if statement
+<span class="lineNum">     323 </span>            : // in constructor prevents call.
+<span class="lineNum">     324 </span>            : template &lt;&gt;
+<span class="lineNum">     325 </span>            : inline void H5File&lt;AccessType::ReadOnly&gt;::insert_header() {}  // LCOV_EXCL_LINE
+<span class="lineNum">     326 </span>            : 
+<span class="lineNum">     327 </span>            : /// \endcond
+<span class="lineNum">     328 </span>            : }  // namespace h5
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
